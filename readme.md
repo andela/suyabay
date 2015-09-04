@@ -2,15 +2,12 @@
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/andela/suyabay/blob/staging/LICENSE.md)
-
-## SuyaBay Podcast App
-
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Suyabay Podcast is an open source project using the full features of [laravel](http://laravel.com/). The main purpose of this project is to help Suya lovers find new podcasts and contents.
+[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
 ## Installation
 1. Clone the repository into your project folder
@@ -23,7 +20,6 @@ Suyabay Podcast is an open source project using the full features of [laravel](h
 Download the installer from [getcomposer.org/download](https://getcomposer.org/doc/00-intro.md), execute it and follow the instructions
 
 ## Setup the environmental variables (.env file)
-
         APP_ENV    =local
         APP_DEBUG  =true
         APP_KEY    =LhsswvmAfygWZdKUhZXedm3bOTAOKLxH
@@ -67,10 +63,6 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
         phpunit/phpunit  = ~4.0
         phpspec/phpspec  = ~2.1
         mockery/mockery  = ^0.9.4
-
-Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
-
-[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
 ## Credits
 [Okosun Florence](https://github.com/andela-fokosun)
@@ -116,9 +108,17 @@ The overview is presented from two perspectives. The perpective of a user of the
      3. upload/delete episodes
      
 
+## FEATURES (MOCKUP)
+1. User registration/login
 
-## FEATURES     
+2. User Dashboard
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Contributing to SuyaBay Podcast App
+If you have an idea for SuyaBay Podcasting, feel free to suggest it in an issue on this repo.
+
+## Supporting development
+If you enjoy using SuyaBay Podcasting then please leave a [review](http://www.suyabay.com) to help promote continued development.
