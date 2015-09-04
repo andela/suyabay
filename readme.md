@@ -7,7 +7,7 @@
 
 Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
 
-[SuyaBay](https://www.suyabay.com)
+[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
 
 ## Official Documentation
 
