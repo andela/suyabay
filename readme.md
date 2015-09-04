@@ -89,14 +89,14 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
       * Database - postgresql
 
 ### Features:
-**Users should be able to:**
-
-1. Use SuyaBay as a guest. No registration/signin.
-2. Use SuyaBay as a registered user. Registration/signin *required*
-3. Have access to user dashboard:
-     - Registered user:
-     - Should be able to subscribe/unsubscribe to channels
-     - See list of subscribed channels
+     **Users should be able to:**
+     
+     1. Use SuyaBay as a guest. No registration/signin.
+     2. Use SuyaBay as a registered user. Registration/signin *required*
+     3. Have access to user dashboard:
+          - Registered user:
+          - Should be able to subscribe/unsubscribe to channels
+          - See list of subscribed channels
      
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
