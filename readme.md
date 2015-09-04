@@ -119,7 +119,7 @@ The overview is presented from two perspectives. The perpective of a user of the
 ![user dashboard-watch podcast](screenshots/viewpost.png "user dashboard-watch podcast")
 
 3. Contacts page
-![user dashboard-contacts page](screenshots/contact-page-1.png "")
+![user dashboard-contacts page](screenshots/contact-page-2.png "")
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
