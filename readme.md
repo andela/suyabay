@@ -70,13 +70,7 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
 Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
 
-[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
-
-## Official Documentation
-
-## Contributing to SuyaBay Podcast App
-
-Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
+[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
 ## Credits
 
@@ -86,12 +80,15 @@ Documentation for Suyabay website can be found on the [Suyabay Wiki](https://git
 
 [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
 
-## Stack
-### PHP/Laravel
 
-## Tools
-### Frontend - AngularJS, blade
-### Database - postgresql
+### Stack
+
+      * PHP/Laravel
+
+
+### Tools
+      * Frontend - AngularJS, blade
+      * Database - postgresql
 
 ## Supporting development
 
