@@ -1,12 +1,17 @@
+
 ## Suyabay Podcast
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/andela/suyabay/blob/staging/LICENSE.md)
 
+## SuyaBay Podcast App
+
+
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+
 
 Suyabay Podcast is an open source project using the full features of [laravel](http://laravel.com/). The main purpose of this project is to help Suya lovers find new podcasts and contents.
 
@@ -65,6 +70,11 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
         phpunit/phpunit  = ~4.0
         phpspec/phpspec  = ~2.1
         mockery/mockery  = ^0.9.4
+
+Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
+
+[SuyaBay](https://www.suyabay.com)
+
 
 ## Official Documentation
 
