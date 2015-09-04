@@ -22,14 +22,14 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
      1. Use SuyaBay as a guest. No registration/signin required.
      2. Use SuyaBay as a registered user. Registration/signin required.
      3. Have access to user dashboard:
-       **_Registered users_**:
+     **_Registered users_**:
           - Should be able to subscribe/unsubscribe to channels and/or specific episodes
           - See list of subscribed channels
           - Have access to contact form
           - Have access to FAQs, About and Terms and conditions pages
           - Have access to other functionalities not yet implemented!
           
-       **_Guest users_**:
+     **_Guest users_**:
           - Should be able to have access to only available(subscription not required) episodes
           - Have access to contact form
           - Have access to FAQs, About and Terms and conditions pages
