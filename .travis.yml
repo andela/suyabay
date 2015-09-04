@@ -14,7 +14,7 @@ matrix:
 
 install: travis_retry composer install --no-interaction --prefer-source
 
-script: vendor/bin/phpspec run && phpunit
+script: vendor/bin/phpunit run
 
 notifications:
   slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
