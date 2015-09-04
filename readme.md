@@ -73,7 +73,6 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
 ## Credits
-
 [Okosun Florence](https://github.com/andela-fokosun)
 
 [Osuagwu Emeka](https://github.com/andela-eosuagwu)
@@ -82,7 +81,6 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 
 
 ### Stack
-
       * PHP/Laravel
 
 
@@ -90,10 +88,16 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
       * Frontend - AngularJS, blade
       * Database - postgresql
 
-## Supporting development
+### Features:
+     Users should be able to:
+     * Use SuyaBay as a guest. No registration/signin.
+     * Use SuyaBay as a registered user. Registration/signin *required*
+     * Have access to user dashboard:
+     ** Registered user:
+     *** Should be able to subscribe/unsubscribe to channels
+     *** See list of subscribed channels
+     
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-
