@@ -89,6 +89,8 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
       * Database - postgresql
 
 ### General overview:
+The overview is presented from two perspectives. The perpective of a user of the app (front-end) and the perspective of an admin(owner of the podcasting service).
+
 **Users should be able to:**
      
      1. Use SuyaBay as a guest. No registration/signin required.
