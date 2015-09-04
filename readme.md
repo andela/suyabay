@@ -94,9 +94,12 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
      1. Use SuyaBay as a guest. No registration/signin.
      2. Use SuyaBay as a registered user. Registration/signin **required**
      3. Have access to user dashboard:
-          - **_Registered user_**:
-          - Should be able to subscribe/unsubscribe to channels
+          - **_Registered users_**:
+          - Should be able to subscribe/unsubscribe to channels and/or specific episodes
           - See list of subscribed channels
+          - Have access to contact form
+          - Have access to FAQs, About and Terms and conditions pages
+          - `Have access to other functionalities not yet implemented!`
      
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
