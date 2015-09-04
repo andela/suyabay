@@ -42,11 +42,19 @@ The overview is presented from two perspectives. The perpective of a user of the
 
 ## FEATURES (MOCKUP)
 1. User registration/login
+![user_registration_signin](screenshots/signup.png "user registration or signin interface")
 
 2. User Dashboard
+![user dashboard](screenshots/landingpage.png "user dashboard")
+
+3. Watch Podcast
+![user dashboard-watch podcast](screenshots/viewpost.png "user dashboard-watch podcast")
+
+3. Contacts page
+![user dashboard-contacts page](screenshots/contact-page-1.png "")
 
 ## Contributing to SuyaBay Podcast App
-If you have an idea for SuyaBay Podcasting, feel free to suggest it in an issue on this repo.
+If you have an idea for SuyaBay Podcasting, feel free to suggest it in an [issue](https://www.github.com) on this repo.
 
 ## Supporting development
 If you enjoy using SuyaBay Podcasting then please leave a [review](http://www.suyabay.com) to help promote continued development.
