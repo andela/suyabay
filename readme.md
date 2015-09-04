@@ -51,7 +51,7 @@ The overview is presented from two perspectives. The perpective of a user of the
 ![user dashboard-watch podcast](screenshots/viewpost.png "user dashboard-watch podcast")
 
 3. Contacts page
-![user dashboard-contacts page](screenshots/contact-page-1.png "")
+![user dashboard-contacts page](screenshots/contact-page-2.png "")
 
 ## Contributing to SuyaBay Podcast App
 If you have an idea for SuyaBay Podcasting, feel free to suggest it in an [issue](https://www.github.com) on this repo.
