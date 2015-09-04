@@ -86,7 +86,12 @@ Documentation for Suyabay website can be found on the [Suyabay Wiki](https://git
 
 [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
 
-## Contributing
+## Stack
+### PHP/Laravel
+
+## Tools
+### Frontend - AngularJS, blade
+### Database - postgresql
 
 ## Supporting development
 
@@ -94,4 +99,4 @@ Thank you for considering contributing to the Suyabay project! The contribution 
 
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
-### Stack
+
