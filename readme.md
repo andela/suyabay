@@ -9,17 +9,16 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
 
-## Contributing to SuyaBay Podcast App
+## Stack
+### PHP/Laravel
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Tools
+### Frontend - AngularJS, blade
+### Database - postgresql
+
+
+## Contributing to SuyaBay Podcast App
 
 ## Supporting development
 
-
 ## Security Vulnerabilities
-
-
-
-### Stack
-
-
