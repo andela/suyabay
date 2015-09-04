@@ -16,6 +16,15 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
       * Frontend - AngularJS, blade
       * Database - postgresql
 
+### Features:
+     Users should be able to:
+     * Use SuyaBay as a guest. No registration/signin.
+     * Use SuyaBay as a registered user. Registration/signin *required*
+     * Have access to user dashboard:
+     ** Registered user:
+     *** Should be able to subscribe/unsubscribe to channels
+     *** See list of subscribed channels
+     
 
 ## Contributing to SuyaBay Podcast App
 
