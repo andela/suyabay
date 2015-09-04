@@ -1,4 +1,3 @@
-
 ## Suyabay Podcast
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
@@ -6,12 +5,10 @@
 
 ## SuyaBay Podcast App
 
-
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
 [![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
 
 Suyabay Podcast is an open source project using the full features of [laravel](http://laravel.com/). The main purpose of this project is to help Suya lovers find new podcasts and contents.
 
@@ -75,8 +72,9 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
 
-
 ## Official Documentation
+
+## Contributing to SuyaBay Podcast App
 
 Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
@@ -88,12 +86,12 @@ Documentation for Suyabay website can be found on the [Suyabay Wiki](https://git
 
 [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
 
-
 ## Contributing
+
+## Supporting development
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
-
-### License
-
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+### Stack
