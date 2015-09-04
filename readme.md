@@ -91,7 +91,7 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 ### General overview:
 The overview is presented from two perspectives. The perpective of a user of the app (front-end) and the perspective of an admin(owner of the podcasting service).
 
-**Users should be able to:**
+**frontend users should be able to:**
      
      1. Use SuyaBay as a guest. No registration/signin required.
      2. Use SuyaBay as a registered user. Registration/signin required.
@@ -108,6 +108,14 @@ The overview is presented from two perspectives. The perpective of a user of the
           - Have access to contact form
           - Have access to FAQs, About and Terms and conditions pages
           - Have option to register or remain as a guest user
+
+**Admin users should be able to:**
+     
+     1. create/delete user roles.
+     2. create/delete channels.
+     3. upload/delete episodes
+     
+
 
 ## FEATURES     
 
