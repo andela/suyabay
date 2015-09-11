@@ -1,0 +1,329 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"co",
+				"comments"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"prin",
+				"printf"
+			],
+			[
+				"pus",
+				"array_push"
+			],
+			[
+				"pos",
+				"posts"
+			],
+			[
+				"ar",
+				"article	Tag"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"db",
+				"db_password"
+			],
+			[
+				"u",
+				"u2_val"
+			],
+			[
+				"u1",
+				"u1_val"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 342.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"",
+				"Bookmarks: Select All"
+			]
+		],
+		"width": 342.0
+	},
+	"console":
+	{
+		"height": 118.0,
+		"history":
+		[
+			"ls",
+			"li"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_08_222438_create_post_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_08_170423_create_users_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_09_170635_create_clicks_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Feeds.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Http/Controllers/FeedsController.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Posts.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/User.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/index.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/index/home.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/overall/head.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Http/routes.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/single.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_09_170208_create_comments_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_09_165811_create_likes_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/favourite.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/favourite/body.blade.php",
+		"/home/emeka/Documents/New folder/mr rdiwon work/mobile/my_play-web/index.html",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/ov/sideNav.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/keep/homepage_parts",
+		"/home/emeka/Project/php/TheHuB/laravel/vendor/symfony/routing/Route.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/ov/searchBar.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Http/Controllers/feedsController.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/single/comment.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/single/body.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/single/wiget.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/single/content.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/single/social_icon.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/_single.html",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_08_205646_create_post_table.php",
+		"/home/emeka/Project/php/TheHuB/laravel/public/custom/javascripts/index.js",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/ov/head.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/app/Http/Controllers/Controller.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/test.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/public/index.php",
+		"/home/emeka/Project/php/TheHuB/laravel/resources/views/includes/index/footer.blade.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_08_133909_emeka.php",
+		"/home/emeka/Project/php/TheHuB/laravel/.env",
+		"/home/emeka/Project/php/TheHuB/laravel/config/database.php",
+		"/home/emeka/Project/php/TheHuB/laravel/database/migrations/2015_09_08_130339_emeka.php",
+		"/home/emeka/Desktop/eee/index.html",
+		"/home/emeka/Desktop/TheHuB/views/index.html",
+		"/home/emeka/Project/node/travial/views/index.html",
+		"/home/emeka/Project/node/travial/app/module/app.js",
+		"/home/emeka/Project/node/travial/views/demo.js",
+		"/home/emeka/Project/node/travial/app/module/aewda",
+		"/home/emeka/Desktop/mobile-angular-ui-master/demo/demo.js",
+		"/home/emeka/Desktop/mobile-angular-ui-master/demo/sidebarRight.html",
+		"/home/emeka/Desktop/mobile-angular-ui-master/demo/index.html",
+		"/home/emeka/Desktop/mobile-angular-ui-master/demo/swipe.html",
+		"/home/emeka/Desktop/mobile-angular-ui-master/demo/tabs.html",
+		"/home/emeka/Desktop/lumX-0.3.82/demo/index.html",
+		"/home/emeka/Project/php/maidinnigeria_api/users.php",
+		"/home/emeka/Project/php/maidinnigeria_api/workers.php",
+		"/home/emeka/Project/php/maidinnigeria_api/login.php",
+		"/home/emeka/Project/php/maidinnigeria_api/index.php",
+		"/home/emeka/Project/php/maidinnigeria_api/index.php~",
+		"/etc/postgresql/9.3/main/pg_hba.conf",
+		"/etc/postgresql/8.4/main/postgresql.conf",
+		"/etc/php5/apache2/php.ini",
+		"/home/emeka/Desktop/php/laravel/resources/views/emeka.blade.php",
+		"/home/emeka/Desktop/php/laravel/resources/views/welcome.blade.php",
+		"/home/emeka/Desktop/php/laravel/app/Http/routes.php",
+		"/home/emeka/Desktop/php/laravel/resources/views/emeka.blade.php~",
+		"/home/emeka/Project/javascript/number/index.html",
+		"/home/emeka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/emeka/Project/javascript/number/function/f1.js",
+		"/home/emeka/Project/javascript/number/css.css",
+		"/home/emeka/.homestead/Homestead.yaml",
+		"/home/emeka/Desktop/Andela/num/index.html",
+		"/home/emeka/Desktop/Andela/num/function/f1.js",
+		"/home/emeka/Desktop/vag/Vagrantfile"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"assets",
+			"\n</",
+			"//'",
+			"display_errors"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "server.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"post_tab",
+				"database/migrations/2015_09_08_222438_create_post_table.php"
+			],
+			[
+				"feeds",
+				"app/Http/Controllers/FeedsController.php"
+			],
+			[
+				"feed",
+				"app/Http/Controllers/feedsController.php"
+			],
+			[
+				"index/bo",
+				"resources/views/includes/index/home.blade.php"
+			],
+			[
+				"index.bl",
+				"resources/views/index.blade.php"
+			],
+			[
+				"rou",
+				"app/Http/routes.php"
+			],
+			[
+				"rout",
+				"vendor/symfony/routing/Route.php"
+			],
+			[
+				"home",
+				"resources/views/includes/index/home.blade.php"
+			],
+			[
+				"con",
+				"app/Http/Controllers/Controller.php"
+			],
+			[
+				".ev",
+				".env"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 438.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 333.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 268.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

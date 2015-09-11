@@ -68,10 +68,10 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => env('DB_HOST', $url["host"]),
-            'database' => env('DB_DATABASE', substr($url["path"], 1)),
-            'username' => env('DB_USERNAME', $url["user"]),
-            'password' => env('DB_PASSWORD', $url["pass"]),
+            'host'     => env('DB_HOST', localhost),
+            'database' => env('DB_DATABASE', 'thehub'),
+            'username' => env('DB_USERNAME', 'postgres'),
+            'password' => env('DB_PASSWORD', 'Olanicmi2013'),
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
