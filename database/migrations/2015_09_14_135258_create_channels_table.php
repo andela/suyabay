@@ -28,6 +28,6 @@ class CreateChannelsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('channels');
     }
 }

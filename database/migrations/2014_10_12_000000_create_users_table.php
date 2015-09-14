@@ -29,6 +29,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('channels');
+        Schema::drop('users');
     }
 }
