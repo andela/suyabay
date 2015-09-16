@@ -1,7 +1,11 @@
-<?php echo $__env->make('app.includes.overall.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+ <?php echo $__env->make('app.includes.overall.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
  <!-- Dropdown Structure -->
 <?php echo $__env->make('app.includes.overall.top_nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
 
 <div class="row">
     <?php echo $__env->make('app.includes.overall.side_nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
