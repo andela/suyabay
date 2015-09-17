@@ -2,15 +2,42 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Application Routes - Index
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
+
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app.pages.index');
+});
+
+
+/*
+/-------------------------------------------------------------------------------
+/ About
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('about', function () {
+    return view('app.pages.about');
+});
+
+/*
+/-------------------------------------------------------------------------------
+/ FAQs
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('faqs', function () {
+    return view('app.pages.faqs');
+});
+
+/*
+/-------------------------------------------------------------------------------
+/ Privacy Policy
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('privacypolicy', function () {
+    return view('app.pages.privacypolicy');
 });

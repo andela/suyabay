@@ -21,6 +21,9 @@
         <script type="text/javascript" src = "{!! asset('/custom/javascripts/init.js') !!}"></script>
 
         <style>
+            body{
+                font-family: Helvetica-neue, sans-serif;
+            }
             .title {
                 font-size: 56px;
                 margin: 0;
@@ -29,7 +32,7 @@
                 width: 100%;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato';
+                font-family: 'Lato' !important;
             }
         </style>
 
@@ -40,20 +43,21 @@
         @include('app.includes.sections.top_nav')
         @include('app.includes.sections.modalforms')
 
-            <div class="row">
-                <div class="col s3">
+        <div class="row">
 
-                    @include('app.includes.sections.side_nav')
+            <div class="col s3">
 
-                </div>
+                @include('app.includes.sections.side_nav')
 
-                <div class="col s9">
-
-                    <!-- Main Content -->
-                    @yield('content')
-
-                </div>
             </div>
+
+            <div class="col s9">
+
+                <!-- Main Content -->
+                @yield('content')
+
+            </div>
+        </div>
 
         <!-- Footer contents -->
         @include('app.includes.sections.footer')
