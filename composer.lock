@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d475adb086e566892725fda3f7a43e4",
+    "hash": "ea017f01b275dded5dfa482764b1bc6b",
     "packages": [
+        {
+            "name": "busayo/laravel-yearly",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/busayo/laravel-yearly.git",
+                "reference": "aafe873c1e38c603a103302f5efbb4c56257f393"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/busayo/laravel-yearly/zipball/aafe873c1e38c603a103302f5efbb4c56257f393",
+                "reference": "aafe873c1e38c603a103302f5efbb4c56257f393",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Busayo\\Yearly\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "busayo",
+                    "email": "prosperotemuyiwa@gmail.com",
+                    "homepage": "http://goodheads.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides helper function to get the current year and a range of years",
+            "homepage": "https://github.com/busayo/laravel-yearly",
+            "keywords": [
+                "Year",
+                "busayo",
+                "copyright",
+                "footer",
+                "laravel",
+                "laravel-yearly",
+                "yearAfteryear"
+            ],
+            "time": "2015-09-15 15:33:01"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "2.0.0",
@@ -363,16 +423,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.16",
+            "version": "v5.1.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e34dcc0c57e0f560248aec5128161256ff8bf4e1"
+                "reference": "415b5d824e15ee7cd18b8b23f96ae32b0b51d6a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e34dcc0c57e0f560248aec5128161256ff8bf4e1",
-                "reference": "e34dcc0c57e0f560248aec5128161256ff8bf4e1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/415b5d824e15ee7cd18b8b23f96ae32b0b51d6a0",
+                "reference": "415b5d824e15ee7cd18b8b23f96ae32b0b51d6a0",
                 "shasum": ""
             },
             "require": {
@@ -487,7 +547,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-09-04 12:46:14"
+            "time": "2015-09-16 16:57:12"
         },
         {
             "name": "league/flysystem",
@@ -1691,66 +1751,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "busayo/laravel-yearly",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/busayo/laravel-yearly.git",
-                "reference": "aafe873c1e38c603a103302f5efbb4c56257f393"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/busayo/laravel-yearly/zipball/aafe873c1e38c603a103302f5efbb4c56257f393",
-                "reference": "aafe873c1e38c603a103302f5efbb4c56257f393",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Busayo\\Yearly\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "busayo",
-                    "email": "prosperotemuyiwa@gmail.com",
-                    "homepage": "http://goodheads.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Provides helper function to get the current year and a range of years",
-            "homepage": "https://github.com/busayo/laravel-yearly",
-            "keywords": [
-                "Year",
-                "busayo",
-                "copyright",
-                "footer",
-                "laravel",
-                "laravel-yearly",
-                "yearAfteryear"
-            ],
-            "time": "2015-09-15 15:33:01"
-        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
