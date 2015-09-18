@@ -148,7 +148,7 @@ return [
         /*
         * Copy-write footer information auto-updater
         */
-        'Busayo\Yearly\YearlyServiceProvider',
+        Busayo\Yearly\YearlyServiceProvider::class,
 
     ],
 
@@ -199,7 +199,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Yearly' => 'Busayo\Yearly\YearlyFacade',
+        'Yearly'    => Busayo\Yearly\YearlyFacade::class,
 
     ],
 
