@@ -18,7 +18,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
         <!-- Custom script here -->
-        <script type="text/javascript" src = "{!! asset('/custom/javascripts/init.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/custom/javascript/mai.njs') !!}"></script>
 
         <style>
             body{
