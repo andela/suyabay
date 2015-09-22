@@ -44,4 +44,10 @@ class UserRegistrationAndLoginTest extends TestCase
         $this->assertEquals(1, sizeof($user));
     }
 
+    public function tearDown()
+    {
+        $this->createApplication();
+        Artisan::call('migrate:rollback');
+    }
+
 }
