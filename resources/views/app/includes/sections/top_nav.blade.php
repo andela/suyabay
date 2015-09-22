@@ -1,3 +1,12 @@
+
+<!-- User Drop Nav -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+
 <nav>
     <div class="nav-wrapper">
 
@@ -16,8 +25,15 @@
                 </a>
             </li>
             <li>
-                <a class="waves-effect modal-trigger" href="#signin">SIGN IN</a>
-                <a class="waves-effect waves-light modal-trigger" href="#signup">SIGN UP</a>
+                @if ( ! Auth::check() )
+                    <a class="waves-effect modal-trigger" href="#signin">SIGN IN</a>
+                    <a class='waves-effect waves-light modal-trigger'; href='#signup'>SIGN UP</a>
+                @else
+                    <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                        {{ Auth::user()->username }}
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                @endif
             </li>
         </ul>
 
