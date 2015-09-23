@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
 
-[![License](https://poser.pugx.org/andela/suyabay/license.svg)](LICENSE.md)
+[![License](https://poser.pugx.org/andela/suyabay/license.svg)](https://github.com/andela/suyabay/blob/feature/readme/LICENCE.md)
 
 Suyabae Podcasts is an aggregator of podcasts for Suya lovers across the net. The purpose of this site is to help Suya lovers find new podcasts and contents. I encourage you to subscribe to the individual podcasts feeds and support the content creators.
 
