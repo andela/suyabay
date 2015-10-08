@@ -78,12 +78,24 @@ class AuthController extends Controller
      *
      * @return home
      */
+    public function login()
+    {
+        return view('app.pages.signup');
+    }
+
+
+   /**
+     * Login a exisitng instance of user.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
     public function postLogin(Request $request)
     {
         $status = Auth::attempt($request->only(['username', 'password']));
         $username = Auth::user()->username;
         return redirect()->route('home')->with(compact('username'));
-
     }
 
     /**

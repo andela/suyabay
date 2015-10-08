@@ -48,11 +48,15 @@ Route::get('privacypolicy', function () {
 /-------------------------------------------------------------------------------
 */
 
+Route::get('login', [
+    'uses' => 'Auth\AuthController@login',
+    'as'   => 'login'
+]);
+
 Route::post('login', [
     'uses' => 'Auth\AuthController@postLogin',
     'as'   => 'login'
 ]);
-
 
 /*
 /-------------------------------------------------------------------------------

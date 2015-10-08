@@ -40,8 +40,8 @@ class UserRegistrationAndLoginTest extends TestCase
     public function testForUserLogin()
     {
         $this->createUser();
-        $user = Auth::attempt(['username' => 'test', 'password' => 'pass']);
-        $this->assertEquals(1, sizeof($user));
+        $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
+        $this->assertTrue($user);
     }
 
     public function tearDown()

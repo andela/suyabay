@@ -26,7 +26,7 @@
             </li>
             <li>
                 @if ( ! Auth::check() )
-                    <a class="waves-effect modal-trigger" href="#signin">SIGN IN</a>
+                    <a class="waves-effect" href="login">SIGN IN</a>
                     <a class='waves-effect waves-light modal-trigger'; href='#signup'>SIGN UP</a>
                 @else
                     <a class="dropdown-button" href="#!" data-activates="dropdown1">
