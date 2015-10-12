@@ -72,9 +72,37 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-        $this->create($request->all());
-        return redirect()->route('home');
-        //return $request;
+        $email      = $request->email; 
+        $username   = $request->username;
+
+        $checkUserExists    = User::where('username', '=', $username)->get();
+        $checkEmailExists   = User::where('email', '=', $email)->get();
+        
+
+        if ( $checkEmailExists->count() == true OR $checkUserExists->count() == true ) 
+        {
+            return $response = 
+            [
+                "message"       => "registration failed",
+                "status_code"   => 401,
+                "info" => 
+                [
+                    "email"     => $email,  
+                    "username"  => $username
+                ]
+            ];
+        }
+        else
+        {
+            //$this->create($request->all());
+            //var_dump($request->all());
+             return $response = "good";
+        }
+        
+
+
+        //return redirect()->route('home');
+        // return "vdfvkdj";
     }
 
 

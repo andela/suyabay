@@ -33,6 +33,7 @@
         <link rel="stylesheet" type="text/css" href="{!! asset('/library/sweetalert/sweetalert.css') !!}">
         <script type="text/javascript" src="{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
 
+        <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
 
     </head>
     <body>
