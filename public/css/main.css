@@ -1,0 +1,105 @@
+body {
+    font-family: Montserrat, sans-serif;!important;
+    color:#686868!mportant;
+    background-color: #fff;
+    /*#CEE7D8;*/
+}
+
+.logo {
+    font-family: inherit;
+    color: #FFFCFF;
+    font-size: 16pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding:0 1.5%;
+    line-height: 1.2;
+}
+
+.logo-box {
+    margin: 0 auto;
+    z-index: 55;
+}
+
+.episode-avatar {
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius: 5px;
+    margin:10px 0px;
+}
+
+.episode-date {
+    font-size: 11pt;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    font-weight: light;
+    text-transform: uppercase;
+    margin:10px 0px;
+}
+
+.social-sharing {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #82B541;
+}
+
+.podcast-page-navigation {
+    border-radius: 20px;
+    border: 2px solid #4C9689;
+    color: #4C9689!important;
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 30px 0 50px;
+    background: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.hosts-image {
+    border:1px solid #135764;
+    padding:5px;
+    background-color: transparent;
+    margin:10px 5px 0;
+    border-radius: 50%
+    height: auto;
+    -webkit-box-shadow: 0 0 3px 0 #B5B5B5;
+}
+
+.your-host {
+    font-family: inherit;
+    font-size: 18pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding:1.5%;
+    line-height: 1.2;
+}
+
+.hosts-name {
+    display: block;
+    letter-spacing: 1px;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding:10px;
+}
+
+.fix {
+    margin:30px 0 0;
+}
+
+#playlist {
+    width: 80%;
+    height: auto;
+}
+
+.excerpts {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    border-bottom:4px solid #5B5B5B;
+    padding:10px 0;
+    width:20%;
+    color: #5B5B5B;
+}

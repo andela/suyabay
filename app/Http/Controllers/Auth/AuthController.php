@@ -65,11 +65,20 @@ class AuthController extends Controller
      *
      * @return home
      */
+    public function Register()
+    {
+        return view('app.pages.signup');
+    }
+
     public function postRegister(Request $request)
     {
         $this->create($request->all());
         return redirect()->route('home');
+        //return $request;
     }
+
+
+
 
     /**
      * Login a exisitng instance of user.
@@ -80,7 +89,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        return view('app.pages.signup');
+        return view('app.pages.signin');
     }
 
 

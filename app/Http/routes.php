@@ -64,10 +64,17 @@ Route::post('login', [
 /-------------------------------------------------------------------------------
 */
 
-Route::post('register', [
+Route::get('signup', [
+    'uses' =>'Auth\AuthController@Register',
+    'as'   => 'register'
+]);
+
+
+Route::post('signup', [
     'uses' =>'Auth\AuthController@postRegister',
     'as'   => 'register'
 ]);
+
 
 /*
 /-------------------------------------------------------------------------------

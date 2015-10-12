@@ -23,12 +23,16 @@
         <!-- Materialize Compiled and minified JavaScript -->
         <script src = "{!! asset('/js/materialize.min.js') !!}"></script>
 
-
         <!-- Custom style rules -->
         <link href = "{!! asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
 
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
+
+        <!-- sweetalert -->
+        <link rel="stylesheet" type="text/css" href="{!! asset('/library/sweetalert/sweetalert.css') !!}">
+        <script type="text/javascript" src="{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+
 
     </head>
     <body>
