@@ -1,16 +1,27 @@
 /*
-| Script By Emeke Osuagwu
-| Description
-|
+| Script By Emeke Osuagwu @dev_emeka emekaosuagwuandela@gmail.com
+| Description LoginAndSigup script in create to handel ajax call
+| for Suyabay Login and Register funtionality and also and Email for
+| user registeration.
 */
 
+
+
+/*
+| ajaxLogic 
+| Process ajaxCall data and return feedback base on the data
+| receives 3 parameter from ajaxClass
+| @data is the array of user infomation \\console.log(data) to see properties
+| @response is the ajax response coming from the api end ponit
+| @funtionName is the name of the fuction called
+*/
 function ajaxLogic ( data, response, functionName ) 
 {
     if ( response.status_code === 401) 
     {
         switch (functionName) 
         {
-          case "login"    : loginErrorAlert(data); break;
+          case "login"    : loginErrorAlert(); break;
           case "register" : RegistrErrorAlert(); break;
         }
     }
@@ -24,9 +35,16 @@ function ajaxLogic ( data, response, functionName )
     }
 }
 
+
+/*
+| ajaxCall
+| send an ajax post request to the api end post
+| receives 2 parameter from register function or login function 
+| @data is the array of user infomation \\console.log(data) to see properties 
+| @funtionName is the name of the fuction called
+|*/
 function ajaxCall ( data, functionName ) 
 {
-    console.log(data.url)
     $.post( data.url, data.parameter)
     .done(function(response) 
     {
@@ -37,12 +55,20 @@ function ajaxCall ( data, functionName )
     })
 }
 
-function loginErrorAlert (data) 
+/*
+| loginErrorAlert
+| gives error report to user
+*/
+function loginErrorAlert () 
 {
   swal("Opps Login Failed", "Username or Password not found!", "error")
 }
 
-
+/*
+| RegisterSuccessAlert
+| gives Success report to user
+| receives 1 parameter 
+*/
 function RegisterSuccessAlert (data) 
 {
   swal({
@@ -60,11 +86,22 @@ function RegisterSuccessAlert (data)
   });
 }
 
+/*
+| RegistrErrorAlert
+| gives error report to user
+| receives 1 parameter 
+*/
 function RegistrErrorAlert () 
 {
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }
 
+
+/*
+| register
+| create user information and url in to an array of object i.e @data 
+| and make and ajax class to function ajaxCall() by sending @data and @functionName
+*/
 function register () 
 { 
   var url       = "/signup";
@@ -84,12 +121,16 @@ function register ()
           password    : password   
         }
     }
-  console.log(data)
   var functionName =  arguments.callee.name;  
-  
   ajaxCall( data, functionName );
 }
 
+
+/*
+| login
+| create user information and url in to an array of object i.e @data 
+| and make and ajax class to function ajaxCall() by sending @data and @functionName
+*/
 function login () 
 {
     var url       = '/login';
