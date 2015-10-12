@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Suyabay
+        psr4_prefix: Suyabay
         src_path: app

@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'SuyaBay Home')
+@section('title', 'This is SuyaBay #TISb')
 
 @endsection
 
@@ -9,3 +9,5 @@
     @include('app.includes.contents.main')
 
 @endsection
+
+

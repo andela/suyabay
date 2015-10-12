@@ -1,84 +1,66 @@
-<footer class="page-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12 white-text">
-                <!-- <h5>TRENDING ON SUYABAY</h5> -->
-                <table class="bordered white-text centered">
-                    <thead>
-                        <tr>
-                            <th data-field="">
-                                <i class="tiny material-icons">theaters</i> POPULAR EPISODES
-                            </th>
-                            <th data-field="">
-                                <i class="tiny material-icons">visibility</i> WATCHING
-                            </th>
-                            <th data-field="">
-                                <i class="tiny material-icons">forum</i> COMMENTS
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a class="white-text waves-effect" href=""><em>suya recipies</em></a></td>
-                            <td><a class="white-text" href="">100</a></td>
-                            <td><a class="white-text" href="">50</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="white-text waves-effect" href=""><em>New packagists</em></a></td>
-                            <td><a class="white-text" href="">0</a></td>
-                            <td><a class="white-text" href="">0</a></td>
-                        </tr>
-                        <tr>
-                            <td><a class="white-text waves-effect" href=""><em>Suya on vagrant yum yum</em></a></td>
-                            <td><a class="white-text" href="">50+</a></td>
-                            <td><a class="white-text" href="">100+</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="title">Become a Premium User</h5>
-                <br>
+<footer class="page-footer grey lighten-4">
 
-                <div class="row">
-                    <div class="col 16 s6">
-                        <a class="waves-effect waves-light btn pink">contact</a>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col l6 s12 m6">
+
+            <h4 class="center-align" style="font-weight:light;color:#5B5B5B;">
+                HOSTS
+            </h4>
+
+                     <div class="col s12 m6 center-align waves-effect waves-block waves-light">
+                        <img class="responsive-image circle hosts-image center-align" src="https://avatars.slack-edge.com/2015-05-05/4753623601_060127985f9127902a39_192.jpg" />
+                        <p class="hosts-name center-align">Prosper</p>
+                        <div class="chip">
+                                @unicodeveloper
+                                    <i class="fa fa-twitter fa-1x center-align"></i>
+                            </div>
+
                     </div>
-                    <div class="col 16 s6">
-                        <a class="waves-effect waves-light btn red">feedback</a>
-                        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                            <a class="btn-floating btn-large red">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating red"><i class="material-icons">insert_chart</i></i></a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating green"><i class="material-icons">publish</i></a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
-                                </li>
-                            </ul>
-                        </div>
+
+                    <div class="col s12 m6 center-align waves-effect waves-block waves-light">
+                        <img class="responsive-image circle hosts-image center-align" src="https://avatars.slack-edge.com/2014-10-29/2895561612_f1589cfde8cdd00cb441_192.jpg" />
+                        <p class="hosts-name center-align">Nadayar</p>
+                            <div class="chip">
+                                @nad
+                                    <i class="fa fa-twitter fa-1x center-align"></i>
+                            </div>
+
                     </div>
-                </div>
+
+            </div>
+
+            <div class="col l4 offset-l2 s12">
+
+               <!--  <h5 class="center-align">
+                    Become a premium user
+                </h5> -->
+
+                <h4 class="excerpts">About</h4>
+                <p>
+                    Suyabay Podcasts is an aggregator of podcasts for suya lovers across the net.
+                    The purpose of this site is to help suya lovers find new podcasts and contents.
+                </p>
+
+                <h4 class="excerpts">Disclaimer</h4>
+                <p>
+                    All trademarks and registered trademarks appearing on Suyabay are the property of their respective owners.
+                </p>
 
             </div>
         </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="footer-copyright">
-        <div class="col s12 collection" style="border:0px;">
-            <p class="white-text red lighten-2 collection-item right waves-effect"> Copyright Andela © {{ Yearly::current_year() }}</p>
-            <a class="white-text red lighten-2 collection-item left waves-effect valign" href="{{ URL::to('about') }}"><i class="tiny material-icons valign">info</i> About</a>
-            <a class="white-text red lighten-2 collection-item left waves-effect" href="{{ URL::to('faqs') }}"><i class="tiny material-icons valign">live_help</i> FAQs</a>
-            <a class="white-text red lighten-2 collection-item left waves-effect" href="{{ URL::to('privacypolicy') }}"><i class="tiny material-icons">work</i> Privacy Policy</a>
+    <div class="footer-copyright grey-text darken-4">
+
+        <div class="container">
+
+            Copyright Andela {{ Yearly::current_year() }}
+
+            <span class="right">CREDITS</span>
+
         </div>
     </div>
 </footer>
