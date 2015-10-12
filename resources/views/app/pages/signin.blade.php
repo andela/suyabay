@@ -20,12 +20,12 @@
 
         <div class="row">
 
-            <form class="col s12" method="POST" action="{{ route('login') }}">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form class="col s12">
+                <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <textarea name="username" id="icon_prefix1" class="materialize-textarea"></textarea>
+                            <textarea id="username" class="materialize-textarea"></textarea>
                             <label for="icon_prefix1">
                                 Username
                             </label>
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <input name="password" id="password" type="password" class="validate">
+                            <input id="password" type="password" class="validate">
                                 <label for="password">Password</label>
                     </div>
                 </div>
@@ -47,9 +47,9 @@
                         <label for="remember-me">Remember Me</label>
                     </p>
 
-                    <button class="waves-effect waves-light btn right">
+                    <a class="waves-effect waves-light btn right" onclick="login()">
                         Sign In
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>

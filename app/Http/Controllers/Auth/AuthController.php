@@ -94,15 +94,8 @@ class AuthController extends Controller
         }
         else
         {
-            //$this->create($request->all());
-            //var_dump($request->all());
-             return $response = "good";
+            $this->create($request->all());
         }
-        
-
-
-        //return redirect()->route('home');
-        // return "vdfvkdj";
     }
 
 
@@ -130,9 +123,37 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
-        $status = Auth::attempt($request->only(['username', 'password']));
-        $username = Auth::user()->username;
-        return redirect()->route('home')->with(compact('username'));
+        $status = Auth::attempt($request->only(['username', 'password']));        
+        if ( $status === false ) 
+        {
+            return $response = 
+            [
+                "message"       => "login failed",
+                "status_code"   => 401,
+            ];
+        }
+        else
+        {
+            return $response = 
+            [
+                "message"       => "login success",
+                "status_code"   => 200,
+            ];
+        }
+
+
+
+
+        // $username = Auth::user()->username;
+        // return redirect()->route('home')->with(compact('username'));
+        
+        //$username   = $request->username;
+
+        // $checkUserExists    = User::where('username', '=', $username)->toArray(); 
+        // $checkUserExists    = User::find('username', $username)->get(); 
+        // var_dump($checkUserExists);
+      
+
     }
 
     /**
