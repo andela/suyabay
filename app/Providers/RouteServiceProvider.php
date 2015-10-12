@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Providers;
+namespace Suyabay\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Middleware;
+namespace Suyabay\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

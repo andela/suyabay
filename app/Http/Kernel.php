@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http;
+namespace Suyabay\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 

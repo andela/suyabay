@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Exceptions;
+namespace Suyabay\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

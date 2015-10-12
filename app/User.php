@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Suyabay;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;

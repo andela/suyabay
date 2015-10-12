@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Middleware;
+namespace Suyabay\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

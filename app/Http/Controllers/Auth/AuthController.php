@@ -1,10 +1,9 @@
 <?php
 
-namespace app\Http\Controllers\Auth;
+namespace Suyabay\Http\Controllers\Auth;
 
-
-use Suyabay\User;
 use Validator;
+use Suyabay\User;
 use Suyabay\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;

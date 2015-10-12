@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Jobs;
+namespace Suyabay\Jobs;
 
 use Illuminate\Bus\Queueable;
 

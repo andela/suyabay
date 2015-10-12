@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Providers;
+namespace Suyabay\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
