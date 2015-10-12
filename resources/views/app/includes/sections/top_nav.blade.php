@@ -17,11 +17,19 @@
                         <i class="large material-icons circle">person_pin</i>
                     </a>
                 </li>
+                @if ( Auth::check() )
+                    <li>
+                        <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">{{auth::user()->username}}</a>
+                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('logout') }}">Logout</a>
+                        <a class="waves-effect waves-light modal-trigger green lighten-2" href="#!">Become a Premium User</a>
+                    </li>   
+                @else
                 <li>
                     <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Sign in</a>
                     <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign up</a>
                     <a class="waves-effect waves-light modal-trigger green lighten-2" href="#!">Become a Premium User</a>
                 </li>
+                @endif
             </ul>
 
             <ul id="nav-mobile" class="side-nav collection">

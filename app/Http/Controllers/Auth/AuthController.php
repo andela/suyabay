@@ -140,20 +140,6 @@ class AuthController extends Controller
                 "status_code"   => 200,
             ];
         }
-
-
-
-
-        // $username = Auth::user()->username;
-        // return redirect()->route('home')->with(compact('username'));
-        
-        //$username   = $request->username;
-
-        // $checkUserExists    = User::where('username', '=', $username)->toArray(); 
-        // $checkUserExists    = User::find('username', $username)->get(); 
-        // var_dump($checkUserExists);
-      
-
     }
 
     /**
