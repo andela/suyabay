@@ -141,10 +141,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Suyabay\Providers\AppServiceProvider::class,
+        Suyabay\Providers\AuthServiceProvider::class,
+        Suyabay\Providers\EventServiceProvider::class,
+        Suyabay\Providers\RouteServiceProvider::class,
 
         /*
         * Copy-write footer information auto-updater

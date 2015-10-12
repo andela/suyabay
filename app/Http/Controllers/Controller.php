@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace Suyabay\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

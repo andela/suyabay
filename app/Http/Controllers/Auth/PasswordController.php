@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Http\Controllers\Auth;
+namespace Suyabay\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Suyabay\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
