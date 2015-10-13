@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers\Auth;
 
+use Suyabay\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Suyabay\Http\Controllers\Controller;
@@ -40,12 +41,12 @@ class PasswordController extends Controller
 
     public function checkEmail(Request $request)
     {
-        $this->validate($request, ['email' => 'required|email']);
-
-        $status = Password::sendResetLink($request->only('email'));
-        if ( $status === false )
+        // $this->validate($request, ['email' => 'required|email']);
+        $response = [];
+        $status = User::whereEmail($request->only('email'))->first();
+        if ( $status == false )
         {
-            return $response =
+            $response =
             [
                 "message"       => "Invalid",
                 "status_code"   => 401,
@@ -53,12 +54,12 @@ class PasswordController extends Controller
         }
         else
         {
-            return $response =
+            $response =
             [
                 "message"       => "success",
                 "status_code"   => 200,
             ];
         }
-        dd($response);
+        return $response;
     }
 }
