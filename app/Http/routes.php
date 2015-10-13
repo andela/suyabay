@@ -63,9 +63,13 @@ Route::get('password/email', [
     'as'   => "passwordreset"
 ]);
 Route::post('password/email', [
-    'uses' => 'Auth\PasswordController@postEmail',
+    'uses' => 'Auth\PasswordController@checkEmail',
     'as'   => 'passwordreset'
 ]);
+// Route::post('password/email', [
+//     'uses' => 'Auth\PasswordController@postEmail',
+//     'as'   => 'passwordreset'
+// ]);
 
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');

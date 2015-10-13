@@ -39,13 +39,13 @@
                 </div>
 
                 <div class="row container">
-                  <!--   <a onclick="passwordReset()" class="waves-effect waves-light btn right">
+                    <a onclick="passwordReset()" class="waves-effect waves-light btn right">
                         Reset
-                    </a> -->
+                    </a>
 
-                    <button type="submit" class="waves-effect waves-light btn right">
+                   <!--  <button type="submit" class="waves-effect waves-light btn right">
                         Reset
-                    </button>
+                    </button> -->
                 </div>
             </form>
         </div>
