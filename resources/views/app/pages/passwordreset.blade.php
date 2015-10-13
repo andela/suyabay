@@ -16,25 +16,33 @@
 
             <h2>Oh Snap!</h2>
             <small>you need a password reset, right?</small>
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
 
         <div class="row">
 
-            <form class="col s12">
+            <form class="col s12" id="password_reset_form" action="/password/email" method="POST">
+             {!! csrf_field() !!}
 
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <input id="email" type="email" class="validate">
+                            <input name="email" id="email" type="email" class="validate">
                                 <label for="email">Email</label>
                     </div>
                 </div>
 
                 <div class="row container">
 
-                    <a class="waves-effect waves-light btn right">
+                    <button type="submit" class="waves-effect waves-light btn right">
                         Reset
-                    </a>
+                    </button>
                 </div>
             </form>
         </div>
