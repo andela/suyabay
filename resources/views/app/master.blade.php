@@ -7,13 +7,21 @@
         <!-- View port-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
+        <!-- HTTP -->
         <script src = "{!! asset('/js/jquery-2.1.1.min.js') !!}"></script>
+
+        <!-- HTTPS -->
+        <script src = "{!! secure_asset('/js/jquery-2.1.1.min.js') !!}"></script>
 
 
         <!-- Fonts and style rules -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
+        <!-- HTTP -->
         <link href="{!! asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
+        <!-- HTTPS -->
+        <link href="{!! secure_asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
 
 
         <!-- Font Awesome-->
@@ -21,23 +29,31 @@
 
 
         <!-- Materialize Compiled and minified JavaScript -->
+        <!-- HTTP -->
         <script src = "{!! asset('/js/materialize.min.js') !!}"></script>
+        <!-- HTTPS -->
+        <script src = "{!! secure_asset('/js/materialize.min.js') !!}"></script>
 
 
         <!-- Custom style rules -->
         <link href = "{!! asset('/css/audioplayer.css') !!}" rel="stylesheet"  />
+        <link href = "{!! secure_asset('/css/audioplayer.css') !!}" rel="stylesheet"  />
+
         <link href = "{!! asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
+        <link href = "{!! secure_asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
 
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
+        <script src = "{!! secure_asset('/js/main.js') !!}"></script>
+
         <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
+        <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
 
     </head>
     <body>
         <!-- top nav -->
         <div class="row">
             @include('app.includes.sections.top_nav')
-            @include('app.includes.sections.modalforms')
         </div>
 
         <!-- main contents -->
@@ -57,6 +73,8 @@
         <script>
             $(document).ready(function(){
                 $('.modal-trigger').leanModal();
+                $('.collapsible').collapsible({
+                    accordion : false});
             });
         </script>
 
