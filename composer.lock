@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "4ecda9f58c40c94ac253af2cff70993e",
+    "content-hash": "2c41297823b9d16a05eb522a1c2279f4",
     "packages": [
         {
             "name": "busayo/laravel-yearly",

@@ -27,12 +27,6 @@
     </li>
   </ul>
 
-
-
-
-
-
-
 For further enquiries send an email to questions@suyabay.com
 
 
