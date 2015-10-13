@@ -30,6 +30,13 @@
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
 
+        <!-- sweetalert -->
+        <link rel="stylesheet" type="text/css" href="{!! asset('/library/sweetalert/sweetalert.css') !!}">
+        <script type="text/javascript" src="{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+
+        <!-- Password Reset-->
+        <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+
     </head>
     <body>
 
