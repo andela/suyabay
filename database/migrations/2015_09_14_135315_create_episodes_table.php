@@ -13,13 +13,13 @@ class CreateEpisodesTable extends Migration
     public function up()
     {
         Schema::create('episodes', function($table){
-            $table->increments('episode_id');
+            $table->increments('id');
             $table->string('episode_name');
             $table->text('episode_description');
             $table->integer('channel_id')->unsigned();
             $table->integer('view_count');
             $table->timestamps();
-            $table->foreign('channel_id')->references('channel_id')->on('channels')->onDelete('cascade');
+            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
         });
     }
 

@@ -13,7 +13,7 @@ class CreateChannelsTable extends Migration
     public function up()
     {
         Schema::create('channels', function($table){
-            $table->increments('channel_id');
+            $table->increments('id');
             $table->string('channel_name');
             $table->text('channel_description');
             $table->integer('subscription_count');

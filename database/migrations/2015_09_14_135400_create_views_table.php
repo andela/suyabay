@@ -13,12 +13,12 @@ class CreateViewsTable extends Migration
     public function up()
     {
         Schema::create('views', function($table){
-            $table->increments('view_id');
+            $table->increments('id');
             $table->integer('guestUser_id')->unsigned();
             $table->integer('episode_id')->unsigned();
             $table->integer('numberOfViews')->unsigned();
             $table->timestamps();
-            $table->foreign('episode_id')->references('episode_id')->on('episodes')->onDelete('cascade');
+            $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
         });
     }
 
