@@ -1,8 +1,13 @@
 <?php
 
-
 class PasswordResetTest extends TestCase
 {
+    /**
+     * testSeePasswordResetPage
+     * visit homepage
+     * click sign in
+     * click forgot password
+     */
     public function testSeePasswordResetPage()
     {
         $this->visit('/')
@@ -12,11 +17,19 @@ class PasswordResetTest extends TestCase
              ->seePageIs('/passwordreset');
     }
 
+    /**
+     * testPasswordResetInput
+     * visit passwordreset page
+     * enter email address
+     * confirm email exist in database
+     */
     public function testPasswordResetInput()
     {
         $this->visit('/passwordreset')
-             ->type('ibonly@yahoo.com', 'email')
-             ->press('Reset');
+             ->type('ibonly01@gmail.com', 'email')
+             ->press('Reset')
+             ->seeInDatabase('users', ['email' => 'ibonly01@gmail.com'])
+             ->seeInDatabase('password_resets', ['email' => 'ibonly01@gmail.com']);
     }
 
 }
