@@ -1,8 +1,5 @@
 /*
 | Script By Emeke Osuagwu @dev_emeka emekaosuagwuandela@gmail.com
-| Description LoginAndSigup script in create to handel ajax call
-| for Suyabay Login and Register funtionality and also and Email for
-| user registeration.
 */
 
 
@@ -21,16 +18,16 @@ function ajaxLogic ( data, response, functionName )
     {
         switch (functionName)
         {
-          case "passwordReset" : passwordResetErrorAlert(); break;
+            case "passwordReset" : passwordResetErrorAlert(); break;
         }
     }
     else if ( functionName == 'passwordReset' )
     {
-        passwordResetsAlert(data)
+        passwordResetsAlert(data);
     }
     else
     {
-      window.location="/";
+        window.location="/";
     }
 }
 
@@ -38,63 +35,91 @@ function ajaxLogic ( data, response, functionName )
 /*
 | ajaxCall
 | send an ajax post request to the api end post
-| receives 2 parameter from register function or login function
+| receives 2 parameter from passwordReset function
 | @data is the array of user infomation \\console.log(data) to see properties
 | @funtionName is the name of the fuction called
 |*/
 function ajaxCall ( data, functionName )
 {
     $.post( data.url, data.parameter)
-    .done(function(response)
+
+    .done( function (response)
     {
-      ajaxLogic( data, response, functionName );
+        ajaxLogic( data, response, functionName );
     })
-    .fail(function(response) {
-      console.log('this action is bad')
-    })
+    .fail( function (response) {
+        console.log('this action is bad');
+    });
 }
 
 /*
-| RegisterSuccessAlert
+| passwordResetsAlert
 | gives Success report to user
 | receives 1 parameter
 */
 function passwordResetsAlert (data)
 {
-  swal("Email reset has been sent to your email address");
+    //show modal and redirect
+    swal({
+            title: "Done",
+            text: "Password reset link has been sent to your email address",
+            type: "success",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
+        function (){
+            document.location.href = "/";
+        }
+    );
 }
 
 /*
-| RegistrErrorAlert
+| passwordResetErrorAlert
 | gives error report to user
 | receives 1 parameter
 */
 function passwordResetErrorAlert ()
 {
-  swal("Ooops!!!", "Email address does not exit", "error")
+    swal("Ooops!!!", "Email address does not exit", "error")
 }
 
 
 /*
-| register
+| passwordReset
 | create user information and url in to an array of object i.e @data
 | and make and ajax class to function ajaxCall() by sending @data and @functionName
 */
 function passwordReset ()
 {
-  var url       = "/password/email";
-  var email     = $('#email').val();
-  var token     = $('#token').val();
+  var url   = "/password/email";
+  var email = $('#email').val();
+  var token = $('#token').val();
 
   var data =
     {
-        url         : url,
-        parameter   :
+        url        : url,
+        parameter  :
         {
-          _token      : token,
-          email       : email
+            _token : token,
+            email  : email
         }
     }
   var functionName =  arguments.callee.name;
   ajaxCall( data, functionName );
 }
+
+/*
+| Process form on form submit
+ */
+$(document).ready( function (){
+    $("#password_reset_form").on('submit', function (){
+        swal({
+            title: "",
+            text: "Processing request.",
+            showConfirmButton: false
+        });
+        passwordReset();
+        return false;
+    });
+});

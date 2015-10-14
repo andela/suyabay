@@ -12,6 +12,7 @@ Route::get('/', function () {
 });
 
 
+
 /*
 /-------------------------------------------------------------------------------
 / About
@@ -50,9 +51,12 @@ Route::get('signup', function () {
     return view('app.pages.signup');
 });
 
+/*
+/-------------------------------------------------------------------------------
+/ Password reset link request
+/-------------------------------------------------------------------------------
+*/
 
-
-// Password reset link request routes...
 Route::get('passwordreset', [
     'uses' => 'Auth\PasswordController@passwordPage',
     'as'   => 'passwordreset'
@@ -62,15 +66,18 @@ Route::get('password/email', [
     'uses' =>'Auth\PasswordController@getEmail',
     'as'   => "passwordreset"
 ]);
-// Route::post('password/email', [
-//     'uses' => 'Auth\PasswordController@checkEmail',
-//     'as'   => 'passwordreset'
-// ]);
+
 Route::post('password/email', [
     'uses' => 'Auth\PasswordController@postEmail',
     'as'   => 'passwordreset'
 ]);
 
 // Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+Route::get('password/reset/{token}', [
+    'uses' =>'Auth\PasswordController@getReset',
+    'as'   => 'passwordresetpage'
+]);
+Route::post('password/reset', [
+    'uses' => 'Auth\PasswordController@postReset',
+    'as'   => 'postpasswordreset'
+]);

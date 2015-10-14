@@ -21,8 +21,9 @@ class PasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
+
+    protected $redirectTo = '/signin';
 
     /**
      * Create a new password controller instance.
@@ -39,27 +40,4 @@ class PasswordController extends Controller
         return view('app.pages.passwordreset');
     }
 
-    public function checkEmail(Request $request)
-    {
-        // $this->validate($request, ['email' => 'required|email']);
-        $response = [];
-        $status = User::whereEmail($request->only('email'))->first();
-        if ( $status == false )
-        {
-            $response =
-            [
-                "message"       => "Invalid",
-                "status_code"   => 401,
-            ];
-        }
-        else
-        {
-            $response =
-            [
-                "message"       => "success",
-                "status_code"   => 200,
-            ];
-        }
-        return $response;
-    }
 }
