@@ -16,6 +16,7 @@
 
             <h2>Oh Snap!</h2>
             <small>Enter your new password</small>
+
         </div>
 
         <div class="row">
