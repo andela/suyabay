@@ -53,3 +53,7 @@ Route::get('signup', function () {
 Route::get('passwordreset', function () {
     return view('app.pages.passwordreset');
 });
+
+Route::get('search', function () {
+    return view('app.pages.search');
+});

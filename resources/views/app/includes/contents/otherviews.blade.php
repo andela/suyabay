@@ -29,7 +29,13 @@
 
             @include('app.includes.contents.privacypolicy')
 
+        @elseif (Request::is('search*'))
+
+            @include('app.includes.contents.search')
+
         @else
+
+            <p>error</p>
 
         @endif
 

@@ -31,7 +31,7 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         21 september, 2015
-                            <span class="new badge left green lighten-2"></span>
+                            <span class="new badge left teal lighten-2"></span>
                     </small>
                 </div>
 
@@ -98,7 +98,7 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         20 september, 2015
-                            <span class="new badge left green lighten-2"></span>
+                            <span class="new badge left teal lighten-2"></span>
                     </small>
                 </div>
 
@@ -155,7 +155,7 @@
 
         <div class="row center-align fix">
             <div class="podcast-page-navigation center-align">
-                <a href="{{ URL::to('episodes') }}" class="teal-text">
+                <a href="{{ URL::to('episodes') }}" class="blue-grey-text darken-4">
                     view older episodes
                 </a>
             </div>
