@@ -24,4 +24,21 @@ class NewPasswordTest extends TestCase
              ->press('Reset')
              ->see('sign in');
     }
+
+    /**
+     * testPasswordDoesNotMatch
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function testPasswordDoesNotMatch()
+    {
+        $user = User::whereEmail('ibonly01@gmail.com')->first();
+
+        $this->visit('/password/reset/{ $user->token }')
+             ->see('Enter your new password')
+             ->type('ibonly01@gmail.com', 'email')
+             ->type('password', 'password')
+             ->type('confirm_password', 'password1')
+             ->press('Reset');
+    }
 }
