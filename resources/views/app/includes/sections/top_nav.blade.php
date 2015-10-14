@@ -7,16 +7,7 @@
             <a href="#" class="logo" id="logo-container"> suyabay</a>
 
             <ul class="right hide-on-med-and-down">
-                <li>
-                    <a href="#!">
-                        <i class="material-icons">add_alert</i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#!">
-                        <i class="large material-icons circle">person_pin</i>
-                    </a>
-                </li>
+
                 <li>
                     <a class="waves-effect modal-trigger" href="{{ URL::to('signin') }}">Sign in</a>
                     <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign up</a>
