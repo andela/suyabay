@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="footer-copyright" style="background-color:#2C3E50;font:sans-serif!important;">
+    <div class="footer-copyright" style="background-color:#2C3E50;font:Montserrat!important;">
 
         <div class="container">
 

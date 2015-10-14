@@ -71,7 +71,8 @@
 
         <!-- Modal trigger -->
         <script>
-            $(document).ready(function(){
+            $(document).ready(function() {
+                $('.tooltipped').tooltip({delay: 50});
                 $('.modal-trigger').leanModal();
                 $('.collapsible').collapsible({
                     accordion : false});

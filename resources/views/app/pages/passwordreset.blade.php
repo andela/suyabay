@@ -14,7 +14,7 @@
 
         <div class="center-align fix">
 
-            <h2>Oh Snap!</h2>
+            <h2>Hollup, hollup!</h2>
             <small>you need a password reset, right?</small>
         </div>
 
