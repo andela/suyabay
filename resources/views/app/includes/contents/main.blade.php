@@ -21,7 +21,7 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
-                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+                    <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
-                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+                    <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
                 </div>
             </div>
 

@@ -5,10 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="col s12 m6 l9 center-align">
+
+    <div class="col s12 center-align">
         <div class="error">404</div>
             <div class="error-message">
-                Yikes! spaghetti looking aliens came and took this page away, smh.
+                Yikes! Well, angry looking aliens came and took this page away, but
             </div>
 
             <h3 class="error-exit-message">

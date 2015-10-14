@@ -54,6 +54,6 @@ Route::get('passwordreset', function () {
     return view('app.pages.passwordreset');
 });
 
-Route::get('search', function () {
-    return view('app.pages.search');
-});
+
+
+Route::post('/search', 'SearchController@index');

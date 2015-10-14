@@ -35,8 +35,6 @@
 
         @else
 
-            <p>error</p>
-
         @endif
 
 

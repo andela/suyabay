@@ -4,11 +4,12 @@
 
             <!-- Desktop view top nav -->
 
-            <a href="#" class="logo" id="logo-container"> suyabay</a>
+            <a href="/" class="logo" id="logo-container"> suyabay</a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
                     <form action="/search" method="POST">
+                    {{ csrf_field() }}
                         <div class="input-field">
                             <input id="search" type="search" class="navbar-search" required>
                                 <label for="search">
@@ -16,6 +17,7 @@
                                 </label>
                                 <i class="material-icons">close</i>
                         </div>
+
                     </form>
                 </li>
 

@@ -1,12 +1,16 @@
 body {
-    font-family: Montserrat, sans-serif;!important;
+    font: Montserrat!important;
     color:#686868!mportant;
     background-color: #fff;
     /*#CEE7D8;*/
 }
 
+small {
+    font-weight:bold;
+}
+
 .logo {
-    font-family: inherit;
+    font-family: sans-serif!important;
     color: #FFFCFF;
     font-size: 16pt;
     font-weight: 700;
@@ -14,7 +18,9 @@ body {
     padding:0 1.5%;
     line-height: 1.2;
 }
-
+.waves-effect {
+    vertical-align: top!important;
+}
 .navbar-search {
     margin:0!important;
 }
@@ -102,7 +108,7 @@ body {
 }
 
 .excerpts {
-    font-size: 1em;
+    font-size: 1.4em;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .01em;

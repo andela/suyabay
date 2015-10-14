@@ -1,6 +1,6 @@
 @extends('app.authlayout')
 
-@section('title', 'Signup')
+@section('title', 'reset | SuyaBay')
 
 @section('content')
 
@@ -24,7 +24,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">mode_edit</i>
+                        <i class="material-icons prefix">turned_in_not</i>
                             <input id="email" type="email" class="validate">
                                 <label for="email">Email</label>
                     </div>
