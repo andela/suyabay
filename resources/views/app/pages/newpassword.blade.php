@@ -1,6 +1,6 @@
 @extends('app.authlayout')
 
-@section('title', 'Signup')
+@section('title', 'New Password')
 
 @section('content')
 

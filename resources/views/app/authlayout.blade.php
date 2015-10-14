@@ -55,6 +55,7 @@
 
         <!-- Password Reset-->
         <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+        <script src = "{!! asset('/js/NewPassword.js') !!}"></script>
 
     </head>
     <body>
