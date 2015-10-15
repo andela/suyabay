@@ -4,6 +4,7 @@ namespace app\Http\Controllers\Auth;
 
 
 use Auth;
+use Illuminate\Mail\Mailer as Mail;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
@@ -30,14 +31,16 @@ class AuthController extends Controller
 
     protected $loginPath = '/login';
     protected $registerPath = '/register';
+    protected $mail;
 
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Mail $mail)
     {
+        $this->mail = $mail;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -55,6 +58,12 @@ class AuthController extends Controller
             'username'     => $data['username'],
             'password'     => bcrypt($data['password'])
         ]);
+
+        $this->mail->send($data['email'], ['name' => $data['username']], function($message)
+        {
+            $message->to('emekaosuagwu@hotmail.com', 'John Smith')->subject('Welcome!');
+        });
+
     }
 
     /**
@@ -96,6 +105,7 @@ class AuthController extends Controller
             $this->create($request->all());
         }
     }
+
 
 
 
