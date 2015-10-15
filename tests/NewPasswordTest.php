@@ -11,8 +11,6 @@ class NewPasswordTest extends TestCase
      * fill in new password form
      * press reset
      * redirect to signin page and search for "sign in" on the page
-     *
-     * @expectedException InvalidArgumentException
      */
     public function testTokenIsSet()
     {
