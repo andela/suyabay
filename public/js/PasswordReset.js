@@ -18,16 +18,16 @@ function ajaxLogic ( data, response, functionName )
     {
         switch (functionName)
         {
-            case "passwordReset" : passwordResetErrorAlert(); break;
+            case 'passwordReset' : passwordResetErrorAlert(); break;
         }
     }
     else if ( functionName == 'passwordReset' )
     {
-        passwordResetsAlert(data);
+        passwordResetsAlert();
     }
     else
     {
-        window.location="/";
+        window.location='/';
     }
 }
 
@@ -48,7 +48,7 @@ function ajaxCall ( data, functionName )
         ajaxLogic( data, response, functionName );
     })
     .fail( function (response) {
-        console.log('this action is bad');
+        swal('this action is bad');
     });
 }
 
@@ -57,19 +57,19 @@ function ajaxCall ( data, functionName )
 | gives Success report to user
 | receives 1 parameter
 */
-function passwordResetsAlert (data)
+function passwordResetsAlert ()
 {
     //show modal and redirect
     swal({
-            title: "Done",
-            text: "Password reset link has been sent to your email address",
-            type: "success",
+            title: 'Done',
+            text: 'Password reset link has been sent to your email address',
+            type: 'success',
             showCancelButton: true,
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
         },
         function (){
-            document.location.href = "/";
+            document.location.href = '/';
         }
     );
 }
@@ -81,7 +81,7 @@ function passwordResetsAlert (data)
 */
 function passwordResetErrorAlert ()
 {
-    swal("Ooops!!!", "Email address does not exit", "error")
+    swal('Ooops!!!', 'Email address does not exit', 'error');
 }
 
 
@@ -92,7 +92,7 @@ function passwordResetErrorAlert ()
 */
 function passwordReset ()
 {
-  var url   = "/password/email";
+  var url   = '/password/email';
   var email = $('#email').val();
   var token = $('#token').val();
 
@@ -113,10 +113,10 @@ function passwordReset ()
 | Process form on form submit
  */
 $(document).ready( function (){
-    $("#password_reset_form").on('submit', function (){
+    $('#password_reset_form').on('submit', function (){
         swal({
-            title: "",
-            text: "Processing request.",
+            title: '',
+            text: 'Processing request.',
             showConfirmButton: false
         });
         passwordReset();
