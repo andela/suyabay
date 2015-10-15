@@ -42,7 +42,7 @@
                         </span>
 
                         <span id="channel-title">
-                            Laravel Love Affairs Part 1
+                            Laravel Love Affairs
                         </span>
                     </h5>
                 </div>

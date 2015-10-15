@@ -16,5 +16,12 @@
                 Fixing ...
             </h3>
 
+            <br>
+
+            <a class="btn tooltipped" data-position="top" data-delay="50" data-tooltip="This way home" href="/">
+                <i class="large material-icons">store</i>
+            </a>
+
+            <br>
     </div>
 @endsection

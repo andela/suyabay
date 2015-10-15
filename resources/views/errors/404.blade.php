@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'Oops 404')
+@section('title', 'Page not found')
 
 @endsection
 
@@ -15,5 +15,14 @@
             <h3 class="error-exit-message">
                 we are so sorry!
             </h3>
+
+            <br>
+
+            <a class="btn tooltipped" data-position="top" data-delay="50" data-tooltip="This way home" href="/">
+                <i class="large material-icons">store</i>
+            </a>
+
+            <br>
+
     </div>
 @endsection
