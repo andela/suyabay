@@ -20,7 +20,7 @@
 
         <div class="row">
 
-            <form class="col s12">
+            <div class="col s12">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="row">
                     <div class="input-field col s12">
@@ -51,7 +51,7 @@
                         Sign In
                     </a>
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="row container">

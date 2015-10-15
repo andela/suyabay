@@ -19,6 +19,7 @@
         </div>
 
         <div class="row">
+        
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="row">
                     <div class="input-field col s12">
@@ -57,7 +58,7 @@
                         Sign Up
                     </button>
                 </div>
-            </form>
+            
         </div>
 
         <div class="row container">
@@ -70,7 +71,7 @@
 
             <span>
                 <small>
-                    <a href="{{ URL::to('signin') }}"> Sign In to your account</a>
+                    <a href="{{ URL::to('login') }}"> Sign In to your account</a>
                 </small>
             </span>
         </div>
