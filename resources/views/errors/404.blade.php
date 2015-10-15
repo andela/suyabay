@@ -7,14 +7,13 @@
 @section('content')
 
     <div class="col s12 center-align">
-        <div class="error">503</div>
+        <div class="error">404</div>
             <div class="error-message">
-                Some kinda server error!
+                Yikes! Well, angry looking aliens came and took this page away, but
             </div>
 
             <h3 class="error-exit-message">
-                Fixing ...
+                we are so sorry!
             </h3>
-
     </div>
 @endsection

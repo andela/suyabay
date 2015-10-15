@@ -1,17 +1,30 @@
 <div class="navbar-fixed">
     <nav role="navigation">
-        <div class="nav-wrapper" style="background-color: #278898;">
+        <div class="nav-wrapper" style="background-color: #2C3E50;">
 
             <!-- Desktop view top nav -->
 
-            <a href="#" class="logo" id="logo-container"> suyabay</a>
+            <a href="/" class="logo" id="logo-container"> suyabay</a>
 
             <ul class="right hide-on-med-and-down">
+                <li>
+                    <form action="/search" method="POST">
+                    {{ csrf_field() }}
+                        <div class="input-field">
+                            <input id="search" type="search" class="navbar-search" required>
+                                <label for="search">
+                                    <i class="material-icons teal-text text-lighten-2">search</i>
+                                </label>
+                                <i class="material-icons">close</i>
+                        </div>
+
+                    </form>
+                </li>
 
                 <li>
-                    <a class="waves-effect modal-trigger" href="{{ URL::to('signin') }}">Sign in</a>
-                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign up</a>
-                    <a class="waves-effect waves-light modal-trigger green lighten-2" href="#!">Become a Premium User</a>
+                    <a class="waves-effect modal-trigger" href="{{ URL::to('signin') }}">SIGN IN</a>
+                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">SIGN UP</a>
+                    <a class="waves-effect teal lighten-2" href="#!">Become a Premium User</a>
                 </li>
             </ul>
 
@@ -23,6 +36,10 @@
 
                 <li class="collection-item">
                     <a href="#">FAVOURITES <span class="new badge grey darken-2" style="padding:5px;">0</span></a>
+                </li>
+
+                <li class="collection-item center-align">
+                    <a href="{{ URL::to('search') }}">SEARCH</a>
                 </li>
 
                 <li class="collection-item">

@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'FAQs SuyaBay')
+@section('title', 'faqs | Suyabay')
 
 @endsection
 
