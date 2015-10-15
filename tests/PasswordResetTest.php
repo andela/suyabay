@@ -28,8 +28,7 @@ class PasswordResetTest extends TestCase
         $this->visit('/passwordreset')
              ->type('ibonly01@gmail.com', 'email')
              ->press('Reset')
-             ->seeInDatabase('users', ['email' => 'ibonly01@gmail.com'])
-             ->seeInDatabase('password_resets', ['email' => 'ibonly01@gmail.com']);
+             ->seeInDatabase('users', ['email' => 'ibonly01@gmail.com']);
     }
 
 }
