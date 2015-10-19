@@ -26,11 +26,10 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-
                         <i class="material-icons prefix">email</i>
                             <input name="email" id="email" type="email" class="validate" required="true" />
 
-                                <label for="email">Egit mail</label>
+                                <label for="email">Email</label>
                     </div>
                 </div>
 
