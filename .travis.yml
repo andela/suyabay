@@ -5,22 +5,29 @@ php:
   - 5.6
   - 7.0
   - hhvm
+env:
+  - DB=pgsql
 
 services: postgresql
 
 addons:
   postgresql: "9.3"
 
-before_script:
- - psql -c 'create database IF NOT EXISTS suyabay_test;' -U postgres
- - composer self-update
- - composer install --no-interaction
 
 
 matrix:
+  exclude:
+    - php: hhvm
+      env: DB=pgsql  # PDO driver for pgsql is unsupported by HHVM (3rd party install for support)
     allow_failures:
         - php: 7.0
         - php: hhvm
+
+before_script:
+  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres; fi
+  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database suyabay_test;" -U postgres; fi
+ - composer self-update
+ - composer install --no-interaction
 
 install: travis_retry composer install --no-interaction --prefer-source
 
