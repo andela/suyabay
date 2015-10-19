@@ -7,7 +7,7 @@ php:
   - hhvm
 
 
-before_script:
+before_install:
  - psql -c 'create database IF NOT EXISTS suyabay_test;' -U postgres
  - composer self-update
  - composer install --no-interaction
