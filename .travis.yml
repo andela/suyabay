@@ -17,7 +17,7 @@ addons:
 
 matrix:
   exclude:
-    - php: hhvm
+    - php: 5.6
       env: DB=pgsql  # PDO driver for pgsql is unsupported by HHVM (3rd party install for support)
 
     allow_failures:
