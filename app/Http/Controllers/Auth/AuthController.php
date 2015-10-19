@@ -59,11 +59,6 @@ class AuthController extends Controller
             'password'     => bcrypt($data['password'])
         ]);
 
-        $this->mail->send('emails.welcome', [], function ($message) {
-            $message->from( ENV('SENDER_ADDRESS'), ENV('SENDER_NAME'));
-            $message->to($data['email'])->subject('Welcome To Suyabay');
-        });
-
         var_dump('sent');
 
     }
@@ -105,6 +100,13 @@ class AuthController extends Controller
         else
         {
            return $this->create($request->all());
+
+            $this->mail->send('emails.welcome', ['name' => $username], function ($message) {
+            $message->from( ENV('SENDER_ADDRESS'), ENV('SENDER_NAME'));
+            $message->to($email)->subject('Welcome To Suyabay');
+        
+        });
+
         }
     }
 
