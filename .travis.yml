@@ -22,8 +22,8 @@ matrix:
         - php: hhvm
 
 before_script:
- - psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres;
- - psql -c "create database suyabay_test;" -U postgres;
+ - psql -c "DROP DATABASE IF EXISTS travis_ci_test;" -U postgres;
+ - psql -c "create database travis_ci_test;" -U postgres;
 
 install: travis_retry composer install --no-interaction --prefer-source
 
