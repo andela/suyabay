@@ -5,4 +5,5 @@ Homestead.json
 .env
 .env.example
 .DS_Store
+/keep
 

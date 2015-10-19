@@ -18,13 +18,13 @@
             <small>create your account</small>
         </div>
 
-        <form class="row" action="signup" method="POST">
+        <div class="row">
         
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <textarea name="username" class="materialize-textarea"></textarea>
+                            <textarea id="username" class="materialize-textarea"></textarea>
                             <label for="icon_prefix1">
                                 Username
                             </label>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <input name="email" type="text" class="validate">
+                            <input id="email" type="email" class="validate">
                                 <label for="email">Email</label>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                            <input name="password" type="password" class="validate">
+                            <input id="password" type="password" class="validate">
                                 <label for="password">Password</label>
                     </div>
                 </div>
@@ -54,12 +54,12 @@
                         <label for="remember-me">Remember Me</label>
                     </p>
 
-                    <button class="waves-effect waves-light btn right" onclick="/register()">
+                    <button class="waves-effect waves-light btn right" onclick="register()">
                         Sign Up
                     </button>
                 </div>
             
-        </form>
+        </div>
 
         <div class="row container">
 
@@ -84,3 +84,4 @@
 </div>
 
 @endsection
+
