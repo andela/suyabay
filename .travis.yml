@@ -24,8 +24,8 @@ matrix:
         - php: hhvm
 
 before_script:
-  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres; fi
-  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database suyabay_test;" -U postgres; fi
+ - psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres;
+ - psql -c "create database suyabay_test;" -U postgres;
  - composer self-update
  - composer install --no-interaction
 
