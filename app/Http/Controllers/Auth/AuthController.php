@@ -58,9 +58,6 @@ class AuthController extends Controller
             'username'     => $data['username'],
             'password'     => bcrypt($data['password'])
         ]);
-
-        var_dump('sent');
-
     }
 
     /**
@@ -79,11 +76,9 @@ class AuthController extends Controller
     {
         $email      = $request->email; 
         $username   = $request->username;
-
         $checkUserExists    = User::where('username', '=', $username)->get();
         $checkEmailExists   = User::where('email', '=', $email)->get();
         
-
         if ( $checkEmailExists->count() == true OR $checkUserExists->count() == true ) 
         {
             return $response = 
@@ -99,12 +94,10 @@ class AuthController extends Controller
         }
         else
         {
-           return $this->create($request->all());
-
+            return $this->create($request->all());
             $this->mail->send('emails.welcome', ['name' => $username], function ($message) {
             $message->from( ENV('SENDER_ADDRESS'), ENV('SENDER_NAME'));
             $message->to($email)->subject('Welcome To Suyabay');
-        
         });
 
         }
