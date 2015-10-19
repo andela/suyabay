@@ -6,8 +6,10 @@ php:
   - 7.0
   - hhvm
 
+addons:
+  postgresql: "9.3"
 
-before_install:
+before_script:
  - psql -c 'create database IF NOT EXISTS suyabay_test;' -U postgres
  - composer self-update
  - composer install --no-interaction
