@@ -6,6 +6,8 @@ php:
   - 7.0
   - hhvm
 
+services: postgresql
+
 addons:
   postgresql: "9.3"
 
