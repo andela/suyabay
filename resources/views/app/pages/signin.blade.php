@@ -10,12 +10,13 @@
         void
     </div>
 
-    <div class="col s12 m6 l6">
+    <div class="col s12 m6 l6 center-align">
 
-        <div class="center-align fix">
+        <div>
 
-            <h2>Signin</h2>
-            <small>sign in to your account</small>
+            <h2>Sign in</h2>
+            <small>Sign in to your account</small>
+
         </div>
 
         <div class="row">

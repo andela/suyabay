@@ -10,12 +10,11 @@
         void
     </div>
 
-    <div class="col s12 m6 l6">
+    <div class="col s12 m6 l6 center-align">
 
-        <div class="center-align fix">
-
+        <div>
             <h2>Hollup, hollup!</h2>
-            <small>you need a password reset, right?</small>
+            <small>You need a password reset, right?</small>
         </div>
 
         <div class="row">

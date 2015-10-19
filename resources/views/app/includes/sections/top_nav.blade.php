@@ -4,18 +4,26 @@
 
             <!-- Desktop view top nav -->
 
-            <a href="/" class="logo" id="logo-container"> suyabay</a>
+            <a href="/" class="logo" id="logo-container">suyabay</a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <form action="/search" method="POST">
-                    {{ csrf_field() }}
+                    <form method="POST" action="{{url('/search')}}">
+
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
                         <div class="input-field">
-                            <input id="search" type="search" class="navbar-search" required>
-                                <label for="search">
-                                    <i class="material-icons teal-text text-lighten-2">search</i>
-                                </label>
-                                <i class="material-icons">close</i>
+
+                            <input name = "data" id="search" type="search" class="navbar-search" required>
+
+                            <label for="search">
+
+                                <i class="material-icons teal-text text-lighten-2">search</i>
+
+                            </label>
+
+                            <i class="material-icons">close</i>
+
                         </div>
 
                     </form>
