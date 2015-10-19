@@ -8,7 +8,7 @@ php:
 
 
 before_script:
- - mysql -e 'create database suyabay_test;'
+ - pgsql -c 'create database suyabay_test;' -U postgres
  - composer self-update
  - composer install --no-interaction
 
