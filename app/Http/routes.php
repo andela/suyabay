@@ -81,3 +81,12 @@ Route::post('password/reset', [
     'uses' => 'Auth\PasswordController@postReset',
     'as'   => 'postpasswordreset'
 ]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Search link request
+/-------------------------------------------------------------------------------
+*/
+
+Route::post('/search', 'SearchController@index');
+

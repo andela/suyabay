@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'Privacy Policy | SuyaBay')
+@section('title', 'Search | SuyaBay')
 
 @endsection
 

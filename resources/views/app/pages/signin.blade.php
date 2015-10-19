@@ -1,6 +1,6 @@
 @extends('app.authlayout')
 
-@section('title', 'Signin')
+@section('title', 'Signin | SuyaBay')
 
 @section('content')
 
@@ -14,7 +14,7 @@
 
         <div class="center-align fix">
 
-            <h2>SuyaBay Podcast</h2>
+            <h2>Signin</h2>
             <small>sign in to your account</small>
         </div>
 
@@ -24,7 +24,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">mode_edit</i>
+                        <i class="material-icons prefix">perm_identity</i>
                             <textarea id="icon_prefix1" class="materialize-textarea"></textarea>
                             <label for="icon_prefix1">
                                 Username
@@ -34,7 +34,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">mode_edit</i>
+                        <i class="material-icons prefix">lock_outline</i>
                             <input id="password" type="password" class="validate">
                                 <label for="password">Password</label>
                     </div>

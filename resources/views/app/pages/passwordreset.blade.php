@@ -1,6 +1,6 @@
 @extends('app.authlayout')
 
-@section('title', 'Password Reset')
+@section('title', 'Password Reset | SuyaBay')
 
 @section('content')
 
@@ -14,7 +14,7 @@
 
         <div class="center-align fix">
 
-            <h2>Oh Snap!</h2>
+            <h2>Hollup, hollup!</h2>
             <small>you need a password reset, right?</small>
 
         </div>
@@ -26,9 +26,11 @@
 
                 <div class="row">
                     <div class="input-field col s12">
+
                         <i class="material-icons prefix">email</i>
                             <input name="email" id="email" type="email" class="validate" required="true" />
-                                <label for="email">Email</label>
+
+                                <label for="email">Egit mail</label>
                     </div>
                 </div>
 

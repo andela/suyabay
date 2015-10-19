@@ -21,7 +21,7 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
-                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+                    <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         21 september, 2015
-                            <span class="new badge left green lighten-2"></span>
+                            <span class="new badge left teal lighten-2"></span>
                     </small>
                 </div>
 
@@ -42,7 +42,7 @@
                         </span>
 
                         <span id="channel-title">
-                            Laravel Love Affairs Part 1
+                            Laravel Love Affairs
                         </span>
                     </h5>
                 </div>
@@ -88,7 +88,7 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
-                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+                    <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
                 </div>
             </div>
 
@@ -98,7 +98,7 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         20 september, 2015
-                            <span class="new badge left green lighten-2"></span>
+                            <span class="new badge left teal lighten-2"></span>
                     </small>
                 </div>
 
@@ -155,7 +155,7 @@
 
         <div class="row center-align fix">
             <div class="podcast-page-navigation center-align">
-                <a href="{{ URL::to('episodes') }}" class="teal-text">
+                <a href="{{ URL::to('episodes') }}" class="blue-grey-text darken-4">
                     view older episodes
                 </a>
             </div>
