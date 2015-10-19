@@ -54,7 +54,8 @@ return [
     |
     */
 
-    'from' => ['address' => env('SENDER_ADDRESS', ''), 'name' => env('SENDER_NAME', '')],
+    //'from' => ['address' => env('SENDER_ADDRESS', ''), 'name' => env('SENDER_NAME', '')],
+    'from' => ['address' => 'admin@suyabay.com', 'name' => 'Suyabay'],
 
     /*
     |--------------------------------------------------------------------------

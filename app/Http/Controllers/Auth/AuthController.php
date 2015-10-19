@@ -53,16 +53,18 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'email'         => $data['email'],
             'username'     => $data['username'],
             'password'     => bcrypt($data['password'])
         ]);
 
-        $this->mail->send($data['email'], ['name' => $data['username']], function($message)
-        {
-            $message->to('emekaosuagwu@hotmail.com', 'John Smith')->subject('Welcome!');
+        $this->mail->send('emails.welcome', [], function ($message) {
+            $message->from( ENV('SENDER_ADDRESS'), ENV('SENDER_NAME'));
+            $message->to($data['email'])->subject('Welcome To Suyabay');
         });
+
+        var_dump('sent');
 
     }
 
@@ -102,7 +104,7 @@ class AuthController extends Controller
         }
         else
         {
-            $this->create($request->all());
+           return $this->create($request->all());
         }
     }
 

@@ -1,1 +1,1 @@
-Will to suya bayb, we love you. {{$name}}
+Welcome to suya bayb, we love you
