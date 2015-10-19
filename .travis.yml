@@ -1,33 +1,49 @@
+# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
 language: php
 
+# list any PHP version you want to test against
 php:
-  - 5.5.9
+  # using major version aliases
+
+  # aliased to 5.2.17
+  - 5.2
+  # aliased to 5.3.29
+  - 5.3
+  # aliased to a recent 5.4.x version
+  - 5.4
+  # aliased to a recent 5.5.x version
+  - 5.5
+  # aliased to a recent 5.6.x version
   - 5.6
+  # aliased to a recent 7.x version
   - 7.0
+  # aliased to a recent hhvm version
   - hhvm
 
+# optionally specify a list of environments, for example to test different RDBMS
 env:
+  - DB=mysql
   - DB=pgsql
 
-services: postgresql
-
-addons:
-  postgresql: "9.3"
-
+# optionally set up exclutions and allowed failures in the matrix
 matrix:
-    allow_failures:
-        - php: 7.0
-        - php: hhvm
+  exclude:
+    - php: hhvm
+      env: DB=pgsql  # PDO driver for pgsql is unsupported by HHVM (3rd party install for support)
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
 
+# execute any number of scripts before the test run, custom env's are available as variables
 before_script:
-    - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres; fi
-    - if [[ "$DB" == "pgsql" ]]; then psql -c "create database suyabay_test;" -U postgres; fi
+  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres; fi
+  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database suyabay_test;" -U postgres; fi
+  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS suyabay_test;" -uroot; fi
 
-install: travis_retry composer install --no-interaction --prefer-source
+# omitting "script:" will default to phpunit
+# use the $DB env variable to determine the phpunit.xml to use
+script: phpunit --configuration phpunit_$DB.xml --coverage-text
 
-script: phpunit --configuration phpunit.xml --coverage-text
-
-#script: vendor/bin/phpunit
-
+# configure notifications (email, IRC, campfire etc)
 notifications:
   slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
