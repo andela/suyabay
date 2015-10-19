@@ -1,8 +1,10 @@
 language: php
 
 php:
+  - 5.5.9
   - 5.6
   - 7.0
+  - hhvm
 
 env:
   - DB=pgsql
@@ -15,14 +17,17 @@ addons:
 matrix:
     allow_failures:
         - php: 7.0
+        - php: hhvm
 
 before_script:
- - psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres;
- - psql -c "create database suyabay_test;" -U postgres;
+    - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS suyabay_test;" -U postgres; fi
+    - if [[ "$DB" == "pgsql" ]]; then psql -c "create database suyabay_test;" -U postgres; fi
 
 install: travis_retry composer install --no-interaction --prefer-source
 
-script: vendor/bin/phpunit
+script: phpunit --configuration phpunit_$DB.xml --coverage-text
+
+#script: vendor/bin/phpunit
 
 notifications:
   slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
