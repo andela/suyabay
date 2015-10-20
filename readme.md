@@ -12,7 +12,7 @@ Suyabay Podcast is an aggregator of podcasts for Suya lovers across the net. The
 
 ##Setup the environmental variables (.env file)
 
-        `APP_ENV    =local
+        APP_ENV    =local
         APP_DEBUG  =true
         APP_KEY    =LhsswvmAfygWZdKUhZXedm3bOTAOKLxH
 
@@ -40,15 +40,15 @@ Suyabay Podcast is an aggregator of podcasts for Suya lovers across the net. The
         MAIL_PASSWORD=
         MAIL_ENCRYPTION=
         SENDER_ADDRESS=
-        SENDER_NAME=`
+        SENDER_NAME=
 
 ## Requirements
-    ```
+
         php                   >=  5.5.9
         laravel/framework      =  5.1.17
         busayo/laravel-yearly  =  1.0.*
         guzzlehttp/guzzle      =  ~4.0
-    ```
+
 
 ## Official Documentation
 
