@@ -49,6 +49,12 @@ Suyabay Podcast is an aggregator of podcasts for Suya lovers across the net. The
         busayo/laravel-yearly  =  1.0.*
         guzzlehttp/guzzle      =  ~4.0
 
+## Requirement for Development
+
+        fzaninotto/faker = ~1.4
+        phpunit/phpunit  = ~4.0
+        phpspec/phpspec  = ~2.1
+        mockery/mockery  = ^0.9.4
 
 ## Official Documentation
 
