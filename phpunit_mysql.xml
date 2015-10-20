@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="bootstrap/autoload.php"
+         bootstrap="vendor/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -11,23 +12,22 @@
          syntaxCheck="false">
     <php>
         <var name="db_dsn" value="mysql:dbname=suyabay_test;host=localhost"/>
-        <var name="db_username" value="postgres"/>
+        <var name="db_username" value="root"/>
         <var name="db_password" value=""/>
     </php>
+
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="Hello World Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
+
     <filter>
         <whitelist>
-            <directory suffix=".php">app/</directory>
+            <directory>./</directory>
+            <exclude>
+                <directory>./tests</directory>
+            </exclude>
         </whitelist>
     </filter>
-    <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-    </php>
 </phpunit>

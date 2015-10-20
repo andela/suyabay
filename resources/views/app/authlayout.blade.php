@@ -49,6 +49,14 @@
         <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
         <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
 
+        <!-- sweetalert -->
+        <link rel="stylesheet" type="text/css" href="{!! asset('/library/sweetalert/sweetalert.css') !!}">
+        <script type="text/javascript" src="{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+
+        <!-- Password Reset-->
+        <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+        <script src = "{!! asset('/js/NewPassword.js') !!}"></script>
+
     </head>
     <body>
 
