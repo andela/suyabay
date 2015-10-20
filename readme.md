@@ -60,6 +60,12 @@ Suyabay Podcast is an open source project using the full features of `laravel`. 
 
 Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
+## Credits
+    - [Okosun Florence](https://github.com/andela-fokosun)
+    - [Osuagwu Emeka](https://github.com/andela-eosuagwu)
+    - [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
+
+
 ## Contributing
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
