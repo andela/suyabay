@@ -11,8 +11,8 @@ Suyabay Podcast is an aggregator of podcasts for Suya lovers across the net. The
 3. Run ```php artisan migrate``` to install the database migration
 
 ##Setup the environmental variables (.env file)
-    ```
-        APP_ENV    =local
+
+        `APP_ENV    =local
         APP_DEBUG  =true
         APP_KEY    =LhsswvmAfygWZdKUhZXedm3bOTAOKLxH
 
@@ -40,8 +40,7 @@ Suyabay Podcast is an aggregator of podcasts for Suya lovers across the net. The
         MAIL_PASSWORD=
         MAIL_ENCRYPTION=
         SENDER_ADDRESS=
-        SENDER_NAME=
-    ```
+        SENDER_NAME=`
 
 ## Requirements
     ```
