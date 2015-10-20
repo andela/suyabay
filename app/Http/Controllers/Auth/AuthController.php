@@ -2,17 +2,15 @@
 
 namespace app\Http\Controllers\Auth;
 
-
 use Auth;
-use Illuminate\Mail\Mailer as Mail;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer as Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
 
 class AuthController extends Controller
 {
@@ -28,10 +26,10 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
+    
+    protected $mail;
     protected $loginPath = '/login';
     protected $registerPath = '/register';
-    protected $mail;
 
     /**
      * Create a new authentication controller instance.
@@ -55,8 +53,8 @@ class AuthController extends Controller
     {
         User::create([
             'email'         => $data['email'],
-            'username'     => $data['username'],
-            'password'     => bcrypt($data['password'])
+            'username'      => $data['username'],
+            'password'      => bcrypt($data['password'])
         ]);
     }
 
@@ -72,14 +70,21 @@ class AuthController extends Controller
         return view('app.pages.signup');
     }
 
+    /**
+     * Register a new user instance.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
     public function postRegister(Request $request)
     {
-        $email      = $request->email; 
-        $username   = $request->username;
+        $email              = $request->email; 
+        $username           = $request->username;
         $checkUserExists    = User::where('username', '=', $username)->get();
         $checkEmailExists   = User::where('email', '=', $email)->get();
         
-        if ( $checkEmailExists->count() == true OR $checkUserExists->count() == true ) 
+        if ( $checkEmailExists->count() === 1 OR $checkUserExists->count() === 1 ) 
         {
             return $response = 
             [
@@ -94,18 +99,14 @@ class AuthController extends Controller
         }
         else
         {
+            $this->mail->send('emails.welcome', ['name' => $username], function ($message) 
+            {
+                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($email)->subject('Welcome To Suyabay');
+            });
             return $this->create($request->all());
-            $this->mail->send('emails.welcome', ['name' => $username], function ($message) {
-            $message->from( ENV('SENDER_ADDRESS'), ENV('SENDER_NAME'));
-            $message->to($email)->subject('Welcome To Suyabay');
-        });
-
         }
     }
-
-
-
-
 
     /**
      * Login a exisitng instance of user.
@@ -119,8 +120,7 @@ class AuthController extends Controller
         return view('app.pages.signin');
     }
 
-
-   /**
+     /**
      * Login a exisitng instance of user.
      *
      * @param Request $request
@@ -130,7 +130,7 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $status = Auth::attempt($request->only(['username', 'password']));        
-        if ( $status === false ) 
+        if ( ! $status ) 
         {
             return $response = 
             [
@@ -160,4 +160,5 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
 }
