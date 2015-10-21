@@ -66,9 +66,10 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
 ## Credits
-    - [Okosun Florence](https://github.com/andela-fokosun)
-    - [Osuagwu Emeka](https://github.com/andela-eosuagwu)
-    - [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
+
+     [Okosun Florence](https://github.com/andela-fokosun)
+     [Osuagwu Emeka](https://github.com/andela-eosuagwu)
+     [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
 
 
 ## Contributing
