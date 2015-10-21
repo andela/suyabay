@@ -35,7 +35,7 @@ a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
 }
 
 small {
-    font-weight:bold;
+    font-weight:light;
 }
 
 .logo {
@@ -64,9 +64,10 @@ small {
 }
 
 .card-image {
-    margin:20px 0px;
+    margin:15px auto;
     width:100%;
     height:auto;
+    border-radius:9px;
 }
 
 .episode-date {
@@ -124,14 +125,9 @@ small {
 }
 
 .excerpts {
-    font-size: 1.4em;
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: .01em;
-    border-bottom:4px solid #2C3E50;
-    padding:10px 0;
-    width:12%;
-    color: #2C3E50;
+    border-bottom:3px solid;
+    width:20%;
 }
 
 .error {
@@ -154,4 +150,7 @@ small {
 .spacer
 {
     margin:5% 0 10%;
+}
+.btn-large {
+    text-transform: capitalize;
 }

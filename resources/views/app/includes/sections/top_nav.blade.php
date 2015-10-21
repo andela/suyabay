@@ -8,9 +8,8 @@
 
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <form method="POST" action="{{ url('/') }}">
-
-                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                    <form action="/search" method="POST">
+                    {{ csrf_field() }}
 
                         <div class="input-field">
 
