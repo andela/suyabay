@@ -7,10 +7,10 @@
 
 */
 
-Route::get('/', function () {
-    return view('app.pages.index');
-});
-
+Route::get('/', [
+    'uses' => 'IndexController@index',
+    'as'   => 'home'
+]);
 
 
 /*
@@ -84,9 +84,45 @@ Route::post('password/reset', [
 
 /*
 /-------------------------------------------------------------------------------
+/ Login
+/-------------------------------------------------------------------------------
+*/
+
+Route::post('login', [
+    'uses' => 'Auth\AuthController@postLogin',
+    'as'   => 'login'
+]);
+
+
+/*
+/-------------------------------------------------------------------------------
+/ Register
+/-------------------------------------------------------------------------------
+*/
+
+Route::post('register', [
+    'uses' =>'Auth\AuthController@postRegister',
+    'as'   => 'register'
+]);
+
+/*
+/-------------------------------------------------------------------------------
 / Search link request
 /-------------------------------------------------------------------------------
 */
 
-Route::post('/search', 'SearchController@index');
+Route::post('search', [
+    'uses'  => 'SearchController@index',
+    'as'    => 'search'
+]);
+
+/*
+/ Logout
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('logout', [
+    'uses'  => 'Auth\AuthController@getLogout',
+    'as'    => 'logout'
+]);
 

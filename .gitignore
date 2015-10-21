@@ -6,4 +6,5 @@ Homestead.json
 .env.example
 .DS_Store
 /sass
+/keep
 

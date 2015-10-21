@@ -18,7 +18,11 @@ class CreateChannelSubscriptionsTable extends Migration
             $table->integer('channel_id')->usigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+<<<<<<< HEAD
             $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
+=======
+            $table->foreign('channel_id')->references('channel_id')->on('channels')->onDelete('cascade');
+>>>>>>> initial commit for user registrationand authentication
         });
     }
 

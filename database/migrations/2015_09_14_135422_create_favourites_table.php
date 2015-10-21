@@ -18,7 +18,11 @@ class CreateFavouritesTable extends Migration
             $table->integer('episode_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+<<<<<<< HEAD
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
+=======
+            $table->foreign('episode_id')->references('episode_id')->on('episodes')->onDelete('cascade');
+>>>>>>> initial commit for user registrationand authentication
         });
     }
 

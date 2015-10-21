@@ -2,9 +2,14 @@
 
 namespace Suyabay\Http\Controllers\Auth;
 
+
+
+use Auth;
 use Validator;
 use Suyabay\User;
-use Suyabay\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -24,6 +29,9 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $loginPath    = '/login';
+    protected $registerPath = '/register';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -32,22 +40,6 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
     }
 
     /**
@@ -60,9 +52,50 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
+            //dd($data)
+            'email'         => $data['email'],
+            'username'      => $data['username'],
+            'password'      => bcrypt($data['password'])
         ]);
+    }
+
+    /**
+     * Register a new user instance.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
+    public function postRegister(Request $request)
+    {
+        $this->create($request->all());
+        return redirect()->route('home');
+    }
+
+    /**
+     * Login a exisitng instance of user.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
+    public function postLogin(Request $request)
+    {
+        $status = Auth::attempt($request->only(['username', 'password']));
+        $username = Auth::user()->username;
+        return redirect()->route('home')->with(compact('username'));
+    }
+
+    /**
+     * Logout current user.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
