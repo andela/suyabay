@@ -13,12 +13,12 @@ class CreateChannelSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('channel_subscriptions', function($table){
-            $table->increments('subscription_id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('channel_id')->usigned();
             $table->timestamps();
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('channel_id')->references('channel_id')->on('channels')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
         });
     }
 

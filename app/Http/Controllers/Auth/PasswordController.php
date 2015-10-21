@@ -2,7 +2,11 @@
 
 namespace Suyabay\Http\Controllers\Auth;
 
+use Suyabay\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Suyabay\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
@@ -17,8 +21,9 @@ class PasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
+
+    protected $redirectTo = '/signin';
 
     /**
      * Create a new password controller instance.
@@ -29,4 +34,13 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Load a password reset page.
+     */
+    public function passwordPage()
+    {
+        return view('app.pages.passwordreset');
+    }
+
 }

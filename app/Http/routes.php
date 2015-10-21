@@ -91,3 +91,4 @@ Route::post('password/reset', [
 Route::post('search', function(){
     return redirect('/');
 });
+
