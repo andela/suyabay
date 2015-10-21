@@ -99,7 +99,7 @@ class AuthController extends Controller
         }
         else
         {
-            $this->mail->send('emails.welcome', ['name' => $username], function ($message) 
+            $this->mail->send('emails.welcome', ['name' => $username], function ($message) use ($email) 
             {
                 $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email)->subject('Welcome To Suyabay');

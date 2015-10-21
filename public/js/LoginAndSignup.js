@@ -45,7 +45,7 @@ function ajaxLogic ( data, response, functionName )
 |*/
 function ajaxCall ( data, functionName ) 
 {
-    $.post( data.url, data.parameter)
+    $.post( window.location.hostname/data.url, data.parameter)
     .done(function(response) 
     {
       ajaxLogic( data, response, functionName );
@@ -121,6 +121,7 @@ function register ()
           password    : password   
         }
     }
+  checkItem(data);
   var functionName =  arguments.callee.name;  
   ajaxCall( data, functionName );
 }
@@ -150,5 +151,17 @@ function login ()
           password    : password   
         }
     }
+    checkItem(data);
     ajaxCall( data, functionName ); 
-}       
+} 
+
+//console.log(window.location.hostname);      
+
+
+function checkItem (data) 
+{
+      if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
+      {
+        swal("Oppss Login Failed", "Some required field not set!", "error")
+      }
+}
