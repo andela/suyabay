@@ -5,8 +5,37 @@ body {
     /*#CEE7D8;*/
 }
 
+p {
+    font-size: 13pt!important;
+    line-height: 1.6em;
+    font-weight: 300;
+    margin-top: 20px;
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+    padding:0 10px;
+}
+
+h2 {
+    color:#626262;
+    text-decoration: none;
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 2em;
+    margin:10px;
+}
+
+a {
+    cursor:auto;
+    text-decoration: none;
+    color:#333;
+}
+
+a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+    color:#4DB6AC;
+}
+
 small {
-    font-weight:bold;
+    font-weight:light;
 }
 
 .logo {
@@ -34,12 +63,11 @@ small {
     background-color: #C0392B;
 }
 
-.episode-avatar {
-    display:block;
+.card-image {
+    margin:15px auto;
     width:100%;
     height:auto;
-    border-radius: 5px;
-    margin:10px 0px;
+    border-radius:9px;
 }
 
 .episode-date {
@@ -48,26 +76,15 @@ small {
     line-height: 1.5;
     font-weight: light;
     text-transform: uppercase;
-    margin:10px 0px;
+    margin-top:15px;
+    margin-left:10px;
+    margin-bottom:0px;
 }
 
 .social-sharing {
     padding: 10px;
     border-radius: 6px;
     background-color: #82B541;
-}
-
-.podcast-page-navigation {
-    border-radius: 10px;
-    border: 2px solid #2C3E50;
-    display: inline-block;
-    padding: 12px 20px;
-    margin: 30px 0 50px;
-    background: transparent;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 12px;
-    text-decoration: none;
 }
 
 .hosts-image {
@@ -108,14 +125,9 @@ small {
 }
 
 .excerpts {
-    font-size: 1.4em;
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: .01em;
-    border-bottom:4px solid #2C3E50;
-    padding:10px 0;
-    width:12%;
-    color: #2C3E50;
+    border-bottom:3px solid;
+    width:20%;
 }
 
 .error {
@@ -133,4 +145,12 @@ small {
 
 .error-exit-message {
     color:grey;
+}
+
+.spacer
+{
+    margin:5% 0 10%;
+}
+.btn-large {
+    text-transform: capitalize;
 }

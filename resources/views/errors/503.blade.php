@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="col s12 center-align">
+    <div class="col s12 center-align spacer">
         <div class="error">503</div>
             <div class="error-message">
                 Some kinda server error!

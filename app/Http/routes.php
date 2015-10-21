@@ -88,5 +88,7 @@ Route::post('password/reset', [
 /-------------------------------------------------------------------------------
 */
 
-Route::post('/search', 'SearchController@index');
+Route::post('search', function(){
+    return redirect('/');
+});
 
