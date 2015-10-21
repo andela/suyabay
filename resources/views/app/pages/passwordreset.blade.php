@@ -7,16 +7,20 @@
 <div class="col s6 m12 l12 spacer">
 
     <div class="row center-align">
-        <h2>Hollup!</h2>
-        <small>You need a password reset, right?</small>
+
+        <h2>Forgot your password?</h2>
+
     </div>
 
     <div class="col s6 offset-s3">
+
         <form id="password_reset_form">
+
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+
             <div class="input-field">
                 <i class="material-icons prefix">turned_in_not</i>
-                <input id="email" type="email" class="validate">
+                <input id="email" type="email" class="validate" required>
                 <label for="email">Email</label>
             </div>
 
@@ -25,7 +29,9 @@
                     Reset
                 </button>
             </div>
+
         </form>
+
     </div>
 
 </div>
