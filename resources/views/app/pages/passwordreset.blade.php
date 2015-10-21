@@ -4,43 +4,28 @@
 
 @section('content')
 
-<div class="row">
+<div class="col s6 m12 l12 spacer">
 
-    <div class="col s3 hide-on-small-only white-text">
-        void
+    <div class="row center-align">
+        <h2>Hollup!</h2>
+        <small>You need a password reset, right?</small>
     </div>
 
-    <div class="col s12 m6 l6 center-align">
+    <div class="col s6 offset-s3">
+        <form id="password_reset_form">
+            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+            <div class="input-field">
+                <i class="material-icons prefix">turned_in_not</i>
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
 
-        <div>
-            <h2>Hollup, hollup!</h2>
-            <small>You need a password reset, right?</small>
-        </div>
-
-        <div class="row">
-
-            <form class="col s12">
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">turned_in_not</i>
-                            <input id="email" type="email" class="validate">
-                                <label for="email">Email</label>
-                    </div>
-                </div>
-
-                <div class="row container">
-
-                    <a class="waves-effect waves-light btn right">
-                        Reset
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="col s3 hide-on-small-only white-text">
-        void
+            <div class="row container">
+                <button type="submit" id="submit_reset" class="waves-effect waves-light btn right">
+                    Reset
+                </button>
+            </div>
+        </form>
     </div>
 
 </div>

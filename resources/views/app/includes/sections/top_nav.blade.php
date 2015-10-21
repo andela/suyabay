@@ -8,7 +8,7 @@
 
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <form method="POST" action="{{url('/search')}}">
+                    <form method="POST" action="{{ url('/') }}">
 
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 

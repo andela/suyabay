@@ -20,8 +20,32 @@
         <div class="card">
 
             <div class="col s12 m6 l4">
-                <div class="card-image waves-effect waves-block waves-light episode-avatar">
+                <div class="card-image waves-effect waves-block waves-light">
                     <img src="https://goo.gl/1kUYlL">
+                </div>
+
+                <!-- Social icons start-->
+
+                <div>
+                    <span class="grey-text text-darken-4">
+                        <a href="#!" title="share"><i class="tiny material-icons left">share</i></a>
+                        <a href="#!" title="number of views"><i class="tiny material-icons left">live tv</i></a>
+                        <a href="#!" title="comments"><i class="tiny material-icons left">forum</i></a>
+                        <a href="#!" title="favorites"><i class="tiny material-icons left">favorite</i></a>
+                        <a href="#!" title="downloads"><i class="tiny material-icons left">backup</i></a>
+                    </span>
+                </div>
+
+                <!-- social icons end -->
+
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                        Card Title
+                            <i class="material-icons right grey-text text-darken-4">close</i>
+                    </span>
+                        <p>
+                            Here is some more information about this product that is only revealed once clicked on.
+                        </p>
                 </div>
             </div>
 
@@ -36,15 +60,13 @@
                 </div>
 
                 <div id="episode-title">
-                    <h5> Episode
-                        <span id="episode-id">
-                            01:
-                        </span>
-
-                        <span id="channel-title">
-                            Laravel Love Affairs
-                        </span>
-                    </h5>
+                    <a href"#">
+                        <h2>
+                            <span id="channel-title">
+                                Laravel Love Affairs
+                            </span>
+                        </h2>
+                    </a>
                 </div>
 
                     <!-- Feed the audio source with the three diff formats for browser compactibility-->
@@ -56,21 +78,34 @@
 
                 <div id="description">
                     <p>
-                        In this episode, Matt and Taylor are joined by Ian Landsman of UserScape. Ian is the founder of UserScape, the creator of HelpSpot, and the man behind LaraJobs. The crew discusses hiring, being a good job candidate, and most importantly: Star Wars.
+                        In this episode, Matt and Taylor are joined by Ian Landsman of UserScape. Ian is the founder of UserScape, the creator of HelpSpot, and the man behind LaraJobs.
                     </p>
                 </div>
 
-                <div class="action-btn">
-                    <span class="grey-text text-darken-4">
 
-                    <i class="fa fa-share-alt left"></i>
-                    <i class="small material-icons right">visibility</i>
-                    <i class="small material-icons right">forum</i>
-                    <i class="small material-icons right">loyalty</i>
-                    <br><br>
-                    </span>
+            </div>
+        </div>
 
+        <div class="card">
+
+            <div class="col s12 m6 l4">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img src="https://goo.gl/1kUYlL">
                 </div>
+
+                <!-- Social icons start-->
+
+                <div>
+                    <span class="grey-text text-darken-4">
+                        <a href="#!" title="share"><i class="tiny material-icons left">share</i></a>
+                        <a href="#!" title="number of views"><i class="tiny material-icons left">live tv</i></a>
+                        <a href="#!" title="comments"><i class="tiny material-icons left">forum</i></a>
+                        <a href="#!" title="favorites"><i class="tiny material-icons left">favorite</i></a>
+                        <a href="#!" title="downloads"><i class="tiny material-icons left">backup</i></a>
+                    </span>
+                </div>
+
+                <!-- social icons end -->
 
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">
@@ -80,15 +115,6 @@
                         <p>
                             Here is some more information about this product that is only revealed once clicked on.
                         </p>
-                </div>
-            </div>
-        </div>
-
-         <div class="card">
-
-            <div class="col s12 m6 l4">
-                <div class="card-image waves-effect waves-block waves-light episode-avatar">
-                    <img src="https://goo.gl/1kUYlL">
                 </div>
             </div>
 
@@ -97,24 +123,22 @@
 
                 <div class="episode-date" id="episode-date">
                     <small>
-                        20 september, 2015
+                        21 september, 2015
                             <span class="new badge left teal lighten-2"></span>
                     </small>
                 </div>
 
                 <div id="episode-title">
-                    <h5> Episode
-                        <span id="episode-id">
-                            02:
-                        </span>
-
-                        <span id="channel-title">
-                            Cute Tools
-                        </span>
-                    </h5>
+                    <a href"#">
+                        <h2>
+                            <span id="channel-title">
+                                Laravel Love Affairs
+                            </span>
+                        </h2>
+                    </a>
                 </div>
 
-                <!-- Feed the audio source with the three diff formats for browser compactibility-->
+                    <!-- Feed the audio source with the three diff formats for browser compactibility-->
                     <audio preload="auto" controls>
                         <source src="audio/BlueDucks_FourFlossFiveSix.mp3">
                         <source src="audio/BlueDucks_FourFlossFiveSix.ogg">
@@ -123,41 +147,21 @@
 
                 <div id="description">
                     <p>
-                        Testing, 100% minimum coverage, TDD. The consequences of long-term high-intensity focus. What does PHPSpec have to offer? The battle over Trait / Interface suffixes. Imposter Syndrome. Links to other Podcasts mentioned in this episode. http://www.thisamericanlife.org/
+                        In this episode, Matt and Taylor are joined by Ian Landsman of UserScape. Ian is the founder of UserScape, the creator of HelpSpot, and the man behind LaraJobs.
                     </p>
                 </div>
 
-                <div>
-                    <span class="grey-text text-darken-4">
 
-                    <i class="fa fa-share-alt left"></i>
-                    <i class="small material-icons right">visibility</i>
-                    <i class="small material-icons right">forum</i>
-                    <i class="small material-icons right">loyalty</i>
-                     <br><br>
-                    </span>
-
-                </div>
-
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                        Card Title
-                            <i class="material-icons right grey-text text-darken-4">close</i>
-                    </span>
-                        <p>
-                            Here is some more information about this product that is only revealed once clicked on.
-                        </p>
-                </div>
             </div>
         </div>
+
+
 
         <!-- view older episodes -->
 
         <div class="row center-align fix">
-            <div class="podcast-page-navigation center-align">
-                <a href="{{ URL::to('episodes') }}" class="blue-grey-text darken-4">
-                    view older episodes
-                </a>
+            <div class="center-align">
+                <a href="episodes" class="btn-large">View Older episodes</a>
             </div>
         </div>
     </div>

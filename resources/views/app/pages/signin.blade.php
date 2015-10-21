@@ -4,45 +4,31 @@
 
 @section('content')
 
-<div class="row">
+<div class="col s6 m12 l12 spacer">
 
-    <div class="col s3 hide-on-small-only white-text">
-        void
+    <div class="row center-align">
+        <h2>Sign in to your account</h2>
     </div>
 
-    <div class="col s12 m6 l6 center-align">
-
-        <div>
-
-            <h2>Sign in</h2>
-            <small>Sign in to your account</small>
-
-        </div>
+    <div class="col s6 offset-s3">
 
         <div class="row">
-
-            <form class="col s12">
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">perm_identity</i>
-                            <textarea id="icon_prefix1" class="materialize-textarea"></textarea>
-                            <label for="icon_prefix1">
-                                Username
-                            </label>
-                    </div>
+            <form>
+                <div class="input-field">
+                    <i class="material-icons prefix">perm_identity</i>
+                        <textarea id="icon_prefix1" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix1">
+                            Username
+                        </label>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">lock_outline</i>
-                            <input id="password" type="password" class="validate">
-                                <label for="password">Password</label>
-                    </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
                 </div>
 
-                <div class="row container">
-
+                <div>
                     <p class="left">
                         <input type="checkbox" class="filled-in" id="remember-me" checked="checked" />
                         <label for="remember-me">Remember Me</label>
@@ -75,13 +61,8 @@
                 </small>
             </span>
 
+            </div>
         </div>
     </div>
-
-    <div class="col s3 hide-on-small-only white-text">
-        void
-    </div>
-
-</div>
 
 @endsection
