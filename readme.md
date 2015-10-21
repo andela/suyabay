@@ -3,17 +3,19 @@
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
 [![License](https://poser.pugx.org/andela/suyabay/license.svg)](https://github.com/andela/suyabay/blob/staging/LICENSE.md)
 
-Suyabay Podcast is an open source project using the full features of `laravel`. The main purpose of this project is to help Suya lovers find new podcasts and contents.
+Suyabay Podcast is an open source project using the full features of [laravel](http://laravel.com/). The main purpose of this project is to help Suya lovers find new podcasts and contents.
 
 ## Installation
 1. Clone the repository into your project folder
+        `git clone https://github.com/andela/suyabay.git`
 2. Run `composer install` from cmd to install all project dependencies
-3. Run ```php artisan migrate``` to install the database migration
+3. Update the values in `.env` file
+4. Run ```php artisan migrate``` to install the database migration
 
 ## Install Composer
 Download the installer from [getcomposer.org/download](https://getcomposer.org/doc/00-intro.md), execute it and follow the instructions
 
-##Setup the environmental variables (.env file)
+## Setup the environmental variables (.env file)
 
         APP_ENV    =local
         APP_DEBUG  =true
