@@ -23,15 +23,15 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
         ### Database configuration
         DB_HOST    =localhost
-        DB_DATABASE=
-        DB_USERNAME=
-        DB_PASSWORD=
+        DB_DATABASE=xxxxxxxx
+        DB_USERNAME=xxxxxxxx
+        DB_PASSWORD=xxxxxxxx
 
         ### Test database configuration
         DB_TEST_HOST   =localhost
-        DB_TEST_DATABASE=
-        DB_TEST_USERNAME=
-        DB_TEST_PASSWORD=
+        DB_TEST_DATABASE=xxxxxxxx
+        DB_TEST_USERNAME=xxxxxxxx
+        DB_TEST_PASSWORD=xxxxxxxx
 
         CACHE_DRIVER=file
         SESSION_DRIVER=file
@@ -39,13 +39,13 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
         ### Email configuration
         MAIL_DRIVER=smtp
-        MAIL_HOST=
-        MAIL_PORT=587
-        MAIL_USERNAME=
-        MAIL_PASSWORD=
-        MAIL_ENCRYPTION=
-        SENDER_ADDRESS=
-        SENDER_NAME=
+        MAIL_HOST=xxxxxxxx
+        MAIL_PORT=xxx
+        MAIL_USERNAME=xxxxxxxx
+        MAIL_PASSWORD=xxxxxxxx
+        MAIL_ENCRYPTION=xxxxxxxx
+        SENDER_ADDRESS=xxxxxxxx
+        SENDER_NAME=xxxxxxxx
 
 ## Requirements
 
@@ -54,7 +54,7 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
         busayo/laravel-yearly  =  1.0.*
         guzzlehttp/guzzle      =  ~4.0
 
-## Requirement for Development
+## Requirements for Development
 
         fzaninotto/faker = ~1.4
         phpunit/phpunit  = ~4.0
