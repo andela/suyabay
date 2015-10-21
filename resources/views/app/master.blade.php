@@ -7,17 +7,24 @@
         <!-- View port-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
+<<<<<<< HEAD
         <!-- HTTP -->
         <script src = "{!! asset('/js/jquery-2.1.1.min.js') !!}"></script>
 
         <!-- HTTPS -->
         <script src = "{!! secure_asset('/js/jquery-2.1.1.min.js') !!}"></script>
 
+=======
+        <script src = "{!! asset('/js/jquery-2.1.1.min.js') !!}"></script>
+
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 
         <!-- Fonts and style rules -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="{!! asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         <!-- HTTP -->
         <link href="{!! asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
@@ -75,12 +82,34 @@
 
         <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
         <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
+=======
+
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+        <!-- Materialize Compiled and minified JavaScript -->
+        <script src = "{!! asset('/js/materialize.min.js') !!}"></script>
+
+
+        <!-- Custom style rules -->
+        <link href = "{!! asset('/css/audioplayer.css') !!}" rel="stylesheet"  />
+        <link href = "{!! asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
+
+        <!-- Custom js -->
+        <script src = "{!! asset('/js/main.js') !!}"></script>
+        <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 
     </head>
     <body>
         <!-- top nav -->
         <div class="row">
             @include('app.includes.sections.top_nav')
+<<<<<<< HEAD
+=======
+            @include('app.includes.sections.modalforms')
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         </div>
 
         <!-- main contents -->

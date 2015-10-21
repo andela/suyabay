@@ -5,11 +5,16 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "hash": "f0a857743b1648fc8ac699e19d9bd50e",
     "content-hash": "f23fb2367abf1b8daf8899274133fbd3",
 =======
     "hash": "a9733d65081778dad653d8439436d327",
 >>>>>>> initial commit for user registrationand authentication
+=======
+    "hash": "04f5e93a92b48e31d426e76a1646b2ba",
+    "content-hash": "48ef57f0ee6ee5b3616fe5685fef4a5e",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
     "packages": [
         {
             "name": "busayo/laravel-yearly",
@@ -283,6 +288,63 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "name": "doctrine/instantiator",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/instantiator.git",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3,<8.0-DEV"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1.8",
+                "ext-pdo": "*",
+                "ext-phar": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://ocramius.github.com/"
+                }
+            ],
+            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
+            "homepage": "https://github.com/doctrine/instantiator",
+            "keywords": [
+                "constructor",
+                "instantiate"
+            ],
+            "time": "2015-06-14 21:17:01"
+        },
+        {
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             "name": "guzzlehttp/guzzle",
             "version": "4.2.3",
             "source": {
@@ -308,6 +370,7 @@
             },
             "suggest": {
                 "ext-curl": "Guzzle will use specific adapters if cURL is present"
+<<<<<<< HEAD
 =======
             "name": "doctrine/instantiator",
             "version": "1.0.5",
@@ -332,20 +395,29 @@
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~2.0"
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "dev-master": "4.2-dev"
 =======
                     "dev-master": "1.0.x-dev"
 >>>>>>> initial commit for user registrationand authentication
+=======
+                    "dev-master": "4.2-dev"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 }
             },
             "autoload": {
                 "psr-4": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     "GuzzleHttp\\": "src/"
                 },
                 "files": [
@@ -409,10 +481,13 @@
                 "files": [
                     "src/functions.php"
                 ]
+<<<<<<< HEAD
 =======
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
                 }
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -421,6 +496,9 @@
             "authors": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
@@ -433,6 +511,7 @@
                 "stream"
             ],
             "time": "2014-08-17 21:15:53"
+<<<<<<< HEAD
 =======
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com",
@@ -447,6 +526,8 @@
             ],
             "time": "2015-06-14 21:17:01"
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1190,6 +1271,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "symfony/console",
             "version": "v2.7.5",
             "source": {
@@ -1214,6 +1296,19 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
                 "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "name": "phpunit/php-file-iterator",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
+                "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+                "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1241,6 +1336,7 @@
                     "role": "lead"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
@@ -1280,6 +1376,28 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
                 "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "FilterIterator implementation that filters files based on a list of suffixes.",
+            "homepage": "https://github.com/sebastianbergmann/php-file-iterator/",
+            "keywords": [
+                "filesystem",
+                "iterator"
+            ],
+            "time": "2015-06-21 13:08:43"
+        },
+        {
+            "name": "phpunit/php-text-template",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-text-template.git",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1302,6 +1420,7 @@
                     "role": "lead"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
@@ -1340,6 +1459,27 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
                 "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Simple template engine.",
+            "homepage": "https://github.com/sebastianbergmann/php-text-template/",
+            "keywords": [
+                "template"
+            ],
+            "time": "2015-06-21 13:50:34"
+        },
+        {
+            "name": "phpunit/php-timer",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-timer.git",
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1362,6 +1502,7 @@
                     "role": "lead"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
@@ -1400,6 +1541,27 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
                 "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Utility class for timing",
+            "homepage": "https://github.com/sebastianbergmann/php-timer/",
+            "keywords": [
+                "timer"
+            ],
+            "time": "2015-06-21 08:01:12"
+        },
+        {
+            "name": "phpunit/php-token-stream",
+            "version": "1.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
+                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1430,6 +1592,7 @@
                     "email": "sebastian@phpunit.de"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
@@ -1468,6 +1631,27 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/73fad41adb5b7bc3a494bb930d90648df1d5e74b",
                 "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Wrapper around PHP's tokenizer extension.",
+            "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
+            "keywords": [
+                "tokenizer"
+            ],
+            "time": "2015-09-15 10:49:45"
+        },
+        {
+            "name": "phpunit/phpunit",
+            "version": "4.8.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/73fad41adb5b7bc3a494bb930d90648df1d5e74b",
+                "reference": "73fad41adb5b7bc3a494bb930d90648df1d5e74b",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1520,6 +1704,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2015-09-22 13:49:29"
@@ -1559,6 +1744,29 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
                 "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "The PHP Unit Testing framework.",
+            "homepage": "https://phpunit.de/",
+            "keywords": [
+                "phpunit",
+                "testing",
+                "xunit"
+            ],
+            "time": "2015-09-20 12:56:44"
+        },
+        {
+            "name": "phpunit/phpunit-mock-objects",
+            "version": "2.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1595,6 +1803,7 @@
                     "role": "lead"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
@@ -1634,6 +1843,28 @@
                 "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Mock Object library for PHPUnit",
+            "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
+            "keywords": [
+                "mock",
+                "xunit"
+            ],
+            "time": "2015-08-19 09:14:08"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "type": "library",
@@ -1652,6 +1883,7 @@
                     "homepage": "http://www.php-fig.org/"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
@@ -1691,6 +1923,28 @@
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/aaf8772ade08b5f0f6830774a5d5c2f800415975",
                 "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "psy/psysh",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/aaf8772ade08b5f0f6830774a5d5c2f800415975",
+                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1742,6 +1996,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
             "time": "2015-09-25 11:16:52"
@@ -1782,6 +2037,30 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/937efb279bd37a375bcadf584dec0726f84dbf22",
                 "reference": "937efb279bd37a375bcadf584dec0726f84dbf22",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "An interactive shell for modern PHP.",
+            "homepage": "http://psysh.org",
+            "keywords": [
+                "REPL",
+                "console",
+                "interactive",
+                "shell"
+            ],
+            "time": "2015-07-16 15:26:57"
+        },
+        {
+            "name": "sebastian/comparator",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/comparator.git",
+                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/937efb279bd37a375bcadf584dec0726f84dbf22",
+                "reference": "937efb279bd37a375bcadf584dec0726f84dbf22",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1808,6 +2087,7 @@
                 "BSD-3-Clause"
             ],
             "authors": [
+<<<<<<< HEAD
                 {
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
@@ -1821,10 +2101,26 @@
                     "email": "bschussek@2bepublished.at"
                 },
                 {
+=======
+                {
+                    "name": "Jeff Welch",
+                    "email": "whatthejeff@gmail.com"
+                },
+                {
+                    "name": "Volker Dusch",
+                    "email": "github@wallbash.com"
+                },
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@2bepublished.at"
+                },
+                {
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     "name": "Sebastian Bergmann",
                     "email": "sebastian@phpunit.de"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
@@ -1843,6 +2139,8 @@
                 "url": "https://api.github.com/repos/symfony/routing/zipball/6c5fae83efa20baf166fcf4582f57094e9f60f16",
                 "reference": "6c5fae83efa20baf166fcf4582f57094e9f60f16",
 =======
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             "description": "Provides the functionality to compare PHP values for equality",
             "homepage": "http://www.github.com/sebastianbergmann/comparator",
             "keywords": [
@@ -1864,7 +2162,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/863df9687835c62aa423a22412d26fa2ebde3fd3",
                 "reference": "863df9687835c62aa423a22412d26fa2ebde3fd3",
+<<<<<<< HEAD
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1904,6 +2205,7 @@
                 "diff"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-09-14 14:14:09"
         },
         {
@@ -1934,6 +2236,22 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6324c907ce7a52478eeeaede764f48733ef5ae44",
                 "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "time": "2015-02-22 15:13:53"
+        },
+        {
+            "name": "sebastian/environment",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/environment.git",
+                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6324c907ce7a52478eeeaede764f48733ef5ae44",
+                "reference": "6324c907ce7a52478eeeaede764f48733ef5ae44",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -1974,6 +2292,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "symfony/var-dumper",
             "version": "v2.7.5",
             "source": {
@@ -1998,6 +2317,19 @@
                 "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
                 "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "name": "sebastian/exporter",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/exporter.git",
+                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
+                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -2051,10 +2383,14 @@
                 "exporter"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-09-22 14:41:01"
 =======
             "time": "2015-06-21 07:55:53"
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "time": "2015-06-21 07:55:53"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         },
         {
             "name": "sebastian/global-state",
@@ -2253,12 +2589,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/Console.git",
+=======
+                "url": "https://github.com/symfony/console.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/Console/zipball/9ff9032151186bd66ecee727d728f1319f52d1d8",
+=======
+                "url": "https://api.github.com/repos/symfony/console/zipball/9ff9032151186bd66ecee727d728f1319f52d1d8",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8",
                 "shasum": ""
             },
@@ -2310,12 +2654,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/CssSelector.git",
+=======
+                "url": "https://github.com/symfony/css-selector.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/CssSelector/zipball/ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad",
+=======
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "ffb5f3b8a75f8d1b9801e74dc6789a0751a670ad",
                 "shasum": ""
             },
@@ -2363,12 +2715,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/Debug.git",
+=======
+                "url": "https://github.com/symfony/debug.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "726bf9651d29f53243281d0b6418cfaa5e318281"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/Debug/zipball/726bf9651d29f53243281d0b6418cfaa5e318281",
+=======
+                "url": "https://api.github.com/repos/symfony/debug/zipball/726bf9651d29f53243281d0b6418cfaa5e318281",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "726bf9651d29f53243281d0b6418cfaa5e318281",
                 "shasum": ""
             },
@@ -2418,12 +2778,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/DomCrawler.git",
+=======
+                "url": "https://github.com/symfony/dom-crawler.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "2a161e4ee2b2f33d4153be58df4f6f2a5506936e"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/2a161e4ee2b2f33d4153be58df4f6f2a5506936e",
+=======
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/2a161e4ee2b2f33d4153be58df4f6f2a5506936e",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "2a161e4ee2b2f33d4153be58df4f6f2a5506936e",
                 "shasum": ""
             },
@@ -2471,12 +2839,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/EventDispatcher.git",
+=======
+                "url": "https://github.com/symfony/event-dispatcher.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "b58c916f1db03a611b72dd702564f30ad8fe83fa"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/b58c916f1db03a611b72dd702564f30ad8fe83fa",
+=======
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b58c916f1db03a611b72dd702564f30ad8fe83fa",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "b58c916f1db03a611b72dd702564f30ad8fe83fa",
                 "shasum": ""
             },
@@ -2526,6 +2902,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "phpunit/php-code-coverage",
             "version": "2.2.4",
             "source": {
@@ -2550,6 +2927,19 @@
                 "url": "https://api.github.com/repos/symfony/Finder/zipball/fff4b0c362640a0ab7355e2647b3d461608e9065",
                 "reference": "fff4b0c362640a0ab7355e2647b3d461608e9065",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "name": "symfony/finder",
+            "version": "v2.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Finder.git",
+                "reference": "fff4b0c362640a0ab7355e2647b3d461608e9065"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/fff4b0c362640a0ab7355e2647b3d461608e9065",
+                "reference": "fff4b0c362640a0ab7355e2647b3d461608e9065",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -2584,6 +2974,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
             "homepage": "https://github.com/sebastianbergmann/php-code-coverage",
             "keywords": [
@@ -2597,18 +2988,31 @@
             "homepage": "https://symfony.com",
             "time": "2015-08-26 17:56:37"
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-08-26 17:56:37"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         },
         {
             "name": "symfony/http-foundation",
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/HttpFoundation.git",
+=======
+                "url": "https://github.com/symfony/http-foundation.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "7253c2041652353e71560bbd300d6256d170ddaf"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/7253c2041652353e71560bbd300d6256d170ddaf",
+=======
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/7253c2041652353e71560bbd300d6256d170ddaf",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "7253c2041652353e71560bbd300d6256d170ddaf",
                 "shasum": ""
             },
@@ -2656,12 +3060,20 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+<<<<<<< HEAD
                 "url": "https://github.com/symfony/HttpKernel.git",
+=======
+                "url": "https://github.com/symfony/http-kernel.git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "fd9c7af92c9e3ade1327cc3af10b17731eebc4a7"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/fd9c7af92c9e3ade1327cc3af10b17731eebc4a7",
+=======
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/fd9c7af92c9e3ade1327cc3af10b17731eebc4a7",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "reference": "fd9c7af92c9e3ade1327cc3af10b17731eebc4a7",
                 "shasum": ""
             },
@@ -2782,6 +3194,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "phpunit/phpunit",
             "version": "4.8.12",
             "source": {
@@ -2798,6 +3211,12 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
+=======
+            "name": "symfony/routing",
+            "version": "v2.7.4",
+            "source": {
+                "type": "git",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "url": "https://github.com/symfony/Routing.git",
                 "reference": "20b1378cb6efffb77ea0608232f18c8f0dd25109"
             },
@@ -2805,7 +3224,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/Routing/zipball/20b1378cb6efffb77ea0608232f18c8f0dd25109",
                 "reference": "20b1378cb6efffb77ea0608232f18c8f0dd25109",
+<<<<<<< HEAD
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -2864,6 +3286,7 @@
                 "url"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-10-12 03:36:47"
         },
         {
@@ -2894,6 +3317,22 @@
                 "url": "https://api.github.com/repos/symfony/Translation/zipball/485877661835e188cd78345c6d4eef1290d17571",
                 "reference": "485877661835e188cd78345c6d4eef1290d17571",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "time": "2015-08-24 07:13:45"
+        },
+        {
+            "name": "symfony/translation",
+            "version": "v2.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Translation.git",
+                "reference": "485877661835e188cd78345c6d4eef1290d17571"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/485877661835e188cd78345c6d4eef1290d17571",
+                "reference": "485877661835e188cd78345c6d4eef1290d17571",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -2940,6 +3379,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Mock Object library for PHPUnit",
             "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
             "keywords": [
@@ -2952,6 +3392,11 @@
             "homepage": "https://symfony.com",
             "time": "2015-09-06 08:36:38"
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-09-06 08:36:38"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         },
         {
             "name": "symfony/var-dumper",
@@ -3163,6 +3608,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "sebastian/global-state",
             "version": "1.1.1",
             "source": {
@@ -3187,6 +3633,19 @@
                 "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/b37020aa976fa52d3de9aa904aa2522dc518f79c",
                 "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "name": "hamcrest/hamcrest-php",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamcrest/hamcrest-php.git",
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/b37020aa976fa52d3de9aa904aa2522dc518f79c",
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -3219,10 +3678,14 @@
                 "test"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2015-10-12 03:26:01"
 =======
             "time": "2015-05-11 14:41:42"
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "time": "2015-05-11 14:41:42"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         },
         {
             "name": "mockery/mockery",
@@ -3325,6 +3788,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "name": "symfony/yaml",
             "version": "v2.7.5",
             "source": {
@@ -3349,6 +3813,19 @@
                 "url": "https://api.github.com/repos/phpspec/phpspec/zipball/36635a903bdeb54899d7407bc95610501fd98559",
                 "reference": "36635a903bdeb54899d7407bc95610501fd98559",
 >>>>>>> initial commit for user registrationand authentication
+=======
+            "name": "phpspec/phpspec",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/phpspec.git",
+                "reference": "36635a903bdeb54899d7407bc95610501fd98559"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/36635a903bdeb54899d7407bc95610501fd98559",
+                "reference": "36635a903bdeb54899d7407bc95610501fd98559",
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 "shasum": ""
             },
             "require": {
@@ -3368,10 +3845,17 @@
                 "bossa/phpspec2-expect": "~1.0",
                 "phpunit/phpunit": "~4.4",
                 "symfony/filesystem": "~2.1"
+<<<<<<< HEAD
             },
             "suggest": {
                 "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
             },
+=======
+            },
+            "suggest": {
+                "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
+            },
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             "bin": [
                 "bin/phpspec"
             ],
@@ -3402,10 +3886,13 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2015-09-14 14:14:09"
 =======
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             "description": "Specification-oriented BDD framework for PHP 5.3+",
             "homepage": "http://phpspec.net/",
             "keywords": [
@@ -3418,7 +3905,10 @@
                 "tests"
             ],
             "time": "2015-09-07 07:07:37"
+<<<<<<< HEAD
 >>>>>>> initial commit for user registrationand authentication
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
         }
     ],
     "aliases": [],

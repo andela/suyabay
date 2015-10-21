@@ -54,7 +54,12 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'from' => ['address' => env('SENDER_ADDRESS', ''), 'name' => env('SENDER_NAME', '')],
+=======
+    //'from' => ['address' => env('SENDER_ADDRESS', ''), 'name' => env('SENDER_NAME', '')],
+    'from' => ['address' => 'admin@suyabay.com', 'name' => 'Suyabay'],
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 
     /*
     |--------------------------------------------------------------------------

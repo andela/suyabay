@@ -13,8 +13,13 @@
 =======
         "laravel/framework": "5.1.*",
         "busayo/laravel-yearly": "1.0.*",
+<<<<<<< HEAD
         "phpunit/phpunit": "^4.8"
 >>>>>>> initial commit for user registrationand authentication
+=======
+        "phpunit/phpunit": "^4.8",
+        "guzzlehttp/guzzle": "~4.0"
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

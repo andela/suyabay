@@ -7,9 +7,15 @@
                 <a href="#" class="collection-item">Channels <span class="new badge">4</span></a>
                 <a href="#" class="collection-item">Favourites <span class="new badge">0</span></a>
                 <a href="#" class="collection-item" id="view-all-episodes">See all episodes <span class="badge">10+</span></a>
+<<<<<<< HEAD
                 <a href="{{ URL::to('about') }}" class="collection-item">About</a>
                 <a href="{{ URL::to('privacypolicy') }}" class="collection-item">Privacy Policy</a>
                 <a href="{{ URL::to('faqs') }}" class="collection-item">FAQs</a>
+=======
+                <a href="#" class="collection-item">About</a>
+                <a href="#" class="collection-item">Privacy Policy</a>
+                <a href="#" class="collection-item">Your Hosts</a>
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
             </div>
         </div>
     </div>
@@ -21,7 +27,11 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
+<<<<<<< HEAD
                     <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
+=======
+                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 </div>
             </div>
 
@@ -31,7 +41,11 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         21 september, 2015
+<<<<<<< HEAD
                             <span class="new badge left teal lighten-2"></span>
+=======
+                            <span class="new badge left green lighten-2"></span>
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     </small>
                 </div>
 
@@ -42,7 +56,11 @@
                         </span>
 
                         <span id="channel-title">
+<<<<<<< HEAD
                             Laravel Love Affairs
+=======
+                            Laravel Love Affairs Part 1
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                         </span>
                     </h5>
                 </div>
@@ -88,7 +106,11 @@
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light episode-avatar">
+<<<<<<< HEAD
                     <img src="https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e15/10623904_1471840663078236_1393669068_n.jpg">
+=======
+                    <img src="http://cdn.c.photoshelter.com/img-get/I0000FeyfQ4zNA1U/t/200/I0000FeyfQ4zNA1U.jpg">
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                 </div>
             </div>
 
@@ -98,7 +120,11 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         20 september, 2015
+<<<<<<< HEAD
                             <span class="new badge left teal lighten-2"></span>
+=======
+                            <span class="new badge left green lighten-2"></span>
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     </small>
                 </div>
 
@@ -155,7 +181,11 @@
 
         <div class="row center-align fix">
             <div class="podcast-page-navigation center-align">
+<<<<<<< HEAD
                 <a href="{{ URL::to('episodes') }}" class="blue-grey-text darken-4">
+=======
+                <a href="{{ URL::to('episodes') }}" class="teal-text">
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
                     view older episodes
                 </a>
             </div>

@@ -1,16 +1,25 @@
 body {
+<<<<<<< HEAD
     font: Montserrat!important;
+=======
+    font-family: Montserrat, sans-serif;!important;
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
     color:#686868!mportant;
     background-color: #fff;
     /*#CEE7D8;*/
 }
 
+<<<<<<< HEAD
 small {
     font-weight:bold;
 }
 
 .logo {
     font-family: sans-serif!important;
+=======
+.logo {
+    font-family: inherit;
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
     color: #FFFCFF;
     font-size: 16pt;
     font-weight: 700;
@@ -18,22 +27,28 @@ small {
     padding:0 1.5%;
     line-height: 1.2;
 }
+<<<<<<< HEAD
 .waves-effect {
     vertical-align: top!important;
 }
 .navbar-search {
     margin:0!important;
 }
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 
 .logo-box {
     margin: 0 auto;
     z-index: 55;
 }
 
+<<<<<<< HEAD
 .custom-bg {
     background-color: #C0392B;
 }
 
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 .episode-avatar {
     display:block;
     width:100%;
@@ -58,8 +73,14 @@ small {
 }
 
 .podcast-page-navigation {
+<<<<<<< HEAD
     border-radius: 10px;
     border: 2px solid #2C3E50;
+=======
+    border-radius: 20px;
+    border: 2px solid #4C9689;
+    color: #4C9689!important;
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
     display: inline-block;
     padding: 12px 20px;
     margin: 30px 0 50px;
@@ -95,7 +116,10 @@ small {
     font-weight: 900;
     text-transform: uppercase;
     padding:10px;
+<<<<<<< HEAD
     color:#2C3E50;
+=======
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 }
 
 .fix {
@@ -108,6 +132,7 @@ small {
 }
 
 .excerpts {
+<<<<<<< HEAD
     font-size: 1.4em;
     font-weight: 700;
     text-transform: uppercase;
@@ -133,4 +158,14 @@ small {
 
 .error-exit-message {
     color:grey;
+=======
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    border-bottom:4px solid #5B5B5B;
+    padding:10px 0;
+    width:20%;
+    color: #5B5B5B;
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 }

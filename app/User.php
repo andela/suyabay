@@ -1,10 +1,14 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 namespace Suyabay;
 =======
 namespace App;
 >>>>>>> initial commit for user registrationand authentication
+=======
+namespace App;
+>>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;

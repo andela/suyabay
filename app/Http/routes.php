@@ -12,7 +12,6 @@ Route::get('/', [
     'as'   => 'home'
 ]);
 
-
 /*
 /-------------------------------------------------------------------------------
 / About
@@ -42,15 +41,6 @@ Route::get('faqs', function () {
 Route::get('privacypolicy', function () {
     return view('app.pages.privacypolicy');
 });
-
-Route::get('signin', function () {
-    return view('app.pages.signin');
-});
-
-Route::get('signup', function () {
-    return view('app.pages.signup');
-});
-
 /*
 /-------------------------------------------------------------------------------
 / Password reset link request
@@ -82,17 +72,22 @@ Route::post('password/reset', [
     'as'   => 'postpasswordreset'
 ]);
 
+
 /*
 /-------------------------------------------------------------------------------
 / Login
 /-------------------------------------------------------------------------------
 */
 
+Route::get('login', [
+    'uses' => 'Auth\AuthController@login',
+    'as'   => 'login'
+]);
+
 Route::post('login', [
     'uses' => 'Auth\AuthController@postLogin',
     'as'   => 'login'
 ]);
-
 
 /*
 /-------------------------------------------------------------------------------
@@ -100,7 +95,12 @@ Route::post('login', [
 /-------------------------------------------------------------------------------
 */
 
-Route::post('register', [
+Route::get('signup', [
+    'uses' =>'Auth\AuthController@Register',
+    'as'   => 'register'
+]);
+
+Route::post('signup', [
     'uses' =>'Auth\AuthController@postRegister',
     'as'   => 'register'
 ]);
@@ -117,6 +117,7 @@ Route::post('search', [
 ]);
 
 /*
+/-------------------------------------------------------------------------------
 / Logout
 /-------------------------------------------------------------------------------
 */

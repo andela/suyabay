@@ -2,17 +2,15 @@
 
 namespace Suyabay\Http\Controllers\Auth;
 
-
-
 use Auth;
 use Validator;
 use Suyabay\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use Illuminate\Mail\Mailer as Mail;
+use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
 
 class AuthController extends Controller
 {
@@ -28,7 +26,8 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
+    
+    protected $mail;
     protected $loginPath    = '/login';
     protected $registerPath = '/register';
 
@@ -37,8 +36,9 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Mail $mail)
     {
+        $this->mail = $mail;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -51,8 +51,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            //dd($data)
+        User::create([
             'email'         => $data['email'],
             'username'      => $data['username'],
             'password'      => bcrypt($data['password'])
@@ -68,11 +67,36 @@ class AuthController extends Controller
      */
     public function postRegister(Request $request)
     {
-        $this->create($request->all());
-        return redirect()->route('home');
+        $email              = $request->email; 
+        $username           = $request->username;
+        $checkUserExists    = User::where('username', '=', $username)->get();
+        $checkEmailExists   = User::where('email', '=', $email)->get();
+        
+        if ( $checkEmailExists->count() === 1 OR $checkUserExists->count() === 1 ) 
+        {
+            return $response = 
+            [
+                "message"       => "registration failed",
+                "status_code"   => 401,
+                "info" => 
+                [
+                    "email"     => $email,  
+                    "username"  => $username
+                ]
+            ];
+        }
+        else
+        {
+            $this->mail->send('emails.welcome', ['name' => $username], function ($message) use ($email) 
+            {
+                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($email)->subject('Welcome To Suyabay');
+            });
+            return $this->create($request->all());
+        }
     }
 
-    /**
+     /**
      * Login a exisitng instance of user.
      *
      * @param Request $request
@@ -81,9 +105,23 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
-        $status = Auth::attempt($request->only(['username', 'password']));
-        $username = Auth::user()->username;
-        return redirect()->route('home')->with(compact('username'));
+        $status = Auth::attempt($request->only(['username', 'password']));        
+        if ( ! $status ) 
+        {
+            return $response = 
+            [
+                "message"       => "login failed",
+                "status_code"   => 401,
+            ];
+        }
+        else
+        {
+            return $response = 
+            [
+                "message"       => "login success",
+                "status_code"   => 200,
+            ];
+        }
     }
 
     /**
@@ -98,4 +136,5 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
 }
