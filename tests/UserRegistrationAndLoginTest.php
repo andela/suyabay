@@ -1,5 +1,5 @@
 <?php
-use App\User;
+use Suyabay\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

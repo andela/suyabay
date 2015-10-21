@@ -65,6 +65,18 @@ class AuthController extends Controller
      *
      * @return home
      */
+    public function Register()
+    {
+        return view('app.pages.signup');
+    }
+
+    /**
+     * Register a new user instance.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
     public function postRegister(Request $request)
     {
         $email              = $request->email; 
@@ -94,6 +106,20 @@ class AuthController extends Controller
             });
             return $this->create($request->all());
         }
+    }
+
+
+
+    /**
+     * Login a exisitng instance of user.
+     *
+     * @param Request $request
+     *
+     * @return home
+     */
+    public function login()
+    {
+        return view('app.pages.signin');
     }
 
      /**

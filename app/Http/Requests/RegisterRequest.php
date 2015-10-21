@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Suyabay\Http\Requests;
 
 class RegisterRequest extends Request
 {
@@ -22,9 +22,9 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'username'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
+            'username'      => 'required|max:255',
+            'email'         => 'required|email|max:255|unique:users',
+            'password'      => 'required|min:6',
         ];
     }
 }

@@ -56,16 +56,12 @@
         <!-- Password Reset-->
         <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
         <script src = "{!! asset('/js/NewPassword.js') !!}"></script>
-        
-        <!-- Registration Reset-->
-        <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
-        
 
     </head>
     <body>
 
         <div class="row">
-            @include('app.includes.sections.top_nav')
+            
         </div>
 
         <!-- User Auth -->

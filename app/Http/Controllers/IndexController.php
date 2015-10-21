@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Suyabay\Http\Controllers;
 
-use App\Http\Requests;
+use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Suyabay\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
