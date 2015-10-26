@@ -7,11 +7,10 @@
 
 */
 
-Route::get('/', function () {
-    return view('app.pages.index');
-});
+Route::get('/', 'EpisodeController@index');
 
 
+// Route::get('/', 'EpisodeController@index');
 
 /*
 /-------------------------------------------------------------------------------
@@ -91,4 +90,3 @@ Route::post('password/reset', [
 Route::post('search', function(){
     return redirect('/');
 });
-
