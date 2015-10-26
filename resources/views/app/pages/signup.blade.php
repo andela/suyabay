@@ -13,11 +13,18 @@
     <div class="col s6 offset-s3">
 
         <div class="row">
+<<<<<<< HEAD
             <form class="row" action="signup" method="POST">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="input-field">
                     <i class="material-icons prefix">perm_identity</i>
                         <textarea name="username" id="username" class="materialize-textarea"></textarea>
+=======
+            <form>
+                <div class="input-field">
+                    <i class="material-icons prefix">perm_identity</i>
+                        <textarea id="icon_prefix1" class="materialize-textarea"></textarea>
+>>>>>>> staging
                         <label for="icon_prefix1">
                             Username
                         </label>
@@ -25,13 +32,21 @@
 
                 <div class="input-field">
                     <i class="material-icons prefix">turned_in_not</i>
+<<<<<<< HEAD
                         <input name="email" id="email" type="email" class="validate">
+=======
+                        <input id="email" type="email" class="validate">
+>>>>>>> staging
                         <label for="email">Email</label>
                 </div>
 
                 <div class="input-field">
                     <i class="material-icons prefix">lock_outline</i>
+<<<<<<< HEAD
                     <input name="password" id="password" type="password" class="validate">
+=======
+                    <input id="password" type="password" class="validate">
+>>>>>>> staging
                     <label for="password">Password</label>
                 </div>
 

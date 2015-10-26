@@ -110,11 +110,10 @@ Route::post('signup', [
 / Search link request
 /-------------------------------------------------------------------------------
 */
+Route::post('search', function(){
+    return redirect('/');
+});
 
-Route::post('search', [
-    'uses'  => 'SearchController@index',
-    'as'    => 'search'
-]);
 
 /*
 /-------------------------------------------------------------------------------
@@ -126,4 +125,5 @@ Route::get('logout', [
     'uses'  => 'Auth\AuthController@getLogout',
     'as'    => 'logout'
 ]);
+
 
