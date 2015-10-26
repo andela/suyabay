@@ -1,7 +1,7 @@
 ## Suyabay Podcast
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
-[![License](https://poser.pugx.org/andela/suyabay/license.svg)](https://github.com/andela/suyabay/blob/staging/LICENSE.md)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/andela/suyabay/blob/staging/LICENSE.md)
 
 Suyabay Podcast is an open source project using the full features of [laravel](http://laravel.com/). The main purpose of this project is to help Suya lovers find new podcasts and contents.
 
