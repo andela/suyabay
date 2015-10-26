@@ -29,7 +29,7 @@
                 </li>
 
                 <li>
-                    <a class="waves-effect modal-trigger" href="{{ URL::to('signin') }}">SIGN IN</a>
+                    <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">SIGN IN</a>
                     <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">SIGN UP</a>
                     <a class="waves-effect teal lighten-2" href="#!">Become a Premium User</a>
                 </li>

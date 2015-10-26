@@ -7,11 +7,10 @@
 
 */
 
-Route::get('/', function () {
-    return view('app.pages.index');
-});
-
-
+Route::get('/', [
+    'uses' => 'IndexController@index',
+    'as'   => 'home'
+]);
 
 /*
 /-------------------------------------------------------------------------------
@@ -42,15 +41,6 @@ Route::get('faqs', function () {
 Route::get('privacypolicy', function () {
     return view('app.pages.privacypolicy');
 });
-
-Route::get('signin', function () {
-    return view('app.pages.signin');
-});
-
-Route::get('signup', function () {
-    return view('app.pages.signup');
-});
-
 /*
 /-------------------------------------------------------------------------------
 / Password reset link request
@@ -82,13 +72,58 @@ Route::post('password/reset', [
     'as'   => 'postpasswordreset'
 ]);
 
+
+/*
+/-------------------------------------------------------------------------------
+/ Login
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('login', [
+    'uses' => 'Auth\AuthController@login',
+    'as'   => 'login'
+]);
+
+Route::post('login', [
+    'uses' => 'Auth\AuthController@postLogin',
+    'as'   => 'login'
+]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Register
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('signup', [
+    'uses' =>'Auth\AuthController@Register',
+    'as'   => 'register'
+]);
+
+Route::post('signup', [
+    'uses' =>'Auth\AuthController@postRegister',
+    'as'   => 'register'
+]);
+
 /*
 /-------------------------------------------------------------------------------
 / Search link request
 /-------------------------------------------------------------------------------
 */
-
 Route::post('search', function(){
     return redirect('/');
 });
+
+
+/*
+/-------------------------------------------------------------------------------
+/ Logout
+/-------------------------------------------------------------------------------
+*/
+
+Route::get('logout', [
+    'uses'  => 'Auth\AuthController@getLogout',
+    'as'    => 'logout'
+]);
+
 

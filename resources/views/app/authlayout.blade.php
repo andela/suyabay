@@ -56,6 +56,10 @@
         <!-- Password Reset-->
         <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
         <script src = "{!! asset('/js/NewPassword.js') !!}"></script>
+        
+        <!-- Registration Reset-->
+        <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
+        
 
     </head>
     <body>
