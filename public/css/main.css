@@ -39,14 +39,10 @@ small {
 }
 
 .logo {
-    font-family: sans-serif!important;
-    color: #FFFCFF;
-    font-size: 16pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding:0 1.5%;
-    line-height: 1.2;
+   margin:auto;
+   padding: 15px;
 }
+
 .waves-effect {
     vertical-align: top!important;
 }

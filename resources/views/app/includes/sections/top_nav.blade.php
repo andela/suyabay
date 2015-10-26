@@ -4,7 +4,9 @@
 
             <!-- Desktop view top nav -->
 
-            <a href="/" class="logo" id="logo-container">suyabay</a>
+            <a href="/" id="logo-container">
+                <img src="{!! asset('/css/logo.png') !!}" class="logo"/>
+            </a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
