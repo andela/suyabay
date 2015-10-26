@@ -151,7 +151,6 @@ function login ()
           password    : password   
         }
     }
-    console.log(data)
     checkItem(data);
     ajaxCall( data, functionName ); 
 } 
