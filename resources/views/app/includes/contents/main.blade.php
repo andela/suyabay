@@ -34,7 +34,9 @@
                 <div class="episode-date" id="episode-date">
                     <small>
                         {{ date('F d, Y', strtotime($episode->created_at)) }}
-
+                        <span class="badge left teal lighten-2">
+                            {{ $r = \Suyabay\Channel::find($episode->channel_id)['channel_name'] }}
+                        </span>
                     </small>
                 </div>
 
