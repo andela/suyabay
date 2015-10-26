@@ -19,3 +19,27 @@ $factory->define(Suyabay\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Suyabay\Pinky::class, function (Faker\Generator $faker) {
+    return [
+        'description' => $faker->name,
+    ];
+});
+
+$factory->define(Suyabay\Movie::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->word,
+        'description' => $faker->name,
+        'audio_path' => '/audio/BlueDucks_FourFlossFiveSix.mp3',
+        'image_url' => $faker->imageUrl($width, $height, 'cats', true, 'Faker'),
+    ];
+});
+
+$factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
+    return [
+        'episode_name' => $faker->name,
+        'episode_description' => $faker->word,
+        'view_count' => $faker->randomDigit,
+        'image_url' => $faker->imageUrl($width, $height, 'cats', true, 'Faker'),
+    ];
+});

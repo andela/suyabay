@@ -12,7 +12,7 @@ class CreateEpisodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('episodes', function($table){
+        Schema::create('episodes', function(Blueprint $table){
             $table->increments('id');
             $table->string('episode_name');
             $table->text('episode_description');

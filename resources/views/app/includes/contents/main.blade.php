@@ -17,152 +17,83 @@
     <!-- Feeds Area -->
     <div class="col s12 m8 l9" style="opacity: 0.95;">
 
+        @foreach($episodes as $episode)
+
         <div class="card">
 
             <div class="col s12 m6 l4">
+
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img src="https://goo.gl/1kUYlL">
+                    <img src="http://lorempixel.com/640/480/">
                 </div>
 
-                <!-- Social icons start-->
-
-                <div>
-                    <span class="grey-text text-darken-4">
-                        <a href="#!" title="share"><i class="tiny material-icons left">share</i></a>
-                        <a href="#!" title="number of views"><i class="tiny material-icons left">live tv</i></a>
-                        <a href="#!" title="comments"><i class="tiny material-icons left">forum</i></a>
-                        <a href="#!" title="favorites"><i class="tiny material-icons left">favorite</i></a>
-                        <a href="#!" title="downloads"><i class="tiny material-icons left">backup</i></a>
-                    </span>
-                </div>
-
-                <!-- social icons end -->
-
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                        Card Title
-                            <i class="material-icons right grey-text text-darken-4">close</i>
-                    </span>
-                        <p>
-                            Here is some more information about this product that is only revealed once clicked on.
-                        </p>
-                </div>
             </div>
-
 
             <div class="col s12 m8 l8">
 
                 <div class="episode-date" id="episode-date">
                     <small>
-                        21 september, 2015
-                            <span class="new badge left teal lighten-2"></span>
+                        {{ date('F d, Y', strtotime($episode->created_at)) }}
+                        <span class="badge left teal lighten-2">
+                            {{ $r = \Suyabay\Channel::find($episode->channel_id)['channel_name'] }}
+                        </span>
                     </small>
                 </div>
 
-                <div id="episode-title">
+                <div id="episode-title truncate">
                     <a href"#">
                         <h2>
-                            <span id="channel-title">
-                                Laravel Love Affairs
-                            </span>
+                            {{ $episode->episode_name }}
                         </h2>
                     </a>
                 </div>
+            <div>
 
-                    <!-- Feed the audio source with the three diff formats for browser compactibility-->
-                    <audio preload="auto" controls>
-                        <source src="audio/BlueDucks_FourFlossFiveSix.mp3">
-                        <source src="audio/BlueDucks_FourFlossFiveSix.ogg">
-                        <source src="audio/BlueDucks_FourFlossFiveSix.wav">
-                    </audio>
-
-                <div id="description">
-                    <p>
-                        In this episode, Matt and Taylor are joined by Ian Landsman of UserScape. Ian is the founder of UserScape, the creator of HelpSpot, and the man behind LaraJobs.
-                    </p>
-                </div>
-
-
+            <!-- Feed the audio source with the three diff formats for browser compactibility-->
+                <audio preload="auto" controls>
+                    <source src="audio/BlueDucks_FourFlossFiveSix.mp3">
+                    <source src="audio/BlueDucks_FourFlossFiveSix.ogg">
+                    <source src="audio/BlueDucks_FourFlossFiveSix.wav">
+                </audio>
             </div>
-        </div>
 
-        <div class="card">
-
-            <div class="col s12 m6 l4">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img src="https://goo.gl/1kUYlL">
-                </div>
+            <div id="description">
+                <p>
+                    {{ $episode->episode_description }}
+                </p>
+            </div>
 
                 <!-- Social icons start-->
+            <div class="col s12 grey-text text-darken-4 center-align" style="margin:15px;">
 
-                <div>
-                    <span class="grey-text text-darken-4">
-                        <a href="#!" title="share"><i class="tiny material-icons left">share</i></a>
-                        <a href="#!" title="number of views"><i class="tiny material-icons left">live tv</i></a>
-                        <a href="#!" title="comments"><i class="tiny material-icons left">forum</i></a>
-                        <a href="#!" title="favorites"><i class="tiny material-icons left">favorite</i></a>
-                        <a href="#!" title="downloads"><i class="tiny material-icons left">backup</i></a>
-                    </span>
-                </div>
+                <a href="#!" title="share">
+                    <i class="material-icons left">share</i>
+                </a>
+                <a href="#!" title="number of views">
+                    <i class="material-icons left">live tv</i>
+                </a>
+                <a href="#!" title="comments">
+                    <i class="material-icons left">forum</i>
+                </a>
+                <a href="#!" title="favorites">
+                    <i class="material-icons left">favorite</i>
+                </a>
+
+            </div>
 
                 <!-- social icons end -->
 
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">
-                        Card Title
-                            <i class="material-icons right grey-text text-darken-4">close</i>
-                    </span>
-                        <p>
-                            Here is some more information about this product that is only revealed once clicked on.
-                        </p>
-                </div>
-            </div>
-
-
-            <div class="col s12 m8 l8">
-
-                <div class="episode-date" id="episode-date">
-                    <small>
-                        21 september, 2015
-                            <span class="new badge left teal lighten-2"></span>
-                    </small>
-                </div>
-
-                <div id="episode-title">
-                    <a href"#">
-                        <h2>
-                            <span id="channel-title">
-                                Laravel Love Affairs
-                            </span>
-                        </h2>
-                    </a>
-                </div>
-
-                    <!-- Feed the audio source with the three diff formats for browser compactibility-->
-                    <audio preload="auto" controls>
-                        <source src="audio/BlueDucks_FourFlossFiveSix.mp3">
-                        <source src="audio/BlueDucks_FourFlossFiveSix.ogg">
-                        <source src="audio/BlueDucks_FourFlossFiveSix.wav">
-                    </audio>
-
-                <div id="description">
-                    <p>
-                        In this episode, Matt and Taylor are joined by Ian Landsman of UserScape. Ian is the founder of UserScape, the creator of HelpSpot, and the man behind LaraJobs.
-                    </p>
-                </div>
-
-
-            </div>
-        </div>
-
-
-
-        <!-- view older episodes -->
-
-        <div class="row center-align fix">
-            <div class="center-align">
-                <a href="episodes" class="btn-large">View Older episodes</a>
-            </div>
         </div>
     </div>
-</div>
+
+    @endforeach
+
+        <!-- Pagination -->
+
+    <div class="row center-align fix">
+        <div class="center-align">
+            {!! $episodes->render() !!}
+        </div>
+    </div>
+
+    </div>
