@@ -98,18 +98,14 @@ class PasswordController extends Controller
         }
         else
         {
-            // return $request->only('token');
-        //     $credentials = $request->only(
-        //         'email', 'password', 'password_confirmation', '_token'
-        //     );
-        //     dd($credentials);
-        //     $response = Password::reset($credentials, function ($user, $password) {
-        //         $this->resetPassword($user, $password);
-        //     });
-            // dd($response);
-            // $response = Password::reset($credentials, function ($user, $password) {
-            //     $this->resetPassword($user, $password);
-            // });
+            $credentials = $request->only(
+                'email', 'password', 'password_confirmation', 'token'
+            );
+
+            $response = Password::reset($credentials, function ($user, $password) {
+                $this->resetPassword($user, $password);
+            });
+            return 200;
         }
     }
 }

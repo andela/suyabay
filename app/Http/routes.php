@@ -63,17 +63,17 @@ Route::post('password/email', [
 ]);
 
 
-// // Password reset routes...
-// Route::get('password/reset/{token}', [
-//     'uses' =>'Auth\PasswordController@getResetPage',
-//     'as'   => 'passwordresetpage'
-// ]);
+// Password reset routes...
+Route::get('password/reset/{token}', [
+    'uses' =>'Auth\PasswordController@getResetPage',
+    'as'   => 'passwordresetpage'
+]);
 // #resetGetEmail
 
-// Route::post('password/resetGetEmail', [
-//     'uses' => 'Auth\PasswordController@postResetCheckEmail',
-//     'as'   => 'postpasswordresetCheckEmail'
-// ]);
+Route::post('password/resetGetEmail', [
+    'uses' => 'Auth\PasswordController@postResetCheckEmail',
+    'as'   => 'postpasswordresetCheckEmail'
+]);
 
 // Route::post('password/resetCall', [
 //     'uses' => 'Auth\PasswordController@postReset',

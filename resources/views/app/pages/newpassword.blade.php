@@ -21,10 +21,9 @@
 
         <div class="row">
 
-            <form class="col s12" id="new_password_form" action="/password/reset" method="POST">
-                {{ csrf_field() }}
-
-                <input type="hidden" name="token" value="{{ $token }}" />
+            <form class="col s12" id="new_password_form" action="/password/resetGetEmail" method="POST">
+            {{ csrf_field() }}
+                <input type="hidden" name="token" id="token" value="{!! $token !!}" />
 
                     @if (count($errors) > 0)
                         <ul>
