@@ -19,14 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('comments');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-<<<<<<< HEAD
-<<<<<<< HEAD
             $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
-=======
-=======
->>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
-            $table->foreign('episode_id')->references('episode_id')->on('episodes')->onDelete('cascade');
->>>>>>> initial commit for user registrationand authentication
         });
     }
 
