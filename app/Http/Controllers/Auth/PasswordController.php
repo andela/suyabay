@@ -43,4 +43,34 @@ class PasswordController extends Controller
         return view('app.pages.passwordreset');
     }
 
+    public function postEmailMs(Request $request)
+    {
+        $this->validate($request, ['email' => 'required|email']);
+        $response = [];
+
+        //check if email exist (ajax call)
+        $status = User::whereEmail($request->only('email'))->first();
+        if ( $status == false )
+        {
+            return $response =
+            [
+                "message"       => "Invalid",
+                "status_code"   => 401,
+            ];
+        }
+        else
+        {
+            $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+                $message->subject($this->getEmailSubject());
+            });
+
+            switch ($response) {
+                case Password::RESET_LINK_SENT:
+                    return redirect()->back()->with('status', trans($response));
+
+                case Password::INVALID_USER:
+                    return redirect()->back()->withErrors(['email' => trans($response)]);
+            }
+        }
+    }
 }

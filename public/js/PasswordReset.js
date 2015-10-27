@@ -46,6 +46,7 @@ function ajaxCall ( data, functionName )
     .done( function (response)
     {
         ajaxLogic( data, response, functionName );
+        console.log
     })
     .fail( function (response) {
         swal('this action is bad');
