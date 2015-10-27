@@ -3,6 +3,8 @@
 namespace Suyabay\Http\Controllers\Auth;
 
 use Suyabay\User;
+use Suyabay\Password_reset;
+use Illuminate\Mail\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Suyabay\Http\Controllers\Controller;
@@ -23,7 +25,7 @@ class PasswordController extends Controller
     */
     use ResetsPasswords;
 
-    protected $redirectTo = '/signin';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new password controller instance.
@@ -34,6 +36,10 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    public function getEmailPage()
+    {
+        return view('app.pages.passwordreset');
+    }
 
     /**
      * Load a password reset page.
@@ -43,7 +49,7 @@ class PasswordController extends Controller
         return view('app.pages.passwordreset');
     }
 
-    public function postEmailMs(Request $request)
+    public function postEmailForm(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
         $response = [];
@@ -71,6 +77,39 @@ class PasswordController extends Controller
                 case Password::INVALID_USER:
                     return redirect()->back()->withErrors(['email' => trans($response)]);
             }
+        }
+        dd($response);
+    }
+
+    public function getResetPage($token = null)
+    {
+        if (is_null($token)) {
+            throw new NotFoundHttpException;
+        }
+
+        return view('app.pages.newpassword')->with('token', $token);
+    }
+    public function postResetCheckEmail(Request $request)
+    {
+        $status = Password_reset::whereEmail($request->only('email'))->first();
+        if(is_null($status))
+        {
+            return 401;
+        }
+        else
+        {
+            // return $request->only('token');
+        //     $credentials = $request->only(
+        //         'email', 'password', 'password_confirmation', '_token'
+        //     );
+        //     dd($credentials);
+        //     $response = Password::reset($credentials, function ($user, $password) {
+        //         $this->resetPassword($user, $password);
+        //     });
+            // dd($response);
+            // $response = Password::reset($credentials, function ($user, $password) {
+            //     $this->resetPassword($user, $password);
+            // });
         }
     }
 }
