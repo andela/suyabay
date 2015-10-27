@@ -5,9 +5,6 @@ Homestead.json
 .env
 .env.example
 .DS_Store
-<<<<<<< HEAD
 /sass
-=======
->>>>>>> d7eb2da9ebc3eb2cc94f8c2fa98699488e21869a
 /keep
 
