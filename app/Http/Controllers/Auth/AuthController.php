@@ -60,7 +60,6 @@ class AuthController extends Controller
 
     /**
      * Register a new user instance.
-     *
      * @param Request $request
      *
      * @return home
