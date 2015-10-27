@@ -1,0 +1,49 @@
+<?php
+
+
+namespace Suyabay\Http\Controllers;
+
+use Suyabay\Episode;
+use Illuminate\Http\Request;
+use Suyabay\Http\Requests;
+use Suyabay\Http\Controllers\Controller;
+
+class EpisodeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $episodes = Episode::with('channel')->paginate(3);
+
+        return view('app.pages.index', ['episodes' => $episodes]); //->with('episodes', $episodes);
+    }
+}
+------------------------
+<?php
+
+
+namespace Suyabay\Http\Controllers;
+
+use Suyabay\Episode;
+use Illuminate\Http\Request;
+use Suyabay\Http\Requests;
+use Suyabay\Http\Controllers\Controller;
+
+class EpisodeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $episodes = Episode::paginate(2);
+
+        return view('app.pages.index')->with('episodes', $episodes);
+    }
+}

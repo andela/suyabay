@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="col s12 center-align spacer">
+    <div class="col s12 center-align">
         <div class="error">404</div>
             <div class="error-message">
                 Yikes! Well, angry looking aliens came and took this page away, but

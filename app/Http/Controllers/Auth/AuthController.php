@@ -26,7 +26,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    
+
     protected $mail;
     protected $loginPath    = '/login';
     protected $registerPath = '/register';
@@ -79,27 +79,27 @@ class AuthController extends Controller
      */
     public function postRegister(Request $request)
     {
-        $email              = $request->email; 
+        $email              = $request->email;
         $username           = $request->username;
         $checkUserExists    = User::where('username', '=', $username)->get();
         $checkEmailExists   = User::where('email', '=', $email)->get();
-        
-        if ( $checkEmailExists->count() === 1 OR $checkUserExists->count() === 1 ) 
+
+        if ( $checkEmailExists->count() === 1 OR $checkUserExists->count() === 1 )
         {
-            return $response = 
+            return $response =
             [
                 "message"       => "registration failed",
                 "status_code"   => 401,
-                "info" => 
+                "info" =>
                 [
-                    "email"     => $email,  
+                    "email"     => $email,
                     "username"  => $username
                 ]
             ];
         }
         else
         {
-            $this->mail->send('emails.welcome', ['name' => $username], function ($message) use ($email) 
+            $this->mail->send('emails.welcome', ['name' => $username], function ($message) use ($email)
             {
                 $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email)->subject('Welcome To Suyabay');
@@ -119,7 +119,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        return view('app.pages.signin');
+        return view('app.pages.login');
     }
 
      /**
@@ -131,10 +131,10 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
-        $status = Auth::attempt($request->only(['username', 'password']));        
-        if ( ! $status ) 
+        $status = Auth::attempt($request->only(['username', 'password']));
+        if ( ! $status )
         {
-            return $response = 
+            return $response =
             [
                 "message"       => "login failed",
                 "status_code"   => 401,
@@ -142,7 +142,7 @@ class AuthController extends Controller
         }
         else
         {
-            return $response = 
+            return $response =
             [
                 "message"       => "login success",
                 "status_code"   => 200,

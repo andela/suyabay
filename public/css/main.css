@@ -6,7 +6,7 @@ body {
 }
 
 p {
-    font-size: 13pt!important;
+    font-size: 12pt!important;
     line-height: 1.6em;
     font-weight: 300;
     margin-top: 20px;
@@ -39,13 +39,8 @@ small {
 }
 
 .logo {
-    font-family: sans-serif!important;
-    color: #FFFCFF;
-    font-size: 16pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding:0 1.5%;
-    line-height: 1.2;
+    margin;auto;
+    padding:15px;
 }
 .waves-effect {
     vertical-align: top!important;
@@ -149,7 +144,7 @@ small {
 
 .spacer
 {
-    margin:5% 0 10%;
+    margin:8%;
 }
 .btn-large {
     text-transform: capitalize;

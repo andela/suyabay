@@ -4,7 +4,9 @@
 
             <!-- Desktop view top nav -->
 
-            <a href="/" class="logo" id="logo-container">suyabay</a>
+            <a href="/" id="logo-container">
+                <img src="{!! asset('/css/logo.png') !!}" class="logo" />
+            </a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
@@ -29,14 +31,8 @@
                 </li>
 
                 <li>
-                    
-                    @if (  Auth::check() )
-                    <a class="waves-effect" href="#">{{Auth::user()->username}}</a>
-                    <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
-                    @else
                     <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">SIGN IN</a>
                     <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">SIGN UP</a>
-                    @endif
                     <a class="waves-effect teal lighten-2" href="#!">Become a Premium User</a>
                 </li>
             </ul>
