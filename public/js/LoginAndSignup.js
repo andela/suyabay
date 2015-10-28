@@ -155,7 +155,6 @@ function login ()
     ajaxCall( data, functionName );
 }
 
-//console.log(window.location.hostname);
 function checkItem (data)
 {
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
