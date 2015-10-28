@@ -20,6 +20,5 @@ class EpisodeController extends Controller
         $episodes = Episode::paginate(3);
 
         return view('app.pages.index', compact('episodes'));
-        // var_dump(compact('episodes'));
     }
 }
