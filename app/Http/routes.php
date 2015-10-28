@@ -75,12 +75,6 @@ Route::post('password/resetGetEmail', [
     'as'   => 'postpasswordresetCheckEmail'
 ]);
 
-// Route::post('password/resetCall', [
-//     'uses' => 'Auth\PasswordController@postReset',
-//     'as'   => 'postpasswordreset'
-// ]);
-
-
 /*
 /-------------------------------------------------------------------------------
 / Login

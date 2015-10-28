@@ -78,7 +78,6 @@ class PasswordController extends Controller
                     return redirect()->back()->withErrors(['email' => trans($response)]);
             }
         }
-        dd($response);
     }
 
     public function getResetPage($token = null)
@@ -92,9 +91,14 @@ class PasswordController extends Controller
     public function postResetCheckEmail(Request $request)
     {
         $status = Password_reset::whereEmail($request->only('email'))->first();
+        $response = [];
         if(is_null($status))
         {
-            return 401;
+            return $response =
+            [
+                "message"       => "Invalid",
+                "status_code"   => 401,
+            ];
         }
         else
         {
@@ -105,7 +109,6 @@ class PasswordController extends Controller
             $response = Password::reset($credentials, function ($user, $password) {
                 $this->resetPassword($user, $password);
             });
-            return $request->only('token');
         }
     }
 }
