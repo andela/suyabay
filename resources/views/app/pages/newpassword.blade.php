@@ -25,14 +25,6 @@
             {!! csrf_field() !!}
                 <input type="hidden" name="token" id="token" value="{!! $token !!}" />
 
-                    @if (count($errors) > 0)
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
