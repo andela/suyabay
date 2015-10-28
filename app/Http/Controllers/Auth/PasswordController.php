@@ -105,7 +105,7 @@ class PasswordController extends Controller
             $response = Password::reset($credentials, function ($user, $password) {
                 $this->resetPassword($user, $password);
             });
-            return 200;
+            return $request->only('token');
         }
     }
 }

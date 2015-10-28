@@ -22,7 +22,7 @@
         <div class="row">
 
             <form class="col s12" id="new_password_form" action="/password/resetGetEmail" method="POST">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
                 <input type="hidden" name="token" id="token" value="{!! $token !!}" />
 
                     @if (count($errors) > 0)
