@@ -6,7 +6,6 @@
 */
 
 
-
 /*
 | ajaxLogic
 | Process ajaxCall data and return feedback base on the data
@@ -122,6 +121,7 @@ function register ()
         }
     }
   checkItem(data);
+  preventFormDefault('.form')
   var functionName =  arguments.callee.name;
   ajaxCall( data, functionName );
 }
@@ -151,7 +151,7 @@ function login ()
           password    : password
         }
     }
-    checkItem(data);
+    preventFormDefault('.form');
     ajaxCall( data, functionName );
 }
 
@@ -162,4 +162,15 @@ function checkItem (data)
       {
         swal("Oppss Login Failed", "Some required field not set!", "error")
       }
+}
+
+/*
+| Prevent element Default action
+*/
+function preventFormDefault (element) 
+{
+  $(element).submit(function(e)
+  {
+    e.preventDefault();
+  });
 }

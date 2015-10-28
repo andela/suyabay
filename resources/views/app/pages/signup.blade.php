@@ -11,7 +11,7 @@
     </div>
 
     <div>
-        <form class="col s6 center offset-s3" action="signup" method="POST">
+        <form class="form col s6 center offset-s3" action="signup" method="POST">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
@@ -39,9 +39,9 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <a class="waves-effect waves-light btn right" onclick="register()">
+                <button class="waves-effect waves-light btn right" onclick="register()">
                     Sign Up
-                </a>
+                </button>
             </div>
         </form>
     </div>
