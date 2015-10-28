@@ -56,15 +56,15 @@ function postSuccess (response) {
         swal("Error", "Error Processing request!!!", "error");
     }else{
         swal({
-            title: 'Done',
-            text: 'Password updated successfully',
-            type: 'success',
+            title: "Done",
+            text: "Password updated successfully",
+            type: "success",
             showCancelButton: true,
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
             },
             function (){
-                document.location.href = '/login';
+                document.location.href = "/login";
             }
         );
     }
@@ -97,12 +97,18 @@ function postPasswordReset(url, parameter)
 }
 
 $(document).ready(function(){
-    $.ajaxSetup({ headers: { 'X-CSRF-Token': $('meta[name=_token').attr('content')} });
-    $('#new_password_form').on('submit', function(){
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-Token": $("meta[name=_token").attr("content")
+        }
+    });
+
+    $("#new_password_form").on("submit", function(){
         swal("Proccessing Request!");
         var url   =  "/password/resetGetEmail";
-        var email = $('#email').val();
-        var token = $('#token').val();
+        var email = $("#email").val();
+        var token = $("#token").val();
         var newPassword = $("#password_confirmation").val();
         var oldPassword = $("#password").val();
         var data =
