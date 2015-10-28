@@ -61,7 +61,6 @@
         <!-- Registration Reset-->
         <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
 
-
     </head>
     <body>
 

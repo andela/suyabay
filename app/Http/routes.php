@@ -12,15 +12,15 @@ Route::get('/', [
     'as'   => 'home'
 ]);
 
+Route::get('/', 'EpisodeController@index');
+
 /*
 /-------------------------------------------------------------------------------
 / About
 /-------------------------------------------------------------------------------
 */
 
-Route::get('about', function () {
-    return view('app.pages.about');
-});
+Route::get('about', 'PagesController@about');
 
 /*
 /-------------------------------------------------------------------------------
@@ -28,9 +28,7 @@ Route::get('about', function () {
 /-------------------------------------------------------------------------------
 */
 
-Route::get('faqs', function () {
-    return view('app.pages.faqs');
-});
+Route::get('faqs', 'PagesController@faqs');
 
 /*
 /-------------------------------------------------------------------------------
@@ -38,9 +36,7 @@ Route::get('faqs', function () {
 /-------------------------------------------------------------------------------
 */
 
-Route::get('privacypolicy', function () {
-    return view('app.pages.privacypolicy');
-});
+Route::get('privacypolicy', 'PagesController@privacypolicy');
 /*
 /-------------------------------------------------------------------------------
 / Password reset link request
