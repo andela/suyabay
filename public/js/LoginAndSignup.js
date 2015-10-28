@@ -163,6 +163,3 @@ function checkItem (data)
         swal("Oppss Login Failed", "Some required field not set!", "error")
       }
 }
-
-
-alert('fhjdhfgjdhffjdfh')
