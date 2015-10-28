@@ -49,6 +49,9 @@ class PasswordController extends Controller
         return view('app.pages.passwordreset');
     }
 
+    /**
+     * postEmailForm
+     */
     public function postEmailForm(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
@@ -66,6 +69,7 @@ class PasswordController extends Controller
         }
         else
         {
+            //Send the reset link
             $response = Password::sendResetLink($request->only('email'), function (Message $message) {
                 $message->subject($this->getEmailSubject());
             });
@@ -80,6 +84,9 @@ class PasswordController extends Controller
         }
     }
 
+    /**
+     * getResetPage
+     */
     public function getResetPage($token = null)
     {
         if (is_null($token)) {
@@ -88,6 +95,10 @@ class PasswordController extends Controller
 
         return view('app.pages.newpassword')->with('token', $token);
     }
+
+    /**
+     * postResetCheckEmail
+     */
     public function postResetCheckEmail(Request $request)
     {
         $status = Password_reset::whereEmail($request->only('email'))->first();

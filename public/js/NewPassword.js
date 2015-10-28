@@ -37,20 +37,53 @@ function passwordLength(password)
     }
 }
 
+/**
+ * passwordLengthError: Error message
+ * @return {string} modal
+ */
 function passwordLengthError()
 {
     swal("Error", "Password must be Six characters or more", "error");
 }
+
+/**
+ * postSuccess: Recieves the ajax post request
+ * @param  {int} response
+ * @return {string} modal
+ */
 function postSuccess (response) {
     if(response == 401){
         swal("Error", "Error Processing request!!!", "error");
     }else{
-        swal("Done", response, "success");
+        swal({
+            title: 'Done',
+            text: 'Password updated successfully',
+            type: 'success',
+            showCancelButton: true,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            },
+            function (){
+                document.location.href = '/login';
+            }
+        );
     }
 }
+
+/**
+ * postFailError: Error message
+ * @return {string} modal
+ */
 function postFailError () {
     swal("Error", "Error Processing request", "error");
 }
+
+/**
+ * postPasswordReset: Sends the ajax post request
+ * @param  {string} url
+ * @param  {string} parameter
+ * @return {string} modal
+ */
 function postPasswordReset(url, parameter)
 {
     $.post(url, parameter)
@@ -83,13 +116,18 @@ $(document).ready(function(){
                     password_confirmation:newPassword
                 }
             }
-        if(checkPassword(oldPassword, newPassword))
-        {
-            if (passwordLength(newPassword))
+
+            //check if password is thesame
+            if(checkPassword(oldPassword, newPassword))
             {
-                postPasswordReset(data.url, data.parameter);
+                //check the stringlength of the password
+                if (passwordLength(newPassword))
+                {
+                    //process ajax request
+                    postPasswordReset(data.url, data.parameter);
+                }
             }
-        }
+
         return false;
     });
 });
