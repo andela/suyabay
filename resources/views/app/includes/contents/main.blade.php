@@ -50,8 +50,6 @@
                 <div>
                     <audio preload="auto" controls>
                         <source src="{!! asset($episode->audio_mp3) !!}">
-                        <source src="{!! asset($episode->audio_ogg) !!}">
-                        <source src="{!! asset($episode->audio_wav) !!}">
                     </audio>
                 </div>
 
