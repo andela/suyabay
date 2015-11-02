@@ -33,10 +33,6 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <a class="waves-effect waves-light btn right" href="">
-                    GitHub
-                </a>
-
                 <a class="waves-effect waves-light btn right" onclick="login()">
                     Sign In
                 </a>
