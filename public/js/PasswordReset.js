@@ -12,9 +12,9 @@
 | @response is the ajax response coming from the api end ponit
 | @funtionName is the name of the fuction called
 */
-function ajaxLogic ( data, response, functionName )
+function passwordResetAjaxLogic ( data, response, functionName )
 {
-    if ( response.status_code === 401)
+    if ( response.status_code == 401)
     {
         switch (functionName)
         {
@@ -39,13 +39,13 @@ function ajaxLogic ( data, response, functionName )
 | @data is the array of user infomation \\console.log(data) to see properties
 | @funtionName is the name of the fuction called
 |*/
-function ajaxCall ( data, functionName )
+function passwordResetAjaxCall ( data, functionName )
 {
     $.post( data.url, data.parameter)
 
     .done( function (response)
     {
-        ajaxLogic( data, response, functionName );
+        passwordResetAjaxLogic( data, response, functionName );
     })
     .fail( function (response) {
         swal('this action is bad');
@@ -106,7 +106,7 @@ function passwordReset ()
         }
     }
   var functionName =  arguments.callee.name;
-  ajaxCall( data, functionName );
+  passwordResetAjaxCall( data, functionName );
 }
 
 /*

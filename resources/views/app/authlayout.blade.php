@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>@yield('title')</title>
+        <meta name="_token" content="{!! csrf_token() !!}">
 
         <!-- View port-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -56,6 +57,9 @@
         <!-- Password Reset-->
         <script src = "{!! asset('/js/PasswordReset.js') !!}"></script>
         <script src = "{!! asset('/js/NewPassword.js') !!}"></script>
+        <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
+
+        <!-- Registration Reset-->
         <script src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
 
     </head>
