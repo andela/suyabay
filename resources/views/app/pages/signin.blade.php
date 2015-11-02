@@ -13,7 +13,7 @@
     <div class="col s6 offset-s3">
 
         <div class="row">
-            <form>
+            <form class="form">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <div class="input-field">
                     <i class="material-icons prefix">perm_identity</i>
@@ -35,9 +35,9 @@
                         <label for="remember-me">Remember Me</label>
                     </p>
 
-                    <a class="waves-effect waves-light btn right" onclick="login()">
+                    <button class="waves-effect waves-light btn right" onclick="login()">
                         Sign In
-                    </a>
+                    </button>
                 </div>
             </form>
         </div>
