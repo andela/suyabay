@@ -87,6 +87,14 @@ Route::post('login', [
     'as'   => 'login'
 ]);
 
+Route::get('/login/{provider}', 'Auth\AuthController@getSocialRedirect');
+
+// Route::get('/social/handle/{provider}',     [
+//     'as' => $s . 'handle',
+//     'uses' => 'Auth\AuthController@getSocialHandle'
+// ]);
+
+
 /*
 /-------------------------------------------------------------------------------
 / Register

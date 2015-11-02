@@ -136,6 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         // Illuminate\Html\HtmlServiceProvider::class,
 
         /*
@@ -201,6 +202,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Yearly'    => Busayo\Yearly\YearlyFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
         // 'Html' => Illuminate\Html\HtmlFacade::class,
         // 'Form' => Illuminate\Html\FormFacade::class,

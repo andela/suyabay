@@ -33,6 +33,18 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
+                <a class="waves-effect waves-light btn right" href="{!!URL::to('login/facebook')!!}">
+                    Facebook
+                </a>
+
+                <a class="waves-effect waves-light btn right" href="{!!URL::to('login/twitter')!!}">
+                    Twitter
+                </a>
+
+                <a class="waves-effect waves-light btn right" href="{!!URL::to('login/github')!!}">
+                    GitHub
+                </a>
+
                 <a class="waves-effect waves-light btn right" onclick="login()">
                     Sign In
                 </a>
