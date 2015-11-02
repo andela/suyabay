@@ -49,25 +49,27 @@ Route::get('passwordreset', [
 ]);
 
 Route::get('password/email', [
-    'uses' =>'Auth\PasswordController@getEmail',
+    'uses' =>'Auth\PasswordController@getEmailPage',
     'as'   => "passwordreset"
 ]);
 
 Route::post('password/email', [
-    'uses' => 'Auth\PasswordController@postEmail',
+    'uses' => 'Auth\PasswordController@postEmailForm',
     'as'   => 'passwordreset'
 ]);
 
+
 // Password reset routes...
 Route::get('password/reset/{token}', [
-    'uses' =>'Auth\PasswordController@getReset',
+    'uses' =>'Auth\PasswordController@getResetPage',
     'as'   => 'passwordresetpage'
 ]);
-Route::post('password/reset', [
-    'uses' => 'Auth\PasswordController@postReset',
-    'as'   => 'postpasswordreset'
-]);
+// #resetGetEmail
 
+Route::post('password/resetGetEmail', [
+    'uses' => 'Auth\PasswordController@postResetCheckEmail',
+    'as'   => 'postpasswordresetCheckEmail'
+]);
 
 /*
 /-------------------------------------------------------------------------------

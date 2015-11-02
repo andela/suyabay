@@ -20,7 +20,7 @@
 
             <div class="input-field">
                 <i class="material-icons prefix">turned_in_not</i>
-                <input id="email" type="email" class="validate" required>
+                <input id="email" type="email" name="email" class="validate" required>
                 <label for="email">Email</label>
             </div>
 
