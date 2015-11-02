@@ -6,28 +6,27 @@
 */
 
 
-
 /*
-| ajaxLogic 
+| ajaxLogic
 | Process ajaxCall data and return feedback base on the data
 | receives 3 parameter from ajaxClass
 | @data is the array of user infomation \\console.log(data) to see properties
 | @response is the ajax response coming from the api end ponit
 | @funtionName is the name of the fuction called
 */
-function ajaxLogic ( data, response, functionName ) 
+function ajaxLogic ( data, response, functionName )
 {
-    if ( response.status_code === 401) 
+    if ( response.status_code === 401)
     {
-        switch (functionName) 
+        switch (functionName)
         {
           case "login"    : loginErrorAlert(); break;
-          case "register" : RegistrErrorAlert(); break;
+          case "register" : registrErrorAlert(); break;
         }
     }
     else if ( functionName == 'register' )
     {
-        RegisterSuccessAlert(data)
+        registerSuccessAlert(data)
     }
     else
     {
@@ -39,14 +38,14 @@ function ajaxLogic ( data, response, functionName )
 /*
 | ajaxCall
 | send an ajax post request to the api end post
-| receives 2 parameter from register function or login function 
-| @data is the array of user infomation \\console.log(data) to see properties 
+| receives 2 parameter from register function or login function
+| @data is the array of user infomation \\console.log(data) to see properties
 | @funtionName is the name of the fuction called
 |*/
-function ajaxCall ( data, functionName ) 
+function ajaxCall ( data, functionName )
 {
     $.post( window.location.hostname/data.url, data.parameter)
-    .done(function(response) 
+    .done(function(response)
     {
       ajaxLogic( data, response, functionName );
     })
@@ -59,17 +58,17 @@ function ajaxCall ( data, functionName )
 | loginErrorAlert
 | gives error report to user
 */
-function loginErrorAlert () 
+function loginErrorAlert ()
 {
   swal("Opps Login Failed", "Username or Password not found!", "error")
 }
 
 /*
-| RegisterSuccessAlert
+| registerSuccessAlert
 | gives Success report to user
-| receives 1 parameter 
+| receives 1 parameter
 */
-function RegisterSuccessAlert (data) 
+function registerSuccessAlert (data)
 {
   swal({
     title: data.parameter.username + " Your SuyaBay account has be successfully created",
@@ -87,11 +86,11 @@ function RegisterSuccessAlert (data)
 }
 
 /*
-| RegistrErrorAlert
+| registrErrorAlert
 | gives error report to user
-| receives 1 parameter 
+| receives 1 parameter
 */
-function RegistrErrorAlert () 
+function registrErrorAlert ()
 {
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }
@@ -99,67 +98,78 @@ function RegistrErrorAlert ()
 
 /*
 | register
-| create user information and url in to an array of object i.e @data 
+| create user information and url in to an array of object i.e @data
 | and make and ajax class to function ajaxCall() by sending @data and @functionName
 */
-function register () 
-{ 
+function register ()
+{
   var url       = "/signup";
   var email     = $('#email').val();
-  var token     = $('#token').val();   
+  var token     = $('#token').val();
   var username  = $('#username').val();
-  var password  = $('#password').val();   
-  
-  var data = 
+  var password  = $('#password').val();
+
+  var data =
     {
         url         : url,
-        parameter   : 
+        parameter   :
         {
           _token      : token,
           email       : email,
           username    : username,
-          password    : password   
+          password    : password
         }
     }
   checkItem(data);
-  var functionName =  arguments.callee.name;  
+  preventFormDefault('.form')
+  var functionName =  arguments.callee.name;
   ajaxCall( data, functionName );
 }
 
 
 /*
 | login
-| create user information and url in to an array of object i.e @data 
+| create user information and url in to an array of object i.e @data
 | and make and ajax class to function ajaxCall() by sending @data and @functionName
 */
-function login () 
+function login ()
 {
     var url       = '/login';
     var email     = $('#email').val();
-    var token     = $('#token').val();   
+    var token     = $('#token').val();
     var username  = $('#username').val();
-    var password  = $('#password').val();   
-    
-    var functionName =  arguments.callee.name;  
-    var data = 
+    var password  = $('#password').val();
+
+    var functionName =  arguments.callee.name;
+    var data =
     {
         url         : url,
-        parameter   : 
+        parameter   :
         {
           _token      : token,
           username    : username,
-          password    : password   
+          password    : password
         }
     }
-    checkItem(data);
-    ajaxCall( data, functionName ); 
-} 
+    preventFormDefault('.form');
+    ajaxCall( data, functionName );
+}
 
-//console.log(window.location.hostname);      
-function checkItem (data) 
+function checkItem (data)
 {
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
         swal("Oppss Login Failed", "Some required field not set!", "error")
       }
+}
+
+/*
+| Prevent element Default action
+*/
+function preventFormDefault (element) 
+{
+  $(element).submit(function(e)
+  {
+    e.preventDefault();
+  });
 }

@@ -56,6 +56,13 @@ class AuthController extends Controller
             'username'      => $data['username'],
             'password'      => bcrypt($data['password'])
         ]);
+        
+        /*Send Email*/    
+        $this->mail->send('emails.welcome', ['name' => $data['username']], function ($message) use ($data)
+        {
+            $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+            $message->to($data['email'])->subject('Welcome To Suyabay');
+        });
     }
 
     /**
@@ -65,7 +72,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function Register()
+    public function register()
     {
         return view('app.pages.signup');
     }
@@ -99,11 +106,6 @@ class AuthController extends Controller
         }
         else
         {
-            $this->mail->send('emails.welcome', ['name' => $username], function ($message) use ($email)
-            {
-                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
-                $message->to($email)->subject('Welcome To Suyabay');
-            });
             return $this->create($request->all());
         }
     }
