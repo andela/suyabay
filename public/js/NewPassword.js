@@ -53,7 +53,7 @@ function passwordLengthError()
  */
 function postSuccess (response) {
     if(response == 401){
-        swal("Error", "Error Processing request!!!", "error");
+        postFailError();
     }else{
         swal({
             title: "Done",
@@ -64,7 +64,7 @@ function postSuccess (response) {
             showLoaderOnConfirm: true,
             },
             function (){
-                document.location.href = "/login";
+                document.location.href = "/";
             }
         );
     }
@@ -79,12 +79,12 @@ function postFailError () {
 }
 
 /**
- * postPasswordReset: Sends the ajax post request
+ * postAjaxRequest: Sends the ajax post request
  * @param  {string} url
  * @param  {string} parameter
  * @return {string} modal
  */
-function postPasswordReset(url, parameter)
+function postAjaxRequest(url, parameter)
 {
     $.post(url, parameter)
     .done( function (response)
@@ -104,6 +104,7 @@ $(document).ready(function(){
         }
     });
 
+    //On form submit
     $("#new_password_form").on("submit", function(){
         swal("Proccessing Request!");
         var url   =  "/password/resetGetEmail";
@@ -130,7 +131,7 @@ $(document).ready(function(){
                 if (passwordLength(newPassword))
                 {
                     //process ajax request
-                    postPasswordReset(data.url, data.parameter);
+                    postAjaxRequest(data.url, data.parameter);
                 }
             }
 

@@ -1,6 +1,6 @@
 @extends('app.authlayout')
 
-@section('title', 'reset | SuyaBay')
+@section('title', 'Password Reset | SuyaBay')
 
 @section('content')
 
