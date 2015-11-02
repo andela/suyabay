@@ -21,12 +21,12 @@ function ajaxLogic ( data, response, functionName )
         switch (functionName)
         {
           case "login"    : loginErrorAlert(); break;
-          case "register" : RegistrErrorAlert(); break;
+          case "register" : registrErrorAlert(); break;
         }
     }
     else if ( functionName == 'register' )
     {
-        RegisterSuccessAlert(data)
+        registerSuccessAlert(data)
     }
     else
     {
@@ -64,11 +64,11 @@ function loginErrorAlert ()
 }
 
 /*
-| RegisterSuccessAlert
+| registerSuccessAlert
 | gives Success report to user
 | receives 1 parameter
 */
-function RegisterSuccessAlert (data)
+function registerSuccessAlert (data)
 {
   swal({
     title: data.parameter.username + " Your SuyaBay account has be successfully created",
@@ -86,11 +86,11 @@ function RegisterSuccessAlert (data)
 }
 
 /*
-| RegistrErrorAlert
+| registrErrorAlert
 | gives error report to user
 | receives 1 parameter
 */
-function RegistrErrorAlert ()
+function registrErrorAlert ()
 {
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }

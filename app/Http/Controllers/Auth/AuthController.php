@@ -72,7 +72,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function Register()
+    public function register()
     {
         return view('app.pages.signup');
     }
