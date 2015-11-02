@@ -36,6 +36,9 @@ class PasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    /**
+     * Load the password reset page
+     */
     public function getEmailPage()
     {
         return view('app.pages.passwordreset');
