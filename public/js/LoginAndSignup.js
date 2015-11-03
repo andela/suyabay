@@ -82,7 +82,11 @@ function registerSuccessAlert (data)
     setTimeout(function(){
       swal("Email Confirmation sent to " + data.parameter.email);
     }, 2000);
+    clearField();
+    window.location="/";
   });
+
+
 }
 
 /*
@@ -120,10 +124,11 @@ function register ()
           password    : password
         }
     }
-  checkItem(data);
   preventFormDefault('.form')
+  checkItem(data);
   var functionName =  arguments.callee.name;
   ajaxCall( data, functionName );
+
 }
 
 
@@ -172,4 +177,17 @@ function preventFormDefault (element)
   {
     e.preventDefault();
   });
+}
+
+
+
+/*
+| Clears field
+*/
+function clearField () 
+{
+  $('#email').val('');
+  $('#token').val('');
+  $('#username').val('');
+  $('#password').val('');
 }
