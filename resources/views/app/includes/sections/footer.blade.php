@@ -35,27 +35,24 @@
             <div class="col l4 offset-l2 s12">
 
                 <h2>About</h2>
-                    <small>
+                    <p>
                         Suyabay Podcasts is an aggregator of podcasts for suya lovers across the net.
                         The purpose of this site is to help suya lovers find new podcasts and contents.
-                    </small>
+                    </p>
 
                 <h2>Disclaimer</h2>
-                    <small>
-                        All trademarks and registered trademarks appearing on Suyabay are the property of their respective owners.
-                    </small>
+                    <p>
+                        All trademarks and registered trademarks appearing on Suyabay are the property
+                        of their respective owners.
+                    </p>
             </div>
         </div>
     </div>
 
-    <div class="footer-copyright" style="background-color:#2C3E50;font:Montserrat!important;">
-
+    <div class="footer-copyright">
         <div class="container">
-
-            Copyright Andela {{ Yearly::current_year() }}
-
-            <span class="right">CREDITS</span>
-
+            <h2 class="center">Copyright Andela {{ Yearly::current_year() }}</h2>
         </div>
     </div>
+
 </footer>

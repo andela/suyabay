@@ -15,7 +15,7 @@
 
                         <div class="input-field">
 
-                            <input name = "data" id="search" type="search" class="navbar-search" required>
+                            <input name = "data" id="search" type="search" class="search" required>
 
                             <label for="search">
 

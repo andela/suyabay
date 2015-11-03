@@ -64,13 +64,13 @@
             <div class="col s12 m6 l12 card-social">
             <!-- start social -->
 
-                <div class="row" style="background-color: #F6F7F8;">
+                <div class="row card-social">
                     <ul class="collection collapsible social" data-collapsible="accordion">
-                        <li class="collection-item avatar" style="background-color: #F6F7F8;">
-                            <div class="collapsible-header">
+                        <li class="collection-item avatar card-social">
+                            <div class="collapsible-header active">
                                 <span>
                                     <i class="fa fa-commenting">
-                                    </i>comments
+                                    </i>
                                 </span>
                             </div>
 
