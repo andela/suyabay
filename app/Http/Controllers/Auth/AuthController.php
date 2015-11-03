@@ -165,28 +165,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
-
-
-
-
-
-
-
-    /**
-     * Social ouath login/registration
-     *
-     * @param  Request $request  [description]
-     * @param  [type]  $provider [description]
-     */
-    public function getSocialRedirect(Request $request, $provider )
-    {
-        if( !($request->has('code') || $request->has('oauth_token')))
-        {
-            return Socialite::driver( $provider )->redirect();
-        }
-
-        $user = Socialite::driver( $provider )->user();
-
-        dd($user);
-    }
 }
