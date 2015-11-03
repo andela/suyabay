@@ -82,7 +82,10 @@ function registerSuccessAlert (data)
     setTimeout(function(){
       swal("Email Confirmation sent to " + data.parameter.email);
     }, 2000);
+    clearField();
   });
+
+
 }
 
 /*
@@ -172,4 +175,17 @@ function preventFormDefault (element)
   {
     e.preventDefault();
   });
+}
+
+
+
+/*
+| Clears field
+*/
+function clearField () 
+{
+  $('#email').val('');
+  $('#token').val('');
+  $('#username').val('');
+  $('#password').val('');
 }
