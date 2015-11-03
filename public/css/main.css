@@ -149,3 +149,10 @@ small {
 .btn-large {
     text-transform: capitalize;
 }
+
+.loader
+{
+    display: none;
+    position: fixed;
+    margin: 25% 50%;
+}
