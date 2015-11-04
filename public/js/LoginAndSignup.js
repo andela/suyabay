@@ -126,10 +126,10 @@ function register ()
     }
   preventFormDefault('.form')
   checkItem(data);
-  var functionName =  arguments.callee.name;
-  ajaxCall( data, functionName );
-
+  //var functionName =  arguments.callee.name;
+  //ajaxCall( data, functionName );
 }
+//$('.loader').show();
 
 
 /*
@@ -162,9 +162,17 @@ function login ()
 
 function checkItem (data)
 {
+  
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oppss Login Failed", "Some required field not set!", "error")
+        swal("Oppss Login Failed", "Some required field not set!", "error")  
+        end();
+      }
+
+      if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
+      {
+          swal("Oppss Login Failed", "Invalid email", "error")
+          end();
       }
 }
 
@@ -178,8 +186,6 @@ function preventFormDefault (element)
     e.preventDefault();
   });
 }
-
-
 
 /*
 | Clears field
