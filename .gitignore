@@ -4,7 +4,8 @@ Homestead.yaml
 Homestead.json
 .env
 .env.example
-.idea/
 .DS_Store
 /sass
 /keep
+/.idea/workspace.xml
+/.idea/dictionaries/Andela.xml
