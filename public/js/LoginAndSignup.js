@@ -21,7 +21,7 @@ function ajaxLogic ( data, response, functionName )
         switch (functionName)
         {
           case "login"    : loginErrorAlert(); break;
-          case "register" : registrErrorAlert(); break;
+          case "register" : registerErrorAlert(); break;
         }
     }
     else if ( functionName == 'register' )
@@ -94,7 +94,7 @@ function registerSuccessAlert (data)
 | gives error report to user
 | receives 1 parameter
 */
-function registrErrorAlert ()
+function registerErrorAlert ()
 {
   $('.loader').hide();
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
@@ -164,7 +164,7 @@ function checkItem (data)
   
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oppss Login Failed", "Some required field not set!", "error")  
+        swal("oppss", "Some required field not set!", "error")  
         end();
       }
 
