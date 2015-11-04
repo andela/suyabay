@@ -44,6 +44,7 @@ function ajaxLogic ( data, response, functionName )
 |*/
 function ajaxCall ( data, functionName )
 {
+    $('.loader').show();
     $.post( window.location.hostname/data.url, data.parameter)
     .done(function(response)
     {
@@ -60,6 +61,7 @@ function ajaxCall ( data, functionName )
 */
 function loginErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Login Failed", "Username or Password not found!", "error")
 }
 
@@ -85,8 +87,6 @@ function registerSuccessAlert (data)
     clearField();
     window.location="/";
   });
-
-
 }
 
 /*
@@ -96,9 +96,9 @@ function registerSuccessAlert (data)
 */
 function registrErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }
-
 
 /*
 | register
@@ -124,11 +124,10 @@ function register ()
           password    : password
         }
     }
-  preventFormDefault('.form')
-  checkItem(data);
-  var functionName =  arguments.callee.name;
-  ajaxCall( data, functionName );
-
+    preventFormDefault('.form')
+    checkItem(data);
+    var functionName =  arguments.callee.name;
+    ajaxCall( data, functionName );
 }
 
 
@@ -162,9 +161,17 @@ function login ()
 
 function checkItem (data)
 {
+  
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oppss Login Failed", "Some required field not set!", "error")
+        swal("Oppss Login Failed", "Some required field not set!", "error")  
+        end();
+      }
+
+      if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
+      {
+          swal("Oppss Login Failed", "Invalid email", "error")
+          end();
       }
 }
 
@@ -178,8 +185,6 @@ function preventFormDefault (element)
     e.preventDefault();
   });
 }
-
-
 
 /*
 | Clears field

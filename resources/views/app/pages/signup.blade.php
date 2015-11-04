@@ -15,7 +15,7 @@
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
-                <textarea id="username" class="materialize-textarea"></textarea>
+                <textarea id="username" class="materialize-textarea" required="required"></textarea>
                 <label for="icon_prefix1">
                     Username
                 </label>
@@ -23,13 +23,13 @@
 
             <div class="input-field">
                 <i class="material-icons prefix">turned_in_not</i>
-                    <input id="email" type="email" class="validate">
+                    <input id="email" type="email" class="validate" required="required">
                     <label for="email">Email</label>
             </div>
 
             <div class="input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" required="required">
                     <label for="password">Password</label>
             </div>
 
@@ -39,9 +39,9 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <button class="waves-effect waves-light btn right" onclick="register()">
+                <a class="waves-effect waves-light btn right" onclick="register()">
                     Sign Up
-                </button>
+                </a>
             </div>
         </form>
     </div>
