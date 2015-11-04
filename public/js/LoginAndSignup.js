@@ -170,7 +170,7 @@ function checkItem (data)
 
       if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
       {
-          swal("Oppss Login Failed", "Invalid email", "error")
+          swal("Oppss", "Invalid email", "error")
           end();
       }
 }
