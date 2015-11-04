@@ -23,34 +23,63 @@ class OauthController extends Controller
         {
             return Socialite::driver( $provider )->redirect();
         }
-
+        $userData = $this->getOauthID($provider);
+        if(is_null($this->checkUserExist($userData, $provider)))
+        {
+            return $this->findByIDorCreate($userData, $provider);
+        }
         $user = $this->findByIDorCreate($this->getOauthID($provider), $provider);
 
         Auth::login($user, true);
 
-       return $this->userHasLoggedIn();
+        return $this->userHasLoggedIn();
     }
 
+    public function checkUserExist($value, $provider)
+    {
+        $columnName  = $provider.'ID';
+        $user = User::where($columnName, $value->getId())->first();
+        return $user;
+    }
+    /**
+     * getOauthID Get the social account details
+     *
+     * @param  $provider
+     * @return [object]
+     */
     public function getOauthID($provider)
     {
         return Socialite::driver( $provider )->user();
     }
 
+    /**
+     * userHasLoggedIn Redirect to main page
+     */
     public function userHasLoggedIn()
     {
         return redirect('/');
     }
 
+    /**
+     * findByIDorCreate check if user already exist
+     *
+     * @param  $userData
+     * @param  $provider
+     */
     public function findByIDorCreate($userData, $provider)
     {
         $columnName  = $provider.'ID';
         $user = User::where('email', $userData->getEmail())->orWhere($columnName, $userData->getId())->first();
 
-        if( $user || $user->$columnName == 0 ){
+        if( $user){
             User::where('id', $user->id)->update([$columnName => $userData->getId()]);
             return $user;
         }
+        return $this->socialFunction($userData);
+    }
 
+    public function socialFunction($userData, $provider)
+    {
         if($provider == "github"){
             return $this->insertGithub($userData);
         }
@@ -64,39 +93,16 @@ class OauthController extends Controller
 
     public function insertGithub($userData)
     {
-        return User::firstOrCreate([
-            'username' => $userData->getNickname(),
-            'email' => $userData->getEmail(),
-            'password' => 'password',
-            'githubID' => $userData->getId(),
-            'facebookID' => 0,
-            'twitterID' => 0
-        ]);
+        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => $userData->getId(), 'facebook' => 0, 'twitter' => 0]);
     }
 
     public function insertFacebook($userData)
     {
-        $split = explode(" ", $userData->getName());
-
-        return User::firstOrCreate([
-            'username' => $split[0]."".$split[1],
-            'email' => $userData->getEmail(),
-            'password' => 'password',
-            'githubID' => 0,
-            'facebookID' => $userData->getId(),
-            'twitterID' => 0
-        ]);
+        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => $userData->getId(), 'twitter' => 0]);
     }
 
     public function insertTwitter($userData)
     {
-        return User::firstOrCreate([
-            'username' => $userData->getNickname(),
-            'email' => $userData->getEmail(),
-            'password' => 'password',
-            'githubID' => 0,
-            'facebookID' => 0,
-            'twitterID' => $userData->getId()
-        ]);
+        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => $userData->getId()]);
     }
 }

@@ -55,7 +55,10 @@ class AuthController extends Controller
         User::create([
             'email'         => $data['email'],
             'username'      => $data['username'],
-            'password'      => bcrypt($data['password'])
+            'password'      => bcrypt($data['password']),
+            'githubID'      => $data['github'],
+            'facebookID'    => $data['facebook'],
+            'twitterID'     => $data['twitter']
         ]);
 
         /*Send Email*/
