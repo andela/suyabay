@@ -44,6 +44,7 @@ function ajaxLogic ( data, response, functionName )
 |*/
 function ajaxCall ( data, functionName )
 {
+    $('.loader').show();
     $.post( window.location.hostname/data.url, data.parameter)
     .done(function(response)
     {
@@ -85,8 +86,6 @@ function registerSuccessAlert (data)
     clearField();
     window.location="/";
   });
-
-
 }
 
 /*
@@ -96,9 +95,9 @@ function registerSuccessAlert (data)
 */
 function registrErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }
-
 
 /*
 | register
@@ -126,10 +125,9 @@ function register ()
     }
   preventFormDefault('.form')
   checkItem(data);
-  //var functionName =  arguments.callee.name;
-  //ajaxCall( data, functionName );
+  var functionName =  arguments.callee.name;
+  ajaxCall( data, functionName );
 }
-//$('.loader').show();
 
 
 /*
