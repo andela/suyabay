@@ -15,7 +15,7 @@
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
-                <textarea id="username" class="materialize-textarea"></textarea>
+                    <input id="username" type="name" value="{{ username }}">
                 <label for="icon_prefix1">
                     Username
                 </label>

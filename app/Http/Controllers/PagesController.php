@@ -2,8 +2,8 @@
 
 namespace Suyabay\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 
 class PagesController extends Controller

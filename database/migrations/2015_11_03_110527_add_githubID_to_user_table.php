@@ -13,9 +13,9 @@ class AddGithubIDToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('githubID')->unsigned();
-            $table->integer('facebookID')->unsigned();
-            $table->integer('twitterID')->unsigned();
+            $table->bigInteger('githubID')->default(0);
+            $table->bigInteger('facebookID')->unsigned(0);
+            $table->bigInteger('twitterID')->unsigned(0);
         });
     }
 
