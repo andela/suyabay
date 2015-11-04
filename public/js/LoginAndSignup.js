@@ -61,6 +61,7 @@ function ajaxCall ( data, functionName )
 */
 function loginErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Login Failed", "Username or Password not found!", "error")
 }
 
@@ -123,10 +124,10 @@ function register ()
           password    : password
         }
     }
-  preventFormDefault('.form')
-  checkItem(data);
-  var functionName =  arguments.callee.name;
-  ajaxCall( data, functionName );
+    preventFormDefault('.form')
+    checkItem(data);
+    var functionName =  arguments.callee.name;
+    ajaxCall( data, functionName );
 }
 
 
