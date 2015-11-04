@@ -6,7 +6,9 @@
             <div class="collection">
                 <a href="#" class="collection-item">Channels <span class="new badge">4</span></a>
                 <a href="#" class="collection-item">Favourites <span class="new badge">0</span></a>
-                <a href="#" class="collection-item" id="view-all-episodes">See all episodes <span class="badge">10+</span></a>
+                <a href="#" class="collection-item" id="view-all-episodes">See all episodes
+                    <span class="badge">10+</span>
+                </a>
                 <a href="{{ URL::to('about') }}" class="collection-item">About</a>
                 <a href="{{ URL::to('privacypolicy') }}" class="collection-item">Privacy Policy</a>
                 <a href="{{ URL::to('faqs') }}" class="collection-item">FAQs</a>
@@ -15,7 +17,8 @@
     </div>
 
     <!-- Feeds Area -->
-   <div class="col s12 m8 l9">
+
+    <div class="col s12 m8 l9">
 
         @forelse($episodes as $episode)
         <!-- start card -->
@@ -39,7 +42,7 @@
                 </div>
 
                 <div id="episode-title truncate">
-                    <a href"#">
+                    <a href="#">
                         <h2>
                             {{ $episode->episode_name }}
                         </h2>
@@ -58,23 +61,44 @@
                         {{ $episode->episode_description }}
                     </p>
                 </div>
+            </div>
 
-                    <!-- Social icons start-->
-                <div class="col s12 grey-text text-darken-4 center-align" style="margin:15px;">
-                    <a href="#!" title="share">
-                        <i class="material-icons left">share</i>
-                    </a>
-                    <a href="#!" title="number of views">
-                        <i class="material-icons left">live tv</i>
-                    </a>
-                    <a href="#!" title="comments">
-                        <i class="material-icons left">forum</i>
-                    </a>
-                    <a href="#!" title="favorites">
-                        <i class="material-icons left">favorite</i>
-                    </a>
+            <div class="col s12 m6 l12 card-social">
+            <!-- start social -->
+
+                <div class="row card-social">
+                    <ul class="collection collapsible social" data-collapsible="accordion">
+                        <li class="collection-item avatar card-social">
+                            <div class="collapsible-header active">
+                                <span>
+                                    <i class="fa fa-commenting">
+                                    </i>
+                                </span>
+                            </div>
+
+                            <div class="row collapsible-body">
+                                <div>
+                                    <p>
+                                        <img src="https://goo.gl/ce4Gr4" class="circle">
+                                            add your comment...
+                                        <textarea id="new comment" style="background-color:white;border:1px solid #DCDEE3;">
+
+                                        </textarea>
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p>
+                                        <img src="http://goo.gl/e8arXb" class="circle">
+                                        <span style="font-weight:bold;">Christina Sass </span>
+                                        <span>I commented before the person trying to comment now LOL</span>
+                                    </p>
+                                </div>
+                             </div>
+                        </li>
+                    </ul>
                 </div>
-                <!-- social icons end -->
+                <!-- end social -->
             </div>
         </div>
         <!-- end card -->
@@ -89,5 +113,5 @@
                 {!! $episodes->render() !!}
             </div>
         </div>
-
+    </div>
 </div>
