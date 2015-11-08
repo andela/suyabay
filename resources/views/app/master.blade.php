@@ -45,9 +45,8 @@
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
         <script src = "{!! secure_asset('/js/main.js') !!}"></script>
+        <script src="{!! asset('/js/audio.min.js') !!}"></script>
 
-        <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
-        <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
 
     </head>
     <body>
@@ -80,8 +79,8 @@
         </script>
 
         <script>
-            $( function() {
-                $( 'audio' ).audioPlayer();
+            audiojs.events.ready(function() {
+                var as = audiojs.createAll();
                 });
         </script>
 

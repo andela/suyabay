@@ -30,7 +30,6 @@
             </div>
 
             <div class="col s12 m8 l8">
-
                 <div class="spacer">
                     <small>
                         {{ date('F d, Y', strtotime($episode->created_at)) }}
@@ -41,17 +40,15 @@
                 </div>
 
                 <div>
-                        <h4>
-                            {{ $episode->episode_name }}
-                        </h4>
+                    <h4>
+                        {{ $episode->episode_name }}
+                    </h4>
                 </div>
 
                 <!-- Feed the audio source -->
-               <!--  <div>
-                    <audio preload="auto" controls>
-                        <source src="{!! asset($episode->audio_mp3) !!}">
-                    </audio>
-                </div> -->
+                <div>
+                    <audio src="{!! asset($episode->audio_mp3) !!}" preload="auto" />
+                </div>
 
                 <div>
                     <p>
