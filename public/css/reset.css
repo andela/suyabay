@@ -39,12 +39,12 @@ footer, header, hgroup, menu, nav, section, summary
 }
 
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { font-family: Helvetica, Arial, sans-serif; line-height: 1; color: #000; background-color: #fff; }
+body { font-family: "proxima-nova", Helvetica, Arial, sans-serif; line-height: 1; color: #000; background-color: #fff; }
 
-article, aside, canvas, 
+article, aside, canvas,
 details, figcaption,
 figure, footer, header,
-hgroup, menu, nav, 
+hgroup, menu, nav,
 section, summary		{ display: block; }
 
 audio, canvas, video	{ display: inline-block; *display: inline; *zoom: 1; }
