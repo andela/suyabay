@@ -5,7 +5,9 @@ Homestead.json
 .env
 .env.example
 .DS_Store
-/sass
 /keep
 /.idea/
-/sass/
+sass/
+.sass-cache
+prepros.cfg
+sass
