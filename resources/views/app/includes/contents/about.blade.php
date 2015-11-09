@@ -11,14 +11,21 @@
     </div>
     <div class="col s5">
         <div style="margin: 15% 0;">
-            <div class="facebook">
-                <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
-                <div class="col s9">Login with Facebook</div>
-            </div>
-            <div class="twitter">
-                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-                <div class="col s9">Login with Twitter</div>
-            </div>
+
+            <a href="{!!URL::to('login/facebook')!!}">
+                <div class="facebook">
+                    <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+                    <div class="col s9">Login with Facebook</div>
+                </div>
+            </a>
+
+            <a href="{!!URL::to('login/twitter')!!}">
+                <div class="twitter">
+                    <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+                    <div class="col s9">Login with Twitter</div>
+                </div>
+            </a>
+
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ class OauthController extends Controller
         {
             return Socialite::driver( $provider )->redirect();
         }
-        $userData = $this->getOauthID($provider);
+        $userData = $this->getOauth($provider);
         if(is_null($this->checkUserExist($userData, $provider)))
         {
             return $this->socialFunction($userData, $provider);
@@ -45,17 +45,17 @@ class OauthController extends Controller
     public function checkUserExist($value, $provider)
     {
         $columnName  = $provider.'ID';
-        $user = User::where($columnName, $value->getId())->orWhere('email', $value->getEmail())->first();
+        $user = User::where($columnName, $value->getId())->orWhere('username', $value->getNickname())->orWhere('email', $value->getEmail())->first();
         return $user;
     }
 
     /**
-     * getOauthID Get the social account details
+     * getOauth Get the social account details
      *
      * @param  $provider
      * @return [object]
      */
-    public function getOauthID($provider)
+    public function getOauth($provider)
     {
         return Socialite::driver( $provider )->user();
     }
@@ -100,13 +100,13 @@ class OauthController extends Controller
     }
 
     /**
-     * getSocialData
+     * getSocialData Pass the user details to signup form
      *
      * @param  $userData
      * @param  $provider
      */
     protected function getSocialData($userData, $provider) {
-        $array = ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => 0];
+        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
         return view('app.pages.signup', $array);
     }

@@ -15,7 +15,7 @@
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
-                    <input id="username" type="text" name="username" class="validate" />
+                    <input id="username" type="text" name="username" value="{{ isset($username) ? $username : '' }}" class="validate" />
                 <label for="icon_prefix1">
                     Username
                 </label>
@@ -67,16 +67,20 @@
     <!-- social login -->
 
     <div class="col s6 offset-s3">
-        <div class="facebook">
-            <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
-            <div class="col s9">Login with Facebook</div>
-        </div>
+        <a href="{!!URL::to('login/facebook')!!}">
+            <div class="facebook">
+                <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+                <div class="col s9">Login with Facebook</div>
+            </div>
+        </a>
     </div>
     <div class="col s6 offset-s3">
-        <div class="twitter">
-            <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-            <div class="col s9">Login with Twitter</div>
-        </div>
+        <a href="{!!URL::to('login/twitter')!!}">
+            <div class="twitter">
+                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+                <div class="col s9">Login with Twitter</div>
+            </div>
+        </a>
     </div>
     <!-- end -->
 </div>
