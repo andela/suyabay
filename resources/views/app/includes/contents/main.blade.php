@@ -17,7 +17,6 @@
     </div>
 
     <!-- Feeds Area -->
-
     <div class="col s12 m8 l9">
 
         @forelse($episodes as $episode)
@@ -31,8 +30,7 @@
             </div>
 
             <div class="col s12 m8 l8">
-
-                <div class="episode-date" id="episode-date">
+                <div class="spacer">
                     <small>
                         {{ date('F d, Y', strtotime($episode->created_at)) }}
                         <span class="badge left teal lighten-2">
@@ -41,22 +39,18 @@
                     </small>
                 </div>
 
-                <div id="episode-title truncate">
-                    <a href="#">
-                        <h2>
-                            {{ $episode->episode_name }}
-                        </h2>
-                    </a>
-                </div>
-
-                <!-- Feed the audio source with the three diff formats for browser compactibility-->
                 <div>
-                    <audio preload="auto" controls>
-                        <source src="{!! asset($episode->audio_mp3) !!}">
-                    </audio>
+                    <h4>
+                        {{ $episode->episode_name }}
+                    </h4>
                 </div>
 
-                <div id="description">
+                <!-- Feed the audio source -->
+                <div>
+                    <audio src="{!! asset($episode->audio_mp3) !!}" preload="auto" />
+                </div>
+
+                <div>
                     <p>
                         {{ $episode->episode_description }}
                     </p>
@@ -64,46 +58,10 @@
             </div>
 
             <div class="col s12 m6 l12 card-social">
+
             <!-- start social -->
-<<<<<<< HEAD
-
-                <div class="row card-social">
-                    <ul class="collection collapsible social" data-collapsible="accordion">
-                        <li class="collection-item avatar card-social">
-                            <div class="collapsible-header active">
-                                <span>
-                                    <i class="fa fa-commenting">
-                                    </i>
-                                </span>
-                            </div>
-
-                            <div class="row collapsible-body">
-                                <div>
-                                    <p>
-                                        <img src="https://goo.gl/ce4Gr4" class="circle">
-                                            add your comment...
-                                        <textarea id="new comment" style="background-color:white;border:1px solid #DCDEE3;">
-
-                                        </textarea>
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p>
-                                        <img src="http://goo.gl/e8arXb" class="circle">
-                                        <span style="font-weight:bold;">Christina Sass </span>
-                                        <span>I commented before the person trying to comment now LOL</span>
-                                    </p>
-                                </div>
-                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- end social -->
-=======
                 <!-- put social here -->
             <!-- end social -->
->>>>>>> e531e4d91755fa06374213ae1dd87b96106a8c69
             </div>
         </div>
         <!-- end card -->
