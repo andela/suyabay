@@ -11,7 +11,7 @@
     </div>
 
     <div>
-        <form class="col s6 offset-s3">
+        <form class="col s6 center offset-s3">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
@@ -37,7 +37,6 @@
                     Sign In
                 </a>
             </div>
-
         </form>
     </div>
 
@@ -59,28 +58,27 @@
                 <a href="{{ URL::to('passwordreset') }}"> Forgot password?</a>
             </small>
         </span>
-         <h6> OR</h6>
-    </div>
 
-    <!-- social login -->
+        <!-- social login -->
 
-    <div class="col s6 offset-s3">
-        <a href="{!!URL::to('login/facebook')!!}">
-            <div class="facebook">
-                <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
-                <div class="col s9">Login with Facebook</div>
-            </div>
-        </a>
-    </div>
-    <div class="col s6 offset-s3">
-        <a href="{!!URL::to('login/twitter')!!}">
-            <div class="twitter">
-                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-                <div class="col s9">Login with Twitter</div>
-            </div>
-        </a>
-    </div>
-    <!-- end -->
+        <div class="col s6 offset-s3">
+            <a href="{!!URL::to('login/facebook')!!}">
+                <div class="facebook">
+                    <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+                    <div class="col s9">Login with Facebook</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col s6 offset-s3">
+            <a href="{!!URL::to('login/twitter')!!}">
+                <div class="twitter">
+                    <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+                    <div class="col s9">Login with Twitter</div>
+                </div>
+            </a>
+        </div>
+
 </div>
 
 @endsection

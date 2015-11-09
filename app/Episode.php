@@ -13,7 +13,7 @@ class Episode extends Model
                             'episode_description',
                             'view_count',
                             'image',
-                            'audio_mp3',
+                            'audio+mp3',
                             'channel_id'
                             ];
 

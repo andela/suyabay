@@ -16,7 +16,7 @@
 
         <!-- Fonts and style rules -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700,600italic,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <!-- HTTP -->
         <link href="{!! asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
@@ -45,8 +45,9 @@
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
         <script src = "{!! secure_asset('/js/main.js') !!}"></script>
-        <script src="{!! asset('/js/audio.min.js') !!}"></script>
 
+        <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
+        <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
 
     </head>
     <body>
@@ -79,8 +80,8 @@
         </script>
 
         <script>
-            audiojs.events.ready(function() {
-                var as = audiojs.createAll();
+            $( function() {
+                $( 'audio' ).audioPlayer();
                 });
         </script>
 

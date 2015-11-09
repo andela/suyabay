@@ -19,3 +19,14 @@ $factory->define(Suyabay\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
+            return [
+                'episode_name'        => $faker->name,
+                'episode_description' => $faker->sentence,
+                'view_count'          => 10,
+                'image'               => "http://goo.gl/pm9GOw",
+                'audio_mp3' => "http://goo.gl/LkNP5M",
+                'channel_id' => 9,
+            ];
+        });

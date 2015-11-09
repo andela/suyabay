@@ -1,4 +1,9 @@
+<h3>About</h3>
+    <p>
+        SuyaBay Podcast brings you Laravel and PHP development news and discussion. The podcast is hosted by prosper
+        Otemuiywa, regular guests include Nadayar Ngesi (Code-lord at Andela). If you love clean code, if maintenabilty and scalabilty are your thing, its like loving suya right! Yes, you know that feeling. So, Suyabay Podcasts is an aggregator of podcasts for suya lovers at Andela Island and the internet community world over.</p>
 
+<<<<<<< HEAD
 <div class ="row">
     <div class="col s7">
     <h1>Join Our Community</h1>
@@ -31,4 +36,10 @@
 </div>
 
 
+=======
+    <p>
+        The purpose of this site is to help suya lovers find new podcasts and contents. I encourage you to subscribe to the individual podcasts feeds and support the content creators. If you are not using SuyaBay, then you are sitting on a loooong thing!</p>
+>>>>>>> 0ca679c242750516ef00cd6092628ea1f3e877ac
 
+    <p>
+        Feel free to send any question that you think has not been answered in our FAQ (Frequently Ask Questions) and other comments to <a href="mailto:hello@suyabay.com">hello@suyabay.com</a>.</p>

@@ -1,6 +1,6 @@
 <div class="navbar-fixed">
     <nav role="navigation">
-        <div class="nav-wrapper">
+        <div class="nav-wrapper" style="background-color: #2C3E50;">
 
             <!-- Desktop view top nav -->
 
@@ -35,8 +35,8 @@
                     <a class="waves-effect" href="#">{{Auth::user()->username}}</a>
                     <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
                     @else
-                    <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
-                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
+                    <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">SIGN IN</a>
+                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">SIGN UP</a>
                     @endif
                     <a class="waves-effect teal lighten-2" href="#!">Become a Premium User</a>
 
@@ -99,3 +99,4 @@
       </div>
     </div>
   </div>
+        
