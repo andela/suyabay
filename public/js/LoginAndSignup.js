@@ -21,7 +21,7 @@ function ajaxLogic ( data, response, functionName )
         switch (functionName)
         {
           case "login"    : loginErrorAlert(); break;
-          case "register" : registrErrorAlert(); break;
+          case "register" : registerErrorAlert(); break;
         }
     }
     else if ( functionName == 'register' )
@@ -73,7 +73,7 @@ function loginErrorAlert ()
 function registerSuccessAlert (data)
 {
   swal({
-    title: data.parameter.username + " Your SuyaBay account has be successfully created",
+    title: data.parameter.username + " Your SuyaBay account has been successfully created",
     text: "Send Email Confirmation",
     type: "success",
     showCancelButton: true,
@@ -90,11 +90,11 @@ function registerSuccessAlert (data)
 }
 
 /*
-| registrErrorAlert
+| registerErrorAlert
 | gives error report to user
 | receives 1 parameter
 */
-function registrErrorAlert ()
+function registerErrorAlert ()
 {
   $('.loader').hide();
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
@@ -164,13 +164,13 @@ function checkItem (data)
   
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oppss Login Failed", "Some required field not set!", "error")  
+        swal("oppss", "Some required field not set!", "error")  
         end();
       }
 
       if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
       {
-          swal("Oppss Login Failed", "Invalid email", "error")
+          swal("Oppss", "Invalid email", "error")
           end();
       }
 }
