@@ -8,6 +8,11 @@
 
     <div class="row center-align">
         <h2> Sign up for an account</h2>
+        <span class="green lighten-4 customised_alert">
+            <em>
+                Hi, customize me.
+            </em>
+        </span>
     </div>
 
     <div>
@@ -58,9 +63,24 @@
                 <a href="{{ URL::to('login') }}"> Sign In to your account</a>
             </small>
         </span>
-
+        <h6> OR</h6>
     </div>
 
+    <!-- social login -->
+
+    <div class="col s6 offset-s3">
+        <div class="facebook">
+            <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+            <div class="col s9">Login with Facebook</div>
+        </div>
+    </div>
+    <div class="col s6 offset-s3">
+        <div class="twitter">
+            <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+            <div class="col s9">Login with Twitter</div>
+        </div>
+    </div>
+    <!-- end -->
 </div>
 
 @endsection
