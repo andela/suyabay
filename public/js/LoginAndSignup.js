@@ -73,7 +73,7 @@ function loginErrorAlert ()
 function registerSuccessAlert (data)
 {
   swal({
-    title: data.parameter.username + " Your SuyaBay account has be successfully created",
+    title: data.parameter.username + " Your SuyaBay account has been successfully created",
     text: "Send Email Confirmation",
     type: "success",
     showCancelButton: true,
@@ -90,7 +90,7 @@ function registerSuccessAlert (data)
 }
 
 /*
-| registrErrorAlert
+| registerErrorAlert
 | gives error report to user
 | receives 1 parameter
 */
