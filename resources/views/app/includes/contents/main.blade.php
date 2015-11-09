@@ -65,6 +65,7 @@
 
             <div class="col s12 m6 l12 card-social">
             <!-- start social -->
+<<<<<<< HEAD
 
                 <div class="row card-social">
                     <ul class="collection collapsible social" data-collapsible="accordion">
@@ -99,6 +100,10 @@
                     </ul>
                 </div>
                 <!-- end social -->
+=======
+                <!-- put social here -->
+            <!-- end social -->
+>>>>>>> e531e4d91755fa06374213ae1dd87b96106a8c69
             </div>
         </div>
         <!-- end card -->
