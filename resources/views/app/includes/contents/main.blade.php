@@ -60,7 +60,7 @@
             <div class="col s12 m6 l12 card-social">
 
             <!-- start social -->
-
+                <!-- put social here -->
             <!-- end social -->
             </div>
         </div>
