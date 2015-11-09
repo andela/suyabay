@@ -27,6 +27,6 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
                 'view_count'          => 10,
                 'image'               => "http://goo.gl/pm9GOw",
                 'audio_mp3' => "http://goo.gl/LkNP5M",
-                'channel_id' => 9,
+                'channel_id' => 2,
             ];
         });

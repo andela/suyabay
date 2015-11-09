@@ -8,6 +8,21 @@
 
     <div class="row center-align">
         <h2> Sign up for an account</h2>
+
+        @if ( isset($username) )
+            <span class="green lighten-4 customised_alert">
+                <em>
+                    Please enter in your <b>Email</b> and <b>Password</b>
+                </em>
+            </span>
+        @elseif ( isset($email) )
+            <span class="green lighten-4 customised_alert">
+                <em>
+                    Please enter in your <b>Username</b> and <b>Password</b>
+                </em>
+            </span>
+        @endif
+
     </div>
 
     <div>
@@ -62,25 +77,33 @@
             </small>
         </span>
 
-        <div class="col s6 offset-s3">
-            <a href="{!!URL::to('login/facebook')!!}">
-                <div class="facebook">
-                    <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
-                    <div class="col s9">Login with Facebook</div>
-                </div>
-            </a>
-        </div>
+    <!-- social login -->
+    @if ( ! ( isset($username) || isset($email) ) )
+        <h6> OR</h6>
 
-        <div class="col s6 offset-s3">
-            <a href="{!!URL::to('login/twitter')!!}">
-                <div class="twitter">
-                    <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-                    <div class="col s9">Login with Twitter</div>
-                </div>
-            </a>
-        </div>
-        <!-- end -->
+    </div>
 
+    <div class="col s6 offset-s3">
+        <a href="{!!URL::to('login/facebook')!!}">
+            <div class="facebook">
+                <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+                <div class="col s9">Login with Facebook</div>
+            </div>
+        </a>
+    </div>
+    <div class="col s6 offset-s3">
+        <a href="{!!URL::to('login/twitter')!!}">
+            <div class="twitter">
+                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+                <div class="col s9">Login with Twitter</div>
+            </div>
+        </a>
+    </div>
+
+    @else
+        </div>
+    @endif
+    <!-- end -->
 </div>
 
 @endsection

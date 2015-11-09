@@ -11,7 +11,7 @@
     </div>
 
     <div>
-        <form class="col s6 center offset-s3">
+        <form class="col s6 offset-s3">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
@@ -37,6 +37,7 @@
                     Sign In
                 </a>
             </div>
+
         </form>
     </div>
 
@@ -58,6 +59,8 @@
                 <a href="{{ URL::to('passwordreset') }}"> Forgot password?</a>
             </small>
         </span>
+         <h6> OR</h6>
+    </div>
 
         <!-- social login -->
 
