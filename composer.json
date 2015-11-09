@@ -8,6 +8,7 @@
        "php": ">=5.5.9",
        "laravel/framework": "5.1.17",
        "busayo/laravel-yearly": "1.0.*",
+       "laravel/socialite": "~2.0",
        "guzzlehttp/guzzle": "~4.0",
       "doctrine/dbal": "^2.5",
       "fzaninotto/faker": "~1.4"

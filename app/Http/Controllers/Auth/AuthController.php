@@ -4,6 +4,7 @@ namespace Suyabay\Http\Controllers\Auth;
 
 use Auth;
 use Validator;
+use Socialite;
 use Suyabay\User;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
@@ -54,10 +55,13 @@ class AuthController extends Controller
         User::create([
             'email'         => $data['email'],
             'username'      => $data['username'],
-            'password'      => bcrypt($data['password'])
+            'password'      => bcrypt($data['password']),
+            'githubID'      => $data['github'],
+            'facebookID'    => $data['facebook'],
+            'twitterID'     => $data['twitter']
         ]);
-        
-        /*Send Email*/    
+
+        /*Send Email*/
         $this->mail->send('emails.welcome', ['name' => $data['username']], function ($message) use ($data)
         {
             $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
@@ -164,5 +168,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
-
 }

@@ -11,17 +11,30 @@
     </div>
     <div class="col s5">
         <div style="margin: 15% 0;">
-            <div class="facebook">
-                <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
-                <div class="col s9">Login with Facebook</div>
-            </div>
-            <div class="twitter">
-                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-                <div class="col s9">Login with Twitter</div>
-            </div>
+            <a href="{!!URL::to('login/facebook')!!}">
+                <div class="facebook">
+                    <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
+                    <div class="col s9">Login with Facebook</div>
+                </div>
+            </a>
+
+            <a href="{!!URL::to('login/twitter')!!}">
+                <div class="twitter">
+                    <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
+                    <div class="col s9">Login with Twitter</div>
+                </div>
+            </a>
         </div>
     </div>
+
 </div>
 
 
+<<<<<<< HEAD
+=======
+    <p>
+        The purpose of this site is to help suya lovers find new podcasts and contents. I encourage you to subscribe to the individual podcasts feeds and support the content creators. If you are not using SuyaBay, then you are sitting on a loooong thing!</p>
+>>>>>>> 0ca679c242750516ef00cd6092628ea1f3e877ac
+=======
+>>>>>>> b6b55718af2e5792c6eb092bde82220bea044539
 
