@@ -84,15 +84,16 @@
     </div>
 
     <div class="col s6 offset-s3">
-        <a href="{!!URL::to('login/facebook')!!}">
+        <a href="{{ URL::to('login/facebook') }}">
             <div class="facebook">
                 <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
                 <div class="col s9">Login with Facebook</div>
             </div>
         </a>
     </div>
+
     <div class="col s6 offset-s3">
-        <a href="{!!URL::to('login/twitter')!!}">
+        <a href="{{ URL::to('login/twitter') }}">
             <div class="twitter">
                 <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
                 <div class="col s9">Login with Twitter</div>
