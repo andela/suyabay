@@ -21,12 +21,12 @@ function ajaxLogic ( data, response, functionName )
         switch (functionName)
         {
           case "login"    : loginErrorAlert(); break;
-          case "register" : RegistrErrorAlert(); break;
+          case "register" : registrErrorAlert(); break;
         }
     }
     else if ( functionName == 'register' )
     {
-        RegisterSuccessAlert(data)
+        registerSuccessAlert(data)
     }
     else
     {
@@ -44,6 +44,7 @@ function ajaxLogic ( data, response, functionName )
 |*/
 function ajaxCall ( data, functionName )
 {
+    $('.loader').show();
     $.post( window.location.hostname/data.url, data.parameter)
     .done(function(response)
     {
@@ -60,15 +61,16 @@ function ajaxCall ( data, functionName )
 */
 function loginErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Login Failed", "Username or Password not found!", "error")
 }
 
 /*
-| RegisterSuccessAlert
+| registerSuccessAlert
 | gives Success report to user
 | receives 1 parameter
 */
-function RegisterSuccessAlert (data)
+function registerSuccessAlert (data)
 {
   swal({
     title: data.parameter.username + " Your SuyaBay account has be successfully created",
@@ -82,19 +84,21 @@ function RegisterSuccessAlert (data)
     setTimeout(function(){
       swal("Email Confirmation sent to " + data.parameter.email);
     }, 2000);
+    clearField();
+    window.location="/";
   });
 }
 
 /*
-| RegistrErrorAlert
+| registrErrorAlert
 | gives error report to user
 | receives 1 parameter
 */
-function RegistrErrorAlert ()
+function registrErrorAlert ()
 {
+  $('.loader').hide();
   swal("Opps Registration Failed", "Username or Email already exists click the button to try again!", "error")
 }
-
 
 /*
 | register
@@ -120,10 +124,10 @@ function register ()
           password    : password
         }
     }
-  checkItem(data);
-  preventFormDefault('.form')
-  var functionName =  arguments.callee.name;
-  ajaxCall( data, functionName );
+    preventFormDefault('.form')
+    checkItem(data);
+    var functionName =  arguments.callee.name;
+    ajaxCall( data, functionName );
 }
 
 
@@ -157,9 +161,17 @@ function login ()
 
 function checkItem (data)
 {
+  
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oppss Login Failed", "Some required field not set!", "error")
+        swal("Oppss Login Failed", "Some required field not set!", "error")  
+        end();
+      }
+
+      if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
+      {
+          swal("Oppss Login Failed", "Invalid email", "error")
+          end();
       }
 }
 
@@ -172,4 +184,15 @@ function preventFormDefault (element)
   {
     e.preventDefault();
   });
+}
+
+/*
+| Clears field
+*/
+function clearField () 
+{
+  $('#email').val('');
+  $('#token').val('');
+  $('#username').val('');
+  $('#password').val('');
 }

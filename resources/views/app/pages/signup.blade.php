@@ -42,7 +42,7 @@
                     <input type="hidden" name="twitter" value="{{ isset($twitter) ? $twitter : '0' }}">
                 </p>
 
-                <button class="waves-effect waves-light btn right" >
+                <button class="waves-effect waves-light btn right" onclick="register()">
                     Sign Up
                 </button>
             </div>

@@ -1,17 +1,15 @@
 body {
     font: Montserrat!important;
-    color:#686868!mportant;
+    color:#686868!important;
     background-color: #fff;
-    /*#CEE7D8;*/
 }
 
 p {
-    font-size: 12pt!important;
+    font-size: 11pt!important;
     line-height: 1.6em;
     font-weight: 300;
     margin-top: 20px;
     vertical-align: baseline;
-    -webkit-font-smoothing: antialiased;
     padding:0 10px;
 }
 
@@ -19,8 +17,7 @@ h2 {
     color:#626262;
     text-decoration: none;
     font-weight: 300;
-    line-height: 1.5;
-    font-size: 2em;
+    font-size: 1.8em;
     margin:10px;
 }
 
@@ -34,28 +31,20 @@ a:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     color:#4DB6AC;
 }
 
-small {
-    font-weight:light;
-}
-
 .logo {
-    margin;auto;
+    margin:auto;
     padding:15px;
 }
 .waves-effect {
     vertical-align: top!important;
 }
-.navbar-search {
+.search {
     margin:0!important;
 }
 
 .logo-box {
     margin: 0 auto;
     z-index: 55;
-}
-
-.custom-bg {
-    background-color: #C0392B;
 }
 
 .card-image {
@@ -69,11 +58,10 @@ small {
     font-size: 11pt;
     letter-spacing: 1px;
     line-height: 1.5;
-    font-weight: light;
     text-transform: uppercase;
     margin-top:15px;
     margin-left:10px;
-    margin-bottom:0px;
+    margin-bottom:0;
 }
 
 .social-sharing {
@@ -87,9 +75,8 @@ small {
     padding:5px;
     background-color: transparent;
     margin:10px 5px 0;
-    border-radius: 50%
+    border-radius: 50% ;
     height: auto;
-    -webkit-box-shadow: 0 0 3px 0 #B5B5B5;
 }
 
 .your-host {
@@ -149,3 +136,48 @@ small {
 .btn-large {
     text-transform: capitalize;
 }
+
+.social {
+    border:0;
+    box-shadow:none;
+}
+
+.pic {
+    width:9%;
+}
+
+.loader
+{
+    display: none;
+    position: fixed;
+    margin: 25% 50%;
+}
+
+/*over-writes*/
+.collapsible-header {
+    background-color: #F6F7F8;
+    padding:0;
+    color:#333;
+}
+
+.collection .collection-item.active {
+    color:inherit;
+}
+
+.collection .collection-item.avatar {
+    padding-left: 35px;
+    background-color: #F6F7F8;
+}
+
+.card-social{
+    background-color: #F6F7F8;
+}
+
+.audioplayer-volume:hover .audioplayer-volume-adjust{
+    bottom:60%;
+}
+
+.footer-copyright{
+    background-color:#2C3E50!important;
+}
+

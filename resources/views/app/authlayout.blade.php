@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
         <!-- HTTP -->
-        <script src = "{!! asset('/js/jquery-2.1.1.min.js') !!}"></script>
+        <script src = "{!! asset('/js/jquery.min.js') !!}"></script>
 
         <!-- HTTPS -->
-        <script src = "{!! secure_asset('/js/jquery-2.1.1.min.js') !!}"></script>
+        <script src = "{!! secure_asset('/js/jquery.min.js') !!}"></script>
 
 
         <!-- Fonts and style rules -->

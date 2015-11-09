@@ -14,8 +14,10 @@ class OauthController extends Controller
     /**
      * Social ouath login/registration
      *
-     * @param  Request $request  [description]
-     * @param  [type]  $provider [description]
+     * @param  $request
+     * @param  $provider
+     *
+     * @return  [object]
      */
     public function getSocialRedirect(Request $request, $provider )
     {
@@ -26,21 +28,27 @@ class OauthController extends Controller
         $userData = $this->getOauthID($provider);
         if(is_null($this->checkUserExist($userData, $provider)))
         {
-            return $this->findByIDorCreate($userData, $provider);
+            return $this->socialFunction($userData, $provider);
         }
-        $user = $this->findByIDorCreate($this->getOauthID($provider), $provider);
-
+        $user = $this->findByIDorCreate($userData, $provider);
         Auth::login($user, true);
-
         return $this->userHasLoggedIn();
     }
 
+    /**
+     * checkUserExist Check if user details already exist
+     * @param  $value
+     * @param  $provider
+     *
+     * @return [object]
+     */
     public function checkUserExist($value, $provider)
     {
         $columnName  = $provider.'ID';
-        $user = User::where($columnName, $value->getId())->first();
+        $user = User::where($columnName, $value->getId())->orWhere('email', $value->getEmail())->first();
         return $user;
     }
+
     /**
      * getOauthID Get the social account details
      *
@@ -65,44 +73,42 @@ class OauthController extends Controller
      *
      * @param  $userData
      * @param  $provider
+     *
+     * @return [object]
      */
     public function findByIDorCreate($userData, $provider)
     {
         $columnName  = $provider.'ID';
-        $user = User::where('email', $userData->getEmail())->orWhere($columnName, $userData->getId())->first();
+        $user = $this->checkUserExist($userData, $provider);
 
-        if( $user){
+        if( $user )
+        {
             User::where('id', $user->id)->update([$columnName => $userData->getId()]);
             return $user;
         }
-        return $this->socialFunction($userData);
     }
 
+    /**
+     * socialFunction Get Social login type
+     *
+     * @param  $userData
+     * @param  $provider
+     */
     public function socialFunction($userData, $provider)
     {
-        if($provider == "github"){
-            return $this->insertGithub($userData);
-        }
-        elseif($provider == "facebook"){
-            return $this->insertFacebook($userData);
-        }
-        elseif($provider == "twitter"){
-            return $this->insertTwitter($userData);
-        }
+        return $this->getSocialData($userData, $provider);
     }
 
-    public function insertGithub($userData)
-    {
-        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => $userData->getId(), 'facebook' => 0, 'twitter' => 0]);
+    /**
+     * getSocialData
+     *
+     * @param  $userData
+     * @param  $provider
+     */
+    protected function getSocialData($userData, $provider) {
+        $array = ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => 0];
+        $array[$provider] = $userData->getId();
+        return view('app.pages.signup', $array);
     }
 
-    public function insertFacebook($userData)
-    {
-        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => $userData->getId(), 'twitter' => 0]);
-    }
-
-    public function insertTwitter($userData)
-    {
-        return view('app.pages.signup', ['email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => $userData->getId()]);
-    }
 }

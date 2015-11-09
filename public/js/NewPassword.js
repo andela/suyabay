@@ -53,7 +53,7 @@ function passwordLengthError()
  */
 function postSuccess (response) {
     if(response == 401){
-        swal("Error", "Error Processing request!!!", "error");
+        postFailError();
     }else{
         swal({
             title: "Done",
