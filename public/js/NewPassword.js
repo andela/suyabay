@@ -105,9 +105,10 @@ $(document).ready(function(){
     });
 
     //On form submit
-    $("#new_password_form").on("submit", function(){
+    $("#new_password_form").on("submit", function(e){
+        e.preventDefault();
         swal("Proccessing Request!");
-        var url   =  "/password/resetGetEmail";
+        var url   =  "password/resetGetEmail";
         var email = $("#email").val();
         var token = $("#token").val();
         var newPassword = $("#password_confirmation").val();

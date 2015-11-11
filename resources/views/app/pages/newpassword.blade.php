@@ -21,9 +21,9 @@
 
         <div class="row">
 
-            <form class="col s12" id="new_password_form" action="/password/resetGetEmail" method="POST">
+            <form class="col s12" id="new_password_form">
             {!! csrf_field() !!}
-                <input type="hidden" name="token" id="token" value="{!! $token !!}" />
+                <input type="hidden" name="token" id="token" value="{{ $token }}" />
 
                 <div class="row">
                     <div class="input-field col s12">

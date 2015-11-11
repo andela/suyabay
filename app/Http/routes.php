@@ -66,7 +66,7 @@ Route::get('password/reset/{token}', [
 ]);
 // #resetGetEmail
 
-Route::post('/password/resetGetEmail', [
+Route::post('password/resetGetEmail', [
     'uses' => 'Auth\PasswordController@postResetCheckEmail',
     'as'   => 'postpasswordresetCheckEmail'
 ]);
