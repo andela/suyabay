@@ -24,14 +24,16 @@ function ajaxLogic ( data, response, functionName )
           case "register" : registerErrorAlert(); break;
         }
     }
-    else if ( functionName == 'register' )
+
+    else if ( response.status_code === 200)
     {
-        registerSuccessAlert(data)
+        switch (functionName)
+        {
+          case "login"    :  window.location="/"; break;
+          case "register" :  registerSuccessAlert(data); break;
+        }
     }
-    else
-    {
-      window.location="/";
-    }
+
 }
 
 
@@ -45,7 +47,7 @@ function ajaxLogic ( data, response, functionName )
 function ajaxCall ( data, functionName )
 {
     $('.loader').show();
-    $.post( window.location.hostname/data.url, data.parameter)
+    $.post( data.url, data.parameter )
     .done(function(response)
     {
       ajaxLogic( data, response, functionName );
@@ -112,6 +114,8 @@ function register ()
   var token     = $('#token').val();
   var username  = $('#username').val();
   var password  = $('#password').val();
+  var facebook  = $('#facebook').val();
+  var twitter   = $('#twitter').val();
 
   var data =
     {
@@ -121,7 +125,9 @@ function register ()
           _token      : token,
           email       : email,
           username    : username,
-          password    : password
+          password    : password,
+          facebook    : facebook,
+          twitter     : twitter
         }
     }
     preventFormDefault('.form')
@@ -161,14 +167,14 @@ function login ()
 
 function checkItem (data)
 {
-  
+
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("oppss", "Some required field not set!", "error")  
+        swal("oppss", "Some required field not set!", "error")
         end();
       }
 
-      if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) ) 
+      if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) )
       {
           swal("Oppss", "Invalid email", "error")
           end();
@@ -178,7 +184,7 @@ function checkItem (data)
 /*
 | Prevent element Default action
 */
-function preventFormDefault (element) 
+function preventFormDefault (element)
 {
   $(element).submit(function(e)
   {
@@ -189,7 +195,7 @@ function preventFormDefault (element)
 /*
 | Clears field
 */
-function clearField () 
+function clearField ()
 {
   $('#email').val('');
   $('#token').val('');

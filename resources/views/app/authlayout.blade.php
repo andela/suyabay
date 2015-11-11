@@ -6,6 +6,7 @@
 
         <!-- View port-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="_token" content="{{ csrf_token() }}" />
 
         <!-- HTTP -->
         <script src = "{!! asset('/js/jquery.min.js') !!}"></script>
@@ -48,6 +49,14 @@
 
         <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
         <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
+
+        <link href = "{!! asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
+        <script type="text/javascript" src = "{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+
+        <script type="text/javascript" src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/NewPassword.js') !!}"></script>
+
 
     </head>
     <body>

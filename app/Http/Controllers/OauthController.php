@@ -106,7 +106,7 @@ class OauthController extends Controller
      * @param  $provider
      */
     protected function getSocialData($userData, $provider) {
-        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'github' => 0, 'facebook' => 0, 'twitter' => 0];
+        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
         return view('app.pages.signup', $array);
     }

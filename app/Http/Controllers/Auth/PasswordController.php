@@ -109,7 +109,7 @@ class PasswordController extends Controller
         $response = [];
         if(is_null($status))
         {
-            return $response =
+            $response =
             [
                 "message"       => "Invalid",
                 "status_code"   => 401,
@@ -120,10 +120,10 @@ class PasswordController extends Controller
             $credentials = $request->only(
                 'email', 'password', 'password_confirmation', 'token'
             );
-
             $response = Password::reset($credentials, function ($user, $password) {
-                $this->resetPassword($user, $password);
+               $this->resetPassword($user, $password);
             });
         }
+        return $response;
     }
 }

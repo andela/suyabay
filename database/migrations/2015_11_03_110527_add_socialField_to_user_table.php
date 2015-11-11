@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGithubIDToUserTable extends Migration
+class AddSocialFieldToUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,6 @@ class AddGithubIDToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('githubID')->default(0);
             $table->bigInteger('facebookID')->default(0);
             $table->bigInteger('twitterID')->default(0);
         });
