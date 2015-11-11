@@ -145,6 +145,43 @@
     margin: 25% 50%;
 }
 
+.bubble-content {
+   position:relative;
+   float:left;
+   margin-left:12px;
+   width:93%;
+   padding:0px 20px;
+   border-radius:10px;
+   background-color:#FFFFFF;
+   box-shadow:1px 1px 5px rgba(0,0,0,.2);
+   }
+.bubble {
+     margin-top:20px;
+     }
+.point {
+   border-top:10px solid transparent;
+   border-bottom:10px solid transparent;
+          border-right: 12px solid #FFF;
+   position:absolute;
+   left:-10px;
+   top:12px;
+   }
+.clearfix:after {
+      visibility:hidden;
+      display:block;
+      font-size:0;
+      content: ".";
+      clear:both;
+      height:0;
+      line-height:
+      }
+.clearfix {
+      display: inline-block;
+      }
+* html .clearfix {
+         height: 1%;
+         }
+
 /*over-writes*/
 .collapsible-header {
     background-color: #F6F7F8;
@@ -175,4 +212,6 @@
 .footer-copyright{
     background-color:#2C3E50!important;
 }
-
+.audiojs{
+    width:100%!important;
+}
