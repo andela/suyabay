@@ -20,13 +20,22 @@ $factory->define(Suyabay\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(Suyabay\Channel::class, function (Faker\Generator $faker) {
+    return [
+        'channel_name'        => $faker->name,
+        'channel_description' => $faker->sentence,
+        'subscription_count'  => 10,
+    ];
+});
+
 $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
-            return [
-                'episode_name'        => $faker->name,
-                'episode_description' => $faker->sentence,
-                'view_count'          => 10,
-                'image'               => "http://goo.gl/pm9GOw",
-                'audio_mp3' => "http://goo.gl/LkNP5M",
-                'channel_id' => 2,
-            ];
-        });
+    return [
+        'episode_name'          => $faker->name,
+        'episode_description'   => $faker->sentence,
+        'view_count'            => 10,
+        'image'                 => "http://goo.gl/pm9GOw",
+        'audio_mp3'             => "http://goo.gl/LkNP5M",
+        'channel_id'            => 1,
+    ];
+});
+
