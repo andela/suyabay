@@ -56,7 +56,6 @@ class AuthController extends Controller
             'email'         => $data['email'],
             'username'      => $data['username'],
             'password'      => bcrypt($data['password']),
-            'githubID'      => $data['github'],
             'facebookID'    => $data['facebook'],
             'twitterID'     => $data['twitter']
         ]);
@@ -99,18 +98,18 @@ class AuthController extends Controller
         {
             return $response =
             [
-                "message"       => "registration failed",
-                "status_code"   => 401,
-                "info" =>
-                [
-                    "email"     => $email,
-                    "username"  => $username
-                ]
+                "message"       => "Registration Failed",
+                "status_code"   => 401
             ];
         }
         else
         {
-            return $this->create($request->all());
+            $this->create($request->all());
+            return $response =
+            [
+                "message"       => "Registration Successful",
+                "status_code"   => 200
+            ];
         }
     }
 

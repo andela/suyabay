@@ -46,15 +46,14 @@
                 <i class="material-icons prefix">lock_outline</i>
                     <input id="password" type="password" name="password" class="validate" />
                     <label for="password">Password</label>
+                    <input type="hidden" name="facebook" id="facebook" value="{{ isset($facebook) ? $facebook : '0' }}">
+                    <input type="hidden" name="twitter" id="twitter" value="{{ isset($twitter) ? $twitter : '0' }}">
             </div>
 
             <div>
                 <p class="left">
                     <input type="checkbox" class="filled-in" id="remember-me" checked="checked" />
                     <label for="remember-me">Remember Me</label>
-                    <input type="hidden" name="github" value="{{ isset($github) ? $github : '0' }}">
-                    <input type="hidden" name="facebook" value="{{ isset($facebook) ? $facebook : '0' }}">
-                    <input type="hidden" name="twitter" value="{{ isset($twitter) ? $twitter : '0' }}">
                 </p>
 
                 <button class="waves-effect waves-light btn right" onclick="register()">

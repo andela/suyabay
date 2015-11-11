@@ -49,6 +49,14 @@
         <script src = "{!! asset('/js/audioplayer.js') !!}"></script>
         <script src = "{!! secure_asset('/js/audioplayer.js') !!}"></script>
 
+        <link href = "{!! asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
+        <script type="text/javascript" src = "{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+
+        <script type="text/javascript" src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/NewPassword.js') !!}"></script>
+
+
     </head>
     <body>
 
