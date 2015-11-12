@@ -60,8 +60,51 @@
             <div class="col s12 m6 l12 card-social">
 
             <!-- start social -->
-                <!-- put social here -->
-            <!-- end social -->
+                <div style="color:#999;">
+                    <p>
+                        <span style="padding-right:15px;">
+                            <i class="fa fa-compass"> 200</i>
+                        </span>
+                        <span style="padding-right:15px;">
+                            <i class="fa fa-heart"> 200</i>
+                        </span>
+                        <span style="padding-right:15px;">
+                            <i class="fa fa-share-alt"> 200</i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="col s12 m6 l12 card-social">
+                <div>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header" style="color:#999;padding-left:15px;">
+                                comments
+                            </div>
+                            <div class="collapsible-body">
+                                <ul class="collection">
+                                    <li class="collection-item avatar">
+                                        <span>
+                                            <img src="http://res.cloudinary.com/suyabay/image/facebook/serenawilliams.jpg" alt="" class="circle">
+                                        </span>
+                                        <span class="bubble-content" style="color:#999;margin-left:40px;">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae, semper eleifend ipsum.
+                                                <div class="point"></div>
+                                        </span>
+                                    </li>
+                                    <li class="collection-item avatar">
+                                        <span>
+                                            <img src="http://res.cloudinary.com/suyabay/image/facebook/billclinton.jpg" alt="" class="circle">
+                                        </span>
+                                        <span class="bubble-content" style="color:#999;margin-left:40px;">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae, semper eleifend ipsum.
+                                                <div class="point"></div>
+                                        </span>
+                                    </li>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <!-- end card -->

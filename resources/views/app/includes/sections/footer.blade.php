@@ -32,15 +32,20 @@
 
             <div class="col l4 offset-l2 s12">
                 <h5>About</h5>
-                <small>
-                    Suyabay is a podcasting application for suya lovers all over the world. The purpose of this web app is to help suya lovers find new podcasts and contents like suya DIYs and recipies and informatin.
-                </small>
+                <div style="margin-bottom:50px;">
+                    <small>
+                        Suyabay is a podcasting application for suya lovers all over the world. The purpose of this web app is to help suya lovers find new podcasts and contents like suya DIYs and recipies and informatin.
+                    </small>
+                </div>
 
                 <h5>Disclaimer</h5>
-                <small>
-                    All trademarks and registered trademarks appearing on Suyabay are the property
-                    of their respective owners.
-                </small>
+                <div>
+                    <small>
+                        All trademarks and registered trademarks appearing on Suyabay are the property
+                        of their respective owners.
+                    </small>
+                </div>
+
             </div>
         </div>
     </div>
