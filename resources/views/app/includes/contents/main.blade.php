@@ -69,7 +69,13 @@
                             <i class="fa fa-heart"> 50</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-share-alt"> 20</i>
+                            <i class="fa fa-facebook"></i>
+                        </span>
+                        <span style="padding-right:15px;">
+                            <i class="fa fa-twitter"></i>
+                        </span>
+                        <span style="padding-right:15px;">
+                            <i class="fa fa-google-plus"></i>
                         </span>
                     </p>
                 </div>
