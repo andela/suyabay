@@ -63,13 +63,13 @@
                 <div style="color:#999;">
                     <p>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-compass"> 200</i>
+                            <i class="fa fa-compass"> 30</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart"> 200</i>
+                            <i class="fa fa-heart"> 50</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-share-alt"> 200</i>
+                            <i class="fa fa-share-alt"> 20</i>
                         </span>
                     </p>
                 </div>
@@ -79,34 +79,52 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header" style="color:#999;padding-left:15px;">
-                                comments
+                                <b>Comments</b>
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
+                                @if (  Auth::check() )
+                                    <li class="collection-item avatar">
+                                        <div class="row">
+                                            <div class="col s2">
+                                                <img src="https://goo.gl/IJSkVB" alt="" class="circle">
+                                            </div>
+                                            <div class="col s10">
+                                                <textarea class="textarea-wrapper" placeholder="">
+                                                    Join the conversation...
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @else
                                     <li class="collection-item avatar">
                                         <span>
-                                            <img src="http://res.cloudinary.com/suyabay/image/facebook/serenawilliams.jpg" alt="" class="circle">
+                                        <i class="fa fa-user fa-2x circle"></i>
                                         </span>
-                                        <span class="bubble-content" style="color:#999;margin-left:40px;">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae, semper eleifend ipsum.
-                                                <div class="point"></div>
+                                        <span style="color:#999;margin-left:40px;">
+                                            Only logged in users can comment.
+                                            <div class="point"></div>
                                         </span>
                                     </li>
+                                @endif
                                     <li class="collection-item avatar">
-                                        <span>
-                                            <img src="http://res.cloudinary.com/suyabay/image/facebook/billclinton.jpg" alt="" class="circle">
-                                        </span>
-                                        <span class="bubble-content" style="color:#999;margin-left:40px;">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae, semper eleifend ipsum.
-                                                <div class="point"></div>
-                                        </span>
+                                        <div class="row">
+                                            <div class="col s2">
+                                                <img src="https://goo.gl/lVRGjF" alt="" class="circle">
+                                            </div>
+                                            <div class="col s10">
+                                                <div class="textarea-wrapper" placeholder="">
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae.
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
         <!-- end card -->
 
         @empty

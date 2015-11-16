@@ -145,16 +145,33 @@
     margin: 25% 50%;
 }
 
+.textarea-wrapper {
+    color: rgba(0,39,59,.35);
+    line-height: 30px;
+    position: absolute;
+    white-space: nowrap;
+    width: 90%;
+    height: auto;
+    overflow: hidden;
+    cursor: text;
+    margin: 0 0 0 20px;
+    padding-left: 10px;
+    background: #fff;
+    border: 2px solid #cbd2d6;
+    border: 2px solid rgba(0,39,59,.2);
+    border-radius: 4px;
+}
+
 .bubble-content {
-   position:relative;
-   float:left;
-   margin-left:12px;
-   width:93%;
-   padding:0px 20px;
-   border-radius:10px;
-   background-color:#FFFFFF;
-   box-shadow:1px 1px 5px rgba(0,0,0,.2);
-   }
+    position:relative;
+    float:left;
+    margin-left:12px;
+    width:100%;
+    padding:0px 20px;
+    border-radius:10px;
+    background-color:#FFFFFF;
+    box-shadow:1px 1px 5px rgba(0,0,0,.2);
+}
 .bubble {
      margin-top:20px;
      }
