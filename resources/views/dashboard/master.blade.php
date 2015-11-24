@@ -25,6 +25,8 @@
         <!-- HTTPS -->
         <link href="{!! secure_asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
 
+        <link href = "{!! asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
+        <link href = "{!! secure_asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
 
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -60,7 +62,7 @@
     <body>
 
         <div class="row">
-            @include('dashboard.includes.sections.header')
+            @include('app.includes.sections.top_nav')
         </div>
 
         <div class="row">

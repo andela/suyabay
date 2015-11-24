@@ -27,9 +27,10 @@ Navigations Styles
 .nav-container
 {
 	..display: none;
-	..background: gray;
 	..margin-top: -100px;
+	..background: gray;
 	height: 100vh!important;
+
 }
 
 .nav-container:hover
@@ -39,20 +40,10 @@ Navigations Styles
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+ # Side Page Styles
+ =====================
+*/
 .panel-container span p {
 	font-size: 20px;
 	margin: 0px;
@@ -60,58 +51,16 @@ Navigations Styles
 
 .tab-container{
 	margin-top: 50px;
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
  # Episode Page Styles
  =====================
 */
-
 .episode-icon{
 	margin: 5px;
 }
-
-
-
 
 
 /*
@@ -125,11 +74,10 @@ Navigations Styles
 
 
 
-
-
-
-
-
+/*
+ # 
+ =====================
+*/
 @media (max-width: 600px) {
 
 	.nav-container

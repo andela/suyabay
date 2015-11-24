@@ -6,7 +6,7 @@
                 <li>
                     <div class="collapsible-header">
                         <i class="material-icons">store</i>
-                        <a href="/admin" class="collection-item">Home<span class="badge"></span></a>
+                        <a href="/" class="collection-item">Home<span class="badge"></span></a>
                     </div>
                 </li>
 
@@ -17,7 +17,7 @@
                         <i class="material-icons">video_library</i>
                         <a href="#!" class="collection-item">Episodes<span class="badge"></span></a>
                     </div>
-                    <div class="collapsible-body">
+                    <div class="collapsible-body" style="border-color: transparent;">
                         <ul class="collapsible" data-collapsible="accordion" style="border-color: transparent; ">    
                             
                             <li>
@@ -43,7 +43,7 @@
                         <i class="material-icons">filter_drama</i>
                         <a href="#!" class="collection-item">Channels<span class="badge"></span></a>
                     </div>
-                    <div class="collapsible-body">
+                    <div class="collapsible-body" style="border-color: transparent;">
                         <ul class="collapsible" data-collapsible="accordion" style="border-color: transparent; ">    
                             
                             <li>
@@ -69,7 +69,7 @@
                         <i class="material-icons">supervisor_account</i>
                         <a href="#!" class="collection-item">Account<span class="badge"></span></a>
                     </div>
-                    <div class="collapsible-body">
+                    <div class="collapsible-body" style="border-color: transparent;">
                         <ul class="collapsible" data-collapsible="accordion" style="border-color: transparent; ">    
                             
                             <li>
@@ -100,12 +100,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
