@@ -37,6 +37,7 @@ Route::get('faqs', 'PagesController@faqs');
 */
 
 Route::get('privacypolicy', 'PagesController@privacypolicy');
+
 /*
 /-------------------------------------------------------------------------------
 / Password reset link request
@@ -58,14 +59,13 @@ Route::post('password/email', [
     'as'   => 'passwordreset'
 ]);
 
-
 // Password reset routes...
 Route::get('password/reset/{token}', [
     'uses' =>'Auth\PasswordController@getResetPage',
     'as'   => 'passwordresetpage'
 ]);
-// #resetGetEmail
 
+// #resetGetEmail
 Route::post('password/resetGetEmail', [
     'uses' => 'Auth\PasswordController@postResetCheckEmail',
     'as'   => 'postpasswordresetCheckEmail'
@@ -137,8 +137,6 @@ Route::get('logout', [
 / Admin
 /-------------------------------------------------------------------------------
 */
-
-//Route::get('admin', 'AdminController@index');
 
 Route::get('dashboard', function(){
     return view('dashboard.pages.index');
