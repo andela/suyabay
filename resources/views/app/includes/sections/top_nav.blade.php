@@ -33,7 +33,7 @@
                 <li>
                     @if (  Auth::check() )
                     <a class="waves-effect" href="#">{{Auth::user()->username}}</a>
-                    <a class="waves-effect" href="/admin">Admin Dashboard</a>
+                    <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                     <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
                     @else
                     <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>

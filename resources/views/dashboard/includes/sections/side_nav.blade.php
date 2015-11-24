@@ -23,14 +23,14 @@
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">chat_bubble_outline</i>
-                                    <a href="/admin/create_episode" class="collection-item">Create<span class="badge"></span></a>
+                                    <a href="/dashboard/create_episode" class="collection-item">Create<span class="badge"></span></a>
                                 </div>
                             </li>
                             
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">visibility</i>
-                                    <a href="/admin/view_episodes" class="collection-item">View<span class="badge"></span></a>
+                                    <a href="/dashboard/view_episodes" class="collection-item">View<span class="badge"></span></a>
                                 </div>
                             </li> 
                         </ul>
@@ -49,14 +49,14 @@
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">chat_bubble_outline</i>
-                                    <a href="/admin/create_channel" class="collection-item">Create<span class="badge"></span></a>
+                                    <a href="/dashboard/create_channel" class="collection-item">Create<span class="badge"></span></a>
                                 </div>
                             </li>
                             
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">visibility</i>
-                                    <a href="/admin/view_channels" class="collection-item">View<span class="badge"></span></a>
+                                    <a href="/dashboard/view_channels" class="collection-item">View<span class="badge"></span></a>
                                 </div>
                             </li> 
                         </ul>
@@ -75,14 +75,14 @@
                             <li>
                                 <div class="collapsible-header">
                                     <i class="fa fa-users"></i>
-                                    <a href="/admin/user" class="collection-item">users<span class="badge"></span></a>
+                                    <a href="/dashboard/user" class="collection-item">users<span class="badge"></span></a>
                                 </div>
                             </li>
 
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">recent_actors</i>
-                                    <a href="/admin/create_user" class="collection-item">Create<span class="badge"></span></a>
+                                    <a href="/dashboard/create_user" class="collection-item">Create<span class="badge"></span></a>
                                 </div>
                             </li>
                             
