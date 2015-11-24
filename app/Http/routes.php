@@ -87,7 +87,6 @@ Route::post('login', [
     'as'   => 'login'
 ]);
 
-
 /*
 /-------------------------------------------------------------------------------
 / Social Authentication
@@ -133,4 +132,79 @@ Route::get('logout', [
     'as'    => 'logout'
 ]);
 
+/*
+/-------------------------------------------------------------------------------
+/ Admin
+/-------------------------------------------------------------------------------
+*/
 
+//Route::get('admin', 'AdminController@index');
+
+
+
+
+
+Route::get('admin', function(){
+    return view('dashboard.pages.index');
+});
+
+Route::get('admin/user', function(){
+    return view('dashboard.pages.user');
+});
+
+Route::get('admin/edit_user', function(){
+    return view('dashboard.pages.edit_user');
+});
+
+
+
+
+
+Route::get('admin/create_episode', function(){
+    return view('dashboard.pages.create_episode');
+});
+
+Route::get('admin/view_episodes', function(){
+    return view('dashboard.pages.view_episodes');
+});
+
+Route::get('admin/edit_episode', function(){
+    return view('dashboard.pages.edit_episode');
+});
+
+
+
+
+
+
+
+
+
+
+
+Route::get('admin/create_channel', function(){
+    return view('dashboard.pages.create_channel');
+});
+
+Route::get('admin/view_channels', function(){
+    return view('dashboard.pages.view_channels');
+});
+
+Route::get('admin/edit_channel', function(){
+    return view('dashboard.pages.edit_channel');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('admin/create_user', function(){
+    return view('dashboard.pages.create_user');
+});
