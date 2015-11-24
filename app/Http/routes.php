@@ -140,11 +140,7 @@ Route::get('logout', [
 
 //Route::get('admin', 'AdminController@index');
 
-
-
-
-
-Route::get('admin', function(){
+Route::get('dashboard', function(){
     return view('dashboard.pages.index');
 });
 
@@ -155,10 +151,6 @@ Route::get('admin/user', function(){
 Route::get('admin/edit_user', function(){
     return view('dashboard.pages.edit_user');
 });
-
-
-
-
 
 Route::get('admin/create_episode', function(){
     return view('dashboard.pages.create_episode');
@@ -172,16 +164,6 @@ Route::get('admin/edit_episode', function(){
     return view('dashboard.pages.edit_episode');
 });
 
-
-
-
-
-
-
-
-
-
-
 Route::get('admin/create_channel', function(){
     return view('dashboard.pages.create_channel');
 });
@@ -193,17 +175,6 @@ Route::get('admin/view_channels', function(){
 Route::get('admin/edit_channel', function(){
     return view('dashboard.pages.edit_channel');
 });
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('admin/create_user', function(){
     return view('dashboard.pages.create_user');
