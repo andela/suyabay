@@ -3,7 +3,7 @@
 
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('prosper.png') }}">
+                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('images/prosper.png') }}">
             </div>
             
             <div class="card-content center-align">
@@ -15,7 +15,7 @@
     
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('ib.png') }}">
+                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('images/ib.png') }}">
             </div>
             
             <div class="card-content center-align">
@@ -27,7 +27,7 @@
 
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('flow.png') }}">
+                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('images/flow.png') }}">
             </div>
             
             <div class="card-content center-align">
@@ -39,7 +39,7 @@
 
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('emeka.png') }}">
+                <img style="border-radius: 360px;" class="activator user-avater" src="{{ asset('images/emeka.png') }}">
             </div>
             
             <div class="card-content center-align">
