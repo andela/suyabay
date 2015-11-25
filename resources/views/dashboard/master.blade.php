@@ -36,9 +36,6 @@
 
         <script src = "{!! load_asset('/js/dashboard.js') !!}"></script>
 
-        <link href = "{!! load_asset('/css/dashboard.css') !!}" rel='stylesheet' type="text/css">
-
-
     </head>
     <body>
 

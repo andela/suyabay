@@ -232,3 +232,99 @@
 .audiojs{
     width:100%!important;
 }
+
+
+
+/*
+# Dashboard Styles
+===============================================
+*/
+
+::-webkit-scrollbar
+{
+  width: 2px;  /* for vertical scrollbars */
+  height: 10px; /* for horizontal scrollbars */
+  border-radius: 10%;
+}
+
+::-webkit-scrollbar-track
+{
+  background: #2C3E50;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #2C3E50;
+}
+
+body
+{
+    .overflow-y: hidden;    
+}
+
+
+/*
+Navigations Styles
+*/
+.nav-container
+{
+    ..display: none;
+    ..margin-top: -100px;
+    ..background: gray;
+    height: 100vh!important;
+
+}
+
+.nav-container:hover
+{
+    overflow-y: vertical;   
+    overflow-y: scroll; 
+}
+
+
+/*
+ # Side Page Styles
+ =====================
+*/
+.panel-container span p {
+    font-size: 20px;
+    margin: 0px;
+}
+
+.tab-container{
+    margin-top: 50px;
+}
+
+
+/*
+ # Episode Page Styles
+ =====================
+*/
+.episode-icon{
+    margin: 5px;
+}
+
+
+/*
+ # User Page Styles
+ =====================
+*/
+.user-name{
+    font-size: 15px;
+}
+
+/*
+ # 
+ =====================
+*/
+@media (max-width: 600px) {
+
+    .nav-container
+    {
+        display: none;
+    }
+}
+
+
+
+
