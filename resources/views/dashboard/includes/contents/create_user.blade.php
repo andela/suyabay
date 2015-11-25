@@ -29,21 +29,9 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Avater</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
-                </div>
                 
                 <center>
-                    <a class="waves-effect waves-light btn" onclick="registerUser()"><i class="material-icons left">add</i>Create User</a>
+                    <a class="waves-effect waves-light btn" onclick="registerUser()"><i class="material-icons left">add</i>Send Invite</a>
                 </center>
             
             </form>

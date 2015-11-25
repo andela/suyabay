@@ -18,7 +18,7 @@
 function registerUser () 
 {
 	swal("Registration Complete", "", "success")
-	window.location = "/admin";
+	window.location = "/dashboard";
 }
 
 /*

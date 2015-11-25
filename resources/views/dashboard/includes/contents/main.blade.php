@@ -110,7 +110,6 @@
             # Pending Episode
             -->
             <div id="test2" class="col s12 tab-container">
-
                 <table class="striped">
                     <thead>
                         <tr>
@@ -125,15 +124,15 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
-                            <td>$0.87</td>
-                            <td>      
-                                <select  class="browser-default">
+                            <td>How to Ginger the Suya</td>
+                            <td>Andela Suaya Lovers</td>
+                            <td>12 days ago</td>
+                            <td width="150px;">      
+                                <select id="emeka" class="browser-default" onclick="emeka()">
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    <option value="1">View</option>
+                                    <option value="delete">Delete</option>
+                                    <option value="1">Active</option>
                                 </select>
                             </td>
                         </tr>
@@ -145,7 +144,6 @@
             # Active Episode
             -->
             <div id="test3" class="col s12 tab-container">
-
                 <table class="striped">
                     <thead>
                         <tr>
@@ -160,21 +158,22 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
-                            <td>$0.87</td>
-                            <td>      
-                                <select  class="browser-default">
+                            <td>How to Ginger the Suya</td>
+                            <td>Andela Suaya Lovers</td>
+                            <td>12 days ago</td>
+                            <td width="150px;">      
+                                <select id="emeka" class="browser-default" onclick="emeka()">
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    <option value="1">View</option>
+                                    <option value="delete">Delete</option>
+                                    <option value="1">Active</option>
                                 </select>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
     

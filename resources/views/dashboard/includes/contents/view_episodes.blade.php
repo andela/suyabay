@@ -16,7 +16,7 @@
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Andela Suya Lovers<i class="material-icons right">close</i></span>
                 <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                <a href="/admin/edit_episode" class="waves-effect waves-light btn">Edit</a>  
+                <a href="/dashboard/episode/edit" class="waves-effect waves-light btn">Edit</a>  
                 <a class="waves-effect waves-light btn" onclick="deleteEpisode()">Delete</a>  
             </div>
             <br>

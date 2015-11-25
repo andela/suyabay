@@ -31,8 +31,8 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <input value="episode description from database" disabled. id="disabled" type="text" class="validate">
-                    <label for="disabled">Description</label>
+                    <input value="episode description from database" disabled. id="disabled" type="text" class="validate" placeholder="Episode Description">
+                    <label for="disabled">Episode Description</label>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                 </div>
                 
                 <center>
-                    <a href="/admin/view_episodes" class="waves-effect waves-light btn"><i class="material-icons right"></i>Create</a>
+                    <a href="/dashboard/episodes" class="waves-effect waves-light btn"><i class="material-icons right"></i>Update</a>
                 </center>
             </form>
         </div>
