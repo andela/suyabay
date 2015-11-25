@@ -33,6 +33,7 @@
                 <li>
                     @if (  Auth::check() )
                     <a class="waves-effect" href="#">{{Auth::user()->username}}</a>
+                    <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                     <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
                     @else
                     <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
@@ -86,16 +87,3 @@
         </div>
     </nav>
 </div>
-
-
- <div class="loader preloader-wrapper big active">
-    <div class="spinner-layer spinner-blue-only">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div>

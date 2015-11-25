@@ -37,6 +37,7 @@ Route::get('faqs', 'PagesController@faqs');
 */
 
 Route::get('privacypolicy', 'PagesController@privacypolicy');
+
 /*
 /-------------------------------------------------------------------------------
 / Password reset link request
@@ -58,14 +59,13 @@ Route::post('password/email', [
     'as'   => 'passwordreset'
 ]);
 
-
 // Password reset routes...
 Route::get('password/reset/{token}', [
     'uses' =>'Auth\PasswordController@getResetPage',
     'as'   => 'passwordresetpage'
 ]);
-// #resetGetEmail
 
+// #resetGetEmail
 Route::post('password/resetGetEmail', [
     'uses' => 'Auth\PasswordController@postResetCheckEmail',
     'as'   => 'postpasswordresetCheckEmail'
@@ -86,7 +86,6 @@ Route::post('login', [
     'uses' => 'Auth\AuthController@postLogin',
     'as'   => 'login'
 ]);
-
 
 /*
 /-------------------------------------------------------------------------------
@@ -133,4 +132,52 @@ Route::get('logout', [
     'as'    => 'logout'
 ]);
 
+/*
+/-------------------------------------------------------------------------------
+/ Admin
+/-------------------------------------------------------------------------------
+*/
 
+Route::group(['prefix' => 'dashboard'], function () {
+
+    Route::get('/', function () {
+        return view('dashboard.pages.index');
+    });
+
+    Route::get('/user', function () {
+        return view('dashboard.pages.user');
+    });
+
+    Route::get('/edit_user', function () {
+        return view('dashboard.pages.edit_user');
+    });
+
+    Route::get('/create_episode', function () {
+        return view('dashboard.pages.create_episode');
+    });
+
+    Route::get('/view_episodes', function () {
+        return view('dashboard.pages.view_episodes');
+    });
+
+    Route::get('/edit_episode', function () {
+        return view('dashboard.pages.edit_episode');
+    });
+
+    Route::get('/create_channel', function () {
+        return view('dashboard.pages.create_channel');
+    });
+
+    Route::get('/view_channels', function () {
+        return view('dashboard.pages.view_channels');
+    });
+
+    Route::get('/edit_channel', function () {
+        return view('dashboard.pages.edit_channel');
+    });
+
+    Route::get('/create_user', function () {
+        return view('dashboard.pages.create_user');
+    });
+    
+});
