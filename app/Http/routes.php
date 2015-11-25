@@ -138,48 +138,46 @@ Route::get('logout', [
 /-------------------------------------------------------------------------------
 */
 
+Route::group(['prefix' => 'dashboard'], function () {
 
-Route::group(['as' => 'dashboard'], function () {
-
-    Route::get('dashboard', ['as' => 'dashboard', function () {
+    Route::get('/', function () {
         return view('dashboard.pages.index');
-    }]);
+    });
 
-    Route::get('dashboard/user', function () {
+    Route::get('/user', function () {
         return view('dashboard.pages.user');
     });
 
-    Route::get('dashboard/edit_user', function () {
+    Route::get('/edit_user', function () {
         return view('dashboard.pages.edit_user');
     });
 
-    Route::get('dashboard/create_episode', function () {
+    Route::get('/create_episode', function () {
         return view('dashboard.pages.create_episode');
     });
-    
-    Route::get('dashboard/view_episodes', function () {
+
+    Route::get('/view_episodes', function () {
         return view('dashboard.pages.view_episodes');
     });
 
-    Route::get('dashboard/edit_episode', function () {
+    Route::get('/edit_episode', function () {
         return view('dashboard.pages.edit_episode');
     });
 
-    Route::get('dashboard/create_channel', function () {
+    Route::get('/create_channel', function () {
         return view('dashboard.pages.create_channel');
     });
 
-    Route::get('dashboard/view_channels', function () {
+    Route::get('/view_channels', function () {
         return view('dashboard.pages.view_channels');
     });
 
-    Route::get('dashboard/edit_channel', function () {
+    Route::get('/edit_channel', function () {
         return view('dashboard.pages.edit_channel');
     });
 
-    Route::get('dashboard/create_user', function () {
+    Route::get('/create_user', function () {
         return view('dashboard.pages.create_user');
     });
-
-
+    
 });

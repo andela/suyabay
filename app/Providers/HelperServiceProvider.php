@@ -12,8 +12,9 @@ class HelperServiceProvider extends ServiceProvider
    * @return void
    */
   public function boot() {
-    //
+    
   }
+
   /**
    * Register the application services.
    *
