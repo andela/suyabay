@@ -155,7 +155,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/user/create', function () {
         return view('dashboard.pages.create_user');
     });
-    
+
     Route::get('/episodes', function () {
         return view('dashboard.pages.view_episodes');
     });
@@ -168,17 +168,45 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.pages.edit_episode');
     });
 
-    Route::get('/channels', function () {
-        return view('dashboard.pages.view_channels');
-    });
+Route::get('/channels', [
+    'uses' => 'ChannelController@index',
+    'as'   => 'admin/channel'
+]);
 
-    Route::get('/channel/create', function () {
-        return view('dashboard.pages.create_channel');
-    });
+Route::get('/channel/create', [
+    'uses' => 'ChannelController@createIndex',
+    'as'   => 'admin/channel'
+]);
+Route::post('/channel/create', [
+    'uses' => 'ChannelController@processCreate',
+    'as'   => 'admin/channel'
+]);
+Route::get('/channel/edit/{id}', [
+    'uses' => 'ChannelController@edit',
+    'as'   => 'admin/channel/edit/{id}'
+]);
+Route::post('/channel/edit/{id}', [
+    'uses' => 'ChannelController@update',
+    'as'   => 'admin/channel/update'
+]);
+Route::post('/channel/delete/{id}', [
+    'uses' => 'ChannelController@destroy',
+    'as'   => 'admin/channel/update'
+]);
 
-    Route::get('/channel/edit', function () {
-        return view('dashboard.pages.edit_channel');
-    });
+
+
+    // Route::get('/channels', function () {
+    //     return view('dashboard.pages.view_channels');
+    // });
+
+    // Route::get('/channel/create', function () {
+    //     return view('dashboard.pages.create_channel');
+    // });
+
+    // Route::get('/channel/edit', function () {
+    //     return view('dashboard.pages.edit_channel');
+    // });
 
 
 });
