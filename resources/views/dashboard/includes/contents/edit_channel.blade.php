@@ -24,24 +24,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                     <input value="Channel title from description" id="disabled" type="text" class="validate">
-                    <label for="disabled">Description</label>
+                    <label for="disabled">Channel Description</label>
                     </div>
                 </div><br>
-
-                <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Cover Image</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
-                </div>
                 
                 <center>
-                    <a href="/admin/view_channels" class="waves-effect waves-light btn"><i class="material-icons right"></i>Create</a>
+                    <a href="/dashboard/channels" class="waves-effect waves-light btn"><i class="material-icons right"></i>Update</a>
                 </center>
 
             </form>
