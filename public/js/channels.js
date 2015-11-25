@@ -3,7 +3,7 @@ $(document).ready(function(){
     /**
      * onClick event to handle Channel delete
      */
-    $(".delete-channel", this).on('click', function(){
+    $(".delete_channel", this).on('click', function(){
         var id    = $(this).data("id");
         var url   = "/dashboard/channel/delete/"+id;
         var name  = $(this).data("name");
