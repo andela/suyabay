@@ -168,30 +168,33 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.pages.edit_episode');
     });
 
-Route::get('/channels', [
-    'uses' => 'ChannelController@index',
-    'as'   => 'admin/channel'
+    Route::get('/channels', [
+        'uses' => 'ChannelController@index',
+        'as'   => '/channels'
+    ]);
+
+Route::get('/channel/edit/{id}', [
+    'uses' => 'ChannelController@edit',
+    'as'   => '/channel/channel/edit/{id}'
 ]);
+Route::post('/channel/edit', [
+    'uses' => 'ChannelController@update',
+    'as'   => '/channel/edit'
+]);
+
+
 
 Route::get('/channel/create', [
     'uses' => 'ChannelController@createIndex',
-    'as'   => 'admin/channel'
+    'as'   => '/channel/channel'
 ]);
 Route::post('/channel/create', [
     'uses' => 'ChannelController@processCreate',
-    'as'   => 'admin/channel'
-]);
-Route::get('/channel/edit/{id}', [
-    'uses' => 'ChannelController@edit',
-    'as'   => 'admin/channel/edit/{id}'
-]);
-Route::post('/channel/edit/{id}', [
-    'uses' => 'ChannelController@update',
-    'as'   => 'admin/channel/update'
+    'as'   => '/channel/channel'
 ]);
 Route::post('/channel/delete/{id}', [
     'uses' => 'ChannelController@destroy',
-    'as'   => 'admin/channel/update'
+    'as'   => '/channel/delete/{id}'
 ]);
 
 

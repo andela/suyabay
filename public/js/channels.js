@@ -49,7 +49,6 @@ $(document).ready(function(){
         var url                 = "/dashboard/channel/edit";
         var token               = $("#token").val();
         var channel_id          = $("#channel_id").val();
-        var channel_id          = $("#channel_id").val();
         var channel_name        = $("#channel_name").val();
         var channel_description = $("#channel_description").val();
         var data =
