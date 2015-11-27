@@ -114,6 +114,7 @@
                                     </li>
                                 @endif
                                     <li class="collection-item avatar">
+                                        
                                         <div class="row">
                                             <div class="col s2">
                                                 <img src="https://goo.gl/lVRGjF" alt="" class="circle">
@@ -140,7 +141,7 @@
         <!-- Pagination -->
         <div class="row center-align fix">
             <div class="center-align">
-                {!! $episodes->render() !!}
+                $episodes->render()
             </div>
         </div>
     </div>
