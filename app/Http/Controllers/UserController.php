@@ -7,7 +7,7 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.

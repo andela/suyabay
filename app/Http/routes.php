@@ -145,7 +145,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     });
 
     Route::get('/users', [
-        'uses' => 'AdminUserController@index',
+        'uses' => 'UserController@index',
         'as'   => '/users'
     ]);
 

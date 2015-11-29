@@ -4,6 +4,7 @@
         <div class="col m12">
             <a href="/dashboard/user/create" class="waves-effect waves-light btn btn-small"><i class="material-icons">add</i></a>
         </div>
+
         @foreach($users as $user)
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
@@ -12,10 +13,11 @@
 
             <div class="card-content center-align">
                 <span class="user-name activator grey-text text-darken-4">{{ $user->username }}</span>
-                <p><a href="#">Super Admin</a></p>
+                <p><a href="#">{{ $user->role->name }}</a></p>
                 <a href="/dashboard/user/edit" class="btn">Edit Profile</a>
             </div>
         </div>
         @endforeach
+
     </div>
 </div>
