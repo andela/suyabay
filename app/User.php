@@ -2,6 +2,7 @@
 
 namespace Suyabay;
 
+use Suyabay\Role;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -36,4 +37,8 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     //protected $hidden = ['password', 'remember_token'];
+    public function role()
+    {
+        return $this->belongsTo('Suyabay\Role');
+    }
 }
