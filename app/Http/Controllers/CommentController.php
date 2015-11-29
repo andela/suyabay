@@ -14,8 +14,8 @@ class CommentController extends Controller
     {
         Comment::create([
             'comments' 		=> $data['comment'],
-            'user_id' 		=> 1,
-            'episode_id' 	=> 1
+            'user_id' 		=> $data['user_id'],
+            'episode_id' 	=> $data['episode_id']
         ]);
 	}
 

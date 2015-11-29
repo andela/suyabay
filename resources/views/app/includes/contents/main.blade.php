@@ -96,6 +96,8 @@
                                             <form action="/comment" method="POST">
                                                 <div class="file-field input-field">
                                                     <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
+                                                    <input hidden="true" type="text" name="user_id" value="{{ Auth::user()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" value="{{ $episode->id }}">
                                                     <div class="file-path-wrapper col s9 m10">
                                                         <input name="comment" id="comment-field" class="file-path validate" type="text" style="margin-left:20px;">
                                                     </div>

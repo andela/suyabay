@@ -182,16 +182,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 });
 
-
-
-    
-    // Route::get('/comment', [
-    //     'uses' =>'CommentController@postComment',
-    //     'as'   => 'comment'
-    // ]);
-
-    
-    Route::post('/comment', [
-        'uses' =>'CommentController@postComment',
-        'as'   => 'comment'
-    ]);
+Route::post('/comment', [
+    'uses' =>'CommentController@postComment',
+    'as'   => 'comment'
+]);
