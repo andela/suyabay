@@ -4,8 +4,8 @@
 namespace Suyabay\Http\Controllers;
 
 use Suyabay\Episode;
-use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 
 class EpisodeController extends Controller

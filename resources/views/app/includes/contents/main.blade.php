@@ -18,7 +18,6 @@
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
-
         @forelse($episodes as $episode)
         <!-- start card -->
         <div class="card">
@@ -47,7 +46,7 @@
 
                 <!-- Feed the audio source -->
                 <div>
-                    <audio src="{!! asset($episode->audio_mp3) !!}" preload="auto" />
+                    <audio src="{!! asset($episode->audio_mp) !!}" preload="auto" />
                 </div>
 
                 <div>
@@ -79,7 +78,6 @@
                         </span>
                     </p>
                 </div>
-            </div>
             <div class="col s12 m6 l12 card-social">
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
@@ -95,11 +93,15 @@
                                             <div class="col s2">
                                                 <img src="https://goo.gl/IJSkVB" alt="" class="circle">
                                             </div>
-                                            <div class="col s10">
-                                                <textarea class="textarea-wrapper" placeholder="">
-                                                    Join the conversation...
-                                                </textarea>
-                                            </div>
+                                            <form action="/comment" method="POST">
+                                                <div class="file-field input-field">
+                                                    <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
+                                                    <div class="file-path-wrapper col s9 m10">
+                                                        <input name="comment" id="comment-field" class="file-path validate" type="text" style="margin-left:20px;">
+                                                    </div>
+                                                    <button class="btn">Comment</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </li>
                                 @else
@@ -113,7 +115,7 @@
                                         </span>
                                     </li>
                                 @endif
-
+                                
                                 @foreach ( $episode->comment as $comment  )
                                     <li class="collection-item avatar">
                                         <div class="row">
@@ -135,6 +137,11 @@
                     </div>
                 </div>
             </div>
+
+            </div>
+
+
+
         <!-- end card -->
 
         @empty
