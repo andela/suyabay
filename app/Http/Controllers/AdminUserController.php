@@ -16,7 +16,9 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        return view('dashboard.pages.user');
+        $users = User::orderBy('id', 'asc')->paginate(10);
+
+        return view('dashboard.pages.user', compact('users'));
     }
 
     /**
