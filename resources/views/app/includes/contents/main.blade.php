@@ -113,19 +113,22 @@
                                         </span>
                                     </li>
                                 @endif
+
+                                @foreach ( $episode->comment as $comment  )
                                     <li class="collection-item avatar">
-                                        
                                         <div class="row">
+
                                             <div class="col s2">
                                                 <img src="https://goo.gl/lVRGjF" alt="" class="circle">
                                             </div>
                                             <div class="col s10">
                                                 <div class="textarea-wrapper" placeholder="">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ipsum tellus, hendrerit tristique ligula vitae.
+                                                    {{$comment->comments}}
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
+                                @endforeach
                                 </div>
                             </li>
                         </ul>
