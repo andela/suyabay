@@ -153,7 +153,7 @@
         <!-- Pagination -->
         <div class="row center-align fix">
             <div class="center-align">
-                $episodes->render()
+                {!! $episodes->render() !!}
             </div>
         </div>
     </div>
