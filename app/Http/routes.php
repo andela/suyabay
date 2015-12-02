@@ -176,7 +176,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
     Route::get('/user/create', [
-        'uses' => 'UserController@edit',
+        'uses' => 'UserController@show',
         'as'   => '/user/edit/{id}'
     ]);
 

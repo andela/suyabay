@@ -15,11 +15,12 @@
 
         <div class="row">
             <form class="col s12" id="edit_user" action="/dashboard/user/edit" method="POST">
-            {{ csrf_field() }}
+
                 <div class="row">
                     <div class="input-field col s6 ">
                         <input value="{{ $users->username }}" name="username" id="username" placeholder="User Name" id="first_name" type="text" class="validate">
                         <input type="hidden" name="user_id" id="user_id" value="{{ $users->id }}">
+                        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" >
                         <label for="first_name">User Name</label>
                     </div>
 

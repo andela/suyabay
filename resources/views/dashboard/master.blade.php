@@ -34,7 +34,7 @@
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
 
 
-        <script src = "{!! load_asset('/js/channels.js') !!}"></script>
+        <script src = "{!! load_asset('/js/admin.js') !!}"></script>
 
     </head>
     <body>

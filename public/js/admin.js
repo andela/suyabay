@@ -66,6 +66,30 @@ $(document).ready(function(){
         return false;
     });
 
+    /**
+     * onSubmit event to handle User Edit
+     */
+    $("#edit_user").submit(function(){
+        var url       = "/dashboard/user/edit";
+        var token     = $("#_token").val();
+        var user_id   = $("#user_id").val();
+        var username  = $("#username").val();
+        var user_role = $("#user_role").val();
+        var data =
+            {
+                url        : url,
+                parameter  :
+                {
+                    _token      : token,
+                    user_id     : user_id,
+                    username    : username,
+                    user_role   : user_role
+                }
+            }
+        processAjax(data.url, data.parameter, data.parameter.user_name );
+        return false;
+    });
+
 });
 
 function confirmDelete(url, parameter, name){
@@ -141,6 +165,22 @@ function successCreateMessage()
         );
 }
 
+function successEditUser()
+{
+    swal({
+            title: "Done!",
+            text: "User has been successfully updated",
+            type: "success",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            },
+            function (){
+                document.location.href = "/dashboard/users";
+            }
+        );
+}
+
 function cancelDeleteMessage( name )
 {
     swal("Cancelled", "Channel " + name + " is still available", "error");
@@ -162,6 +202,9 @@ function processAjax(url, parameter, name)
         }
         else if(data == 100){
             return successCreateMessage(name);
+        }
+        else if (data == 600){
+            return successEditUser();
         }
         else
         {

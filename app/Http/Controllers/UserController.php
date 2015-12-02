@@ -49,9 +49,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('dashboard.pages.create_user');
     }
 
     /**
@@ -83,12 +83,12 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $response = "";
-        $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role]);
+        $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
         if ( $e )
         {
-            $response = 200; // success
+            $response = 600; // success
         } else {
-            $response = 201; // Unable to update
+            $response = 601; // Unable to update
         }
         return $response;
     }
