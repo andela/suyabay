@@ -149,13 +149,15 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/users'
     ]);
 
-    Route::get('/user/edit', function () {
-        return view('dashboard.pages.edit_user');
-    });
+    Route::get('/user/edit/{id}',  [
+        'uses' => 'UserController@editView',
+        'as'   => '/user/edit/{id}'
+    ]);
 
-    Route::get('/user/create', function () {
-        return view('dashboard.pages.create_user');
-    });
+    Route::get('/user/create', [
+        'uses' => 'UserController@edit',
+        'as'   => '/user/edit/{id}'
+    ]);
 
     Route::get('/episodes', function () {
         return view('dashboard.pages.view_episodes');

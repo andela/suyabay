@@ -59,9 +59,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function editView($id)
+    {
+        $users = User::where('id', $id)->first();
+        return view('dashboard.pages.edit_user', compact('users'));
+    }
+
     public function edit($id)
     {
-        //
+        // return view('dashboard.pages.edit_user');
     }
 
     /**
