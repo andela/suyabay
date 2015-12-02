@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Suyabay\User;
+use Suyabay\Role;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
@@ -63,7 +64,8 @@ class UserController extends Controller
     public function editView($id)
     {
         $users = User::where('id', $id)->first();
-        return view('dashboard.pages.edit_user', compact('users'));
+        $roles = Role::get();
+        return view('dashboard.pages.edit_user', compact('users', 'roles'));
     }
 
     public function edit($id)
@@ -78,9 +80,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $response = "";
+        $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role]);
+        if ( $e )
+        {
+            $response = 200; // success
+        } else {
+            $response = 201; // Unable to update
+        }
+        return $response;
     }
 
     /**

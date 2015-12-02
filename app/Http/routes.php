@@ -143,22 +143,6 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('dashboard.pages.index');
     });
-
-    Route::get('/users', [
-        'uses' => 'UserController@index',
-        'as'   => '/users'
-    ]);
-
-    Route::get('/user/edit/{id}',  [
-        'uses' => 'UserController@editView',
-        'as'   => '/user/edit/{id}'
-    ]);
-
-    Route::get('/user/create', [
-        'uses' => 'UserController@edit',
-        'as'   => '/user/edit/{id}'
-    ]);
-
     Route::get('/episodes', function () {
         return view('dashboard.pages.view_episodes');
     });
@@ -170,6 +154,33 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/episode/edit', function () {
         return view('dashboard.pages.edit_episode');
     });
+
+/*
+/-------------------------------------------------------------------------------
+/ Admin User
+/-------------------------------------------------------------------------------
+*/
+    Route::get('/users', [
+        'uses' => 'UserController@index',
+        'as'   => '/users'
+    ]);
+
+    Route::get('/user/edit/{id}',  [
+        'uses' => 'UserController@editView',
+        'as'   => '/user/edit/{id}'
+    ]);
+
+    Route::post('/user/edit',  [
+        'uses' => 'UserController@update',
+        'as'   => '/user/edit'
+    ]);
+
+    Route::get('/user/create', [
+        'uses' => 'UserController@edit',
+        'as'   => '/user/edit/{id}'
+    ]);
+
+
 
 /*
 /-------------------------------------------------------------------------------
