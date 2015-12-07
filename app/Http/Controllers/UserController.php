@@ -4,12 +4,20 @@ namespace Suyabay\Http\Controllers;
 
 use Suyabay\User;
 use Suyabay\Role;
+use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer as Mail;
 use Suyabay\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    protected $mail;
+
+    public function __construct(Mail $mail)
+    {
+        $this->mail = $mail;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +35,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        //check user in db
+        $createInvite = Invite::create([
+            'username'  => $request->username,
+            'role_id'  => $request->user_role,
+            'token'   => $request->_token
+        ]);
+        // return $createInvite;
+        $email = User::where('username', $request->username )->first()->email;
+        // dd($email);
+        $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email)
+        {
+            $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+            $message->to($email)->subject('Welcome To Suyabay');
+        });
+        //update invitation
+        //get email
     }
 
     /**
@@ -51,7 +75,26 @@ class UserController extends Controller
      */
     public function show()
     {
-        return view('dashboard.pages.create_user');
+        $roles = Role::get();
+        return view('dashboard.pages.create_user', compact('roles'));
+    }
+
+    /**
+     * process the token from the email when clicked
+     *
+     * @param  $token
+     */
+    public function processInvite($token)
+    {
+        $checkToken = Invite::where('token', $token)->first();
+        if( $checkToken )
+        {
+            $updateUserRole = User::where('username', $checkToken->username)->update(['role_id' => $checkToken->role_id]);
+            if( $updateUserRole )
+            {
+                return Invite::where('username', $checkToken->username)->delete();
+            }
+        }
     }
 
     /**

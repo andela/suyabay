@@ -2,6 +2,8 @@
 
 namespace Suyabay\Providers;
 
+use Suyabay\User;
+use Suyabay\Role;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

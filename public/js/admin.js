@@ -3,7 +3,7 @@ $(document).ready(function(){
     /**
      * onClick event to handle Channel delete
      */
-    $(".delete_channel", this).on('click', function(){
+    $(".delete_channel", this).on('click', function () {
         var id    = $(this).data("id");
         var url   = "/dashboard/channel/delete/"+id;
         var name  = $(this).data("name");
@@ -23,7 +23,7 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle Channel creation
      */
-    $("#create_channel").submit(function(){
+    $("#create_channel").submit( function () {
         var url = "/dashboard/channel/create";
         var token               = $("#token").val();
         var channel_name        = $("#name").val();
@@ -45,7 +45,7 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle Channel update
      */
-    $("#channel_update").submit(function(){
+    $("#channel_update").submit( function () {
         var url                 = "/dashboard/channel/edit";
         var token               = $("#token").val();
         var channel_id          = $("#channel_id").val();
@@ -69,7 +69,7 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle User Edit
      */
-    $("#edit_user").submit(function(){
+    $("#edit_user").submit( function () {
         var url       = "/dashboard/user/edit";
         var token     = $("#_token").val();
         var user_id   = $("#user_id").val();
@@ -92,7 +92,15 @@ $(document).ready(function(){
 
 });
 
-function confirmDelete(url, parameter, name){
+/**
+ *confirmDelete modal message
+ *
+ * @param  url
+ * @param  parameter
+ * @param  name
+ */
+function confirmDelete (url, parameter, name)
+{
     swal({
         title: "Delete "+ name +"?",
         text: "You will not be able to recover this imaginary file!",
@@ -104,7 +112,7 @@ function confirmDelete(url, parameter, name){
         closeOnConfirm: false,
         closeOnCancel: false
     },
-    function( isConfirm )
+    function ( isConfirm )
     {
         if( isConfirm )
         {
@@ -117,7 +125,12 @@ function confirmDelete(url, parameter, name){
     });
 }
 
-function successDeleteMessage(name)
+/**
+ * successDeleteMessage modal message
+ *
+ * @param  name
+ */
+function successDeleteMessage (name)
 {
     swal({
             title: "Deleted!",
@@ -133,7 +146,10 @@ function successDeleteMessage(name)
         );
 }
 
-function successUpdateMessage()
+/**
+ * successUpdateMessage modal message
+ */
+function successUpdateMessage ()
 {
     swal({
             title: "Done!",
@@ -149,7 +165,10 @@ function successUpdateMessage()
         );
 }
 
-function successCreateMessage()
+/**
+ * successCreateMessage modal message
+ */
+function successCreateMessage ()
 {
     swal({
             title: "Done!",
@@ -165,7 +184,10 @@ function successCreateMessage()
         );
 }
 
-function successEditUser()
+/**
+ * successEditUser modal message
+ */
+function successEditUser ()
 {
     swal({
             title: "Done!",
@@ -181,17 +203,32 @@ function successEditUser()
         );
 }
 
-function cancelDeleteMessage( name )
+/**
+ * cancelDeleteMessage modal message
+ *
+ * @param  name
+ */
+function cancelDeleteMessage (name)
 {
     swal("Cancelled", "Channel " + name + " is still available", "error");
 }
 
-function errorMessage()
+/**
+ * errorMessage modal message
+ */
+function errorMessage ()
 {
     swal("Error", "Error processing your request, Please try again!!!", "error");
 }
 
-function processAjax(url, parameter, name)
+/**
+ * processAjax Proccess the ajax call
+ *
+ * @param  url
+ * @param  parameter
+ * @param  name
+ */
+function processAjax (url, parameter, name)
 {
     $.post(url, parameter, function( data ){
         if( data == 300){

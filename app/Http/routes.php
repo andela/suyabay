@@ -177,10 +177,13 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/user/create', [
         'uses' => 'UserController@show',
-        'as'   => '/user/edit/{id}'
+        'as'   => '/user/create'
     ]);
 
-
+    Route::post('/user/create', [
+        'uses' => 'UserController@create',
+        'as'   => '/user/create'
+    ]);
 
 /*
 /-------------------------------------------------------------------------------
@@ -215,3 +218,13 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
 });
+
+/*
+/-------------------------------------------------------------------------------
+/ Mail invitation
+/-------------------------------------------------------------------------------
+*/
+Route::get('/invite/{token}',  [
+    'uses' => 'UserController@processInvite',
+    'as'   => '/invite/{token}'
+]);
