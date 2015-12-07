@@ -26,7 +26,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <textarea name="channel_description" id="channel_description">{{ $channels->channel_name }}</textarea>
+                    <textarea name="channel_description" id="channel_description">{{ $channels->channel_description }}</textarea>
                     <label for="disabled">Channel Description</label>
                     </div>
                 </div><br>

@@ -69,6 +69,28 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle User Edit
      */
+    $("#create_user").submit( function () {
+        var url       = "/dashboard/user/create";
+        var token     = $("#_token").val();
+        var username  = $("#username").val();
+        var user_role = $("#user_role").val();
+        var data =
+            {
+                url        : url,
+                parameter  :
+                {
+                    _token      : token,
+                    username    : username,
+                    user_role   : user_role
+                }
+            }
+        processAjax(data.url, data.parameter, data.parameter.user_name );
+        return false;
+    });
+
+    /**
+     * onSubmit event to handle User Edit
+     */
     $("#edit_user").submit( function () {
         var url       = "/dashboard/user/edit";
         var token     = $("#_token").val();
@@ -204,6 +226,25 @@ function successEditUser ()
 }
 
 /**
+ * successEditUser modal message
+ */
+function successInviteUser ()
+{
+    swal({
+            title: "Done!",
+            text: "Upgrade Invitation sent successfully",
+            type: "success",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            },
+            function (){
+                document.location.href = "/dashboard/users";
+            }
+        );
+}
+
+/**
  * cancelDeleteMessage modal message
  *
  * @param  name
@@ -219,6 +260,14 @@ function cancelDeleteMessage (name)
 function errorMessage ()
 {
     swal("Error", "Error processing your request, Please try again!!!", "error");
+}
+
+/**
+ * errorInviteUser modal message
+ */
+function errorInviteUser ()
+{
+    swal("Error", "Invitation already sent, waiting confirmation from user", "error");
 }
 
 /**
@@ -242,6 +291,12 @@ function processAjax (url, parameter, name)
         }
         else if (data == 600){
             return successEditUser();
+        }
+        else if (data == 500){
+            return successInviteUser();
+        }
+        else if (data == 502){
+            return errorInviteUser();
         }
         else
         {

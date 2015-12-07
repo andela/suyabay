@@ -26,9 +26,14 @@
 
                     <div class="input-field col s6">
                         <select class="browser-default" name="user_role" id="user_role">
-                            <option value="{{ $users->role->id }}"  selected>{{ $users->role->name }}</option>
                             @foreach(  $roles as $role )
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                <option value="{{ $role->id }}"
+                                @if( $users->role_id == $role->id )
+                                    selected="true"
+                                @endif
+                                >
+                                {{ $role->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

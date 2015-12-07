@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="input-field col s6">
-                        <select class="browser-default" name="user_role">
+                        <select class="browser-default" name="user_role" id="user_role">
                             @foreach(  $roles as $role )
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
@@ -33,7 +33,7 @@
                 </div>
 
                 <center>
-                    <button type="submit" class="waves-effect waves-light btn" onclick="registerUser()"><i class="material-icons left">add</i>Send Invite</button>
+                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Send Invite</button>
                 </center>
 
             </form>

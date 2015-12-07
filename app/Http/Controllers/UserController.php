@@ -14,16 +14,17 @@ class UserController extends Controller
 {
     protected $mail;
 
-    public function __construct(Mail $mail)
+    public function __construct (Mail $mail)
     {
         $this->mail = $mail;
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
         $users = User::orderBy('id', 'asc')->paginate(10);
 
@@ -31,52 +32,110 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Insert invitation details to invites tablee
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
      */
-    public function create(Request $request)
+    public function createInvite (Request $request)
     {
-
-        //check user in db
-        $createInvite = Invite::create([
-            'username'  => $request->username,
-            'role_id'  => $request->user_role,
-            'token'   => $request->_token
-        ]);
-        // return $createInvite;
-        $email = User::where('username', $request->username )->first()->email;
-        // dd($email);
-        $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email)
+        $checkUser = Invite::where('username', $request->username)->first();
+        if ( ! $checkUser )
         {
-            $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
-            $message->to($email)->subject('Welcome To Suyabay');
-        });
-        //update invitation
-        //get email
+            $createInvite = Invite::create([
+                'username'  => $request->username,
+                'role_id'  => $request->user_role,
+                'token'   => $request->_token
+            ]);
+            return $createInvite;
+        }
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Insert into invites table and send mail
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @param  $email
      */
-    public function store(Request $request)
+    public function processCreateInvite (Request $request, $email)
     {
-        //
+        if ( $this->createInvite($request) )
+            return $this->sendMail($request, $email);
+
+        return 502;
+    }
+
+    /**
+     * Check if the user exist and process request.
+     *
+     * @param  Request $request
+     */
+    public function sendInvite (Request $request)
+    {
+        $email = User::where('username', $request->username )->first();
+        if ( $email )
+            return $this->processCreateInvite($request, $email);
+
+        return 501;
+    }
+
+    /**
+     * Send Invitation mail to selected user
+     *
+     * @param  $username
+     * @param  $token
+     * @param  $email
+     *
+     * @return integer
+     */
+    public function sendMail (Request $request, $email)
+    {
+        $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email)
+            {
+                $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($email->email)->subject('Suyabay Invitation');
+            });
+        if ( $mailSent )
+        {
+            return 500;
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show ()
     {
         $roles = Role::get();
         return view('dashboard.pages.create_user', compact('roles'));
+    }
+
+    /**
+     * Update user role
+     *
+     * @param  $username
+     * @param  $role_id
+     */
+    public function updateUser ($username, $role_id)
+    {
+        $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
+        if ( $updateUserRole )
+        {
+            return $this->deleteToken($username);
+        }
+    }
+
+    /**
+     * Delete user from invite table
+     *
+     * @param  $token
+     */
+    public function deleteToken ($token)
+    {
+        $deleteUser = Invite::where('username', $token)->delete();
+        if ( $deleteUser )
+            return view('app.pages.index');
     }
 
     /**
@@ -84,46 +143,34 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function processInvite($token)
+    public function processInvite ($token)
     {
         $checkToken = Invite::where('token', $token)->first();
-        if( $checkToken )
+        if ( $checkToken )
         {
-            $updateUserRole = User::where('username', $checkToken->username)->update(['role_id' => $checkToken->role_id]);
-            if( $updateUserRole )
-            {
-                return Invite::where('username', $checkToken->username)->delete();
-            }
+            return $this->updateUser($checkToken->username, $checkToken->role_id);
         }
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Pass users and roles to edit_user view
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function editView($id)
+    public function editView ($id)
     {
         $users = User::where('id', $id)->first();
         $roles = Role::get();
         return view('dashboard.pages.edit_user', compact('users', 'roles'));
     }
 
-    public function edit($id)
-    {
-        // return view('dashboard.pages.edit_user');
-    }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update (Request $request)
     {
         $response = "";
         $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
@@ -134,16 +181,5 @@ class UserController extends Controller
             $response = 601; // Unable to update
         }
         return $response;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
