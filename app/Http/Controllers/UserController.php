@@ -131,11 +131,11 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function deleteToken ($token)
+    public function deleteToken ($username)
     {
-        $deleteUser = Invite::where('username', $token)->delete();
+        $deleteUser = Invite::where('username', $username)->delete();
         if ( $deleteUser )
-            return view('app.pages.index');
+            return redirect('/welcome/'.$username);
     }
 
     /**
@@ -147,9 +147,7 @@ class UserController extends Controller
     {
         $checkToken = Invite::where('token', $token)->first();
         if ( $checkToken )
-        {
             return $this->updateUser($checkToken->username, $checkToken->role_id);
-        }
     }
 
     /**
@@ -181,5 +179,16 @@ class UserController extends Controller
             $response = 601; // Unable to update
         }
         return $response;
+    }
+
+    /**
+     * Invitation confirmation page
+     *
+     * @param  $username
+     */
+    public function welcomePage($username)
+    {
+        $users = User::where('username', $username)->first();
+        return view('app.pages.welcome', compact('users'));
     }
 }

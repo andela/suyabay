@@ -228,6 +228,11 @@ Route::get('/invite/{token}',  [
     'as'   => '/invite/{token}'
 ]);
 
+Route::get('/welcome/{username}',  [
+    'uses' => 'UserController@welcomePage',
+    'as'   => '/welcome/{username}'
+]);
+
 /*
 /-------------------------------------------------------------------------------
 / Comment

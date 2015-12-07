@@ -38,11 +38,13 @@ class ChannelController extends Controller
      */
     public function create (Request $request)
     {
-        Channel::create([
+        $channel = Channel::create([
             'channel_name'         => $request->name,
             'channel_description'  => $request->description,
             'subscription_count'   => 0
         ]);
+        if ( $channel )
+            return 100;
     }
 
     /**
@@ -67,25 +69,9 @@ class ChannelController extends Controller
     public function processCreate (Request $request)
     {
         if ( $this->checkChannelExist($request) )
-        {
             return 101; //Channel aready exist
-        }
-        else
-        {
-            $this->create($request);
-            return 100; //success
-        }
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store (Request $request)
-    {
-        //
+        return $this->create($request);
     }
 
     /**
@@ -110,15 +96,11 @@ class ChannelController extends Controller
      */
     public function update (Request $request)
     {
-        $response = "";
         $e = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
         if ( $e )
-        {
-            $response = 200; // success
-        } else {
-            $response = 201; // Unable to update
-        }
-        return $response;
+            return 200; // success
+
+        return 201; // Unable to update
     }
 
     /**
@@ -130,15 +112,9 @@ class ChannelController extends Controller
     public function destroy ($id)
     {
         $delete = Channel::where('id', $id)->delete();
-        $response = "";
         if ( $delete )
-        {
-            $response = 300; // Success
-        }
-        else
-        {
-            $response = 301; // unable to delete
-        }
-        return $response;
+            return 300; // Success
+
+        return 301; // unable to delete
     }
 }
