@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     protected $mail;
 
-    public function __construct (Mail $mail)
+    public function __construct(Mail $mail)
     {
         $this->mail = $mail;
     }
@@ -24,7 +24,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index()
     {
         $users = User::orderBy('id', 'asc')->paginate(10);
 
@@ -36,10 +36,10 @@ class UserController extends Controller
      *
      * @param  Request $request
      */
-    public function createInvite (Request $request)
+    public function createInvite(Request $request)
     {
         $checkUser = Invite::where('username', $request->username)->first();
-        if ( ! $checkUser )
+        if( ! $checkUser )
         {
             $createInvite = Invite::create([
                 'username'  => $request->username,
@@ -56,7 +56,7 @@ class UserController extends Controller
      * @param  Request $request
      * @param  $email
      */
-    public function processCreateInvite (Request $request, $email)
+    public function processCreateInvite(Request $request, $email)
     {
         if ( $this->createInvite($request) )
             return $this->sendMail($request, $email);
@@ -69,10 +69,10 @@ class UserController extends Controller
      *
      * @param  Request $request
      */
-    public function sendInvite (Request $request)
+    public function sendInvite(Request $request)
     {
         $email = User::where('username', $request->username )->first();
-        if ( $email )
+        if( $email )
             return $this->processCreateInvite($request, $email);
 
         return 501;
@@ -94,7 +94,7 @@ class UserController extends Controller
                 $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email->email)->subject('Suyabay Invitation');
             });
-        if ( $mailSent )
+        if( $mailSent )
         {
             return 500;
         }
@@ -105,7 +105,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show ()
+    public function show()
     {
         $roles = Role::get();
         return view('dashboard.pages.create_user', compact('roles'));
@@ -117,7 +117,7 @@ class UserController extends Controller
      * @param  $username
      * @param  $role_id
      */
-    public function updateUser ($username, $role_id)
+    public function updateUser($username, $role_id)
     {
         $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
         if ( $updateUserRole )
@@ -131,7 +131,7 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function deleteToken ($username)
+    public function deleteToken($username)
     {
         $deleteUser = Invite::where('username', $username)->delete();
         if ( $deleteUser )
@@ -143,7 +143,7 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function processInvite ($token)
+    public function processInvite($token)
     {
         $checkToken = Invite::where('token', $token)->first();
         if ( $checkToken )
@@ -156,7 +156,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editView ($id)
+    public function editView($id)
     {
         $users = User::where('id', $id)->first();
         $roles = Role::get();
@@ -168,7 +168,7 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function update (Request $request)
+    public function update(Request $request)
     {
         $response = "";
         $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);

@@ -14,7 +14,7 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index()
     {
         $channels = Channel::orderBy('id', 'asc')->paginate(10);
 
@@ -26,7 +26,7 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createIndex ()
+    public function createIndex()
     {
         return view('dashboard.pages.create_channel');
     }
@@ -36,14 +36,14 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create (Request $request)
+    public function create(Request $request)
     {
         $channel = Channel::create([
             'channel_name'         => $request->name,
             'channel_description'  => $request->description,
             'subscription_count'   => 0
         ]);
-        if ( $channel )
+        if( $channel )
             return 100;
     }
 
@@ -53,7 +53,7 @@ class ChannelController extends Controller
      * @param  $request
      * @return bool
      */
-    public function checkChannelExist (Request $request)
+    public function checkChannelExist(Request $request)
     {
         $check = Channel::where('channel_name', $request->name)->first();
         if( $check )
@@ -66,9 +66,9 @@ class ChannelController extends Controller
      * @param  $request
      * @return int
      */
-    public function processCreate (Request $request)
+    public function processCreate(Request $request)
     {
-        if ( $this->checkChannelExist($request) )
+        if( $this->checkChannelExist($request) )
             return 101; //Channel aready exist
 
         return $this->create($request);
@@ -80,7 +80,7 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit ($id)
+    public function edit($id)
     {
         $channels = Channel::where('id', $id)->first();
 
@@ -94,10 +94,10 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update (Request $request)
+    public function update(Request $request)
     {
         $e = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
-        if ( $e )
+        if( $e )
             return 200; // success
 
         return 201; // Unable to update
@@ -109,10 +109,10 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy ($id)
+    public function destroy($id)
     {
         $delete = Channel::where('id', $id)->delete();
-        if ( $delete )
+        if( $delete )
             return 300; // Success
 
         return 301; // unable to delete
