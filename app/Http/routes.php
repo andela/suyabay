@@ -164,12 +164,12 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/users'
     ]);
 
-    Route::get('/user/edit/{id}',  [
+    Route::get('/user/edit/{id}', [
         'uses' => 'UserController@editView',
         'as'   => '/user/edit/{id}'
     ]);
 
-    Route::post('/user/edit',  [
+    Route::post('/user/edit', [
         'uses' => 'UserController@update',
         'as'   => '/user/edit'
     ]);
@@ -223,12 +223,12 @@ Route::group(['prefix' => 'dashboard'], function () {
 / Mail invitation
 /-------------------------------------------------------------------------------
 */
-Route::get('/invite/{token}',  [
+Route::get('/invite/{token}', [
     'uses' => 'UserController@processInvite',
     'as'   => '/invite/{token}'
 ]);
 
-Route::get('/welcome/{username}',  [
+Route::get('/welcome/{username}', [
     'uses' => 'UserController@welcomePage',
     'as'   => '/welcome/{username}'
 ]);

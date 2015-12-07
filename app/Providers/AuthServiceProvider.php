@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // Super admin role
-        $gate->define('super-admin', function($user) {
+        $gate->define('super-admin', function ($user) {
             return $user->role->name === 'Super Admin';
         });
     }

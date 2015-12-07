@@ -39,7 +39,7 @@ class UserController extends Controller
     public function createInvite(Request $request)
     {
         $checkUser = Invite::where('username', $request->username)->first();
-        if( ! $checkUser )
+        if(! $checkUser)
         {
             $createInvite = Invite::create([
                 'username'  => $request->username,
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function processCreateInvite(Request $request, $email)
     {
-        if ( $this->createInvite($request) )
+        if($this->createInvite($request))
             return $this->sendMail($request, $email);
 
         return 502;
@@ -72,7 +72,7 @@ class UserController extends Controller
     public function sendInvite(Request $request)
     {
         $email = User::where('username', $request->username )->first();
-        if( $email )
+        if($email)
             return $this->processCreateInvite($request, $email);
 
         return 501;
@@ -87,14 +87,14 @@ class UserController extends Controller
      *
      * @return integer
      */
-    public function sendMail (Request $request, $email)
+    public function sendMail(Request $request, $email)
     {
-        $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email)
-            {
+        $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email) {
                 $message->from( getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email->email)->subject('Suyabay Invitation');
             });
-        if( $mailSent )
+
+        if($mailSent)
         {
             return 500;
         }
@@ -120,7 +120,7 @@ class UserController extends Controller
     public function updateUser($username, $role_id)
     {
         $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
-        if ( $updateUserRole )
+        if($updateUserRole)
         {
             return $this->deleteToken($username);
         }
@@ -134,7 +134,7 @@ class UserController extends Controller
     public function deleteToken($username)
     {
         $deleteUser = Invite::where('username', $username)->delete();
-        if ( $deleteUser )
+        if($deleteUser)
             return redirect('/welcome/'.$username);
     }
 
@@ -146,7 +146,7 @@ class UserController extends Controller
     public function processInvite($token)
     {
         $checkToken = Invite::where('token', $token)->first();
-        if ( $checkToken )
+        if($checkToken)
             return $this->updateUser($checkToken->username, $checkToken->role_id);
     }
 
@@ -171,14 +171,11 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $response = "";
-        $e = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
-        if ( $e )
-        {
-            $response = 600; // success
-        } else {
-            $response = 601; // Unable to update
-        }
-        return $response;
+        $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
+        if($updateUser)
+            return 600; // success
+
+        return 601; // Unable to update
     }
 
     /**
