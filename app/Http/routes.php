@@ -120,7 +120,6 @@ Route::post('search', function(){
     return redirect('/');
 });
 
-
 /*
 /-------------------------------------------------------------------------------
 / Logout
@@ -227,4 +226,14 @@ Route::group(['prefix' => 'dashboard'], function () {
 Route::get('/invite/{token}',  [
     'uses' => 'UserController@processInvite',
     'as'   => '/invite/{token}'
+]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Comment
+/-------------------------------------------------------------------------------
+*/
+Route::post('/comment', [
+    'uses' =>'CommentController@postComment',
+    'as'   => 'comment'
 ]);

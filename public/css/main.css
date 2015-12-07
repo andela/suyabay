@@ -275,13 +275,6 @@ Navigations Styles
 
 }
 
-.nav-container:hover
-{
-    overflow-y: vertical;   
-    overflow-y: scroll; 
-}
-
-
 /*
  # Side Page Styles
  =====================

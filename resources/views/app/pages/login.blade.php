@@ -23,7 +23,7 @@
 
             <div class="input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" class="validate">
+                <input id="password" type="password">
                 <label for="password">Password</label>
             </div>
 

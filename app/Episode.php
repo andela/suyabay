@@ -22,4 +22,9 @@ class Episode extends Model
         return $this->belongsTo('Suyabay\Channel');
     }
 
+    public function comment()
+    {
+        return $this->hasMany('Suyabay\Comment');
+    }
+
 }
