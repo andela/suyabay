@@ -59,8 +59,9 @@ class UserController extends Controller
     public function processCreateInvite(Request $request, $email)
     {
         if ($this->createInvite($request))
+        {
             return $this->sendMail($request, $email);
-
+        }
         return 502;
     }
 
@@ -73,8 +74,9 @@ class UserController extends Controller
     {
         $email = User::where('username', $request->username)->first();
         if ($email)
+        {
             return $this->processCreateInvite($request, $email);
-
+        }
         return 501;
     }
 
@@ -135,7 +137,9 @@ class UserController extends Controller
     {
         $deleteUser = Invite::where('username', $username)->delete();
         if ($deleteUser)
+        {
             return redirect('/welcome/'.$username);
+        }
     }
 
     /**
@@ -147,7 +151,9 @@ class UserController extends Controller
     {
         $checkToken = Invite::where('token', $token)->first();
         if ($checkToken)
+        {
             return $this->updateUser($checkToken->username, $checkToken->role_id);
+        }
     }
 
     /**
@@ -173,8 +179,9 @@ class UserController extends Controller
         $response = "";
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
         if ($updateUser)
+        {
             return 600; // success
-
+        }
         return 601; // Unable to update
     }
 
