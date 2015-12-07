@@ -43,7 +43,7 @@ class ChannelController extends Controller
             'channel_description'  => $request->description,
             'subscription_count'   => 0
         ]);
-        if($channel)
+        if ($channel)
             return 100;
     }
 
@@ -56,7 +56,7 @@ class ChannelController extends Controller
     public function checkChannelExist(Request $request)
     {
         $check = Channel::where('channel_name', $request->name)->first();
-        if($check)
+        if ($check)
             return true;
     }
 
@@ -68,7 +68,7 @@ class ChannelController extends Controller
      */
     public function processCreate(Request $request)
     {
-        if($this->checkChannelExist($request))
+        if ($this->checkChannelExist($request))
             return 101; //Channel aready exist
 
         return $this->create($request);
@@ -97,7 +97,7 @@ class ChannelController extends Controller
     public function update(Request $request)
     {
         $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
-        if($updateChannel)
+        if ($updateChannel)
             return 200; // success
 
         return 201; // Unable to update
@@ -112,7 +112,7 @@ class ChannelController extends Controller
     public function destroy($id)
     {
         $deleteChannel = Channel::where('id', $id)->delete();
-        if($deleteChannel)
+        if ($deleteChannel)
             return 300; // Success
 
         return 301; // unable to delete
