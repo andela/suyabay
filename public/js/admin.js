@@ -84,7 +84,7 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.user_name );
+        processAjax(data.url, data.parameter, data.parameter.username );
         return false;
     });
 
@@ -108,7 +108,7 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.user_name );
+        processAjax(data.url, data.parameter, data.parameter.username );
         return false;
     });
 
@@ -280,22 +280,22 @@ function errorInviteUser ()
 function processAjax (url, parameter, name)
 {
     $.post(url, parameter, function( data ){
-        if( data == 300){
+        if( data.status_code == 400){
             return successDeleteMessage( name );
         }
-        else if(data == 200){
+        else if(data.status_code == 200){
             return successUpdateMessage(name);
         }
-        else if(data == 100){
+        else if(data.status_code == 100){
             return successCreateMessage(name);
         }
-        else if (data == 600){
+        else if (data.status_code == 600){
             return successEditUser();
         }
-        else if (data == 500){
+        else if (data.status_code == 500){
             return successInviteUser();
         }
-        else if (data == 502){
+        else if (data.status_code == 502){
             return errorInviteUser();
         }
         else

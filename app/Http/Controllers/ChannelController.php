@@ -9,6 +9,8 @@ use Suyabay\Http\Controllers\Controller;
 
 class ChannelController extends Controller
 {
+    protected $response;
+
     /**
      * Display a listing of the resource.
      *
@@ -45,8 +47,13 @@ class ChannelController extends Controller
         ]);
         if ($channel)
         {
-            return 100;
+            $this->response =
+            [
+                'message' => 'Channel created Successfully',
+                'status_code' => 100
+            ];
         }
+        return $this->response;
     }
 
     /**
@@ -74,7 +81,11 @@ class ChannelController extends Controller
     {
         if ($this->checkChannelExist($request))
         {
-            return 101; //Channel aready exist
+            return $this->response =
+            [
+                'message' => 'Unable to create channel',
+                'status_code' => 101
+            ];
         }
         return $this->create($request);
     }
@@ -104,9 +115,21 @@ class ChannelController extends Controller
         $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
         if ($updateChannel)
         {
-            return 200; // success
+            $this->response =
+            [
+                'message' => 'Channel updated Successfully',
+                'status_code' => 200
+            ];
         }
-        return 201; // Unable to update
+        else
+        {
+            $this->response =
+            [
+                'message' => 'Unable to update channel',
+                'status_code' => 201
+            ];
+        }
+        return $this->response;
     }
 
     /**
@@ -120,8 +143,20 @@ class ChannelController extends Controller
         $deleteChannel = Channel::where('id', $id)->delete();
         if ($deleteChannel)
         {
-            return 300; // Success
+            $this->response =
+            [
+                "message"       => "Channel deleted successfully",
+                "status_code"   => 400
+            ];
         }
-        return 301; // unable to delete
+        else
+        {
+            $this->response =
+            [
+                "message"       => "Unable to delete channel",
+                "status_code"   => 401
+            ];
+        }
+        return $this->response; // unable to delete
     }
 }

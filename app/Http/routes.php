@@ -208,7 +208,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/channel/channel'
     ]);
     Route::post('/channel/create', [
-        'uses' => 'ChannelController@processCreate',
+        'uses' => 'ChannelController@create',
         'as'   => '/channel/channel'
     ]);
     Route::post('/channel/delete/{id}', [
