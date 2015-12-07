@@ -180,5 +180,9 @@ Route::group(['prefix' => 'dashboard'], function () {
         return view('dashboard.pages.edit_channel');
     });
 
-
 });
+
+Route::post('/comment', [
+    'uses' =>'CommentController@postComment',
+    'as'   => 'comment'
+]);

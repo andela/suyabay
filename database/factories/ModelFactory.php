@@ -39,3 +39,11 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(Suyabay\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'       => 1,
+        'comments'       => $faker->text,
+        'episode_id'    => 1,
+    ];
+});
+
