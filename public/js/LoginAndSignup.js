@@ -64,7 +64,7 @@ function ajaxCall ( data, functionName )
 function loginErrorAlert ()
 {
   $('.loader').hide();
-  swal("Oops! Login Failed", "Username or Password not found!", "error")
+  swal("Oops! Login Failed", "Username or Password not found!", "error");
 }
 
 /*
@@ -99,7 +99,7 @@ function registerSuccessAlert (data)
 function registerErrorAlert ()
 {
   $('.loader').hide();
-  swal("Oops! Registration Failed", "Username or Email already exists click the button to try again!", "error")
+  swal("Oops! Registration Failed", "Username or Email already exists click the button to try again!", "error");
 }
 
 /*
@@ -170,13 +170,13 @@ function checkItem (data)
 
       if  ( data.parameter.email == '' || data.parameter.username == '' || data.parameter.password == '' )
       {
-        swal("Oops!", "Some required field not set!", "error")
+        swal("Oops!", "Some required field not set!", "error");
         end();
       }
 
       if ( ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.parameter.email) )
       {
-          swal("Oops!", "Invalid email", "error")
+          swal("Oops!", "Invalid email", "error");
           end();
       }
 }
