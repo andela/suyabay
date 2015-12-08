@@ -148,53 +148,15 @@ function confirmDelete (url, parameter, name)
 }
 
 /**
- * successDeleteMessage modal message
+ * channelSuccessMessage modal message
  *
  * @param  name
  */
-function successDeleteMessage (name)
+function channelSuccessMessage (message)
 {
     swal({
             title: "Deleted!",
-            text: "Channel " + name + " has been deleted successfully",
-            type: "success",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
-            },
-            function (){
-                document.location.href = "/dashboard/channels";
-            }
-        );
-}
-
-/**
- * successUpdateMessage modal message
- */
-function successUpdateMessage ()
-{
-    swal({
-            title: "Done!",
-            text: "Your update is successful",
-            type: "success",
-            showCancelButton: false,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
-            },
-            function (){
-                document.location.href = "/dashboard/channels";
-            }
-        );
-}
-
-/**
- * successCreateMessage modal message
- */
-function successCreateMessage ()
-{
-    swal({
-            title: "Done!",
-            text: "New Channel has been added successfully",
+            text: message,
             type: "success",
             showCancelButton: false,
             closeOnConfirm: false,
@@ -209,30 +171,11 @@ function successCreateMessage ()
 /**
  * successEditUser modal message
  */
-function successEditUser ()
+function userSuccessMessage (message)
 {
     swal({
             title: "Done!",
-            text: "User has been successfully updated",
-            type: "success",
-            showCancelButton: false,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
-            },
-            function (){
-                document.location.href = "/dashboard/users";
-            }
-        );
-}
-
-/**
- * successEditUser modal message
- */
-function successInviteUser ()
-{
-    swal({
-            title: "Done!",
-            text: "Upgrade Invitation sent successfully",
+            text: message,
             type: "success",
             showCancelButton: false,
             closeOnConfirm: false,
@@ -255,19 +198,11 @@ function cancelDeleteMessage (name)
 }
 
 /**
- * errorMessage modal message
- */
-function errorMessage ()
-{
-    swal("Error", "Error processing your request, Please try again!!!", "error");
-}
-
-/**
  * errorInviteUser modal message
  */
-function errorInviteUser ()
+function errorMessage (message)
 {
-    swal("Error", "Invitation already sent, waiting confirmation from user", "error");
+    swal("Error", message, "error");
 }
 
 /**
@@ -280,27 +215,17 @@ function errorInviteUser ()
 function processAjax (url, parameter, name)
 {
     $.post(url, parameter, function( data ){
-        if( data.status_code == 400){
-            return successDeleteMessage( name );
-        }
-        else if(data.status_code == 200){
-            return successUpdateMessage(name);
-        }
-        else if(data.status_code == 100){
-            return successCreateMessage(name);
-        }
-        else if (data.status_code == 600){
-            return successEditUser();
-        }
-        else if (data.status_code == 500){
-            return successInviteUser();
-        }
-        else if (data.status_code == 502){
-            return errorInviteUser();
-        }
-        else
+        switch( data.status_code )
         {
-            errorMessage();
+            case 200:
+                return channelSuccessMessage( data.message );
+                break;
+
+            case 201:
+                return userSuccessMessage( data.message );
+                break;
+
+            default: errorMessage( data.message );
         }
     });
 }

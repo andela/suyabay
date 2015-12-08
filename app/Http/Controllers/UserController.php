@@ -53,7 +53,7 @@ class UserController extends Controller
             $this->response =
             [
                 'message' => 'Error sending Invites',
-                'status_code' => 502
+                'status_code' => 400
             ];
         }
         return $this->response;
@@ -95,7 +95,7 @@ class UserController extends Controller
             $this->response =
             [
                 'message' => 'Invitation was sent successfully',
-                'status_code' => 500
+                'status_code' => 201
             ];
         }
         return $this->response;
@@ -179,14 +179,13 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $response = "";
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
         if ($updateUser)
         {
             $this->response =
             [
                 'message' => 'User details updated successfully',
-                'status_code' => 600
+                'status_code' => 201
             ];
         }
         else
@@ -194,7 +193,7 @@ class UserController extends Controller
             $this->response =
             [
                 'message' => 'Error updating user',
-                'status_code' => 601
+                'status_code' => 400
             ];
         }
         return $this->response; // Unable to update

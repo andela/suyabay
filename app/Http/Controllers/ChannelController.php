@@ -50,7 +50,7 @@ class ChannelController extends Controller
             $this->response =
             [
                 'message' => 'Channel created Successfully',
-                'status_code' => 100
+                'status_code' => 200
             ];
         }
         return $this->response;
@@ -84,7 +84,7 @@ class ChannelController extends Controller
             return $this->response =
             [
                 'message' => 'Unable to create channel',
-                'status_code' => 101
+                'status_code' => 400
             ];
         }
         return $this->create($request);
@@ -126,7 +126,7 @@ class ChannelController extends Controller
             $this->response =
             [
                 'message' => 'Unable to update channel',
-                'status_code' => 201
+                'status_code' => 400
             ];
         }
         return $this->response;
@@ -145,7 +145,7 @@ class ChannelController extends Controller
             $this->response =
             [
                 "message"       => "Channel deleted successfully",
-                "status_code"   => 400
+                "status_code"   => 200
             ];
         }
         else
@@ -153,7 +153,7 @@ class ChannelController extends Controller
             $this->response =
             [
                 "message"       => "Unable to delete channel",
-                "status_code"   => 401
+                "status_code"   => 400
             ];
         }
         return $this->response;
