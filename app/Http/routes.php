@@ -180,7 +180,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
     Route::post('/user/create', [
-        'uses' => 'UserController@sendInvite',
+        'uses' => 'UserController@createInvite',
         'as'   => '/user/create'
     ]);
 

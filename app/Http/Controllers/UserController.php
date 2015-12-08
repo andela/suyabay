@@ -13,6 +13,7 @@ use Suyabay\Http\Controllers\Controller;
 class UserController extends Controller
 {
     protected $mail;
+    protected $response;
 
     public function __construct(Mail $mail)
     {
@@ -38,46 +39,39 @@ class UserController extends Controller
      */
     public function createInvite(Request $request)
     {
-        $checkUser = Invite::where('username', $request->username)->first();
-        if (! $checkUser)
+        $createInvite = Invite::firstOrCreate([
+            'username'  => $request->username,
+            'role_id'  => $request->user_role,
+            'token'   => $request->_token
+        ]);
+        if ($createInvite)
         {
-            $createInvite = Invite::create([
-                'username'  => $request->username,
-                'role_id'  => $request->user_role,
-                'token'   => $request->_token
-            ]);
-            return $createInvite;
+            return $this->getInviteeEmail($request);
         }
+        else
+        {
+            $this->response =
+            [
+                'message' => 'Error sending Invites',
+                'status_code' => 502
+            ];
+        }
+        return $this->response;
     }
 
     /**
-     * Insert into invites table and send mail
-     *
-     * @param  Request $request
-     * @param  $email
-     */
-    public function processCreateInvite(Request $request, $email)
-    {
-        if ($this->createInvite($request))
-        {
-            return $this->sendMail($request, $email);
-        }
-        return 502;
-    }
-
-    /**
-     * Check if the user exist and process request.
+     * Get Invitee email and process mail
      *
      * @param  Request $request
      */
-    public function sendInvite(Request $request)
+    public function getInviteeEmail(Request $request)
     {
         $email = User::where('username', $request->username)->first();
         if ($email)
         {
-            return $this->processCreateInvite($request, $email);
+            $this->response = $this->sendMail($request, $email);
         }
-        return 501;
+        return $this->response;
     }
 
     /**
@@ -98,8 +92,13 @@ class UserController extends Controller
 
         if ($mailSent)
         {
-            return 500;
+            $this->response =
+            [
+                'message' => 'Invitation was sent successfully',
+                'status_code' => 500
+            ];
         }
+        return $this->response;
     }
 
     /**
@@ -152,15 +151,19 @@ class UserController extends Controller
         $checkToken = Invite::where('token', $token)->first();
         if ($checkToken)
         {
-            return $this->updateUser($checkToken->username, $checkToken->role_id);
+            $this->response = $this->updateUser($checkToken->username, $checkToken->role_id);
         }
+        else
+        {
+            $this->response = redirect('/invalid');
+        }
+        return $this->response;
     }
 
     /**
      * Pass users and roles to edit_user view
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function editView($id)
     {
@@ -180,9 +183,21 @@ class UserController extends Controller
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
         if ($updateUser)
         {
-            return 600; // success
+            $this->response =
+            [
+                'message' => 'User details updated successfully',
+                'status_code' => 600
+            ];
         }
-        return 601; // Unable to update
+        else
+        {
+            $this->response =
+            [
+                'message' => 'Error updating user',
+                'status_code' => 601
+            ];
+        }
+        return $this->response; // Unable to update
     }
 
     /**

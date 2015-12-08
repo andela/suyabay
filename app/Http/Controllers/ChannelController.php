@@ -136,7 +136,6 @@ class ChannelController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
@@ -157,6 +156,6 @@ class ChannelController extends Controller
                 "status_code"   => 401
             ];
         }
-        return $this->response; // unable to delete
+        return $this->response;
     }
 }
