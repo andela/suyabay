@@ -161,7 +161,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 */
     Route::get('/users', [
         'uses' => 'UserController@index',
-        'as'   => '/users'
+        'as'   => 'users'
     ]);
 
     Route::get('/user/{id}/edit', [
@@ -190,7 +190,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 */
     Route::get('/channels', [
         'uses' => 'ChannelController@index',
-        'as'   => '/channels'
+        'as'   => 'channels'
     ]);
 
     Route::get('/channel/{id}/edit', [
@@ -199,12 +199,12 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
     Route::put('/channel/edit', [
         'uses' => 'ChannelController@update',
-        'as'   => '/channel-edit'
+        'as'   => 'channel-edit'
     ]);
 
     Route::get('/channel/create', [
         'uses' => 'ChannelController@createIndex',
-        'as'   => '/channel-create'
+        'as'   => 'channel-create'
     ]);
     Route::post('/channel/create', [
         'uses' => 'ChannelController@processCreate'
