@@ -18,11 +18,11 @@ return [
     */
 
     'credentials' => [
-    'key'    => 'AKIAIXSKU6FOORLG53YA',
-    'secret' => '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 ',
+    'key'    => env(AWS_KEY),
+    'secret' => env(AWS_SECRET),
     ],
     'region' => 'us-west-1',
-    'version' => 'latest',
-    'endpoint' => 'https://autoscaling.us-west-1.amazonaws.com',
+    'version' => env(VERSION),
+    'endpoint' => env(END_POINT),
     'debug' => false
 ];

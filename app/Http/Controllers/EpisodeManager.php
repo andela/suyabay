@@ -47,16 +47,6 @@ class EpisodeManager extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -74,36 +64,24 @@ class EpisodeManager extends Controller
             'podcast'       => 'required|size_format'
         ]);
 
-        if ($v->fails()) {
+        if($v->fails()) {
 
             return redirect()->back()->withErrors($v->errors());
         }
 
-            $cover = $this->getImageFileUrl($request->cover);
-            $podcast = $this->uploadFileToS3($request);
+        $cover = $this->getImageFileUrl($request->cover);
+        $podcast = $this->uploadFileToS3($request);
 
-            Episode::create([
-                'episode_name'         => $request->title,
-                'episode_description'  => $request->description,
-                'image'                => $cover,
-                'audio_mp3'            => $podcast,
-                'view_count'           => 0,
-                'channel_id'           => $request->channel
-            ]);
+        Episode::create([
+            'episode_name'         => $request->title,
+            'episode_description'  => $request->description,
+            'image'                => $cover,
+            'audio_mp3'            => $podcast,
+            'view_count'           => 0,
+            'channel_id'           => $request->channel
+        ]);
 
-            return redirect('dashboard/episode/create')->with('status', 'Nice Job!');
-    }
-
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-
+        return redirect('dashboard/episode/create')->with('status', 'Nice Job!');
     }
 
     /**
@@ -116,8 +94,7 @@ class EpisodeManager extends Controller
     {
         $episode = Episode::find($id);
 
-        return view('dashboard/pages/edit_episode')
-            ->with('episode', $episode);
+        return view('dashboard/pages/edit_episode')->with('episode', $episode);
     }
 
     /**
@@ -129,22 +106,7 @@ class EpisodeManager extends Controller
     */
     public function update(Request $request, $id)
     {
-        echo 'eya';
-        die();
-        $cover = $this->getImageFileUrl($request->cover);
-
-        $podcast = $this->uploadFileToS3($request);
-
-        $episode = Episode::find($id);
-
-        $episode->episode_name = Input::get('title');
-        $episode->description  = Input::get('description');
-        $episode->image  = $cover;
-        $episode->audio_mp3  = $podcast;
-        $episode->view_count = 0;
-        $episode->channel_id  = 1;
-
-        $episode>save();
+        //
     }
 
     /**
@@ -176,19 +138,16 @@ class EpisodeManager extends Controller
     */
     public function uploadFileToS3(Request $request)
     {
-        $podcast = $request->podcast;
-        $fileName = time() . '.' . $podcast->getClientOriginalExtension();
-
+        $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
-        $filePath = $fileName;
 
         //large files
-        $s3->put($filePath, fopen($podcast, 'r+'));
+        $s3->put($fileName, fopen($request->podcast, 'r+'));
 
-        return Storage::disk('s3')->getDriver()
-                                ->getAdapter()
-                                ->getClient()
-                                ->getObjectUrl('suyabay', $fileName);
+        return $s3->getDriver()
+                  ->getAdapter()
+                  ->getClient()
+                  ->getObjectUrl('suyabay', $fileName);
     }
 
 }

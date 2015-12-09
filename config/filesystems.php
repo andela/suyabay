@@ -64,11 +64,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => 'AKIAJWRDVSMILXEW5K4Q',
-            'secret' => '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',
+            'key'    => env(AWS_KEY),
+            'secret' => env(AWS_SECRET),
             'region' => 'us-west-2',
-            'bucket' => 'suyabay',
-            'endpoint' => 'https://s3-us-west-2.amazonaws.com/suyaya',
+            'bucket' => env(BUCKET),
+            'endpoint' => env(END_POINT),
         ],
 
         'rackspace' => [

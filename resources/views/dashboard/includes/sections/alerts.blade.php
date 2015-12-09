@@ -6,7 +6,7 @@
         </div>
     </div>
     @endforeach
-@else
+@elseif ( session()->has('status'))
     <div class="row">
         <div class="success-message">
         {{ session()->get('status')}}

@@ -88,12 +88,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
 <ul id="slide-out" class="side-nav">
     <ul class="collapsible" data-collapsible="accordion">
         <li>
