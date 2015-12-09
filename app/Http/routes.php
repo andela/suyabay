@@ -164,9 +164,9 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/users'
     ]);
 
-    Route::get('/user/edit/{id}', [
+    Route::get('/user/{id}/edit', [
         'uses' => 'UserController@editView',
-        'as'   => '/user/edit/{id}'
+        'as'   => '/user/{id}/edit'
     ]);
 
     Route::post('/user/edit', [
@@ -194,9 +194,9 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/channels'
     ]);
 
-    Route::get('/channel/edit/{id}', [
+    Route::get('/channel/{id}/edit', [
         'uses' => 'ChannelController@edit',
-        'as'   => '/channel/channel/edit/{id}'
+        'as'   => '/channel/{id}/edit'
     ]);
     Route::post('/channel/edit', [
         'uses' => 'ChannelController@update',
@@ -208,12 +208,12 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => '/channel/channel'
     ]);
     Route::post('/channel/create', [
-        'uses' => 'ChannelController@create',
+        'uses' => 'ChannelController@processCreate',
         'as'   => '/channel/channel'
     ]);
-    Route::post('/channel/delete/{id}', [
+    Route::post('/channel/{id}/delete', [
         'uses' => 'ChannelController@destroy',
-        'as'   => '/channel/delete/{id}'
+        'as'   => '/channel/{id}/delete'
     ]);
 
 });

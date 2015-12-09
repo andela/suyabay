@@ -8,6 +8,7 @@ use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
+use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -22,8 +23,6 @@ class UserController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -33,29 +32,96 @@ class UserController extends Controller
     }
 
     /**
-     * Insert invitation details to invites tablee
+     * Check if user exist
      *
-     * @param  Request $request
+     * @param  $request
      */
-    public function createInvite(Request $request)
+    public function checkIfUserExist(Request $request)
     {
-        $createInvite = Invite::firstOrCreate([
-            'username'  => $request->username,
-            'role_id'  => $request->user_role,
-            'token'   => $request->_token
-        ]);
-        if ($createInvite)
+        $user = User::where('username', $request->username)->first();
+        if ($user)
         {
-            return $this->getInviteeEmail($request);
+           return true;
+        }
+    }
+
+    /**
+     * Insert invitation into database
+     *
+     * @param  $request
+     */
+    public function createInvitation(Request $request)
+    {
+        try
+        {
+            Invite::create([
+                'username'  => $request->username,
+                'role_id'  => $request->user_role,
+                'token'   => $request->_token
+            ]);
+            $this->response =
+            [
+                'message' => 'Invitation created',
+                'status_code' => 201
+            ];
+
+        } catch (QueryException $e) {
+            $this->response =
+            [
+                'message' => 'Invitation already sent',
+                'status_code' => 400
+            ];
+        }
+
+        return $this->response;
+    }
+
+    /**
+     * Check if user exist and Insert Invitation details
+     * into the database
+     *
+     * @param  $request
+     */
+    public function insertInvite(Request $request)
+    {
+        if ( $this->checkIfUserExist($request) )
+        {
+            $this->response = $this->createInvitation($request);
         }
         else
         {
             $this->response =
             [
-                'message' => 'Error sending Invites',
+                'message' => 'User does not exist',
                 'status_code' => 400
             ];
         }
+
+        return $this->response;
+    }
+
+    /**
+     * Process invitation details into invites table
+     *
+     * @param  Request $request
+     */
+    public function createInvite(Request $request)
+    {
+        $createInvite = $this->insertInvite($request);
+
+        if ($createInvite['status_code'] == 201)
+        {
+            $this->response = $this->getInviteeEmail($request);
+        }
+        else
+        {
+            $this->response =
+            [
+                'message' => $createInvite['message'],
+                'status_code' => $createInvite['status_code']
+            ];
+        }
+
         return $this->response;
     }
 
@@ -71,6 +137,7 @@ class UserController extends Controller
         {
             $this->response = $this->sendMail($request, $email);
         }
+
         return $this->response;
     }
 
@@ -98,6 +165,7 @@ class UserController extends Controller
                 'status_code' => 201
             ];
         }
+
         return $this->response;
     }
 
@@ -109,6 +177,7 @@ class UserController extends Controller
     public function show()
     {
         $roles = Role::get();
+
         return view('dashboard.pages.create_user', compact('roles'));
     }
 
@@ -157,6 +226,7 @@ class UserController extends Controller
         {
             $this->response = redirect('/invalid');
         }
+
         return $this->response;
     }
 
@@ -169,6 +239,7 @@ class UserController extends Controller
     {
         $users = User::where('id', $id)->first();
         $roles = Role::get();
+
         return view('dashboard.pages.edit_user', compact('users', 'roles'));
     }
 
@@ -196,6 +267,7 @@ class UserController extends Controller
                 'status_code' => 400
             ];
         }
+
         return $this->response; // Unable to update
     }
 
@@ -207,6 +279,7 @@ class UserController extends Controller
     public function welcomePage($username)
     {
         $users = User::where('username', $username)->first();
+
         return view('app.pages.welcome', compact('users'));
     }
 }

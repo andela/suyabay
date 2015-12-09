@@ -5,7 +5,7 @@ $(document).ready(function(){
      */
     $(".delete_channel", this).on('click', function () {
         var id    = $(this).data("id");
-        var url   = "/dashboard/channel/delete/"+id;
+        var url   = "/dashboard/channel/"+id+"/delete";
         var name  = $(this).data("name");
         var token = $(this).data("token");
         var data  =  {
@@ -155,7 +155,7 @@ function confirmDelete (url, parameter, name)
 function channelSuccessMessage (message)
 {
     swal({
-            title: "Deleted!",
+            title: "Done!",
             text: message,
             type: "success",
             showCancelButton: false,

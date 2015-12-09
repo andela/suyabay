@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <h4>Create User</h4><br>
+        <h4>Send Upgrade Invitation</h4><br>
 
         <div class="row">
             <form class="col s12" id="create_user" action="/dashboard/user/create" method="POST">

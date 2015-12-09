@@ -5,6 +5,7 @@ namespace Suyabay\Http\Controllers;
 use Suyabay\Channel;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
 class ChannelController extends Controller
@@ -34,60 +35,31 @@ class ChannelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Process channel creation
      */
-    public function create(Request $request)
+    public function processCreate(Request $request)
     {
-        $channel = Channel::create([
-            'channel_name'         => $request->name,
-            'channel_description'  => $request->description,
-            'subscription_count'   => 0
-        ]);
-        if ($channel)
+        try
         {
+            $channel = Channel::create([
+                'channel_name'         => $request->name,
+                'channel_description'  => $request->description,
+                'subscription_count'   => 0
+            ]);
             $this->response =
             [
                 'message' => 'Channel created Successfully',
                 'status_code' => 200
             ];
-        }
-        return $this->response;
-    }
-
-    /**
-     * Check if the channel name already exist
-     *
-     * @param  $request
-     * @return bool
-     */
-    public function checkChannelExist(Request $request)
-    {
-        $check = Channel::where('channel_name', $request->name)->first();
-        if ($check)
-        {
-            return true;
-        }
-    }
-
-    /**
-     * Process the request and return result for ajax call
-     *
-     * @param  $request
-     * @return int
-     */
-    public function processCreate(Request $request)
-    {
-        if ($this->checkChannelExist($request))
-        {
-            return $this->response =
+        } catch (QueryException $e) {
+            $this->response =
             [
-                'message' => 'Unable to create channel',
+                'message' => 'Channel already exist',
                 'status_code' => 400
             ];
         }
-        return $this->create($request);
+
+        return $this->response;
     }
 
     /**
@@ -112,23 +84,33 @@ class ChannelController extends Controller
      */
     public function update(Request $request)
     {
-        $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
-        if ($updateChannel)
+        try
         {
+            $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
+            if ($updateChannel)
+            {
+                $this->response =
+                [
+                    'message' => 'Channel updated Successfully',
+                    'status_code' => 200
+                ];
+            }
+            else
+            {
+                $this->response =
+                [
+                    'message' => 'Unable to update channel',
+                    'status_code' => 400
+                ];
+            }
+        } catch (QueryException $e) {
             $this->response =
             [
-                'message' => 'Channel updated Successfully',
-                'status_code' => 200
-            ];
-        }
-        else
-        {
-            $this->response =
-            [
-                'message' => 'Unable to update channel',
+                'message' => 'Channel name already exist',
                 'status_code' => 400
             ];
         }
+
         return $this->response;
     }
 
@@ -156,6 +138,7 @@ class ChannelController extends Controller
                 "status_code"   => 400
             ];
         }
+
         return $this->response;
     }
 }
