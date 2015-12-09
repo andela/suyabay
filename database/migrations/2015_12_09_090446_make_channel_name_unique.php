@@ -12,7 +12,7 @@ class MakeChannelNameUnique extends Migration
      */
     public function up()
     {
-        Schema::table('channels', function($table){
+        Schema::table('channels', function ($table) {
             $table->string('channel_name')->unique()->change();
         });
     }
@@ -24,7 +24,7 @@ class MakeChannelNameUnique extends Migration
      */
     public function down()
     {
-        Schema::table('channels', function($table){
+        Schema::table('channels', function ($table) {
             $table->string('channel_name')->change();
         });
     }

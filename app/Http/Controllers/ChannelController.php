@@ -88,16 +88,13 @@ class ChannelController extends Controller
         {
             $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
 
-            if ($updateChannel)
-            {
+            if ($updateChannel) {
                 $this->response =
                 [
                     'message' => 'Channel updated Successfully',
                     'status_code' => 200
                 ];
-            }
-            else
-            {
+            } else {
                 $this->response =
                 [
                     'message' => 'Unable to update channel',
@@ -124,16 +121,13 @@ class ChannelController extends Controller
     {
         $deleteChannel = Channel::where('id', $id)->delete();
 
-        if ($deleteChannel)
-        {
+        if ($deleteChannel) {
             $this->response =
             [
                 "message"       => "Channel deleted successfully",
                 "status_code"   => 200
             ];
-        }
-        else
-        {
+        } else {
             $this->response =
             [
                 "message"       => "Unable to delete channel",

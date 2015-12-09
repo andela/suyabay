@@ -141,12 +141,9 @@ function confirmDelete (url, parameter, name)
     },
     function ( isConfirm )
     {
-        if( isConfirm )
-        {
+        if( isConfirm ) {
             processAjax('DELETE', url, parameter, name);
-        }
-        else
-        {
+        } else {
             cancelDeleteMessage( name );
         }
     });

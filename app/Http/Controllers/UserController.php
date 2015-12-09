@@ -40,8 +40,7 @@ class UserController extends Controller
     {
         $user = User::where('username', $request->username)->first();
 
-        if ($user)
-        {
+        if ($user) {
            return true;
         }
     }
@@ -84,12 +83,9 @@ class UserController extends Controller
      */
     public function insertInvite(Request $request)
     {
-        if ( $this->checkIfUserExist($request) )
-        {
+        if ($this->checkIfUserExist($request)) {
             $this->response = $this->createInvitation($request);
-        }
-        else
-        {
+        } else {
             $this->response =
             [
                 'message' => 'User does not exist',
@@ -109,12 +105,9 @@ class UserController extends Controller
     {
         $createInvite = $this->insertInvite($request);
 
-        if ($createInvite['status_code'] == 201)
-        {
+        if ($createInvite['status_code'] == 201) {
             $this->response = $this->getInviteeEmail($request);
-        }
-        else
-        {
+        } else {
             $this->response =
             [
                 'message' => $createInvite['message'],
@@ -134,8 +127,7 @@ class UserController extends Controller
     {
         $email = User::where('username', $request->username)->first();
 
-        if ($email)
-        {
+        if ($email) {
             $this->response = $this->sendMail($request, $email);
         }
 
@@ -158,8 +150,7 @@ class UserController extends Controller
                 $message->to($email->email)->subject('Suyabay Invitation');
             });
 
-        if ($mailSent)
-        {
+        if ($mailSent) {
             $this->response =
             [
                 'message' => 'Invitation was sent successfully',
@@ -192,8 +183,7 @@ class UserController extends Controller
     {
         $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
 
-        if ($updateUserRole)
-        {
+        if ($updateUserRole) {
             return $this->deleteToken($username);
         }
     }
@@ -207,8 +197,7 @@ class UserController extends Controller
     {
         $deleteUser = Invite::where('username', $username)->delete();
 
-        if ($deleteUser)
-        {
+        if ($deleteUser) {
             return redirect('/welcome/'.$username);
         }
     }
@@ -222,12 +211,9 @@ class UserController extends Controller
     {
         $checkToken = Invite::where('token', $token)->first();
 
-        if ($checkToken)
-        {
+        if ($checkToken) {
             $this->response = $this->updateUser($checkToken->username, $checkToken->role_id);
-        }
-        else
-        {
+        } else {
             $this->response = redirect('/invalid');
         }
 
@@ -256,16 +242,13 @@ class UserController extends Controller
     {
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
 
-        if ($updateUser)
-        {
+        if ($updateUser) {
             $this->response =
             [
                 'message' => 'User details updated successfully',
                 'status_code' => 201
             ];
-        }
-        else
-        {
+        } else {
             $this->response =
             [
                 'message' => 'Error updating user',
