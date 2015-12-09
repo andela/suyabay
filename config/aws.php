@@ -18,11 +18,11 @@ return [
     */
 
     'credentials' => [
-    'key'    => env(AWS_KEY),
-    'secret' => env(AWS_SECRET),
+    'key'    => env('AWS_KEY'),
+    'secret' => env('AWS_SECRET'),
     ],
     'region' => 'us-west-1',
-    'version' => env(VERSION),
-    'endpoint' => env(END_POINT),
+    'version' => env('VERSION'),
+    'endpoint' => env('END_POINT'),
     'debug' => false
 ];

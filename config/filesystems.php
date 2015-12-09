@@ -64,11 +64,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => env(AWS_KEY),
-            'secret' => env(AWS_SECRET),
+            'key'    => env('AWS_KEY'),
+            'secret' => env('AWS_SECRET'),
             'region' => 'us-west-2',
-            'bucket' => env(BUCKET),
-            'endpoint' => env(END_POINT),
+            'bucket' => env('BUCKET'),
+            'endpoint' => env('END_POINT'),
         ],
 
         'rackspace' => [
