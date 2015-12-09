@@ -3,7 +3,7 @@ $(document).ready(function(){
     /**
      * onClick event to handle Channel delete
      */
-    $(".delete_channel", this).on('click', function () {
+    $(".delete_channel", this).on("click", function () {
         var id    = $(this).data("id");
         var url   = "/dashboard/channel/"+id;
         var name  = $(this).data("name");
@@ -39,7 +39,7 @@ $(document).ready(function(){
                     description   : channel_description
                 }
             }
-        processAjax('POST', data.url, data.parameter, data.parameter.channel_name );
+        processAjax("POST", data.url, data.parameter, data.parameter.channel_name );
 
         return false;
     });
@@ -64,7 +64,7 @@ $(document).ready(function(){
                     channel_description   : channel_description
                 }
             }
-        processAjax('PUT', data.url, data.parameter, data.parameter.channel_name );
+        processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
 
         return false;
     });
@@ -87,7 +87,7 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax('POST', data.url, data.parameter, data.parameter.username );
+        processAjax("POST", data.url, data.parameter, data.parameter.username );
 
         return false;
     });
@@ -112,7 +112,7 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax('PUT', data.url, data.parameter, data.parameter.username );
+        processAjax("PUT", data.url, data.parameter, data.parameter.username );
 
         return false;
     });
@@ -142,7 +142,7 @@ function confirmDelete (url, parameter, name)
     function ( isConfirm )
     {
         if( isConfirm ) {
-            processAjax('DELETE', url, parameter, name);
+            processAjax("DELETE", url, parameter, name);
         } else {
             cancelDeleteMessage( name );
         }

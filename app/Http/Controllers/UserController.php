@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if ($user) {
-           return true;
+            return true;
         }
     }
 
@@ -52,8 +52,7 @@ class UserController extends Controller
      */
     public function createInvitation(Request $request)
     {
-        try
-        {
+        try {
             Invite::create([
                 'username'  => $request->username,
                 'role_id'  => $request->user_role,
@@ -148,7 +147,7 @@ class UserController extends Controller
         $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'token' => $request->_token], function ($message) use ($email) {
                 $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email->email)->subject('Suyabay Invitation');
-            });
+        });
 
         if ($mailSent) {
             $this->response =

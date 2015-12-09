@@ -39,8 +39,7 @@ class ChannelController extends Controller
      */
     public function processCreate(Request $request)
     {
-        try
-        {
+        try {
             $channel = Channel::create([
                 'channel_name'         => $request->name,
                 'channel_description'  => $request->description,
@@ -84,8 +83,7 @@ class ChannelController extends Controller
      */
     public function update(Request $request)
     {
-        try
-        {
+        try {
             $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
 
             if ($updateChannel) {
