@@ -5,7 +5,7 @@ $(document).ready(function(){
      */
     $(".delete_channel", this).on('click', function () {
         var id    = $(this).data("id");
-        var url   = "/dashboard/channel/"+id+"/delete";
+        var url   = "/dashboard/channel/"+id;
         var name  = $(this).data("name");
         var token = $(this).data("token");
         var data  =  {
@@ -17,6 +17,7 @@ $(document).ready(function(){
             }
         }
         confirmDelete(data.url, data.parameter, data.parameter.channel_name );
+
         return false;
     });
 
@@ -38,7 +39,8 @@ $(document).ready(function(){
                     description   : channel_description
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.channel_name );
+        processAjax('POST', data.url, data.parameter, data.parameter.channel_name );
+
         return false;
     });
 
@@ -62,7 +64,8 @@ $(document).ready(function(){
                     channel_description   : channel_description
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.channel_name );
+        processAjax('PUT', data.url, data.parameter, data.parameter.channel_name );
+
         return false;
     });
 
@@ -84,7 +87,8 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.username );
+        processAjax('POST', data.url, data.parameter, data.parameter.username );
+
         return false;
     });
 
@@ -108,7 +112,8 @@ $(document).ready(function(){
                     user_role   : user_role
                 }
             }
-        processAjax(data.url, data.parameter, data.parameter.username );
+        processAjax('PUT', data.url, data.parameter, data.parameter.username );
+
         return false;
     });
 
@@ -138,7 +143,7 @@ function confirmDelete (url, parameter, name)
     {
         if( isConfirm )
         {
-            processAjax(url, parameter, name);
+            processAjax('DELETE', url, parameter, name);
         }
         else
         {
@@ -212,20 +217,26 @@ function errorMessage (message)
  * @param  parameter
  * @param  name
  */
-function processAjax (url, parameter, name)
+function processAjax (action, url, parameter, name)
 {
-    $.post(url, parameter, function( data ){
-        switch( data.status_code )
-        {
-            case 200:
-                return channelSuccessMessage( data.message );
-                break;
 
-            case 201:
-                return userSuccessMessage( data.message );
-                break;
+    $.ajax({
+        url: url,
+        type: action,
+        data: parameter,
+        success: function(response) {
+            switch( response.status_code )
+            {
+                case 200:
+                    return channelSuccessMessage( response.message );
+                    break;
 
-            default: errorMessage( data.message );
+                case 201:
+                    return userSuccessMessage( response.message );
+                    break;
+
+                default: errorMessage( response.message );
+            }
         }
     });
 }

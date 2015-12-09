@@ -14,7 +14,7 @@
             <div class="card-content center-align">
                 <span class="user-name activator grey-text text-darken-4">{{ $user->username }}</span>
                 <p><a href="#">{{ $user->role->name }}</a></p>
-                <a href="/dashboard/user/edit/{{ $user->id }}" class="btn">Edit Profile</a>
+                <a href="/dashboard/user/{{ $user->id }}/edit" class="btn">Edit Profile</a>
             </div>
         </div>
         @endforeach

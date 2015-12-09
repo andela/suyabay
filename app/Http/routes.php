@@ -166,22 +166,21 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/user/{id}/edit', [
         'uses' => 'UserController@editView',
-        'as'   => '/user/{id}/edit'
+        'as'   => 'user-edit-id'
     ]);
 
-    Route::post('/user/edit', [
+    Route::put('/user/edit', [
         'uses' => 'UserController@update',
-        'as'   => '/user/edit'
+        'as'   => 'user-edit'
     ]);
 
     Route::get('/user/create', [
         'uses' => 'UserController@show',
-        'as'   => '/user/create'
+        'as'   => 'user-create'
     ]);
 
     Route::post('/user/create', [
-        'uses' => 'UserController@createInvite',
-        'as'   => '/user/create'
+        'uses' => 'UserController@createInvite'
     ]);
 
 /*
@@ -196,24 +195,23 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/channel/{id}/edit', [
         'uses' => 'ChannelController@edit',
-        'as'   => '/channel/{id}/edit'
+        'as'   => 'channel-id-edit'
     ]);
-    Route::post('/channel/edit', [
+    Route::put('/channel/edit', [
         'uses' => 'ChannelController@update',
-        'as'   => '/channel/edit'
+        'as'   => '/channel-edit'
     ]);
 
     Route::get('/channel/create', [
         'uses' => 'ChannelController@createIndex',
-        'as'   => '/channel/channel'
+        'as'   => '/channel-create'
     ]);
     Route::post('/channel/create', [
-        'uses' => 'ChannelController@processCreate',
-        'as'   => '/channel/channel'
+        'uses' => 'ChannelController@processCreate'
     ]);
-    Route::post('/channel/{id}/delete', [
+    Route::delete('/channel/{id}', [
         'uses' => 'ChannelController@destroy',
-        'as'   => '/channel/{id}/delete'
+        'as'   => 'channel-id'
     ]);
 
 });
@@ -225,12 +223,12 @@ Route::group(['prefix' => 'dashboard'], function () {
 */
 Route::get('/invite/{token}', [
     'uses' => 'UserController@processInvite',
-    'as'   => '/invite/{token}'
+    'as'   => 'invite-token'
 ]);
 
 Route::get('/welcome/{username}', [
     'uses' => 'UserController@welcomePage',
-    'as'   => '/welcome/{username}'
+    'as'   => 'welcome-username'
 ]);
 
 /*
