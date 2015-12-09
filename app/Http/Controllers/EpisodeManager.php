@@ -64,8 +64,7 @@ class EpisodeManager extends Controller
             'podcast'       => 'required|size_format'
         ]);
 
-        if($v->fails()) {
-
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
 
@@ -144,10 +143,8 @@ class EpisodeManager extends Controller
         //large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
-        return $s3->getDriver()
-                  ->getAdapter()
-                  ->getClient()
-                  ->getObjectUrl('suyabay', $fileName);
+        return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
+
     }
 
 }
