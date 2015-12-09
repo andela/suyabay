@@ -138,6 +138,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Suyabay\Providers\HelperServiceProvider::class,
+        Aws\Laravel\AwsServiceProvider::class,
+        JD\Cloudder\CloudderServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -203,6 +205,8 @@ return [
 
         'Yearly'    => Busayo\Yearly\YearlyFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'AWS'       => Aws\Laravel\AwsFacade::class,
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
     ],
 
 ];

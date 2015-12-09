@@ -155,18 +155,25 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/user/create', function () {
         return view('dashboard.pages.create_user');
     });
-    
-    Route::get('/episodes', function () {
-        return view('dashboard.pages.view_episodes');
-    });
 
-    Route::get('/episode/create', function () {
-        return view('dashboard.pages.create_episode');
-    });
+    //Episodes Routes
+    Route::get('episode/create', 'EpisodeManager@showIndex');
 
-    Route::get('/episode/edit', function () {
-        return view('dashboard.pages.edit_episode');
-    });
+    Route::get('episode/create', 'EpisodeManager@showChannels');
+
+    Route::post('episode/create', 'EpisodeManager@store');
+
+    Route::get('/episodes', 'EpisodeManager@index');
+
+    Route::get('/episode/{id}/edit','EpisodeManager@edit');
+
+    Route::put('/episode/{id}/edit',[
+        'uses' => 'EpisodeManager@update',
+        'as' => 'episode.update'
+    ]);
+
+    // return view('dashboard.pages.edit_episode');
+    //end
 
     Route::get('/channels', function () {
         return view('dashboard.pages.view_channels');

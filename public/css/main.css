@@ -87,7 +87,7 @@
 }
 
 .error-message {
-    font-weight:bold;
+    font-weight:light;
     line-height: 1em;
     color:red;
 }
@@ -259,7 +259,7 @@
 
 body
 {
-    .overflow-y: hidden;    
+    .overflow-y: hidden;
 }
 
 
@@ -307,7 +307,7 @@ Navigations Styles
 }
 
 /*
- # 
+ #
  =====================
 */
 @media (max-width: 600px) {
