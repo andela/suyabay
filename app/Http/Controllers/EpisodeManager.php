@@ -91,9 +91,7 @@ class EpisodeManager extends Controller
                 'channel_id'           => $request->channel
             ]);
 
-        return redirect('dashboard/episode/create')
-        ->with('status', 'Nice Job!');
-
+            return redirect('dashboard/episode/create')->with('status', 'Nice Job!');
     }
 
 
@@ -178,16 +176,16 @@ class EpisodeManager extends Controller
     */
     public function uploadFileToS3(Request $request)
     {
-      $podcast = $request->podcast;
-      $fileName = time() . '.' . $podcast->getClientOriginalExtension();
+        $podcast = $request->podcast;
+        $fileName = time() . '.' . $podcast->getClientOriginalExtension();
 
-      $s3 = Storage::disk('s3');
-      $filePath = $fileName;
+        $s3 = Storage::disk('s3');
+        $filePath = $fileName;
 
-      //large files
-      $s3->put($filePath, fopen($podcast, 'r+'));
+        //large files
+        $s3->put($filePath, fopen($podcast, 'r+'));
 
-      return Storage::disk('s3')->getDriver()
+        return Storage::disk('s3')->getDriver()
                                 ->getAdapter()
                                 ->getClient()
                                 ->getObjectUrl('suyabay', $fileName);
