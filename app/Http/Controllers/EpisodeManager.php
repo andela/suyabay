@@ -139,12 +139,10 @@ class EpisodeManager extends Controller
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
-
         //large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
-
     }
 
 }
