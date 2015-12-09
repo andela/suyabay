@@ -87,6 +87,7 @@ class ChannelController extends Controller
         try
         {
             $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
+
             if ($updateChannel)
             {
                 $this->response =
@@ -122,6 +123,7 @@ class ChannelController extends Controller
     public function destroy($id)
     {
         $deleteChannel = Channel::where('id', $id)->delete();
+
         if ($deleteChannel)
         {
             $this->response =

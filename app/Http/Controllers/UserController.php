@@ -39,6 +39,7 @@ class UserController extends Controller
     public function checkIfUserExist(Request $request)
     {
         $user = User::where('username', $request->username)->first();
+
         if ($user)
         {
            return true;
@@ -64,7 +65,6 @@ class UserController extends Controller
                 'message' => 'Invitation created',
                 'status_code' => 201
             ];
-
         } catch (QueryException $e) {
             $this->response =
             [
@@ -133,6 +133,7 @@ class UserController extends Controller
     public function getInviteeEmail(Request $request)
     {
         $email = User::where('username', $request->username)->first();
+
         if ($email)
         {
             $this->response = $this->sendMail($request, $email);
@@ -190,6 +191,7 @@ class UserController extends Controller
     public function updateUser($username, $role_id)
     {
         $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
+
         if ($updateUserRole)
         {
             return $this->deleteToken($username);
@@ -204,6 +206,7 @@ class UserController extends Controller
     public function deleteToken($username)
     {
         $deleteUser = Invite::where('username', $username)->delete();
+
         if ($deleteUser)
         {
             return redirect('/welcome/'.$username);
@@ -218,6 +221,7 @@ class UserController extends Controller
     public function processInvite($token)
     {
         $checkToken = Invite::where('token', $token)->first();
+
         if ($checkToken)
         {
             $this->response = $this->updateUser($checkToken->username, $checkToken->role_id);
@@ -251,6 +255,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
+
         if ($updateUser)
         {
             $this->response =

@@ -213,7 +213,6 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses' => 'ChannelController@destroy',
         'as'   => 'channel-id'
     ]);
-
 });
 
 /*

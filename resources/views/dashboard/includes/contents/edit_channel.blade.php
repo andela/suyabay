@@ -10,6 +10,7 @@
 <div class="col s12 m9">
 
     <div class="row">
+
         <h4>Edit Channel</h4><br>
         <div class="row">
             <form id="channel_update" action="/dashboard/channel/edit" method="post">
@@ -39,8 +40,5 @@
         </div>
 
     </div>
-
-
-
 
 </div>
