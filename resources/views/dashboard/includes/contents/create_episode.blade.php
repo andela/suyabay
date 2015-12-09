@@ -5,7 +5,6 @@
         @include('dashboard.includes.sections.alerts')
 
         <h4>Create Episode</h4>
-        <br>
 
         <div class="row">
             <form class="col s12" action="/dashboard/episode/create" method="POST"
