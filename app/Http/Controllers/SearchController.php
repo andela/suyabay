@@ -15,10 +15,8 @@ class SearchController extends Controller
      */
     public function index()
     {
-
         // return view('app.pages.passwordreset');
         return redirect('/');
-
     }
 
     /**
@@ -28,7 +26,7 @@ class SearchController extends Controller
      */
     public function create()
     {
-        //
+        //why is this empty?
     }
 
     /**
@@ -50,7 +48,7 @@ class SearchController extends Controller
      */
     public function show($id)
     {
-        //
+        //Empoty function. Is this how it is supposed to be?
     }
 
     /**
