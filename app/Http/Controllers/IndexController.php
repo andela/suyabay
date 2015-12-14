@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Suyabay\Role;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;

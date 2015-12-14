@@ -1,8 +1,8 @@
-<!-- 
+<!--
  # Author     Emeka Osuagwu <emekaosuagwuandela0@gmail.com>
  # Copyright  2015 Emeka Osuagwu
- # License    MIT License <http://opensource.org/licenses/MIT>   
- 
+ # License    MIT License <http://opensource.org/licenses/MIT>
+
  #CodeFuntion: This piece of code is resposible for the structure
  of the create Episode page on the application
  -->
@@ -10,11 +10,12 @@
 <div class="col s12 m9">
 
     <div class="row">
-        
+
         <h4>Create Episode</h4><br>
 
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" action="/dashboard/episode/create" method="post">
+            {{ csrf_field() }}
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="Episode Title" id="first_name" type="text" class="validate">
@@ -59,13 +60,13 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <center>
-                    <a href="/dashboard/episodes" class="waves-effect waves-light btn"><i class="material-icons right"></i>Create</a>
+                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right"></i>Create</button>
                 </center>
             </form>
         </div>
-        
+
     </div>
 
 
