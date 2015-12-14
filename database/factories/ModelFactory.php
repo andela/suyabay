@@ -47,3 +47,24 @@ $factory->define(Suyabay\Comment::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(Suyabay\Role::class, function (Faker\Generator $faker) {
+    return [
+        'id'       => 1,
+        'name'       => 'Guest',
+    ];
+});
+
+$factory->define(Suyabay\Role::class, function (Faker\Generator $faker) {
+    return [
+        'id'       => 2,
+        'name'       => 'Premium User',
+    ];
+});
+
+$factory->define(Suyabay\Role::class, function (Faker\Generator $faker) {
+    return [
+        'id'       => 3,
+        'name'       => 'Super Admin',
+    ];
+});
+
