@@ -13,7 +13,7 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-             $table->integer('id')->change();
+             $table->integer('id');
             $table->string('name')->nullable()->unique();
         });
     }
