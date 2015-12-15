@@ -2,13 +2,14 @@
 
 namespace Suyabay;
 
+use Suyabay\Role;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -31,9 +32,12 @@ class User extends Model implements AuthenticatableContract,
     protected $fillable = ['username', 'email', 'password', 'githubID', 'facebookID', 'twitterID'];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * Define roles table relationship
      *
-     * @var array
+     * @return object
      */
-    //protected $hidden = ['password', 'remember_token'];
+    public function role()
+    {
+        return $this->belongsTo('Suyabay\Role');
+    }
 }

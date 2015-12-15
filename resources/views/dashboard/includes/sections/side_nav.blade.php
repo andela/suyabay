@@ -37,6 +37,7 @@
                     </div>
                 </li>
 
+                @can ( 'super-admin', Auth::user()->role->name )
                 <!-- Channels -->
                 <li>
                     <div class="collapsible-header">
@@ -82,7 +83,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @endcan
             </ul>
         </div>
     </div>

@@ -120,7 +120,6 @@ Route::post('search', function(){
     return redirect('/');
 });
 
-
 /*
 /-------------------------------------------------------------------------------
 / Logout
@@ -154,6 +153,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/user/create', function () {
         return view('dashboard.pages.create_user');
+
     });
 
     //Episodes Routes
@@ -172,23 +172,90 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as' => 'episode.update'
     ]);
 
-    // return view('dashboard.pages.edit_episode');
+
     //end
 
-    Route::get('/channels', function () {
-        return view('dashboard.pages.view_channels');
-    });
+/*
+/-------------------------------------------------------------------------------
+/ Admin User
+/-------------------------------------------------------------------------------
+*/
+    Route::get('/users', [
+        'uses' => 'UserController@index',
+        'as'   => 'users'
+    ]);
 
-    Route::get('/channel/create', function () {
-        return view('dashboard.pages.create_channel');
-    });
+    Route::get('/user/{id}/edit', [
+        'uses' => 'UserController@editView',
+        'as'   => 'user-edit-id'
+    ]);
 
-    Route::get('/channel/edit', function () {
-        return view('dashboard.pages.edit_channel');
-    });
+    Route::put('/user/edit', [
+        'uses' => 'UserController@update',
+        'as'   => 'user-edit'
+    ]);
 
+    Route::get('/user/create', [
+        'uses' => 'UserController@show',
+        'as'   => 'user-create'
+    ]);
+
+    Route::post('/user/create', [
+        'uses' => 'UserController@createInvite'
+    ]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Admin Channel
+/-------------------------------------------------------------------------------
+*/
+    Route::get('/channels', [
+        'uses' => 'ChannelController@index',
+        'as'   => 'channels'
+    ]);
+
+    Route::get('/channel/{id}/edit', [
+        'uses' => 'ChannelController@edit',
+        'as'   => 'channel-id-edit'
+    ]);
+    Route::put('/channel/edit', [
+        'uses' => 'ChannelController@update',
+        'as'   => 'channel-edit'
+    ]);
+
+    Route::get('/channel/create', [
+        'uses' => 'ChannelController@createIndex',
+        'as'   => 'channel-create'
+    ]);
+    Route::post('/channel/create', [
+        'uses' => 'ChannelController@processCreate'
+    ]);
+    Route::delete('/channel/{id}', [
+        'uses' => 'ChannelController@destroy',
+        'as'   => 'channel-id'
+    ]);
 });
 
+/*
+/-------------------------------------------------------------------------------
+/ Mail invitation
+/-------------------------------------------------------------------------------
+*/
+Route::get('/invite/{token}', [
+    'uses' => 'UserController@processInvite',
+    'as'   => 'invite-token'
+]);
+
+Route::get('/welcome/{username}', [
+    'uses' => 'UserController@welcomePage',
+    'as'   => 'welcome-username'
+]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Comment
+/-------------------------------------------------------------------------------
+*/
 Route::post('/comment', [
     'uses' =>'CommentController@postComment',
     'as'   => 'comment'

@@ -41,7 +41,7 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">vpn_key</i>
                             <input name="password_confirmation" id="password_confirmation" type="password" class="validate" required="true" />
-                                <label for="email">Confirm Email</label>
+                                <label for="email">Confirm Password</label>
                     </div>
 
                 </div>

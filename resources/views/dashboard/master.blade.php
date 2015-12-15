@@ -8,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
         <!-- HTTP -->
-        <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>        
-        
+        <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
+
 
         <link href="{!! load_asset('/library/sweetalert/sweetalert.css') !!}" rel='stylesheet' type="text/css">
         <script src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
@@ -20,10 +20,10 @@
 
         <!-- HTTP -->
         <link href="{!! load_asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
-        
+
 
         <link href = "{!! load_asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
-        
+
 
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -31,10 +31,10 @@
 
         <!-- Materialize Compiled and minified JavaScript -->
         <!-- HTTP -->
-        <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>    
+        <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
 
 
-        <script src = "{!! load_asset('/js/dashboard.js') !!}"></script>
+        <script src = "{!! load_asset('/js/admin.js') !!}"></script>
 
     </head>
     <body>
@@ -51,11 +51,11 @@
 
 
         <script>
-            
+
   $(document).ready(function() {
     $('select').material_select();
   });
-            
+
         </script>
 
     </body>

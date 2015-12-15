@@ -1,15 +1,12 @@
 <div class="col s12 m9">
-
     <div class="row">
-
         @include('dashboard.includes.sections.alerts')
-
         <h4>Create Episode</h4>
-
         <div class="row">
             <form class="col s12" action="/dashboard/episode/create" method="POST"
-            enctype="multipart/form-data" files="true">
+                    enctype="multipart/form-data" files="true">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="Episode Title" type="text" name="title">
@@ -45,7 +42,5 @@
                 <input type="submit"  value ="create" class="btn-large" />
             </form>
         </div>
-
     </div>
-
 </div>
