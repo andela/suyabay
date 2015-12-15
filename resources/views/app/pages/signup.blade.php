@@ -30,7 +30,8 @@
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
-                    <input id="username" type="text" name="username" value="{{ isset($username) ? $username : '' }}" class="validate" />
+                    <input id="username" type="text" name="username"
+                    value="{{ isset($username) ? $username : '' }}" required/>
                 <label for="icon_prefix1">
                     Username
                 </label>
@@ -38,16 +39,19 @@
 
             <div class="input-field">
                 <i class="material-icons prefix">turned_in_not</i>
-                    <input id="email" name="email" type="email" class="validate" value="{{ isset($email) ? $email : '' }}">
+                    <input id="email" name="email" type="email"
+                    value="{{ isset($email) ? $email : '' }}" required>
                     <label for="email">Email</label>
             </div>
 
             <div class="input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                    <input id="password" type="password" name="password" class="validate" />
+                    <input id="password" type="password" name="password" required/>
                     <label for="password">Password</label>
-                    <input type="hidden" name="facebook" id="facebook" value="{{ isset($facebook) ? $facebook : '0' }}">
-                    <input type="hidden" name="twitter" id="twitter" value="{{ isset($twitter) ? $twitter : '0' }}">
+                    <input type="hidden" name="facebook" id="facebook"
+                    value="{{ isset($facebook) ? $facebook : '0' }}">
+                    <input type="hidden" name="twitter" id="twitter"
+                    value="{{ isset($twitter) ? $twitter : '0' }}">
             </div>
 
             <div>
