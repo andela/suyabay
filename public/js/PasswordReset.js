@@ -1,10 +1,4 @@
 /*
-| Script By Emeke Osuagwu @dev_emeka emekaosuagwuandela@gmail.com
-*/
-
-
-
-/*
 | ajaxLogic
 | Process ajaxCall data and return feedback base on the data
 | receives 3 parameter from ajaxClass
@@ -83,7 +77,6 @@ function passwordResetErrorAlert ()
 {
     swal('Ooops!!!', 'Email address does not exit', 'error');
 }
-
 
 /*
 | passwordReset

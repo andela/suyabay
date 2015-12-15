@@ -46,4 +46,3 @@ $factory->define(Suyabay\Comment::class, function (Faker\Generator $faker) {
         'episode_id'    => 1,
     ];
 });
-
