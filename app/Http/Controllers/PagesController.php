@@ -33,7 +33,6 @@ class PagesController extends Controller
         return view('app.pages.privacypolicy');
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -42,6 +41,6 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //is this supposed to be empty?
     }
 }

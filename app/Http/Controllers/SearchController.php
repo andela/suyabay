@@ -15,10 +15,8 @@ class SearchController extends Controller
      */
     public function index()
     {
-
         // return view('app.pages.passwordreset');
         return redirect('/');
-
     }
 
     /**
@@ -28,7 +26,7 @@ class SearchController extends Controller
      */
     public function create()
     {
-        //
+        //another empty function..or is there a before filter?
     }
 
     /**
@@ -73,7 +71,7 @@ class SearchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //empty function
     }
 
     /**
