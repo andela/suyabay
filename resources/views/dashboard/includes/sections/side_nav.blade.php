@@ -23,19 +23,20 @@
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">chat_bubble_outline</i>
-                                    <a href="/dashboard/episode/create" class="collection-item">Create<span class="badge"></span></a>
+                                    <a href="{{ URL::to('/dashboard/episode/create') }}" class="collection-item">Create<span class="badge"></span></a>
                                 </div>
                             </li>
 
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">visibility</i>
-                                    <a href="/dashboard/episodes" class="collection-item">View<span class="badge"></span></a>
+                                    <a href="{{ URL::to('/dashboard/episodes') }}" class="collection-item">View<span class="badge"></span></a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 @can ( 'super-admin', Auth::user()->role->name )
                 <!-- Channels -->
                 <li>
@@ -83,17 +84,10 @@
                     </div>
                 </li>
                 @endcan
-
             </ul>
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 <ul id="slide-out" class="side-nav">
     <ul class="collapsible" data-collapsible="accordion">

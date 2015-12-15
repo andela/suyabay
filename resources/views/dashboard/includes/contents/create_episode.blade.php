@@ -1,75 +1,46 @@
-<!--
- # Author     Emeka Osuagwu <emekaosuagwuandela0@gmail.com>
- # Copyright  2015 Emeka Osuagwu
- # License    MIT License <http://opensource.org/licenses/MIT>
-
- #CodeFuntion: This piece of code is resposible for the structure
- of the create Episode page on the application
- -->
-
 <div class="col s12 m9">
-
     <div class="row">
-
-        <h4>Create Episode</h4><br>
-
+        @include('dashboard.includes.sections.alerts')
+        <h4>Create Episode</h4>
         <div class="row">
-            <form class="col s12" action="/dashboard/episode/create" method="post">
-            {{ csrf_field() }}
+            <form class="col s12" action="/dashboard/episode/create" method="POST"
+                    enctype="multipart/form-data" files="true">
+                <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="Episode Title" id="first_name" type="text" class="validate">
-                        <label for="first_name">Episode Title</label>
+                        <input placeholder="Episode Title" type="text" name="title">
+                        <label for="title">Episode Title</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select class="browser-default">
-                            <option value=""  selected>Select Channel</option>
-                            <option value="1">Andela Suya night</option>
+                        <select name="channel">
+                            @foreach($channels as $channel)
+                                <option value="{{$channel->id}}" name="channel">{{$channel->channel_name}}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <input disabled. id="disabled" type="text" class="validate" placeholder="Episode Description">
-                    <label for="disabled">Description</label>
+                        <input type="text" name="description" placeholder="Episode Description">
+                        <label for="description">Description</label>
                     </div>
                 </div>
 
                 <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Audio File</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
+                    <label for="cover" class="btn-flat">Upload Cover Image</label>
+                    <input type="file" name="cover" accept="image/*">
                 </div>
 
                 <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Cover Image</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
+                    <label for="file" class="btn-flat">Upload Podcast</label>
+                    <input type="file" name="podcast" accept="audio/*">
                 </div>
-
-                <center>
-                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right"></i>Create</button>
-                </center>
+                <input type="submit"  value ="create" class="btn-large" />
             </form>
         </div>
-
     </div>
-
-
-
-
 </div>

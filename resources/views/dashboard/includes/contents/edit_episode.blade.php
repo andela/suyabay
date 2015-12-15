@@ -1,74 +1,46 @@
-<!-- 
- # Author     Emeka Osuagwu <emekaosuagwuandela0@gmail.com>
- # Copyright  2015 Emeka Osuagwu
- # License    MIT License <http://opensource.org/licenses/MIT>   
- 
- #CodeFuntion: This piece of code is resposible for the structure
- of the create Episode page on the application
- -->
-
 <div class="col s12 m9">
 
     <div class="row">
-        
+
         <h4>Edit Episode</h4><br>
 
         <div class="row">
-            <form class="col s12">
+
+            <form class="col s12" action="{{ route('episode.update', $episode->id )}}" method="POST"
+            enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+
                 <div class="row">
                     <div class="input-field col s6">
-                        <input value="episode name from database" placeholder="Episode Title" id="first_name" type="text" class="validate">
-                        <label for="first_name">Episode Title</label>
+                        <input value="{!! $episode->episode_name !!}" name="title" type="text">
+                        <label for="title">Episode Title</label>
                     </div>
 
                     <div class="input-field col s6">
-                        <select class="browser-default">
-                            <option value=""  selected>Select Channel</option>
-                            <option value="1">Andela Suya night</option>
-                        </select>
+                        <input placeholder="Enter Channel Name" name="channel" type="text">
+                        <label for="channel">Episode Channel Name</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <input value="episode description from database" disabled. id="disabled" type="text" class="validate" placeholder="Episode Description">
-                    <label for="disabled">Episode Description</label>
+                    <textarea name="description" class="materialize-textarea">
+                        {!! $episode->episode_description !!}
+                    </textarea>
+                    <label for="description">Episode Description</label>
                     </div>
+                </div>
+                <div class="row">
+                    <label for="cover" class="btn-flat">Change Cover Image</label>
+                    <input type="file" name="cover" />
                 </div>
 
                 <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Audio File</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
+                    <label for="file" class="btn-flat">Change Podcast</label>
+                    <input type="file" name="podcast" />
                 </div>
-
-                <div class="row">
-                  <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Upload Cover Image</span>
-                            <input type="file" multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                        </div>
-                    </div>
-                </div>
-                
-                <center>
-                    <a href="/dashboard/episodes" class="waves-effect waves-light btn"><i class="material-icons right"></i>Update</a>
-                </center>
+                <input type="submit"  value ="update" class="btn-large" />
             </form>
         </div>
-        
     </div>
-
-
-
-
 </div>

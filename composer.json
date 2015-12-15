@@ -10,7 +10,12 @@
         "busayo/laravel-yearly": "1.0.*",
         "laravel/socialite": "~2.0",
         "doctrine/dbal": "^2.5",
-        "fzaninotto/faker": "~1.4"
+        "fzaninotto/faker": "~1.4",
+        "illuminate/html": "^5.0",
+        "jrm2k6/cloudder": "0.2.*",
+        "aws/aws-sdk-php-laravel": "~3.0",
+        "illuminate/filesystem": "^5.1",
+      "league/flysystem-aws-s3-v3": "^1.0"
    },
    "require-dev": {
         "mockery/mockery": "0.9.*",
