@@ -19,7 +19,7 @@ class AddTimestampsToRoleTable extends Migration
         // Insert some stuff
         DB::table('roles')->insert([
             'id' => 1,
-            'name' => 'Guest',
+            'name' => 'Regular User',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
