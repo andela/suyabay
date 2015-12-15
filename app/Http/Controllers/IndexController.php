@@ -9,7 +9,6 @@ use Suyabay\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +26,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        //another empty function
     }
 
     /**
@@ -38,7 +37,7 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //empty function??
     }
 
     /**

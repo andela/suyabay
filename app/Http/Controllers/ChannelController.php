@@ -11,7 +11,6 @@ use Suyabay\Http\Controllers\Controller;
 class ChannelController extends Controller
 {
     protected $response;
-
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +32,6 @@ class ChannelController extends Controller
     {
         return view('dashboard.pages.create_channel');
     }
-
     /**
      * Process channel creation
      */
@@ -60,7 +58,6 @@ class ChannelController extends Controller
 
         return $this->response;
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,7 +70,6 @@ class ChannelController extends Controller
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -109,7 +105,6 @@ class ChannelController extends Controller
 
         return $this->response;
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -131,7 +126,6 @@ class ChannelController extends Controller
                 "message"       => "Unable to delete channel",
                 "status_code"   => 400
             ];
-        }
 
         return $this->response;
     }
