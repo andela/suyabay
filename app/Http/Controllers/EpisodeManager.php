@@ -58,7 +58,7 @@ class EpisodeManager extends Controller
 
         $v = Validator::make($request->all(), [
             'title'         => 'required|min:3',
-            'description'   => 'required|min:10',
+            'description'   => 'required|min:199',
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
