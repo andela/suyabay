@@ -167,7 +167,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
 
-    Route::put('/episode/{id}/edit',[
+    Route::put('/episode/{id}/edit', [
         'uses' => 'EpisodeManager@update',
         'as' => 'episode.update'
     ]);
