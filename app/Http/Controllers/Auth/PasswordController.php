@@ -96,8 +96,9 @@ class PasswordController extends Controller
         if (is_null($token)) {
             throw new NotFoundHttpException;
         }
+        $data = Password_reset::whereToken($token)->first();
 
-        return view('app.pages.newpassword')->with('token', $token);
+        return view('app.pages.newpassword')->with(['token' => $token, 'email' => $data->email]);
     }
 
     /**

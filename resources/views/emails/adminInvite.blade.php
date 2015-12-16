@@ -1,1 +1,1 @@
-You have been invited to become an admin on our platform: {{ url('invite/'.$token) }}
+You have been invited to become an {{ $role }} on our platform: {{ url('invite/'.$token) }}
