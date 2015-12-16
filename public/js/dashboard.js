@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
     	if ( action_type === "activate" ) 
     	{
-    		deleteEpisode(action)
+    		activateEpisode(action)
     	};
 	});
 
@@ -44,12 +44,14 @@ $( document ).ready(function() {
 		var 
 		url 		= "/dashboard/episode/delete",
 		token 		= document.getElementById('token').value,
+		method 		= "DELETE",
 		episode_id 	= 4,
 		functionName =  arguments.callee.name;
 
 	  	var data =
 	    {
 	        url         : url,
+	        method 		: method,
 	        parameter   :
 	        {
 	          _token 	  : token,
@@ -83,13 +85,73 @@ $( document ).ready(function() {
 	}
 
 	/*
+	# Delete Episode Function
+	*/
+	function activateEpisode (episode_id) 
+	{	
+		var 
+		url 		= "/dashboard/episode/activate",
+		token 		= document.getElementById('token').value,
+		method 		= "PATCH",
+		episode_id 	= 4,
+		functionName =  arguments.callee.name;
+
+	  	var data =
+	    {
+	        url         : url,
+	        method 		: method,
+	        parameter   :
+	        {
+	          _token 	  : token,
+	          episode_id  : episode_id
+	        }
+	    }
+
+		swal(
+		{
+			title: "Delete Episode",
+			text: "You will not be able to recover this episode after this action!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel!",
+			closeOnConfirm: false,
+			closeOnCancel: false
+		},
+		function(isConfirm)
+		{
+		  if (isConfirm) 
+		  {
+		    ajaxCall( data, functionName)
+		  } 
+		  else 
+		  {
+			swal("Cancelled", "Your episode is safe :)", "error");
+		  }
+		});
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	# Ajax
 	*/
 	function ajaxCall ( data, functionName)
 	{
 		$.ajax({
 			url: data.url,
-			type: 'DELETE',
+			type: data.method,
 			data: data.parameter,
 			success: function (response) 
 			{ 
@@ -112,7 +174,8 @@ $( document ).ready(function() {
 		{
 			switch (functionName)
 	        {
-	          case "deleteEpisode" : deleteEpisodeErrorAlert(); break
+	          case "deleteEpisode" : deleteEpisodeAlert(); break;
+	          case "activateEpisode" : activateEpisodeErrorAlert(); break;
 	        }
 		}
 
@@ -123,7 +186,8 @@ $( document ).ready(function() {
 		{
 			switch (functionName)
 	        {
-	          case "deleteEpisode" : deleteEpisodeSuccessAlert(); break
+	          case "deleteEpisode" : deleteEpisodeSuccessAlert(); break;
+	          case "activateEpisode" : activateEpisodeSuccessAlert(); break;
 	        }
 		}
 	}
@@ -155,6 +219,19 @@ $( document ).ready(function() {
 		deleted.hide();
 	}
 
+	/*
+	# activateEpisodeErrorAlert() Message
+	*/
+	function activateEpisodeErrorAlert () 
+	{		
+		swal("Hmmmm", "This episode does not exist ", "error");
+	}
 
+	function activateEpisodeSuccessAlert () 
+	{		
+		swal("Deleted!", "Your episode has been deleted.", "success");
+		var deleted =  $('.selected');
+		deleted.hide();
+	}
 
 });

@@ -177,6 +177,11 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as' => 'episode.delete'
     ]);
 
+    Route::patch('/episode/activate', [
+        'uses' => 'EpisodeManager@delete',
+        'as' => 'episode.delete'
+    ]);
+
 
     //end
 
