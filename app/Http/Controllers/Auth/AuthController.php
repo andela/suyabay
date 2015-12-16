@@ -38,7 +38,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(Mail $mail)
+    public function __construct (Mail $mail)
     {
         $this->mail = $mail;
         $this->middleware('guest', ['except' => 'getLogout']);
@@ -51,7 +51,7 @@ class AuthController extends Controller
      *
      * @return User
      */
-    protected function create(array $data)
+    protected function create (array $data)
     {
         User::create([
             'email'         => $data['email'],
@@ -77,7 +77,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function register()
+    public function register ()
     {
         return view('app.pages.signup');
     }
@@ -89,7 +89,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function postRegister(Request $request)
+    public function postRegister (Request $request)
     {
         $email              = $request->email;
         $username           = $request->username;
@@ -115,8 +115,6 @@ class AuthController extends Controller
         }
     }
 
-
-
     /**
      * Login a exisitng instance of user.
      *
@@ -124,7 +122,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function login()
+    public function login ()
     {
         return view('app.pages.login');
     }
@@ -136,7 +134,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function postLogin(Request $request)
+    public function postLogin (Request $request)
     {
         $status = Auth::attempt($request->only(['username', 'password']));
         if ( ! $status )
@@ -164,7 +162,7 @@ class AuthController extends Controller
      *
      * @return home
      */
-    public function getLogout()
+    public function getLogout ()
     {
         Auth::logout();
         return redirect('/');

@@ -14,7 +14,7 @@
         <h4>Send Upgrade Invitation</h4><br>
 
         <div class="row">
-            <form class="col s12" id="create_ser" action="/dashboard/user/create" method="POST">
+            <form class="col s12" id="create_user" action="/dashboard/user/create" method="POST">
 
                 <div class="row">
                     <div class="input-field col s6 ">

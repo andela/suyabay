@@ -19,15 +19,13 @@ class OauthController extends Controller
      *
      * @return  [object]
      */
-    public function getSocialRedirect(Request $request, $provider )
+    public function getSocialRedirect (Request $request, $provider )
     {
-        if( !($request->has('code') || $request->has('oauth_token')))
-        {
+        if(! ($request->has('code') || $request->has('oauth_token'))) {
             return Socialite::driver( $provider )->redirect();
         }
         $userData = $this->getOauth($provider);
-        if(is_null($this->checkUserExist($userData, $provider)))
-        {
+        if(is_null($this->checkUserExist($userData, $provider))) {
             return $this->socialFunction($userData, $provider);
         }
         $user = $this->findByIDorCreate($userData, $provider);
@@ -42,7 +40,7 @@ class OauthController extends Controller
      *
      * @return [object]
      */
-    public function checkUserExist($value, $provider)
+    public function checkUserExist ($value, $provider)
     {
         $columnName  = $provider.'ID';
         $user = User::where($columnName, $value->getId())->orWhere('username', $value->getNickname())->orWhere('email', $value->getEmail())->first();
@@ -55,7 +53,7 @@ class OauthController extends Controller
      * @param  $provider
      * @return [object]
      */
-    public function getOauth($provider)
+    public function getOauth ($provider)
     {
         return Socialite::driver( $provider )->user();
     }
@@ -63,7 +61,7 @@ class OauthController extends Controller
     /**
      * userHasLoggedIn Redirect to main page
      */
-    public function userHasLoggedIn()
+    public function userHasLoggedIn ()
     {
         return redirect('/');
     }
@@ -76,13 +74,12 @@ class OauthController extends Controller
      *
      * @return [object]
      */
-    public function findByIDorCreate($userData, $provider)
+    public function findByIDorCreate ($userData, $provider)
     {
         $columnName  = $provider.'ID';
         $user = $this->checkUserExist($userData, $provider);
 
-        if( $user )
-        {
+        if( $user ) {
             User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
             return $user;
         }
@@ -94,7 +91,7 @@ class OauthController extends Controller
      * @param  $userData
      * @param  $provider
      */
-    public function socialFunction($userData, $provider)
+    public function socialFunction ($userData, $provider)
     {
         return $this->getSocialData($userData, $provider);
     }
@@ -105,7 +102,8 @@ class OauthController extends Controller
      * @param  $userData
      * @param  $provider
      */
-    protected function getSocialData($userData, $provider) {
+    protected function getSocialData($userData, $provider)
+    {
         $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
         return view('app.pages.signup', $array);

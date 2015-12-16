@@ -32,7 +32,7 @@ class PasswordController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct ()
     {
         $this->middleware('guest');
     }
@@ -40,7 +40,7 @@ class PasswordController extends Controller
     /**
      * Load the password reset page
      */
-    public function getEmailPage()
+    public function getEmailPage ()
     {
         return view('app.pages.passwordreset');
     }
@@ -48,7 +48,7 @@ class PasswordController extends Controller
     /**
      * Load a password reset page.
      */
-    public function passwordPage()
+    public function passwordPage ()
     {
         return view('app.pages.passwordreset');
     }
@@ -56,7 +56,7 @@ class PasswordController extends Controller
     /**
      * postEmailForm
      */
-    public function postEmailForm(Request $request)
+    public function postEmailForm (Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
         $response = [];
@@ -91,7 +91,7 @@ class PasswordController extends Controller
     /**
      * getResetPage
      */
-    public function getResetPage($token = null)
+    public function getResetPage ($token = null)
     {
         if (is_null($token)) {
             throw new NotFoundHttpException;
@@ -104,7 +104,7 @@ class PasswordController extends Controller
     /**
      * postResetCheckEmail
      */
-    public function postResetCheckEmail(Request $request)
+    public function postResetCheckEmail (Request $request)
     {
         $status = Password_reset::whereEmail($request->only('email'))->first();
         $response = [];

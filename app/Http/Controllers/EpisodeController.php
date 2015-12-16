@@ -15,9 +15,9 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
         $episodes = Episode::paginate(5);
-        return view('app.pages.index', compact('episodes'));   
+        return view('app.pages.index', compact('episodes'));
     }
 }

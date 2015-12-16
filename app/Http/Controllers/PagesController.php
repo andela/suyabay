@@ -13,7 +13,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function about()
+    public function about ()
     {
         return view('app.pages.about');
     }
@@ -23,12 +23,12 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function faqs()
+    public function faqs ()
     {
         return view('app.pages.faqs');
     }
 
-    public function privacyPolicy()
+    public function privacyPolicy ()
     {
         return view('app.pages.privacypolicy');
     }
@@ -40,7 +40,7 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy ($id)
     {
         //
     }

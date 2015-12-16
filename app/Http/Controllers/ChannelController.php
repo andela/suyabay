@@ -17,7 +17,7 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
         $channels = Channel::orderBy('id', 'asc')->paginate(10);
 
@@ -29,7 +29,7 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createIndex()
+    public function createIndex ()
     {
         return view('dashboard.pages.create_channel');
     }
@@ -37,7 +37,7 @@ class ChannelController extends Controller
     /**
      * Process channel creation
      */
-    public function processCreate(Request $request)
+    public function processCreate (Request $request)
     {
         try {
             $channel = Channel::create([
@@ -67,7 +67,7 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit ($id)
     {
         $channels = Channel::where('id', $id)->first();
 
@@ -81,7 +81,7 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update (Request $request)
     {
         try {
             $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
@@ -115,7 +115,7 @@ class ChannelController extends Controller
      *
      * @param  int  $id
      */
-    public function destroy($id)
+    public function destroy ($id)
     {
         $deleteChannel = Channel::where('id', $id)->delete();
 
