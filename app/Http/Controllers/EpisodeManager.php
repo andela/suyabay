@@ -121,4 +121,30 @@ class EpisodeManager extends Controller
 
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
     }
+
+    public function delete( Request $request )
+    {
+        $episode_id  =  $request['episode_id'];
+        $episode     = Episode::where('id', $episode_id)->delete();
+        
+        if ( $episode  === 1 ) 
+        {
+            $data = 
+            [
+                "status"    => 200,
+                "message"   => "Episode successfully deleted"
+            ];
+        }
+        
+        if ( $episode  === 0 ) 
+        {
+            $data = 
+            [
+                "status"    => 401,
+                "message"   => "cant delete"
+            ];
+        }
+        
+        return $data;
+    }
 }

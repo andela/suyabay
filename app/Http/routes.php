@@ -172,6 +172,11 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as' => 'episode.update'
     ]);
 
+    Route::delete('/episode/delete', [
+        'uses' => 'EpisodeManager@delete',
+        'as' => 'episode.delete'
+    ]);
+
 
     //end
 

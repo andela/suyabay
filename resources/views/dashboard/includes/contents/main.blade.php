@@ -92,12 +92,28 @@
                             <td>How to Ginger the Suya</td>
                             <td>Andela Suaya Lovers</td>
                             <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">View</option>
-                                    <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
+                                    <option data-action="http://localhost:8000/dashboard/episodes" value="view">View</option>
+                                    <option data-action="12" value="delete">Delete</option>
+                                    <option data-action="12" value="activate">Active</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>How to Ginger the Suya</td>
+                            <td>Andela Suaya Lovers</td>
+                            <td>12 days ago</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
+                                    <option style="width:2ppx;" selected>Select</option>
+                                    <option data-action="http://localhost:8000/dashboard/episodes" value="view">View</option>
+                                    <option data-action="12" value="delete">Delete</option>
+                                    <option data-action="12" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
@@ -128,7 +144,7 @@
                             <td>Andela Suaya Lovers</td>
                             <td>12 days ago</td>
                             <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                                <select id="emeka" class="browser-default">
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option value="1">View</option>
                                     <option value="delete">Delete</option>
