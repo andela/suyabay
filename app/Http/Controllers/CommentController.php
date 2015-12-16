@@ -9,7 +9,6 @@ use Suyabay\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
-
 	protected function create(array $data)
     {
         Comment::create([

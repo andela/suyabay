@@ -66,17 +66,7 @@ return [
             'strict'    => false,
         ],
 
-        'testing' => [
-            'driver'    => 'pgsql',
-            'host'      => env('DB_TEST_HOST', 'localhost'),
-            'database'  => env('DB_TEST_DATABASE', 'suyabay_test'),
-            'username'  => env('DB_TEST_USERNAME', 'postgres'),
-            'password'  => env('DB_TEST_PASSWORD', ''),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-        ],
+
 
         'pgsql' => [
             'driver'   => 'pgsql',
