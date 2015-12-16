@@ -83,7 +83,7 @@ class OauthController extends Controller
 
         if( $user )
         {
-            User::where('id', $user->id)->update([$columnName => $userData->getId()]);
+            User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
             return $user;
         }
     }

@@ -13,7 +13,7 @@
         <p>You now have access to upload and edit episodes you upload</p>
         <p>Login with your details to enjoy your new access level</p>
 
-        @if(Auth::check())
+        @if(! Auth::check())
         <p>
             <a href="/login" class="waves-effect waves-light btn center">
                 log In
