@@ -16,7 +16,7 @@ class UserController extends Controller
     protected $mail;
     protected $response;
 
-    public function __construct (Mail $mail)
+    public function __construct(Mail $mail)
     {
         $this->mail = $mail;
     }
@@ -24,7 +24,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index ()
+    public function index()
     {
         $users = User::orderBy('id', 'asc')->paginate(10);
 
@@ -36,7 +36,7 @@ class UserController extends Controller
      *
      * @param  $request
      */
-    public function checkIfUserExist (Request $request)
+    public function checkIfUserExist(Request $request)
     {
         $user = User::where('username', $request->username)->first();
 
@@ -50,7 +50,7 @@ class UserController extends Controller
      *
      * @param  $request
      */
-    public function createInvitation (Request $request)
+    public function createInvitation(Request $request)
     {
         try {
             Invite::create([
@@ -80,7 +80,7 @@ class UserController extends Controller
      *
      * @param  $request
      */
-    public function insertInvite (Request $request)
+    public function insertInvite(Request $request)
     {
         if ($this->checkIfUserExist($request)) {
             $this->response = $this->createInvitation($request);
@@ -100,7 +100,7 @@ class UserController extends Controller
      *
      * @param  Request $request
      */
-    public function createInvite (Request $request)
+    public function createInvite(Request $request)
     {
         $createInvite = $this->insertInvite($request);
 
@@ -122,7 +122,7 @@ class UserController extends Controller
      *
      * @param  Request $request
      */
-    public function getInviteeEmail (Request $request)
+    public function getInviteeEmail(Request $request)
     {
         $email = User::where('username', $request->username)->first();
 
@@ -139,7 +139,7 @@ class UserController extends Controller
      *
      * @param  $role_id
      */
-    public function getRoleName ($id)
+    public function getRoleName($id)
     {
         $role = Role::find($id);
 
@@ -155,7 +155,7 @@ class UserController extends Controller
      *
      * @return integer
      */
-    public function sendMail (Request $request, $email)
+    public function sendMail(Request $request, $email)
     {
         $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'role' => $this->getRoleName($request->user_role), 'token' => $request->_token], function ($message) use ($email) {
                 $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
@@ -178,7 +178,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show ()
+    public function show()
     {
         $roles = Role::get();
 
@@ -191,7 +191,7 @@ class UserController extends Controller
      * @param  $username
      * @param  $role_id
      */
-    public function updateUser ($username, $role_id)
+    public function updateUser($username, $role_id)
     {
         $updateUserRole = User::where('username', $username)->update(['role_id' => $role_id]);
 
@@ -205,7 +205,7 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function deleteToken ($username)
+    public function deleteToken($username)
     {
         $deleteUser = Invite::where('username', $username)->delete();
 
@@ -219,7 +219,7 @@ class UserController extends Controller
      *
      * @param  $token
      */
-    public function processInvite ($token)
+    public function processInvite($token)
     {
         $checkToken = Invite::where('token', $token)->first();
 
@@ -237,7 +237,7 @@ class UserController extends Controller
      *
      * @param  int  $id
      */
-    public function editView ($id)
+    public function editView($id)
     {
         $users = User::where('id', $id)->first();
         $roles = Role::get();
@@ -250,7 +250,7 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function update (Request $request)
+    public function update(Request $request)
     {
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
 
@@ -276,7 +276,7 @@ class UserController extends Controller
      *
      * @param  $username
      */
-    public function welcomePage ($username)
+    public function welcomePage($username)
     {
         $users = User::where('username', $username)->first();
 

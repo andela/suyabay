@@ -21,7 +21,7 @@ class EpisodeManager extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index ()
+    public function index()
     {
         $episodes = Episode::all();
 
@@ -31,7 +31,7 @@ class EpisodeManager extends Controller
     /**
     * Show create episode view
     */
-    public function showIndex ()
+    public function showIndex()
     {
         return view('dashboard.pages.create_episode');
     }
@@ -39,7 +39,7 @@ class EpisodeManager extends Controller
     /*
     * return channels list to create_episode view
     */
-    public function showChannels ()
+    public function showChannels()
     {
         $channels = Channel::all();
 
@@ -52,7 +52,7 @@ class EpisodeManager extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $bytes = filesize($request->podcast);
 
@@ -89,7 +89,7 @@ class EpisodeManager extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function edit ($id)
+    public function edit($id)
     {
         $episode = Episode::find($id);
 
@@ -100,7 +100,7 @@ class EpisodeManager extends Controller
     * Uploads cover image to cloudinary
     * returns the url
     */
-    protected function getImageFileUrl ($cover)
+    protected function getImageFileUrl($cover)
     {
         Cloudder::upload($cover, null);
         $coverUrl = Cloudder::getResult()['url'];
@@ -112,7 +112,7 @@ class EpisodeManager extends Controller
     * uploads audio to amazon s3
     * returns the url
     */
-    public function uploadFileToS3 (Request $request)
+    public function uploadFileToS3(Request $request)
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
