@@ -174,7 +174,7 @@ $( document ).ready(function() {
 		{
 			switch (functionName)
 	        {
-	          case "deleteEpisode" : deleteEpisodeAlert(); break;
+	          case "deleteEpisode" : deleteEpisodeErrorAlert(); break;
 	          case "activateEpisode" : activateEpisodeErrorAlert(); break;
 	        }
 		}

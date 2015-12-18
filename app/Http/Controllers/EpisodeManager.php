@@ -130,7 +130,7 @@ class EpisodeManager extends Controller
         if ( $episode  === 1 ) 
         {
             $data = 
-            [
+            [2
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
@@ -144,7 +144,7 @@ class EpisodeManager extends Controller
                 "message"   => "cant delete"
             ];
         }
-        
+
         return $data;
     }
 }

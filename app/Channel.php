@@ -18,7 +18,13 @@ class Channel extends Model
      *
      * @var array
      */
-    protected $fillable = ['channel_name', 'channel_description', 'subscription_count'];
+    protected $fillable = 
+            [
+                'channel_name', 
+                'channel_description', 
+                'subscription_count',
+                'user_id'
+            ];
 
     /**
      * Channel/Episode relationship
