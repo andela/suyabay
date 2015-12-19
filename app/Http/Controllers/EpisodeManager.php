@@ -16,6 +16,7 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
+
     /**
     * Display a listing of the resource to view_episodes
     *
@@ -23,6 +24,7 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
+
         $episodes = Episode::all();
 
         return view('dashboard/pages/view_episodes', compact('episodes'));
@@ -130,7 +132,7 @@ class EpisodeManager extends Controller
         if ( $episode  === 1 ) 
         {
             $data = 
-            [2
+            [
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
@@ -147,4 +149,30 @@ class EpisodeManager extends Controller
 
         return $data;
     }
+
+    public function updateEpisodeStatus ( Request $request )
+    {
+        $episode_id    =  $request['episode_id'];
+        $episode        = Episode::where('id', $episode_id)->update(['status' => 2]);
+
+        if ( $episode  === 1 ) 
+        {
+            $data = 
+            [
+                "status"    => 200,
+                "message"   => "Episode successfully deleted"
+            ];
+        }
+        if ( $episode  === 0 ) 
+        {
+            $data = 
+            [
+                "status"    => 401,
+                "message"   => "cant delete"
+            ];
+        }
+
+        return $data;
+    }
+
 }

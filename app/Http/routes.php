@@ -178,11 +178,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
     Route::patch('/episode/activate', [
-        'uses' => 'EpisodeManager@delete',
-        'as' => 'episode.delete'
+        'uses' => 'EpisodeManager@updateEpisodeStatus',
+        'as' => 'episode.activate'
     ]);
-
-
     //end
 
 /*

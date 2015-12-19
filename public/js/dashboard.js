@@ -93,7 +93,7 @@ $( document ).ready(function() {
 		url 		= "/dashboard/episode/activate",
 		token 		= document.getElementById('token').value,
 		method 		= "PATCH",
-		episode_id 	= 4,
+		episode_id 	= 5,
 		functionName =  arguments.callee.name;
 
 	  	var data =
@@ -109,13 +109,13 @@ $( document ).ready(function() {
 
 		swal(
 		{
-			title: "Delete Episode",
-			text: "You will not be able to recover this episode after this action!",
+			title: "Activate Episode",
+			text: "This Episode will be visible on your channel",
 			type: "warning",
 			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Yes, delete it!",
-			cancelButtonText: "No, cancel!",
+			confirmButtonColor: "success",
+			confirmButtonText: "Activate",
+			cancelButtonText: "Cancel!",
 			closeOnConfirm: false,
 			closeOnCancel: false
 		},
@@ -202,6 +202,7 @@ $( document ).ready(function() {
 
 
 	/*
+	####################################################################
 	# deleteEpisodeErrorAlert Message
 	*/
 	function deleteEpisodeErrorAlert () 
@@ -220,6 +221,7 @@ $( document ).ready(function() {
 	}
 
 	/*
+	####################################################################
 	# activateEpisodeErrorAlert() Message
 	*/
 	function activateEpisodeErrorAlert () 
