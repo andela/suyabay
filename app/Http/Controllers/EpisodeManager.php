@@ -26,12 +26,32 @@ class EpisodeManager extends Controller
     public function index()
     {
 
-        $episodes   = Episode::all();
-        $user       = User::all();
-        
-        //return $numbers_of_users_on_suyabay = $user->count();
+        $episodes       = Episode::all();
+        $user           = User::all();
 
-        return view('dashboard/pages/index', compact('episodes'));
+        $online_user                    = $user->where('active', 1)->count();
+        $offline_user                   = $user->where('active', 0)->count();
+        $numbers_of_users_on_suyabay    = $user->count();
+
+        $data = 
+        [
+            "user" => 
+                    [
+                        "total"     => $numbers_of_users_on_suyabay,
+                        "online"    => $online_user,
+                        "offline"   => $offline_user
+                    ],
+            
+            "episodes" =>
+                    [
+                        "recent"    => "dwedwedwe",
+                        "active"    => "dwedwedwe",
+                        "pendding"  => "dwedwedwe"
+                    ]
+
+        ];
+        
+        return view('dashboard/pages/index', compact('data'));
     }
 
     /**

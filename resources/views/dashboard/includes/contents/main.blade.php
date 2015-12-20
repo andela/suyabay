@@ -11,12 +11,30 @@
         # 
         # 
         -->
+
         <div>
             <div class="col s12 m3">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Users</p>
-                        <h1>500K</h1>
+                        <h1>{{$data['user']['total']}}</h1>
+                    </span>
+                </div>
+            </div>
+          
+            <div class="col s12 m3 ">
+                <div class="card-panel teal panel-container">
+                    <span class="white-text">
+                        <p>Online</p>
+                        <h1>{{$data['user']['online']}}</h1>
+                    </span>
+                </div>
+            </div>
+            <div class="col s12 m3 ">
+                <div class="card-panel teal panel-container">
+                    <span class="white-text">
+                        <p>Offline</p>
+                        <h1>{{$data['user']['offline']}}</h1>
                     </span>
                 </div>
             </div>
@@ -29,24 +47,8 @@
                     </span>
                 </div>
             </div>
-            <div class="col s12 m3 ">
-                <div class="card-panel teal panel-container">
-                    <span class="white-text">
-                        <p>Users</p>
-                        <h1>500K</h1>
-                    </span>
-                </div>
-            </div>
-          
-            <div class="col s12 m3 ">
-                <div class="card-panel teal panel-container">
-                    <span class="white-text">
-                        <p>Online</p>
-                        <h1>500K</h1>
-                    </span>
-                </div>
-            </div>
-        </div>  
+        </div>
+       
 
         <!-- 
         Episode tab controller
