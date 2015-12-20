@@ -7,6 +7,7 @@ use Storage;
 use Session;
 use Cloudder;
 use Validator;
+use Suyabay\User;
 use Suyabay\Episode;
 use Suyabay\Channel;
 use Suyabay\Http\Requests;
@@ -25,9 +26,12 @@ class EpisodeManager extends Controller
     public function index()
     {
 
-        $episodes = Episode::all();
+        $episodes   = Episode::all();
+        $user       = User::all();
+        
+        //return $numbers_of_users_on_suyabay = $user->count();
 
-        return view('dashboard/pages/view_episodes', compact('episodes'));
+        return view('dashboard/pages/index', compact('episodes'));
     }
 
     /**

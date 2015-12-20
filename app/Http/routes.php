@@ -139,9 +139,14 @@ Route::get('logout', [
 
 Route::group(['prefix' => 'dashboard'], function () {
 
-    Route::get('/', function () {
-        return view('dashboard.pages.index');
-    });
+    // Route::get('/', function () {
+    //     return view('dashboard.pages.index');
+    // });
+
+    Route::get('/', [
+        'uses' => 'EpisodeManager@index',
+        'as' => 'dashboard/'
+    ]);
 
     Route::get('/users', function () {
         return view('dashboard.pages.user');
