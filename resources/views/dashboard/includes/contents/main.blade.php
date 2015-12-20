@@ -91,7 +91,7 @@
                             <td>1</td>
                             <td>How to Ginger the Suya</td>
                             <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
+                            <td>2 days ago</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
                                 <select id="" class="browser-default episode_action" >
@@ -137,7 +137,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="pendding_section">
                         <tr>
                             <td>1</td>
                             <td>How to Ginger the Suya</td>

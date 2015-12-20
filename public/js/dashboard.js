@@ -1,8 +1,10 @@
+
 $( document ).ready(function() {
+	
+	var item;
     
 	$('.episode_action').click(function(){
     	
-    	var 
     	/*
 		# Get <select/> element that was clicked on
     	*/
@@ -31,6 +33,8 @@ $( document ).ready(function() {
 
     	if ( action_type === "activate" ) 
     	{
+    		
+    		item = $(this).parent().closest('tr');
     		activateEpisode(action)
     	};
 	});
@@ -232,8 +236,19 @@ $( document ).ready(function() {
 	function activateEpisodeSuccessAlert () 
 	{		
 		swal("Deleted!", "Your episode has been deleted.", "success");
-		var deleted =  $('.selected');
+		var 
+		deleted 	=  $('.selected'),
+		new_item 	=  $('#pendding_section');
+		
 		deleted.hide();
+		console.log(item)
+		console.log(item[0])
+
+
+		new_item.append(item[0]);
+
+		//new_item.append
+		//("<tr><td>" + me + " </td><td>How to Ginger the Suya</td><td>Andela Suaya Lovers</td><td>12 days ago</td><td width='150px;'><select id='emeka' class='browser-default'><option style='width:2ppx;' selected>Select</option><option value='1'>View</option><option value='delete'>Delete</option><option value='1'>Active</option></select></td></tr>")
 	}
 
 });
