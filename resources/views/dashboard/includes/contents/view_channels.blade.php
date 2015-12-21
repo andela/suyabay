@@ -15,7 +15,9 @@
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ $channel->channel_name }}<i class="material-icons right">close</i></span>
                 <p>{{ $channel->channel_description }}</p>
-                <a href="/dashboard/channel/{{ $channel->id }}/edit" class="waves-effect waves-light btn">Edit</a>
+                <a href="/dashboard/channel/{{ $channel->id }}/edit" class="waves-effect waves-light btn">
+                    Edit
+                </a>
                 <a class="waves-effect waves-light btn delete_channel" data-name="{{ $channel->channel_name }}" data-id="{{ $channel->id }}" data-token="{{ csrf_token() }}">Delete</a>
             </div>
             <br>
