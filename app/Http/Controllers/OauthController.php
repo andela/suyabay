@@ -21,13 +21,11 @@ class OauthController extends Controller
      */
     public function getSocialRedirect(Request $request, $provider )
     {
-        if( !($request->has('code') || $request->has('oauth_token')))
-        {
+        if (!($request->has('code') || $request->has('oauth_token'))) {
             return Socialite::driver( $provider )->redirect();
         }
         $userData = $this->getOauth($provider);
-        if(is_null($this->checkUserExist($userData, $provider)))
-        {
+        if (is_null($this->checkUserExist($userData, $provider))) {
             return $this->socialFunction($userData, $provider);
         }
         $user = $this->findByIDorCreate($userData, $provider);
@@ -81,9 +79,8 @@ class OauthController extends Controller
         $columnName  = $provider.'ID';
         $user = $this->checkUserExist($userData, $provider);
 
-        if( $user )
-        {
-            User::where('id', $user->id)->update([$columnName => $userData->getId()]);
+        if ($user) {
+            User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
             return $user;
         }
     }
@@ -105,7 +102,8 @@ class OauthController extends Controller
      * @param  $userData
      * @param  $provider
      */
-    protected function getSocialData($userData, $provider) {
+    protected function getSocialData($userData, $provider)
+    {
         $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
         return view('app.pages.signup', $array);

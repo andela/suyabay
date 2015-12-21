@@ -9,7 +9,7 @@ use Suyabay\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
-    
+
 	protected function create(array $data)
     {
         Comment::create([
@@ -19,7 +19,7 @@ class CommentController extends Controller
         ]);
 	}
 
-	public function postComment (Request $request)
+	public function postComment(Request $request)
 	{
 		$this->create($request->all());
 		return redirect('/');

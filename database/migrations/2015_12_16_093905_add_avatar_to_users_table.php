@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSocialFieldToUserTable extends Migration
+class AddAvatarToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class AddSocialFieldToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('facebookID')->default(0);
-            $table->bigInteger('twitterID')->default(0);
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -26,8 +25,7 @@ class AddSocialFieldToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('facebookID');
-            $table->dropColumn('twitterID');
+            $table->dropColumn('avatar');
         });
     }
 }

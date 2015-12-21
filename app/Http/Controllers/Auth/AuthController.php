@@ -29,6 +29,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $mail;
+    protected $redirectTo   = '/login';
     protected $loginPath    = '/login';
     protected $registerPath = '/register';
 
@@ -57,7 +58,8 @@ class AuthController extends Controller
             'username'      => $data['username'],
             'password'      => bcrypt($data['password']),
             'facebookID'    => $data['facebook'],
-            'twitterID'     => $data['twitter']
+            'twitterID'     => $data['twitter'],
+            'avatar'        => NULL
         ]);
 
         /*Send Email*/
@@ -112,8 +114,6 @@ class AuthController extends Controller
             ];
         }
     }
-
-
 
     /**
      * Login a exisitng instance of user.
