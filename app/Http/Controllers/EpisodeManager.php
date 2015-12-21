@@ -21,15 +21,11 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class EpisodeManager extends Controller
 {
     protected $mail;
+
     /**
      * Id of 1 is for a regular users
      */
-<<<<<<< b7ba13c2dba13c7210eec72202e1ae225b7fadf3
-
     const REGULAR_USER  = 1;
-=======
-    const REGULAR_USER = 1;
->>>>>>> [Fixes #108215092]refactor notifications method
 
     /**
      * Id 2 is for premium admin users
@@ -103,10 +99,6 @@ class EpisodeManager extends Controller
         try {
             $podcast = $this->uploadAudioFileToS3($request);
             $cover = $this->uploadImageFileToCloudinary($request->cover);
-<<<<<<< b7ba13c2dba13c7210eec72202e1ae225b7fadf3
-
-=======
->>>>>>> [Fixes #108215092]refactor notifications method
         } catch (S3 $e) {
             return redirect('dashboard/episode/create')->with('status', $e->getMessage());
         } catch (AWS $e) {
@@ -218,8 +210,8 @@ class EpisodeManager extends Controller
     public function sendNotification(Request $request)
     {
         foreach ($this->adminEmails() as $key => $admin) {
-            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $request->channel], function ($message) use ($admin) {
-                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $this->getSelectedChannelName($request)], function ($message) use ($admin) {
+                $message->from(getenv('SENDER_ADDRESS'), 'New Episode Notification!');
                 $message->to($admin->email, $admin->username)->subject('New Notification!');
             });
         }
@@ -233,7 +225,6 @@ class EpisodeManager extends Controller
     */
     public function adminEmails()
     {
-<<<<<<< b7ba13c2dba13c7210eec72202e1ae225b7fadf3
         return User::where('role_id', '>', self::PREMIUM_USER)->get();
     }
 
@@ -249,9 +240,5 @@ class EpisodeManager extends Controller
         $channel = Channel::whereId($id)->first();
 
         return $channel->channel_name;
-
-=======
-        return User::where('role_id', '>', self::REGULAR_USER)->get();
->>>>>>> [Fixes #108215092]refactor notifications method
     }
 }
