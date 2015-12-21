@@ -25,7 +25,7 @@ class EpisodeManager extends Controller
     /**
      * Id of 1 is for a regular users
      */
-    const REGULAR_USER  = 1;
+    const REGULAR_USER = 1;
 
     /**
      * Id 2 is for premium admin users
@@ -97,8 +97,8 @@ class EpisodeManager extends Controller
         }
 
         try {
-            $podcast = $this->uploadFileToS3($request);
-            $cover = $this->getImageFileUrl($request->cover);
+            $podcast = $this->uploadAudioFileToS3($request);
+            $cover = $this->uploadImageFileToCloudinary($request->cover);
         } catch (S3 $e) {
             return redirect('dashboard/episode/create')->with('status', $e->getMessage());
         } catch (AWS $e) {
@@ -115,10 +115,10 @@ class EpisodeManager extends Controller
             'status'               => 0
         ]);
 
+        $this->sendNotification($request);
+
         return redirect('dashboard/episode/create')
         ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
-
-        $this->sendNotification($request);
     }
 
     /**
@@ -176,7 +176,7 @@ class EpisodeManager extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return
     */
-    protected function getImageFileUrl($cover)
+    protected function uploadImageFileToCloudinary($cover)
     {
         Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
         $coverUrl = Cloudder::getResult()['url'];
@@ -190,7 +190,7 @@ class EpisodeManager extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return
     */
-    public function uploadFileToS3(Request $request)
+    public function uploadAudioFileToS3(Request $request)
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
@@ -225,6 +225,6 @@ class EpisodeManager extends Controller
     */
     public function adminEmails()
     {
-        return User::where('role_id', '>', REGULAR_USER)->get();
+        return User::where('role_id', '>', self::REGULAR_USER)->get();
     }
 }
