@@ -97,9 +97,9 @@ class EpisodeManager extends Controller
         }
 
         try {
-
             $podcast = $this->uploadAudioFileToS3($request);
             $cover = $this->uploadImageFileToCloudinary($request->cover);
+
         } catch (S3 $e) {
             return redirect('dashboard/episode/create')->with('status', $e->getMessage());
         } catch (AWS $e) {
@@ -156,7 +156,7 @@ class EpisodeManager extends Controller
             $episode->save();
             //redirect
             return back()->with('status', 'Updated!');
-        } catch(QueryException $e) {
+        } catch (QueryException $e) {
             return back()->with('status', $e->getMessage());
         }
     }
@@ -208,8 +208,7 @@ class EpisodeManager extends Controller
     */
     public function sendNotification(Request $request)
     {
-        foreach($this->adminEmails($request) as $key => $admin) {
-            $this->mail->queue('emails.notification',
+        foreach ($this->adminEmails($request) as $key => $admin) {$this->mail->queue('emails.notification',
                 [
                     'title' => $request->title,
                     'description' => $request->description,
