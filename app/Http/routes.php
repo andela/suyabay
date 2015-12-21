@@ -159,7 +159,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     //Episodes Routes
     Route::get('episode/create', 'EpisodeManager@showIndex');
 
-    Route::get('episode/create', 'EpisodeManager@showChannels');
+    Route::get('episode/create', 'EpisodeManager@showChannelsForCreate');
 
     Route::post('episode/create', 'EpisodeManager@store');
 
@@ -167,13 +167,17 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
 
+    Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
+
     Route::put('/episode/{id}/edit', [
         'uses' => 'EpisodeManager@update',
         'as' => 'episode.update'
     ]);
 
-
-    //end
+    Route::delete('/episode/{id}', [
+        'uses' => 'EpisodeManager@destroy',
+        'as'   => 'episode.delete'
+    ]);
 
 /*
 /-------------------------------------------------------------------------------

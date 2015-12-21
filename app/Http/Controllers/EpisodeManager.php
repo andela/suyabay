@@ -2,20 +2,31 @@
 
 namespace Suyabay\Http\Controllers;
 
-use AWS;
 use Storage;
 use Session;
 use Cloudder;
 use Validator;
-use Suyabay\Episode;
+use Suyabay\User;
 use Suyabay\Channel;
+use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer as Mail;
+use Illuminate\Database\QueryException;
+use Aws\S3\Exception\S3Exception as S3;
+use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
+    protected $mail;
+
+    public function __construct(Mail $mail)
+    {
+        $this->mail = $mail;
+    }
+
     /**
     * Display a listing of the resource to view_episodes
     *
@@ -39,7 +50,7 @@ class EpisodeManager extends Controller
     /*
     * return channels list to create_episode view
     */
-    public function showChannels()
+    public function showChannelsForCreate()
     {
         $channels = Channel::all();
 
@@ -54,11 +65,9 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        $bytes = filesize($request->podcast);
-
         $v = Validator::make($request->all(), [
             'title'         => 'required|min:3',
-            'description'   => 'required|min:199',
+            'description'   => 'required|min:50',
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
@@ -68,8 +77,14 @@ class EpisodeManager extends Controller
             return redirect()->back()->withErrors($v->errors());
         }
 
-        $cover = $this->getImageFileUrl($request->cover);
-        $podcast = $this->uploadFileToS3($request);
+        try {
+            $podcast = $this->uploadFileToS3($request);
+            $cover = $this->getImageFileUrl($request->cover);
+        } catch(S3 $e) {
+            return redirect('dashboard/episode/create')->with('status', $e->getMessage());
+        } catch(AWS $e) {
+            return redirect('dashboard/episode/create')->with('status', $e->getMessage());
+        }
 
         Episode::create([
             'episode_name'         => $request->title,
@@ -77,10 +92,14 @@ class EpisodeManager extends Controller
             'image'                => $cover,
             'audio_mp3'            => $podcast,
             'view_count'           => 0,
-            'channel_id'           => $request->channel
+            'channel_id'           => $request->channel,
+            'status'               => 0
         ]);
 
-        return redirect('dashboard/episode/create')->with('status', 'Nice Job!');
+        return redirect('dashboard/episode/create')
+        ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
+
+        $this->sendNotification($request);
     }
 
     /**
@@ -92,8 +111,39 @@ class EpisodeManager extends Controller
     public function edit($id)
     {
         $episode = Episode::find($id);
+        $channels = Channel::all();
 
-        return view('dashboard/pages/edit_episode')->with('episode', $episode);
+        return view('dashboard/pages/edit_episode')
+        ->with('episode', $episode)->with('channels', $channels);
+    }
+
+    /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request, $id)
+    {
+        try {
+            $episode = Episode::find($id);
+            $episode->episode_name = $request->title;
+            $episode->episode_description = $request->description;
+            $episode->channel_id = $request->channel;
+            $episode->save();
+            //redirect
+            return back()->with('status', 'Updated!');
+        } catch(QueryException $e) {
+            return back()->with('status', $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        $episode = Episode::find($id);
+        $episode->delete();
+        // redirect
+        return back()->with('status', 'Deleted!');
     }
 
     /*
@@ -102,7 +152,7 @@ class EpisodeManager extends Controller
     */
     protected function getImageFileUrl($cover)
     {
-        Cloudder::upload($cover, null);
+        Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
         $coverUrl = Cloudder::getResult()['url'];
 
         return $coverUrl;
@@ -116,9 +166,33 @@ class EpisodeManager extends Controller
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
-        //large files
+        // Upload large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
+    }
+
+    /**
+    * send email notification to all admins
+    */
+    public function sendNotification(Request $request)
+    {
+        foreach($this->adminEmails($request) as $key => $admin) {
+            $this->mail->queue('emails.notification',
+                [
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'channel' => $request->channel
+                ],
+            function ($message) use ($admin) {
+                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($admin->email, $admin->username)->subject('New Notification!');
+            });
+        }
+    }
+
+    public function adminEmails(Request $request)
+    {
+        return User::where('role_id', '>', 1)->get();
     }
 }
