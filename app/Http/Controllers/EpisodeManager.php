@@ -24,7 +24,8 @@ class EpisodeManager extends Controller
     /**
      * Id of 1 is for a regular users
      */
-    const REGULAR_USER = 1;
+
+    const REGULAR_USER  = 1;
 
     /**
      * Id 2 is for premium admin users
@@ -35,7 +36,6 @@ class EpisodeManager extends Controller
      * Id of 3 is for super admin users
      */
     const SUPER_ADMIN   = 3;
-
 
     public function __construct(Mail $mail)
     {
@@ -207,13 +207,7 @@ class EpisodeManager extends Controller
 
     /**
     * Send email notification
-<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
-    * domain_name helper function
-    * @param $request
-=======
-    *
     * @param  none
->>>>>>> [Fixes #108215092]Added role_id constants
     * @return none
     */
     public function sendNotification(Request $request)
@@ -226,10 +220,6 @@ class EpisodeManager extends Controller
         }
     }
 
-<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
-
-=======
->>>>>>> [Fixes #108215092]Added role_id constants
     /**
     * fetch the admin emails from the users table
     *
@@ -238,7 +228,6 @@ class EpisodeManager extends Controller
     */
     public function adminEmails()
     {
-<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
         return User::where('role_id', '>', self::PREMIUM_USER)->get();
     }
 
@@ -254,8 +243,6 @@ class EpisodeManager extends Controller
         $channel = Channel::whereId($id)->first();
 
         return $channel->channel_name;
-=======
-        return User::where('role_id', '>', REGULAR_USER)->get();
->>>>>>> [Fixes #108215092]Added role_id constants
+
     }
 }
