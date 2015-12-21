@@ -209,8 +209,8 @@ class EpisodeManager extends Controller
     public function sendNotification(Request $request)
     {
         foreach ($this->adminEmails() as $key => $admin) {
-            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $request->channel], function ($message) use ($admin) {
-                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $this->getSelectedChannelName($request)], function ($message) use ($admin) {
+                $message->from(getenv('SENDER_ADDRESS'), 'New Episode Notification!');
                 $message->to($admin->email, $admin->username)->subject('New Notification!');
             });
         }
@@ -224,6 +224,20 @@ class EpisodeManager extends Controller
     */
     public function adminEmails()
     {
-        return User::where('role_id', '>', self::REGULAR_USER)->get();
+        return User::where('role_id', '>', self::PREMIUM_USER)->get();
+    }
+
+    /**
+    * fetch the title of the selected channel
+    *
+    * @param $request
+    * @return \Illuminate\Support\Collection
+    */
+    public function getSelectedChannelName(Request $request)
+    {
+        $id = $request->channel;
+        $channel = Channel::whereId($id)->first();
+
+        return $channel->channel_name;
     }
 }
