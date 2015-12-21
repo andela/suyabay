@@ -178,15 +178,8 @@ class EpisodeManager extends Controller
     */
     public function sendNotification(Request $request)
     {
-        foreach ($this->adminEmails($request) as $key => $admin) {$this->mail->queue('emails.notification',
-                [
-                    'title' => $request->title,
-                    'description' => $request->description,
-                    'channel' => $request->channel
-                ],
-            function ($message) use ($admin) {
-                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
-                $message->to($admin->email, $admin->username)->subject('New Notification!');
+        foreach ($this->adminEmails($request) as $key => $admin) {
+            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $request->channel], function ($message) use ($admin) { $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME')); $message->to($admin->email, $admin->username)->subject('New Notification!');
             });
         }
     }
