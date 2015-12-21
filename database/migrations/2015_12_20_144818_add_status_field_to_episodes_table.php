@@ -12,7 +12,7 @@ class AddStatusFieldToEpisodesTable extends Migration
      */
     public function up()
     {
-         Schema::table('episodes', function (Blueprint $table) {
+        Schema::table('episodes', function (Blueprint $table) {
             $table->integer('status')->default(0);
         });
     }
