@@ -165,9 +165,9 @@ class EpisodeManager extends Controller
     */
     public function destroy($id)
     {
-       Episode::find($id)->delete();
+        Episode::find($id)->delete();
 
-       return back()->with('status', 'Deleted!');
+        return back()->with('status', 'Deleted!');
     }
 
     /**
