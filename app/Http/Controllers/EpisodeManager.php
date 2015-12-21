@@ -21,7 +21,6 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class EpisodeManager extends Controller
 {
     protected $mail;
-
     /**
      * Id of 1 is for a regular users
      */
@@ -36,6 +35,7 @@ class EpisodeManager extends Controller
      * Id of 3 is for super admin users
      */
     const SUPER_ADMIN   = 3;
+
 
     public function __construct(Mail $mail)
     {
@@ -97,6 +97,7 @@ class EpisodeManager extends Controller
         }
 
         try {
+
             $podcast = $this->uploadAudioFileToS3($request);
             $cover = $this->uploadImageFileToCloudinary($request->cover);
         } catch (S3 $e) {
@@ -119,6 +120,8 @@ class EpisodeManager extends Controller
 
         return redirect('dashboard/episode/create')
         ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
+
+        $this->sendNotification($request);
     }
 
     /**
@@ -134,6 +137,7 @@ class EpisodeManager extends Controller
 
         return view('dashboard/pages/edit_episode')
         ->with('episode', $episode)->with('channels', $channels);
+
     }
 
     /**
@@ -152,22 +156,18 @@ class EpisodeManager extends Controller
             $episode->save();
             //redirect
             return back()->with('status', 'Updated!');
-        } catch (QueryException $e) {
+        } catch(QueryException $e) {
             return back()->with('status', $e->getMessage());
         }
     }
 
-    /**
-    * Deletes episode
-    *
-    * @param  int $id
-    * @return
-    */
     public function destroy($id)
     {
-        Episode::find($id)->delete();
-
+        $episode = Episode::find($id);
+        $episode->delete();
+        // redirect
         return back()->with('status', 'Deleted!');
+
     }
 
     /**
@@ -194,7 +194,6 @@ class EpisodeManager extends Controller
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
-
         // Upload large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
@@ -209,13 +208,20 @@ class EpisodeManager extends Controller
     */
     public function sendNotification(Request $request)
     {
-        foreach ($this->adminEmails() as $key => $admin) {
-            $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $this->getSelectedChannelName($request)], function ($message) use ($admin) {
-                $message->from(getenv('SENDER_ADDRESS'), 'New Episode Notification!');
+        foreach($this->adminEmails($request) as $key => $admin) {
+            $this->mail->queue('emails.notification',
+                [
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'channel' => $request->channel
+                ],
+            function ($message) use ($admin) {
+                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($admin->email, $admin->username)->subject('New Notification!');
             });
         }
     }
+
 
     /**
     * fetch the admin emails from the users table
