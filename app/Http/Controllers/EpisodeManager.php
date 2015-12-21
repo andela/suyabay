@@ -25,17 +25,17 @@ class EpisodeManager extends Controller
     /**
      * Id of 1 is for a regular users
      */
-    CONST REGULAR_USER  = 1;
+    const REGULAR_USER  = 1;
 
     /**
      * Id 2 is for premium admin users
      */
-    CONST PREMIUM_USER  = 2;
+    const PREMIUM_USER  = 2;
 
     /**
      * Id of 3 is for super admin users
      */
-    CONST SUPER_ADMIN   = 3;
+    const SUPER_ADMIN   = 3;
 
     public function __construct(Mail $mail)
     {
