@@ -158,8 +158,8 @@ class UserController extends Controller
     public function sendMail(Request $request, $email)
     {
         $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'role' => $this->getRoleName($request->user_role), 'token' => $request->_token], function ($message) use ($email) {
-            $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
-            $message->to($email->email)->subject('Suyabay Invitation');
+                $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
+                $message->to($email->email)->subject('Suyabay Invitation');
         });
 
         if ($mailSent) {
