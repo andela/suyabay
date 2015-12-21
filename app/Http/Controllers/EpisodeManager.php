@@ -161,13 +161,17 @@ class EpisodeManager extends Controller
         }
     }
 
+    /**
+    * Deletes episode
+    *
+    * @param  int $id
+    * @return
+    */
     public function destroy($id)
     {
-        $episode = Episode::find($id);
-        $episode->delete();
-        // redirect
-        return back()->with('status', 'Deleted!');
+       Episode::find($id)->delete();
 
+       return back()->with('status', 'Deleted!');
     }
 
     /**
@@ -194,6 +198,7 @@ class EpisodeManager extends Controller
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
+
         // Upload large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
@@ -202,13 +207,18 @@ class EpisodeManager extends Controller
 
     /**
     * Send email notification
+<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
     * domain_name helper function
     * @param $request
+=======
+    *
+    * @param  none
+>>>>>>> [Fixes #108215092]Added role_id constants
     * @return none
     */
     public function sendNotification(Request $request)
     {
-        foreach ($this->adminEmails($request) as $key => $admin) {
+        foreach ($this->adminEmails() as $key => $admin) {
             $this->mail->queue('emails.notification', ['title' => $request->title, 'description' => $request->description, 'channel' => $request->channel], function ($message) use ($admin) {
                 $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($admin->email, $admin->username)->subject('New Notification!');
@@ -216,7 +226,10 @@ class EpisodeManager extends Controller
         }
     }
 
+<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
 
+=======
+>>>>>>> [Fixes #108215092]Added role_id constants
     /**
     * fetch the admin emails from the users table
     *
@@ -225,6 +238,7 @@ class EpisodeManager extends Controller
     */
     public function adminEmails()
     {
+<<<<<<< 5b4bc3c4c403a2958e2cbfe0a8bcad9feab6ac2b
         return User::where('role_id', '>', self::PREMIUM_USER)->get();
     }
 
@@ -240,5 +254,8 @@ class EpisodeManager extends Controller
         $channel = Channel::whereId($id)->first();
 
         return $channel->channel_name;
+=======
+        return User::where('role_id', '>', REGULAR_USER)->get();
+>>>>>>> [Fixes #108215092]Added role_id constants
     }
 }
