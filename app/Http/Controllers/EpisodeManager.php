@@ -83,8 +83,6 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        $this->sendNotification($request);
-        die();
         $v = Validator::make($request->all(), [
             'title'         => 'required|min:3',
             'description'   => 'required|min:50',
