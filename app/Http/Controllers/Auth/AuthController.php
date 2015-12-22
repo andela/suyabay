@@ -59,7 +59,7 @@ class AuthController extends Controller
             'password'      => bcrypt($data['password']),
             'facebookID'    => $data['facebook'],
             'twitterID'     => $data['twitter'],
-            'avatar'        => NULL
+            'avatar'        => null
         ]);
 
         /*Send Email*/
