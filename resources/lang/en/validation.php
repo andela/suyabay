@@ -71,7 +71,7 @@ return [
         'string'  => 'The :attribute must be :size characters.',
         'array'   => 'The :attribute must contain :size items.',
     ],
-    'size_format' =>  ':attribute size must be between 1MB and 6.99MB.',
+    'size_format' => ' :attribute size must be between 1MB and 6.99MB.',
     'string'      => 'The :attribute must be a string.',
     'timezone'    => 'The :attribute must be a valid zone.',
     'unique'      => 'The :attribute has already been taken.',
