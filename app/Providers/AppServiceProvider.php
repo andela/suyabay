@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-        //return real size
+    //return real size
     public function formatSizeUnits($bytes)
     {
         if ($bytes >= 1073741824) {
@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         return $bytes;
-}
+    }
 
     /**
      * Register any application services.
