@@ -51,11 +51,9 @@
 
 
         <script>
-
-  $(document).ready(function() {
-    $('select').material_select();
-  });
-
+          $(document).ready(function() {
+            $('select').material_select();
+          });
         </script>
         <script src = "{!! load_asset('/js/dashboard.js') !!}"></script>
     </body>

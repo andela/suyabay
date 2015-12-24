@@ -26,12 +26,15 @@ class EpisodeManager extends Controller
     public function index()
     {
 
-        $episodes       = Episode::all();
-        $user           = User::all();
-
+        $user                           = User::all();
         $online_user                    = $user->where('active', 1)->count();
         $offline_user                   = $user->where('active', 0)->count();
         $numbers_of_users_on_suyabay    = $user->count();
+
+        $episodes       = Episode::get();
+        $active_episode     = $episodes->where('status', 1);
+        $pendding_episode   = $episodes->where('status', 0);
+
 
         $data = 
         [
@@ -44,13 +47,13 @@ class EpisodeManager extends Controller
             
             "episodes" =>
                     [
-                        "recent"    => "dwedwedwe",
-                        "active"    => "dwedwedwe",
-                        "pendding"  => "dwedwedwe"
+                        "recent"    => $episodes,
+                        "active"    => $active_episode,
+                        "pending"  => $pendding_episode
                     ]
 
         ];
-        
+        //return $data;
         return view('dashboard/pages/index', compact('data'));
     }
 
@@ -177,26 +180,62 @@ class EpisodeManager extends Controller
     public function updateEpisodeStatus ( Request $request )
     {
         $episode_id    =  $request['episode_id'];
-        $episode        = Episode::where('id', $episode_id)->update(['status' => 2]);
+        $episode        = Episode::where('id', 88)->update(['status' => 1]);
 
         if ( $episode  === 1 ) 
         {
-            $data = 
+            $data =
             [
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
         }
+        
         if ( $episode  === 0 ) 
         {
             $data = 
             [
-                "status"    => 401,
+                "status"    => 200,
                 "message"   => "cant delete"
             ];
         }
 
         return $data;
     }
+
+    public function pendingEpisode()
+    {
+
+        $user                           = User::all();
+        $online_user                    = $user->where('active', 1)->count();
+        $offline_user                   = $user->where('active', 0)->count();
+        $numbers_of_users_on_suyabay    = $user->count();
+
+        $episodes       = Episode::get();
+        $active_episode     = $episodes->where('status', 1);
+        $pendding_episode   = $episodes->where('status', 0);
+
+
+        $data = 
+        [
+            "user" => 
+                    [
+                        "total"     => $numbers_of_users_on_suyabay,
+                        "online"    => $online_user,
+                        "offline"   => $offline_user
+                    ],
+            
+            "episodes" =>
+                    [
+                        "recent"    => $episodes,
+                        "active"    => $active_episode,
+                        "pending"  => $pendding_episode
+                    ]
+
+        ];
+        return $data;
+        //return view('dashboard/pages/index', compact('data'));
+    }
+
 
 }

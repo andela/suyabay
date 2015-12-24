@@ -76,6 +76,7 @@
             <!-- 
             # Recent Episode
             -->
+            
             <div id="test1" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
@@ -89,39 +90,27 @@
                     </thead>
 
                     <tbody>
+                        @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
                             <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>2 days ago</td>
+                            <td>{{ $recent->episode_name }}</td>
+                            <td>{{ $recent->episode_description }}</td>
+                            <td>{{ $recent->created_at }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
                                 <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option data-action="http://localhost:8000/dashboard/episodes" value="view">View</option>
-                                    <option data-action="12" value="delete">Delete</option>
-                                    <option data-action="12" value="activate">Active</option>
+                                    <option data-action="http://localhost:8000/dashboard/episodes/{{$recent->id}}" value="view">View</option>
+                                    <option data-action="{{$recent->id}}" value="delete">Delete</option>
+                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">
-                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
-                                    <option style="width:2ppx;" selected>Select</option>
-                                    <option data-action="http://localhost:8000/dashboard/episodes" value="view">View</option>
-                                    <option data-action="12" value="delete">Delete</option>
-                                    <option data-action="12" value="activate">Active</option>
-                                </select>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+
 
 
             <!-- 
@@ -139,21 +128,24 @@
                         </tr>
                     </thead>
 
-                    <tbody id="pendding_section">
+                    <tbody id="pending_section">
+                        @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
                             <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default">
+                            <td>{{ $recent->episode_name }}</td>
+                            <td>{{ $recent->episode_description }}</td>
+                            <td>{{ $recent->created_at }}</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">View</option>
-                                    <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
+                                    <option data-action="http://localhost:8000/dashboard/episodes/{{$recent->id}}" value="view">View</option>
+                                    <option data-action="{{$recent->id}}" value="delete">Delete</option>
+                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -173,7 +165,9 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="active_section">
+                    <!--                         
+                        @foreach( $data['episodes']['active'] as $active )
                         <tr>
                             <td>1</td>
                             <td>How to Ginger the Suya</td>
@@ -184,10 +178,11 @@
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option value="1">View</option>
                                     <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
                                 </select>
                             </td>
                         </tr>
+                        @endforeach 
+                    -->
                     </tbody>
                 </table>
             </div>

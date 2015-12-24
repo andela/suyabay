@@ -97,7 +97,6 @@ $( document ).ready(function() {
 		url 		= "/dashboard/episode/activate",
 		token 		= document.getElementById('token').value,
 		method 		= "PATCH",
-		episode_id 	= 5,
 		functionName =  arguments.callee.name;
 
 	  	var data =
@@ -110,7 +109,7 @@ $( document ).ready(function() {
 	          episode_id  : episode_id
 	        }
 	    }
-
+	   
 		swal(
 		{
 			title: "Activate Episode",
@@ -135,16 +134,6 @@ $( document ).ready(function() {
 		  }
 		});
 	}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -200,11 +189,6 @@ $( document ).ready(function() {
 
 
 
-
-
-
-
-
 	/*
 	####################################################################
 	# deleteEpisodeErrorAlert Message
@@ -238,17 +222,49 @@ $( document ).ready(function() {
 		swal("Deleted!", "Your episode has been deleted.", "success");
 		var 
 		deleted 	=  $('.selected'),
-		new_item 	=  $('#pendding_section');
+		new_item 	=  $('#active_section');
 		
 		deleted.hide();
-		console.log(item)
-		console.log(item[0])
-
-
-		new_item.append(item[0]);
-
-		//new_item.append
-		//("<tr><td>" + me + " </td><td>How to Ginger the Suya</td><td>Andela Suaya Lovers</td><td>12 days ago</td><td width='150px;'><select id='emeka' class='browser-default'><option style='width:2ppx;' selected>Select</option><option value='1'>View</option><option value='delete'>Delete</option><option value='1'>Active</option></select></td></tr>")
+		
+		new_item.append(item[0])
+		
+		deleted.show();
 	}
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// new_item 	=  $('#active_section');
+// $.get( "/dashboard/episode/pending", function( data ) 
+// {
+// 	var active_episodes = data['episodes']['active'];
+// 	var counter = 0;
+// 	for ( episode in active_episodes )
+// 	{
+// 		counter++;
+// 		episode = active_episodes[episode];
+// 		new_item.append
+// 		("<tr><td>" + counter + "</td><td>" + episode.episode_name + "</td><td>" + episode.episode_description + "</td><td>" + episode.created_at + "</td><td width='150px;'><select id='emeka' class='browser-default' onclick='emeka()'><option style='width:2ppx;' selected>Select</option><option value='1'>View</option><option value='delete'>Delete</option></select></td></tr>")
+// 	}
+// });

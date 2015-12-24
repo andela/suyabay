@@ -18,7 +18,7 @@ class CreateEpisodesTable extends Migration
             $table->text('episode_description');
             $table->integer('channel_id')->unsigned();
             $table->integer('view_count');
-            $table->integer('status');
+            $table->integer('status')->nullable();
             $table->string('image');
             $table->string('audio_mp3');
             $table->timestamps();

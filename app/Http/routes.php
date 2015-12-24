@@ -273,3 +273,8 @@ Route::post('/comment', [
     'uses' =>'CommentController@postComment',
     'as'   => 'comment'
 ]);
+
+Route::get('/dashboard/episode/pending', [
+    'uses' =>'EpisodeManager@pendingEpisode',
+    'as'   => 'comment'
+]);
