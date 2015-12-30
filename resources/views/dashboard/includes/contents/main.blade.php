@@ -90,9 +90,11 @@
                     </thead>
 
                     <tbody>
+
+                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
-                            <td>1</td>
+                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $recent->episode_name }}</td>
                             <td>{{ $recent->episode_description }}</td>
                             <td>{{ $recent->created_at }}</td>
