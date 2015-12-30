@@ -53,7 +53,6 @@ class EpisodeManager extends Controller
                     ]
 
         ];
-        //return $data;
         return view('dashboard/pages/index', compact('data'));
     }
 
@@ -180,7 +179,7 @@ class EpisodeManager extends Controller
     public function updateEpisodeStatus ( Request $request )
     {
         $episode_id    =  $request['episode_id'];
-        $episode        = Episode::where('id', 88)->update(['status' => 1]);
+        $episode        = Episode::where('id', $episode_id)->update(['status' => 1]);
 
         if ( $episode  === 1 ) 
         {
@@ -195,7 +194,7 @@ class EpisodeManager extends Controller
         {
             $data = 
             [
-                "status"    => 200,
+                "status"    => 401,
                 "message"   => "cant delete"
             ];
         }

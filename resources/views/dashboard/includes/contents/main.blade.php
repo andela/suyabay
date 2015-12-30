@@ -168,10 +168,10 @@
                     </thead>
 
                     <tbody id="active_section">
-                    <!--                         
+                        <span style="display:none">{{$counter = 0}}</span>               
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
-                            <td>1</td>
+                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>How to Ginger the Suya</td>
                             <td>Andela Suaya Lovers</td>
                             <td>12 days ago</td>
@@ -184,7 +184,7 @@
                             </td>
                         </tr>
                         @endforeach 
-                    -->
+                   
                     </tbody>
                 </table>
             </div>
