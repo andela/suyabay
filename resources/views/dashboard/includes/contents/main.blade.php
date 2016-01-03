@@ -33,8 +33,8 @@
             <div class="col s12 m3 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
-                        <p>Offline</p>
-                        <h1>{{$data['user']['offline']}}</h1>
+                        <p>Channels</p>
+                        <h1>{{$data['channels']->count()}}</h1>
                     </span>
                 </div>
             </div>
