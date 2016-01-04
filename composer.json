@@ -15,7 +15,8 @@
         "jrm2k6/cloudder": "0.2.*",
         "aws/aws-sdk-php-laravel": "~3.0",
         "illuminate/filesystem": "^5.1",
-      "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "guzzlehttp/guzzle": "^6.1"
    },
    "require-dev": {
         "mockery/mockery": "0.9.*",
