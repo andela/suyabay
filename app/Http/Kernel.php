@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth'       => \Suyabay\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest'      => \Suyabay\Http\Middleware\RedirectIfAuthenticated::class,
+        'dashboard'      => \Suyabay\Http\Middleware\Dashboard::class,
     ];
 }
