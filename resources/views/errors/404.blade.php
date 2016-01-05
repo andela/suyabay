@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'Page not found')
+@section('title', 'Access Denied')
 
 @endsection
 
