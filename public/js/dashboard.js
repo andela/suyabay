@@ -27,14 +27,14 @@ $( document ).ready(function() {
 
     	if ( action_type === "delete" ) 
     	{
-    		deleteEpisode(action)
+    		deleteEpisode(action);
     	};
 
     	if ( action_type === "activate" ) 
     	{
     		
     		item = $(this).parent().closest('tr');
-    		activateEpisode(action)
+    		activateEpisode(action);
     	};
 	});
 
@@ -78,7 +78,7 @@ $( document ).ready(function() {
 		{
 		  if (isConfirm) 
 		  {
-		    ajaxCall( data, functionName)
+		    ajaxCall( data, functionName);
 		  } 
 		  else 
 		  {
@@ -125,7 +125,7 @@ $( document ).ready(function() {
 		{
 		  if (isConfirm) 
 		  {
-		    ajaxCall( data, functionName)
+		    ajaxCall( data, functionName);
 		  } 
 		  else 
 		  {
@@ -145,7 +145,7 @@ $( document ).ready(function() {
 			data: data.parameter,
 			success: function (response) 
 			{ 
-				ajaxLogic ( response, functionName )
+				ajaxLogic ( response, functionName );
 			},
 			error: function () 
 			{ 
