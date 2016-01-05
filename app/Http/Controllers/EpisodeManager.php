@@ -34,9 +34,8 @@ class EpisodeManager extends Controller
         $episodes           = Episode::get();
         $active_episode     = $episodes->where('status', 1);
         $pendding_episode   = $episodes->where('status', 0);
-        
-        $channels           = Channel::get();
 
+        $channels           = Channel::get();
 
         $data = 
         [
@@ -220,7 +219,6 @@ class EpisodeManager extends Controller
         $active_episode     = $episodes->where('status', 1);
         $pendding_episode   = $episodes->where('status', 0);
 
-
         $data = 
         [
             "user" => 
@@ -236,7 +234,6 @@ class EpisodeManager extends Controller
                         "active"    => $active_episode,
                         "pending"   => $pendding_episode
                     ]
-
         ];
         return $data;
         //return view('dashboard/pages/index', compact('data'));
