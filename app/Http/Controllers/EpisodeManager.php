@@ -31,11 +31,11 @@ class EpisodeManager extends Controller
         $offline_user                   = $user->where('active', 0)->count();
         $numbers_of_users_on_suyabay    = $user->count();
 
-        $episodes           = Episode::get();
-        $active_episode     = $episodes->where('status', 1);
-        $pendding_episode   = $episodes->where('status', 0);
+        $episodes                       = Episode::get();
+        $active_episode                 = $episodes->where('status', 1);
+        $pendding_episode               = $episodes->where('status', 0);
 
-        $channels           = Channel::get();
+        $channels                       = Channel::get();
 
         $data = 
         [
@@ -215,9 +215,9 @@ class EpisodeManager extends Controller
         $offline_user                   = $user->where('active', 0)->count();
         $numbers_of_users_on_suyabay    = $user->count();
 
-        $episodes           = Episode::get();
-        $active_episode     = $episodes->where('status', 1);
-        $pendding_episode   = $episodes->where('status', 0);
+        $episodes                       = Episode::get();
+        $active_episode                 = $episodes->where('status', 1);
+        $pendding_episode               = $episodes->where('status', 0);
 
         $data = 
         [
