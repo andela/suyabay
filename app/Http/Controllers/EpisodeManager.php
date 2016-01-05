@@ -40,6 +40,7 @@ class EpisodeManager extends Controller
     public function __construct(Mail $mail)
     {
         $this->mail = $mail;
+        $this->middleware('auth');
     }
 
     /**
