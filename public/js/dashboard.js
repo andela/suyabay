@@ -212,7 +212,7 @@ $( document ).ready(function() {
 
 	function activateEpisodeSuccessAlert () 
 	{		
-		swal("Deleted!", "Your episode has been deleted.", "success");
+		swal("Episode Activated!", "Your episode has been activated.", "success");
 		var 
 		deleted 	=  $('.selected'),
 		new_item 	=  $('#active_section');
