@@ -171,8 +171,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
 
     Route::put('/episode/{id}/edit', [
-        'uses' => 'EpisodeManager@update',
-        'middleware'   => ['auth']
+        'uses'         => 'EpisodeManager@update',
+        'middleware'   => ['auth'],
+        'as'           => 'episode.update'
     ]);
 
     Route::delete('/episode/{id}', [

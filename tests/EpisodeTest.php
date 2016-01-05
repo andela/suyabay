@@ -24,7 +24,7 @@ class EpisodeTest extends TestCase
      * status code
      * @return status code
      */
-    public function testApplication()
+    public function testCreateEpisodeRoute()
     {
         $response = $this->call('GET', 'dashboard/episode/create', ['username' => 'Taylor', 'password' => 'pass']);
 
