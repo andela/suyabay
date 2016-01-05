@@ -13,7 +13,7 @@
         -->
 
         <div>
-            <div class="col s12 m3">
+            <div class="col s12 m4">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Users</p>
@@ -22,7 +22,7 @@
                 </div>
             </div>
           
-            <div class="col s12 m3 ">
+            <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Online</p>
@@ -30,7 +30,8 @@
                     </span>
                 </div>
             </div>
-            <div class="col s12 m3 ">
+            
+            <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Channels</p>
@@ -39,14 +40,6 @@
                 </div>
             </div>
           
-            <div class="col s12 m3 ">
-                <div class="card-panel teal panel-container">
-                    <span class="white-text">
-                        <p>Online</p>
-                        <h1>500K</h1>
-                    </span>
-                </div>
-            </div>
         </div>
        
 
