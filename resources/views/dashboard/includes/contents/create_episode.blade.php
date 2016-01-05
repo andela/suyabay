@@ -20,7 +20,6 @@
                                 </option>
                             @endforeach
                         </select>
-                        <label for="channel">Channel Name</label>
                     </div>
                 </div>
 
@@ -38,7 +37,7 @@
 
                 <div class="row">
                     <label for="file" class="btn-flat">Upload Podcast</label>
-                    <input type="file" name="podcast" accept="mp3, audio/*">
+                    <input type="file" name="podcast" accept="audio/*">
                 </div>
                 <input type="submit"  value ="create" class="btn-large" />
             </form>
