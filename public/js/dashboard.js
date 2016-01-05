@@ -107,7 +107,7 @@ $( document ).ready(function() {
 	          _token 	  : token,
 	          episode_id  : episode_id
 	        }
-	    }
+	    };
 	   
 		swal(
 		{
@@ -167,7 +167,7 @@ $( document ).ready(function() {
 	          case "deleteEpisode" : deleteEpisodeErrorAlert(); break;
 	          case "activateEpisode" : activateEpisodeErrorAlert(); break;
 	        }
-		}
+		};
 
 		/*
 		# Check if Response.status = 200
@@ -179,7 +179,7 @@ $( document ).ready(function() {
 	          case "deleteEpisode" : deleteEpisodeSuccessAlert(); break;
 	          case "activateEpisode" : activateEpisodeSuccessAlert(); break;
 	        }
-		}
+		};
 	}
 
 	/*
@@ -219,7 +219,7 @@ $( document ).ready(function() {
 		
 		deleted.hide();
 		
-		new_item.append(item[0])
+		new_item.append(item[0]);
 		
 		deleted.show();
 	}
