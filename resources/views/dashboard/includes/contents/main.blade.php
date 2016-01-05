@@ -83,7 +83,7 @@
                     </thead>
 
                     <tbody>
-
+                        
                         <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>

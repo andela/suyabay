@@ -19,7 +19,6 @@ $( document ).ready(function() {
 		# Add class to parent element of the <select/> element
     	*/
     	$(this).parent().closest('tr').prop("class", "selected");
-    	
 
     	if ( action_type === "view" ) 
     	{
@@ -49,7 +48,7 @@ $( document ).ready(function() {
 		url 		= "/dashboard/episode/delete",
 		token 		= document.getElementById('token').value,
 		method 		= "DELETE",
-		episode_id 	= 4,
+		episode_id 	= episode_id,
 		functionName =  arguments.callee.name;
 
 	  	var data =
@@ -135,8 +134,6 @@ $( document ).ready(function() {
 		});
 	}
 
-
-
 	/*
 	# Ajax
 	*/
@@ -184,10 +181,6 @@ $( document ).ready(function() {
 	        }
 		}
 	}
-
-
-
-
 
 	/*
 	####################################################################
