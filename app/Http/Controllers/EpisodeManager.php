@@ -56,7 +56,7 @@ class EpisodeManager extends Controller
             "channels" => $channels
 
         ];
-        //return $data;
+
         return view('dashboard/pages/index', compact('data'));
     }
 
@@ -235,8 +235,8 @@ class EpisodeManager extends Controller
                         "pending"   => $pendding_episode
                     ]
         ];
+        
         return $data;
-        //return view('dashboard/pages/index', compact('data'));
     }
 
 
