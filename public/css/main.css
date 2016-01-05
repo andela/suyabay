@@ -87,18 +87,18 @@
 }
 
 .error-message {
-    background-color:#D9534F;
-    border-radius: 10px;
+    background-color:#BBDEFB;
+    border-radius: 5px;
     font-weight:light;
-    color:#fff;
-    padding:15px;
+    color:red;
+    padding:10px;
 }
 .success-message {
-    background-color:#5CB85C;
-    border-radius: 10px;
+    background-color:#8BC34A;
+    border-radius: 5px;
     font-weight:light;
-    color:#fff;
-    padding:15px;
+    color:#333;
+   padding:10px;
 }
 .error-exit-message {
     color:grey;

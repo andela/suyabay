@@ -1,5 +1,4 @@
 <?php
-
 use Suyabay\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -8,6 +7,14 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserRegistrationAndLoginTest extends TestCase
 {
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->createApplication();
+        Artisan::call('migrate:refresh');
+    }
+
     /**
      * A basic test example.
      *
@@ -15,7 +22,7 @@ class UserRegistrationAndLoginTest extends TestCase
      */
     protected function createUser ()
     {
-        $user = User::create([
+        $user = App\User::create([
             'username' => 'test',
             'password' => 'test',
             'email' => 'test@test.com'
@@ -26,7 +33,7 @@ class UserRegistrationAndLoginTest extends TestCase
     public function testForCreatingOneUser()
     {
         $this->createUser();
-        $user = User::all();
+        $user = App\User::all();
         $this->assertEquals(1, sizeof($user));
     }
 
@@ -42,6 +49,13 @@ class UserRegistrationAndLoginTest extends TestCase
         $this->createUser();
         $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
         $this->assertContains(2, array(1, 2));
+    }
+
+
+    public function tearDown()
+    {
+        $this->createApplication();
+        Artisan::call('migrate:rollback');
     }
 
 }
