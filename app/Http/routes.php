@@ -46,7 +46,8 @@ Route::get('privacypolicy', 'PagesController@privacypolicy');
 
 Route::get('passwordreset', [
     'uses' => 'Auth\PasswordController@passwordPage',
-    'as'   => 'passwordreset'
+    'as'   => 'passwordreset',
+    'middleware'   => ['guest']
 ]);
 
 Route::get('password/email', [
@@ -174,7 +175,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::put('/episode/{id}/edit', [
         'uses' => 'EpisodeManager@update',
-        'as' => 'episode.update'
+        'middleware'   => ['auth']
     ]);
 
     Route::delete('/episode/delete', [
@@ -195,12 +196,14 @@ Route::group(['prefix' => 'dashboard'], function () {
 */
     Route::get('/users', [
         'uses' => 'UserController@index',
-        'as'   => 'users'
+        'as'   => 'users',
+        'middleware'   => ['auth']
     ]);
 
     Route::get('/user/{id}/edit', [
         'uses' => 'UserController@editView',
-        'as'   => 'user-edit-id'
+        'as'   => 'user-edit-id',
+        'middleware'   => ['auth']
     ]);
 
     Route::put('/user/edit', [
@@ -210,7 +213,8 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/user/create', [
         'uses' => 'UserController@show',
-        'as'   => 'user-create'
+        'as'   => 'user-create',
+        'middleware'   => ['auth']
     ]);
 
     Route::post('/user/create', [
@@ -224,12 +228,14 @@ Route::group(['prefix' => 'dashboard'], function () {
 */
     Route::get('/channels', [
         'uses' => 'ChannelController@index',
-        'as'   => 'channels'
+        'as'   => 'channels',
+        'middleware'   => ['auth']
     ]);
 
     Route::get('/channel/{id}/edit', [
         'uses' => 'ChannelController@edit',
-        'as'   => 'channel-id-edit'
+        'as'   => 'channel-id-edit',
+        'middleware'   => ['auth']
     ]);
     Route::put('/channel/edit', [
         'uses' => 'ChannelController@update',
@@ -238,7 +244,8 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/channel/create', [
         'uses' => 'ChannelController@createIndex',
-        'as'   => 'channel-create'
+        'as'   => 'channel-create',
+        'middleware'   => ['auth']
     ]);
     Route::post('/channel/create', [
         'uses' => 'ChannelController@processCreate'

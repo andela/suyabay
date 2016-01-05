@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'githubID', 'facebookID', 'twitterID'];
+    protected $fillable = ['username', 'email', 'password', 'githubID', 'facebookID', 'twitterID', 'avatar'];
 
     /**
      * Define roles table relationship
@@ -39,5 +39,23 @@ class User extends Model implements AuthenticatableContract,
     public function role()
     {
         return $this->belongsTo('Suyabay\Role');
+    }
+
+    /**
+     * Get the avatar from gravatar.
+     * @return string
+     */
+    private function getAvatarFromGravatar()
+    {
+        return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim(env('GRAVAR_EMAIL')))).'?d=mm&s=500';
+    }
+
+    /**
+     * Get avatar from the model.
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return (! is_null($this->avatar)) ? $this->avatar : $this->getAvatarFromGravatar();
     }
 }

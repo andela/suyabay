@@ -18,6 +18,6 @@ class EpisodeController extends Controller
     public function index()
     {
         $episodes = Episode::paginate(5);
-        return view('app.pages.index', compact('episodes'));   
+        return view('app.pages.index', compact('episodes'));
     }
 }

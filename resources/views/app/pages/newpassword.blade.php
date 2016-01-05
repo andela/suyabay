@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
-                            <input name="email" id="email" type="email" value="{{ old('email') }}" class="validate" />
+                            <input name="email" id="email" type="email" value="{{ $email }}" class="validate" readonly="true" />
                                 <label for="email">Email</label>
                     </div>
 
