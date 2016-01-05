@@ -83,7 +83,7 @@
                     </thead>
 
                     <tbody>
-                        
+
                         <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
@@ -167,7 +167,7 @@
                             <td>Andela Suaya Lovers</td>
                             <td>12 days ago</td>
                             <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                                <select id="emeka" class="browser-default">
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option value="delete">Delete</option>
                                 </select>
