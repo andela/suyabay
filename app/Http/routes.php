@@ -138,7 +138,7 @@ Route::get('logout', [
 /-------------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'dashboard'], function () {
 
     Route::get('/', function () {
         return view('dashboard.pages.index');
