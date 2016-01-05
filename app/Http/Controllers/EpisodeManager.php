@@ -175,7 +175,7 @@ class EpisodeManager extends Controller
             $data = 
             [
                 "status"    => 401,
-                "message"   => "cant delete"
+                "message"   => "episode can not be deleted"
             ];
         }
 
@@ -192,7 +192,7 @@ class EpisodeManager extends Controller
             $data =
             [
                 "status"    => 200,
-                "message"   => "Episode successfully deleted"
+                "message"   => "Episode successfully updated"
             ];
         }
         
@@ -201,7 +201,7 @@ class EpisodeManager extends Controller
             $data = 
             [
                 "status"    => 401,
-                "message"   => "cant delete"
+                "message"   => "episode can not be updated"
             ];
         }
 
