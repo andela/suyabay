@@ -51,7 +51,7 @@ class EpisodeManager extends Controller
                     [
                         "recent"    => $episodes,
                         "active"    => $active_episode,
-                        "pending"  => $pendding_episode
+                        "pending"   => $pendding_episode
                     ],
 
             "channels" => $channels
@@ -184,7 +184,7 @@ class EpisodeManager extends Controller
 
     public function updateEpisodeStatus ( Request $request )
     {
-        $episode_id    =  $request['episode_id'];
+        $episode_id     =  $request['episode_id'];
         $episode        = Episode::where('id', $episode_id)->update(['status' => 1]);
 
         if ( $episode  === 1 ) 
@@ -216,7 +216,7 @@ class EpisodeManager extends Controller
         $offline_user                   = $user->where('active', 0)->count();
         $numbers_of_users_on_suyabay    = $user->count();
 
-        $episodes       = Episode::get();
+        $episodes           = Episode::get();
         $active_episode     = $episodes->where('status', 1);
         $pendding_episode   = $episodes->where('status', 0);
 
@@ -234,7 +234,7 @@ class EpisodeManager extends Controller
                     [
                         "recent"    => $episodes,
                         "active"    => $active_episode,
-                        "pending"  => $pendding_episode
+                        "pending"   => $pendding_episode
                     ]
 
         ];
