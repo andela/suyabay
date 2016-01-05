@@ -83,7 +83,6 @@
                     </thead>
 
                     <tbody>
-
                         <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
@@ -121,20 +120,20 @@
                             <th data-field="price">Action</th>
                         </tr>
                     </thead>
-                    <span style="display:none">{{$counter = 0}}</span>
-                    <tbody id="pending_section">
+                    <tbody>
+                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
                             <td>{{ $counter = $counter + 1 }}</td>
-                            <td>{{ $recent->episode_name }}</td>
-                            <td>{{ $recent->episode_description }}</td>
-                            <td>{{ $recent->created_at }}</td>
+                            <td>{{ $pending->episode_name }}</td>
+                            <td>{{ $pending->episode_description }}</td>
+                            <td>{{ $pending->created_at }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
                                 <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option data-action="{{$recent->id}}" value="delete">Delete</option>
-                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
+                                    <option data-action="{{$pending->id}}" value="delete">Delete</option>
+                                    <option data-action="{{$pending->id}}" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
@@ -158,23 +157,23 @@
                         </tr>
                     </thead>
 
-                    <tbody id="active_section">
-                        <span style="display:none">{{$counter = 0}}</span>               
+                    <tbody>
+                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
                             <td>{{ $counter = $counter + 1 }}</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default">
+                            <td>{{ $active->episode_name }}</td>
+                            <td>{{ $active->episode_description }}</td>
+                            <td>{{ $active->created_at }}</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="delete">Delete</option>
+                                    <option data-action="{{$active->id}}" value="delete">Delete</option>
                                 </select>
                             </td>
                         </tr>
-                        @endforeach 
-                   
+                        @endforeach
                     </tbody>
                 </table>
             </div>
