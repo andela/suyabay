@@ -206,37 +206,4 @@ class EpisodeManager extends Controller
         return $data;
     }
 
-    public function pendingEpisode()
-    {
-
-        $user                           = User::all();
-        $online_user                    = $user->where('active', 1)->count();
-        $offline_user                   = $user->where('active', 0)->count();
-        $numbers_of_users_on_suyabay    = $user->count();
-
-        $episodes                       = Episode::get();
-        $active_episode                 = $episodes->where('status', 1);
-        $pendding_episode               = $episodes->where('status', 0);
-
-        $data = 
-        [
-            "user" => 
-                    [
-                        "total"     => $numbers_of_users_on_suyabay,
-                        "online"    => $online_user,
-                        "offline"   => $offline_user
-                    ],
-            
-            "episodes" =>
-                    [
-                        "recent"    => $episodes,
-                        "active"    => $active_episode,
-                        "pending"   => $pendding_episode
-                    ]
-        ];
-        
-        return $data;
-    }
-
-
 }
