@@ -157,17 +157,16 @@ class UserController extends Controller
      */
     public function sendMail(Request $request, $email)
     {
-        $mailSent = $this->mail->send('emails.adminInvite', ['username' => $request->username, 'role' => $this->getRoleName($request->user_role), 'token' => $request->_token], function ($message) use ($email) {
+        $mailSent = $this->mail->send('emails.adminInvite', [
+            'username' => $request->username,
+            'role' => $this->getRoleName($request->user_role),
+            'token' => $request->_token], function ($message) use ($email) {
                 $message->from(getenv('SENDER_ADDRESS'), getenv('SENDER_NAME'));
                 $message->to($email->email)->subject('Suyabay Invitation');
         });
 
         if ($mailSent) {
-            $this->response =
-            [
-                'message' => 'Invitation was sent successfully',
-                'status_code' => 201
-            ];
+            $this->response = ['message' => 'Invitation was sent successfully', 'status_code' => 201];
         }
 
         return $this->response;
