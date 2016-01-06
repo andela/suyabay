@@ -150,7 +150,7 @@ class EpisodeManager extends Controller
     public function delete(Request $request)
     {
         $episode_id  =  $request['episode_id'];
-        $episode     = Episode::where('id', $episode_id)->delete();
+        $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
         
         if ( $episode  === 1 ) 
         {

@@ -10,17 +10,25 @@ class EpisodeRepository
     /**
     * Return all episode from the database
     */
-    public function getAllEpisode($id)
+    public function getAllEpisode()
     {
-        return Episode::find($id);
+        return Episode::all();
     }
     
     /**
     * Find episode by id
     */
-    public function findEpisodeById()
+    public function findEpisodeById($id)
     {
-    	return Episode::all();
+        return Episode::find($id);
+    }   
+
+    /**
+    * Find episode where
+    */
+    public function findEpisodeWhere($field, $id)
+    {
+    	return Episode::where($field, $id); 
     }
 	
     /**
