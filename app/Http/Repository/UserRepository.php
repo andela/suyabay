@@ -2,11 +2,9 @@
 
 namespace Suyabay\Http\Repository;
 
+use Suyabay\Http\Repository\Repository;
+
 class UserRepository
 {
 	
-	public function emeka()
-	{
-		echo "kchdfvkdfvjdfh";
-	}
 }

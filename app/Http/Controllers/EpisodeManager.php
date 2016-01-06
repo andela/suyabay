@@ -13,6 +13,7 @@ use Suyabay\Channel;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
@@ -25,35 +26,25 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-
-        $user                           = User::all();
-        $online_user                    = $user->where('active', 1)->count();
-        $offline_user                   = $user->where('active', 0)->count();
-        $total_number_of_users          = $user->count();
-
-        $episodes                       = Episode::get();
-        $active_episode                 = $episodes->where('status', 1);
-        $pendding_episode               = $episodes->where('status', 0);
-
-        $channels                       = Channel::get();
-
+        $userRepository = new UserRepository;
+    
         $data = 
         [
             "user" => 
                     [
-                        "total"     => $total_number_of_users,
-                        "online"    => $online_user,
-                        "offline"   => $offline_user
+                        "total"     => "total_number_of_users",
+                        "online"    => "online_user",
+                        "offline"   => "offline_user"
                     ],
             
             "episodes" =>
                     [
-                        "recent"    => $episodes,
-                        "active"    => $active_episode,
-                        "pending"   => $pendding_episode
+                        "recent"    => "episodes",
+                        "active"    => "active_episode",
+                        "pending"   => "pendding_episode"
                     ],
 
-            "channels" => $channels
+            "channels" => "channels"
         ];
 
         return $data;
