@@ -66,7 +66,7 @@ class EpisodeManager extends Controller
     */
     public function showChannels()
     {
-        $channels = Channel::all();
+        $channels = $this->channelRepository->getAllChannel();
 
         return view('dashboard/pages/create_episode', compact('channels'));
     }
