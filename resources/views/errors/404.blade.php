@@ -1,6 +1,6 @@
 @extends('app.master')
 
-@section('title', 'Access Denied')
+@section('title', 'Page not found')
 
 @endsection
 
@@ -13,7 +13,7 @@
             </div>
 
             <h3 class="error-exit-message">
-                Access denied,<br /> you do not have access to view this page!!!
+                we are so sorry!
             </h3>
 
             <br>

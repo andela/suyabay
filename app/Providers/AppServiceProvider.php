@@ -17,11 +17,13 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('size_format', function ($attribute, $value, $parameters, $validator) {
             $bytes = filesize($value);
             $fileSize = $this->formatSizeUnits($bytes);
-            return ($fileSize >= 1.00 && $fileSize <= 6.00);
+            if ($fileSize >= 1.00 && $fileSize <= 6.00) {
+                return $fileSize;
+            }
         });
     }
 
-        //return real size
+    //return real size
     public function formatSizeUnits($bytes)
     {
         if ($bytes >= 1073741824) {
@@ -39,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         return $bytes;
-}
+    }
 
     /**
      * Register any application services.
