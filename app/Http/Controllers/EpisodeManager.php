@@ -29,7 +29,7 @@ class EpisodeManager extends Controller
         $user                           = User::all();
         $online_user                    = $user->where('active', 1)->count();
         $offline_user                   = $user->where('active', 0)->count();
-        $numbers_of_users_on_suyabay    = $user->count();
+        $total_number_of_users    = $user->count();
 
         $episodes                       = Episode::get();
         $active_episode                 = $episodes->where('status', 1);
@@ -41,7 +41,7 @@ class EpisodeManager extends Controller
         [
             "user" => 
                     [
-                        "total"     => $numbers_of_users_on_suyabay,
+                        "total"     => $total_number_of_users,
                         "online"    => $online_user,
                         "offline"   => $offline_user
                     ],
