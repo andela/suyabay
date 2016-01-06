@@ -17,7 +17,7 @@
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Users</p>
-                        <h1>{{$data['user']['total']}}</h1>
+                        <h1>{{$data['user']['total']->count()}}</h1>
                     </span>
                 </div>
             </div>

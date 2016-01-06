@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Repository\EpisodeRepository;
+use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
@@ -29,27 +30,27 @@ class EpisodeManager extends Controller
     {
         $userRepository     = new UserRepository;
         $episodeRepository  = new EpisodeRepository;
+        $channelRepository  = new ChannelRepository;
     
         $data = 
         [
-            // "user" => 
-            //         [
-            //             "total"     => $userRepository->getAllUser(),
-            //             "online"    => $userRepository->getOnlineUsers()->count(),
-            //             "offline"   => $userRepository->getOfflineUsers()->count()
-            //         ],
+            "user" => 
+                    [
+                        "total"     => $userRepository->getAllUser(),
+                        "online"    => $userRepository->getOnlineUsers()->count(),
+                        "offline"   => $userRepository->getOfflineUsers()->count()
+                    ],
             
-            // "episodes" =>
-            //         [
-            //             "recent"    => $episodeRepository->getAllEpisode(),
-            //             "active"    => $episodeRepository->getActiveEpisode(),
-            //             "pending"   => $episodeRepository->getPendingEpisode()
-            //         ],
+            "episodes" =>
+                    [
+                        "recent"    => $episodeRepository->getAllEpisode(),
+                        "active"    => $episodeRepository->getActiveEpisode(),
+                        "pending"   => $episodeRepository->getPendingEpisode()
+                    ],
 
-            "channels" => "channels"
+            "channels" => $channelRepository->getAllChannel()
         ];
 
-        return $data;
         return view('dashboard/pages/index', compact('data'));
     }
 
