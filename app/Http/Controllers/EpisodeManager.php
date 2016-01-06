@@ -149,7 +149,7 @@ class EpisodeManager extends Controller
 
     public function delete(Request $request)
     {
-        $episode_id  =  $request['episode_id'];
+        $episode_id  = $request['episode_id'];
         $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
         
         if ( $episode  === 1 ) 
@@ -175,8 +175,8 @@ class EpisodeManager extends Controller
 
     public function updateEpisodeStatus ( Request $request )
     {
-        $episode_id     =  $request['episode_id'];
-        $episode        = Episode::where('id', $episode_id)->update(['status' => 1]);
+        $episode_id     = $request['episode_id'];
+        $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
 
         if ( $episode  === 1 ) 
         {
