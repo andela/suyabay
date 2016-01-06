@@ -14,6 +14,7 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\UserRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
@@ -26,7 +27,8 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-        $userRepository = new UserRepository;
+        $userRepository     = new UserRepository;
+        $episodeRepository  = new EpisodeRepository;
     
         $data = 
         [
@@ -37,12 +39,12 @@ class EpisodeManager extends Controller
             //             "offline"   => $userRepository->getOfflineUsers()->count()
             //         ],
             
-            "episodes" =>
-                    [
-                        "recent"    => "episodes",
-                        "active"    => "active_episode",
-                        "pending"   => "pendding_episode"
-                    ],
+            // "episodes" =>
+            //         [
+            //             "recent"    => $episodeRepository->getAllEpisode(),
+            //             "active"    => $episodeRepository->getActiveEpisode(),
+            //             "pending"   => $episodeRepository->getPendingEpisode()
+            //         ],
 
             "channels" => "channels"
         ];
