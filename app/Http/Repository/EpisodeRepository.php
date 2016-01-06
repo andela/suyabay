@@ -10,7 +10,15 @@ class EpisodeRepository
     /**
     * Return all episode from the database
     */
-    public function getAllEpisode()
+    public function getAllEpisode($id)
+    {
+        return Episode::find($id);
+    }
+    
+    /**
+    * Find episode by id
+    */
+    public function findEpisodeById()
     {
     	return Episode::all();
     }
@@ -24,7 +32,7 @@ class EpisodeRepository
     }
 	
     /**
-    * Return active episode from the database
+    * Return pending episode from the database
     */
     public function getPendingEpisode()
     {

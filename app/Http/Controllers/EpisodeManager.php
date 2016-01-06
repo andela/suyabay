@@ -20,6 +20,12 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
+    function __construct() 
+    {
+        $this->userRepository     = new UserRepository;
+        $this->episodeRepository  = new EpisodeRepository;
+        $this->channelRepository  = new ChannelRepository;
+    }
 
     /**
     * Display a listing of the resource to view_episodes
@@ -28,27 +34,20 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-        $userRepository     = new UserRepository;
-        $episodeRepository  = new EpisodeRepository;
-        $channelRepository  = new ChannelRepository;
-    
         $data = 
         [
-            "user" => 
-                    [
-                        "total"     => $userRepository->getAllUser(),
-                        "online"    => $userRepository->getOnlineUsers()->count(),
-                        "offline"   => $userRepository->getOfflineUsers()->count()
-                    ],
+            "user"      =>   [  "total"     => $this->userRepository->getAllUser(),
+                                "online"    => $this->userRepository->getOnlineUsers()->count(),
+                                "offline"   => $this->userRepository->getOfflineUsers()->count() 
+                            ],
             
-            "episodes" =>
-                    [
-                        "recent"    => $episodeRepository->getAllEpisode(),
-                        "active"    => $episodeRepository->getActiveEpisode(),
-                        "pending"   => $episodeRepository->getPendingEpisode()
-                    ],
+            "episodes" =>   [
+                                "recent"    => $this->episodeRepository->getAllEpisode(),
+                                "active"    => $this->episodeRepository->getActiveEpisode(),
+                                "pending"   => $this->episodeRepository->getPendingEpisode()
+                            ],
 
-            "channels" => $channelRepository->getAllChannel()
+            "channels"      => $this->channelRepository->getAllChannel()
         ];
 
         return view('dashboard/pages/index', compact('data'));
@@ -118,8 +117,7 @@ class EpisodeManager extends Controller
     */
     public function edit($id)
     {
-        $episode = Episode::find($id);
-
+        $episode = $this->episodeRepository->findEpisodeById($id);
         return view('dashboard/pages/edit_episode')->with('episode', $episode);
     }
 
