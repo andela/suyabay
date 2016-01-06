@@ -32,7 +32,7 @@ class EpisodeManager extends Controller
         [
             "user" => 
                     [
-                        "total"     => "total_number_of_users",
+                        "total"     => $userRepository->a(),
                         "online"    => "online_user",
                         "offline"   => "offline_user"
                     ],
