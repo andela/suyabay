@@ -29,7 +29,7 @@ class EpisodeManager extends Controller
         $user                           = User::all();
         $online_user                    = $user->where('active', 1)->count();
         $offline_user                   = $user->where('active', 0)->count();
-        $total_number_of_users    = $user->count();
+        $total_number_of_users          = $user->count();
 
         $episodes                       = Episode::get();
         $active_episode                 = $episodes->where('status', 1);
@@ -56,6 +56,7 @@ class EpisodeManager extends Controller
             "channels" => $channels
         ];
 
+        return $data;
         return view('dashboard/pages/index', compact('data'));
     }
 
