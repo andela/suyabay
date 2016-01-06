@@ -2,13 +2,37 @@
 
 namespace Suyabay\Http\Repository;
 
-use Suyabay\Http\Repository\Repository;
+use Suyabay\User;
 
-
-class UserRepository extends Repository
+class UserRepository 
 {
-	public function a()
-	{
-		return $u = User::all();
+	
+    /**
+    * Return all user from the database
+    */
+	public function getAllUser()
+	{ 
+		return User::all();
 	}
+
+    /**
+    * Return all online users 
+    */
+	public function getOnlineUsers()
+	{ 
+		return $this->getAllUser()->where('active', 1);
+	}
+
+    /**
+    * Return all offline users 
+    */
+	public function getOfflineUsers()
+	{ 
+		return $this->getAllUser()->where('active', 0);
+	}
+
+
+
+
+
 }

@@ -30,12 +30,12 @@ class EpisodeManager extends Controller
     
         $data = 
         [
-            "user" => 
-                    [
-                        "total"     => $userRepository->a(),
-                        "online"    => "online_user",
-                        "offline"   => "offline_user"
-                    ],
+            // "user" => 
+            //         [
+            //             "total"     => $userRepository->getAllUser(),
+            //             "online"    => $userRepository->getOnlineUsers()->count(),
+            //             "offline"   => $userRepository->getOfflineUsers()->count()
+            //         ],
             
             "episodes" =>
                     [
