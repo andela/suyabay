@@ -34,8 +34,7 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-        $data = 
-        [
+        $data = [
             "user"      =>   [  "total"     => $this->userRepository->getAllUser(),
                                 "online"    => $this->userRepository->getOnlineUsers()->count(),
                                 "offline"   => $this->userRepository->getOfflineUsers()->count() 
@@ -153,8 +152,7 @@ class EpisodeManager extends Controller
         
         if ( $episode  === 1 ) 
         {
-            $data = 
-            [
+            $data = [
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
@@ -162,8 +160,7 @@ class EpisodeManager extends Controller
         
         if ( $episode  === 0 ) 
         {
-            $data = 
-            [
+            $data = [
                 "status"    => 401,
                 "message"   => "episode can not be deleted"
             ];
@@ -179,8 +176,7 @@ class EpisodeManager extends Controller
 
         if ( $episode  === 1 ) 
         {
-            $data =
-            [
+            $data = [
                 "status"    => 200,
                 "message"   => "Episode successfully updated"
             ];
@@ -188,8 +184,7 @@ class EpisodeManager extends Controller
         
         if ( $episode  === 0 ) 
         {
-            $data = 
-            [
+            $data = [
                 "status"    => 401,
                 "message"   => "episode can not be updated"
             ];

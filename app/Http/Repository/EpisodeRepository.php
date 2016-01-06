@@ -6,7 +6,7 @@ use Suyabay\Episode;
 
 class EpisodeRepository 
 {
-	
+
     /**
     * Return all episode from the database
     */
@@ -14,14 +14,14 @@ class EpisodeRepository
     {
         return Episode::all();
     }
-    
+
     /**
     * Find episode by id
     */
     public function findEpisodeById($id)
     {
         return Episode::find($id);
-    }   
+    }
 
     /**
     * Find episode where
@@ -30,7 +30,7 @@ class EpisodeRepository
     {
     	return Episode::where($field, $id); 
     }
-	
+
     /**
     * Return active episode from the database
     */
@@ -38,7 +38,7 @@ class EpisodeRepository
     {
     	return $this->getAllEpisode()->where('status', 1);
     }
-	
+
     /**
     * Return pending episode from the database
     */
@@ -46,6 +46,4 @@ class EpisodeRepository
     {
     	return $this->getAllEpisode()->where('status', 1);
     }
-
-
 }
