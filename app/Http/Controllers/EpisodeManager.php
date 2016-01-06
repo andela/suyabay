@@ -54,7 +54,6 @@ class EpisodeManager extends Controller
                     ],
 
             "channels" => $channels
-
         ];
 
         return view('dashboard/pages/index', compact('data'));
@@ -155,7 +154,7 @@ class EpisodeManager extends Controller
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
     }
 
-    public function delete( Request $request )
+    public function delete(Request $request)
     {
         $episode_id  =  $request['episode_id'];
         $episode     = Episode::where('id', $episode_id)->delete();
