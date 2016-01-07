@@ -20,8 +20,7 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
-    function __construct() 
-    {
+    function __construct(){
         $this->userRepository     = new UserRepository;
         $this->episodeRepository  = new EpisodeRepository;
         $this->channelRepository  = new ChannelRepository;
@@ -35,7 +34,7 @@ class EpisodeManager extends Controller
     public function index()
     {
         $data = [
-            "user"      =>   [  "total"     => $this->userRepository->getAllUser(),
+            "user"      =>  [  "total"     => $this->userRepository->getAllUser(),
                                 "online"    => $this->userRepository->getOnlineUsers()->count(),
                                 "offline"   => $this->userRepository->getOfflineUsers()->count() 
                             ],
@@ -151,7 +150,7 @@ class EpisodeManager extends Controller
         $episode_id  = $request['episode_id'];
         $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
         
-        if ( $episode  === 1 ) 
+        if ($episode  === 1)
         {
             $data = [
                 "status"    => 200,
@@ -159,7 +158,7 @@ class EpisodeManager extends Controller
             ];
         }
         
-        if ( $episode  === 0 ) 
+        if ($episode  === 0)
         {
             $data = [
                 "status"    => 401,
@@ -170,12 +169,12 @@ class EpisodeManager extends Controller
         return $data;
     }
 
-    public function updateEpisodeStatus ( Request $request )
+    public function updateEpisodeStatus (Request $request)
     {
         $episode_id     = $request['episode_id'];
         $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
 
-        if ( $episode  === 1 ) 
+        if ($episode  === 1)
         {
             $data = [
                 "status"    => 200,
@@ -183,7 +182,7 @@ class EpisodeManager extends Controller
             ];
         }
         
-        if ( $episode  === 0 ) 
+        if ($episode  === 0)
         {
             $data = [
                 "status"    => 401,

@@ -4,7 +4,7 @@ namespace Suyabay\Http\Repository;
 
 use Suyabay\Episode;
 
-class EpisodeRepository 
+class EpisodeRepository
 {
 
     /**
@@ -28,7 +28,7 @@ class EpisodeRepository
     */
     public function findEpisodeWhere($field, $id)
     {
-    	return Episode::where($field, $id); 
+    	return Episode::where($field, $id);
     }
 
     /**

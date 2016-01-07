@@ -4,7 +4,7 @@ namespace Suyabay\Http\Repository;
 
 use Suyabay\Channel;
 
-class ChannelRepository 
+class ChannelRepository
 {
 	
     /**
