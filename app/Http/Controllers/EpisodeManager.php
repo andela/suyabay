@@ -92,11 +92,9 @@ class EpisodeManager extends Controller
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
-
         ]);
 
-        if ($v->fails()){
-
+        if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
 
