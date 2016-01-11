@@ -116,7 +116,7 @@ class EpisodeManager extends Controller
     public function edit($id)
     {
         $episode = $this->episodeRepository->findEpisodeById($id);
-        return view('dashboard/pages/edit_episode')->with('episode', $episode);
+        return view('dashboard.pages.edit_episode')->with('episode', $episode);
     }
 
     /*
