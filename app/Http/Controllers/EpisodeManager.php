@@ -171,7 +171,7 @@ class EpisodeManager extends Controller
         return $data;
     }
 
-    public function updateEpisodeStatus (Request $request)
+    public function updateEpisodeStatus(Request $request)
     {
         $episode_id     = $request['episode_id'];
         $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
