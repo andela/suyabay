@@ -22,6 +22,7 @@ class EpisodeManager extends Controller
 {
 
     public function __construct(){
+
         $this->userRepository     = new UserRepository;
         $this->episodeRepository  = new EpisodeRepository;
         $this->channelRepository  = new ChannelRepository;
@@ -35,17 +36,20 @@ class EpisodeManager extends Controller
     public function index()
     {
         $data = [
-            "user"      =>  [
-                                "total"     => $this->userRepository->getAllUsers(),
-                                "online"    => $this->userRepository->getOnlineUsers()->count(),
-                                "offline"   => $this->userRepository->getOfflineUsers()->count()
-                            ],
 
-            "episodes" =>   [
-                                "recent"    => $this->episodeRepository->getAllEpisodes(),
-                                "active"    => $this->episodeRepository->getActiveEpisodes(),
-                                "pending"   => $this->episodeRepository->getPendingEpisodes()
-                            ],
+            "user"      =>
+            [
+                "total"     =>      $this->userRepository->getAllUsers(),
+                "online"    =>      $this->userRepository->getOnlineUsers()->count(),
+                "offline"   =>      $this->userRepository->getOfflineUsers()->count()
+            ],
+
+            "episodes"  =>
+            [
+                "recent"    => $this->episodeRepository->getAllEpisodes(),
+                "active"    => $this->episodeRepository->getActiveEpisodes(),
+                "pending"   => $this->episodeRepository->getPendingEpisodes()
+            ],
 
             "channels"      => $this->channelRepository->getAllChannels()
         ];
@@ -89,7 +93,7 @@ class EpisodeManager extends Controller
             'podcast'       => 'required|size_format'
         ]);
 
-        if ($v->fails()){
+        if ($v->fails()) {
 
             return redirect()->back()->withErrors($v->errors());
         }
