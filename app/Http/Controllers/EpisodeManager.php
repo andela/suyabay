@@ -87,8 +87,7 @@ class EpisodeManager extends Controller
             'podcast'       => 'required|size_format'
         ]);
 
-        if ($v->fails())
-        {
+        if ($v->fails()){
             return redirect()->back()->withErrors($v->errors());
         }
 
@@ -152,16 +151,14 @@ class EpisodeManager extends Controller
         $episode_id  = $request['episode_id'];
         $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
         
-        if ($episode  === 1)
-        {
+        if ($episode  === 1){
             $data = [
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
         }
         
-        if ($episode  === 0)
-        {
+        if ($episode  === 0){
             $data = [
                 "status"    => 401,
                 "message"   => "episode can not be deleted"
@@ -176,16 +173,14 @@ class EpisodeManager extends Controller
         $episode_id     = $request['episode_id'];
         $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
 
-        if ($episode  === 1)
-        {
+        if ($episode  === 1){
             $data = [
                 "status"    => 200,
                 "message"   => "Episode successfully updated"
             ];
         }
         
-        if ($episode  === 0)
-        {
+        if ($episode  === 0){
             $data = [
                 "status"    => 401,
                 "message"   => "episode can not be updated"
