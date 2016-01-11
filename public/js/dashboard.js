@@ -13,7 +13,7 @@ $( document ).ready(function() {
     	/*
 		# Get <select/> element data-action
     	*/
-    	action = $(this).find("option:selected").data("action");
+    	var action = $(this).find("option:selected").data("action");
 
 		/*
 		# Add class to parent element of the <select/> element
@@ -215,11 +215,11 @@ $( document ).ready(function() {
 		swal("Episode Activated!", "Your episode has been activated.", "success");
 		var
 		deleted 	=  $(".selected"),
-		new_item 	=  $("#active_section");
+		newItem 	=  $("#active_section");
 
 		deleted.hide();
 
-		new_item.append(item[0]);
+		newItem.append(item[0]);
 
 		deleted.show();
 	}
