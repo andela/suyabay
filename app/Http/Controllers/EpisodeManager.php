@@ -21,7 +21,8 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class EpisodeManager extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->userRepository     = new UserRepository;
         $this->episodeRepository  = new EpisodeRepository;
@@ -91,6 +92,7 @@ class EpisodeManager extends Controller
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
+
         ]);
 
         if ($v->fails()) {
