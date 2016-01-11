@@ -95,10 +95,9 @@ class EpisodeManager extends Controller
 
         ]);
 
-        if ($v->fails()) {
+        if ($v->fails()){
 
             return redirect()->back()->withErrors($v->errors());
-
         }
 
         $cover      = $this->getImageFileUrl($request->cover);
