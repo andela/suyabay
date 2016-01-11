@@ -59,7 +59,7 @@ $( document ).ready(function() {
 	        {
 	          _token 	  : token,
 	          episodeId  : episodeId
-	        }
+	        };
 	    }
 
 		swal(
