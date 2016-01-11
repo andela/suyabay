@@ -28,7 +28,7 @@ class EpisodeRepository
     */
     public function findEpisodeWhere($field, $value)
     {
-    	return Episode::where($field, $value);
+        return Episode::where($field, $value);
     }
 
     /**
@@ -36,7 +36,7 @@ class EpisodeRepository
     */
     public function getActiveEpisodes()
     {
-    	return $this->getAllEpisodes()->where('status', 1);
+        return $this->getAllEpisodes()->where('status', 1);
     }
 
     /**
@@ -44,6 +44,6 @@ class EpisodeRepository
     */
     public function getPendingEpisodes()
     {
-    	return $this->getAllEpisodes()->where('status', 1);
+        return $this->getAllEpisodes()->where('status', 1);
     }
 }
