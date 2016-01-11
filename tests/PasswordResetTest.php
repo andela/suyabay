@@ -12,7 +12,7 @@ class PasswordResetTest extends TestCase
     {
         $this->visit('/')
              ->click('SIGN IN')
-             ->seePageIs('/signin')
+             ->seePageIs('/login')
              ->click('Forgot password?')
              ->seePageIs('/passwordreset');
     }

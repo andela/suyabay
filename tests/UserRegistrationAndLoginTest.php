@@ -36,12 +36,4 @@ class UserRegistrationAndLoginTest extends TestCase
         $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
         $this->assertEquals(1, sizeof($user));
     }
-
-    public function testLoginReturnTwoArray()
-    {
-        $this->createUser();
-        $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
-        $this->assertContains(2, array(1, 2));
-    }
-
 }

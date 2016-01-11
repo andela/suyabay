@@ -1,6 +1,6 @@
 <?php
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -8,6 +8,22 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      * @var string
      */
     protected $baseUrl = 'http://localhost';
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->prepareTestDB();
+    }
+
+    public function tearDown()
+    {
+        $f = @fopen(storage_path("database.sqlite"), "r+");
+        if ($f !== false) {
+            ftruncate($f, 0);
+            fclose($f);
+        }
+
+    }
 
     /**
      * Creates the application.
@@ -22,4 +38,12 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function prepareTestDB()
+    {
+        Config::set('database.default', 'sqlite');
+        Artisan::call('migrate');
+    }
+
+
 }
