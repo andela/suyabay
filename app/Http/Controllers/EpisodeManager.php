@@ -34,7 +34,8 @@ class EpisodeManager extends Controller
     public function index()
     {
         $data = [
-            "user"      =>  [   "total"     => $this->userRepository->getAllUser(),
+            "user"      =>  [   
+                                "total"     => $this->userRepository->getAllUser(),
                                 "online"    => $this->userRepository->getOnlineUsers()->count(),
                                 "offline"   => $this->userRepository->getOfflineUsers()->count() 
                             ],
