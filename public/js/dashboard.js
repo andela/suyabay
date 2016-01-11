@@ -1,38 +1,38 @@
 
 $( document ).ready(function() {
-	
+
 	var item;
-    
+
 	$('.episode_action').click(function(){
-    	
+
     	/*
 		# Get <select/> element that was clicked on
     	*/
     	action_type = $(this).val(),
-    	
+
     	/*
 		# Get <select/> element data-action
     	*/
     	action = $(this).find('option:selected').data('action');
-		
+
 		/*
 		# Add class to parent element of the <select/> element
     	*/
     	$(this).parent().closest('tr').prop("class", "selected");
 
-    	if ( action_type === "view" ) 
+    	if ( action_type === "view" )
     	{
     		window.location = action;
     	}
 
-    	if ( action_type === "delete" ) 
+    	if ( action_type === "delete" )
     	{
     		deleteEpisode(action);
     	};
 
-    	if ( action_type === "activate" ) 
+    	if ( action_type === "activate" )
     	{
-    		
+
     		item = $(this).parent().closest('tr');
     		activateEpisode(action);
     	};
@@ -42,14 +42,14 @@ $( document ).ready(function() {
 	/*
 	# Delete Episode Function
 	*/
-	function deleteEpisode (episode_id) 
-	{	
-		var 
-		url 		= "/dashboard/episode/delete",
-		token 		= document.getElementById('token').value,
-		method 		= "DELETE",
-		episode_id 	= episode_id,
-		functionName =  arguments.callee.name;
+	function deleteEpisode (episodeId)
+	{
+		var
+		url 			= "/dashboard/episode/delete",
+		token 			= document.getElementById('token').value,
+		method 			= "DELETE",
+		episodeId 		= episodeId,
+		functionName 	=  arguments.callee.name;
 
 	  	var data =
 	    {
@@ -58,7 +58,7 @@ $( document ).ready(function() {
 	        parameter   :
 	        {
 	          _token 	  : token,
-	          episode_id  : episode_id
+	          episodeId  : episodeId
 	        }
 	    }
 
@@ -76,11 +76,11 @@ $( document ).ready(function() {
 		},
 		function(isConfirm)
 		{
-		  if (isConfirm) 
+		  if (isConfirm)
 		  {
 		    ajaxCall( data, functionName);
-		  } 
-		  else 
+		  }
+		  else
 		  {
 			swal("Cancelled", "Your episode is safe :)", "error");
 		  }
@@ -90,9 +90,9 @@ $( document ).ready(function() {
 	/*
 	# Delete Episode Function
 	*/
-	function activateEpisode (episode_id) 
-	{	
-		var 
+	function activateEpisode (episodeId)
+	{
+		var
 		url 		= "/dashboard/episode/activate",
 		token 		= document.getElementById('token').value,
 		method 		= "PATCH",
@@ -105,10 +105,10 @@ $( document ).ready(function() {
 	        parameter   :
 	        {
 	          _token 	  : token,
-	          episode_id  : episode_id
+	          episodeId  : episodeId
 	        }
 	    };
-	   
+
 		swal(
 		{
 			title: "Activate Episode",
@@ -123,11 +123,11 @@ $( document ).ready(function() {
 		},
 		function(isConfirm)
 		{
-		  if (isConfirm) 
+		  if (isConfirm)
 		  {
 		    ajaxCall( data, functionName);
-		  } 
-		  else 
+		  }
+		  else
 		  {
 			swal("Cancelled", "Your episode is safe :)", "error");
 		  }
@@ -143,24 +143,24 @@ $( document ).ready(function() {
 			url: data.url,
 			type: data.method,
 			data: data.parameter,
-			success: function (response) 
-			{ 
+			success: function (response)
+			{
 				ajaxLogic ( response, functionName );
 			},
-			error: function () 
-			{ 
+			error: function ()
+			{
 				alert('bad');
 			},
 		});
 	}
 
 
-	function ajaxLogic ( response, functionName ) 
+	function ajaxLogic ( response, functionName )
 	{
 		/*
 		# Check if Response.status = 401
 		*/
-		if ( response.status === 401 ) 
+		if ( response.status === 401 )
 		{
 			switch (functionName)
 	        {
@@ -172,7 +172,7 @@ $( document ).ready(function() {
 		/*
 		# Check if Response.status = 200
 		*/
-		if ( response.status === 200 ) 
+		if ( response.status === 200 )
 		{
 			switch (functionName)
 	        {
@@ -186,7 +186,7 @@ $( document ).ready(function() {
 	####################################################################
 	# deleteEpisodeErrorAlert Message
 	*/
-	function deleteEpisodeErrorAlert () 
+	function deleteEpisodeErrorAlert ()
 	{
 		swal("Hmmmm", "This episode does not exist ", "error");
 	}
@@ -194,8 +194,8 @@ $( document ).ready(function() {
 	/*
 	# deleteEpisodeSuccessAlert Message
 	*/
-	function deleteEpisodeSuccessAlert () 
-	{		
+	function deleteEpisodeSuccessAlert ()
+	{
 		swal("Deleted!", "Your episode has been deleted.", "success");
 		var deleted =  $('.selected');
 		deleted.hide();
@@ -205,59 +205,23 @@ $( document ).ready(function() {
 	####################################################################
 	# activateEpisodeErrorAlert() Message
 	*/
-	function activateEpisodeErrorAlert () 
-	{		
+	function activateEpisodeErrorAlert ()
+	{
 		swal("Hmmmm", "This episode does not exist ", "error");
 	}
 
-	function activateEpisodeSuccessAlert () 
-	{		
+	function activateEpisodeSuccessAlert ()
+	{
 		swal("Episode Activated!", "Your episode has been activated.", "success");
-		var 
+		var
 		deleted 	=  $('.selected'),
 		new_item 	=  $('#active_section');
-		
+
 		deleted.hide();
-		
+
 		new_item.append(item[0]);
-		
+
 		deleted.show();
 	}
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// new_item 	=  $('#active_section');
-// $.get( "/dashboard/episode/pending", function( data ) 
-// {
-// 	var active_episodes = data['episodes']['active'];
-// 	var counter = 0;
-// 	for ( episode in active_episodes )
-// 	{
-// 		counter++;
-// 		episode = active_episodes[episode];
-// 		new_item.append
-// 		("<tr><td>" + counter + "</td><td>" + episode.episode_name + "</td><td>" + episode.episode_description + "</td><td>" + episode.created_at + "</td><td width='150px;'><select id='emeka' class='browser-default' onclick='emeka()'><option style='width:2ppx;' selected>Select</option><option value='1'>View</option><option value='delete'>Delete</option></select></td></tr>")
-// 	}
-// });
