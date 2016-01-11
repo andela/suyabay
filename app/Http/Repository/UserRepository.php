@@ -30,4 +30,5 @@ class UserRepository
 	{ 
 		return $this->getAllUser()->where('active', 0);
 	}
+
 }
