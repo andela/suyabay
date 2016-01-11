@@ -21,9 +21,9 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class EpisodeManager extends Controller
 {
     function __construct(){
-        $this->userRepository     = new UserRepository;
-        $this->episodeRepository  = new EpisodeRepository;
-        $this->channelRepository  = new ChannelRepository;
+     $this->userRepository    = new UserRepository;
+     $this->EpisodeRepository = new EpisodeRepository;
+     $this->ChannelRepository = new ChannelRepository;
     }
 
     /**
@@ -33,23 +33,23 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-        $data = [
-            "user"      =>  [   
-                                "total"     => $this->userRepository->getAllUser(),
-                                "online"    => $this->userRepository->getOnlineUsers()->count(),
-                                "offline"   => $this->userRepository->getOfflineUsers()->count() 
-                            ],
-            
-            "episodes" =>   [
-                                "recent"    => $this->episodeRepository->getAllEpisode(),
-                                "active"    => $this->episodeRepository->getActiveEpisode(),
-                                "pending"   => $this->episodeRepository->getPendingEpisode()
-                            ],
+     $data = [
+         "user" => [   
+                    "total"   => $this->userRepository->getAllUser(),
+                    "online"  => $this->userRepository->getOnlineUsers()->count(),
+                    "offline" => $this->userRepository->getOfflineUsers()->count() 
+                   ],
+         
+         "episodes" => [
+                        "recent"  => $this->episodeRepository->getAllEpisode(),
+                        "active"  => $this->episodeRepository->getActiveEpisode(),
+                        "pending" => $this->episodeRepository->getPendingEpisode()
+                       ],
 
-            "channels"      => $this->channelRepository->getAllChannel()
-        ];
+         "channels" => $this->channelRepository->getAllChannel()
+     ];
 
-        return view('dashboard/pages/index', compact('data'));
+     return view('dashboard.pages.index', compact('data'));
     }
 
     /**
@@ -57,7 +57,7 @@ class EpisodeManager extends Controller
     */
     public function showIndex()
     {
-        return view('dashboard.pages.create_episode');
+     return view('dashboard.pages.create_episode');
     }
 
     /*
@@ -65,9 +65,9 @@ class EpisodeManager extends Controller
     */
     public function showChannels()
     {
-        $channels = $this->channelRepository->getAllChannel();
+     $channels = $this->channelRepository->getAllChannel();
 
-        return view('dashboard.pages.create_episode', compact('channels'));
+     return view('dashboard.pages.create_episode', compact('channels'));
     }
 
     /**
@@ -78,33 +78,33 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        $bytes = filesize($request->podcast);
+     $bytes = filesize($request->podcast);
 
-        $v = Validator::make($request->all(), [
-            'title'         => 'required|min:3',
-            'description'   => 'required|min:199',
-            'channel'       => 'required',
-            'cover'         => 'required',
-            'podcast'       => 'required|size_format'
-        ]);
+     $v = Validator::make($request->all(), [
+      'title'         => 'required|min:3',
+      'description'   => 'required|min:199',
+      'channel'       => 'required',
+      'cover'         => 'required',
+      'podcast'       => 'required|size_format'
+     ]);
 
-        if ($v->fails()){
-            return redirect()->back()->withErrors($v->errors());
-        }
+     if ($v->fails()){
+      return redirect()->back()->withErrors($v->errors());
+     }
 
-        $cover      = $this->getImageFileUrl($request->cover);
-        $podcast    = $this->uploadFileToS3($request);
+     $cover      = $this->getImageFileUrl($request->cover);
+     $podcast    = $this->uploadFileToS3($request);
 
-        Episode::create([
-            'episode_name'         => $request->title,
-            'episode_description'  => $request->description,
-            'image'                => $cover,
-            'audio_mp3'            => $podcast,
-            'view_count'           => 0,
-            'channel_id'           => $request->channel
-        ]);
+     Episode::create([
+      'episode_name'         => $request->title,
+      'episode_description'  => $request->description,
+      'image'                => $cover,
+      'audio_mp3'            => $podcast,
+      'view_count'           => 0,
+      'channel_id'           => $request->channel
+     ]);
 
-        return redirect('dashboard.episode.create')->with('status', 'Nice Job!');
+     return redirect('dashboard.episode.create')->with('status', 'Nice Job!');
     }
 
     /**
@@ -115,9 +115,9 @@ class EpisodeManager extends Controller
     */
     public function edit($id)
     {
-        $episode = $this->episodeRepository->findEpisodeById($id);
-        
-        return view('dashboard.pages.edit_episode')->with('episode', $episode);
+     $episode = $this->episodeRepository->findEpisodeById($id);
+     
+     return view('dashboard.pages.edit_episode')->with('episode', $episode);
     }
 
     /*
@@ -126,10 +126,10 @@ class EpisodeManager extends Controller
     */
     protected function getImageFileUrl($cover)
     {
-        Cloudder::upload($cover, null);
-        $coverUrl = Cloudder::getResult()['url'];
+     Cloudder::upload($cover, null);
+     $coverUrl = Cloudder::getResult()['url'];
 
-        return $coverUrl;
+     return $coverUrl;
     }
 
     /*
@@ -138,56 +138,56 @@ class EpisodeManager extends Controller
     */
     public function uploadFileToS3(Request $request)
     {
-        $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
-        $s3 = Storage::disk('s3');
-        
-        //large files
-        $s3->put($fileName, fopen($request->podcast, 'r+'));
+     $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
+     $s3 = Storage::disk('s3');
+     
+     //large files
+     $s3->put($fileName, fopen($request->podcast, 'r+'));
 
-        return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
+     return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
     }
 
     public function delete(Request $request)
     {
-        $episode_id  = $request['episode_id'];
-        $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
-        
-        if ($episode  === 1){
-            $data = [
-                "status"    => 200,
-                "message"   => "Episode successfully deleted"
-            ];
-        }
-        
-        if ($episode  === 0){
-            $data = [
-                "status"    => 401,
-                "message"   => "episode can not be deleted"
-            ];
-        }
+     $episode_id  = $request['episode_id'];
+     $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
+     
+     if ($episode  === 1){
+      $data = [
+       "status"    => 200,
+       "message"   => "Episode successfully deleted"
+      ];
+     }
+     
+     if ($episode  === 0){
+      $data = [
+       "status"    => 401,
+       "message"   => "episode can not be deleted"
+      ];
+     }
 
-        return $data;
+     return $data;
     }
 
     public function updateEpisodeStatus(Request $request)
     {
-        $episode_id     = $request['episode_id'];
-        $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
+     $episode_id     = $request['episode_id'];
+     $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
 
-        if ($episode  === 1){
-            $data = [
-                "status"    => 200,
-                "message"   => "Episode successfully updated"
-            ];
-        }
-        
-        if ($episode  === 0){
-            $data = [
-                "status"    => 401,
-                "message"   => "episode can not be updated"
-            ];
-        }
+     if ($episode  === 1){
+      $data = [
+       "status"    => 200,
+       "message"   => "Episode successfully updated"
+      ];
+     }
+     
+     if ($episode  === 0){
+      $data = [
+       "status"    => 401,
+       "message"   => "episode can not be updated"
+      ];
+     }
 
-        return $data;
+     return $data;
     }
 }
