@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
 	var item;
 
-	$('.episode_action').click(function(){
+	$(".episode_action").click(function(){
 
     	/*
 		# Get <select/> element that was clicked on
@@ -13,12 +13,12 @@ $( document ).ready(function() {
     	/*
 		# Get <select/> element data-action
     	*/
-    	action = $(this).find('option:selected').data('action');
+    	action = $(this).find("option:selected").data("action");
 
 		/*
 		# Add class to parent element of the <select/> element
     	*/
-    	$(this).parent().closest('tr').prop("class", "selected");
+    	$(this).parent().closest("tr").prop("class", "selected");
 
     	if ( action_type === "view" )
     	{
@@ -33,7 +33,7 @@ $( document ).ready(function() {
     	if ( action_type === "activate" )
     	{
 
-    		item = $(this).parent().closest('tr');
+    		item = $(this).parent().closest("tr");
     		activateEpisode(action);
     	};
 	});
@@ -46,7 +46,7 @@ $( document ).ready(function() {
 	{
 		var
 		url 			= "/dashboard/episode/delete",
-		token 			= document.getElementById('token').value,
+		token 			= document.getElementById("token").value,
 		method 			= "DELETE",
 		episodeId 		= episodeId,
 		functionName 	=  arguments.callee.name;
@@ -94,7 +94,7 @@ $( document ).ready(function() {
 	{
 		var
 		url 		= "/dashboard/episode/activate",
-		token 		= document.getElementById('token').value,
+		token 		= document.getElementById("token").value,
 		method 		= "PATCH",
 		functionName =  arguments.callee.name;
 
@@ -149,7 +149,7 @@ $( document ).ready(function() {
 			},
 			error: function ()
 			{
-				alert('bad');
+				alert("bad");
 			},
 		});
 	}
@@ -197,7 +197,7 @@ $( document ).ready(function() {
 	function deleteEpisodeSuccessAlert ()
 	{
 		swal("Deleted!", "Your episode has been deleted.", "success");
-		var deleted =  $('.selected');
+		var deleted =  $(".selected");
 		deleted.hide();
 	}
 
@@ -214,8 +214,8 @@ $( document ).ready(function() {
 	{
 		swal("Episode Activated!", "Your episode has been activated.", "success");
 		var
-		deleted 	=  $('.selected'),
-		new_item 	=  $('#active_section');
+		deleted 	=  $(".selected"),
+		new_item 	=  $("#active_section");
 
 		deleted.hide();
 
