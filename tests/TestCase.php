@@ -9,6 +9,12 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://localhost';
 
+    public function setUp ()
+    {
+        parent::setUp();
+        $this->prepareTestDB();
+    }
+
     /**
      * Creates the application.
      *
@@ -21,5 +27,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    public function prepareTestDB()
+    {
+        Config::set('database.default', 'sqlite');
+        Artisan::call('migrate:refresh');
     }
 }
