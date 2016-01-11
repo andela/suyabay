@@ -20,7 +20,8 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
-    function __construct(){
+
+    public function __construct(){
         $this->userRepository     = new UserRepository;
         $this->episodeRepository  = new EpisodeRepository;
         $this->channelRepository  = new ChannelRepository;
@@ -34,19 +35,19 @@ class EpisodeManager extends Controller
     public function index()
     {
         $data = [
-            "user"      =>  [   
-                                "total"     => $this->userRepository->getAllUser(),
+            "user"      =>  [
+                                "total"     => $this->userRepository->getAllUsers(),
                                 "online"    => $this->userRepository->getOnlineUsers()->count(),
-                                "offline"   => $this->userRepository->getOfflineUsers()->count() 
-                            ],
-            
-            "episodes" =>   [
-                                "recent"    => $this->episodeRepository->getAllEpisode(),
-                                "active"    => $this->episodeRepository->getActiveEpisode(),
-                                "pending"   => $this->episodeRepository->getPendingEpisode()
+                                "offline"   => $this->userRepository->getOfflineUsers()->count()
                             ],
 
-            "channels"      => $this->channelRepository->getAllChannel()
+            "episodes" =>   [
+                                "recent"    => $this->episodeRepository->getAllEpisodes(),
+                                "active"    => $this->episodeRepository->getActiveEpisodes(),
+                                "pending"   => $this->episodeRepository->getPendingEpisodes()
+                            ],
+
+            "channels"      => $this->channelRepository->getAllChannels()
         ];
 
         return view('dashboard.pages.index', compact('data'));
@@ -65,7 +66,7 @@ class EpisodeManager extends Controller
     */
     public function showChannels()
     {
-        $channels = $this->channelRepository->getAllChannel();
+        $channels = $this->channelRepository->getAllChannels();
 
         return view('dashboard.pages.create_episode', compact('channels'));
     }
@@ -89,7 +90,7 @@ class EpisodeManager extends Controller
         ]);
 
         if ($v->fails()){
-            
+
             return redirect()->back()->withErrors($v->errors());
         }
 
@@ -117,7 +118,7 @@ class EpisodeManager extends Controller
     public function edit($id)
     {
         $episode = $this->episodeRepository->findEpisodeById($id);
-        
+
         return view('dashboard.pages.edit_episode')->with('episode', $episode);
     }
 
@@ -141,7 +142,7 @@ class EpisodeManager extends Controller
     {
         $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
         $s3 = Storage::disk('s3');
-        
+
         //large files
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
@@ -152,14 +153,14 @@ class EpisodeManager extends Controller
     {
         $episode_id  = $request['episode_id'];
         $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
-        
+
         if ($episode  === 1) {
             $data = [
                 "status"    => 200,
                 "message"   => "Episode successfully deleted"
             ];
         }
-        
+
         if ($episode  === 0) {
             $data = [
                 "status"    => 401,
@@ -181,7 +182,7 @@ class EpisodeManager extends Controller
                 "message"   => "Episode successfully updated"
             ];
         }
-        
+
         if ($episode  === 0) {
             $data = [
                 "status"    => 401,

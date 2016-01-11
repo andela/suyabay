@@ -6,11 +6,11 @@ use Suyabay\Channel;
 
 class ChannelRepository
 {
-	
+
     /**
     * Return all episode from the database
     */
-    public function getAllChannel()
+    public function getAllChannels()
     {
     	return Channel::all();
     }

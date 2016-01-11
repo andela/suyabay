@@ -10,7 +10,7 @@ class EpisodeRepository
     /**
     * Return all episode from the database
     */
-    public function getAllEpisode()
+    public function getAllEpisodes()
     {
         return Episode::all();
     }
@@ -24,26 +24,26 @@ class EpisodeRepository
     }
 
     /**
-    * Find episode where
+    * Find episode via field = value
     */
-    public function findEpisodeWhere($field, $id)
+    public function findEpisodeWhere($field, $value)
     {
-    	return Episode::where($field, $id);
+    	return Episode::where($field, $value);
     }
 
     /**
     * Return active episode from the database
     */
-    public function getActiveEpisode()
+    public function getActiveEpisodes()
     {
-    	return $this->getAllEpisode()->where('status', 1);
+    	return $this->getAllEpisodes()->where('status', 1);
     }
 
     /**
     * Return pending episode from the database
     */
-    public function getPendingEpisode()
+    public function getPendingEpisodes()
     {
-    	return $this->getAllEpisode()->where('status', 1);
+    	return $this->getAllEpisodes()->where('status', 1);
     }
 }
