@@ -34,7 +34,7 @@ class EpisodeManager extends Controller
     public function index()
     {
         $data = [
-            "user"      =>  [  "total"     => $this->userRepository->getAllUser(),
+            "user"      =>  [   "total"     => $this->userRepository->getAllUser(),
                                 "online"    => $this->userRepository->getOnlineUsers()->count(),
                                 "offline"   => $this->userRepository->getOfflineUsers()->count() 
                             ],
@@ -47,7 +47,7 @@ class EpisodeManager extends Controller
 
             "channels"      => $this->channelRepository->getAllChannel()
         ];
-        
+
         return view('dashboard/pages/index', compact('data'));
     }
 
@@ -92,8 +92,8 @@ class EpisodeManager extends Controller
             return redirect()->back()->withErrors($v->errors());
         }
 
-        $cover = $this->getImageFileUrl($request->cover);
-        $podcast = $this->uploadFileToS3($request);
+        $cover      = $this->getImageFileUrl($request->cover);
+        $podcast    = $this->uploadFileToS3($request);
 
         Episode::create([
             'episode_name'         => $request->title,
@@ -104,7 +104,7 @@ class EpisodeManager extends Controller
             'channel_id'           => $request->channel
         ]);
 
-        return redirect('dashboard/episode/create')->with('status', 'Nice Job!');
+        return redirect('dashboard.episode.create')->with('status', 'Nice Job!');
     }
 
     /**
