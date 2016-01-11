@@ -21,7 +21,7 @@ trait CreateData
     {
         return Password_reset::create([
             'email' => 'test@test.com',
-            'token' => 1234556
+            'token' => 12345
             ]);
     }
 }

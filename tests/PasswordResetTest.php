@@ -1,7 +1,9 @@
 <?php
 
+
 class PasswordResetTest extends TestCase
 {
+    use Suyabay\Tests\CreateData;
     /**
      * testSeePasswordResetPage
      * visit homepage
@@ -25,10 +27,11 @@ class PasswordResetTest extends TestCase
      */
     public function testPasswordResetInput()
     {
+        $this->createUser();
         $this->visit('/passwordreset')
-             ->type('ibonly01@gmail.com', 'email')
+             ->type('test@test.com', 'email')
              ->press('Reset')
-             ->seeInDatabase('users', ['email' => 'ibonly01@gmail.com']);
+             ->seeInDatabase('users', ['email' => 'test@test.com']);
     }
 
 }
