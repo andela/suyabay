@@ -56,10 +56,11 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
 ## Requirements for Development
 
-        fzaninotto/faker = ~1.4
-        phpunit/phpunit  = ~4.0
-        phpspec/phpspec  = ~2.1
-        mockery/mockery  = ^0.9.4
+        fzaninotto/faker       = ~1.4
+        phpunit/phpunit        = ~4.0
+        phpspec/phpspec        = ~2.1
+        mockery/mockery        = ^0.9.4
+        satooshi/php-coveralls = ^0.7.1
 
 ## Credits
 [Okosun Florence](https://github.com/andela-fokosun)
@@ -78,8 +79,8 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
 
 ### Tools
-      * Frontend - AngularJS, blade
-      * Database - postgresql
+      * Frontend - Materializecss, blade
+      * Database - postgresql(Any)
 
 ### General overview:
 The overview is presented from two perspectives. The perpective of a user of the app (front-end) and the perspective of an admin(owner of the podcasting service).
@@ -104,23 +105,9 @@ The overview is presented from two perspectives. The perpective of a user of the
 
 **Admin users should be able to:**
 
-     1. create/delete user roles.
-     2. create/delete channels.
-     3. upload/delete episodes
-
-
-## FEATURES (MOCKUP)
-1. User registration/login
-![user_registration_signin](screenshots/signup.png "user registration or signin interface")
-
-2. User Dashboard
-![user dashboard](screenshots/landingpage.png "user dashboard")
-
-3. Watch Podcast
-![user dashboard-watch podcast](screenshots/viewpost.png "user dashboard-watch podcast")
-
-3. Contacts page
-![user dashboard-contacts page](screenshots/contact-page-2.png "")
+     1. create/update/delete user roles.
+     2. create/update/delete channels.
+     3. upload/update/delete episodes
 
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
