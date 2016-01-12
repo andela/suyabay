@@ -9,11 +9,6 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
-    <php>
-        <var name="db_dsn" value="mysql:dbname=suyabay_test;host=localhost"/>
-        <var name="db_username" value="postgres"/>
-        <var name="db_password" value=""/>
-    </php>
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
