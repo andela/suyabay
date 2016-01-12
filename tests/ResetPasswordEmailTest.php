@@ -20,9 +20,11 @@ class ResetPasswordEmailTest extends PHPUnit_Framework_TestCase
         Facade::clearResolvedInstances();
     }
 
+    /**
+     * Test if password reset email is sent
+     */
     public function test_it_sends_password_reset_confirmation_email()
     {
-
         $response = M::mock();
         $this->password->shouldReceive('sendResetLink')->with(M::on(function(){
             return true;

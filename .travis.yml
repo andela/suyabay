@@ -15,7 +15,14 @@ matrix:
 
 install: travis_retry composer install --no-interaction --prefer-source
 
-script: vendor/bin/phpunit
+script:
+  - mkdir -p build/logs
+  - php vendor/bin/phpunit -c phpunit.xml
 
 notifications:
-  slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
+    slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
+
+after_success:
+    - travis_retry php vendor/bin/coveralls
+    # or enable logging
+    - travis_retry php vendor/bin/coveralls -v
