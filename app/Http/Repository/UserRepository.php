@@ -20,7 +20,7 @@ class UserRepository
     */
     public function getOnlineUsers()
     {
-        return $this->getAllUser()->where('active', 1);
+        return $this->getAllUsers()->where('active', 1);
     }
 
     /**
@@ -28,6 +28,6 @@ class UserRepository
     */
     public function getOfflineUsers()
     {
-        return $this->getAllUser()->where('active', 0);
+        return $this->getAllUsers()->where('active', 0);
     }
 }
