@@ -15,11 +15,7 @@ matrix:
 
 install: travis_retry composer install --no-interaction --prefer-source
 
-script:
-  - mkdir -p build/logs
-  - php vendor/bin/phpunit -c phpunit.xml
-  - phpunit --coverage-text --coverage-clover build/logs/clover.xml
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+script: vendor/bin/phpunit
 
 notifications:
     slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
