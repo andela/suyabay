@@ -11,42 +11,37 @@
         # 
         # 
         -->
+
         <div>
-            <div class="col s12 m3">
+            <div class="col s12 m4">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Users</p>
-                        <h1>500K</h1>
+                        <h1>{{$data['user']['total']->count()}}</h1>
                     </span>
                 </div>
             </div>
           
-            <div class="col s12 m3 ">
+            <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
                         <p>Online</p>
-                        <h1>500K</h1>
+                        <h1>{{$data['user']['online']}}</h1>
                     </span>
                 </div>
             </div>
-            <div class="col s12 m3 ">
+
+            <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
-                        <p>Users</p>
-                        <h1>500K</h1>
+                        <p>Channels</p>
+                        <h1>{{$data['channels']->count()}}</h1>
                     </span>
                 </div>
             </div>
           
-            <div class="col s12 m3 ">
-                <div class="card-panel teal panel-container">
-                    <span class="white-text">
-                        <p>Online</p>
-                        <h1>500K</h1>
-                    </span>
-                </div>
-            </div>
-        </div>  
+        </div>
+       
 
         <!-- 
         Episode tab controller
@@ -74,6 +69,7 @@
             <!-- 
             # Recent Episode
             -->
+            
             <div id="test1" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
@@ -87,23 +83,27 @@
                     </thead>
 
                     <tbody>
+                        <span style="display:none">{{$counter = 0}}</span>
+                        @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
-                            <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                            <td>{{ $counter = $counter + 1 }}</td>
+                            <td>{{ $recent->episode_name }}</td>
+                            <td>{{ $recent->episode_description }}</td>
+                            <td>{{ $recent->created_at }}</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">View</option>
-                                    <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
+                                    <option data-action="{{$recent->id}}" value="delete">Delete</option>
+                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+
 
 
             <!-- 
@@ -120,22 +120,24 @@
                             <th data-field="price">Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
+                        <span style="display:none">{{$counter = 0}}</span>
+                        @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
-                            <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                            <td>{{ $counter = $counter + 1 }}</td>
+                            <td>{{ $pending->episode_name }}</td>
+                            <td>{{ $pending->episode_description }}</td>
+                            <td>{{ $pending->created_at }}</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">View</option>
-                                    <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
+                                    <option data-action="{{$pending->id}}" value="delete">Delete</option>
+                                    <option data-action="{{$pending->id}}" value="activate">Active</option>
                                 </select>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -156,20 +158,22 @@
                     </thead>
 
                     <tbody>
+                        <span style="display:none">{{$counter = 0}}</span>
+                        @foreach( $data['episodes']['active'] as $active )
                         <tr>
-                            <td>1</td>
-                            <td>How to Ginger the Suya</td>
-                            <td>Andela Suaya Lovers</td>
-                            <td>12 days ago</td>
-                            <td width="150px;">      
-                                <select id="emeka" class="browser-default" onclick="emeka()">
+                            <td>{{ $counter = $counter + 1 }}</td>
+                            <td>{{ $active->episode_name }}</td>
+                            <td>{{ $active->episode_description }}</td>
+                            <td>{{ $active->created_at }}</td>
+                            <td width="150px;">
+                                <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
+                                <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
-                                    <option value="1">View</option>
-                                    <option value="delete">Delete</option>
-                                    <option value="1">Active</option>
+                                    <option data-action="{{$active->id}}" value="delete">Delete</option>
                                 </select>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
