@@ -1,8 +1,7 @@
 ## Suyabay Podcast
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
-
-[![Coverage Status](https://coveralls.io/repos/andela/suyabay/badge.svg?branch=Chore%2FReadmeUpdate&service=github)](https://coveralls.io/github/andela/suyabay?branch=Chore%2FReadmeUpdate)
+[![Coverage Status](https://coveralls.io/repos/andela/suyabay/badge.svg?branch=Chore%2FReadmeUpdate&service=github)](https://coveralls.io/github/andela/suyabay?branch=staging)
 
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
