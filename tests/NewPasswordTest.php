@@ -15,6 +15,7 @@ class NewPasswordTest extends TestCase
 
         return $user;
     }
+
     /**
      * testTokenIsRecieved
      * visit password reset page with token

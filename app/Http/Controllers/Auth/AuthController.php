@@ -147,6 +147,11 @@ class AuthController extends Controller
         }
         else
         {
+            /*
+            # Update user acive column to 1 when user successfully signin 
+            */
+            User::where('id', Auth::user()->id)->update(['active' => 1]);
+            
             return $response =
             [
                 "message"       => "login success",
@@ -164,7 +169,13 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
+        /*
+        # Update user acive column to 0 when user successfully signout 
+        */
+        User::where('id', Auth::user()->id)->update(['active' => 0]);
+
         Auth::logout();
+
         return redirect('/');
     }
 }

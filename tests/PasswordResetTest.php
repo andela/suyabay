@@ -1,6 +1,5 @@
 <?php
 
-
 class PasswordResetTest extends TestCase
 {
     use Suyabay\Tests\CreateData;
