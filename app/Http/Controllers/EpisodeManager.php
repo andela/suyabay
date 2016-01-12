@@ -16,10 +16,14 @@ use Illuminate\Database\QueryException;
 use Aws\S3\Exception\S3Exception as S3;
 use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
+use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
 {
+
     protected $mail;
 
     /**
@@ -39,8 +43,11 @@ class EpisodeManager extends Controller
 
     public function __construct(Mail $mail)
     {
-        $this->mail = $mail;
+        $this->mail               = $mail;
         $this->middleware('auth');
+        $this->userRepository     = new UserRepository;
+        $this->episodeRepository  = new EpisodeRepository;
+        $this->channelRepository  = new ChannelRepository;
     }
 
     /**
@@ -50,9 +57,26 @@ class EpisodeManager extends Controller
     */
     public function index()
     {
-        $episodes = Episode::all();
+        $data = [
 
-        return view('dashboard/pages/view_episodes', compact('episodes'));
+            "user"      =>
+            [
+                "total"     =>      $this->userRepository->getAllUsers(),
+                "online"    =>      $this->userRepository->getOnlineUsers()->count(),
+                "offline"   =>      $this->userRepository->getOfflineUsers()->count()
+            ],
+
+            "episodes"  =>
+            [
+                "recent"    => $this->episodeRepository->getAllEpisodes(),
+                "active"    => $this->episodeRepository->getActiveEpisodes(),
+                "pending"   => $this->episodeRepository->getPendingEpisodes()
+            ],
+
+            "channels"  => $this->channelRepository->getAllChannels()
+        ];
+
+        return view('dashboard.pages.index', compact('data'));
     }
 
     /**
@@ -71,9 +95,9 @@ class EpisodeManager extends Controller
     */
     public function showChannelsForCreate()
     {
-        $channels = Channel::all();
+        $channels = $this->channelRepository->getAllChannels();
 
-        return view('dashboard/pages/create_episode', compact('channels'));
+        return view('dashboard.pages.create_episode', compact('channels'));
     }
 
     /**
@@ -96,13 +120,16 @@ class EpisodeManager extends Controller
             return redirect()->back()->withErrors($v->errors());
         }
 
+        $cover      = $this->getImageFileUrl($request->cover);
+        $podcast    = $this->uploadFileToS3($request);
+
         try {
-            $podcast = $this->uploadAudioFileToS3($request);
-            $cover = $this->uploadImageFileToCloudinary($request->cover);
+            $podcast    = $this->uploadAudioFileToS3($request);
+            $cover      = $this->uploadImageFileToCloudinary($request->cover);
         } catch (S3 $e) {
-            return redirect('dashboard/episode/create')->with('status', $e->getMessage());
+            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
         } catch (AWS $e) {
-            return redirect('dashboard/episode/create')->with('status', $e->getMessage());
+            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
         }
 
         Episode::create([
@@ -115,9 +142,7 @@ class EpisodeManager extends Controller
             'status'               => 0
         ]);
 
-        $this->sendNotification($request);
-
-        return redirect('dashboard/episode/create')
+        return redirect('dashboard.episode.create')
         ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
     }
 
@@ -129,12 +154,16 @@ class EpisodeManager extends Controller
     */
     public function edit($id)
     {
+
+        $episode = $this->episodeRepository->findEpisodeById($id);
+
+        return view('dashboard.pages.edit_episode')->with('episode', $episode);
+
         $episode = Episode::find($id);
         $channels = Channel::all();
 
-        return view('dashboard/pages/edit_episode')
+        return view('dashboard.pages.edit_episode')
         ->with('episode', $episode)->with('channels', $channels);
-
     }
 
     /**
@@ -146,29 +175,17 @@ class EpisodeManager extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $episode = Episode::find($id);
-            $episode->episode_name = $request->title;
-            $episode->episode_description = $request->description;
-            $episode->channel_id = $request->channel;
+            $episode                        = Episode::find($id);
+            $episode->channel_id            = $request->channel;
+            $episode->episode_name          = $request->title;
+            $episode->episode_description   = $request->description;
             $episode->save();
+
             //redirect
             return back()->with('status', 'Updated!');
         } catch (QueryException $e) {
             return back()->with('status', $e->getMessage());
         }
-    }
-
-    /**
-    * Deletes episode
-    *
-    * @param  int $id
-    * @return
-    */
-    public function destroy($id)
-    {
-        Episode::find($id)->delete();
-
-        return back()->with('status', 'Deleted!');
     }
 
     /**
@@ -197,9 +214,55 @@ class EpisodeManager extends Controller
         $s3 = Storage::disk('s3');
 
         // Upload large files
+
         $s3->put($fileName, fopen($request->podcast, 'r+'));
 
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
+    }
+
+
+    public function destroy(Request $request)
+    {
+        $episode_id  = $request['episode_id'];
+        $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
+
+        if ($episode  === 1) {
+            $data = [
+                "status"    => 200,
+                "message"   => "Episode successfully deleted"
+            ];
+        }
+
+        if ($episode  === 0) {
+            $data = [
+                "status"    => 401,
+                "message"   => "episode can not be deleted"
+            ];
+        }
+
+        return $data;
+    }
+
+    public function updateEpisodeStatus(Request $request)
+    {
+        $episode_id     = $request['episode_id'];
+        $episode        = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->update(['status' => 1]);
+
+        if ($episode  === 1) {
+            $data = [
+                "status"    => 200,
+                "message"   => "Episode successfully updated"
+            ];
+        }
+
+        if ($episode  === 0) {
+            $data = [
+                "status"    => 401,
+                "message"   => "episode can not be updated"
+            ];
+        }
+
+        return $data;
     }
 
     /**

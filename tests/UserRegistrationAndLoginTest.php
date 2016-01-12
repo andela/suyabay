@@ -13,13 +13,14 @@ class UserRegistrationAndLoginTest extends TestCase
      *
      * @return void
      */
-    protected function createUser ()
+    protected function createUser()
     {
         $user = User::create([
-            'username' => 'test',
-            'password' => 'test',
-            'email' => 'test@test.com'
+            'username'  => 'test',
+            'password'  => 'test',
+            'email'     => 'test@test.com'
         ]);
+
         return $user;
     }
 
@@ -36,12 +37,4 @@ class UserRegistrationAndLoginTest extends TestCase
         $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
         $this->assertEquals(1, sizeof($user));
     }
-
-    public function testLoginReturnTwoArray()
-    {
-        $this->createUser();
-        $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
-        $this->assertContains(2, array(1, 2));
-    }
-
 }
