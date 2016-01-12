@@ -72,7 +72,7 @@ $( document ).ready(function() {
 			confirmButtonColor: "#DD6B55",
 			confirmButtonText: "Yes, delete it!",
 			cancelButtonText: "No, cancel!",
-			closeOnConfirm: false,
+			closeOnCancelnConfirm: false,
 			closeOnCancel: false
 		},
 		function(isConfirm)

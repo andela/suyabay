@@ -10,9 +10,10 @@ trait CreateData
     protected function createUser ()
     {
         $user = User::create([
-            'username' => 'test',
-            'password' => 'test',
-            'email' => 'test@test.com'
+            'username'  => 'test',
+            'password'  => 'test',
+            'email'     => 'test@test.com',
+            'active'    => 1
         ]);
         return $user;
     }

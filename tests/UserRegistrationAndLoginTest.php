@@ -13,13 +13,14 @@ class UserRegistrationAndLoginTest extends TestCase
      *
      * @return void
      */
-    protected function createUser ()
+    protected function createUser()
     {
         $user = User::create([
-            'username' => 'test',
-            'password' => 'test',
-            'email' => 'test@test.com'
+            'username'  => 'test',
+            'password'  => 'test',
+            'email'     => 'test@test.com'
         ]);
+
         return $user;
     }
 
