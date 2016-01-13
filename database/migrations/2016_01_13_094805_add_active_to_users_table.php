@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStatusFieldToEpisodesTable extends Migration
+class AddActiveToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddStatusFieldToEpisodesTable extends Migration
      */
     public function up()
     {
-        Schema::table('episodes', function (Blueprint $table) {
-            $table->integer('status')->default(0);
+        Schema::table('users', function (Blueprint $table) {
+             $table->integer('active')->default(0);
         });
     }
 
@@ -24,8 +24,8 @@ class AddStatusFieldToEpisodesTable extends Migration
      */
     public function down()
     {
-        Schema::table('episodes', function (Blueprint $table) {
-            $table->dropColumn('status');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('active');
         });
     }
 }

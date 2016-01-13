@@ -14,7 +14,8 @@ class Episode extends Model
                             'view_count',
                             'image',
                             'audio_mp3',
-                            'channel_id'
+                            'channel_id',
+                            'status'
                             ];
 
     public function channel()

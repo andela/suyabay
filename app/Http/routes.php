@@ -140,9 +140,14 @@ Route::get('logout', [
 
 Route::group(['prefix' => 'dashboard'], function () {
 
-    Route::get('/', function () {
-        return view('dashboard.pages.index');
-    });
+    // Route::get('/', function () {
+    //     return view('dashboard.pages.index');
+    // });
+
+    Route::get('/', [
+        'uses' => 'EpisodeManager@index',
+        'as' => 'dashboard/'
+    ]);
 
     Route::get('/users', function () {
         return view('dashboard.pages.user');
@@ -176,10 +181,19 @@ Route::group(['prefix' => 'dashboard'], function () {
         'middleware'   => ['auth']
     ]);
 
+
+
+    Route::patch('/episode/activate', [
+        'uses' => 'EpisodeManager@updateEpisodeStatus',
+        'as' => 'episode.activate'
+    ]);
+    //end
+
     Route::delete('/episode/{id}', [
         'uses' => 'EpisodeManager@destroy',
         'as'   => 'episode.delete'
     ]);
+
 
 /*
 /-------------------------------------------------------------------------------
