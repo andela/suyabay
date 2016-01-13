@@ -3,6 +3,7 @@
 class PasswordResetTest extends TestCase
 {
     use Suyabay\Tests\CreateData;
+
     /**
      * testSeePasswordResetPage
      * visit homepage
@@ -32,5 +33,4 @@ class PasswordResetTest extends TestCase
              ->press('Reset')
              ->seeInDatabase('users', ['email' => 'test@test.com']);
     }
-
 }
