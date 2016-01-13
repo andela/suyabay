@@ -272,3 +272,26 @@ Route::post('/comment', [
     'uses' =>'CommentController@postComment',
     'as'   => 'comment'
 ]);
+
+/*
+/-------------------------------------------------------------------------------
+/ Update user profile
+/-------------------------------------------------------------------------------
+*/
+Route::get('/settings/profile', [
+    'uses' => 'ProfileController@getProfileSettings',
+    'middleware' => ['auth'],
+]);
+Route::post('/avatar/setting', [
+    'uses' => 'ProfileController@postAvatarSetting',
+    'middleware' => ['auth'],
+]);
+Route::post('/settings/profile', 'ProfileController@updateProfileSettings');
+Route::controllers([
+    'password' => 'Auth\PasswordController',
+]);
+// Gets users' profiles
+Route::get('{username}', [
+    'uses' => 'ProfileController@show',
+    'as'   => 'userprofile',
+]);
