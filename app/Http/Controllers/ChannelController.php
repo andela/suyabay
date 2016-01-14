@@ -8,10 +8,18 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\ChannelRepository;
 
 class ChannelController extends Controller
 {
     protected $response;
+    protected $channelRepository;
+
+
+    public function __construct()
+    {
+        $this->channelRepository  = new ChannelRepository;
+    }
 
     /**
      * Display a listing of the resource.
@@ -20,7 +28,7 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        $channels = Channel::orderBy('id', 'desc')->paginate(10);
+        $channels = $this->channelRepository->getOrderedChannels('id', 'desc')->paginate(10);
 
         return view('dashboard.pages.view_channels', compact('channels'));
     }
@@ -71,7 +79,7 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        $channels = Channel::where('id', $id)->first();
+        $channels = $this->channelRepository->getChannelByField('id', $id)->first();
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }
@@ -86,7 +94,7 @@ class ChannelController extends Controller
     public function update(Request $request)
     {
         try {
-            $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
+            $updateChannel = $this->channelRepository->getChannelByField('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
 
             if ($updateChannel) {
                 $this->response =
@@ -119,7 +127,7 @@ class ChannelController extends Controller
      */
     public function destroy($id)
     {
-        $deleteChannel = Channel::where('id', $id)->delete();
+        $deleteChannel = $this->channelRepository->getChannelByField('id', $id)->delete();
 
         if ($deleteChannel) {
             $this->response =
