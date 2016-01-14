@@ -20,22 +20,26 @@ class CommentTest extends TestCase
     }
 
     /**
-     * Test only login user can user
+     * Test guest user cannot comment
      */
-    public function testLoginUserCanComment()
+    public function testGuestUserCannotComment()
     {	
         $user = $this->createUser(1);
         $this->createChannel();
         $this->createEpisode();
 
-        $user = Auth::login($user);;
-
         $this->visit('/')
-        	 ->see('Channel name')
-        	 ->click('clickable_object')
-        	 ->see('Enter your comment')
-        	 ->type('My new comment', 'comment');
+        	 ->see('Only logged in users can comment.');
     }
 
-
+    /**
+     * Test only login user can comment
+     */
+    public function testOnlyLoggedInUserCanComment()
+    {
+    	
+        $user = $this->createUser(1);
+        $this->createChannel();
+        $this->createEpisode();
+    }
 }

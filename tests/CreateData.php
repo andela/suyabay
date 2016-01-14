@@ -3,6 +3,7 @@
 namespace Suyabay\Tests;
 
 use Suyabay\User;
+use Suyabay\Role;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Password_reset;
@@ -34,7 +35,7 @@ trait CreateData
         return Password_reset::create([
             'email' => 'test@test.com',
             'token' => 12345
-            ]);
+        ]);
     }
 
     /**
@@ -56,13 +57,13 @@ trait CreateData
     public function createEpisode()
     {
         return Episode::create([
-            'episode_name'          => 'test',
-            'episode_description'   => 'test',
+            'episode_name'          => 'Episode name',
+            'episode_description'   => 'Episode description',
             'channel_id'            => 1,
             'view_count'            => 0,
+            'status'                => 1,
             'image'                 => 'dummy url',
-            'audio_mp3'             => 'dummy url',
-            'status'                => 0
+            'audio_mp3'             => 'dummy url'
         ]);
     }
 }
