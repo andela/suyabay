@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Suyabay\Channel;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ class ChannelController extends Controller
             $channel = Channel::create([
                 'channel_name'         => $request->name,
                 'channel_description'  => $request->description,
+                'user_id'              => Auth::user()->id,
                 'subscription_count'   => 0
             ]);
             $this->response =
