@@ -85,7 +85,7 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header" style="color:#999;padding-left:15px;">
-                                <b>Comments</b>
+                                <a href="#" id="clickable_object">Comments</a>
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
@@ -95,6 +95,7 @@
                                             <div class="col s2">
                                                 <img src="https://goo.gl/IJSkVB" alt="" class="circle">
                                             </div>
+                                            Enter your comment
                                             <form id="submit_comment" action="/comment" method="POST">
                                                 <div class="file-field input-field">
                                                     <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
