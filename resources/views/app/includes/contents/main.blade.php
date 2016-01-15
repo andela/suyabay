@@ -102,9 +102,9 @@
                                                     <input hidden="true" type="text" name="user_id" value="{{ Auth::user()->id }}">
                                                     <input hidden="true" type="text" name="episode_id" value="{{ $episode->id }}">
                                                     <div class="file-path-wrapper col s9 m10">
-                                                        <input name="comment" id="comment-field" class="file-path validate" type="text" style="margin-left:20px;">
+                                                        <input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;">
                                                     </div>
-                                                    <button type="submit" class="btn">Comment</button>
+                                                    <button type="submit" id="submit" class="btn">Comment</button>
                                                 </div>
                                             </form>
                                         </div>

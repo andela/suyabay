@@ -1,6 +1,5 @@
 <?php
 
-use Auth;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -36,10 +35,13 @@ class CommentTest extends TestCase
      * Test only login user can comment
      */
     public function testOnlyLoggedInUserCanComment()
-    {
-    	
-        $user = $this->createUser(1);
-        $this->createChannel();
-        $this->createEpisode();
+    {	
+    	$this->login();
+
+        $this->visit('/')
+        	 ->see('Enter your comment')
+        	 ->type('My comment', 'comment')
+        	 ->press('submit')
+        	 ->seeInDatabase('comments', ['comments' => 'My comment']);
     }
 }

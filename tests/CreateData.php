@@ -2,6 +2,7 @@
 
 namespace Suyabay\Tests;
 
+use Auth;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Channel;
@@ -18,7 +19,7 @@ trait CreateData
         return User::create([
             'username'   => 'test',
             'email'      => 'test@test.com',
-            'password'   => 'test',
+            'password'   => bcrypt('test'),
             'facebookID' => 0,
             'twitterID'  => 0,
             'role_id'    => $role,
@@ -65,5 +66,17 @@ trait CreateData
             'image'                 => 'dummy url',
             'audio_mp3'             => 'dummy url'
         ]);
+    }
+
+    /**
+     * User login function
+     */
+    public function login()
+    {   
+        $user = $this->createUser(1);
+        $this->createChannel();
+        $this->createEpisode();
+
+        return Auth::attempt(['username' => 'test', 'password' => 'test']);
     }
 }
