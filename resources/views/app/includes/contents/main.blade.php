@@ -64,7 +64,7 @@
                 <div style="color:#999;">
                     <p>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-compass"> 30</i>
+                            <i class="fa fa-compass">{{ $episode->comment()->count() }}</i>
                         </span>
                         <span style="padding-right:15px;">
                             <i class="fa fa-heart"> 50</i>
@@ -93,9 +93,8 @@
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
-                                                <img src="https://goo.gl/IJSkVB" alt="" class="circle">
+                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>
-                                            Enter your comment
                                             <form id="submit_comment" action="/comment" method="POST">
                                                 <div class="file-field input-field">
                                                     <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
@@ -126,7 +125,7 @@
                                         <div class="row">
 
                                             <div class="col s2">
-                                                <img src="https://goo.gl/lVRGjF" alt="" class="circle">
+                                                <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                             </div>
                                             <div class="col s10">
                                                 <div class="textarea-wrapper" placeholder="">
