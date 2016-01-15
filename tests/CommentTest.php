@@ -44,4 +44,24 @@ class CommentTest extends TestCase
         	 ->press('submit')
         	 ->seeInDatabase('comments', ['comments' => 'My comment']);
     }
+
+    public function testCommentEpisodeRelationship()
+    {
+        $this->createUser(1);
+        $this->createChannel();
+        $episode = $this->createEpisode();
+        $comment = $this->createComment();
+
+        $this->assertEquals($comment->episode_id, $comment->episode->id);
+    }
+
+    public function testCommentUserRelationship()
+    {
+        $user = $this->createUser(1);
+        $this->createChannel();
+        $this->createEpisode();
+        $comment = $this->createComment();
+
+        $this->assertEquals($comment->user_id, $comment->user->id);
+    }
 }

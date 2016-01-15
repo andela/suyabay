@@ -7,6 +7,7 @@ use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Channel;
 use Suyabay\Episode;
+use Suyabay\Comment;
 use Suyabay\Password_reset;
 
 trait CreateData
@@ -65,6 +66,18 @@ trait CreateData
             'status'                => 1,
             'image'                 => 'dummy url',
             'audio_mp3'             => 'dummy url'
+        ]);
+    }
+
+    /**
+     * Create Comment test sample data
+     */
+    public function createComment()
+    {
+        return Comment::create([
+            'user_id'    => 1,
+            'episode_id' => 1,
+            'comments'   => 'The new comment'
         ]);
     }
 
