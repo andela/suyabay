@@ -228,6 +228,8 @@ $( document ).ready(function() {
 		deleted.hide();
 
 		new_item.append(item[0])
+
+		deleted.show();
 	}
 
 });
