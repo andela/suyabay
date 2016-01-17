@@ -223,11 +223,11 @@ $( document ).ready(function() {
 
 		var deleted 	=  $(".selected");
 		var new_item 	=  $("#active_section");
-		console.log(deleted);
 
-		deleted.hide();
 
-		new_item.append(item[0])
+		new_item.append(item[0]);
+
+		console.log(new_item);
 
 		deleted.show();
 	}
