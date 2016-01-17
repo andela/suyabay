@@ -152,7 +152,7 @@ $( document ).ready(function() {
 			},
 			error: function ()
 			{
-				alert('bad');
+				alert('Are you sure you doing this the right way?');
 			},
 		});
 	}
@@ -219,16 +219,15 @@ $( document ).ready(function() {
 
 	function activateEpisodeSuccessAlert ()
 	{
-		swal("Deleted!", "Your episode has been deleted.", "success");
-		var
-		deleted 	=  $('.selected'),
-		new_item 	=  $('#active_section');
+		swal("Activated", "Your episode has been Activated.", "success");
+
+		var deleted 	=  $(".selected");
+		var new_item 	=  $("#active_section");
+		console.log(deleted);
 
 		deleted.hide();
 
 		new_item.append(item[0])
-
-		deleted.show();
 	}
 
 });

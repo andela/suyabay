@@ -1,15 +1,15 @@
 <div class="col s12 m9">
 
     <div class="row">
-        
-        <!-- 
+
+        <!--
         Top panel: containes recent and information about suyabay
         #########################################################
 
         # Total users
         # Online users
-        # 
-        # 
+        #
+        #
         -->
 
         <div>
@@ -21,7 +21,7 @@
                     </span>
                 </div>
             </div>
-          
+
             <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
@@ -39,22 +39,22 @@
                     </span>
                 </div>
             </div>
-          
-        </div>
-       
 
-        <!-- 
+        </div>
+
+
+        <!--
         Episode tab controller
         ######################
-        
+
         # Tab controller
         # Recent Episode
         # Pending Episode
         # Active Episode
         -->
         <div class="row">
-            
-            <!-- 
+
+            <!--
             # Tab controller
             -->
             <div class="col s12">
@@ -65,11 +65,11 @@
                     <li class="tab col s3"><a class="" href="#test3">Active Episodes</a></li>
                 </ul>
             </div>
-            
-            <!-- 
+
+            <!--
             # Recent Episode
             -->
-            
+
             <div id="test1" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
@@ -95,7 +95,9 @@
                                 <select id="" class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$recent->id}}" value="delete">Delete</option>
-                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
+                                    @if( $recent->status != 1 )
+                                        <option data-action="{{$recent->id}}" value="activate">Active</option>
+                                    @endif
                                 </select>
                             </td>
                         </tr>
@@ -106,7 +108,7 @@
 
 
 
-            <!-- 
+            <!--
             # Pending Episode
             -->
             <div id="test2" class="col s12 tab-container">
@@ -142,7 +144,7 @@
                 </table>
             </div>
 
-            <!-- 
+            <!--
             # Active Episode
             -->
             <div id="test3" class="col s12 tab-container">
@@ -180,5 +182,5 @@
 
         </div>
     </div>
-    
+
 </div>
