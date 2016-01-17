@@ -166,7 +166,7 @@
                             <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $active->episode_name }}</td>
                             <td>{{ $active->episode_description }}</td>
-                            <td>{{ $active->created_at }}</td>
+                            <td>{{ $active->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
                                 <select id="" class="browser-default episode_action" >
