@@ -44,6 +44,6 @@ class EpisodeRepository
     */
     public function getPendingEpisodes()
     {
-        return $this->getAllEpisodes()->where('status', 1);
+        return $this->getAllEpisodes()->where('status', 0);
     }
 }

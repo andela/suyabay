@@ -76,6 +76,8 @@ class EpisodeManager extends Controller
             "channels"  => $this->channelRepository->getAllChannels()
         ];
 
+        return $data;
+
         return view('dashboard.pages.index', compact('data'));
     }
 
