@@ -74,7 +74,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -83,16 +82,14 @@
                     </thead>
 
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $recent->episode_name }}</td>
                             <td>{{ $recent->episode_description }}</td>
                             <td>{{ $recent->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$recent->id}}" value="delete">Delete</option>
                                     @if( $recent->status != 1 )
@@ -115,7 +112,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -123,16 +119,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
+
                         @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $pending->episode_name }}</td>
                             <td>{{ $pending->episode_description }}</td>
                             <td>{{ $pending->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$pending->id}}" value="delete">Delete</option>
                                     <option data-action="{{$pending->id}}" value="activate">Active</option>
@@ -151,7 +146,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -160,16 +154,14 @@
                     </thead>
 
                     <tbody id="active_section">
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $active->episode_name }}</td>
                             <td>{{ $active->episode_description }}</td>
                             <td>{{ $active->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$active->id}}" value="delete">Delete</option>
                                 </select>
