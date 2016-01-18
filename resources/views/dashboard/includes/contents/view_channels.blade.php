@@ -14,7 +14,7 @@
                   <th>Title</th>
                   <th>Created At</th>
                   <th>Episodes</th>
-                  <th></th>
+                  <th>Actoins</th>
               </tr>
             </thead>
             <tbody>

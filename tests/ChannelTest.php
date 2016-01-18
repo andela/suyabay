@@ -1,6 +1,7 @@
 <?php
 
 use Suyabay\Episode;
+use Suyabay\Channel;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
