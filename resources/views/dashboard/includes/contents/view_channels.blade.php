@@ -43,4 +43,5 @@
         </table>   
     @endif
     </div>
+    <div class="row">{!! $episodes->render() !!}</div>
 </div>
