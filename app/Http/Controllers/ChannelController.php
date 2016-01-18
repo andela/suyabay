@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Suyabay\Channel;
+use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -134,5 +135,13 @@ class ChannelController extends Controller
         }
 
         return $this->response;
+    }
+
+    public function showChannel($id)
+    {
+        $channel = Channel::find($id);
+        $episodes = Episode::where('channel_id', '=', $id)->get();
+        
+        return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }
 }

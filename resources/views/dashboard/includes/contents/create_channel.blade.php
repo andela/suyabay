@@ -1,12 +1,3 @@
-<!--
- # Author     Emeka Osuagwu <emekaosuagwuandela0@gmail.com>
- # Copyright  2015 Emeka Osuagwu
- # License    MIT License <http://opensource.org/licenses/MIT>
-
- #CodeFuntion: This piece of code is resposible for the structure
- of the create Episode page on the application
- -->
-
 <div class="col s12 m9">
 
     <div class="row">
@@ -37,8 +28,5 @@
         </div>
 
     </div>
-
-
-
 
 </div>

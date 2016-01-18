@@ -13,8 +13,8 @@ class AddTimestampsToRoleTable extends Migration
     public function up()
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->date('created_at')->default('00-00-00');
-            $table->date('updated_at')->default('00-00-00');
+            $table->date('created_at')->default(date('Y-m-d H:i:s'));
+            $table->date('updated_at')->default(date('Y-m-d H:i:s'));
             // $table->timestamp('created_at')->nullable();
             // $table->timestamp('updated_at')->nullable();
         });

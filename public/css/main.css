@@ -21,6 +21,35 @@
     border-radius:9px;
 }
 
+.pin {
+    color:white;
+    width:15px;
+}
+
+.count {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #337ab7;
+}
+
+a.capitalize {
+    text-transform: capitalize;
+    color:#333;
+}
+
+a:hover.capitalize {
+    color:red;
+}
+
+
 .episode-date {
     font-size: 11pt;
     letter-spacing: 1px;
