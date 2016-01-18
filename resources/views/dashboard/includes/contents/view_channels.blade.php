@@ -12,7 +12,6 @@
             <thead class="teal lighten-2">
               <tr>
                   <th>Title</th>
-                  <th>Created By</th>
                   <th>Created At</th>
                   <th>Episodes</th>
                   <th></th>
@@ -21,17 +20,16 @@
             <tbody>
             @foreach($channels as $channel)
             <tr>
-                <td>
+                <td class="data-grid">
                     <a href="/dashboard/channel/{{ $channel->id }}" class="capitalize" title="{{ $channel->channel_description }}">
                         <b>{{ $channel->channel_name }}</b>
                     </a>
                 </td>
-                <td></td>
-                <td>{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
-                <td> 
+                <td class="data-grid">{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
+                <td class="data-grid"> 
                     <div class="count">{{ count($channel->episode) }}</div>
                 </td>
-                <td>
+                <td clss="data-grid">
                     <div class="col s12 m6 red accent-2">
                         <a href="/dashboard/channel/{{ $channel->id }}/edit" class="pin" title="Edit this episode">
                             <i class="fa fa-edit"></i> 

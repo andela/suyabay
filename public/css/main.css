@@ -26,6 +26,10 @@
     width:15px;
 }
 
+.data-grid {
+    width:25%;
+}
+
 .count {
     display: inline;
     padding: .2em .6em .3em;
