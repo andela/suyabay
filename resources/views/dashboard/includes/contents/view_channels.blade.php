@@ -11,11 +11,11 @@
         <table class="highlight centered">
             <thead class="teal lighten-2">
               <tr>
-                  <th data-field="id">Title</th>
-                  <th data-field="name">Created By</th>
-                  <th data-field="name">Created At</th>
-                  <th data-field="price">Episodes</th>
-                  <th data-field="price"></th>
+                  <th>Title</th>
+                  <th>Created By</th>
+                  <th>Created At</th>
+                  <th>Episodes</th>
+                  <th></th>
               </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                         <b>{{ $channel->channel_name }}</b>
                     </a>
                 </td>
-                <td>{{ $channel->user->username }}</td>
+                <td></td>
                 <td>{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
                 <td> 
                     <div class="count">{{ count($channel->episode) }}</div>
