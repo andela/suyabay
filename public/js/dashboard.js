@@ -91,7 +91,7 @@ $( document ).ready(function() {
 	/*
 	# Delete Episode Function
 	*/
-	function activateEpisode (episode_id)
+	function activateEpisode(episode_id)
 	{
 		var
 		url 			= "/dashboard/episode/activate",
@@ -140,7 +140,7 @@ $( document ).ready(function() {
 	/*
 	# Ajax
 	*/
-	function ajaxCall (data, functionName)
+	function ajaxCall(data, functionName)
 	{
 		$.ajax({
 			url: data.url,
@@ -157,15 +157,14 @@ $( document ).ready(function() {
 		});
 	}
 
-
-	function ajaxLogic (response, functionName)
+	function ajaxLogic(response, functionName)
 	{
 		/*
 		# Check if Response.status = 401
 		*/
 		if (response.status === 401)
 		{
-			switch (functionName) {
+			switch(functionName) {
 	          case "deleteEpisode" : deleteEpisodeErrorAlert(); break;
 	          case "activateEpisode" : activateEpisodeErrorAlert(); break;
 	        }
@@ -176,7 +175,7 @@ $( document ).ready(function() {
 		*/
 		if (response.status === 200)
 		{
-			switch (functionName) {
+			switch(functionName) {
 	          case "deleteEpisode" : deleteEpisodeSuccessAlert(); break;
 	          case "activateEpisode" : activateEpisodeSuccessAlert(); break;
 	        }
