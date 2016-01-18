@@ -158,7 +158,7 @@
     line-height: 30px;
     position: absolute;
     white-space: nowrap;
-    width: 90%;
+    width: 79%;
     height: auto;
     overflow: hidden;
     cursor: text;
@@ -168,6 +168,7 @@
     border: 2px solid #cbd2d6;
     border: 2px solid rgba(0,39,59,.2);
     border-radius: 4px;
+    padding: 10px;
 }
 
 .bubble-content {
@@ -241,7 +242,11 @@
     width:100%!important;
 }
 
-
+#show_comment img
+{
+    padding: 10px;
+    width: 60%;
+}
 
 /*
 # Dashboard Styles

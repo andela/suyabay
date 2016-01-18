@@ -95,11 +95,11 @@
                                             <div class="col s2">
                                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>
-                                            <form id="submit_comment" action="/comment" method="POST">
+                                            <form id="submit_comment" method="POST">
                                                 <div class="file-field input-field">
-                                                    <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="user_id" value="{{ Auth::user()->id }}">
-                                                    <input hidden="true" type="text" name="episode_id" value="{{ $episode->id }}">
+                                                    <input hidden="true" type="text" name="_token" id="_token" value="{{ csrf_token() }}">
+                                                    <input hidden="true" type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episode->id }}">
                                                     <div class="file-path-wrapper col s9 m10">
                                                         <input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;">
                                                     </div>
@@ -121,8 +121,7 @@
                                 @endif
 
                                 @foreach ( $episode->comment as $comment  )
-                                    <li class="collection-item avatar">
-                                        <div class="row">
+                                        <div id="show_comment" class="row">
 
                                             <div class="col s2">
                                                 <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
@@ -133,7 +132,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
                                 @endforeach
                                 </div>
                             </li>

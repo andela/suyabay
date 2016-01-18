@@ -45,6 +45,7 @@
         <script src = "{!! asset('/js/main.js') !!}"></script>
         <script src = "{!! secure_asset('/js/main.js') !!}"></script>
         <script src="{!! asset('/js/audio.min.js') !!}"></script>
+        <script src = "{!! load_asset('/js/comment.js') !!}"></script>
 
 
     </head>

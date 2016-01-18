@@ -39,7 +39,6 @@ class CommentTest extends TestCase
     	$this->login();
 
         $this->visit('/')
-        	 ->see('Enter your comment')
         	 ->type('My comment', 'comment')
         	 ->press('submit')
         	 ->seeInDatabase('comments', ['comments' => 'My comment']);

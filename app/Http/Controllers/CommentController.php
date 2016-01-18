@@ -22,7 +22,12 @@ class CommentController extends Controller
 	public function postComment(Request $request)
 	{
 		$this->create($request->all());
-		return redirect('/');
+
+		return $response =
+                [
+                    'message' => 'Comment created Successfully',
+                    'status_code' => 200
+                ];
 	}
 
 }
