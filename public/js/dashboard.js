@@ -3,7 +3,7 @@ $( document ).ready(function() {
 
 	var item;
 
-	$('.episode_action').click(function() {
+	$('.episode_action').on('change', function(){
 
     	/*
 		# Get <select/> element that was clicked on
@@ -21,17 +21,17 @@ $( document ).ready(function() {
     	$(this).parent().closest('tr').prop("class", "selected");
 
 
-    	if (action_type === "view")
+    	if ( action_type === "view" )
     	{
     		window.location = action;
     	}
 
-    	if (action_type === "delete")
+    	if ( action_type === "delete" )
     	{
     		deleteEpisode(action)
     	};
 
-    	if (action_type === "activate")
+    	if ( action_type === "activate" )
     	{
 
     		item = $(this).parent().closest('tr');
@@ -43,7 +43,7 @@ $( document ).ready(function() {
 	/*
 	# Delete Episode Function
 	*/
-	function deleteEpisode(episode_id)
+	function deleteEpisode (episode_id)
 	{
 		var
 		url 		= "/dashboard/episode/delete",
@@ -79,7 +79,7 @@ $( document ).ready(function() {
 		{
 		  if (isConfirm)
 		  {
-		    ajaxCall(data, functionName)
+		    ajaxCall( data, functionName)
 		  }
 		  else
 		  {
@@ -91,13 +91,13 @@ $( document ).ready(function() {
 	/*
 	# Delete Episode Function
 	*/
-	function activateEpisode(episode_id)
+	function activateEpisode (episode_id)
 	{
 		var
-		url 			= "/dashboard/episode/activate",
-		token 			= document.getElementById('token').value,
-		method 			= "PATCH",
-		functionName 	=  arguments.callee.name;
+		url 		= "/dashboard/episode/activate",
+		token 		= document.getElementById('token').value,
+		method 		= "PATCH",
+		functionName =  arguments.callee.name;
 
 	  	var data =
 	    {
@@ -126,7 +126,7 @@ $( document ).ready(function() {
 		{
 		  if (isConfirm)
 		  {
-		    ajaxCall(data, functionName)
+		    ajaxCall( data, functionName)
 		  }
 		  else
 		  {
@@ -140,7 +140,7 @@ $( document ).ready(function() {
 	/*
 	# Ajax
 	*/
-	function ajaxCall(data, functionName)
+	function ajaxCall ( data, functionName)
 	{
 		$.ajax({
 			url: data.url,
@@ -148,23 +148,25 @@ $( document ).ready(function() {
 			data: data.parameter,
 			success: function (response)
 			{
-				ajaxLogic (response, functionName)
+				ajaxLogic ( response, functionName )
 			},
-			error: function()
+			error: function ()
 			{
 				alert('Are you sure you doing this the right way?');
 			},
 		});
 	}
 
-	function ajaxLogic(response, functionName)
+
+	function ajaxLogic ( response, functionName )
 	{
 		/*
 		# Check if Response.status = 401
 		*/
-		if (response.status === 401)
+		if ( response.status === 401 )
 		{
-			switch(functionName) {
+			switch (functionName)
+	        {
 	          case "deleteEpisode" : deleteEpisodeErrorAlert(); break;
 	          case "activateEpisode" : activateEpisodeErrorAlert(); break;
 	        }
@@ -173,20 +175,25 @@ $( document ).ready(function() {
 		/*
 		# Check if Response.status = 200
 		*/
-		if (response.status === 200)
+		if ( response.status === 200 )
 		{
-			switch(functionName) {
+			switch (functionName)
+	        {
 	          case "deleteEpisode" : deleteEpisodeSuccessAlert(); break;
 	          case "activateEpisode" : activateEpisodeSuccessAlert(); break;
 	        }
 		}
 	}
 
+
+
+
+
 	/*
 	####################################################################
 	# deleteEpisodeErrorAlert Message
 	*/
-	function deleteEpisodeErrorAlert()
+	function deleteEpisodeErrorAlert ()
 	{
 		swal("Hmmmm", "This episode does not exist ", "error");
 	}
@@ -194,7 +201,7 @@ $( document ).ready(function() {
 	/*
 	# deleteEpisodeSuccessAlert Message
 	*/
-	function deleteEpisodeSuccessAlert()
+	function deleteEpisodeSuccessAlert ()
 	{
 		swal("Deleted!", "Your episode has been deleted.", "success");
 		var deleted =  $('.selected');
@@ -205,7 +212,7 @@ $( document ).ready(function() {
 	####################################################################
 	# activateEpisodeErrorAlert() Message
 	*/
-	function activateEpisodeErrorAlert()
+	function activateEpisodeErrorAlert ()
 	{
 		swal("Hmmmm", "This episode does not exist ", "error");
 	}

@@ -159,7 +159,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="active_section">
                         <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
