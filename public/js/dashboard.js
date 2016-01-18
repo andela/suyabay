@@ -183,10 +183,6 @@ $( document ).ready(function() {
 		}
 	}
 
-
-
-
-
 	/*
 	####################################################################
 	# deleteEpisodeErrorAlert Message
