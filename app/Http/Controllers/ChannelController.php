@@ -19,7 +19,7 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        $channels = Channel::orderBy('id', 'asc')->paginate(10);
+        $channels = Channel::orderBy('id', 'desc')->paginate(10);
 
         return view('dashboard.pages.view_channels', compact('channels'));
     }
