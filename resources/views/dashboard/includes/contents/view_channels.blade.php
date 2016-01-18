@@ -43,5 +43,5 @@
         </table>   
     @endif
     </div>
-    <div class="row">{!! $episodes->render() !!}</div>
+    <div class="row">{!! $channels->render() !!}</div>
 </div>
