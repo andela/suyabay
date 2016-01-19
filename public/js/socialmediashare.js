@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$(".fb-share").css({"cursor": "pointer"});
-	$(".fb-share").on("click", function  (argument) {
+	$(".fb-share, .twtr-share").css({"cursor": "pointer"});
+	$(".fb-share").on("click", function  () {
 		var desc = $(this).attr('data-desc');
 		var name = $(this).attr('data-name');
 		var img = $(this).attr('data-img');
@@ -23,5 +23,18 @@ $(document).ready(function() {
 
 					});
 			  });
+	});
+
+	$(".twtr-share").on("click", function () {
+		var desc = $(this).attr('data-desc').trim();
+		var img = $(this).attr('data-img');
+		var audio = $(this).attr('data-audio');
+
+		 if (desc.length >= 75) {
+		 		desc = desc.substr(0, 75) + '.. ';
+		 }
+
+		 var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(desc) + '&url=' + audio + '&hashtags=suyabay';
+		 window.open(url,'_blank');
 	});
 });
