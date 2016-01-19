@@ -85,48 +85,49 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header" style="color:#999;padding-left:15px;">
-                                <b class="make-comment">Comments</b>
+                                <b>Comments</b>
                             </div>
                             <div class="collapsible-body">
-                                <ul class="collection" id="comment-collection">
-                                    <li class="load_comment{{ $episode->id }}">
-                                    @foreach ( $episode->comment as $comment  )
-                                        <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
-                                            <div class="row">
+                                <ul class="collection">
+                                
+                                <li class="load_comment{{ $episode->id }}">
+                                @foreach ( $episode->comment as $comment  )
+                                    <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
+                                        <div class="row">
 
-                                                <div class="col s2">
-                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
-                                                </div>
-                                                <div class="col s10">
-                                                    <div class="textarea-wrapper" placeholder="">
-                                                        {{$comment->comments}}
-                                                    </div>
+                                            <div class="col s2">
+                                                <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
+                                            </div>
+                                            <div class="col s10">
+                                                <div class="textarea-wrapper" placeholder="">
+                                                    {{$comment->comments}}
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                    </li>
-
-                                    @if (  Auth::check() )
+                                    </div>
+                                @endforeach
+                                </li>
+                                
+                                @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
-                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
+                                                <img src="https://goo.gl/IJSkVB" alt="" class="circle">
                                             </div>
-                                            <form id="submit_comment{{ $episode->id }}">
+                                            <form id="submit_comment{{ $episode->id }}" action="/comment" method="POST">
                                                 <div class="file-field input-field">
-                                                    <input hidden="true" type="text" name="_token" id="_token" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                                                    <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episode->id }}">
+                                                    <input hidden="true" type="text" name="_token" id="_token{{ $episode->id }}" value="{{ csrf_token() }}">
+                                                    <input hidden="true" type="text" name="user_id" id="user_id{{ $episode->id }}" value="{{ Auth::user()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" id="episode_id{{ $episode->id }}" value="{{ $episode->id }}">
                                                     <div class="file-path-wrapper col s10 m10">
                                                         <input name="comment" id="comment-field{{ $episode->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button type="submit" id="submit" title="{{ $episode->id }}" data-avatar="{{ $comment->user->getAvatar() }}" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
+                                                    <button type="submit" id="submit" title="{{ $episode->id }}" data-avatar="{{ Auth::user()->getAvatar() }}" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>
                                     </li>
-                                    @else
+                                @else
                                     <li class="collection-item avatar">
                                         <span>
                                         <i class="fa fa-user fa-2x circle"></i>
@@ -136,15 +137,14 @@
                                             <div class="point"></div>
                                         </span>
                                     </li>
-                                    @endif
+                                @endif
 
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
             </div>
 
