@@ -338,7 +338,23 @@ Navigations Styles
     margin: 5px;
 }
 
+.fb-share, .twtr-share, .gplus-share, .ep-like {
+	cursor: pointer;
+}
+.fb-share:hover {
+	color: #3b5998;
+}
 
+.twtr-share:hover {
+	color: #00aced;
+}
+
+.gplus-share:hover {
+	color: #dd4b39;
+}
+.ep-like:hover {
+	color: #dd4b39;
+}
 /*
  # User Page Styles
  =====================
