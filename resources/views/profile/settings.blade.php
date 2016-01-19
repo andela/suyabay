@@ -1,37 +1,50 @@
-@extends('dashboard.master')
+@extends('profile.master')
 
-@section('title', 'This is SuyaBay #TISb')
+@section('title', 'Edit profile')
 
 @endsection
 
 @section('content')
+<div>
+    @if(session('status'))
+        <div class="alert alert-success" style="text-align: center; margin-top: -20px; color: green">
+            {{ session('status') }}
+        </div>
+    @endif
+</div>
+
 <div class="col s12 m9">
-
     <div class="row">
-
         <h4>Update Profile</h4><br>
-
         <div class="row">
-            <form class="col s12" id="edit_user" action="/dashboard/user/edit" method="POST">
-
+            <form id="update_profile" action="/profile/edit" method="POST">
                 <div class="row">
                     <div class="input-field col s6 ">
                         <input value="{{ $users->username }}" name="username" id="username" placeholder="User Name" id="first_name" type="text" class="validate">
-                        <input type="hidden" name="user_id" id="user_id" value="{{ $users->id }}">
                         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" >
                         <label for="first_name">User Name</label>
                     </div>
-                </div>
-
                 <center>
-                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Update User</button>
+                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Update Profile</button>
                 </center>
-
+                </div>
             </form>
         </div>
     </div>
+    <div class="row">
+        <form class="col-md-6" method="POST" action="/avatar/setting" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div style="margin: 10px;">
+                <h4>Avatar</h4>
+                <br>
+                <img src="{{ Auth::user()->avatar }}" height="125" width="125"/>
+                <input type="file" name="avatar" size="30"></input>
+                <div>
+                    <br>
+                    <button type="submit" class="btn profile-button form-group button-center">Upload Photo</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-
-
-
 @endsection
