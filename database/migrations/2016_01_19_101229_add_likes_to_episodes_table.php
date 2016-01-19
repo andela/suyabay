@@ -25,7 +25,7 @@ class AddLikesToEpisodesTable extends Migration
     public function down()
     {
         Schema::table('episodes', function (Blueprint $table) {
-            $table->dropColumn('active');
+            $table->dropColumn('likes');
         });
     }
 }
