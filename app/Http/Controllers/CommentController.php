@@ -10,6 +10,9 @@ use Suyabay\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 
+    /**
+     * Add comment to database
+     */
 	protected function create(array $data)
     {
         Comment::create([
@@ -19,6 +22,9 @@ class CommentController extends Controller
         ]);
 	}
 
+    /**
+     * Process comment creation
+     */
 	public function postComment(Request $request)
 	{
 		$this->create($request->all());

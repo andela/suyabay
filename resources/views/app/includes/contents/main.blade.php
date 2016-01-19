@@ -64,7 +64,7 @@
                 <div style="color:#999;">
                     <p>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-comment">{{ $episode->comment()->count() }}</i>
+                            <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>
                         </span>
                         <span style="padding-right:15px;">
                             <i class="fa fa-heart"> 50</i>
@@ -122,7 +122,7 @@
                                                     <div class="file-path-wrapper col s10 m10">
                                                         <input name="comment" id="comment-field{{ $episode->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button type="submit" id="submit" title="{{ $episode->id }}" data-avatar="{{ Auth::user()->getAvatar() }}" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
+                                                    <button type="submit" id="submit" title="{{ $episode->id }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>
