@@ -74,7 +74,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -113,7 +112,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -147,7 +145,6 @@
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
