@@ -1,31 +1,17 @@
 $(document).ready(function(){
 
-	/**
-     * onSubmit event to handle Channel creation
-     */
-    $("#submit_comment").submit( function () {
-        var url        = "/comment";
-        var token      = $("#_token").val();
-        var user_id    = $("#user_id").val();
-        var episode_id = $("#episode_id").val();
-        var comment    = $("#comment-field").val();
-        var data =
-            {
-                url        : url,
-                parameter  :
-                {
-                    _token     : token,
-                    user_id    : user_id,
-                    episode_id : episode_id,
-                    comment    : comment
-                }
-            }
-        processCommentAjax("POST", data.url, data.parameter);
-
-        return false;
-    });
+	$('.comment-submit').on('click', function(){
+		var divId = $(this).attr('title');
+		var comment = $("#comment-field"+divId).val();
+		var avatar = $(this).attr('data-avatar');
+		$('.load_comment'+divId).last().append('<div id="show_comment" class="collection-item avatar show_comment'+divId +'"><div class="row"><div class="col s2"><img src="'+ avatar +'" alt="" class="circle"></div><div class="col s10"><div class="textarea-wrapper" placeholder="">'+
+											                comment
+											            +'</div></div></div></div>');
+		return false;
+	});
 
 });
+
 
 function processCommentAjax (action, url, parameter)
 {
@@ -38,21 +24,10 @@ function processCommentAjax (action, url, parameter)
             switch( response.status_code )
             {
                 case 200:
-                    $('.collection-item .avatar').apend('<li class="collection-item avatar">'+
-	                            +'<div class="row">'+
-	                                +'<div class="col s2">'+
-	                                    +'<img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">'+
-	                                +'</div>'+
-	                                +'<div class="col s10">'+
-	                                    +'<div class="textarea-wrapper" placeholder="">'+
-	                                        parameter.comment
-	                                    +'</div>'+
-	                                +'</div>'+
-	                            +'</div>'+
-	                        +'</li>');
+                    return true
                     break;
 
-                default: alert(0);
+                default: return false;
             }
         }
     });

@@ -29,5 +29,4 @@ class CommentController extends Controller
                     'status_code' => 200
                 ];
 	}
-
 }
