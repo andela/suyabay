@@ -23,9 +23,13 @@ class Channel extends Model
     /**
      * Channel/Episode relationship
      */
-    public function episodes()
+    public function user()
+    {
+        return $this->belongsTo('Suyabay\User');
+    }
+
+    public function episode()
     {
         return $this->hasMany('Suyabay\Episode');
     }
-
 }
