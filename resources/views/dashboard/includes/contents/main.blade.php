@@ -83,10 +83,8 @@
                     </thead>
 
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $recent->episode_name }}</td>
                             <td>{{ $recent->episode_description }}</td>
                             <td>{{ $recent->created_at->diffForHumans() }}</td>
@@ -123,10 +121,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $pending->episode_name }}</td>
                             <td>{{ $pending->episode_description }}</td>
                             <td>{{ $pending->created_at->diffForHumans() }}</td>
@@ -160,10 +156,8 @@
                     </thead>
 
                     <tbody id="active_section">
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $active->episode_name }}</td>
                             <td>{{ $active->episode_description }}</td>
                             <td>{{ $active->created_at->diffForHumans() }}</td>
