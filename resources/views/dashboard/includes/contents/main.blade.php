@@ -1,15 +1,15 @@
 <div class="col s12 m9">
 
     <div class="row">
-        
-        <!-- 
+
+        <!--
         Top panel: containes recent and information about suyabay
         #########################################################
 
         # Total users
         # Online users
-        # 
-        # 
+        #
+        #
         -->
 
         <div>
@@ -21,7 +21,7 @@
                     </span>
                 </div>
             </div>
-          
+
             <div class="col s12 m4 ">
                 <div class="card-panel teal panel-container">
                     <span class="white-text">
@@ -39,22 +39,22 @@
                     </span>
                 </div>
             </div>
-          
-        </div>
-       
 
-        <!-- 
+        </div>
+
+
+        <!--
         Episode tab controller
         ######################
-        
+
         # Tab controller
         # Recent Episode
         # Pending Episode
         # Active Episode
         -->
         <div class="row">
-            
-            <!-- 
+
+            <!--
             # Tab controller
             -->
             <div class="col s12">
@@ -65,16 +65,15 @@
                     <li class="tab col s3"><a class="" href="#test3">Active Episodes</a></li>
                 </ul>
             </div>
-            
-            <!-- 
+
+            <!--
             # Recent Episode
             -->
-            
+
             <div id="test1" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -83,19 +82,19 @@
                     </thead>
 
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['recent'] as $recent )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $recent->episode_name }}</td>
                             <td>{{ $recent->episode_description }}</td>
-                            <td>{{ $recent->created_at }}</td>
+                            <td>{{ $recent->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$recent->id}}" value="delete">Delete</option>
-                                    <option data-action="{{$recent->id}}" value="activate">Active</option>
+                                    @if( $recent->status != 1 )
+                                        <option data-action="{{$recent->id}}" value="activate">Active</option>
+                                    @endif
                                 </select>
                             </td>
                         </tr>
@@ -106,14 +105,13 @@
 
 
 
-            <!-- 
+            <!--
             # Pending Episode
             -->
             <div id="test2" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -121,16 +119,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
                         @foreach( $data['episodes']['pending'] as $pending )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $pending->episode_name }}</td>
                             <td>{{ $pending->episode_description }}</td>
-                            <td>{{ $pending->created_at }}</td>
+                            <td>{{ $pending->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$pending->id}}" value="delete">Delete</option>
                                     <option data-action="{{$pending->id}}" value="activate">Active</option>
@@ -142,14 +138,13 @@
                 </table>
             </div>
 
-            <!-- 
+            <!--
             # Active Episode
             -->
             <div id="test3" class="col s12 tab-container">
                 <table class="striped">
                     <thead>
                         <tr>
-                            <th data-field="id">S/N</th>
                             <th data-field="name">Title</th>
                             <th data-field="price">Channel</th>
                             <th data-field="price">Created At</th>
@@ -157,17 +152,15 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <span style="display:none">{{$counter = 0}}</span>
+                    <tbody id="active_section">
                         @foreach( $data['episodes']['active'] as $active )
                         <tr>
-                            <td>{{ $counter = $counter + 1 }}</td>
                             <td>{{ $active->episode_name }}</td>
                             <td>{{ $active->episode_description }}</td>
-                            <td>{{ $active->created_at }}</td>
+                            <td>{{ $active->created_at->diffForHumans() }}</td>
                             <td width="150px;">
                                 <input type="hidden" id="token" name="_token" value="<?php echo csrf_token(); ?>">
-                                <select id="" class="browser-default episode_action" >
+                                <select class="browser-default episode_action" >
                                     <option style="width:2ppx;" selected>Select</option>
                                     <option data-action="{{$active->id}}" value="delete">Delete</option>
                                 </select>
@@ -180,5 +173,5 @@
 
         </div>
     </div>
-    
+
 </div>

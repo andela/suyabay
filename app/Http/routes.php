@@ -254,11 +254,17 @@ Route::group(['prefix' => 'dashboard'], function () {
         'middleware'   => ['auth']
     ]);
     Route::post('/channel/create', [
-        'uses' => 'ChannelController@processCreate'
+        'uses' => 'ChannelController@processCreate',
+        'as' => 'create.channel'
     ]);
     Route::delete('/channel/{id}', [
         'uses' => 'ChannelController@destroy',
         'as'   => 'channel-id'
+    ]);
+    Route::get('/channel/{id}', [
+        'uses' => 'ChannelController@showChannel',
+        'as'   => 'channel-show',
+        'middleware'   => ['auth']
     ]);
 });
 

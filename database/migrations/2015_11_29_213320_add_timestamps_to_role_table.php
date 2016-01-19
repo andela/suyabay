@@ -13,31 +13,31 @@ class AddTimestampsToRoleTable extends Migration
     public function up()
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->date('created_at')->default(date('Y-m-d H:i:s'));
+            $table->date('updated_at')->default(date('Y-m-d H:i:s'));
+            // $table->timestamp('created_at')->nullable();
+            // $table->timestamp('updated_at')->nullable();
         });
 
-
-
         // Insert some stuff
-        // DB::table('roles')->insert([
-        //     'id' => 1,
-        //     'name' => 'Regular User',
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s')
-        // ]);
-        // DB::table('roles')->insert([
-        //     'id' => 2,
-        //     'name' => 'Premium User',
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s')
-        // ]);
-        // DB::table('roles')->insert([
-        //     'id' => 3,
-        //     'name' => 'Super Admin',
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s')
-        // ]);
+        DB::table('roles')->insert([
+            'id' => 1,
+            'name' => 'Regular User',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('roles')->insert([
+            'id' => 2,
+            'name' => 'Premium User',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        DB::table('roles')->insert([
+            'id' => 3,
+            'name' => 'Super Admin',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
     }
 
     /**

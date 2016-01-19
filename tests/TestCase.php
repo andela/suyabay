@@ -17,12 +17,11 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
     public function tearDown()
     {
-        $f = @fopen(storage_path("database.sqlite"), "r+");
-        if ($f !== false) {
-            ftruncate($f, 0);
-            fclose($f);
+        $file = @fopen(storage_path("database.sqlite"), "r+");
+        if ($file !== false) {
+            ftruncate($file, 0);
+            fclose($file);
         }
-
     }
 
     /**
