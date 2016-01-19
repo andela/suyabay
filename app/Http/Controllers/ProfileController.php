@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Auth;
+use Hash;
 use Cloudder;
 use Redirect;
 use Suyabay\User;
@@ -19,19 +20,9 @@ class ProfileController extends Controller
      */
     public function getProfileSettings()
     {
-        return view('profile.settings');
+        $users = Auth::user();
+        return view('profile.settings', compact('users'));
     }
-
-    /**
-     * Gets selected user's dashboard.
-     *
-     * @return Response
-     */
-    public function show($username)
-    {
-        return view('dashboard.pages.user', ['user' => User::findByUsernameOrFail($username)]);
-    }
-
     /**
      * Posts form request.
      *
@@ -43,7 +34,7 @@ class ProfileController extends Controller
         $input = $request->except('_token', 'url');
         User::find(Auth::user()->id)->updateProfile($input);
 
-        return redirect('/settings/profile')->with('status', 'You have successfully updated your profile.');
+        return redirect('/profile/edit')->with('status', 'You have successfully updated your profile.');
     }
 
     /**
@@ -59,9 +50,36 @@ class ProfileController extends Controller
 
             User::find(Auth::user()->id)->updateAvatar($imgurl);
 
-            return redirect('/settings/profile')->with('status', 'Avatar updated successfully.');
+            return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
         } else {
-            return redirect('/settings/profile')->with('status', 'Please select an image.');
+            return redirect('/profile/edit')->with('status', 'Please select an image.');
         }
+    }
+
+    public function getChangePassword()
+    {
+        $users = Auth::user();
+        return view('profile.changepassword', compact('users'));
+    }
+
+    public function postChangePassword(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => 'required',
+            'password'     => 'required|min:6|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        // Compare old password
+        if (!Hash::check($request->get('old_password'), $user->password)) {
+            return redirect()->back()->withErrors(['old_password' => 'Old password incorrect']);
+        }
+
+        // Update current password
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+
+        return redirect()->back()->with('status', 'Password successfully updated');
     }
 }
