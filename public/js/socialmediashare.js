@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	$(".fb-share, .twtr-share").css({"cursor": "pointer"});
 	$(".fb-share").on("click", function  () {
 		var desc = $(this).attr('data-desc');
 		var name = $(this).attr('data-name');

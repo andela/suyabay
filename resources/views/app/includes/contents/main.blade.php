@@ -67,7 +67,7 @@
                             <i class="fa fa-compass"> 30</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart"> 50</i>
+                            <i class="fa fa-heart ep-like"> 50</i>
                         </span>
                         <span style="padding-right:15px;">
                             <i class="fa fa-facebook fb-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-audio="{!! asset($episode->audio_mp3) !!}"></i>
@@ -76,7 +76,7 @@
                             <i class="fa fa-twitter twtr-share" data-desc="{{ $episode->episode_description }}" data-img="{!! asset($episode->image) !!}" data-audio="{!! asset($episode->audio_mp3) !!}"></i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-google-plus"></i>
+                            <i class="fa fa-google-plus gplus-share"></i>
                         </span>
                     </p>
                 </div>
