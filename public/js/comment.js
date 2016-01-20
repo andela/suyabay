@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
 	$('.comment-submit').on('click', function(){
-		var divId         = $(this).attr('title');
+		var divId         = $(this).data('id');
 		var comment       = $("#comment-field"+divId).val();
-		var avatar        = $(this).attr('data-avatar');
-		var comment_count = parseInt($(this).attr('data-comment-count')) + 1;
+		var avatar        = $(this).data('avatar');
+		var comment_count = parseInt($(this).data('comment-count')) + 1;
+		var token         = $(this).data('token');
 
         var url        = "/comment";
-        var token      = $("#_token"+divId).val();
         var user_id    = $("#user_id"+divId).val();
         var episode_id = $("#episode_id"+divId).val();
 
@@ -21,7 +21,7 @@ $(document).ready(function(){
                     comment    : comment
                 }
             }
-
+            
         $.ajax({
 	        url: url,
 	        type: "POST",

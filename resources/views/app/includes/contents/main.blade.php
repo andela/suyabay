@@ -122,7 +122,7 @@
                                                     <div class="file-path-wrapper col s10 m10">
                                                         <input name="comment" id="comment-field{{ $episode->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button type="submit" id="submit" title="{{ $episode->id }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
+                                                    <button type="submit" data-id="{{ $episode->id }}" data-token="{{ csrf_token() }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit"class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>

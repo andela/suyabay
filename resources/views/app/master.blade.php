@@ -5,9 +5,6 @@
 
         <!-- View port-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
 
 
         <!-- Fonts and style rules -->
@@ -20,6 +17,8 @@
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+
+        <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
 
         <!-- Materialize Compiled and minified JavaScript -->
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
