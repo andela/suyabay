@@ -16,18 +16,18 @@ class ChannelRepository
     }
 
     /**
-     * Return channels by order
-     */
+    * Return channels by order
+    */
     public function getOrderedChannels($value, $order_by)
     {
-    	return Channel::orderBy($value, $order_by);
+        return Channel::orderBy($value, $order_by);
     }
 
     /**
-     * Return channel for a particular field
-     */
+    * Return channel for a particular field
+    */
     public function getChannelByField($field, $value)
     {
-    	return Channel::where($field, $value);
+        return Channel::where($field, $value);
     }
 }
