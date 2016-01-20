@@ -18,8 +18,6 @@ $(document).ready(function() {
 					  caption: name,
 					  description: desc,
 					  picture: img
-					}, function(response){
-
 					});
 			  });
 	});
