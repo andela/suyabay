@@ -185,6 +185,13 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses' => 'EpisodeManager@destroy',
         'as'   => 'episode.delete'
     ]);
+
+    Route::get('/episode/like', [
+        'uses' => 'LikeController@postLike',
+        'as'   => 'episode.like'
+    ]);
+
+
     //end
 
 
