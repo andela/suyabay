@@ -360,5 +360,16 @@ Navigations Styles
 }
 
 
+.like-button-style {
+    color: #2A2AE8;
+}
 
+.social-btn:active {
+     transform: scale(1.20);
+     transition: 0.10s;
 
+}
+
+.like-btn {
+    cursor: pointer;
+}

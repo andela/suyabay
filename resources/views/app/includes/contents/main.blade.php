@@ -48,7 +48,7 @@
 
                 <!-- Feed the audio source -->
                 <div>
-                    <audio src="{!! asset($episode->audio_mp3) !!}" preload="auto" />
+                    <audio src="{!! asset($episode->audio_mp) !!}" preload="auto" />
                 </div>
 
                 <div>
@@ -67,7 +67,7 @@
                             <i class="fa fa-compass"> 30</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart"> {{ $episode->likes }}</i>
+                            <i class="fa fa-heart social-btn like-button-style like-btn"> {{ $episode->likes }}</i>
                         </span>
                         <span style="padding-right:15px;">
                             <i class="fa fa-facebook"></i>
