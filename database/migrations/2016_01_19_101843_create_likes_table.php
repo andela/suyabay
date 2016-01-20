@@ -15,6 +15,7 @@ class CreateLikesTable extends Migration
         Schema::create('likes', function (Blueprint $table) {
 
             $table->increments('id');
+            $table->timestamps();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
@@ -26,7 +27,6 @@ class CreateLikesTable extends Migration
                     ->references('id')
                     ->on('episodes');
 
-            $table->timestamps();
 
         });
 

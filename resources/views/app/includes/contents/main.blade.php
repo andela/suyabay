@@ -63,12 +63,11 @@
             <!-- start social -->
                 <div style="color:#999;">
                     <p>
-                    {{ $episode->like }}
                         <span style="padding-right:15px;">
                             <i class="fa fa-compass"> 30</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart"> 50</i>
+                            <i class="fa fa-heart"> {{ $episode->likes }}</i>
                         </span>
                         <span style="padding-right:15px;">
                             <i class="fa fa-facebook"></i>

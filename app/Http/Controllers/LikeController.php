@@ -10,13 +10,33 @@ class LikeController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Like an Episode
      *
      */
     public function postLike()
     {
         //return view('app.pages.index');
-        return 333;
+
+        $episode 		= $this->episodeRepository->findEpisodeById(5);
+        $episode->likes = $episode->likes + 1;
+        $episode->save();
+
+        $this->likeRepository->insertIntoLikesTable(1, 5);
+
+        return $episode;
+    }
+
+    /**
+     * Unlike an Episode
+     *
+     */
+    public function postUnlike()
+    {
+    	$episode 		= $this->episodeRepository->findEpisodeById(4);
+        $episode->likes = $episode->likes - 1;
+        $episode->save();
+
+        return $this->likeRepository->findLikeWhere('user_id', 1)->delete();
     }
 
 }

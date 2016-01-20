@@ -186,12 +186,6 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => 'episode.delete'
     ]);
 
-    Route::get('/episode/like', [
-        'uses' => 'LikeController@postLike',
-        'as'   => 'episode.like'
-    ]);
-
-
     //end
 
 
@@ -296,4 +290,14 @@ Route::post('/comment', [
 Route::get('/dashboard/episode/pending', [
     'uses' =>'EpisodeManager@pendingEpisode',
     'as'   => 'comment'
+]);
+
+Route::get('/episode/like', [
+    'uses' => 'LikeController@postLike',
+    'as'   => 'episode.like'
+]);
+
+Route::get('/episode/unlike', [
+    'uses' => 'LikeController@postUnlike',
+    'as'   => 'episode.unlike'
 ]);
