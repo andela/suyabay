@@ -112,7 +112,7 @@
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
-                                                <img src="https://goo.gl/IJSkVB" alt="" class="circle">
+                                                <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                             </div>
                                             <form id="submit_comment{{ $episode->id }}" action="/comment" method="POST">
                                                 <div class="file-field input-field">
