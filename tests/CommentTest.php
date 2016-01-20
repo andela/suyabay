@@ -41,7 +41,8 @@ class CommentTest extends TestCase
         $this->visit('/')
         	 ->type('My comment', 'comment')
         	 ->press('submit')
-        	 ->seeInDatabase('comments', ['comments' => 'My comment']);
+        	 ->seeInDatabase('comments', ['comments' => 'My comment'])
+             ->see('{"message":"Comment created Successfully","status_code":200}');
     }
 
     public function testCommentEpisodeRelationship()
