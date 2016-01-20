@@ -119,7 +119,7 @@
                                                     <input hidden="true" type="text" name="_token" id="_token{{ $episode->id }}" value="{{ csrf_token() }}">
                                                     <input hidden="true" type="text" name="user_id" id="user_id{{ $episode->id }}" value="{{ Auth::user()->id }}">
                                                     <input hidden="true" type="text" name="episode_id" id="episode_id{{ $episode->id }}" value="{{ $episode->id }}">
-                                                    <div class="file-path-wrapper col s10 m10">
+                                                    <div class="file-path-wrapper input-field col s10 m10">
                                                         <input name="comment" id="comment-field{{ $episode->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
                                                     <button type="submit" data-id="{{ $episode->id }}" data-token="{{ csrf_token() }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit"class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
