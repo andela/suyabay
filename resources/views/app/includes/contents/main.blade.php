@@ -63,6 +63,7 @@
             <!-- start social -->
                 <div style="color:#999;">
                     <p>
+                    {{ $episode->like }}
                         <span style="padding-right:15px;">
                             <i class="fa fa-compass"> 30</i>
                         </span>

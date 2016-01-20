@@ -180,12 +180,12 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses' => 'EpisodeManager@updateEpisodeStatus',
         'as' => 'episode.activate'
     ]);
-    //end
 
     Route::delete('/episode/{id}', [
         'uses' => 'EpisodeManager@destroy',
         'as'   => 'episode.delete'
     ]);
+    //end
 
 
 /*

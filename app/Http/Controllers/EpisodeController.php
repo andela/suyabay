@@ -19,8 +19,6 @@ class EpisodeController extends Controller
     {
         $episodes = Episode::paginate(5);
 
-        return $episodes;
-
         return view('app.pages.index', compact('episodes'));
     }
 }
