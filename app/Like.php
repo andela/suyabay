@@ -25,5 +25,4 @@ class Like extends Model
     {
         return $this->belongsTo('Suyabay\Episode');
     }
-
 }

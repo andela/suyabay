@@ -39,7 +39,6 @@ class LikeRepository
                 break;
             }
         }
-
         if ($is_like_episode) {
             $status = "dislike";
         }
