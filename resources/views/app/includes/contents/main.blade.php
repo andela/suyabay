@@ -152,14 +152,17 @@
 
             </div>
 
-
-
         <!-- end card -->
 
         @empty
             <p>No Episodes to display</p>
         @endforelse
 
-
+        <!-- Pagination -->
+        <div class="row center-align fix">
+            <div class="center-align">
+                {!! $episodes->render() !!}
+            </div>
+        </div>
     </div>
 </div>

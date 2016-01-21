@@ -297,7 +297,7 @@ Route::post('/episode/like', [
     'as'   => 'episode.like'
 ]);
 
-Route::delete('/episode/unlike', [
+Route::post('/episode/unlike', [
     'uses' => 'LikeController@postUnlike',
     'as'   => 'episode.unlike'
 ]);

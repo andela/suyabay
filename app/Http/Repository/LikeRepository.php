@@ -15,6 +15,7 @@ class LikeRepository
 		return Like::where($field, $value);
 	}
 
+	/*Fine and Delete Episode liked by a user*/
 	public function findLikeByUserOnEpisode($user_id, $episode_id)
 	{
 		  return DB::table('likes')

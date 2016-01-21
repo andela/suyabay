@@ -2,8 +2,14 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Suyabay\User;
+use Suyabay\Channel;
+use Suyabay\Episode;
+use Illuminate\Mail\Mailer as Mail;
+use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Repository\LikeRepository;
 use Suyabay\Http\Repository\EpisodeRepository;
+use Suyabay\Http\Repository\ChannelRepository;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -14,9 +20,13 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct()
+    public function __construct(Mail $mail)
     {
-		$this->likeRepository 		= new LikeRepository;
-		$this->episodeRepository 	= new EpisodeRepository;
-	}
+        $this->mail               = $mail;
+        $this->middleware('auth');
+        $this->userRepository     	= new UserRepository;
+        $this->episodeRepository  	= new EpisodeRepository;
+        $this->channelRepository  	= new ChannelRepository;
+        $this->likeRepository  		= new LikeRepository;
+    }
 }

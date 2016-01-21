@@ -1,6 +1,5 @@
 
-$( document ).ready(function() {
-
+$(document).ready(function() {
 
 	$('.like-btn').click(function () {
 
@@ -19,8 +18,6 @@ $( document ).ready(function() {
 			like_count = Number(like_count) + 1;
 
 			$(this).text(like_count);
-
-			console.log(like_count);
 		}
 
 		if (status === "dislike")
@@ -34,8 +31,6 @@ $( document ).ready(function() {
 			like_count = Number(like_count) - 1;
 
 			$(this).text(like_count);
-
-			console.log(like_count);
 		}
 
 	})
@@ -62,8 +57,7 @@ $( document ).ready(function() {
 	        }
 	    }
 
-	    console.log(data)
-		ajaxCall( data )
+		ajaxCall(data)
 	}
 
 	/*
@@ -74,7 +68,7 @@ $( document ).ready(function() {
 		var
 		url 			= "/episode/unlike",
 		token 			= document.getElementById("token").value,
-		method 			= "delete";
+		method 			= "post";
 
 	  	var data =
 	    {
@@ -83,15 +77,13 @@ $( document ).ready(function() {
 	        parameter   	:
 	        {
 	          _token		: token,
-	          user_id		: document.getElementById('user_id').value,
-	          episode_id	: document.getElementById('episode_id').value
+	          user_id		: document.getElementById("user_id").value,
+	          episode_id	: document.getElementById("episode_id").value
 	        }
 	    }
 
-	    console.log(data)
-		ajaxCall( data )
+		ajaxCall(data)
 	}
-
 
 	/*
 	# Ajax
@@ -104,11 +96,10 @@ $( document ).ready(function() {
 			data	: data.parameter,
 			success: function (response)
 			{
-				console.log(response);
 			},
 			error: function()
 			{
-				alert('Are you sure you doing this the right way?');
+				alert("Are you sure you doing this the right way?");
 			},
 		});
 	}

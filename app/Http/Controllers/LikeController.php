@@ -15,15 +15,11 @@ class LikeController extends Controller
      */
     public function postLike(Request $request)
     {
-
-
         $episode 		= $this->episodeRepository->findEpisodeById($request['episode_id']);
         $episode->likes = $episode->likes + 1;
         $episode->save();
 
         $this->likeRepository->insertIntoLikesTable($request['user_id'], $request['episode_id']);
-
-        return $episode;
     }
 
     /**
@@ -32,13 +28,11 @@ class LikeController extends Controller
      */
     public function postUnlike(Request $request)
     {
-
     	$episode 		= $this->episodeRepository->findEpisodeById($request['episode_id']);
         $episode->likes = $episode->likes - 1;
         $episode->save();
 
-        $this->likeRepository->findLikeByUserOnEpisode($request['user_id'], $request['episode_id']);
-
+        return $this->likeRepository->findLikeByUserOnEpisode($request['user_id'], $request['episode_id']);
     }
 
 }
