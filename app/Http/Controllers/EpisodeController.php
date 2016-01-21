@@ -18,7 +18,7 @@ class EpisodeController extends Controller
     public function index()
     {
 
-        $episodes = Episode::with('like')->paginate(5);
+        $episodes = Episode::with('like')->paginate(1);
 
         $episodes->each(function ($episode, $key) {
 

@@ -2,8 +2,9 @@
 
 namespace Suyabay\Http\Repository;
 
-use Suyabay\Like;
+use DB;
 use Auth;
+use Suyabay\Like;
 
 class LikeRepository
 {
@@ -12,6 +13,14 @@ class LikeRepository
 	public function findLikeWhere($field, $value)
 	{
 		return Like::where($field, $value);
+	}
+
+	public function findLikeByUserOnEpisode($user_id, $episode_id)
+	{
+		  return DB::table('likes')
+                ->where('user_id', $user_id)
+                ->where('episode_id', $episode_id)
+                ->delete();
 	}
 
     public function insertIntoLikesTable($userid, $episodeid)

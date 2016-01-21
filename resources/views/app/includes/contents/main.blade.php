@@ -63,18 +63,26 @@
             <!-- start social -->
                 <div style="color:#999;">
                     <p>
+                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
+                        <input type="hidden" id="episode_id" value="{{ $episode->id }}">
+
                         <span style="padding-right:15px;">
-                            <i class="fa fa-compass"> 30</i>
+                            <i class="fa fa-compass like-count"> 30</i>
                         </span>
+
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart social-btn like-button-style like-btn"> {{ $episode->likes }}</i>
+                            <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}"> {{ $episode->likes }}</i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-facebook"></i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-twitter"></i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-google-plus"></i>
                         </span>
@@ -152,11 +160,6 @@
             <p>No Episodes to display</p>
         @endforelse
 
-        <!-- Pagination -->
-        <div class="row center-align fix">
-            <div class="center-align">
-                {!! $episodes->render() !!}
-            </div>
-        </div>
+
     </div>
 </div>

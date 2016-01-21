@@ -292,12 +292,12 @@ Route::get('/dashboard/episode/pending', [
     'as'   => 'comment'
 ]);
 
-Route::get('/episode/like', [
+Route::post('/episode/like', [
     'uses' => 'LikeController@postLike',
     'as'   => 'episode.like'
 ]);
 
-Route::get('/episode/unlike', [
+Route::delete('/episode/unlike', [
     'uses' => 'LikeController@postUnlike',
     'as'   => 'episode.unlike'
 ]);

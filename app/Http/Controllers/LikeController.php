@@ -13,15 +13,15 @@ class LikeController extends Controller
      * Like an Episode
      *
      */
-    public function postLike()
+    public function postLike(Request $request)
     {
-        //return view('app.pages.index');
 
-        $episode 		= $this->episodeRepository->findEpisodeById(5);
+
+        $episode 		= $this->episodeRepository->findEpisodeById($request['episode_id']);
         $episode->likes = $episode->likes + 1;
         $episode->save();
 
-        $this->likeRepository->insertIntoLikesTable(1, 5);
+        $this->likeRepository->insertIntoLikesTable($request['user_id'], $request['episode_id']);
 
         return $episode;
     }
@@ -30,13 +30,15 @@ class LikeController extends Controller
      * Unlike an Episode
      *
      */
-    public function postUnlike()
+    public function postUnlike(Request $request)
     {
-    	$episode 		= $this->episodeRepository->findEpisodeById(4);
+
+    	$episode 		= $this->episodeRepository->findEpisodeById($request['episode_id']);
         $episode->likes = $episode->likes - 1;
         $episode->save();
 
-        return $this->likeRepository->findLikeWhere('user_id', 1)->delete();
+        $this->likeRepository->findLikeByUserOnEpisode($request['user_id'], $request['episode_id']);
+
     }
 
 }
