@@ -12,6 +12,7 @@ class LikeRepository
 	/*Find like where*/
 	public function findLikeWhere($field, $value)
 	{
+
 		return Like::where($field, $value);
 	}
 
@@ -26,16 +27,19 @@ class LikeRepository
 
 	public function insertIntoLikesTable($userid, $episodeid)
 	{
+
 		Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
 	}
 
 	public function checkLikeStatusForUserOnEpisode($likes)
 	{
+
 		$is_like_episode = false;
 
 		foreach ($likes as $like) {
 
 			if($like->user_id == Auth::user()->id) {
+
 				$is_like_episode = true;
 				break;
 			}
@@ -47,10 +51,10 @@ class LikeRepository
 		}
 		else
 		{
+
 			$status = "like";
 		}
 
 		return $status;
 	}
-
 }
