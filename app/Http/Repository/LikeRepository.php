@@ -34,6 +34,7 @@ class LikeRepository
         $is_like_episode = false;
 
         foreach ($likes as $like) {
+
             if ($like->user_id == Auth::user()->id) {
                 $is_like_episode = true;
                 break;
