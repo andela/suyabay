@@ -151,7 +151,6 @@
             </div>
 
             </div>
-
         <!-- end card -->
 
         @empty
