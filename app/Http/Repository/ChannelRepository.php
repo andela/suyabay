@@ -6,7 +6,11 @@ use Suyabay\Channel;
 
 class ChannelRepository
 {
-
+    /**
+     * Find a particular channel by its id
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function find($id)
     {
         return Channel::find($id);
@@ -21,15 +25,26 @@ class ChannelRepository
     }
 
     /**
-     * [findChannel description]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+    * Find channel via field = value
+    */
+    public function findChannelWhere($field, $value)
+    {
+        return Channel::where($field, $value);
+    }
+
+    /**
+     * delete a channel based on $id
+     * @param  int $id
      */
     public function deleteChannel($id) 
     {
-        Channel::find($id)->delete();
+        $this->find($id)->delete();
     }
 
+    /**
+     * restore soft deleted chanel
+     * @param int $id
+     */
     public function restoreChannel($id)
     {
         Channel::withTrashed()

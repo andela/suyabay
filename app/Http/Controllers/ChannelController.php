@@ -30,7 +30,7 @@ class ChannelController extends Controller
 
     /**
      * Return all channels
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -41,7 +41,7 @@ class ChannelController extends Controller
 
     /**
      * Return only active channels
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function active()
     {
@@ -52,7 +52,7 @@ class ChannelController extends Controller
 
     /**
      * Return only deleted channels
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response
      */
     public function deleted()
     {
@@ -83,16 +83,19 @@ class ChannelController extends Controller
                 'subscription_count'   => 0,
                 'user_id'              => Auth::user()->id
             ]);
+
             $this->response =
             [
-                'message' => 'Channel created Successfully',
-                'status_code' => 200
+                'message'       => 'Channel created Successfully',
+                'status_code'   => 200
             ];
+
         } catch (QueryException $e) {
+            
             $this->response =
             [
-                'message' => 'Channel already exist',
-                'status_code' => 400
+                'message'       => 'Channel already exist',
+                'status_code'   => 400
             ];
         }
 
@@ -107,7 +110,7 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        $channels = Channel::where('id', $id)->first();
+        $channels = $this->channel->find($id);
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }
@@ -122,25 +125,25 @@ class ChannelController extends Controller
     public function update(Request $request)
     {
         try {
-            $updateChannel = Channel::where('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
+            $updateChannel = $this->channel->findChannelWhere('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
 
             if ($updateChannel) {
                 $this->response =
                 [
-                    'message' => 'Channel updated Successfully',
+                    'message'     => 'Channel updated Successfully',
                     'status_code' => 200
                 ];
             } else {
                 $this->response =
                 [
-                    'message' => 'Unable to update channel',
+                    'message'     => 'Unable to update channel',
                     'status_code' => 400
                 ];
             }
         } catch (QueryException $e) {
             $this->response =
             [
-                'message' => 'Channel name already exist',
+                'message'     => 'Channel name already exist',
                 'status_code' => 400
             ];
         }
@@ -178,8 +181,8 @@ class ChannelController extends Controller
      */
     public function showChannel($id)
     {
-        $channel    = $this->channel->find($id);
-        $episodes    = $this->episode->findEpisodeWhere('channel_id', $id);
+        $channel  = $this->channel->find($id);
+        $episodes = $this->episode->findEpisodeWhere('channel_id', $id);
         
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }
