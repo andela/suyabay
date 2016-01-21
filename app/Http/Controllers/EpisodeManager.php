@@ -108,6 +108,7 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
+        dd($this->uploadAudioFileToS3($request));
         $v = Validator::make($request->all(), [
             'title'         => 'required|min:3',
             'description'   => 'required|min:50',
@@ -119,9 +120,6 @@ class EpisodeManager extends Controller
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
-
-        $cover      = $this->getImageFileUrl($request->cover);
-        $podcast    = $this->uploadFileToS3($request);
 
         try {
             $podcast    = $this->uploadAudioFileToS3($request);
