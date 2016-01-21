@@ -18,13 +18,13 @@ class LikeRepository
 	/*Fine and Delete Episode liked by a user*/
 	public function findLikeByUserOnEpisode($user_id, $episode_id)
 	{
-		  return DB::table('likes')
-                ->where('user_id', $user_id)
-                ->where('episode_id', $episode_id)
-                ->delete();
+		return DB::table('likes')
+		->where('user_id', $user_id)
+		->where('episode_id', $episode_id)
+		->delete();
 	}
 
-    public function insertIntoLikesTable($userid, $episodeid)
+	public function insertIntoLikesTable($userid, $episodeid)
 	{
 		Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
 	}
