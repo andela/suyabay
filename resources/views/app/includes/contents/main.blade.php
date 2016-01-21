@@ -151,7 +151,7 @@
             </div>
 
             </div>
-        <!-- end card -->
+            <!-- end card -->
 
         @empty
             <p>No Episodes to display</p>

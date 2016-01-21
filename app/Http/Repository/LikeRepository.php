@@ -9,52 +9,53 @@ use Suyabay\Like;
 class LikeRepository
 {
 
-	/*Find like where*/
-	public function findLikeWhere($field, $value)
-	{
+    /*Find like where*/
+    public function findLikeWhere($field, $value)
+    {
 
-		return Like::where($field, $value);
-	}
+        return Like::where($field, $value);
+    }
 
-	/*Fine and Delete Episode liked by a user*/
-	public function findLikeByUserOnEpisode($user_id, $episode_id)
-	{
-		return DB::table('likes')
-		->where('user_id', $user_id)
-		->where('episode_id', $episode_id)
-		->delete();
-	}
+    /*Fine and Delete Episode liked by a user*/
+    public function findLikeByUserOnEpisode($user_id, $episode_id)
+    {
 
-	public function insertIntoLikesTable($userid, $episodeid)
-	{
+        return DB::table('likes')
+        ->where('user_id', $user_id)
+        ->where('episode_id', $episode_id)
+        ->delete();
 
-		Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
-	}
+    }
 
-	public function checkLikeStatusForUserOnEpisode($likes)
-	{
+    public function insertIntoLikesTable($userid, $episodeid)
+    {
 
-		$is_like_episode = false;
+        Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
+    }
 
-		foreach ($likes as $like) {
+    public function checkLikeStatusForUserOnEpisode($likes)
+    {
 
-			if($like->user_id == Auth::user()->id) {
+        $is_like_episode = false;
 
-				$is_like_episode = true;
-				break;
-			}
-		}
+        foreach ($likes as $like) {
 
-		if ($is_like_episode) {
+            if ($like->user_id == Auth::user()->id) {
 
-			$status = "dislike";
-		}
-		else
-		{
+                $is_like_episode = true;
+                break;
+            }
+        }
 
-			$status = "like";
-		}
+        if ($is_like_episode) {
 
-		return $status;
-	}
+            $status = "dislike";
+        }
+        else {
+
+            $status = "like";
+        }
+
+        return $status;
+    }
 }
