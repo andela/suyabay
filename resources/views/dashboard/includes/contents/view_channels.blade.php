@@ -31,10 +31,16 @@
                     <div class="count-deleted">{{ count($channel->episode) }}</div>
                 </td>
                 <td clss="data-grid">
-                    <div class="col s12 m6 red accent-2">
-                        <a href="" class="pin" title="Edit this episode">
-                            <i class="fa fa-undo"> Undo</i>
-                        </a>
+                    <div class="col s12 m6">
+                        <form action="{{ route('restore.channel', $channel->id )}}" method="post">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="submit" value ="undo"/>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </td>
             </tr>

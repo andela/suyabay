@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\ChannelRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
 
 class ChannelController extends Controller
 {
@@ -21,9 +22,10 @@ class ChannelController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function __construct(ChannelRepository $channel)
+    public function __construct(ChannelRepository $channel, EpisodeRepository $episode)
     {
         $this->channel = $channel;
+        $this->episode = $episode;
     }
 
     /**
@@ -159,14 +161,25 @@ class ChannelController extends Controller
     }
 
     /**
-     * [showChannel description]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * restore soft deleted channel
+     * @param int $id
+     */
+    public function restore($id)
+    {
+        $this->channel->restoreChannel($id);
+
+        return redirect('/dashboard/channels/all');
+    }
+
+    /**
+     * Return selected channel with all episodes under it
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function showChannel($id)
     {
-        $channel = Channel::find($id);
-        $episodes = Episode::where('channel_id', '=', $id)->get();
+        $channel    = $this->channel->find($id);
+        $episodes    = $this->episode->findEpisodeWhere('channel_id', $id);
         
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }

@@ -8320,7 +8320,6 @@ textarea.materialize-textarea {
   height: 3rem;
   width: 100%;
   font-size: 1rem;
-  margin: 0 0 15px 0;
   padding: 0;
   box-shadow: none;
   box-sizing: content-box;
@@ -8645,7 +8644,7 @@ textarea {
 textarea.materialize-textarea {
   overflow-y: hidden;
   /* prevents scroll bar flash */
-  padding: 1.6rem 0;
+  padding: 0;
   /* prevents text jump on Enter keypress */
   resize: none;
   min-height: 3rem;

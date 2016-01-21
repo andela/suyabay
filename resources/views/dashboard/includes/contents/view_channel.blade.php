@@ -16,7 +16,7 @@
                                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <input type="submit" value ="Delete" class="btn"/>
+                                        <input type="submit" value ="Delete"/>
                                     </div>
                                 </div>
                             </form>

@@ -7,6 +7,11 @@ use Suyabay\Channel;
 class ChannelRepository
 {
 
+    public function find($id)
+    {
+        return Channel::find($id);
+    }
+
     /**
     * Return all episode from the database
     */
@@ -23,5 +28,12 @@ class ChannelRepository
     public function deleteChannel($id) 
     {
         Channel::find($id)->delete();
+    }
+
+    public function restoreChannel($id)
+    {
+        Channel::withTrashed()
+        ->where('id', $id)
+        ->restore();
     }
 }

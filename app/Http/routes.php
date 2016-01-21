@@ -283,6 +283,11 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => 'delete.channel'
     ]);
 
+    Route::put('/channel/{id}', [
+        'uses' => 'ChannelController@restore',
+        'as'   => 'restore.channel'
+    ]);
+
 });
 
 /*
