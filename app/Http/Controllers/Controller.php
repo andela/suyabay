@@ -22,7 +22,6 @@ abstract class Controller extends BaseController
 
     public function __construct(Mail $mail)
     {
-
         $this->mail                 = $mail;
         $this->middleware('auth');
         $this->UserRepository       = new UserRepository;
