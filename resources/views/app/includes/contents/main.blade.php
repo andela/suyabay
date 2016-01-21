@@ -48,7 +48,7 @@
 
                 <!-- Feed the audio source -->
                 <div>
-                    <audio src="{!! asset($episode->audio_mp) !!}" preload="auto" />
+                    <audio src="{!! asset($episode->audio_mp3) !!}" preload="auto" />
                 </div>
 
                 <div>
