@@ -232,9 +232,21 @@ Route::group(['prefix' => 'dashboard'], function () {
 / Admin Channel
 /-------------------------------------------------------------------------------
 */
-    Route::get('/channels', [
+    Route::get('/channels/active', [
+        'uses' => 'ChannelController@active',
+        'as'   => 'active.channels',
+        'middleware'   => ['auth']
+    ]);
+
+    Route::get('/channels/deleted', [
+        'uses' => 'ChannelController@deleted',
+        'as'   => 'deleted.channels',
+        'middleware'   => ['auth']
+    ]);
+
+    Route::get('/channels/all', [
         'uses' => 'ChannelController@index',
-        'as'   => 'channels',
+        'as'   => 'all.channels',
         'middleware'   => ['auth']
     ]);
 
@@ -243,6 +255,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => 'channel-id-edit',
         'middleware'   => ['auth']
     ]);
+    
     Route::put('/channel/edit', [
         'uses' => 'ChannelController@update',
         'as'   => 'channel-edit'
@@ -253,19 +266,23 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => 'channel-create',
         'middleware'   => ['auth']
     ]);
+
     Route::post('/channel/create', [
         'uses' => 'ChannelController@processCreate',
         'as' => 'create.channel'
     ]);
+
+    Route::get('/channel/{id}', [
+            'uses' => 'ChannelController@showChannel',
+            'as'   => 'show.channel',
+            'middleware'   => ['auth']
+    ]);
+
     Route::delete('/channel/{id}', [
         'uses' => 'ChannelController@destroy',
-        'as'   => 'channel-id'
+        'as'   => 'delete.channel'
     ]);
-    Route::get('/channel/{id}', [
-        'uses' => 'ChannelController@showChannel',
-        'as'   => 'channel-show',
-        'middleware'   => ['auth']
-    ]);
+
 });
 
 /*

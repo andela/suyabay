@@ -165,7 +165,7 @@ function channelSuccessMessage (message)
             showLoaderOnConfirm: true,
             },
             function (){
-                document.location.href = "/dashboard/channels";
+                document.location.href = "/dashboard/channels/all";
             }
         );
 }

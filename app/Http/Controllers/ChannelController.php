@@ -2,12 +2,14 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\ChannelRepository;
 
 class ChannelController extends Controller
 {
@@ -18,9 +20,41 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct(ChannelRepository $channel)
+    {
+        $this->channel = $channel;
+    }
+
+    /**
+     * Return all channels
+     * @return [type] [description]
+     */
     public function index()
     {
+        $channels = Channel::withTrashed()->orderBy('id', 'desc')->paginate(10);
+
+        return view('dashboard.pages.view_channels', compact('channels'));
+    }
+
+    /**
+     * Return only active channels
+     * @return [type] [description]
+     */
+    public function active()
+    {
         $channels = Channel::orderBy('id', 'desc')->paginate(10);
+
+        return view('dashboard.pages.view_channels', compact('channels'));
+    }
+
+    /**
+     * Return only deleted channels
+     * @return [type] [description]
+     */
+    public function deleted()
+    {
+        $channels = Channel::onlyTrashed()->orderBy('id', 'desc')->paginate(10);
 
         return view('dashboard.pages.view_channels', compact('channels'));
     }
@@ -44,7 +78,8 @@ class ChannelController extends Controller
             $channel = Channel::create([
                 'channel_name'         => $request->name,
                 'channel_description'  => $request->description,
-                'subscription_count'   => 0
+                'subscription_count'   => 0,
+                'user_id'              => Auth::user()->id
             ]);
             $this->response =
             [
@@ -118,25 +153,16 @@ class ChannelController extends Controller
      */
     public function destroy($id)
     {
-        $deleteChannel = Channel::where('id', $id)->delete();
+        $this->channel->deleteChannel($id);
 
-        if ($deleteChannel) {
-            $this->response =
-            [
-                "message"       => "Channel deleted successfully",
-                "status_code"   => 200
-            ];
-        } else {
-            $this->response =
-            [
-                "message"       => "Unable to delete channel",
-                "status_code"   => 400
-            ];
-        }
-
-        return $this->response;
+        return redirect('/dashboard/channels/all');
     }
 
+    /**
+     * [showChannel description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function showChannel($id)
     {
         $channel = Channel::find($id);

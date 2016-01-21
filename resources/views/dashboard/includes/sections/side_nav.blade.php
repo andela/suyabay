@@ -56,8 +56,22 @@
 
                             <li>
                                 <div class="collapsible-header">
-                                    <i class="material-icons">visibility</i>
-                                    <a href="/dashboard/channels" class="collection-item">View<span class="badge"></span></a>
+                                    <i class="material-icons">done_all</i>
+                                    <a href="/dashboard/channels/active" class="collection-item">Active Channels<span class="badge"></span></a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">not_interested</i>
+                                    <a href="/dashboard/channels/deleted" class="collection-item">Deleted Channels<span class="badge"></span></a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">swap_vertical_circle</i>
+                                    <a href="/dashboard/channels/all" class="collection-item">View All<span class="badge"></span></a>
                                 </div>
                             </li>
                         </ul>

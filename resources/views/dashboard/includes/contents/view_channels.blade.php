@@ -9,25 +9,45 @@
         <p>no channels at this time. check back!</p>
     @else
         <table class="highlight centered">
-            <thead class="teal lighten-2">
+            <thead>
               <tr>
-                  <th>Title</th>
-                  <th>Created At</th>
-                  <th>Episodes</th>
+                  <th>TITLE</th>
+                  <th>STATUS</th>
+                  <th>EPISODES COUNT</th>
                   <th></th>
               </tr>
             </thead>
             <tbody>
             @foreach($channels as $channel)
+            @if($channel->deleted_at)
             <tr>
                 <td class="data-grid">
-                    <a href="/dashboard/channel/{{ $channel->id }}" class="capitalize" title="{{ $channel->channel_description }}">
+                    <p class="capitalize text-disabled">
                         <b>{{ $channel->channel_name }}</b>
                     </a>
                 </td>
-                <td class="data-grid">{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
+                <td class="data-grid">deleted</td>
                 <td class="data-grid"> 
-                    <div class="count">{{ count($channel->episode) }}</div>
+                    <div class="count-deleted">{{ count($channel->episode) }}</div>
+                </td>
+                <td clss="data-grid">
+                    <div class="col s12 m6 red accent-2">
+                        <a href="" class="pin" title="Edit this episode">
+                            <i class="fa fa-undo"> Undo</i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            @else
+            <tr>
+                <td class="data-grid">
+                    <a href="/dashboard/channel/{{ $channel->id }}" class="capitalize" title="Created by {{ $channel->user->username }}">
+                        <b>{{ $channel->channel_name }}</b>
+                    </a>
+                </td>
+                <td class="data-grid">active</td>
+                <td class="data-grid"> 
+                    <div class="count-active">{{ count($channel->episode) }}</div>
                 </td>
                 <td clss="data-grid">
                     <div class="col s12 m6 red accent-2">
@@ -38,6 +58,7 @@
                     </div>
                 </td>
             </tr>
+            @endif
             @endforeach
             </tbody>
         </table>   
