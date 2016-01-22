@@ -31,8 +31,7 @@ class ProfileController extends Controller
      */
     public function updateProfileSettings(Request $request)
     {
-        $input = $request->except('_token', 'url');
-        User::find(Auth::user()->id)->updateProfile($input);
+        $updateUser = User::where('id', Auth::user()->id)->update(['username' => $request->username]);
 
         return redirect('/profile/edit')->with('status', 'You have successfully updated your profile.');
     }
@@ -72,12 +71,12 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         // Compare old password
-        if (!Hash::check($request->get('old_password'), $user->password)) {
+        if (!Hash::check($request->old_password, $user->password)) {
             return redirect()->back()->withErrors(['old_password' => 'Old password incorrect']);
         }
 
         // Update current password
-        $user->password = Hash::make($request->get('password'));
+        $user->password = Hash::make($request->password);
         $user->save();
 
         return redirect()->back()->with('status', 'Password successfully updated');

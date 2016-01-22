@@ -4,24 +4,6 @@
 
 @section('content')
 
-<div>
-    @if(session('status'))
-        <div class="alert alert-success" style="text-align: center; margin-top: -20px; color: green">
-            {{ session('status') }}
-        </div>
-    @endif
-    <div class="alert alert-danger" style="text-align: center; margin-top: -20px; color: red">
-        @if (count($errors) > 0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-    </div>
-
-</div>
-
 <div class="row">
     <div class="col s3 hide-on-small-only white-text">
         void
@@ -30,7 +12,7 @@
     <div class="col s12 m6 l6">
 
         <div class="center-align fix">
-
+            @include('dashboard.includes.sections.alerts')
             <h2>Change Password</h2>
             <small>Enter your new password</small>
 
@@ -64,7 +46,7 @@
 
                 <div class="row container">
 
-                    <button type="submit" class="waves-effect waves-light btn right">
+                    <button type="submit" name="submit" class="waves-effect waves-light btn right">
                         Change password
                     </button>
 
