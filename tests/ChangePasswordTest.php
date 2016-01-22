@@ -9,28 +9,33 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class ChangePasswordTest extends TestCase
 {
 
+    use Suyabay\Tests\CreateData;
+
+
+    /*
+    * Assert logged in can access password reset form
+     */
     public function testChangePasswordRoute()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => 'jeffrey']);
+        $this->login();
+
         $this->visit('/profile/changepassword')
              ->seePageIs('/profile/changepassword');
     }
 
 
-    /**
-     * [testPasswordChange description]
-     * @return [type] [description]
+
+    /*
+    * Test that a success message is flashed for
+    * successful password resets
      */
     public function testPasswordChange()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => $user->username, 'password' => 'password']);
+        $this->login();
+
         $this->visit('/profile/changepassword')
              ->seePageIs('/profile/changepassword')
-             ->type('password', 'old_password')
+             ->type('test', 'old_password')
              ->type('newpassword', 'password')
              ->type('newpassword', 'password_confirmation')
              ->press('Change password')
@@ -38,11 +43,15 @@ class ChangePasswordTest extends TestCase
 
     }
 
+
+    /*
+    * Test error is thrown if the old password
+    * entered is wrong
+     */
     public function testInitialPasswordEnteredIsWrong()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => $user->username, 'password' => 'password']);
+        $this->login();
+
         $this->visit('/profile/changepassword')
              ->seePageIs('/profile/changepassword')
              ->type('wrongpassword', 'old_password')
@@ -53,11 +62,13 @@ class ChangePasswordTest extends TestCase
 
     }
 
+    /*
+    * Test error is thrown for passwords that do not match
+     */
     public function testPasswordDoesNotMatch()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => $user->username, 'password' => 'password']);
+        $this->login();
+
         $this->visit('/profile/changepassword')
              ->seePageIs('/profile/changepassword')
              ->type('password', 'old_password')

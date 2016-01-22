@@ -10,20 +10,26 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class UpdateProfileTest extends TestCase
 {
 
+    use Suyabay\Tests\CreateData;
+
+    /*
+    * Assert user can see the update profile form after a successful login
+     */
     public function testUserCanSeeUpdateProfileForm()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => 'jeffrey'])
-             ->visit('/profile/edit')
+        $this->login();
+
+        $this->visit('/profile/edit')
              ->seePageIs('/profile/edit');
     }
 
+    /*
+    * Assert logged in user can change their username
+     */
     public function testUserCanChangeUsername()
     {
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => 'jeffrey']);
+        $this->login();
+
         $this->visit('/profile/edit')
              ->seePageIs('/profile/edit')
              ->see('Update Profile')
@@ -32,19 +38,21 @@ class UpdateProfileTest extends TestCase
              ->seeinDatabase('users', ['username' => 'newname']);
     }
 
-
+    /*
+    * Assert avatar cannot be uploaded if path specified
+    * does not exist
+     */
     public function testPhotoCannotBeUploaded()
     {
         $absolutePathToFile = '/public/invalidpath/testpic.jpg';
-        $user = factory('Suyabay\User')->create();
-        $this->actingAs($user)
-             ->withSession(['username' => 'jeffrey'])
-             ->visit('/profile/edit')
+
+        $this->login();
+
+        $this->visit('/profile/edit')
              ->see('Avatar')
              ->attach($absolutePathToFile, 'avatar')
              ->press('upload')
-             ->seePageIs('/profile/edit')
-             ->see('Please select an image.');
-
+             ->seePageIs('/profile/edit');
     }
 }
+
