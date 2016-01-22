@@ -58,7 +58,8 @@ class AuthController extends Controller
             'username'      => $data['username'],
             'password'      => bcrypt($data['password']),
             'facebookID'    => $data['facebook'],
-            'twitterID'     => $data['twitter']
+            'twitterID'     => $data['twitter'],
+            'avatar'        => null
         ]);
 
         /*Send Email*/
@@ -169,12 +170,16 @@ class AuthController extends Controller
     public function getLogout()
     {
         /*
-        # Update user acive column to 0 when user successfully signout
+        * Update user acive column to 0 when user successfully signout
         */
-        User::where('id', Auth::user()->id)->update(['active' => 0]);
+        $logout = User::where('id', Auth::user()->id)->update(['active' => 0]);
 
-        Auth::logout();
+        if ( $logout ) 
+        {
 
-        return redirect('/');
+            Auth::logout();
+
+            return redirect('/');
+        }
     }
 }

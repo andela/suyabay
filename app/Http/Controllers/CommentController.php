@@ -10,19 +10,29 @@ use Suyabay\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 
-	protected function create(array $data)
+    /**
+    * Add comment to database
+    */
+    protected function create(array $data)
     {
         Comment::create([
             'comments' 		=> $data['comment'],
             'user_id' 		=> $data['user_id'],
             'episode_id' 	=> $data['episode_id']
         ]);
-	}
+    }
 
-	public function postComment(Request $request)
-	{
-		$this->create($request->all());
-		return redirect('/');
-	}
+    /**
+    * Process comment creation
+    */
+    public function postComment(Request $request)
+    {
+        $this->create($request->all());
 
+        return $response =
+            [
+                'message' => 'Comment created Successfully',
+                'status_code' => 200
+            ];
+    }
 }
