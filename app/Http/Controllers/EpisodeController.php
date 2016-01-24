@@ -21,7 +21,7 @@ class EpisodeController extends Controller
 
         $episodes->each(function ($episode, $key) {
 
-            $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
+            $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->likes);
 
         });
 
