@@ -44,8 +44,8 @@
         <!-- Custom js -->
         <script src = "{!! asset('/js/main.js') !!}"></script>
         <script src = "{!! secure_asset('/js/main.js') !!}"></script>
-        <script src="{!! asset('/js/audio.min.js') !!}"></script>
-        <script src="{!! asset('/js/socialmediashare.js') !!}"></script>
+        <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
+        <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>
 
     </head>
     <body>
