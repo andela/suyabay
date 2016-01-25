@@ -24,9 +24,9 @@ abstract class Controller extends BaseController
     {
         $this->mail                 = $mail;
         $this->middleware('auth');
-        $this->UserRepository       = new UserRepository;
+        $this->userRepository       = new UserRepository;
         $this->episodeRepository    = new EpisodeRepository;
-        $this->ChannelRepository    = new ChannelRepository;
-        $this->LikeRepository       = new LikeRepository;
+        $this->channelRepository    = new ChannelRepository;
+        $this->likeRepository       = new LikeRepository;
     }
 }
