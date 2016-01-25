@@ -362,8 +362,14 @@ Navigations Styles
 }
 
 
+/*Show liked action on button*/
 .dislike {
-    color: #2A2AE8;
+    color: #26a69a;
+}
+
+/*Show dislike action on button*/
+.like {
+    color: #999;
 }
 
 .social-btn {
@@ -373,8 +379,4 @@ Navigations Styles
 .social-btn:active {
     transform: scale(1.20);
     transition: 0.10s;
-}
-
-.like {
-    color: #999;
 }
