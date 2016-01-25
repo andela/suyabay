@@ -19,7 +19,7 @@ class Like extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'episode_id'];
+    protected $fillable = ['user_id', 'episode_id', 'created_at', 'updated_at'];
 
     public function episode()
     {

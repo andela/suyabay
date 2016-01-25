@@ -26,7 +26,6 @@ class CreateLikesTable extends Migration
                     ->references('id')
                     ->on('episodes');
 
-
         });
 
 
