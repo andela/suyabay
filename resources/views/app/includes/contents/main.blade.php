@@ -75,9 +75,6 @@
                         <span style="padding-right:15px;">
                             <a href="#" id="twtr-share" class="fa fa-twitter twtr-share" data-desc="{{ $episode->episode_description }}" data-img="{!! asset($episode->image) !!}" data-audio="{!! asset($episode->audio_mp3) !!}"></a>
                         </span>
-                        <span style="padding-right:15px;">
-                            <i class="fa fa-google-plus gplus-share"></i>
-                        </span>
                     </p>
                 </div>
             <div class="col s12 m6 l12 card-social">
