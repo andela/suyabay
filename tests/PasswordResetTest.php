@@ -27,7 +27,7 @@ class PasswordResetTest extends TestCase
      */
     public function testPasswordResetInput()
     {
-        $this->createUser();
+        $this->createUser(1);
         $this->visit('/passwordreset')
              ->type('test@test.com', 'email')
              ->press('Reset')

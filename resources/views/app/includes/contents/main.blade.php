@@ -68,7 +68,7 @@
                         <input type="hidden" id="episode_id" value="{{ $episode->id }}">
 
                         <span style="padding-right:15px;">
-                            <i class="fa fa-compass like-count"> 30</i>
+                            <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>
                         </span>
 
                         <span style="padding-right:15px;">
@@ -97,21 +97,40 @@
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
+
+                                <li class="load_comment{{ $episode->id }}">
+                                @foreach ( $episode->comment as $comment  )
+                                    <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
+                                        <div class="row">
+
+                                            <div class="col s2">
+                                                <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
+                                            </div>
+                                            <div class="col s10">
+                                                <div class="textarea-wrapper" placeholder="">
+                                                    {{$comment->comments}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                </li>
+
                                 @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
-                                                <img src="https://goo.gl/IJSkVB" alt="" class="circle">
+                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>
-                                            <form action="/comment" method="POST">
+                                            <form id="submit_comment{{ $episode->id }}" action="/comment" method="POST">
                                                 <div class="file-field input-field">
-                                                    <input hidden="true" type="text" name="_token" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="user_id" value="{{ Auth::user()->id }}">
-                                                    <input hidden="true" type="text" name="episode_id" value="{{ $episode->id }}">
-                                                    <div class="file-path-wrapper col s9 m10">
-                                                        <input name="comment" id="comment-field" class="file-path validate" type="text" style="margin-left:20px;">
+                                                    <input hidden="true" type="text" name="_token" id="_token{{ $episode->id }}" value="{{ csrf_token() }}">
+                                                    <input hidden="true" type="text" name="user_id" id="user_id{{ $episode->id }}" value="{{ Auth::user()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" id="episode_id{{ $episode->id }}" value="{{ $episode->id }}">
+                                                    <div class="file-path-wrapper input-field col s10 m10">
+                                                        <input name="comment" id="comment-field{{ $episode->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button class="btn">Comment</button>
+                                                    <button type="submit" data-id="{{ $episode->id }}" data-token="{{ csrf_token() }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit"class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -128,21 +147,6 @@
                                     </li>
                                 @endif
 
-                                @foreach ( $episode->comment as $comment  )
-                                    <li class="collection-item avatar">
-                                        <div class="row">
-
-                                            <div class="col s2">
-                                                <img src="https://goo.gl/lVRGjF" alt="" class="circle">
-                                            </div>
-                                            <div class="col s10">
-                                                <div class="textarea-wrapper" placeholder="">
-                                                    {{$comment->comments}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
                                 </div>
                             </li>
                         </ul>
