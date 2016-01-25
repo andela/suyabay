@@ -151,7 +151,7 @@ class ChannelController extends Controller
     {
         $channel = Channel::find($id);
         $episodes = Episode::where('channel_id', '=', $id)->get();
-        
+
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }
 }

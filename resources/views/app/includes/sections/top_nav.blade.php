@@ -32,7 +32,10 @@
 
                 <li>
                     @if (  Auth::check() )
-                        <a class="waves-effect" href="#">{{ Auth::user()->username }}</a>
+                        <ul id="settings" class="dropdown-content">
+                          <li><a href="/profile/edit">Settings</a></li>
+                        </ul>
+                        <a class="waves-effect dropdown-button" href="#" data-activates="settings">{{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
 
                         @can('see-dashboard', Auth::user()->role->name )
                             <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
@@ -49,9 +52,6 @@
                         <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
                         <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
                     @endif
-
-
-
                 </li>
             </ul>
 
