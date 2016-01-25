@@ -50,7 +50,7 @@ class ProfileController extends Controller
 
             return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
         } else {
-            return redirect('/profile/edit')->with('status', 'Please select an image.');
+            return redirect('/profile/edit')->withErrors('Please select an image.');
         }
     }
 
