@@ -43,8 +43,7 @@ class ProfileController extends Controller
     {
         if ($request->hasFile('avatar')) {
             $img = $request->file('avatar');
-
-            Cloudder::upload($img);
+            Cloudder::upload($img, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
             $imgurl = Cloudder::getResult()['url'];
 
             User::find(Auth::user()->id)->updateAvatar($imgurl);
