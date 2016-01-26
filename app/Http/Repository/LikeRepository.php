@@ -42,7 +42,6 @@ class LikeRepository
 
             if ($like->user_id == Auth::user()->id) {
                 $is_like_episode = true;
-
                 break;
             }
         }
