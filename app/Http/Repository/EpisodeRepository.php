@@ -46,4 +46,24 @@ class EpisodeRepository
     {
         return $this->getAllEpisodes()->where('status', 1);
     }
+
+    /**
+     * [createEpisode description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function createEpisode($data)
+    {
+        Episode::create($data);
+    }
+
+    /**
+     * [updateEpisode description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function updateEpisode($id, $field, $value)
+    {
+        $this->findEpisodeById($id)->update([$field => $value]);
+    }
 }

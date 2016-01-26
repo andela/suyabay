@@ -47,8 +47,6 @@ class ChannelRepository
      */
     public function restoreChannel($id)
     {
-        Channel::withTrashed()
-        ->where('id', $id)
-        ->restore();
+        Channel::withTrashed()->where('id', $id)->restore();
     }
 }

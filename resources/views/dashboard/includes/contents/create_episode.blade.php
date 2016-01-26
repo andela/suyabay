@@ -3,7 +3,7 @@
         @include('dashboard.includes.sections.alerts')
         <h4>Create Episode</h4>
         <div class="row">
-            <form class="col s12" action="/dashboard/episode/create" method="POST"
+            <form id="create_episode" class="col s12" action="/dashboard/episode/create" method="POST"
                     enctype="multipart/form-data" files="true">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 

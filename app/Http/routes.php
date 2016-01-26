@@ -145,8 +145,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     // });
 
     Route::get('/', [
-        'uses' => 'EpisodeManager@index',
-        'as' => 'dashboard/'
+        'uses'  => 'EpisodeManager@stats',
+        'as'    => 'stats'
     ]);
 
     Route::get('/users', function () {
@@ -290,6 +290,18 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses'          => 'ChannelController@restore',
         'as'            => 'restore.channel',
         'middleware'    => ['auth']
+    ]);
+
+    Route::get('/channel/swap/{id}', [
+        'uses'          => 'ChannelController@swap',
+        'as'            => 'swap.episodes',
+        'middleware'    => ['auth'],
+    ]);
+
+    Route::post('/channel/swap/{id}', [
+        'uses'          => 'ChannelController@ProcessSwap',
+        'as'            => 'swap.episode.to',
+        'middleware'    => 'auth'
     ]);
 
 });

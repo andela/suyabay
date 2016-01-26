@@ -6,7 +6,7 @@
     </div>
     <div class="row">
     @if(count($channels) === 0)
-        <p>no channels at this time. check back!</p>
+        <p>No content in this category.</p>
     @else
         <table class="highlight centered">
             <thead>
@@ -37,7 +37,7 @@
                             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <input type="submit" value ="undo"/>
+                                    <input type="submit" value ="restore"/>
                                 </div>
                             </div>
                         </form>
@@ -56,7 +56,7 @@
                     <div class="count-active">{{ count($channel->episode) }}</div>
                 </td>
                 <td clss="data-grid">
-                    <div class="col s12 m6 red accent-2">
+                    <div class="col s12 m6 teal">
                         <a href="/dashboard/channel/{{ $channel->id }}/edit" class="pin" title="Edit this episode">
                             <i class="fa fa-edit"></i> 
                                 Edit

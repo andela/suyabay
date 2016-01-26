@@ -3,12 +3,12 @@ $(document).ready(function(){
     /**
      * onClick event to handle Channel delete
      */
-    $(".delete_channel", this).on("click", function () {
-        var id    = $(this).data("id");
-        var url   = "/dashboard/channel/"+id;
-        var name  = $(this).data("name");
-        var token = $(this).data("token");
-        var data  =  {
+    $("#delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
+        var token   = $(this).data("token");
+        var name    = $(this).data("name");
+        var data    =  {
             url : url,
             parameter: {
                 _token       : token,
@@ -16,7 +16,7 @@ $(document).ready(function(){
                 channel_name : name
             }
         }
-        confirmDelete(data.url, data.parameter, data.parameter.channel_name );
+        confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
 
         return false;
     });
@@ -40,6 +40,29 @@ $(document).ready(function(){
                 }
             }
         processAjax("POST", data.url, data.parameter, data.parameter.channel_name );
+
+        return false;
+    });
+
+    /**
+     * onSubmit swap channels
+     */
+    $("#swap_episodes").submit( function () {
+        var id      = $("#channel_id").val();
+        var url     = "/dashboard/channel/swap/"+id;
+        var new_channel_id = $("#new_channel_id").val();
+        var token   = $("#token").val();
+        var data    =
+            {
+                parameter  :
+                {
+                    _token        : token,
+                    channel_id              : id,
+                    new_channel_id          : new_channel_id
+                }
+            }
+
+        processAjax("POST", url, data.parameter, data.parameter.new_channel_id);
 
         return false;
     });
@@ -126,25 +149,31 @@ $(document).ready(function(){
  * @param  parameter
  * @param  name
  */
-function confirmDelete (url, parameter, name)
+function confirmDelete (url, parameter, id, name)
 {
     swal({
-        title: "Delete "+ name +"?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
+        title: "Confirm Delete",
+        text: "If this Channel has Episodes, deleting it implies deleting all the Episodes under it. You can swap it's episodes to another Channel or go ahead and just delete it.",
+        type: "info",
         showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel plx!",
+        confirmButtonColor: "#009688",
+        confirmButtonText: "Swap & Delete",
+        cancelButtonText: "Just Delete it!",
+        allowOutsideClick:true,
         closeOnConfirm: false,
-        closeOnCancel: false
+        closeOnCancel: false,
+        animation:true,
+        showLoaderOnConfirm:true
+
     },
+
     function ( isConfirm )
     {
-        if( isConfirm ) {
-            processAjax("DELETE", url, parameter, name);
+        if ( isConfirm) {
+            document.location.href = "/dashboard/channel/swap/"+id;    
         } else {
-            cancelDeleteMessage( name );
+            processAjax("DELETE", url, parameter, name);
+            document.location.href = "/dashboard/channels/all";
         }
     });
 }
@@ -196,8 +225,8 @@ function userSuccessMessage (message)
  */
 function cancelDeleteMessage (name)
 {
-    swal("Cancelled", "Channel " + name + " is still available", "error");
-}
+    document.location.href = "/dashboard/channels/all";
+ }
 
 /**
  * errorInviteUser modal message
@@ -216,7 +245,6 @@ function errorMessage (message)
  */
 function processAjax (action, url, parameter, name)
 {
-
     $.ajax({
         url: url,
         type: action,
@@ -232,7 +260,7 @@ function processAjax (action, url, parameter, name)
                     return userSuccessMessage( response.message );
                     break;
 
-                default: errorMessage( response.message );
+                default: console.log(response);//errorMessage( response.message );
             }
         }
     });

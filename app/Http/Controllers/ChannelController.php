@@ -91,7 +91,7 @@ class ChannelController extends Controller
             ];
 
         } catch (QueryException $e) {
-            
+
             $this->response =
             [
                 'message'       => 'Channel already exist',
@@ -153,14 +153,31 @@ class ChannelController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  int  $id
      */
     public function destroy($id)
     {
-        $this->channel->deleteChannel($id);
+        try {
+            $this->channel->deleteChannel($id);
+            Episode::where('channel_id', $id)->update(['flag' => 1]);
 
-        return redirect('/dashboard/channels/all');
+            $this->response =
+            [
+                'message'     => 'Channel deleted Successfully',
+                'status_code' => 200
+            ];
+
+        } catch (QueryException $e) {
+
+            $this->response =
+            [
+                'message'     => $e->getMessage(),
+                'status_code' => 400
+            ];
+
+        }
+
+        return $this->response;
     }
 
     /**
@@ -170,8 +187,9 @@ class ChannelController extends Controller
     public function restore($id)
     {
         $this->channel->restoreChannel($id);
+        Episode::where('channel_id', $id)->update(['flag' => 0]);
 
-        return redirect('/dashboard/channels/all');
+        return redirect()->back();
     }
 
     /**
@@ -185,5 +203,49 @@ class ChannelController extends Controller
         $episodes = $this->episode->findEpisodeWhere('channel_id', $id);
         
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
+    }
+
+    /**
+     * return view to swap episodes to another channel
+     * @param int $id
+     * @return 
+     */
+    public function swap($id)
+    {
+        $channels   = Channel::where('id', '!=', $id)->get();
+        $channel    = Channel::where('id', $id)->first();
+
+        return view('dashboard.pages.swap_episodes', compact('channels', 'id', 'channel'));
+    }
+
+    /**
+     * move episodes from source to destination
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */ 
+    
+    public function processSwap(Request $request)
+    {
+        try {
+            $swap = Episode::where('channel_id', $request->channel_id)->update(['channel_id' => $request->new_channel_id]);
+            $this->channel->deleteChannel($request->channel_id);
+            Episode::where('channel_id', $request->channel_id)->update(['flag' => 1]);
+
+            $this->response =
+            [
+                'message'     => 'Episodes swapped Successfully!',
+                'status_code' => 200
+            ];
+
+        } catch (QueryException $e) {
+
+            $this->response =
+            [
+                'message'       => 'Channel already exist',
+                'status_code'   => 400
+            ];
+        }
+
+        return $this->response;
     }
 }

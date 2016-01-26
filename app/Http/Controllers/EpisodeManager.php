@@ -18,6 +18,7 @@ use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Repository\EpisodeRepository;
+use Suyabay\Http\Repository\FilesRepository;
 use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
@@ -43,11 +44,18 @@ class EpisodeManager extends Controller
 
     public function __construct(Mail $mail)
     {
-        $this->mail               = $mail;
         $this->middleware('auth');
-        $this->userRepository     = new UserRepository;
-        $this->episodeRepository  = new EpisodeRepository;
-        $this->channelRepository  = new ChannelRepository;
+        $this->mail                 = $mail;
+        $this->userRepository       = new UserRepository;
+        $this->episodeRepository    = new EpisodeRepository;
+        $this->channelRepository    = new ChannelRepository;
+        $this->upload               = new FilesRepository;
+    }
+
+    public function index()
+    {
+        $episodes = $this->episodeRepository->getAllEpisodes();
+        return view('dashboard.pages.view_episodes', compact('episodes'));
     }
 
     /**
@@ -55,7 +63,7 @@ class EpisodeManager extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function stats()
     {
         $data = [
 
@@ -76,7 +84,7 @@ class EpisodeManager extends Controller
             "channels"  => $this->channelRepository->getAllChannels()
         ];
 
-        return view('dashboard.pages.index', compact('data'));
+        return view('dashboard.pages.stats', compact('data'));
     }
 
     /**
@@ -108,116 +116,28 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        dd($this->uploadAudioFileToS3($request));
-        $v = Validator::make($request->all(), [
+        $this->validate($request, [
             'title'         => 'required|min:3',
-            'description'   => 'required|min:50',
+            'description'   => 'required',
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
         ]);
 
-        if ($v->fails()) {
-            return redirect()->back()->withErrors($v->errors());
-        }
+        $data    = [
+            'episode_name' => $request->title,
+            'episode_description' => $request->description,
+            'channel_id' => $request->channel,
+            'image' => $this->upload->imageToCloudinary($request->cover),
+            'audio_mp3' => $this->upload->videoToCloudinary($request->podcast),
+            'view_count' => 0,
+            'status' => 0
+        ];
 
-        try {
-            $podcast    = $this->uploadAudioFileToS3($request);
-            $cover      = $this->uploadImageFileToCloudinary($request->cover);
-        } catch (S3 $e) {
-            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
-        } catch (AWS $e) {
-            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
-        }
+        $this->episodeRepository->createEpisode($data);
 
-        Episode::create([
-            'episode_name'         => $request->title,
-            'episode_description'  => $request->description,
-            'image'                => $cover,
-            'audio_mp3'            => $podcast,
-            'view_count'           => 0,
-            'channel_id'           => $request->channel,
-            'status'               => 0
-        ]);
-
-        return redirect('dashboard.episode.create')
-        ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
+        return redirect()->back()->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
     }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
-    {
-
-        $episode = $this->episodeRepository->findEpisodeById($id);
-
-        return view('dashboard.pages.edit_episode')->with('episode', $episode);
-
-        $episode = Episode::find($id);
-        $channels = Channel::all();
-
-        return view('dashboard.pages.edit_episode')
-        ->with('episode', $episode)->with('channels', $channels);
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-        try {
-            $episode                        = Episode::find($id);
-            $episode->channel_id            = $request->channel;
-            $episode->episode_name          = $request->title;
-            $episode->episode_description   = $request->description;
-            $episode->save();
-
-            //redirect
-            return back()->with('status', 'Updated!');
-        } catch (QueryException $e) {
-            return back()->with('status', $e->getMessage());
-        }
-    }
-
-    /**
-    * Upload image to cloudinary
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return
-    */
-    protected function uploadImageFileToCloudinary($cover)
-    {
-        Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
-        $coverUrl = Cloudder::getResult()['url'];
-
-        return $coverUrl;
-    }
-
-    /**
-    * Upload audio to amazon S3
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return
-    */
-    public function uploadAudioFileToS3(Request $request)
-    {
-        $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
-        $s3 = Storage::disk('s3');
-
-        // Upload large files
-
-        $s3->put($fileName, fopen($request->podcast, 'r+'));
-
-        return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
-    }
-
 
     public function destroy(Request $request)
     {
@@ -234,7 +154,7 @@ class EpisodeManager extends Controller
         if ($episode  === 0) {
             $data = [
                 "status"    => 401,
-                "message"   => "episode can not be deleted"
+                "message"   => "Episode can not be deleted"
             ];
         }
 

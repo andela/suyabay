@@ -4,7 +4,7 @@
     <div class="col s3">
         <div class="hide-on-small-only">
             <div class="collection">
-                <a href="#" class="collection-item">Channels <span class="new badge">4</span></a>
+                <a href="#" class="collection-item">Channels <span class="new badge">{{ count($channels) }}</span></a>
                 <a href="#" class="collection-item">Favourites <span class="new badge">0</span></a>
                 <a href="#" class="collection-item" id="view-all-episodes">See all episodes
                     <span class="badge">10+</span>
@@ -35,7 +35,7 @@
                     <small>
                         {{ date('F d, Y', strtotime($episode->created_at)) }}
                         <span class="badge left teal lighten-2">
-                            {{ $episode->channel->channel_name}}
+                            {{ $episode->channel->channel_name }}
                         </span>
                     </small>
                 </div>

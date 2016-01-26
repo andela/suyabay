@@ -15,14 +15,23 @@ class Episode extends Model
                             'image',
                             'audio_mp3',
                             'channel_id',
-                            'status'
+                            'status',
+                            'flag'
                             ];
 
+    /**
+     * [channel description]
+     * @return [type] [description]
+     */
     public function channel()
     {
         return $this->belongsTo('Suyabay\Channel');
     }
 
+    /**
+     * [comment description]
+     * @return [type] [description]
+     */
     public function comment()
     {
         return $this->hasMany('Suyabay\Comment');

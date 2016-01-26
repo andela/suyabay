@@ -11,15 +11,10 @@
                     <th data-field="id">{!! $channel->channel_name !!}
                         <div class="count-active">{{ count($channel->episode) }} episodes</div>
                         <div class="right">
-                            <form action="{{ route('delete.channel', $channel->id )}}" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <input type="submit" value ="Delete"/>
-                                    </div>
-                                </div>
-                            </form>
+                            <a href="#" id="delete_channel" data-token="{{ csrf_token() }}" data-id="{{ $channel->id }}" data-name="{{ $channel->title }}">
+                                <i class="fa fa-trash-o"></i>
+                                DELETE
+                            </a>
                         </div>
                     </th>
                 </tr>
