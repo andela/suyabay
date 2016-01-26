@@ -58,4 +58,11 @@ class User extends Model implements AuthenticatableContract,
     {
         return (! is_null($this->avatar)) ? $this->avatar : $this->getAvatarFromGravatar();
     }
+
+    //upload custom avatar
+    public function updateAvatar($img)
+    {
+        $this->avatar = $img;
+        $this->save();
+    }
 }

@@ -45,7 +45,7 @@ class ChannelController extends Controller
      */
     public function active()
     {
-        $channels = Channel::orderBy('id', 'desc')->paginate(10);
+        $channels = $this->channel->getOrderedChannels('id', 'desc')->paginate(10);
 
         return view('dashboard.pages.view_channels', compact('channels'));
     }
@@ -80,8 +80,8 @@ class ChannelController extends Controller
             $channel = Channel::create([
                 'channel_name'         => $request->name,
                 'channel_description'  => $request->description,
-                'subscription_count'   => 0,
-                'user_id'              => Auth::user()->id
+                'user_id'              => Auth::user()->id,
+                'subscription_count'   => 0
             ]);
 
             $this->response =
@@ -110,7 +110,7 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        $channels = $this->channel->find($id);
+        $channels = $this->channel->getChannelByField('id', $id)->first();
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }
@@ -199,8 +199,8 @@ class ChannelController extends Controller
      */
     public function showChannel($id)
     {
-        $channel  = $this->channel->find($id);
-        $episodes = $this->episode->findEpisodeWhere('channel_id', $id);
+        $channel = Channel::find($id);
+        $episodes = Episode::where('channel_id', '=', $id)->get();
         
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }

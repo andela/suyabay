@@ -13,19 +13,21 @@
 
 $factory->define(Suyabay\User::class, function (Faker\Generator $faker) {
     return [
-        'name'           => $faker->name,
+        'username'       => $faker->name,
         'email'          => $faker->email,
         'password'       => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'role_id'        => 1,
     ];
 });
 
 $factory->define(Suyabay\Channel::class, function (Faker\Generator $faker) {
     return [
+        'id'                  => 1,
         'channel_name'        => $faker->name,
         'channel_description' => $faker->sentence,
         'subscription_count'  => 10,
-        "user_id"           => 1
+        "user_id"             => 1
     ];
 });
 

@@ -7,11 +7,6 @@
 
 */
 
-Route::get('/', [
-    'uses' => 'IndexController@index',
-    'as'   => 'home'
-]);
-
 Route::get('/', 'EpisodeController@index');
 
 /*
@@ -331,7 +326,32 @@ Route::post('/comment', [
     'as'   => 'comment'
 ]);
 
-Route::get('/dashboard/episode/pending', [
-    'uses' =>'EpisodeManager@pendingEpisode',
-    'as'   => 'comment'
+/*
+/-------------------------------------------------------------------------------
+/ Update user profile
+/-------------------------------------------------------------------------------
+*/
+
+
+Route::get('/profile/edit', [
+    'uses' => 'ProfileController@getProfileSettings',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/profile/changepassword', [
+    'uses' => 'ProfileController@getChangePassword',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/avatar/setting', [
+    'uses' => 'ProfileController@postAvatarSetting',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
+
+Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
+
+Route::controllers([
+    'password' => 'Auth\PasswordController',
 ]);

@@ -9,7 +9,7 @@ class NewPasswordTest extends TestCase
 
     public function resetData()
     {
-        $this->createUser();
+        $this->createUser(1);
         $this->createPasswordResetUser();
         $user = Password_reset::whereEmail('test@test.com')->first();
 

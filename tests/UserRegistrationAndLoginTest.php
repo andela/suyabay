@@ -7,33 +7,25 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserRegistrationAndLoginTest extends TestCase
-{
+{   
+    use Suyabay\Tests\CreateData;
+
     /**
-     * A basic test example.
-     *
-     * @return void
+     * Test for creating a user
      */
-    protected function createUser()
-    {
-        $user = User::create([
-            'username'  => 'test',
-            'password'  => 'test',
-            'email'     => 'test@test.com'
-        ]);
-
-        return $user;
-    }
-
     public function testForCreatingOneUser()
     {
-        $this->createUser();
+        $this->createUser(1);
         $user = User::all();
         $this->assertEquals(1, sizeof($user));
     }
 
+    /**
+     * Test Login found user record
+     */
     public function testLoginFoundOneRecord()
     {
-        $this->createUser();
+        $this->createUser(1);
         $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
         $this->assertEquals(1, sizeof($user));
     }

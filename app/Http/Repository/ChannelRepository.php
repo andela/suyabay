@@ -17,7 +17,7 @@ class ChannelRepository
     }
 
     /**
-    * Return all episode from the database
+    * Return all channel from the database
     */
     public function getAllChannels()
     {
@@ -49,4 +49,12 @@ class ChannelRepository
     {
         Channel::withTrashed()->where('id', $id)->restore();
     }
+
+    /**
+     */
+    public function getOrderedChannels($value, $order_by)
+    {
+        return Channel::orderBy($value, $order_by);
+    }
+
 }

@@ -11,8 +11,8 @@ class EpisodeTableSeeder extends Seeder
      */
     public function run()
     {
-        //factory(Suyabay\Channel::class, 1)->create();
+        factory(Suyabay\Channel::class, 1)->create();
         factory(Suyabay\Episode::class, 10)->create();
-        //factory(Suyabay\Comment::class, 0)->create();
+        factory(Suyabay\Comment::class, 0)->create();
     }
 }

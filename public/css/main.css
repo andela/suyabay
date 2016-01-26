@@ -205,20 +205,16 @@ a:hover.capitalize {
 }
 
 .textarea-wrapper {
-    color: rgba(0,39,59,.35);
-    line-height: 30px;
+    color: rgba(4, 4, 4, 0.35);
     position: absolute;
-    white-space: nowrap;
     width: 90%;
-    height: auto;
     overflow: hidden;
     cursor: text;
     margin: 0 0 0 20px;
     padding-left: 10px;
-    background: #fff;
-    border: 2px solid #cbd2d6;
-    border: 2px solid rgba(0,39,59,.2);
     border-radius: 4px;
+    height: 70px;
+    overflow: hidden;
 }
 
 .bubble-content {
@@ -377,7 +373,3 @@ Navigations Styles
         display: none;
     }
 }
-
-
-
-
