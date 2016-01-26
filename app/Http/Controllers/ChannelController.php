@@ -46,7 +46,7 @@ class ChannelController extends Controller
 
     public function channelList()
     {
-        $channels = Channel::all();
+        $channels = $this->channelRepository->getAllChannels();
 
         return view('app.pages.channel', compact('channels'));
     }
