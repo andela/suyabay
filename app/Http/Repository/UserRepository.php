@@ -30,4 +30,9 @@ class UserRepository
     {
         return $this->getAllUsers()->where('active', 0);
     }
+
+    public function findUser($id)
+    {
+        return User::find($id);
+    }
 }
