@@ -2,7 +2,8 @@
 
 namespace Suyabay\Http\Controllers;
 
-use Suyabay\Role;
+use Suyabay\Episode;
+use Suyabay\Channel;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
@@ -17,7 +18,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('app.pages.index');
+        $episodes = Episode::paginate(5);
+        $channels = Channel::all();
+        
+        return view('app.pages.index', compact('episodes', 'channels'));
     }
 
 }

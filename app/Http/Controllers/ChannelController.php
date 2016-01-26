@@ -44,6 +44,13 @@ class ChannelController extends Controller
         return view('dashboard.pages.create_channel');
     }
 
+    public function channelList()
+    {
+        $channels = Channel::all();
+
+        return view('app.pages.channel', compact('channels'));
+    }
+
     /**
      * Process channel creation
      */

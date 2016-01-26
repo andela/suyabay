@@ -12,7 +12,10 @@ Route::get('/', [
     'as'   => 'home'
 ]);
 
-Route::get('/', 'EpisodeController@index');
+Route::get('/channels', [
+    'uses' => 'ChannelController@channelList',
+    'as'   => 'channels'
+]);
 
 /*
 /-------------------------------------------------------------------------------
