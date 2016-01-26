@@ -64,7 +64,11 @@
                 <div style="color:#999;">
                     <p>
                         <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
+                        
+                        @if( Auth::check() )
+                            <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
+                        @endif
+                        
                         <input type="hidden" id="episode_id" value="{{ $episode->id }}">
 
                         <span style="padding-right:15px;">

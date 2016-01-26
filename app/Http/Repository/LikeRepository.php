@@ -33,6 +33,12 @@ class LikeRepository
     {
         $is_like_episode = false;
 
+
+        if ( ! Auth::check() ) 
+        {
+            return "must_login";
+        }
+
         foreach ($likes as $like) {
 
             if ($like->user_id == Auth::user()->id) {

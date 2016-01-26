@@ -33,6 +33,11 @@ $(document).ready(function() {
 			$(this).text(like_count);
 		}
 
+		if (status === "must_login") 
+		{
+			window.location = '/login';
+		}
+
 	})
 
 	/*
