@@ -322,3 +322,5 @@ Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
 Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
+
+Route:get('episodes/{id}', 'EpisodeController@show');

@@ -1,4 +1,7 @@
-<div class="row">
+@extends('app.master')
+
+@section('content')
+	<div class="row">
 
 <!-- Side Nav -->
     <div class="col s3">
@@ -19,16 +22,13 @@
     </div>
 
     <!-- Feeds Area -->
-    <div class="col s12 m8 l9">
-        @forelse($episodes as $episode)
+    <div class="col s12 m8 offset-m2 l9">
         <!-- start card -->
         <div class="card">
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url('/episodes', $episode->id)}}"> 
-                        <img src="{!! asset($episode->image) !!}">
-                    </a>
+                    <img src="{!! asset($episode->image) !!}">
                 </div>
             </div>
 
@@ -44,9 +44,7 @@
 
                 <div>
                     <h4>
-                    	<a href="{{url('/episodes', $episode->id)}}"> 
-                        	{{ $episode->episode_name }}
-                        </a>
+                        {{ $episode->episode_name }}
                     </h4>
                 </div>
 
@@ -155,16 +153,6 @@
 
 
         <!-- end card -->
-
-        @empty
-            <p>No Episodes to display</p>
-        @endforelse
-
-        <!-- Pagination -->
-        <div class="row center-align fix">
-            <div class="center-align">
-                {!! $episodes->render() !!}
-            </div>
-        </div>
     </div>
 </div>
+@endsection
