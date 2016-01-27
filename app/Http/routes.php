@@ -168,19 +168,23 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
 
-    Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
-
     Route::put('/episode/{id}/edit', [
-        'uses'  => 'EpisodeManager@update',
-        'as'    => 'episode.update',
-        'middleware'   => ['auth']
+        'uses'          => 'EpisodeManager@update',
+        'as'            => 'episode-edit',
+        'middleware'    => ['auth']
     ]);
 
+    Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
 
+    Route::put('/episode/edit', [
+        'uses'          => 'EpisodeManager@update',
+        'as'            => 'episode-edit',
+        'middleware'    => ['auth']
+    ]);
 
     Route::patch('/episode/activate', [
-        'uses' => 'EpisodeManager@updateEpisodeStatus',
-        'as' => 'episode.activate'
+        'uses'  => 'EpisodeManager@updateEpisodeStatus',
+        'as'    => 'episode.activate'
     ]);
     //end
 

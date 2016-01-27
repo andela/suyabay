@@ -110,7 +110,7 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        $channels = $this->channel->getChannelByField('id', $id)->first();
+        $channels = $this->channel->findChannelWhere('id', $id)->first();
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }

@@ -2,7 +2,7 @@
     <div class="row">
         <h4>Swap Episodes from <em><b>{{ $channel->channel_name }}</b></em> to:</h4>
         <div class="row">
-            <form class="col s12" id="swap_episodes" action="" method="POST">
+            <form class="col s12" id="swap_episodes" action="#" method="POST">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" value="{{ $channel->id }}" name="channel_id" id="channel_id">
                 <div class="row">

@@ -109,6 +109,43 @@ class EpisodeManager extends Controller
     }
 
     /**
+     * [edit description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function edit($id) 
+    { 
+        $episode    = $this->episodeRepository->findEpisodeById($id);
+        $channels   = $this->channelRepository->getAllChannels();
+
+        return view('dashboard.pages.edit_episode', compact('episode', 'channels'));
+    }
+
+
+
+    /**
+     * [update description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function update(Request $request)
+    {
+        try {
+            $update = Episode::where('id', $request->episode_id)
+            ->update(['episode_name' => $request->episode, 'episode_description' => $request->description]);
+
+
+            
+            $this->response =['message' => 'Success', 'status_code'   => 200];
+            
+        } catch(QueryException $e) {
+            $this->response =['message' => $e->getMessage(), 'status_code'   => 400];
+        }
+
+        return $this->response;
+    }
+
+    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request

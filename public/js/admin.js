@@ -76,18 +76,51 @@ $(document).ready(function(){
         var channel_id          = $("#channel_id").val();
         var channel_name        = $("#channel_name").val();
         var channel_description = $("#channel_description").val();
-        var data =
+
+        var data = 
+        {
+            url        : url,
+            parameter  :
             {
-                url        : url,
-                parameter  :
-                {
-                    _token                : token,
-                    channel_id            : channel_id,
-                    channel_name          : channel_name,
-                    channel_description   : channel_description
-                }
+                _token                : token,
+                channel_id            : channel_id,
+                channel_name          : channel_name,
+                channel_description   : channel_description
             }
+        }
         processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
+
+        return false;
+    });
+
+    /**
+     * onSubmit event to handle Channel update
+     */
+    $("#episode_update").submit( function () {
+        var url                 = "/dashboard/episode/edit";
+        var token               = $("#token").val();
+        var episode_id          = $("#episode_id").val();
+        var episode             = $("#episode").val();
+        var channel_id          = $("#channel_id").val();
+        var description         = $("#description").val();
+        
+        var data =
+        {
+            url        : url,
+            parameter  :
+            {
+                _token                : token,
+                episode_id            : episode_id,
+                episode               : episode,
+                channel_id            : channel_id,
+                description           : description
+            }
+        }
+
+        processEpisodeUpdate("PUT", data.url, data.parameter, data.parameter.episode );
+        
+        // confirmUpdate(data.url, data.parameter, data.parameter.episode_name, data.parameter.channel_id);
+
 
         return false;
     });
@@ -178,6 +211,11 @@ function confirmDelete (url, parameter, id, name)
     });
 }
 
+function confirmUpdate (url, parameter, name, id)
+{
+    swal({   title: "Success!",   text: id,   timer: 1500,   showConfirmButton: false });
+}
+
 /**
  * channelSuccessMessage modal message
  *
@@ -226,7 +264,7 @@ function userSuccessMessage (message)
 function cancelDeleteMessage (name)
 {
     document.location.href = "/dashboard/channels/all";
- }
+}
 
 /**
  * errorInviteUser modal message
@@ -260,8 +298,34 @@ function processAjax (action, url, parameter, name)
                     return userSuccessMessage( response.message );
                     break;
 
-                default: console.log(response);//errorMessage( response.message );
+                default: errorMessage( response.message );
             }
         }
     });
+}
+
+
+function processEpisodeUpdate (action, url, parameter, name)
+{
+    $.ajax({
+        url: url,
+        type: action,
+        data: parameter,
+        success: function(response) {
+            switch( response.status_code )
+            {
+                case 200:
+                    return successMessage( response.message );
+                    break;
+
+                default: errorMessage( response.message );
+            }
+        }
+    });
+}
+
+function successMessage (message)
+{
+    swal("Good job!", "Episode succesfuly updated!", "success");
+    document.location.href = "/dashboard/episodes";
 }
