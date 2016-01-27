@@ -228,16 +228,13 @@ class ChannelController extends Controller
             $swap = Episode::where('channel_id', $request->channel_id)->update(['channel_id' => $request->new_channel_id]);
             $this->channel->deleteChannel($request->channel_id);
             Episode::where('channel_id', $request->channel_id)->update(['flag' => 1]);
+            $this->response = ['message' => 'Episodes swapped and Channel deleted Successfully!', 'status_code' => 200];
+        } catch (QueryException $e) {
             $this->response = [
-                    'message'     => 'Episodes swapped and Channel deleted Successfully!',
-                    'status_code' => 200
-                ];
-            } catch (QueryException $e) {
-                $this->response = [
-                    'message'       => 'Channel already exist',
-                    'status_code'   => 400
-                ];
-            }
+                'message'       => 'Channel already exist',
+                'status_code'   => 400
+            ];
+        }
 
         return $this->response;
     }
