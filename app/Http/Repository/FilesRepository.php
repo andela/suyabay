@@ -32,7 +32,6 @@ class FilesRepository
         $s3->put($fileName, fopen($podcast, 'r+'));
 
         return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
-
     }
 
     /**

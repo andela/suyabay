@@ -166,7 +166,6 @@ class ChannelController extends Controller
                 'message'     => 'Channel deleted Successfully',
                 'status_code' => 200
             ];
-
         } catch (QueryException $e) {
 
             $this->response =
@@ -174,7 +173,6 @@ class ChannelController extends Controller
                 'message'     => $e->getMessage(),
                 'status_code' => 400
             ];
-
         }
 
         return $this->response;
@@ -236,7 +234,6 @@ class ChannelController extends Controller
                 'message'     => 'Episodes swapped and Channel deleted Successfully!',
                 'status_code' => 200
             ];
-
         } catch (QueryException $e) {
 
             $this->response =
