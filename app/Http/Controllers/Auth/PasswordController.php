@@ -42,7 +42,9 @@ class PasswordController extends Controller
      */
     public function getEmailPage()
     {
-        return view('app.pages.passwordreset');
+        $channels = $this->channelRepository->getAllChannels();
+
+        return view('app.pages.passwordreset', compact('channels'));
     }
 
     /**
@@ -50,7 +52,9 @@ class PasswordController extends Controller
      */
     public function passwordPage()
     {
-        return view('app.pages.passwordreset');
+        $channels = $this->channelRepository->getAllChannels();
+        
+        return view('app.pages.passwordreset', compact('channels'));
     }
 
     /**

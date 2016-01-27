@@ -44,10 +44,21 @@ class EpisodeManager extends Controller
     public function __construct(Mail $mail)
     {
         $this->mail               = $mail;
-        $this->middleware('auth');
         $this->userRepository     = new UserRepository;
         $this->episodeRepository  = new EpisodeRepository;
         $this->channelRepository  = new ChannelRepository;
+    }
+
+    /**
+     * Get all Episode that belongs to a partticular channel
+     */
+    public function getEpisode($id)
+    {
+        $channels = $this->channelRepository->getAllChannels();
+        $episodes = $this->episodeRepository->findEpisodeWhere('channel_id', $id)->paginate(5);
+
+        return view('app.pages.episodes', compact('episodes', 'channels'));
+        
     }
 
     /**

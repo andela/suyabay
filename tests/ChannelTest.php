@@ -35,6 +35,9 @@ class ChannelTest extends TestCase
         $this->assertEquals($channel->user_id, $channel->user->id);
     }
 
+    /**
+     * Test Episode Channel relationship
+     */
     public function testEpisodechannelRelationship()
     {
         $this->createUser(1);
@@ -42,6 +45,20 @@ class ChannelTest extends TestCase
         $episode = $this->createEpisode();
 
         $this->assertEquals($episode->channel_id, $episode->channel->id);
+    }
+
+    public function testChannelHasEpisode()
+    {
+        $this->createUser(1);
+        $this->createChannel();
+        $this->createEpisode();
+
+        $this->visit('/')
+             ->click('Channels')
+             ->seePageIs('/channels')
+             ->see('Channel name')
+             ->click('channel1')
+             ->sePageIs('/channel/1');
     }
 
     /**

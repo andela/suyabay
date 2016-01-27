@@ -17,6 +17,11 @@ Route::get('/channels', [
     'as'   => 'channels'
 ]);
 
+Route::get('/channel/{id}', [
+    'uses' => 'EpisodeManager@getEpisode',
+    'as'   => 'episode-show'
+]);
+
 /*
 /-------------------------------------------------------------------------------
 / About

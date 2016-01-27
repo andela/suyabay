@@ -24,12 +24,16 @@ class OauthController extends Controller
         if (!($request->has('code') || $request->has('oauth_token'))) {
             return Socialite::driver( $provider )->redirect();
         }
+
         $userData = $this->getOauth($provider);
+
         if (is_null($this->checkUserExist($userData, $provider))) {
             return $this->socialFunction($userData, $provider);
         }
+
         $user = $this->findByIDorCreate($userData, $provider);
         Auth::login($user, true);
+
         return $this->userHasLoggedIn();
     }
 
@@ -44,6 +48,7 @@ class OauthController extends Controller
     {
         $columnName  = $provider.'ID';
         $user = User::where($columnName, $value->getId())->orWhere('username', $value->getNickname())->orWhere('email', $value->getEmail())->first();
+        
         return $user;
     }
 
@@ -106,7 +111,10 @@ class OauthController extends Controller
     {
         $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
-        return view('app.pages.signup', $array);
+
+        $channels = $this->channelRepository->getAllChannels();
+        
+        return view('app.pages.signup', compact('channels', 'array');
     }
 
 }

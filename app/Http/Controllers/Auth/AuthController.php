@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Requests\RegisterRequest;
+use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -41,6 +42,7 @@ class AuthController extends Controller
     public function __construct(Mail $mail)
     {
         $this->mail = $mail;
+        $this->channelRepository = new ChannelRepository();
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -79,7 +81,9 @@ class AuthController extends Controller
      */
     public function register()
     {
-        return view('app.pages.signup');
+        $channels = $this->channelRepository->getAllChannels();
+        
+        return view('app.pages.signup', compact('channels'));
     }
 
     /**
@@ -124,7 +128,9 @@ class AuthController extends Controller
      */
     public function login()
     {
-        return view('app.pages.login');
+        $channels = $this->channelRepository->getAllChannels();
+
+        return view('app.pages.login', compact('channels'));
     }
 
      /**

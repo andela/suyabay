@@ -5,6 +5,7 @@
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
+
         <table class="highlight centered">
             <thead class="teal lighten-2">
               <tr>
@@ -13,13 +14,13 @@
                   <th>Episodes</th>
               </tr>
             </thead>
-    @forelse($channels as $channel)
+
             <tbody>
+            
+            @forelse($channels as $channel)
             <tr>
                 <td class="data-grid">
-                    <a href="/channel/{{ $channel->id }}" class="capitalize" title="{{ $channel->channel_description }}">
-                        <b>{{ $channel->channel_name }}</b>
-                    </a>
+                    <a href="/channel/{{ $channel->id }}" id="channel{{ $channel->id }}" class="capitalize" title="{{ $channel->channel_description }}">{{ $channel->channel_name }}</a>
                 </td>
                 <td class="data-grid">{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
                 <td class="data-grid"> 
@@ -27,11 +28,11 @@
                 </td>
             </tr>
 
-    @empty
+            @empty
 
-    sdfsfs
+            <tr><th colspan="3">Channel has no Episode</th></tr>
 
-    @endforelse
+            @endforelse
             </tbody>
         </table>   
 
