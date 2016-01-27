@@ -59,7 +59,6 @@ class ProfileController extends Controller
         $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
 
         return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
-
     }
 
     public function getChangePassword()
