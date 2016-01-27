@@ -23,8 +23,8 @@ abstract class Controller extends BaseController
     {
         $this->mail                 = $mail;
         $this->userRepository       = new UserRepository;
+        $this->likeRepository       = new LikeRepository;
         $this->episodeRepository    = new EpisodeRepository;
         $this->channelRepository    = new ChannelRepository;
-        $this->likeRepository       = new LikeRepository;
     }
 }

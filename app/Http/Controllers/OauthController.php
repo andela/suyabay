@@ -118,7 +118,7 @@ class OauthController extends Controller
 
         $channels = $this->channelRepository->getAllChannels();
         
-        return view('app.pages.signup', compact('channels', 'array');
+        return view('app.pages.signup', compact('channels', 'array'));
     }
 
 }

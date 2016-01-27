@@ -8,6 +8,13 @@ use Suyabay\Like;
 
 class LikeRepository
 {
+    /**
+    * Return all Favorite from the database
+    */
+    public function getUserFavorite($field, $value)
+    {
+        return Like::where($field, $value);
+    }
 
     /*Find like where*/
     public function findLikeWhere($field, $value)

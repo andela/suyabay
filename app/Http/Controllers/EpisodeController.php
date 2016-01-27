@@ -3,6 +3,7 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class EpisodeController extends Controller
     {
         $channels = $this->channelRepository->getAllChannels();
 
-        $episodes = Episode::with('like')->paginate(5);
+        $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
 
         $episodes->each(function ($episode, $key) {
 
@@ -27,6 +28,8 @@ class EpisodeController extends Controller
 
         });
 
-        return view('app.pages.index', compact('episodes', 'channels'));
+        $favorites = (Auth::check()) ? $this->likeRepository->getUserFavorite('user_id', Auth::user()->id) : 0;
+
+        return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
     }
 }
