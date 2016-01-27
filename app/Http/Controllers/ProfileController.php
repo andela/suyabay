@@ -49,11 +49,13 @@ class ProfileController extends Controller
     public function postAvatarSetting(Request $request)
     {
         $this->validate($request, [
-            'avatar'  => 'required']);
+            'avatar'  => 'required'
+        ]);
 
         $img = $request->file('avatar');
         Cloudder::upload($img, null);
         $imgurl = Cloudder::getResult()['url'];
+
         $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
 
         return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
