@@ -2,6 +2,7 @@
 
 namespace Suyabay;
 
+use Suyabay\Like;
 use Suyabay\Channel;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +16,8 @@ class Episode extends Model
                             'image',
                             'audio_mp3',
                             'channel_id',
-                            'status'
+                            'status',
+                            'likes'
                             ];
 
     public function channel()
@@ -26,6 +28,11 @@ class Episode extends Model
     public function comment()
     {
         return $this->hasMany('Suyabay\Comment');
+    }
+
+    public function like()
+    {
+        return $this->hasMany('Suyabay\Like');
     }
 
 }
