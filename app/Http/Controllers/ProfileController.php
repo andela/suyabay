@@ -14,7 +14,12 @@ use Suyabay\Http\Repository\UserRepository;
 
 class ProfileController extends Controller
 {
+    protected $user;
 
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Gets profile update page.
      *
@@ -49,7 +54,7 @@ class ProfileController extends Controller
         $img = $request->file('avatar');
         Cloudder::upload($img, null);
         $imgurl = Cloudder::getResult()['url'];
-        User::find(Auth::user()->id)->updateAvatar($imgurl);
+        $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
 
         return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
 
