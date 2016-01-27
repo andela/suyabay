@@ -12,7 +12,7 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'episode_id',
-        'comments'                    
+        'comments'
     ];
 
     /**
@@ -20,7 +20,7 @@ class Comment extends Model
      */
     public function user()
     {
-    	return $this->belongsTo('Suyabay\User');
+        return $this->belongsTo('Suyabay\User');
     }
 
     /**

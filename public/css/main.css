@@ -357,7 +357,6 @@ Navigations Styles
     }
 }
 
-
 /*Show liked action on button*/
 .dislike {
     color: #26a69a;
@@ -376,3 +375,4 @@ Navigations Styles
     transform: scale(1.20);
     transition: 0.10s;
 }
+
