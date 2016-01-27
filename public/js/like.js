@@ -3,10 +3,9 @@ $(document).ready(function() {
 
 	$(".like-btn").click(function () {
 
-		var
-		status 		  = $(this).attr("like-status"),
-		like_count	  = $(this).html();
-		favoriteCount = $("#favorite").html();
+		var status 		  = $(this).attr("like-status"),
+		var like_count	  = $(this).html();
+		var favoriteCount = $("#favorite").html();
 
 		if (status === "like")
 		{
@@ -17,7 +16,7 @@ $(document).ready(function() {
 			likeEpisode()
 
 			like_count = Number(like_count) + 1;
-			favoriteCount = Number(favoriteCount) + 1
+			favoriteCount = Number(favoriteCount) + 1;
 
 			$(this).text( " " + like_count);
 			$("#favorite").html(favoriteCount);
@@ -32,7 +31,7 @@ $(document).ready(function() {
 			dislikeEpisode()
 
 			like_count = Number(like_count) - 1;
-			favoriteCount = Number(favoriteCount) - 1
+			favoriteCount = Number(favoriteCount) - 1;
 
 			$(this).text(" " + like_count);
 			$("#favorite").html(favoriteCount);
