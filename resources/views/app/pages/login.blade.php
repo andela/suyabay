@@ -37,9 +37,7 @@
                     Sign In
                 </a>
 
-
             </div>
-
         </form>
     </div>
 
@@ -65,7 +63,6 @@
     </div>
 
         <!-- social login -->
-
         <div class="col s6 offset-s3">
             <a href="{{ URL::to('login/facebook') }}">
                 <div class="facebook">

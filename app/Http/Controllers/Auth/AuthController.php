@@ -180,6 +180,7 @@ class AuthController extends Controller
         */
         $logout = User::where('id', Auth::user()->id)->update(['active' => 0]);
 
+
         if ($logout) {
             Auth::logout();
 

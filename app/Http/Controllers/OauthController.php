@@ -22,12 +22,14 @@ class OauthController extends Controller
     public function getSocialRedirect(Request $request, $provider )
     {
         if (!($request->has('code') || $request->has('oauth_token'))) {
+
             return Socialite::driver( $provider )->redirect();
         }
 
         $userData = $this->getOauth($provider);
 
         if (is_null($this->checkUserExist($userData, $provider))) {
+
             return $this->socialFunction($userData, $provider);
         }
 
@@ -48,7 +50,7 @@ class OauthController extends Controller
     {
         $columnName  = $provider.'ID';
         $user = User::where($columnName, $value->getId())->orWhere('username', $value->getNickname())->orWhere('email', $value->getEmail())->first();
-        
+
         return $user;
     }
 
@@ -85,7 +87,9 @@ class OauthController extends Controller
         $user = $this->checkUserExist($userData, $provider);
 
         if ($user) {
+
             User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
+
             return $user;
         }
     }

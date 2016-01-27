@@ -8,7 +8,7 @@
 */
 
 Route::get('/', [
-    'uses' => 'IndexController@index',
+    'uses' => 'EpisodeController@index',
     'as'   => 'home'
 ]);
 
@@ -171,16 +171,11 @@ Route::group(['prefix' => 'dashboard'], function () {
     });
 
     //Episodes Routes
-    Route::get('episode/create', 'EpisodeManager@showIndex');
-
-    Route::get('episode/create', 'EpisodeManager@showChannelsForCreate');
-
-    Route::post('episode/create', 'EpisodeManager@store');
-
     Route::get('/episodes', 'EpisodeManager@index');
-
+    Route::get('episode/create', 'EpisodeManager@showChannelsForCreate');
+    Route::get('episode/create', 'EpisodeManager@showIndex');
+    Route::post('episode/create', 'EpisodeManager@store');
     Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
-
     Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
 
     Route::put('/episode/{id}/edit', [
@@ -189,18 +184,17 @@ Route::group(['prefix' => 'dashboard'], function () {
         'middleware'   => ['auth']
     ]);
 
-
-
     Route::patch('/episode/activate', [
         'uses' => 'EpisodeManager@updateEpisodeStatus',
         'as' => 'episode.activate'
     ]);
-    //end
 
     Route::delete('/episode/{id}', [
         'uses' => 'EpisodeManager@destroy',
         'as'   => 'episode.delete'
     ]);
+
+    //end
 
 
 /*
@@ -301,7 +295,42 @@ Route::post('/comment', [
     'as'   => 'comment'
 ]);
 
-Route::get('/dashboard/episode/pending', [
-    'uses' =>'EpisodeManager@pendingEpisode',
-    'as'   => 'comment'
+/*
+/-------------------------------------------------------------------------------
+/ Update user profile
+/-------------------------------------------------------------------------------
+*/
+
+
+Route::get('/profile/edit', [
+    'uses' => 'ProfileController@getProfileSettings',
+    'middleware' => ['auth'],
+]);
+
+Route::get('/profile/changepassword', [
+    'uses' => 'ProfileController@getChangePassword',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/avatar/setting', [
+    'uses' => 'ProfileController@postAvatarSetting',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
+
+Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
+
+Route::controllers([
+    'password' => 'Auth\PasswordController',
+]);
+
+Route::post('/episode/like', [
+    'uses' => 'LikeController@postLike',
+    'as'   => 'episode.like'
+]);
+
+Route::post('/episode/unlike', [
+    'uses' => 'LikeController@postUnlike',
+    'as'   => 'episode.unlike'
 ]);
