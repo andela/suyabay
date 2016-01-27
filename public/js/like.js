@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 			like_count = Number(like_count) + 1;
 
-			$(this).text(like_count);
+			$(this).text( " " + like_count);
 		}
 
 		if (status === "dislike")
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 			like_count = Number(like_count) - 1;
 
-			$(this).text(like_count);
+			$(this).text(" " + like_count);
 		}
 
 		if (status === "must_login") 

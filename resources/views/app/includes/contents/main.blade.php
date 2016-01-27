@@ -61,7 +61,7 @@
                         </span>
 
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}">  {{ $episode->likes }}</i>
+                            <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}"> {{ $episode->likes }}</i>
                         </span>
 
                         <span style="padding-right:15px;">
