@@ -17,7 +17,14 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::paginate(5);
+        $episodes = Episode::with('like')->paginate(5);
+
+        $episodes->each(function ($episode, $key) {
+
+            $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
+
+        });
+
         return view('app.pages.index', compact('episodes'));
     }
 }
