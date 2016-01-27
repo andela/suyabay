@@ -26,9 +26,7 @@ class LikeRepository
 
     public function insertIntoLikesTable($userid, $episodeid)
     {
-
         return Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
-    
     }
 
     public function checkLikeStatusForUserOnEpisode($likes)
@@ -36,9 +34,8 @@ class LikeRepository
         $is_like_episode = false;
 
         if (! Auth::check()) {
-    
+            
             return "must_login";
-    
         }
 
         foreach ($likes as $like) {
@@ -47,7 +44,6 @@ class LikeRepository
     
                 $is_like_episode = true;
                 break;
-    
             }
     
         }
