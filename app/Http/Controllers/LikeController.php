@@ -60,7 +60,7 @@ class LikeController extends Controller
         $episodeIds = [];
         $count = 0;
 
-        foreach($likes as $like) {
+        foreach ($likes as $like) {
             $episodeIds[$count] = $like->episode_id;
             $count++;
         }

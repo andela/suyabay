@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-	$('.like-btn').click(function () {
+	$(".like-btn").click(function () {
 
 		var
 		status 		  = $(this).attr("like-status"),
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 		if (status === "must_login") 
 		{
-			window.location = '/login';
+			window.location = "/login";
 		}
 
 	})
@@ -62,8 +62,8 @@ $(document).ready(function() {
 	        parameter   	:
 	        {
 	          _token		: token,
-	          user_id		: document.getElementById('user_id').value,
-	          episode_id	: document.getElementById('episode_id').value
+	          user_id		: document.getElementById("user_id").value,
+	          episode_id	: document.getElementById("episode_id").value
 	        }
 	    }
 
