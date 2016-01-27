@@ -72,13 +72,14 @@
                             <i class="fa fa-heart"> 50</i>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-facebook"></i>
+                        	<a href="#" class="fb-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id) !!}">
+                            	<i class="fa fa-facebook"></i>
+                            </a>
                         </span>
                         <span style="padding-right:15px;">
-                            <i class="fa fa-twitter"></i>
-                        </span>
-                        <span style="padding-right:15px;">
-                            <i class="fa fa-google-plus"></i>
+                        	<a href="#" class="twtr-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id)  !!}">
+                            	<i class="fa fa-twitter"></i>
+                            </a>
                         </span>
                     </p>
                 </div>
