@@ -14,7 +14,7 @@ $(document).ready(function() {
 
         $.getScript('//connect.facebook.net/en_US/sdk.js', function() {
             window.FB.init({
-                appId: '505159549666382',
+                appId: '532769258227625',
                 version: 'v2.5'
             });
             window.FB.ui({
