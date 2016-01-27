@@ -4,8 +4,8 @@ $(document).ready(function() {
 	$('.like-btn').click(function () {
 
 		var
-		status 		= $(this).attr("like-status"),
-		like_count	= $(this).html();
+		status 		  = $(this).attr("like-status"),
+		like_count	  = $(this).html();
 		favoriteCount = $("#favorite").html();
 
 		if (status === "like")

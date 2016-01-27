@@ -46,4 +46,12 @@ class EpisodeRepository
     {
         return $this->getAllEpisodes()->where('status', 0);
     }
+
+    /**
+     * Get episode by array
+     */
+    public function getEpisodes(array $episodeIds)
+    {
+        return Episode::whereIn('id', $episodeIds)->paginate(5);
+    }
 }

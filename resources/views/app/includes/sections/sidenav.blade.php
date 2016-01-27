@@ -7,7 +7,7 @@
                 <a href="{{ URL::to('privacypolicy') }}" class="collection-item">Privacy Policy</a>
                 <a href="{{ URL::to('faqs') }}" class="collection-item">FAQs</a>
                 @else
-                <a href="#" class="collection-item">Favourites <span class="badge" id="favorite">{{ $favorites->count() }}</span></a>
+                <a href="/favorites" class="collection-item">Favourites <span class="badge" id="favorite">{{ $favorites->count() }}</span></a>
                 @endif
             </div>
         </div>
