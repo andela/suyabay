@@ -89,7 +89,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                
+
                                 <li class="load_comment{{ $episode->id }}">
                                 @foreach ( $episode->comment as $comment  )
                                     <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
@@ -107,7 +107,7 @@
                                     </div>
                                 @endforeach
                                 </li>
-                                
+
                                 @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
