@@ -209,9 +209,11 @@ a:hover.capitalize {
     background-color:#FFFFFF;
     box-shadow:1px 1px 5px rgba(0,0,0,.2);
 }
+
 .bubble {
-     margin-top:20px;
-     }
+    margin-top:20px;
+}
+
 .point {
    border-top:10px solid transparent;
    border-bottom:10px solid transparent;
@@ -354,3 +356,23 @@ Navigations Styles
         display: none;
     }
 }
+
+/*Show liked action on button*/
+.dislike {
+    color: #26a69a;
+}
+
+/*Show dislike action on button*/
+.like {
+    color: #999;
+}
+
+.social-btn {
+    cursor: pointer;
+}
+
+.social-btn:active {
+    transform: scale(1.20);
+    transition: 0.10s;
+}
+

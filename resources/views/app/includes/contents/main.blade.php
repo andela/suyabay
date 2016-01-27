@@ -63,18 +63,30 @@
             <!-- start social -->
                 <div style="color:#999;">
                     <p>
+                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                        
+                        @if( Auth::check() )
+                            <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
+                        @endif
+                        
+                        <input type="hidden" id="episode_id" value="{{ $episode->id }}">
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>
                         </span>
+
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart"> 50</i>
+                            <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}">  {{ $episode->likes }}</i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-facebook"></i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-twitter"></i>
                         </span>
+
                         <span style="padding-right:15px;">
                             <i class="fa fa-google-plus"></i>
                         </span>
@@ -89,7 +101,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-                                
+
                                 <li class="load_comment{{ $episode->id }}">
                                 @foreach ( $episode->comment as $comment  )
                                     <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
@@ -107,7 +119,7 @@
                                     </div>
                                 @endforeach
                                 </li>
-                                
+
                                 @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
@@ -147,11 +159,7 @@
             </div>
 
             </div>
-
-
-
-        <!-- end card -->
-
+            <!-- end card -->
         @empty
             <p>No Episodes to display</p>
         @endforelse

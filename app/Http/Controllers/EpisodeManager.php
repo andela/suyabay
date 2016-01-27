@@ -6,19 +6,14 @@ use Storage;
 use Session;
 use Cloudder;
 use Validator;
-use Suyabay\User;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailer as Mail;
 use Illuminate\Database\QueryException;
 use Aws\S3\Exception\S3Exception as S3;
 use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
-use Suyabay\Http\Repository\UserRepository;
-use Suyabay\Http\Repository\EpisodeRepository;
-use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
@@ -40,15 +35,6 @@ class EpisodeManager extends Controller
      * Id of 3 is for super admin users
      */
     const SUPER_ADMIN   = 3;
-
-    public function __construct(Mail $mail)
-    {
-        $this->mail               = $mail;
-        $this->middleware('auth');
-        $this->userRepository     = new UserRepository;
-        $this->episodeRepository  = new EpisodeRepository;
-        $this->channelRepository  = new ChannelRepository;
-    }
 
     /**
     * Display a listing of the resource to view_episodes

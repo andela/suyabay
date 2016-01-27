@@ -36,25 +36,4 @@ class EpisodeTest extends TestCase
         ]);
     }
 
-    /**
-     * Test that only authenticated user can use this route
-     * status code
-     * @return status code
-     */
-    public function testCreateEpisodeRoute()
-    {
-        $response = $this->call('GET', '/dashboard/episode/create', ['username' => 'Taylor', 'password' => 'pass']);
-
-        $this->assertEquals(302, $response->status());
-    }
-
-    /**
-     * Test that only authenticated user can use this route
-     *
-     * @return void
-     */
-    public function testNewEpisodeCreateWorkflow()
-    {
-        $this->visit('/dashboard/episode/create', ['username' => 'Taylor', 'password' => 'pass'])->seePageIs('/login');
-    }
 }
