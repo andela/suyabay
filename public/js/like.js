@@ -6,6 +6,7 @@ $(document).ready(function() {
 		var
 		status 		= $(this).attr("like-status"),
 		like_count	= $(this).html();
+		favoriteCount = $("#favorite").html();
 
 		if (status === "like")
 		{
@@ -16,8 +17,10 @@ $(document).ready(function() {
 			likeEpisode()
 
 			like_count = Number(like_count) + 1;
+			favoriteCount = Number(favoriteCount) + 1
 
 			$(this).text( " " + like_count);
+			$("#favorite").html(favoriteCount);
 		}
 
 		if (status === "dislike")
@@ -29,8 +32,10 @@ $(document).ready(function() {
 			dislikeEpisode()
 
 			like_count = Number(like_count) - 1;
+			favoriteCount = Number(favoriteCount) - 1
 
 			$(this).text(" " + like_count);
+			$("#favorite").html(favoriteCount);
 		}
 
 		if (status === "must_login") 

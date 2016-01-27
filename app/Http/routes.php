@@ -300,7 +300,7 @@ Route::post('/comment', [
 / Update user profile
 /-------------------------------------------------------------------------------
 */
-
+Route::get('/favorite', []);
 
 Route::get('/profile/edit', [
     'uses' => 'ProfileController@getProfileSettings',
