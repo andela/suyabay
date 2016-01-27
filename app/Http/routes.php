@@ -129,56 +129,47 @@ Route::get('logout', [
 
 /*
 /-------------------------------------------------------------------------------
-/ Admin
+/ Admin Dashboard Routes
 /-------------------------------------------------------------------------------
 */
 
 Route::group(['prefix' => 'dashboard'], function () {
 
-    // Route::get('/', function () {
-    //     return view('dashboard.pages.index');
-    // });
-
+    // Dashboard Homepage
     Route::get('/', [
-        'uses'  => 'EpisodeManager@stats',
-        'as'    => 'stats'
+        'uses'          => 'EpisodeManager@stats',
+        'as'            => 'stats',
+        'middleware'    => ['auth']
     ]);
+    
+    //end
 
-    Route::get('/users', function () {
-        return view('dashboard.pages.user');
-    });
-
-    Route::get('/user/edit', function () {
-        return view('dashboard.pages.edit_user');
-    });
-
-    Route::get('/user/create', function () {
-        return view('dashboard.pages.create_user');
-
-    });
-
-    //Episodes Routes
-    Route::get('episode/create', 'EpisodeManager@showIndex');
-
-    Route::get('episode/create', 'EpisodeManager@showChannelsForCreate');
-
-    Route::post('episode/create', 'EpisodeManager@store');
-
-    Route::get('/episodes', 'EpisodeManager@index');
-
-    Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
-
-    Route::put('/episode/{id}/edit', [
-        'uses'          => 'EpisodeManager@update',
-        'as'            => 'episode-edit',
+    // Episode Routes
+    Route::get('/episodes', [
+        'uses'          => 'EpisodeManager@index',
+        'as'            => 'show.all.episodes',
         'middleware'    => ['auth']
     ]);
 
-    Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
+    Route::get('episode/create', [
+        'uses'          => 'EpisodeManager@createEpisode',
+        'middleware'    => ['auth']
+    ]);
+
+    Route::post('episode/create', [
+        'uses'          => 'EpisodeManager@store',
+        'as'            => 'create.episode',
+        'middleware'    => ['auth']
+    ]);
+    
+    Route::get('/episode/{id}/edit', [
+        'uses'          => 'EpisodeManager@edit',
+        'middleware'    => ['auth']
+    ]);
 
     Route::put('/episode/edit', [
         'uses'          => 'EpisodeManager@update',
-        'as'            => 'episode-edit',
+        'as'            => 'update.episode',
         'middleware'    => ['auth']
     ]);
 
@@ -186,29 +177,27 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses'  => 'EpisodeManager@updateEpisodeStatus',
         'as'    => 'episode.activate'
     ]);
-    //end
 
-    Route::delete('/episode/{id}', [
-        'uses' => 'EpisodeManager@destroy',
-        'as'   => 'episode.delete'
+    Route::get('/episode/{id}/delete', [
+        'uses'          => 'EpisodeManager@destroy',
+        'as'            => 'destroy.episode',
+        'middleware'    => ['auth']
     ]);
 
+    //end
+    
 
-/*
-/-------------------------------------------------------------------------------
-/ Admin User
-/-------------------------------------------------------------------------------
-*/
+    // User Routes
     Route::get('/users', [
-        'uses' => 'UserController@index',
-        'as'   => 'users',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@index',
+        'as'            => 'users',
+        'middleware'    => ['auth']
     ]);
 
     Route::get('/user/{id}/edit', [
-        'uses' => 'UserController@editView',
-        'as'   => 'user-edit-id',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@editView',
+        'as'            => 'user-edit-id',
+        'middleware'    => ['auth']
     ]);
 
     Route::put('/user/edit', [
@@ -217,20 +206,18 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
     Route::get('/user/create', [
-        'uses' => 'UserController@show',
-        'as'   => 'user-create',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@show',
+        'as'            => 'user-create',
+        'middleware'    => ['auth']
     ]);
 
     Route::post('/user/create', [
         'uses' => 'UserController@createInvite'
     ]);
 
-/*
-/-------------------------------------------------------------------------------
-/ Admin Channel
-/-------------------------------------------------------------------------------
-*/
+    //end
+
+    // Channel Routes
     Route::get('/channels/active', [
         'uses'          => 'ChannelController@active',
         'as'            => 'active.channels',
@@ -302,6 +289,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'            => 'swap.episode.to',
         'middleware'    => 'auth'
     ]);
+    //end
 
 });
 

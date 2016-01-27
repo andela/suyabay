@@ -7,7 +7,6 @@ use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailer as Mail;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
@@ -15,11 +14,6 @@ class UserController extends Controller
 {
     protected $mail;
     protected $response;
-
-    public function __construct(Mail $mail)
-    {
-        $this->mail = $mail;
-    }
 
     /**
      * Display a listing of the resource.

@@ -18,9 +18,17 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::where('flag', '=', 0)->orderBy('id', 'desc')->paginate(10);
-        $channels = Channel::all();
-        
-        return view('app.pages.index', compact('episodes'))->with('channels', $channels);
+        $channels       = Channel::all();
+        $episodes       = Episode::where('flag', '=', 0)->orderBy('id', 'desc')->paginate(10);
+        $likedEpisodes  = Episode::with('like')->paginate(5);
+
+        $likedEpisodes->each(function ($likedEpisodes, $key) {
+
+            $likedEpisodes->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($likedEpisodes->like);
+
+        });
+
+        return view('app.pages.index', compact('episodes', 'likedEpisodes'))->with('channels', $channels);
+
     }
 }

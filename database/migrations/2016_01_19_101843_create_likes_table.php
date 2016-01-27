@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,22 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function($table){
+        Schema::create('likes', function (Blueprint $table) {
+
             $table->increments('id');
+
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users');
+
             $table->integer('episode_id')->unsigned();
-            $table->text('comments');
-            $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
+            $table->foreign('episode_id')
+                    ->references('id')
+                    ->on('episodes');
+
         });
+
     }
 
     /**
@@ -30,6 +37,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('comments');
+        Schema::drop('likes');
     }
 }

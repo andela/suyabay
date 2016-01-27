@@ -233,7 +233,7 @@ class ChannelController extends Controller
 
             $this->response =
             [
-                'message'     => 'Episodes swapped Successfully!',
+                'message'     => 'Episodes swapped and Channel deleted Successfully!',
                 'status_code' => 200
             ];
 

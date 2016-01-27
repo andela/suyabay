@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftDeleteToChannelsTable extends Migration
+class AddLikesToEpisodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddSoftDeleteToChannelsTable extends Migration
      */
     public function up()
     {
-        Schema::table('channels', function (Blueprint $table) {
-             $table->softDeletes(); 
+        Schema::table('episodes', function (Blueprint $table) {
+             $table->integer('likes')->default(0);
         });
     }
 
@@ -24,8 +24,8 @@ class AddSoftDeleteToChannelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('channels', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
+        Schema::table('episodes', function (Blueprint $table) {
+            $table->dropColumn('likes');
         });
     }
 }

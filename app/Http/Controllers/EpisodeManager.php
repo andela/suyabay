@@ -6,20 +6,14 @@ use Storage;
 use Session;
 use Cloudder;
 use Validator;
-use Suyabay\User;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Mail\Mailer as Mail;
+use Aws\Exception\AwsException as AWS;
 use Illuminate\Database\QueryException;
 use Aws\S3\Exception\S3Exception as S3;
-use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
-use Suyabay\Http\Repository\UserRepository;
-use Suyabay\Http\Repository\EpisodeRepository;
-use Suyabay\Http\Repository\FilesRepository;
-use Suyabay\Http\Repository\ChannelRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 class EpisodeManager extends Controller
@@ -42,24 +36,20 @@ class EpisodeManager extends Controller
      */
     const SUPER_ADMIN   = 3;
 
-    public function __construct(Mail $mail)
-    {
-        $this->middleware('auth');
-        $this->mail                 = $mail;
-        $this->userRepository       = new UserRepository;
-        $this->episodeRepository    = new EpisodeRepository;
-        $this->channelRepository    = new ChannelRepository;
-        $this->upload               = new FilesRepository;
-    }
-
+    /**
+     * Returns episodes to view all episodes on admin dashbaord
+     * @return
+     */
     public function index()
     {
         $episodes = $this->episodeRepository->getAllEpisodes();
+
         return view('dashboard.pages.view_episodes', compact('episodes'));
     }
 
+
     /**
-    * Display a listing of the resource to view_episodes
+    * Display the admin dashboard view
     *
     * @return \Illuminate\Http\Response
     */
@@ -87,21 +77,14 @@ class EpisodeManager extends Controller
         return view('dashboard.pages.stats', compact('data'));
     }
 
-    /**
-    * Show create episode view
-    */
-    public function showIndex()
-    {
-        return view('dashboard.pages.create_episode');
-    }
-
+    
     /**
     * return channels list to create_episode view
     *
     * @param  none
     * @return
     */
-    public function showChannelsForCreate()
+    public function createEpisode()
     {
         $channels = $this->channelRepository->getAllChannels();
 
@@ -115,13 +98,11 @@ class EpisodeManager extends Controller
      */
     public function edit($id) 
     { 
-        $episode    = $this->episodeRepository->findEpisodeById($id);
         $channels   = $this->channelRepository->getAllChannels();
+        $episode    = $this->episodeRepository->findEpisodeById($id);
 
         return view('dashboard.pages.edit_episode', compact('episode', 'channels'));
     }
-
-
 
     /**
      * [update description]
@@ -131,11 +112,8 @@ class EpisodeManager extends Controller
     public function update(Request $request)
     {
         try {
-            $update = Episode::where('id', $request->episode_id)
-            ->update(['episode_name' => $request->episode, 'episode_description' => $request->description]);
+            $update = Episode::where('id', $request->episode_id)->update(['episode_name' => $request->episode, 'episode_description' => $request->description]);
 
-
-            
             $this->response =['message' => 'Success', 'status_code'   => 200];
             
         } catch(QueryException $e) {
@@ -176,28 +154,24 @@ class EpisodeManager extends Controller
         return redirect()->back()->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
     }
 
-    public function destroy(Request $request)
+    /**
+     * Deleted selected episode
+     * @param  Request $request
+     * @param  Int $id Episode Id to be deleted
+     * @return
+     */
+    public function destroy(Request $request, $id)
     {
-        $episode_id  = $request['episode_id'];
-        $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
+        $episode = Episode::where('id', $id)->delete();
 
-        if ($episode  === 1) {
-            $data = [
-                "status"    => 200,
-                "message"   => "Episode successfully deleted"
-            ];
-        }
-
-        if ($episode  === 0) {
-            $data = [
-                "status"    => 401,
-                "message"   => "Episode can not be deleted"
-            ];
-        }
-
-        return $data;
+        return redirect()->back();
     }
 
+    /**
+     * Update the selected episode
+     * @param  Request $request
+     * @return
+     */
     public function updateEpisodeStatus(Request $request)
     {
         $episode_id     = $request['episode_id'];

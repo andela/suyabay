@@ -25,8 +25,8 @@ class AddRoleFieldToUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
+        Schema::table('roles', function (Blueprint $table) {
+            //
         });
     }
 }
