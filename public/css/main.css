@@ -344,6 +344,17 @@ Navigations Styles
 }
 
 /*
+ # Avatar Image
+ =====================
+*/
+img.avatar{
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+    border-radius:40%
+}
+
+/*
  #
  =====================
 */
