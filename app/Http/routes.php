@@ -127,6 +127,30 @@ Route::get('logout', [
     'as'    => 'logout'
 ]);
 
+//end
+
+/**
+ * View One Episode
+ */
+Route::get('/episodes/{id}', 'EpisodeController@show');
+
+//end
+
+/**
+ * Likes
+ */
+Route::post('/episode/like', [
+        'uses' => 'LikeController@postLike',
+        'as'   => 'episode.like'
+    ]);
+
+Route::post('/episode/unlike', [
+    'uses' => 'LikeController@postUnlike',
+    'as'   => 'episode.unlike'
+]);
+
+//end
+
 /*
 /-------------------------------------------------------------------------------
 / Admin Dashboard Routes
@@ -182,19 +206,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses'          => 'EpisodeManager@destroy',
         'as'            => 'destroy.episode',
         'middleware'    => ['auth']
-    ]);
-
-    Route::get('/episodes/{id}', 'EpisodeController@show');
-
-    Route::post('/episode/like', [
-        'uses' => 'LikeController@postLike',
-        'as'   => 'episode.like'
-    ]);
-
-    Route::post('/episode/unlike', [
-        'uses' => 'LikeController@postUnlike',
-        'as'   => 'episode.unlike'
-    ]);
+    ]);    
 
     //end
     
