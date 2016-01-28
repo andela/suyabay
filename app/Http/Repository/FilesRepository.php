@@ -22,6 +22,7 @@ class FilesRepository
     public function imageToCloudinary($cover)
     {
         Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
+        
         return Cloudder::getResult()['url'];
     }
 
@@ -33,6 +34,7 @@ class FilesRepository
     public function videoToCloudinary($podcast)
     {
         Cloudder::uploadVideo($podcast, null);
+
         return Cloudder::getResult()['url'];
-    }  
+    }
 }
