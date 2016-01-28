@@ -88,9 +88,11 @@ trait CreateData
      */
     public function login()
     {   
-        $user = ['username' => 'test', 'password' => 'test'];
+        $user = $this->createUser(3);
+        $this->createChannel();
+        $this->createEpisode();
 
-        return Auth::attempt($user);
+        return Auth::attempt(['username' => 'test', 'password' => 'test']);
     }
 }
 
