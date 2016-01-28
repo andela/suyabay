@@ -1,4 +1,7 @@
-<div class="row">
+@extends('app.master')
+
+@section('content')
+	<div class="row">
 
 <!-- Side Nav -->
     <div class="col s3">
@@ -19,16 +22,13 @@
     </div>
 
     <!-- Feeds Area -->
-    <div class="col s12 m8 l9">
-        @forelse($episodes as $episode)
+    <div class="col s12 m8 offset-m2 l9">
         <!-- start card -->
         <div class="card">
 
             <div class="col s12 m6 l4">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <a href="{{url('/episodes', $episode->id)}}"> 
-                        <img src="{!! asset($episode->image) !!}">
-                    </a>
+                    <img src="{!! asset($episode->image) !!}">
                 </div>
             </div>
 
@@ -44,9 +44,7 @@
 
                 <div>
                     <h4>
-                    	<a href="{{url('/episodes', $episode->id)}}"> 
-                        	{{ $episode->episode_name }}
-                        </a>
+                        {{ $episode->episode_name }}
                     </h4>
                 </div>
 
@@ -67,32 +65,21 @@
             <!-- start social -->
                 <div style="color:#999;">
                     <p>
-                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                        
-                        @if( Auth::check() )
-                            <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
-                        @endif
-                        
-                        <input type="hidden" id="episode_id" value="{{ $episode->id }}">
-
                         <span style="padding-right:15px;">
                             <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>
                         </span>
-
                         <span style="padding-right:15px;">
-                            <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}"> {{ $episode->likes }}</i>
+                            <i class="fa fa-heart"> 50</i>
                         </span>
-
                         <span style="padding-right:15px;">
-                            <i class="fa fa-facebook"></i>
+                        	<a href="#" class="fb-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id) !!}">
+                            	<i class="fa fa-facebook"></i>
+                            </a>
                         </span>
-
                         <span style="padding-right:15px;">
-                            <i class="fa fa-twitter"></i>
-                        </span>
-
-                        <span style="padding-right:15px;">
-                            <i class="fa fa-google-plus"></i>
+                        	<a href="#" class="twtr-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id)  !!}">
+                            	<i class="fa fa-twitter"></i>
+                            </a>
                         </span>
                     </p>
                 </div>
@@ -105,7 +92,7 @@
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
-
+                                
                                 <li class="load_comment{{ $episode->id }}">
                                 @foreach ( $episode->comment as $comment  )
                                     <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
@@ -123,7 +110,7 @@
                                     </div>
                                 @endforeach
                                 </li>
-
+                                
                                 @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
@@ -163,16 +150,10 @@
             </div>
 
             </div>
-            <!-- end card -->
-        @empty
-            <p>No Episodes to display</p>
-        @endforelse
 
-        <!-- Pagination -->
-        <div class="row center-align fix">
-            <div class="center-align">
-                {!! $episodes->render() !!}
-            </div>
-        </div>
+
+
+        <!-- end card -->
     </div>
 </div>
+@endsection

@@ -117,7 +117,7 @@ Route::post('signup', [
 / Search link request
 /-------------------------------------------------------------------------------
 */
-Route::post('search', function(){
+Route::post('search', function () {
     return redirect('/');
 });
 
@@ -316,6 +316,9 @@ Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
 Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
+
+
+Route:get('episodes/{id}', 'EpisodeController@show');
 
 Route::post('/episode/like', [
     'uses' => 'LikeController@postLike',
