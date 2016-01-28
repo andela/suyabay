@@ -28,7 +28,7 @@ class EpisodeRepository
     */
     public function findEpisodeWhere($field, $value)
     {
-        return Episode::where($field, $value);
+        return Episode::where($field, $value)->get();
     }
 
     /**
@@ -45,5 +45,25 @@ class EpisodeRepository
     public function getPendingEpisodes()
     {
         return $this->getAllEpisodes()->where('status', 0);
+    }
+
+    /**
+     * [createEpisode description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function createEpisode($data)
+    {
+        Episode::create($data);
+    }
+
+    /**
+     * [updateEpisode description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function updateEpisode($id, $field, $value)
+    {
+        $this->findEpisodeById($id)->update([$field => $value]);
     }
 }

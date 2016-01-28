@@ -23,6 +23,10 @@
     border-radius: 9px;
 }
 
+.text-disabled {
+    color:#ccc;
+}
+
 .pin {
     color: white;
     width: 15px;
@@ -32,7 +36,7 @@
     width: 25%;
 }
 
-.count {
+.count-active {
     display: inline;
     padding: .2em .6em .3em;
     font-size: 75%;
@@ -44,6 +48,20 @@
     vertical-align: baseline;
     border-radius: .25em;
     background-color: #337ab7;
+}
+
+.count-deleted {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #ccc;
 }
 
 a.capitalize {
@@ -279,6 +297,7 @@ a:hover.capitalize {
 .audiojs {
     width: 100%!important;
 }
+
 
 
 /*

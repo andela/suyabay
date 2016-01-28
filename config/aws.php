@@ -24,5 +24,5 @@ return [
     'region' => 'us-west-1',
     'version' => env('VERSION'),
     'endpoint' => env('END_POINT'),
-    'debug' => false
+    'debug' => true
 ];

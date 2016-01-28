@@ -18,6 +18,7 @@ trait CreateData
     public function createUser($role)
     {
         return User::create([
+            'id'         => 1,
             'username'   => 'test',
             'email'      => 'test@test.com',
             'password'   => bcrypt('test'),
@@ -46,6 +47,7 @@ trait CreateData
     public function createChannel()
     {
         return Channel::create([
+            'id'                   => 1,
             'channel_name'         => 'Channel name',
             'channel_description'  => 'Channel description',
             'user_id'              => 1,
@@ -86,10 +88,12 @@ trait CreateData
      */
     public function login()
     {   
-        $user = $this->createUser(1);
+        $user = $this->createUser(3);
         $this->createChannel();
         $this->createEpisode();
 
         return Auth::attempt(['username' => 'test', 'password' => 'test']);
     }
 }
+
+

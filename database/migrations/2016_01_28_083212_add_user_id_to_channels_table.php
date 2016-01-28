@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFavouritesTable extends Migration
+class AddUserIdToChannelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateFavouritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('favourites', function($table){
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('episode_id')->unsigned();
-            $table->timestamps();
+        Schema::table('channels', function (Blueprint $table) {
+            $table->integer('user_id')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateFavouritesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('favourites');
+        Schema::table('channels', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
     }
 }
