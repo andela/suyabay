@@ -28,7 +28,7 @@ class EpisodeRepository
     */
     public function findEpisodeWhere($field, $value)
     {
-        return Episode::where($field, $value)->get();
+        return Episode::where($field, $value);
     }
 
     /**
