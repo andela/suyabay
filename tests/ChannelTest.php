@@ -82,17 +82,4 @@ class ChannelTest extends TestCase
             'subscription_count'    => 0
         ]);
     }
-
-    /**
-     * Test that only authenticated user can use this route
-     * status code
-     * @return status code
-     */
-    public function testCreateEpisodeRoute()
-    {
-        $response = $this->call('GET', '/dashboard/channels', ['username' => 'Taylor', 'password' => 'pass']);
-
-        $this->assertEquals(302, $response->status());
-    }
-
 }

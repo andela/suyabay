@@ -6,31 +6,57 @@
     </div>
     <div class="row">
     @if(count($channels) === 0)
-        <p>no channels at this time. check back!</p>
+        <p>No content in this category.</p>
     @else
         <table class="highlight centered">
-            <thead class="teal lighten-2">
+            <thead>
               <tr>
-                  <th>Title</th>
-                  <th>Created At</th>
-                  <th>Episodes</th>
+                  <th>TITLE</th>
+                  <th>STATUS</th>
+                  <th>EPISODES COUNT</th>
                   <th></th>
               </tr>
             </thead>
             <tbody>
             @foreach($channels as $channel)
+            @if($channel->deleted_at)
             <tr>
                 <td class="data-grid">
-                    <a href="/dashboard/channel/{{ $channel->id }}" class="capitalize" title="{{ $channel->channel_description }}">
+                    <p class="capitalize text-disabled">
                         <b>{{ $channel->channel_name }}</b>
                     </a>
                 </td>
-                <td class="data-grid">{{ date('F d, Y', strtotime($channel->created_at)) }}</td>
+                <td class="data-grid">deleted</td>
                 <td class="data-grid"> 
-                    <div class="count">{{ count($channel->episode) }}</div>
+                    <div class="count-deleted">{{ count($channel->episode) }}</div>
                 </td>
                 <td clss="data-grid">
-                    <div class="col s12 m6 red accent-2">
+                    <div class="col s12 m6">
+                        <form action="{{ route('restore.channel', $channel->id )}}" method="post">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="submit" value ="restore"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @else
+            <tr>
+                <td class="data-grid">
+                    <a href="/dashboard/channel/{{ $channel->id }}" class="capitalize" title="Created by {{ $channel->user->username }}">
+                        <b>{{ $channel->channel_name }}</b>
+                    </a>
+                </td>
+                <td class="data-grid">active</td>
+                <td class="data-grid"> 
+                    <div class="count-active">{{ count($channel->episode) }}</div>
+                </td>
+                <td clss="data-grid">
+                    <div class="col s12 m6 teal">
                         <a href="/dashboard/channel/{{ $channel->id }}/edit" class="pin" title="Edit this episode">
                             <i class="fa fa-edit"></i> 
                                 Edit
@@ -38,6 +64,7 @@
                     </div>
                 </td>
             </tr>
+            @endif
             @endforeach
             </tbody>
         </table>   

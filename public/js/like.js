@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 	$(".like-btn").click(function () {
 
-		var status 		  = $(this).attr("like-status"),
+		var status 		  = $(this).attr("like-status");
 		var like_count	  = $(this).html();
 		var favoriteCount = $("#favorite").html();
 
@@ -48,11 +48,10 @@ $(document).ready(function() {
 	# Like Episode Function
 	*/
 	function likeEpisode()
-	{
-		var
-		url 			= "/episode/like",
-		token 			= document.getElementById("token").value,
-		method 			= "POST";
+	{	
+		var url 			= "/episode/like";
+		var token 			= document.getElementById("token").value;
+		var method 			= "POST";
 
 	  	var data =
 	    {
@@ -74,10 +73,9 @@ $(document).ready(function() {
 	*/
 	function dislikeEpisode()
 	{
-		var
-		url 			= "/episode/unlike",
-		token 			= document.getElementById("token").value,
-		method 			= "post";
+		var url 			= "/episode/unlike";
+		var token 			= document.getElementById("token").value;
+		var method 			= "post";
 
 	  	var data =
 	    {

@@ -3,12 +3,12 @@ $(document).ready(function(){
     /**
      * onClick event to handle Channel delete
      */
-    $(".delete_channel", this).on("click", function () {
-        var id    = $(this).data("id");
-        var url   = "/dashboard/channel/"+id;
-        var name  = $(this).data("name");
-        var token = $(this).data("token");
-        var data  =  {
+    $("#delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
+        var token   = $(this).data("token");
+        var name    = $(this).data("name");
+        var data    =  {
             url : url,
             parameter: {
                 _token       : token,
@@ -16,7 +16,28 @@ $(document).ready(function(){
                 channel_name : name
             }
         }
-        confirmDelete(data.url, data.parameter, data.parameter.channel_name );
+        // confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
+        processAjax("DELETE", data.url, data.parameter, data.parameter.channel_name );
+
+        return false;
+    });
+
+    $("#swap_episode_delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
+        var token   = $(this).data("token");
+        var name    = $(this).data("name");
+        var episodes = $(this).data("episoes");
+        var data    =  {
+            url : url,
+            parameter: {
+                _token       : token,
+                channel_id   : id,
+                channel_name : name,
+                episodes : episodes
+            }
+        }
+        confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
 
         return false;
     });
@@ -45,6 +66,29 @@ $(document).ready(function(){
     });
 
     /**
+     * onSubmit swap channels
+     */
+    $("#swap_episodes").submit( function () {
+        var id      = $("#channel_id").val();
+        var url     = "/dashboard/channel/swap/"+id;
+        var new_channel_id = $("#new_channel_id").val();
+        var token   = $("#token").val();
+        var data    =
+            {
+                parameter  :
+                {
+                    _token        : token,
+                    channel_id              : id,
+                    new_channel_id          : new_channel_id
+                }
+            }
+
+        processAjax("POST", url, data.parameter, data.parameter.new_channel_id);
+
+        return false;
+    });
+
+    /**
      * onSubmit event to handle Channel update
      */
     $("#channel_update").submit( function () {
@@ -53,18 +97,51 @@ $(document).ready(function(){
         var channel_id          = $("#channel_id").val();
         var channel_name        = $("#channel_name").val();
         var channel_description = $("#channel_description").val();
-        var data =
+
+        var data = 
+        {
+            url        : url,
+            parameter  :
             {
-                url        : url,
-                parameter  :
-                {
-                    _token                : token,
-                    channel_id            : channel_id,
-                    channel_name          : channel_name,
-                    channel_description   : channel_description
-                }
+                _token                : token,
+                channel_id            : channel_id,
+                channel_name          : channel_name,
+                channel_description   : channel_description
             }
+        }
         processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
+
+        return false;
+    });
+
+    /**
+     * onSubmit event to handle Channel update
+     */
+    $("#episode_update").submit( function () {
+        var url                 = "/dashboard/episode/edit";
+        var token               = $("#token").val();
+        var episode_id          = $("#episode_id").val();
+        var episode             = $("#episode").val();
+        var channel_id          = $("#channel_id").val();
+        var description         = $("#description").val();
+        
+        var data =
+        {
+            url        : url,
+            parameter  :
+            {
+                _token                : token,
+                episode_id            : episode_id,
+                episode               : episode,
+                channel_id            : channel_id,
+                description           : description
+            }
+        }
+
+        processEpisodeUpdate("PUT", data.url, data.parameter, data.parameter.episode );
+        
+        // confirmUpdate(data.url, data.parameter, data.parameter.episode_name, data.parameter.channel_id);
+
 
         return false;
     });
@@ -126,27 +203,37 @@ $(document).ready(function(){
  * @param  parameter
  * @param  name
  */
-function confirmDelete (url, parameter, name)
+function confirmDelete (url, parameter, id, name)
 {
     swal({
-        title: "Delete "+ name +"?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
+        title: "Confirm Delete",
+        text: "This Channel has Episodes, deleting it implies deleting all the Episodes under it. Are you sure you want to do this?",
+        type: "info",
         showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel plx!",
+        confirmButtonColor: "#009688",
+        confirmButtonText: "Yes, please!",
+        cancelButtonText: "Cancel",
+        allowOutsideClick:true,
         closeOnConfirm: false,
-        closeOnCancel: false
+        closeOnCancel: false,
+        animation:true,
+        showLoaderOnConfirm:true
+
     },
+
     function ( isConfirm )
     {
-        if( isConfirm ) {
-            processAjax("DELETE", url, parameter, name);
+        if ( isConfirm) {
+            document.location.href = "/dashboard/channel/swap/"+id;    
         } else {
-            cancelDeleteMessage( name );
+            document.location.href = "/dashboard/channels/all";
         }
     });
+}
+
+function confirmUpdate (url, parameter, name, id)
+{
+    swal({   title: "Success!",   text: id,   timer: 1500,   showConfirmButton: false });
 }
 
 /**
@@ -165,7 +252,7 @@ function channelSuccessMessage (message)
             showLoaderOnConfirm: true,
             },
             function (){
-                document.location.href = "/dashboard/channels";
+                document.location.href = "/dashboard/channels/all";
             }
         );
 }
@@ -196,7 +283,7 @@ function userSuccessMessage (message)
  */
 function cancelDeleteMessage (name)
 {
-    swal("Cancelled", "Channel " + name + " is still available", "error");
+    document.location.href = "/dashboard/channels/all";
 }
 
 /**
@@ -216,7 +303,6 @@ function errorMessage (message)
  */
 function processAjax (action, url, parameter, name)
 {
-
     $.ajax({
         url: url,
         type: action,
@@ -236,4 +322,30 @@ function processAjax (action, url, parameter, name)
             }
         }
     });
+}
+
+
+function processEpisodeUpdate (action, url, parameter, name)
+{
+    $.ajax({
+        url: url,
+        type: action,
+        data: parameter,
+        success: function(response) {
+            switch( response.status_code )
+            {
+                case 200:
+                    return successMessage( response.message );
+                    break;
+
+                default: errorMessage( response.message );
+            }
+        }
+    });
+}
+
+function successMessage (message)
+{
+    swal("Good job!", "Episode succesfuly updated!", "success");
+    document.location.href = "/dashboard/episodes";
 }

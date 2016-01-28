@@ -10,9 +10,9 @@ use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
+use Aws\Exception\AwsException as AWS;
 use Illuminate\Database\QueryException;
 use Aws\S3\Exception\S3Exception as S3;
-use Aws\Exception\AwsException as AWS;
 use Suyabay\Http\Controllers\Controller;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
@@ -48,12 +48,13 @@ class EpisodeManager extends Controller
         
     }
 
+
     /**
-    * Display a listing of the resource to view_episodes
+    * Display the admin dashboard view
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function stats()
     {
         $data = [
 
@@ -74,28 +75,53 @@ class EpisodeManager extends Controller
             "channels"  => $this->channelRepository->getAllChannels()
         ];
 
-        return view('dashboard.pages.index', compact('data'));
+        return view('dashboard.pages.stats', compact('data'));
     }
 
-    /**
-    * Show create episode view
-    */
-    public function showIndex()
-    {
-        return view('dashboard.pages.create_episode');
-    }
-
+    
     /**
     * return channels list to create_episode view
     *
     * @param  none
     * @return
     */
-    public function showChannelsForCreate()
+    public function createEpisode()
     {
         $channels = $this->channelRepository->getAllChannels();
 
         return view('dashboard.pages.create_episode', compact('channels'));
+    }
+
+    /**
+     * [edit description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function edit($id) 
+    { 
+        $channels   = $this->channelRepository->getAllChannels();
+        $episode    = $this->episodeRepository->findEpisodeById($id);
+
+        return view('dashboard.pages.edit_episode', compact('episode', 'channels'));
+    }
+
+    /**
+     * [update description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function update(Request $request)
+    {
+        try {
+            $update = Episode::where('id', $request->episode_id)->update(['episode_name' => $request->episode, 'episode_description' => $request->description]);
+
+            $this->response =['message' => 'Success', 'status_code'   => 200];
+            
+        } catch(QueryException $e) {
+            $this->response =['message' => $e->getMessage(), 'status_code'   => 400];
+        }
+
+        return $this->response;
     }
 
     /**
@@ -106,141 +132,47 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
+        $this->validate($request, [
             'title'         => 'required|min:3',
-            'description'   => 'required|min:50',
+            'description'   => 'required',
             'channel'       => 'required',
             'cover'         => 'required',
             'podcast'       => 'required|size_format'
         ]);
 
-        if ($v->fails()) {
-            return redirect()->back()->withErrors($v->errors());
-        }
+        $data    = [
+            'episode_name' => $request->title,
+            'episode_description' => $request->description,
+            'channel_id' => $request->channel,
+            'image' => $this->upload->imageToCloudinary($request->cover),
+            'audio_mp3' => $this->upload->videoToCloudinary($request->podcast),
+            'view_count' => 0,
+            'status' => 0
+        ];
 
-        $cover      = $this->getImageFileUrl($request->cover);
-        $podcast    = $this->uploadFileToS3($request);
+        $this->episodeRepository->createEpisode($data);
 
-        try {
-            $podcast    = $this->uploadAudioFileToS3($request);
-            $cover      = $this->uploadImageFileToCloudinary($request->cover);
-        } catch (S3 $e) {
-            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
-        } catch (AWS $e) {
-            return redirect('dashboard.episode.create')->with('status', $e->getMessage());
-        }
-
-        Episode::create([
-            'episode_name'         => $request->title,
-            'episode_description'  => $request->description,
-            'image'                => $cover,
-            'audio_mp3'            => $podcast,
-            'view_count'           => 0,
-            'channel_id'           => $request->channel,
-            'status'               => 0
-        ]);
-
-        return redirect('dashboard.episode.create')
-        ->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
+        return redirect()->back()->with('status', 'Nice Job! ' . $request->title . ' is held for moderation.');
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
+     * Deleted selected episode
+     * @param  Request $request
+     * @param  Int $id Episode Id to be deleted
+     * @return
+     */
+    public function destroy(Request $request, $id)
     {
+        $episode = Episode::where('id', $id)->delete();
 
-        $episode = $this->episodeRepository->findEpisodeById($id);
-
-        return view('dashboard.pages.edit_episode')->with('episode', $episode);
-
-        $episode = Episode::find($id);
-        $channels = Channel::all();
-
-        return view('dashboard.pages.edit_episode')
-        ->with('episode', $episode)->with('channels', $channels);
+        return redirect()->back();
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-        try {
-            $episode                        = Episode::find($id);
-            $episode->channel_id            = $request->channel;
-            $episode->episode_name          = $request->title;
-            $episode->episode_description   = $request->description;
-            $episode->save();
-
-            //redirect
-            return back()->with('status', 'Updated!');
-        } catch (QueryException $e) {
-            return back()->with('status', $e->getMessage());
-        }
-    }
-
-    /**
-    * Upload image to cloudinary
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return
-    */
-    protected function uploadImageFileToCloudinary($cover)
-    {
-        Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
-        $coverUrl = Cloudder::getResult()['url'];
-
-        return $coverUrl;
-    }
-
-    /**
-    * Upload audio to amazon S3
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return
-    */
-    public function uploadAudioFileToS3(Request $request)
-    {
-        $fileName = time() . '.' . $request->podcast->getClientOriginalExtension();
-        $s3 = Storage::disk('s3');
-
-        // Upload large files
-
-        $s3->put($fileName, fopen($request->podcast, 'r+'));
-
-        return $s3->getDriver()->getAdapter()->getClient()->getObjectUrl('suyabay', $fileName);
-    }
-
-
-    public function destroy(Request $request)
-    {
-        $episode_id  = $request['episode_id'];
-        $episode     = $this->episodeRepository->findEpisodeWhere("id", $episode_id)->delete();
-
-        if ($episode  === 1) {
-            $data = [
-                "status"    => 200,
-                "message"   => "Episode successfully deleted"
-            ];
-        }
-
-        if ($episode  === 0) {
-            $data = [
-                "status"    => 401,
-                "message"   => "episode can not be deleted"
-            ];
-        }
-
-        return $data;
-    }
-
+     * Update the selected episode
+     * @param  Request $request
+     * @return
+     */
     public function updateEpisodeStatus(Request $request)
     {
         $episode_id     = $request['episode_id'];

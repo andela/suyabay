@@ -1,12 +1,14 @@
 .logo {
-    margin:auto;
-    padding:15px;
+    margin: auto;
+    padding: 15px;
 }
+
 .waves-effect {
     vertical-align: top!important;
 }
+
 .search {
-    margin:0!important;
+    margin: 0!important;
 }
 
 .logo-box {
@@ -15,22 +17,26 @@
 }
 
 .card-image {
-    margin:15px auto;
-    width:100%;
-    height:auto;
-    border-radius:9px;
+    margin: 15px auto;
+    width: 100%;
+    height: auto;
+    border-radius: 9px;
+}
+
+.text-disabled {
+    color:#ccc;
 }
 
 .pin {
-    color:white;
-    width:15px;
+    color: white;
+    width: 15px;
 }
 
 .data-grid {
-    width:25%;
+    width: 25%;
 }
 
-.count {
+.count-active {
     display: inline;
     padding: .2em .6em .3em;
     font-size: 75%;
@@ -44,24 +50,37 @@
     background-color: #337ab7;
 }
 
+.count-deleted {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #ccc;
+}
+
 a.capitalize {
     text-transform: capitalize;
-    color:#333;
+    color: #333;
 }
 
 a:hover.capitalize {
-    color:red;
+    color: red;
 }
-
 
 .episode-date {
     font-size: 11pt;
     letter-spacing: 1px;
     line-height: 1.5;
     text-transform: uppercase;
-    margin-top:15px;
-    margin-left:10px;
-    margin-bottom:0;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .social-sharing {
@@ -71,11 +90,11 @@ a:hover.capitalize {
 }
 
 .hosts-image {
-    border:1px solid #135764;
-    padding:5px;
+    border: 1px solid #135764;
+    padding: 5px;
     background-color: transparent;
-    margin:10px 5px 0;
-    border-radius: 50% ;
+    margin: 10px 5px 0;
+    border-radius: 50%;
     height: auto;
 }
 
@@ -84,7 +103,7 @@ a:hover.capitalize {
     font-size: 18pt;
     font-weight: 700;
     text-transform: uppercase;
-    padding:1.5%;
+    padding: 1.5%;
     line-height: 1.2;
 }
 
@@ -93,12 +112,12 @@ a:hover.capitalize {
     letter-spacing: 1px;
     font-weight: 900;
     text-transform: uppercase;
-    padding:10px;
-    color:#2C3E50;
+    padding: 10px;
+    color: #2C3E50;
 }
 
 .fix {
-    margin:30px 0 0;
+    margin: 30px 0 0;
 }
 
 #playlist {
@@ -108,62 +127,63 @@ a:hover.capitalize {
 
 .excerpts {
     letter-spacing: .01em;
-    border-bottom:3px solid;
-    width:20%;
+    border-bottom: 3px solid;
+    width: 20%;
 }
 
 .error {
-    font-size:160pt;
-    color:grey;
-    font-weight:bold;
+    font-size: 160pt;
+    color: grey;
+    font-weight: bold;
     line-height: 1em;
 }
 
 .error-message {
-    background-color:#D9534F;
+    background-color: #D9534F;
     border-radius: 10px;
-    font-weight:light;
-    color:#fff;
-    padding:15px;
-}
-.success-message {
-    background-color:#5CB85C;
-    border-radius: 10px;
-    font-weight:light;
-    color:#fff;
-    padding:15px;
-}
-.error-exit-message {
-    color:grey;
+    font-weight: light;
+    color: #fff;
+    padding: 15px;
 }
 
-.spacer
-{
-    margin:3% 0;
+.success-message {
+    background-color: #5CB85C;
+    border-radius: 10px;
+    font-weight: light;
+    color: #fff;
+    padding: 15px;
+}
+
+.error-exit-message {
+    color: grey;
+}
+
+.spacer {
+    margin: 3% 0;
 }
 
 .facebook {
-    width:100%;
+    width: 100%;
     background-color: #3B5999;
-    height:50px;
+    height: 50px;
     margin: 1%;
     padding: 10px;
-    border-radius:5px;
+    border-radius: 5px;
     color: white;
 }
 
 .twitter {
-    width:100%;
+    width: 100%;
     background-color: #55ACEF;
-    height:50px;
+    height: 50px;
     margin: 1%;
     padding: 10px;
-    border-radius:5px;
+    border-radius: 5px;
     color: white;
 }
 
 .customised_alert {
-    padding:8px 20%;
+    padding: 8px 20%;
 }
 
 .btn-large {
@@ -171,16 +191,15 @@ a:hover.capitalize {
 }
 
 .social {
-    border:0;
-    box-shadow:none;
+    border: 0;
+    box-shadow: none;
 }
 
 .pic {
-    width:9%;
+    width: 9%;
 }
 
-.loader
-{
+.loader {
     display: none;
     position: fixed;
     margin: 25% 50%;
@@ -200,53 +219,58 @@ a:hover.capitalize {
 }
 
 .bubble-content {
-    position:relative;
-    float:left;
-    margin-left:12px;
-    width:100%;
-    padding:0px 20px;
-    border-radius:10px;
-    background-color:#FFFFFF;
-    box-shadow:1px 1px 5px rgba(0,0,0,.2);
+    position: relative;
+    float: left;
+    margin-left: 12px;
+    width: 100%;
+    padding: 0px 20px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
 }
 
 .bubble {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .point {
-   border-top:10px solid transparent;
-   border-bottom:10px solid transparent;
-          border-right: 12px solid #FFF;
-   position:absolute;
-   left:-10px;
-   top:12px;
-   }
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid #FFF;
+    position: absolute;
+    left: -10px;
+    top: 12px;
+}
+
 .clearfix:after {
-      visibility:hidden;
-      display:block;
-      font-size:0;
-      content: ".";
-      clear:both;
-      height:0;
-      line-height:
-      }
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ".";
+    clear: both;
+    height: 0;
+    line-height:
+}
+
 .clearfix {
-      display: inline-block;
-      }
+    display: inline-block;
+}
+
 * html .clearfix {
-         height: 1%;
-         }
+    height: 1%;
+}
+
 
 /*over-writes*/
+
 .collapsible-header {
     background-color: #F6F7F8;
-    padding:0;
-    color:#333;
+    padding: 0;
+    color: #333;
 }
 
 .collection .collection-item.active {
-    color:inherit;
+    color: inherit;
 }
 
 .collection .collection-item.avatar {
@@ -254,22 +278,24 @@ a:hover.capitalize {
     background-color: #F6F7F8;
 }
 
-.card-social{
+.card-social {
     background-color: #F6F7F8;
 }
 
 .card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.03), 0 2px 10px 0 rgba(0, 0, 0, 0.03);
 }
-.audioplayer-volume:hover .audioplayer-volume-adjust{
-    bottom:60%;
+
+.audioplayer-volume:hover .audioplayer-volume-adjust {
+    bottom: 60%;
 }
 
-.footer-copyright{
-    background-color:#2C3E50!important;
+.footer-copyright {
+    background-color: #2C3E50!important;
 }
-.audiojs{
-    width:100%!important;
+
+.audiojs {
+    width: 100%!important;
 }
 
 
@@ -279,25 +305,23 @@ a:hover.capitalize {
 ===============================================
 */
 
-::-webkit-scrollbar
-{
-  width: 2px;  /* for vertical scrollbars */
-  height: 10px; /* for horizontal scrollbars */
-  border-radius: 10%;
+::-webkit-scrollbar {
+    width: 2px;
+    /* for vertical scrollbars */
+    height: 10px;
+    /* for horizontal scrollbars */
+    border-radius: 10%;
 }
 
-::-webkit-scrollbar-track
-{
-  background: #2C3E50;
+::-webkit-scrollbar-track {
+    background: #2C3E50;
 }
 
-::-webkit-scrollbar-thumb
-{
-  background: #2C3E50;
+::-webkit-scrollbar-thumb {
+    background: #2C3E50;
 }
 
-body
-{
+body {
     .overflow-y: hidden;
 }
 
@@ -305,25 +329,26 @@ body
 /*
 Navigations Styles
 */
-.nav-container
-{
+
+.nav-container {
     ..display: none;
     ..margin-top: -100px;
     ..background: gray;
     height: 100vh!important;
-
 }
+
 
 /*
  # Side Page Styles
  =====================
 */
+
 .panel-container span p {
     font-size: 20px;
     margin: 0px;
 }
 
-.tab-container{
+.tab-container {
     margin-top: 50px;
 }
 
@@ -332,8 +357,23 @@ Navigations Styles
  # Episode Page Styles
  =====================
 */
-.episode-icon{
+
+.episode-icon {
     margin: 5px;
+}
+
+.fb-share,
+.twtr-share {
+    text-decoration: none;
+    color: #999;
+}
+
+.fb-share:hover {
+    color: #3b5998;
+}
+
+.twtr-share:hover {
+    color: #0084b4;
 }
 
 
@@ -341,18 +381,30 @@ Navigations Styles
  # User Page Styles
  =====================
 */
-.user-name{
+
+.user-name {
     font-size: 15px;
+}
+
+
+/*
+ # Avatar Image
+ =====================
+*/
+img.avatar {
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+    border-radius:40%
 }
 
 /*
  #
  =====================
 */
-@media (max-width: 600px) {
 
-    .nav-container
-    {
+@media (max-width: 600px) {
+    .nav-container {
         display: none;
     }
 }

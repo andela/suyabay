@@ -8,6 +8,7 @@ use Suyabay\Episode;
 use Illuminate\Mail\Mailer as Mail;
 use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Repository\LikeRepository;
+use Suyabay\Http\Repository\FilesRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Suyabay\Http\Repository\EpisodeRepository;
 use Suyabay\Http\Repository\ChannelRepository;
@@ -26,5 +27,6 @@ abstract class Controller extends BaseController
         $this->likeRepository       = new LikeRepository;
         $this->episodeRepository    = new EpisodeRepository;
         $this->channelRepository    = new ChannelRepository;
+        $this->upload               = new FilesRepository;
     }
 }

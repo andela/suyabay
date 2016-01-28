@@ -6,7 +6,7 @@
                 <li>
                     <div class="collapsible-header">
                         <i class="material-icons">store</i>
-                        <a href="/" class="collection-item">Home<span class="badge"></span></a>
+                        <a href="/dashboard" class="collection-item">Home<span class="badge"></span></a>
                     </div>
                 </li>
 
@@ -30,7 +30,7 @@
                             <li>
                                 <div class="collapsible-header">
                                     <i class="material-icons">visibility</i>
-                                    <a href="{{ URL::to('/dashboard/episodes') }}" class="collection-item">View<span class="badge"></span></a>
+                                    <a href="{{ URL::to('/dashboard/episodes') }}" class="collection-item">View Episodes<span class="badge"></span></a>
                                 </div>
                             </li>
                         </ul>
@@ -41,7 +41,7 @@
                 <!-- Channels -->
                 <li>
                     <div class="collapsible-header">
-                        <i class="material-icons">filter_drama</i>
+                        <i class="material-icons">dns</i>
                         <a href="#!" class="collection-item">Channels<span class="badge"></span></a>
                     </div>
                     <div class="collapsible-body" style="border-color: transparent;">
@@ -53,11 +53,24 @@
                                     <a href="/dashboard/channel/create" class="collection-item">Create<span class="badge"></span></a>
                                 </div>
                             </li>
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">done_all</i>
+                                    <a href="/dashboard/channels/active" class="collection-item">Active Channels<span class="badge"></span></a>
+                                </div>
+                            </li>
 
                             <li>
                                 <div class="collapsible-header">
-                                    <i class="material-icons">visibility</i>
-                                    <a href="/dashboard/channels" class="collection-item">View<span class="badge"></span></a>
+                                    <i class="material-icons">not_interested</i>
+                                    <a href="/dashboard/channels/deleted" class="collection-item">Deleted Channels<span class="badge"></span></a>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">swap_vertical_circle</i>
+                                    <a href="/dashboard/channels/all" class="collection-item">View All<span class="badge"></span></a>
                                 </div>
                             </li>
                         </ul>

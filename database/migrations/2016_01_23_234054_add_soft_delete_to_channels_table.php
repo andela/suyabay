@@ -3,16 +3,18 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameFavouriteTable extends Migration
+class AddSoftDeleteToChannelsTable extends Migration
 {
-    /**
+      /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::rename('favourites', 'favorites');
+        Schema::table('channels', function (Blueprint $table) {
+             $table->softDeletes();
+        });
     }
 
     /**
@@ -22,6 +24,8 @@ class RenameFavouriteTable extends Migration
      */
     public function down()
     {
-        Schema::rename('favorites', 'favourites');
+        Schema::table('channels', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
+        });
     }
 }

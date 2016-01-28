@@ -28,7 +28,7 @@ class EpisodeRepository
     */
     public function findEpisodeWhere($field, $value)
     {
-        return Episode::where($field, $value);
+        return Episode::where($field, $value)->get();
     }
 
     /**
@@ -53,5 +53,26 @@ class EpisodeRepository
     public function getEpisodes(array $episodeIds)
     {
         return Episode::whereIn('id', $episodeIds)->paginate(5);
+    }
+
+    /**
+     * [createEpisode description]
+     *
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function createEpisode($data)
+    {
+        return Episode::create($data);
+    }
+
+    /**
+     * [updateEpisode description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function updateEpisode($id, $field, $value)
+    {
+        return $this->findEpisodeById($id)->update([$field => $value]);
     }
 }

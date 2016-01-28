@@ -37,7 +37,7 @@
         <script src = "{!! load_asset('/js/main.js') !!}"></script>
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src = "{!! load_asset('/js/comment.js') !!}"></script>
-
+        <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>
 
     </head>
     <body>
