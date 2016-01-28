@@ -14,11 +14,6 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class FilesRepository
 {
-    public function __construct()
-    {
-        $this->cloudder = new Cloudder;
-    }
-
     /**
      * Upload file to amazon S3
      * @param  [type] $podcast [description]
@@ -41,9 +36,9 @@ class FilesRepository
      */
     public function imageToCloudinary($cover)
     {
-        $this->cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
+        Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
         
-        return $this->cloudder::getResult()['url'];
+        return Cloudder::getResult()['url'];
     }
 
     /**
@@ -53,8 +48,8 @@ class FilesRepository
      */
     public function videoToCloudinary($podcast)
     {
-        $this->cloudder::uploadVideo($podcast, null);
+        Cloudder::uploadVideo($podcast, null);
 
-        return $this->cloudder::getResult()['url'];
+        return Cloudder::getResult()['url'];
     }  
 }
