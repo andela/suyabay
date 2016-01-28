@@ -112,7 +112,7 @@ Route::post('signup', [
 / Search link request
 /-------------------------------------------------------------------------------
 */
-Route::post('search', function(){
+Route::post('search', function () {
     return redirect('/');
 });
 
@@ -182,6 +182,18 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses'          => 'EpisodeManager@destroy',
         'as'            => 'destroy.episode',
         'middleware'    => ['auth']
+    ]);
+
+    Route::get('/episodes/{id}', 'EpisodeController@show');
+
+    Route::post('/episode/like', [
+        'uses' => 'LikeController@postLike',
+        'as'   => 'episode.like'
+    ]);
+
+    Route::post('/episode/unlike', [
+        'uses' => 'LikeController@postUnlike',
+        'as'   => 'episode.unlike'
     ]);
 
     //end
@@ -326,24 +338,20 @@ Route::post('/comment', [
 
 
 Route::get('/profile/edit', [
-    'uses' => 'ProfileController@getProfileSettings',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@getProfileSettings',
+    'middleware'    => ['auth'],
 ]);
 
 Route::get('/profile/changepassword', [
-    'uses' => 'ProfileController@getChangePassword',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@getChangePassword',
+    'middleware'    => ['auth'],
 ]);
 
 Route::post('/avatar/setting', [
-    'uses' => 'ProfileController@postAvatarSetting',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@postAvatarSetting',
+    'middleware'    => ['auth'],
 ]);
 
 Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
 
 Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
-
-Route::controllers([
-    'password' => 'Auth\PasswordController',
-]);

@@ -16,6 +16,27 @@ $(document).ready(function(){
                 channel_name : name
             }
         }
+        // confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
+        processAjax("DELETE", data.url, data.parameter, data.parameter.channel_name );
+
+        return false;
+    });
+
+    $("#swap_episode_delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
+        var token   = $(this).data("token");
+        var name    = $(this).data("name");
+        var episodes = $(this).data("episoes");
+        var data    =  {
+            url : url,
+            parameter: {
+                _token       : token,
+                channel_id   : id,
+                channel_name : name,
+                episodes : episodes
+            }
+        }
         confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
 
         return false;
@@ -186,12 +207,12 @@ function confirmDelete (url, parameter, id, name)
 {
     swal({
         title: "Confirm Delete",
-        text: "If this Channel has Episodes, deleting it implies deleting all the Episodes under it. You can swap it's episodes to another Channel or go ahead and just delete it.",
+        text: "This Channel has Episodes, deleting it implies deleting all the Episodes under it. Are you sure you want to do this?",
         type: "info",
         showCancelButton: true,
         confirmButtonColor: "#009688",
-        confirmButtonText: "Swap & Delete",
-        cancelButtonText: "Just Delete it!",
+        confirmButtonText: "Yes, please!",
+        cancelButtonText: "Cancel",
         allowOutsideClick:true,
         closeOnConfirm: false,
         closeOnCancel: false,
@@ -205,7 +226,6 @@ function confirmDelete (url, parameter, id, name)
         if ( isConfirm) {
             document.location.href = "/dashboard/channel/swap/"+id;    
         } else {
-            processAjax("DELETE", url, parameter, name);
             document.location.href = "/dashboard/channels/all";
         }
     });

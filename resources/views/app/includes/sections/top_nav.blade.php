@@ -33,9 +33,14 @@
                 <li>
                     @if (  Auth::check() )
                         <ul id="settings" class="dropdown-content">
-                          <li><a href="/profile/edit">Settings</a></li>
+                            <li><a href="/profile/edit">Settings</a></li>
+                            }
                         </ul>
-                        <a class="waves-effect dropdown-button" href="#" data-activates="settings">{{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
+
+                        <a class="waves-effect dropdown-button" href="#" data-activates="settings">
+                        <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}">
+                        &nbsp;
+                        {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
 
                         @can('see-dashboard', Auth::user()->role->name )
                             <a class="waves-effect" href="/dashboard">Admin Dashboard</a>

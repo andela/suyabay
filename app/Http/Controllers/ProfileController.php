@@ -10,9 +10,16 @@ use Suyabay\User;
 use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 
 class ProfileController extends Controller
 {
+    protected $user;
+
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Gets profile update page.
      *
@@ -41,17 +48,17 @@ class ProfileController extends Controller
      */
     public function postAvatarSetting(Request $request)
     {
-        if ($request->hasFile('avatar')) {
-            $img = $request->file('avatar');
-            Cloudder::upload($img, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
-            $imgurl = Cloudder::getResult()['url'];
+        $this->validate($request, [
+            'avatar'  => 'required'
+        ]);
 
-            User::find(Auth::user()->id)->updateAvatar($imgurl);
+        $img = $request->file('avatar');
+        Cloudder::upload($img, null);
+        $imgurl = Cloudder::getResult()['url'];
 
-            return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
-        } else {
-            return redirect('/profile/edit')->withErrors('Please select an image.');
-        }
+        $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
+
+        return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
     }
 
     public function getChangePassword()

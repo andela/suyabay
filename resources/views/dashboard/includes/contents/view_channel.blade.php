@@ -11,10 +11,17 @@
                     <th data-field="id">{!! $channel->channel_name !!}
                         <div class="count-active">{{ count($channel->episode) }} episodes</div>
                         <div class="right">
+                        @if(count($episodes) === 0)
                             <a href="#" id="delete_channel" data-token="{{ csrf_token() }}" data-id="{{ $channel->id }}" data-name="{{ $channel->title }}">
                                 <i class="fa fa-trash-o"></i>
-                                DELETE
+                                JUST DELETE
                             </a>
+                        @else
+                            <a href="#" id="swap_episode_delete_channel" data-token="{{ csrf_token() }}" data-id="{{ $channel->id }}" data-name="{{ $channel->title }}" data-episodes="{{ count($episodes) }}">
+                                <i class="fa fa-trash-o"></i>
+                                SWAP AND DELETE
+                            </a>
+                        @endif
                         </div>
                     </th>
                 </tr>

@@ -31,4 +31,11 @@ class EpisodeController extends Controller
         return view('app.pages.index', compact('episodes', 'likedEpisodes'))->with('channels', $channels);
 
     }
+
+    public function show($episodeId)
+    {
+        $episode = Episode::findOrFail($episodeId);
+
+        return view('app.pages.episode', compact('episode'));
+    }
 }
