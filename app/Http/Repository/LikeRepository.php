@@ -8,6 +8,13 @@ use Suyabay\Like;
 
 class LikeRepository
 {
+    /**
+    * Return all Favorite from the database
+    */
+    public function getUserFavorite($field, $value)
+    {
+        return Like::where($field, $value);
+    }
 
     /*Find like where*/
     public function findLikeWhere($field, $value)
@@ -52,5 +59,13 @@ class LikeRepository
         }
 
         return $status;
+    }
+
+    /**
+     * Get the amount of favorite episode of a user
+     */
+    public function getNumberOfUserFavorite()
+    {
+        return (Auth::check()) ? $this->getUserFavorite('user_id', Auth::user()->id) : 0;
     }
 }

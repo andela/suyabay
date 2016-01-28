@@ -7,8 +7,20 @@
 
 */
 
-Route::get('/', 'EpisodeController@index');
+Route::get('/', [
+    'uses' => 'EpisodeController@index',
+    'as'   => 'home'
+]);
 
+Route::get('/channels', [
+    'uses' => 'ChannelController@channelList',
+    'as'   => 'channels'
+]);
+
+Route::get('/channel/{id}', [
+    'uses' => 'EpisodeManager@getEpisode',
+    'as'   => 'episode-show'
+]);
 /*
 /-------------------------------------------------------------------------------
 / About
@@ -348,6 +360,10 @@ Route::post('/comment', [
 /-------------------------------------------------------------------------------
 */
 
+Route::get('/favorites', [
+    'uses' => 'LikeController@index',
+    'as'   => 'favorites'
+]);
 
 Route::get('/profile/edit', [
     'uses'          => 'ProfileController@getProfileSettings',

@@ -63,11 +63,11 @@
             <ul id="nav-mobile" class="side-nav collection">
 
                 <li class="collection-item">
-                    <a href="#">CHANNELS <span class="new badge grey darken-2" style="padding:5px;">4</span></a>
+                    <a href="#">CHANNELS <span class="new badge grey darken-2" style="padding:5px;">{{ $channels->count() }}</span></a>
                 </li>
 
                 <li class="collection-item">
-                    <a href="#">FAVOURITES <span class="new badge grey darken-2" style="padding:5px;">0</span></a>
+                    <a href="#">FAVOURITES <span class="new badge grey darken-2" style="padding:5px;">3</span></a>
                 </li>
 
                 <li class="collection-item center-align">

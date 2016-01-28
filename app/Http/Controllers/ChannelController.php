@@ -9,24 +9,11 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
-use Suyabay\Http\Repository\ChannelRepository;
-use Suyabay\Http\Repository\EpisodeRepository;
 
 class ChannelController extends Controller
 {
     protected $response;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
-    public function __construct(ChannelRepository $channel, EpisodeRepository $episode)
-    {
-        $this->channel = $channel;
-        $this->episode = $episode;
-    }
 
     /**
      * Return all channels
@@ -45,7 +32,7 @@ class ChannelController extends Controller
      */
     public function active()
     {
-        $channels = $this->channel->getOrderedChannels('id', 'desc')->paginate(10);
+        $channels = $this->channelRepository->getOrderedChannels('id', 'desc')->paginate(10);
 
         return view('dashboard.pages.view_channels', compact('channels'));
     }
@@ -69,6 +56,14 @@ class ChannelController extends Controller
     public function createIndex()
     {
         return view('dashboard.pages.create_channel');
+    }
+
+    public function channelList()
+    {
+        $channels = $this->channelRepository->getAllChannels();
+        $favorites = $this->likeRepository->getNumberOfUserFavorite();
+
+        return view('app.pages.channel', compact('channels', 'favorites'));
     }
 
     /**
@@ -110,7 +105,7 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        $channels = $this->channel->findChannelWhere('id', $id)->first();
+        $channels = $this->channelRepository->findChannelWhere('id', $id)->first();
 
         return view('dashboard.pages.edit_channel', compact('channels'));
     }
@@ -125,7 +120,7 @@ class ChannelController extends Controller
     public function update(Request $request)
     {
         try {
-            $updateChannel = $this->channel->findChannelWhere('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
+            $updateChannel = $this->channelRepository->findChannelWhere('id', $request->channel_id)->update(['channel_name' => $request->channel_name, 'channel_description' => $request->channel_description]);
 
             if ($updateChannel) {
                 $this->response =
@@ -158,7 +153,7 @@ class ChannelController extends Controller
     public function destroy($id)
     {
         try {
-            $this->channel->deleteChannel($id);
+            $this->channelRepository->deleteChannel($id);
             Episode::where('channel_id', $id)->update(['flag' => 1]);
 
             $this->response =
@@ -184,7 +179,7 @@ class ChannelController extends Controller
      */
     public function restore($id)
     {
-        $this->channel->restoreChannel($id);
+        $this->channelRepository->restoreChannel($id);
         Episode::where('channel_id', $id)->update(['flag' => 0]);
 
         return redirect()->back();
@@ -226,7 +221,7 @@ class ChannelController extends Controller
     {
         try {
             $swap = Episode::where('channel_id', $request->channel_id)->update(['channel_id' => $request->new_channel_id]);
-            $this->channel->deleteChannel($request->channel_id);
+            $this->channelRepository->deleteChannel($request->channel_id);
             Episode::where('channel_id', $request->channel_id)->update(['flag' => 1]);
             $this->response = ['message' => 'Episodes swapped and Channel deleted Successfully!', 'status_code' => 200];
         } catch (QueryException $e) {

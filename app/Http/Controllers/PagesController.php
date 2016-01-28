@@ -15,7 +15,9 @@ class PagesController extends Controller
      */
     public function about()
     {
-        return view('app.pages.about');
+        $channels = $this->channelRepository->getAllChannels();
+
+        return view('app.pages.about', compact('channels'));
     }
 
     /**
@@ -25,12 +27,16 @@ class PagesController extends Controller
      */
     public function faqs()
     {
-        return view('app.pages.faqs');
+        $channels = $this->channelRepository->getAllChannels();
+
+        return view('app.pages.faqs', compact('channels'));
     }
 
     public function privacyPolicy()
     {
-        return view('app.pages.privacypolicy');
+        $channels = $this->channelRepository->getAllChannels();
+        
+        return view('app.pages.privacypolicy', compact('channels'));
     }
 
 

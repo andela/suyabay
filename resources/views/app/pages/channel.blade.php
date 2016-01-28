@@ -6,6 +6,6 @@
 
 @section('content')
 
-    @include('app.includes.contents.episodes')
+    @include('app.includes.contents.channels')
 
 @endsection

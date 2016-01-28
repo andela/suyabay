@@ -37,14 +37,17 @@ class EpisodeManager extends Controller
     const SUPER_ADMIN   = 3;
 
     /**
-     * Returns episodes to view all episodes on admin dashbaord
-     * @return
+     * Get all Episode that belongs to a partticular channel
      */
-    public function index()
+    public function getEpisode($id)
     {
-        $episodes = $this->episodeRepository->getAllEpisodes();
+        $channels = $this->channelRepository->getAllChannels();
+        $episodes = $this->episodeRepository->findEpisodeWhere('channel_id', $id)->paginate(5);
 
-        return view('dashboard.pages.view_episodes', compact('episodes'));
+        $favorites = $this->likeRepository->getNumberOfUserFavorite();
+
+        return view('app.pages.episodes', compact('episodes', 'channels', 'favorites'));
+        
     }
 
 
