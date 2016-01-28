@@ -7,19 +7,13 @@ use Hash;
 use Cloudder;
 use Redirect;
 use Suyabay\User;
-use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\UserRepository;
 
 class ProfileController extends Controller
 {
-    protected $user;
-
-    public function __construct(UserRepository $user)
-    {
-        $this->user = $user;
-    }
     /**
      * Gets profile update page.
      *
@@ -27,8 +21,10 @@ class ProfileController extends Controller
      */
     public function getProfileSettings()
     {
+        $channels = $this->channelRepository->getAllChannels();
         $users = Auth::user();
-        return view('profile.settings', compact('users'));
+
+        return view('profile.settings', compact('users', 'channels'));
     }
     /**
      * Posts form request.
@@ -48,6 +44,8 @@ class ProfileController extends Controller
      */
     public function postAvatarSetting(Request $request)
     {
+        $channels = $this->channelRepository->getAllChannels();
+
         $this->validate($request, [
             'avatar'  => 'required'
         ]);
@@ -58,13 +56,15 @@ class ProfileController extends Controller
 
         $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
 
-        return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
+        return redirect('/profile/edit', compact('channels'))->with('status', 'Avatar updated successfully.');
     }
 
     public function getChangePassword()
     {
+        $channels = $this->channelRepository->getAllChannels();
         $users = Auth::user();
-        return view('profile.changepassword', compact('users'));
+
+        return view('profile.changepassword', compact('users', 'channels'));
     }
 
     public function postChangePassword(Request $request)

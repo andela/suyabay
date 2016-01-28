@@ -13,7 +13,7 @@ class AddUserIdToChannelsTable extends Migration
     public function up()
     {
         Schema::table('channels', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

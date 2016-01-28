@@ -47,20 +47,6 @@ class ChannelTest extends TestCase
         $this->assertEquals($episode->channel_id, $episode->channel->id);
     }
 
-    public function testChannelHasEpisode()
-    {
-        $this->createUser(1);
-        $this->createChannel();
-        $this->createEpisode();
-
-        $this->visit('/')
-             ->click('Channels')
-             ->seePageIs('/channels')
-             ->see('Channel name')
-             ->click('channel1')
-             ->sePageIs('/channel/1');
-    }
-
     /**
      * Test that an episode is created.
      *

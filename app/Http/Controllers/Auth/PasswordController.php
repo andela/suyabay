@@ -28,16 +28,6 @@ class PasswordController extends Controller
     protected $redirectTo = '/login';
 
     /**
-     * Create a new password controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    /**
      * Load the password reset page
      */
     public function getEmailPage()
@@ -97,12 +87,14 @@ class PasswordController extends Controller
      */
     public function getResetPage($token = null)
     {
+        $channels = $this->channelRepository->getAllChannels();
+
         if (is_null($token)) {
             throw new NotFoundHttpException;
         }
         $data = Password_reset::whereToken($token)->first();
 
-        return view('app.pages.newpassword')->with(['token' => $token, 'email' => $data->email]);
+        return view('app.pages.newpassword', compact('channels'))->with(['token' => $token, 'email' => $data->email]);
     }
 
     /**
