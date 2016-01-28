@@ -60,4 +60,12 @@ class LikeRepository
 
         return $status;
     }
+
+    /**
+     * Get the amount of favorite episode of a user
+     */
+    public function getNumberOfUserFavorite()
+    {
+        return (Auth::check()) ? $this->getUserFavorite('user_id', Auth::user()->id) : 0;
+    }
 }
