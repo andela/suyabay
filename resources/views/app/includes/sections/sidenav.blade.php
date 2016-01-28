@@ -1,3 +1,40 @@
+@section('mobile-nav')
+<ul id="nav-mobile" class="side-nav collection">
+
+    <li class="collection-item">
+        <a href="#">CHANNELS <span class="new badge grey darken-2" style="padding:5px;">{{ $channels->count() }}</span></a>
+    </li>
+
+    <li class="collection-item">
+        <a href="#">FAVOURITES <span class="badge grey darken-2" style="padding:5px;">3</span></a>
+    </li>
+
+    <li class="collection-item center-align">
+        <a href="{{ URL::to('search') }}">SEARCH</a>
+    </li>
+
+    <li class="collection-item">
+        <a href="{{ URL::to('login') }}">SIGN IN</a>
+    </li>
+
+    <li class="collection-item">
+        <a href="{{ URL::to('signup') }}">SIGN UP</a>
+    </li>
+
+    <li class="collection-item">
+        <a href="{{ URL::to('about') }}">ABOUT</a>
+    </li>
+
+    <li class="collection-item">
+        <a href="{{ URL::to('faqs') }}">FAQs</a>
+    </li>
+
+    <li class="collection-item">
+        <a href="{{ URL::to('privacypolicy') }}">PRIVACY POLICY</a>
+    </li>
+
+</ul>
+@endsection
     <div class="col s3">
         <div class="hide-on-small-only">
             <div class="collection">
