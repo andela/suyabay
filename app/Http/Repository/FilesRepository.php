@@ -14,18 +14,6 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class FilesRepository
 {
-/**
-     * Upload file to cloudinary
-     * @param  [type] $cover [description]
-     * @return [type]        [description]
-     */
-    public function imageToCloudinary($cover)
-    {
-        Cloudder::upload($cover, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
-        
-        return Cloudder::getResult()['url'];
-    }
-
     /**
      * Upload audio file to cloudinary
      * @param $filename

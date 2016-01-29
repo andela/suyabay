@@ -13,7 +13,7 @@
                     <div class="input-field col s6">
                         <select name="channel_id" id="channel_id">
                             @foreach($channels as $ch)
-                            <option value="{{$ch->id}}">{{$ch->channel_name}}</option>
+                            <option value="{{$ch->id}}" name="channel_id">{{$ch->channel_name}}</option>
                             @endforeach
                         </select>
                     </div>
