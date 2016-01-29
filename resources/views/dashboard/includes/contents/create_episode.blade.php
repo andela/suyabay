@@ -30,12 +30,6 @@
                         <label for="description">Description</label>
                     </div>
                 </div>
-
-                <div class="row">
-                    <label for="cover" class="btn-flat">Upload Cover Image</label>
-                    <input type="file" name="cover" accept="image/*">
-                </div>
-
                 <div class="row">
                     <label for="file" class="btn-flat">Upload Podcast</label>
                     <input type="file" name="podcast" accept="mp3, audio/*">

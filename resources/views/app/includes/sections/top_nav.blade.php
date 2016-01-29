@@ -7,26 +7,17 @@
             <a href="/" id="logo-container">
                 <img src="{!! asset('/css/logo.png') !!}" class="logo" />
             </a>
-
             <ul class="right hide-on-med-and-down">
                 <li>
                     <form action="/search" method="POST">
                     {{ csrf_field() }}
-
                         <div class="input-field">
-
                             <input name = "data" id="search" type="search" class="search" required>
-
                             <label for="search">
-
                                 <i class="material-icons teal-text text-lighten-2">search</i>
-
                             </label>
-
                             <i class="material-icons">close</i>
-
                         </div>
-
                     </form>
                 </li>
 
@@ -59,9 +50,7 @@
                     @endif
                 </li>
             </ul>
-
             @yield('mobile-nav')
-
             <a href="#" data-activates="nav-mobile" class="button-collapse">
                 <i class="material-icons">menu</i>
             </a>

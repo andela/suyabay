@@ -36,6 +36,12 @@ class EpisodeManager extends Controller
      */
     const SUPER_ADMIN   = 3;
 
+
+    /**
+     * Default avatar for episodes
+     */
+    const DEFUALT_COVER_IMAGE = 'http://goo.gl/8sorZR';
+
     /**
      * Returns episodes to view all episodes on admin dashbaord
      * @return
@@ -126,7 +132,7 @@ class EpisodeManager extends Controller
     public function update(Request $request)
     {
         try {
-            $update = Episode::where('id', $request->episode_id)->update(['episode_name' => $request->episode, 'episode_description' => $request->description]);
+            $update = Episode::where('id', $request->episode_id)->update(['episode_name' => $request->episode, 'episode_description' => $request->description, 'channel_id' => $request->channel_id]);
 
             $this->response =['message' => 'Success', 'status_code'   => 200];
             
@@ -149,18 +155,17 @@ class EpisodeManager extends Controller
             'title'         => 'required|min:3',
             'description'   => 'required',
             'channel'       => 'required',
-            'cover'         => 'required',
             'podcast'       => 'required|size_format'
         ]);
 
         $data    = [
-            'episode_name' => $request->title,
-            'episode_description' => $request->description,
-            'channel_id' => $request->channel,
-            'image' => $this->upload->imageToCloudinary($request->cover),
-            'audio_mp3' => $this->upload->videoToCloudinary($request->podcast),
-            'view_count' => 0,
-            'status' => 0
+            'episode_name'          => $request->title,
+            'episode_description'   => $request->description,
+            'channel_id'            => $request->channel,
+            'image'                 => self::DEFUALT_COVER_IMAGE,
+            'audio_mp3'             => $this->upload->videoToCloudinary($request->podcast),
+            'view_count'            => 0,
+            'status'                => 0
         ];
 
         $this->episodeRepository->createEpisode($data);
