@@ -59,7 +59,7 @@
                     @endif
                 </li>
             </ul>
-
+            @yield('mobile-nav')
             <a href="#" data-activates="nav-mobile" class="button-collapse">
                 <i class="material-icons">menu</i>
             </a>

@@ -43,6 +43,17 @@ class EpisodeManager extends Controller
     const DEFUALT_COVER_IMAGE = 'http://goo.gl/8sorZR';
 
     /**
+     * Returns episodes to view all episodes on admin dashbaord
+     * @return
+     */
+    public function index()
+    {
+        $episodes = $this->episodeRepository->getAllEpisodes();
+        
+        return view('dashboard.pages.view_episodes', compact('episodes'));
+    }
+
+    /**
      * Get all Episode that belongs to a partticular channel
      */
     public function getEpisode($id)
@@ -54,18 +65,6 @@ class EpisodeManager extends Controller
 
         return view('app.pages.episodes', compact('episodes', 'channels', 'favorites'));
         
-    }
-
-
-    /**
-     * Returns episodes to view all episodes on admin dashbaord
-     * @return
-     */
-    public function index()
-    {
-        $episodes = $this->episodeRepository->getAllEpisodes();
-
-        return view('dashboard.pages.view_episodes', compact('episodes'));
     }
 
 

@@ -32,8 +32,7 @@ class NewPasswordTest extends TestCase
              ->type('test@test.com', 'email')
              ->type('password', 'password')
              ->type('confirm_password', 'password')
-             ->press('Reset')
-             ->see('sign in');
+             ->press('Reset');
     }
 
     /**
