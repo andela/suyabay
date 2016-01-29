@@ -37,6 +37,17 @@ class EpisodeManager extends Controller
     const SUPER_ADMIN   = 3;
 
     /**
+     * Returns episodes to view all episodes on admin dashbaord
+     * @return
+     */
+    public function index()
+    {
+        $episodes = $this->episodeRepository->getAllEpisodes();
+        
+        return view('dashboard.pages.view_episodes', compact('episodes'));
+    }
+
+    /**
      * Get all Episode that belongs to a partticular channel
      */
     public function getEpisode($id)
