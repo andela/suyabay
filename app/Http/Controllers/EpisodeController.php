@@ -27,4 +27,38 @@ class EpisodeController extends Controller
 
         return view('app.pages.index', compact('episodes'));
     }
+
+
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allEpisode()
+    {
+        $episodes = Episode::get();
+
+        return view('app.pages.episodes', compact('episodes'));
+    }
+
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function singleEpisode($id)
+    {
+        $episodes = Episode::with('like')->where('id', $id)->get();
+
+            $episodes->each(function ($episode, $key) {
+
+                $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
+
+            });
+        
+        return view('app.pages.single_episode', compact('episodes'));
+    }
+
 }

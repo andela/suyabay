@@ -8,11 +8,21 @@
 */
 
 Route::get('/', [
-    'uses' => 'IndexController@index',
+    'uses' => 'EpisodeController@index',
     'as'   => 'home'
 ]);
 
-Route::get('/', 'EpisodeController@index');
+
+Route::get('/episode', [
+    'uses' => 'EpisodeController@allEpisode',
+    'as'   => 'home.episode'
+]);
+
+Route::get('/episode/{id}', [
+    'uses' => 'EpisodeController@singleEpisode',
+    'as'   => 'home.episode.id'
+]);
+
 
 /*
 /-------------------------------------------------------------------------------

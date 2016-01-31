@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @include('app.includes.contents.episode')
+    @include('app.includes.contents.single_episode')
 
 @endsection
 

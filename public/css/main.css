@@ -364,7 +364,7 @@ Navigations Styles
 
 /*Show dislike action on button*/
 .like {
-    color: #999;
+    color: #2C3E50;
 }
 
 .social-btn {
@@ -402,12 +402,19 @@ h4.center-align.padcast-page-header {
 }
 
 p.flow-text.center-align.padcast-page-sub-header {
-    font-size: 20px;
+    font-size: 18px;
+    width: 83%;
+    margin: auto;
+    margin-bottom: 100px;
 }
 
 .podcast {
-    background-color: #f8f8f8;
+    background-color: rgba(245, 245, 245, 0.31);
     padding: 20px;
+}
+
+.row.podcast:hover {
+    box-shadow: 0px 0px 2px #ccc;
 }
 
 .podcast .details .podcast-episode-date {
@@ -419,8 +426,6 @@ p.flow-text.center-align.padcast-page-sub-header {
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
 }
-
-
 
 .podcast .details .tag {
     background-color: #2C3E50;
