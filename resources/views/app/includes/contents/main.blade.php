@@ -21,7 +21,7 @@
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
            
-        <h4 class="center-align padcast-page-header">Podcast for Suya loves</h1>
+        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
        <div class="row podcast">
             <div class="col s3">

@@ -21,12 +21,7 @@
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
            
-        <h4 class="center-align padcast-page-header">Podcast for Suya loves</h1>
-        
-
-        <p class="flow-text center-align padcast-page-sub-header">
-            The Laravel Podcast brings you Laravel and PHP development news and discussion. The podcast is hosted by Matt Stauffer and regular guests include Taylor Otwell (the creator of Laravel) and Jeffrey Way (the creator of Laracasts).
-        </p>
+        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
         <div class="row podcast">
             <div class="col s3">
