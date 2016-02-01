@@ -98,7 +98,7 @@
         @endforeach
 
         <p class="center-align">
-            <a href="/episode" class=" waves-effect waves-light btn">VIEW OLDER EPISODES</a>
+            <a href="/episodes" class=" waves-effect waves-light btn">VIEW OLDER EPISODES</a>
         </p>
     </div>
 </div>
