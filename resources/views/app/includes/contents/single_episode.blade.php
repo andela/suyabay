@@ -43,9 +43,7 @@
                 </div>
                 
                 <p>
-                    In this episode, the crew discusses Linode down time, 
-                    server migrations, editors, Will Smith, and Mario Kart. Most importantly, 
-                    Jeffrey & Taylor finally disagree.
+                    {{$episodes->first()->episode_description}}
                 </p>
          
                 <div class="podcast-actions">

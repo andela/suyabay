@@ -22,11 +22,6 @@
     <div class="col s12 m8 l9">
            
         <h4 class="center-align padcast-page-header">Podcast for Suya loves</h1>
-        
-
-        <p class="flow-text center-align padcast-page-sub-header">
-            The Laravel Podcast brings you Laravel and PHP development news and discussion. The podcast is hosted by Matt Stauffer and regular guests include Taylor Otwell (the creator of Laravel) and Jeffrey Way (the creator of Laracasts).
-        </p>
 
        <div class="row podcast">
             <div class="col s3">
@@ -45,9 +40,7 @@
                     <audio width="10px;" src="{{$episodes->first()->audio_mp3}}" preload="auto" />
                 </div>
                 <p>
-                    In this episode, the crew discusses Linode down time, 
-                    server migrations, editors, Will Smith, and Mario Kart. Most importantly, 
-                    Jeffrey & Taylor finally disagree.
+                     {{$episodes->first()->episode_description}}
                 </p>
 
                 <div class="podcast-actions">
@@ -87,9 +80,7 @@
                     <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
                     
                     <p>
-                        In this episode, the crew discusses Linode down time, 
-                        server migrations, editors, Will Smith, and Mario Kart. Most importantly, 
-                        Jeffrey & Taylor finally disagree.
+                        {{$podcast->episode_description}}
                     </p>
 
                 </div>     
