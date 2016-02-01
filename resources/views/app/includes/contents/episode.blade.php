@@ -40,9 +40,7 @@
                     <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
                     
                     <p>
-                        In this episode, the crew discusses Linode down time, 
-                        server migrations, editors, Will Smith, and Mario Kart. Most importantly, 
-                        Jeffrey & Taylor finally disagree.
+                        {{$podcast->episode_description}}
                     </p>
 
                 </div>     
