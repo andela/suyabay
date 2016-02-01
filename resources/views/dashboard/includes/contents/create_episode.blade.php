@@ -3,7 +3,7 @@
         @include('dashboard.includes.sections.alerts')
         <h4>Create Episode</h4>
         <div class="row">
-            <form class="col s12" action="/dashboard/episode/create" method="POST"
+            <form id="create_episode" class="col s12" action="/dashboard/episode/create" method="POST"
                     enctype="multipart/form-data" files="true">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
@@ -30,16 +30,11 @@
                         <label for="description">Description</label>
                     </div>
                 </div>
-
-                <div class="row">
-                    <label for="cover" class="btn-flat">Upload Cover Image</label>
-                    <input type="file" name="cover" accept="image/*">
-                </div>
-
                 <div class="row">
                     <label for="file" class="btn-flat">Upload Podcast</label>
                     <input type="file" name="podcast" accept="mp3, audio/*">
                 </div>
+                
                 <input type="submit"  value ="create" class="btn-large" />
             </form>
         </div>

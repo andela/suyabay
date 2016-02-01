@@ -1,6 +1,7 @@
 @extends('app.master')
 
-@section('title', 'This is SuyaBay #TISb')
+
+@section('title', 'Channels on SuyaBay | SuyaBay')
 
 @endsection
 
@@ -9,5 +10,4 @@
     @include('app.includes.contents.episode')
 
 @endsection
-
 

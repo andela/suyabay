@@ -72,6 +72,7 @@
          
             </div>
 
+
             <div class="col s12 m6 l12 card-social">
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
@@ -82,22 +83,22 @@
                             <div class="collapsible-body">
                                 <ul class="collection">
 
-                                <li class="load_comment{{ $episodes->first()->id }}">
-                                @foreach ( $episodes->first()->comment as $comment  )
-                                    <div id="show_comment" class="collection-item avatar show_comment{{ $comment->episode_id }}">
-                                        <div class="row">
+                                <li class="load_comment">
+                                    @foreach ( $episodes->first()->comment as $comment  )
+                                        <div id="show_comment" class="collection-item avatar show_comment">
+                                            <div class="row">
 
-                                            <div class="col s2">
-                                                <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
-                                            </div>
-                                            <div class="col s10">
-                                                <div class="textarea-wrapper" placeholder="">
-                                                    {{$comment->comments}}
+                                                <div class="col s2">
+                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
+                                                </div>
+                                                <div class="col s10">
+                                                    <div class="textarea-wrapper" placeholder="">
+                                                        {{$comment->comments}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
                                 </li>
 
                                 @if (  Auth::check() )
@@ -106,15 +107,15 @@
                                             <div class="col s2">
                                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>
-                                            <form id="submit_comment{{ $episodes->first()->id }}" action="/comment" method="POST">
+                                            <form id="submit_comment" method="POST">
                                                 <div class="file-field input-field">
-                                                    <input hidden="true" type="text" name="_token" id="_token{{ $episodes->first()->id }}" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="user_id" id="user_id{{ $episodes->first()->id }}" value="{{ Auth::user()->id }}">
-                                                    <input hidden="true" type="text" name="episode_id" id="episode_id{{ $episodes->first()->id }}" value="{{ $episodes->first()->id }}">
+                                                    <input hidden="true" type="text" name="_token" id="_token" value="{{ csrf_token() }}">
+                                                    <input hidden="true" type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episodes->first()->id }}">
                                                     <div class="file-path-wrapper input-field col s10 m10">
-                                                        <input name="comment" id="comment-field{{ $episodes->first()->id }}" class="validate" type="text" style="margin-left:20px;" required="true" />
+                                                        <input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button type="submit" data-id="{{ $episodes->first()->id }}" data-token="{{ csrf_token() }}" data-comment-count="{{ $episodes->first()->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit"class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
+                                                    <button type="submit" data-token="{{ csrf_token() }}" data-comment-count="{{ $episodes->first()->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -131,11 +132,16 @@
                                     </li>
                                 @endif
 
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+
+
+
+
+
         </div>
 
         <p class="center-align">

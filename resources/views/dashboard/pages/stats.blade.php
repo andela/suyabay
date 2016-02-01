@@ -6,6 +6,6 @@
 
 @section('content')
 
-    @include('dashboard.includes.contents.main')
+    @include('dashboard.includes.contents.stats')
 
 @endsection

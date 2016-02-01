@@ -25,4 +25,9 @@ class Like extends Model
     {
         return $this->belongsTo('Suyabay\Episode');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('Suyabay\User');
+    }
 }

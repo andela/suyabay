@@ -1,38 +1,27 @@
 <div class="col s12 m9">
-
     <div class="row">
-        @include('dashboard.includes.sections.alerts')
         <h4>Edit Episode</h4><br>
-
         <div class="row">
-
-            <form class="col s12" action="{{ route('episode.update', $episode->id )}}" method="POST"
-            enctype="multipart/form-data">
-            <input type="hidden" name="_method" value="PUT">
-            <input type="hidden" value="{{ csrf_token() }}" name="_token" id="token" />
+            <form class="col s12" id="episode_update" action="#" method="POST">
+                <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" value="{{ $episode->id }}" name="episode_id" id="episode_id">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input value="{!! $episode->episode_name !!}" name="title" type="text">
-                        <label for="title">Episode Title</label>
+                        <input value="{{ $episode->episode_name }}" name="episode" id="episode" type="text" require="true">
+                        <label for="episode">Episode Title</label>
                     </div>
-
                     <div class="input-field col s6">
-                         <select name="channel">
-                            @foreach($channels as $channel)
-                                <option value="{{$channel->id}}" name="channel">{{$channel->channel_name}}
-                                </option>
+                        <select name="channel_id" id="channel_id">
+                            @foreach($channels as $ch)
+                            <option value="{{$ch->id}}" name="channel_id">{{$ch->channel_name}}</option>
                             @endforeach
                         </select>
-                        <label for="channel">Channel Name</label>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="input-field col s12">
-                    <textarea name="description" class="materialize-textarea">
-                        {!! $episode->episode_description !!}
-                    </textarea>
-                    <label for="description">Episode Description</label>
+                        <input value="{{ $episode->episode_description }}" name="description" id="description" type="text" require="true">
+                        <label for="description">Episode Description</label>
                     </div>
                 </div>
                 <input type="submit"  value ="update" class="btn-large" />

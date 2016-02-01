@@ -1,11 +1,11 @@
 
 $(document).ready(function() {
 
-	$('.like-btn').click(function () {
+	$(".like-btn").click(function () {
 
-		var
-		status 		= $(this).attr("like-status"),
-		like_count	= $(this).html();
+		var status 		  = $(this).attr("like-status");
+		var like_count	  = $(this).html();
+		var favoriteCount = $("#favorite").html();
 
 		if (status === "like")
 		{
@@ -16,8 +16,10 @@ $(document).ready(function() {
 			likeEpisode()
 
 			like_count = Number(like_count) + 1;
+			favoriteCount = Number(favoriteCount) + 1;
 
 			$(this).text( " " + like_count);
+			$("#favorite").html(favoriteCount);
 		}
 
 		if (status === "dislike")
@@ -29,13 +31,15 @@ $(document).ready(function() {
 			dislikeEpisode()
 
 			like_count = Number(like_count) - 1;
+			favoriteCount = Number(favoriteCount) - 1;
 
 			$(this).text(" " + like_count);
+			$("#favorite").html(favoriteCount);
 		}
 
 		if (status === "must_login") 
 		{
-			window.location = '/login';
+			window.location = "/login";
 		}
 
 	})
@@ -44,11 +48,10 @@ $(document).ready(function() {
 	# Like Episode Function
 	*/
 	function likeEpisode()
-	{
-		var
-		url 			= "/episode/like",
-		token 			= document.getElementById("token").value,
-		method 			= "POST";
+	{	
+		var url 			= "/episode/like";
+		var token 			= document.getElementById("token").value;
+		var method 			= "POST";
 
 	  	var data =
 	    {
@@ -57,8 +60,8 @@ $(document).ready(function() {
 	        parameter   	:
 	        {
 	          _token		: token,
-	          user_id		: document.getElementById('user_id').value,
-	          episode_id	: document.getElementById('episode_id').value
+	          user_id		: document.getElementById("user_id").value,
+	          episode_id	: document.getElementById("episode_id").value
 	        }
 	    }
 
@@ -70,10 +73,9 @@ $(document).ready(function() {
 	*/
 	function dislikeEpisode()
 	{
-		var
-		url 			= "/episode/unlike",
-		token 			= document.getElementById("token").value,
-		method 			= "post";
+		var url 			= "/episode/unlike";
+		var token 			= document.getElementById("token").value;
+		var method 			= "post";
 
 	  	var data =
 	    {

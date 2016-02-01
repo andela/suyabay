@@ -3,7 +3,9 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Suyabay\Episode;
+use Suyabay\Channel;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
@@ -15,17 +17,28 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        $episodes = Episode::with('like')->paginate(5);
+        $channels = $this->channelRepository->getAllChannels();
 
+        $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
+        
         $episodes->each(function ($episode, $key) {
-
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
-
         });
+        
+        $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
-        return view('app.pages.index', compact('episodes'));
+        return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
+    }
+
+    public function show($episodeId)
+    {
+        $channels = $this->channelRepository->getAllChannels();
+        $episode = Episode::findOrFail($episodeId);
+
+        return view('app.pages.episode', compact('episode', 'channels'));
     }
 
 

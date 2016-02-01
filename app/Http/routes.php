@@ -13,9 +13,9 @@ Route::get('/', [
 ]);
 
 
-Route::get('/episode', [
+Route::get('/episodes', [
     'uses' => 'EpisodeController@allEpisode',
-    'as'   => 'home.episode'
+    'as'   => 'home.episodes'
 ]);
 
 Route::get('/episode/{id}', [
@@ -23,7 +23,15 @@ Route::get('/episode/{id}', [
     'as'   => 'home.episode.id'
 ]);
 
+Route::get('/channels', [
+    'uses' => 'ChannelController@channelList',
+    'as'   => 'channels'
+]);
 
+Route::get('/channel/{id}', [
+    'uses' => 'EpisodeManager@getEpisode',
+    'as'   => 'episode-show'
+]);
 /*
 /-------------------------------------------------------------------------------
 / About
@@ -127,7 +135,7 @@ Route::post('signup', [
 / Search link request
 /-------------------------------------------------------------------------------
 */
-Route::post('search', function(){
+Route::post('search', function () {
     return redirect('/');
 });
 
@@ -142,78 +150,101 @@ Route::get('logout', [
     'as'    => 'logout'
 ]);
 
+//end
+
+/**
+ * View One Episode
+ */
+Route::get('/episodes/{id}', 'EpisodeController@show');
+
+//end
+
+/**
+ * Likes
+ */
+Route::post('/episode/like', [
+        'uses' => 'LikeController@postLike',
+        'as'   => 'episode.like'
+    ]);
+
+Route::post('/episode/unlike', [
+    'uses' => 'LikeController@postUnlike',
+    'as'   => 'episode.unlike'
+]);
+
+//end
+
 /*
 /-------------------------------------------------------------------------------
-/ Admin
+/ Admin Dashboard Routes
 /-------------------------------------------------------------------------------
 */
 
 Route::group(['prefix' => 'dashboard'], function () {
 
-    // Route::get('/', function () {
-    //     return view('dashboard.pages.index');
-    // });
-
+    // Dashboard Homepage
     Route::get('/', [
-        'uses' => 'EpisodeManager@index',
-        'as' => 'dashboard/'
+        'uses'          => 'EpisodeManager@stats',
+        'as'            => 'stats',
+        'middleware'    => ['auth']
+    ]);
+    
+    //end
+
+    // Episode Routes
+    Route::get('/episodes', [
+        'uses'          => 'EpisodeManager@index',
+        'as'            => 'show.all.episodes',
+        'middleware'    => ['auth']
     ]);
 
-    Route::get('/users', function () {
-        return view('dashboard.pages.user');
-    });
+    Route::get('episode/create', [
+        'uses'          => 'EpisodeManager@createEpisode',
+        'middleware'    => ['auth']
+    ]);
 
-    Route::get('/user/edit', function () {
-        return view('dashboard.pages.edit_user');
-    });
+    Route::post('episode/create', [
+        'uses'          => 'EpisodeManager@store',
+        'as'            => 'create.episode',
+        'middleware'    => ['auth']
+    ]);
+    
+    Route::get('/episode/{id}/edit', [
+        'uses'          => 'EpisodeManager@edit',
+        'middleware'    => ['auth']
+    ]);
 
-    Route::get('/user/create', function () {
-        return view('dashboard.pages.create_user');
-
-    });
-
-    //Episodes Routes
-    Route::get('/episodes', 'EpisodeManager@index');
-    Route::get('episode/create', 'EpisodeManager@showChannelsForCreate');
-    Route::get('episode/create', 'EpisodeManager@showIndex');
-    Route::post('episode/create', 'EpisodeManager@store');
-    Route::get('/episode/{id}/edit', 'EpisodeManager@edit');
-    Route::get('/episode/{id}/delete', 'EpisodeManager@destroy');
-
-    Route::put('/episode/{id}/edit', [
-        'uses'  => 'EpisodeManager@update',
-        'as'    => 'episode.update',
-        'middleware'   => ['auth']
+    Route::put('/episode/edit', [
+        'uses'          => 'EpisodeManager@update',
+        'as'            => 'update.episode',
+        'middleware'    => ['auth']
     ]);
 
     Route::patch('/episode/activate', [
-        'uses' => 'EpisodeManager@updateEpisodeStatus',
-        'as' => 'episode.activate'
+        'uses'  => 'EpisodeManager@updateEpisodeStatus',
+        'as'    => 'episode.activate'
     ]);
 
-    Route::delete('/episode/{id}', [
-        'uses' => 'EpisodeManager@destroy',
-        'as'   => 'episode.delete'
-    ]);
+    Route::get('/episode/{id}/delete', [
+        'uses'          => 'EpisodeManager@destroy',
+        'as'            => 'destroy.episode',
+        'middleware'    => ['auth']
+    ]);    
 
     //end
+    
 
-
-/*
-/-------------------------------------------------------------------------------
-/ Admin User
-/-------------------------------------------------------------------------------
-*/
+    // User Routes
     Route::get('/users', [
-        'uses' => 'UserController@index',
-        'as'   => 'users',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@index',
+        'as'            => 'users',
+        'middleware'    => ['auth']
     ]);
 
     Route::get('/user/{id}/edit', [
-        'uses' => 'UserController@editView',
-        'as'   => 'user-edit-id',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@editView',
+        'as'            => 'user-edit-id',
+        'middleware'    => ['auth']
     ]);
 
     Route::put('/user/edit', [
@@ -222,54 +253,91 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 
     Route::get('/user/create', [
-        'uses' => 'UserController@show',
-        'as'   => 'user-create',
-        'middleware'   => ['auth']
+        'uses'          => 'UserController@show',
+        'as'            => 'user-create',
+        'middleware'    => ['auth']
     ]);
 
     Route::post('/user/create', [
         'uses' => 'UserController@createInvite'
     ]);
 
-/*
-/-------------------------------------------------------------------------------
-/ Admin Channel
-/-------------------------------------------------------------------------------
-*/
-    Route::get('/channels', [
-        'uses' => 'ChannelController@index',
-        'as'   => 'channels',
-        'middleware'   => ['auth']
+    //end
+
+    // Channel Routes
+    Route::get('/channels/active', [
+        'uses'          => 'ChannelController@active',
+        'as'            => 'active.channels',
+        'middleware'    => ['auth']
+    ]);
+
+    Route::get('/channels/deleted', [
+        'uses'          => 'ChannelController@deleted',
+        'as'            => 'deleted.channels',
+        'middleware'    => ['auth']
+    ]);
+
+    Route::get('/channels/all', [
+        'uses'          => 'ChannelController@index',
+        'as'            => 'all.channels',
+        'middleware'    => ['auth']
     ]);
 
     Route::get('/channel/{id}/edit', [
-        'uses' => 'ChannelController@edit',
-        'as'   => 'channel-id-edit',
-        'middleware'   => ['auth']
+        'uses'          => 'ChannelController@edit',
+        'as'            => 'channel-id-edit',
+        'middleware'    => ['auth']
     ]);
+    
     Route::put('/channel/edit', [
-        'uses' => 'ChannelController@update',
-        'as'   => 'channel-edit'
+        'uses'          => 'ChannelController@update',
+        'as'            => 'channel-edit',
+        'middleware'    => ['auth']
     ]);
 
     Route::get('/channel/create', [
-        'uses' => 'ChannelController@createIndex',
-        'as'   => 'channel-create',
-        'middleware'   => ['auth']
+        'uses'          => 'ChannelController@createIndex',
+        'as'            => 'channel-create',
+        'middleware'    => ['auth']
     ]);
+
     Route::post('/channel/create', [
-        'uses' => 'ChannelController@processCreate',
-        'as' => 'create.channel'
+        'uses'          => 'ChannelController@processCreate',
+        'as'            => 'create.channel',
+        'middleware'    => ['auth']
     ]);
-    Route::delete('/channel/{id}', [
-        'uses' => 'ChannelController@destroy',
-        'as'   => 'channel-id'
-    ]);
+
     Route::get('/channel/{id}', [
-        'uses' => 'ChannelController@showChannel',
-        'as'   => 'channel-show',
-        'middleware'   => ['auth']
+        'uses'          => 'ChannelController@showChannel',
+        'as'            => 'show.channel',
+        'middleware'    => ['auth']
     ]);
+
+    Route::delete('/channel/{id}', [
+        'uses'          => 'ChannelController@destroy',
+        'as'            => 'delete.channel',
+        'middleware'    => ['auth']
+    ]);
+
+    Route::put('/channel/{id}', [
+        'uses'          => 'ChannelController@restore',
+        'as'            => 'restore.channel',
+        'middleware'    => ['auth']
+    ]);
+
+    Route::get('/channel/swap/{id}', [
+        'uses'          => 'ChannelController@swap',
+        'as'            => 'swap.episodes',
+        'middleware'    => ['auth'],
+    ]);
+
+    Route::post('/channel/swap/{id}', [
+        'uses'          => 'ChannelController@ProcessSwap',
+        'as'            => 'swap.episode.to',
+        'middleware'    => 'auth'
+    ]);
+    //end
+
 });
 
 /*
@@ -303,36 +371,26 @@ Route::post('/comment', [
 /-------------------------------------------------------------------------------
 */
 
+Route::get('/favorites', [
+    'uses' => 'LikeController@index',
+    'as'   => 'favorites'
+]);
 
 Route::get('/profile/edit', [
-    'uses' => 'ProfileController@getProfileSettings',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@getProfileSettings',
+    'middleware'    => ['auth'],
 ]);
 
 Route::get('/profile/changepassword', [
-    'uses' => 'ProfileController@getChangePassword',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@getChangePassword',
+    'middleware'    => ['auth'],
 ]);
 
 Route::post('/avatar/setting', [
-    'uses' => 'ProfileController@postAvatarSetting',
-    'middleware' => ['auth'],
+    'uses'          => 'ProfileController@postAvatarSetting',
+    'middleware'    => ['auth'],
 ]);
 
 Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
 
 Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
-
-Route::controllers([
-    'password' => 'Auth\PasswordController',
-]);
-
-Route::post('/episode/like', [
-    'uses' => 'LikeController@postLike',
-    'as'   => 'episode.like'
-]);
-
-Route::post('/episode/unlike', [
-    'uses' => 'LikeController@postUnlike',
-    'as'   => 'episode.unlike'
-]);

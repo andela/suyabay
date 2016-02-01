@@ -41,6 +41,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo('Suyabay\Role');
     }
 
+    public function likes()
+    {
+        return $this->hasMany('Suyabay\Like');
+    }
+
     /**
      * Get the avatar from gravatar.
      * @return string

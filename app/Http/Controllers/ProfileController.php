@@ -7,9 +7,10 @@ use Hash;
 use Cloudder;
 use Redirect;
 use Suyabay\User;
-use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 
 class ProfileController extends Controller
 {
@@ -20,8 +21,10 @@ class ProfileController extends Controller
      */
     public function getProfileSettings()
     {
+        $channels = $this->channelRepository->getAllChannels();
         $users = Auth::user();
-        return view('profile.settings', compact('users'));
+
+        return view('profile.settings', compact('users', 'channels'));
     }
     /**
      * Posts form request.
@@ -41,23 +44,27 @@ class ProfileController extends Controller
      */
     public function postAvatarSetting(Request $request)
     {
-        if ($request->hasFile('avatar')) {
-            $img = $request->file('avatar');
-            Cloudder::upload($img, null, ["width" => 500, "height" => 375, "crop" => "scale"]);
-            $imgurl = Cloudder::getResult()['url'];
+        $channels = $this->channelRepository->getAllChannels();
 
-            User::find(Auth::user()->id)->updateAvatar($imgurl);
+        $this->validate($request, [
+            'avatar'  => 'required'
+        ]);
 
-            return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
-        } else {
-            return redirect('/profile/edit')->withErrors('Please select an image.');
-        }
+        $img = $request->file('avatar');
+        Cloudder::upload($img, null);
+        $imgurl = Cloudder::getResult()['url'];
+
+        $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
+
+        return redirect('/profile/edit', compact('channels'))->with('status', 'Avatar updated successfully.');
     }
 
     public function getChangePassword()
     {
+        $channels = $this->channelRepository->getAllChannels();
         $users = Auth::user();
-        return view('profile.changepassword', compact('users'));
+
+        return view('profile.changepassword', compact('users', 'channels'));
     }
 
     public function postChangePassword(Request $request)

@@ -37,13 +37,8 @@
         <script src = "{!! load_asset('/js/main.js') !!}"></script>
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src = "{!! load_asset('/js/comment.js') !!}"></script>
-        
-        <link href="{!! asset('/library/iconate/iconate.min.css') !!}" rel='stylesheet' type="text/css">
-        <link href="{!! asset('/library/iconate/iconate.min.css') !!}" rel='stylesheet' type="text/css">
 
-        <script src="{!! load_asset('/library/iconate/iconate.js') !!}"></script>
-        <script src = "{!! load_asset('/library/iconate/iconate.js') !!}"></script>
-
+        <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>
 
     </head>
     <body>

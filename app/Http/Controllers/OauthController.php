@@ -116,7 +116,9 @@ class OauthController extends Controller
         $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
         $array[$provider] = $userData->getId();
 
-        return view('app.pages.signup', $array);
+        $channels = $this->channelRepository->getAllChannels();
+        
+        return view('app.pages.signup', compact('channels', 'array'));
     }
 
 }
