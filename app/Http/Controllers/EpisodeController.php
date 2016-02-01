@@ -23,7 +23,7 @@ class EpisodeController extends Controller
         $channels = $this->channelRepository->getAllChannels();
 
         $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
-        
+
         $episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
         });
@@ -71,7 +71,7 @@ class EpisodeController extends Controller
 
             });
         
-        return view('app.pages.single_episode', compact('episodes'));
+            return view('app.pages.single_episode', compact('episodes'));
     }
 
 }
