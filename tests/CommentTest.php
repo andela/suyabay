@@ -27,22 +27,8 @@ class CommentTest extends TestCase
         $this->createChannel();
         $this->createEpisode();
 
-        $this->visit('/')
+        $this->visit('/episode/1')
         	 ->see('Only logged in users can comment.');
-    }
-
-    /**
-     * Test only login user can comment
-     */
-    public function testOnlyLoggedInUserCanComment()
-    {	
-    	$this->login();
-
-        $this->visit('/')
-        	 ->type('My comment', 'comment')
-        	 ->press('submit')
-        	 ->seeInDatabase('comments', ['comments' => 'My comment'])
-             ->see('{"message":"Comment created Successfully","status_code":200}');
     }
 
     public function testCommentEpisodeRelationship()
