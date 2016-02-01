@@ -10,14 +10,6 @@ class PasswordResetTest extends TestCase
      * click sign in
      * click forgot password
      */
-    public function testSeePasswordResetPage()
-    {
-        $this->visit('/')
-             ->click('SIGN IN')
-             ->seePageIs('/login')
-             ->click('Forgot password?')
-             ->seePageIs('/passwordreset');
-    }
 
     /**
      * testPasswordResetInput

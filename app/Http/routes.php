@@ -12,6 +12,17 @@ Route::get('/', [
     'as'   => 'home'
 ]);
 
+
+Route::get('/episodes', [
+    'uses' => 'EpisodeController@allEpisode',
+    'as'   => 'home.episodes'
+]);
+
+Route::get('/episode/{id}', [
+    'uses' => 'EpisodeController@singleEpisode',
+    'as'   => 'home.episode.id'
+]);
+
 Route::get('/channels', [
     'uses' => 'ChannelController@channelList',
     'as'   => 'channels'
