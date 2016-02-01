@@ -25,7 +25,7 @@
 
        <div class="row podcast">
             <div class="col s3">
-                <a style="color:#2C3E50" href="/episode/1">
+                <a style="color:#2C3E50" href="/episode/{{$episodes->first()->id}}">
                     <img class="responsive-img podcast-img" src="{!! asset($episodes->first()->image) !!}">
                 </a>
             </div>
