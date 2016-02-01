@@ -65,8 +65,8 @@
                         </span>
                     </p>
                 </div>
-            <div class="col s12 m6 l12 card-social">
-                <div>
+                <div class="col s12 m6 l12 card-social">
+                    <div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header" style="color:#999;padding-left:15px;">
