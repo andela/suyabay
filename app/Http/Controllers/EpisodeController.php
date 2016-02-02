@@ -32,16 +32,6 @@ class EpisodeController extends Controller
 
         return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
     }
-
-    public function show($episodeId)
-    {
-        $channels = $this->channelRepository->getAllChannels();
-        $episode = Episode::findOrFail($episodeId);
-
-        return view('app.pages.episode', compact('episode', 'channels'));
-    }
-
-
     
     /**
      * Display a listing of the resource.
@@ -64,7 +54,7 @@ class EpisodeController extends Controller
     public function singleEpisode($id)
     {
         $episodes = Episode::with('like')->where('id', $id)->get();
-
+        
             $episodes->each(function ($episode, $key) {
 
                 $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
@@ -73,5 +63,4 @@ class EpisodeController extends Controller
         
             return view('app.pages.single_episode', compact('episodes'));
     }
-
 }

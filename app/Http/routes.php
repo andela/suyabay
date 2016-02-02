@@ -18,7 +18,7 @@ Route::get('/episodes', [
     'as'   => 'home.episodes'
 ]);
 
-Route::get('/episode/{id}', [
+Route::get('/episodes/{id}', [
     'uses' => 'EpisodeController@singleEpisode',
     'as'   => 'home.episode.id'
 ]);
@@ -153,13 +153,6 @@ Route::get('logout', [
 //end
 
 /**
- * View One Episode
- */
-Route::get('/episodes/{id}', 'EpisodeController@show');
-
-//end
-
-/**
  * Likes
  */
 Route::post('/episode/like', [
@@ -229,7 +222,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'uses'          => 'EpisodeManager@destroy',
         'as'            => 'destroy.episode',
         'middleware'    => ['auth']
-    ]);    
+    ]);
 
     //end
     
