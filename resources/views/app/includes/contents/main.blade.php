@@ -33,7 +33,7 @@
             <div class="col s9 details">
                 <span class="podcast-episode-date">{{$episodes->first()->created_at->diffForHumans()}}</span>
                 <span class="tag podcast-episode-date">{{$episodes->first()->channel->channel_name}}</span>
-                <a style="color:#2C3E50" href="/episode/1">
+                <a style="color:#2C3E50" href="/episode/{{$episodes->first()->id}}">
                     <h5 class="podcast-episode-title">{{$episodes->first()->episode_name}}</h5>
                 </a>
                 <div>
