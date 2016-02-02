@@ -55,12 +55,12 @@ class EpisodeController extends Controller
     {
         $episodes = Episode::with('like')->where('id', $id)->get();
         
-            $episodes->each(function ($episode, $key) {
+        $episodes->each(function ($episode, $key) {
 
-                $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
+            $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
 
-            });
+        });
         
-            return view('app.pages.single_episode', compact('episodes'));
+        return view('app.pages.single_episode', compact('episodes'));
     }
 }
