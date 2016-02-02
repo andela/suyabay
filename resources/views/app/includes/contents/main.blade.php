@@ -21,11 +21,11 @@
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
            
-        <h4 class="center-align padcast-page-header">Podcast for Suya loves</h1>
+        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
        <div class="row podcast">
             <div class="col s3">
-                <a style="color:#2C3E50" href="/episode/1">
+                <a style="color:#2C3E50" href="/episode/{{$episodes->first()->id}}">
                     <img class="responsive-img podcast-img" src="{!! asset($episodes->first()->image) !!}">
                 </a>
             </div>
@@ -33,7 +33,7 @@
             <div class="col s9 details">
                 <span class="podcast-episode-date">{{$episodes->first()->created_at->diffForHumans()}}</span>
                 <span class="tag podcast-episode-date">{{$episodes->first()->channel->channel_name}}</span>
-                <a style="color:#2C3E50" href="/episode/1">
+                <a style="color:#2C3E50" href="/episode/{{$episodes->first()->id}}">
                     <h5 class="podcast-episode-title">{{$episodes->first()->episode_name}}</h5>
                 </a>
                 <div>
