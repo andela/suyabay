@@ -362,6 +362,8 @@ Route::post('/comment', [
     'as' => 'comment',
 ]);
 
+Route::delete('comment/{commentId}', 'CommentController@deleteComment');
+
 /*
 /-------------------------------------------------------------------------------
 / Update user profile

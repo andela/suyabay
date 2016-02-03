@@ -91,7 +91,23 @@
                                                 </div>
                                                 <div class="col s10">
                                                     <div class="textarea-wrapper" placeholder="">
-                                                        {{$comment->comments}}
+                                                        <span>{{$comment->comments}}</span>
+
+                                                        @if( Auth::check() )
+
+                                                            @if ( Auth::user()->id === $comment->user_id )
+
+                                                            <div class="pull-right">
+                                                                <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> 
+                                                                <div id="comment_actions" style="display:none">
+                                                                    <a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="{{ $comment->comment_id }}" data-token="{{ csrf_token() }}"></a>
+                                                                    <a href="#" class="fa fa-trash comment-action-delete no-style-link" data-commentId="{{ $comment->id }}" data-token="{{ csrf_token() }}"></a>
+                                                                </div>
+                                                            </div>
+
+                                                             @endif
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
