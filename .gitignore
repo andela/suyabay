@@ -13,3 +13,4 @@ prepros.cfg
 sass
 /keep.php
 /build
+tests/_output/*
