@@ -7,9 +7,7 @@ use Hash;
 use Cloudder;
 use Redirect;
 use Suyabay\User;
-use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\UserRepository;
 
 class ProfileController extends Controller
@@ -29,7 +27,8 @@ class ProfileController extends Controller
     /**
      * Posts form request.
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function updateProfileSettings(Request $request)
@@ -44,19 +43,17 @@ class ProfileController extends Controller
      */
     public function postAvatarSetting(Request $request)
     {
-        $channels = $this->channelRepository->getAllChannels();
-
         $this->validate($request, [
-            'avatar'  => 'required'
+            'avatar' => 'required',
         ]);
 
         $img = $request->file('avatar');
         Cloudder::upload($img, null);
         $imgurl = Cloudder::getResult()['url'];
 
-        $this->user->findUser(Auth::user()->id)->updateAvatar($imgurl);
+        $this->userRepository->findUser(Auth::user()->id)->updateAvatar($imgurl);
 
-        return redirect('/profile/edit', compact('channels'))->with('status', 'Avatar updated successfully.');
+        return redirect('/profile/edit')->with('status', 'Avatar updated successfully.');
     }
 
     public function getChangePassword()
@@ -71,7 +68,7 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'old_password' => 'required',
-            'password'     => 'required|min:6|confirmed',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = Auth::user();
