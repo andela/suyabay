@@ -360,9 +360,10 @@ Route::post('/comment', [
 
 Route::delete('comment/{commentId}', 'CommentController@deleteComment');
 
-Route::put('comment/{id}/edit', function () {
-    return "to delete";
-});
+Route::put('comment/{id}/edit', [
+    'middleware' => 'auth',
+    'uses' => 'CommentController@editComment'
+]);
 
 /*
 /-------------------------------------------------------------------------------
