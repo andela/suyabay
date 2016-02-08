@@ -17,7 +17,6 @@
         "illuminate/filesystem": "^5.1",
         "league/flysystem-aws-s3-v3": "^1.0",
         "guzzlehttp/guzzle": "^6.1",
-      "codeception/codeception": "*",
       "facebook/webdriver": "^1.1"
    },
    "require-dev": {
