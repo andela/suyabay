@@ -14,29 +14,20 @@ class SearchController extends Controller
      */
     public function getResults(Request $request)
     {
+        //Get what user has typed in the search query
         $query = $request->input('query');
 
-        if (!$query) {
-            return redirect()
-            ->route('home')
-            ->with('info', 'Could not find what you searched for');
-        }
+        //for testing use LIKE since ILIKE is not recognised as a query in sqlite
+        $condition = env('APP_ENV') == 'testing' ? 'LIKE' : 'ILIKE';
 
-        if (env('APP_ENV') === 'testing') {
-            $results = Episode::where('episode_name', 'LIKE', "%{$query}%")
-                            ->orWhere('episode_description', 'LIKE', "%{$query}%")
-                            ->get();
-        } else {
-            $results = Episode::where('episode_name', 'ILIKE', "%{$query}%")
-                            ->orWhere('episode_description', 'ILIKE', "%{$query}%")
-                            ->get();
-        }
-
-        $channels = Channel::all();
+        //fetch results based on the query terms. Will look into the episode model
+        $results = Episode::where('episode_name', $condition, "%{$query}%")
+                          ->orWhere('episode_description', $condition, "%{$query}%")
+                          ->get();
 
         return view('app.pages.search')->with([
             'results' => $results,
-            'channels' => $channels,
+            'channels' => Channel::all(),
         ]);
     }
 }
