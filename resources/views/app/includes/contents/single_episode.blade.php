@@ -90,14 +90,16 @@
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                                 </div>
                                                 <div class="col s10">
-                                                    <div class="textarea-wrapper" placeholder="">
-                                                        <span>{{$comment->comments}}</span>
+                                                    <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}">
+                                                        <span>
+                                                            {{$comment->comments}}
+                                                        </span>
 
                                                         @if( Auth::check() )
 
                                                             @if ( Auth::user()->id === $comment->user_id )
 
-                                                            <div class="pull-right">
+                                                            <div class="update-actions pull-right">
                                                                 <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> 
                                                                 <div id="comment_actions" style="display:none">
                                                                     <a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="{{ $comment->comment_id }}" data-token="{{ csrf_token() }}"></a>
