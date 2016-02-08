@@ -50,38 +50,55 @@ $(document).ready(function() {
 
     $("#comment_actions a.comment-action-edit").on("click", function(event) {
         event.preventDefault();
-        
+
         var parent = $(this).parent().parent().parent();
 
         var commentWrapper = parent.find("span:first");
         var comment = commentWrapper.text().trim();
 
-        var updateActions = parent.find(".update-actions").hide("slow", function () {
+        var updateActions = parent.find(".update-actions").hide("slow", function() {
 
-        var updateComment = '<div class="file-field input-field">';
+            var updateComment = '<div class="file-field input-field">';
             updateComment += '<div class="file-path-wrapper input-field col s10 m10">';
             updateComment += '<input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;" required="true" value="' + comment + '"/>';
             updateComment += '</div>';
             updateComment += '<button type="submit" id="update-comment" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>';
             updateComment += '</div>';
-            
+
 
             commentWrapper.replaceWith(updateComment);
         });
     });
 
-    $(".textarea-wrapper").on("click", "#update-comment", function () {
+    $(".textarea-wrapper").on("click", "#update-comment", function() {
         var this_ = $(this);
 
         var comment = this_.prev().find("input").val().trim();
         var commentId = this_.parent().parent().attr("data-comment-id");
-        
-        $.ajax({
+        var token = this_.parent().parent().attr("data-token");
+
+        var updateComment = $.ajax({
             method: "PUT",
             url: "/comment/" + commentId + "/edit",
             data: {
-                comment:comment
+                _token: token,
+                comment: comment
             }
         });
+
+        updateComment.done(function(response) {
+            swal({
+                title: "Updated!",
+                text: "Comment successfully updated",
+                type: "success"
+            }, function() {
+                location.reload();
+            });
+
+        });
+        updateComment.fail(function(response) {
+            swal("Error Deleting", "Something happened while updating your comment. please try again", "error");
+        });
+
     });
 });

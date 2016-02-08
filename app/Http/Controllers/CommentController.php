@@ -50,4 +50,13 @@ class CommentController extends Controller
 
         return $deleteComment;
     }
+
+    public function editComment(Request $request, $id)
+    {
+        return Comment::where('id', $id)
+                ->where('user_id', Auth::user()->id)
+                ->update([
+                    'comments' => $request->input('comment')
+                ]);
+    }
 }
