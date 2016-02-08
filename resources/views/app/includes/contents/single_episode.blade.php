@@ -90,7 +90,7 @@
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                                 </div>
                                                 <div class="col s10">
-                                                    <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}">
+                                                    <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
                                                         <span>
                                                             {{$comment->comments}}
                                                         </span>
