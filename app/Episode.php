@@ -19,8 +19,9 @@ class Episode extends Model
     }
 
     /**
-     * 
-     * @return
+     * Each episode has many comments
+     *
+     * @return object
      */
     public function comment()
     {
@@ -28,12 +29,12 @@ class Episode extends Model
     }
 
     /**
-     * [like description]
-     * @return [type] [description]
+     * Each episode has many likes
+     *
+     * @return object
      */
     public function like()
     {
         return $this->hasMany('Suyabay\Like');
     }
-
 }
