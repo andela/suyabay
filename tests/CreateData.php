@@ -1,5 +1,7 @@
 <?php
+
 namespace Suyabay\Tests;
+
 use Auth;
 use Suyabay\User;
 use Suyabay\Role;
@@ -7,6 +9,7 @@ use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Comment;
 use Suyabay\Password_reset;
+
 trait CreateData
 {
     /**
@@ -79,7 +82,7 @@ trait CreateData
      * User login function
      */
     public function login()
-    {   
+    {
         $user = $this->createUser(3);
         $this->createChannel();
         $this->createEpisode();
