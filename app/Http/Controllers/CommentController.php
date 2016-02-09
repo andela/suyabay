@@ -16,9 +16,9 @@ class CommentController extends Controller
     */
     protected function create(array $data)
     {
-        Comment::create([
+        return Comment::create([
             'comments'      => $data['comment'],
-            'user_id'       => $data['user_id'],
+            'user_id'       => Auth::user()->id,
             'episode_id'    => $data['episode_id']
         ]);
     }
@@ -28,13 +28,12 @@ class CommentController extends Controller
     */
     public function postComment(Request $request)
     {
-        $request->session()->flash('show_comments', true);
-        
-        $this->create($request->all());
+        $newComment = $this->create($request->all());
 
         return [
                 'message' => 'Comment created Successfully',
-                'status_code' => 200
+                'status_code' => 200,
+                'commentId' => $newComment->id
             ];
     }
 
