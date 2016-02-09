@@ -33,14 +33,7 @@ $(document).ready(function(){
 					{
 						case 200:
 
-							//Increment comment upon successful submission
-							$("#comment-count").html(" "+comment_count);
-
-							//Append comment to the last comment in the element
-							$(".load_comment").last().append('<div id="show_comment" class="collection-item avatar show_comment' +'"><div class="row"><div class="col s2"><img src="'+ avatar +'" alt="" class="circle"></div><div class="col s10"><div class="textarea-wrapper" placeholder="">'+comment+'</div></div></div></div>');
-
-							//Reset form data
-							document.getElementById("submit_comment").reset();
+							location.reload();
 						break;
 
 						default: return false;

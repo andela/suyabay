@@ -28,6 +28,8 @@ class CommentController extends Controller
     */
     public function postComment(Request $request)
     {
+        $request->session()->flash('show_comments', true);
+        
         $this->create($request->all());
 
         return [
