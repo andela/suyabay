@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('a#comment_action_caret').on('click', function(event) {
+    $('.load_comment').on('click', 'a#comment_action_caret', function(event) {
 
         event.preventDefault();
 
@@ -9,12 +9,13 @@ $(document).ready(function() {
         $(this).next().toggle('slow');
     });
 
-    $('#comment_actions a.comment-action-delete').on('click', function(event) {
+    $('.load_comment').on('click', '#comment_actions a.comment-action-delete', function(event) {
 
         event.preventDefault();
 
-        var token = $(this).attr('data-token');
-        var comment = $(this).attr('data-commentId');
+        var this_ = $(this);
+        var token = $('.load_comment').attr('data-token');
+        var comment = this_.attr('data-commentId');
 
         swal({
             title: 'Are you sure?',
@@ -23,7 +24,7 @@ $(document).ready(function() {
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
             confirmButtonText: 'Yes, delete it!',
-            closeOnConfirm: false
+            closeOnConfirm: true
         }, function() {
 
             //delete comment
@@ -36,16 +37,10 @@ $(document).ready(function() {
             });
 
             deleteComment.done(function(response) {
-
-                swal({
-                    title: 'Deleted!',
-                    text: 'Comment successfully deleted',
-                    type: 'success'
-                }, function() {
-                    location.reload();
-                });
+                this_.parent().parent().parent().parent().parent().parent().remove();
 
             });
+
             deleteComment.fail(function(response) {
 
                 swal('Error Deleting', 'Something happened while deleting your comment. please try again', 'error');
@@ -53,7 +48,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#comment_actions a.comment-action-edit').on('click', function(event) {
+    $('.load_comment').on('click', '#comment_actions a.comment-action-edit', function(event) {
 
         event.preventDefault();
 
@@ -68,7 +63,6 @@ $(document).ready(function() {
             updateComment += '<div class="file-path-wrapper input-field col s10 m10">';
             updateComment += '<input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;" required="true" value="' + comment + '"/>';
             updateComment += '</div>';
-            updateComment += '<button type="submit" id="update-comment" class="btn right comment-submit"><i class="fa fa-edit"></i></button>';
             updateComment += '</div>';
 
 
@@ -76,43 +70,46 @@ $(document).ready(function() {
         });
     });
 
-    $('.textarea-wrapper').on('click', '#update-comment', function() {
+    $('.load_comment').on('keypress', '#comment-field', function(event) {
 
-        var this_ = $(this);
+        if (event.which == 13) {
 
-        var comment = this_.prev().find('input').val().trim();
-        var commentId = this_.parent().parent().attr('data-comment-id');
-        var token = this_.parent().parent().attr('data-token');
+            var this_ = $(this);
 
-        if (comment.length === 0 || commentId.length === 0 || token.length === 0) {
-            swal('Error Updating', 'Something is missing in your comment. Please try again', 'error');
-        } else {
+            var comment = this_.val().trim();
+            var commentId = this_.parent().parent().parent().attr('data-comment-id');
+            var token = $('.load_comment').attr('data-token');
 
-            var updateComment = $.ajax({
-                method: 'PUT',
-                url: '/comment/' + commentId + '/edit',
-                data: {
-                    _token: token,
-                    comment: comment
-                }
-            });
+            if (comment.length === 0 || commentId.length === 0 || token.length === 0) {
+                swal('Error Updating', 'Something is missing in your comment. Please try again', 'error');
+            } else {
 
-            updateComment.done(function(response) {
-
-                swal({
-                    title: 'Updated!',
-                    text: 'Comment successfully updated',
-                    type: 'success'
-                }, function() {
-                    location.reload();
+                var updateComment = $.ajax({
+                    method: 'PUT',
+                    url: '/comment/' + commentId + '/edit',
+                    data: {
+                        _token: token,
+                        comment: comment
+                    }
                 });
 
-            });
+                updateComment.done(function(response) {
 
-            updateComment.fail(function(response) {
+                    swal({
+                        title: 'Updated!',
+                        text: 'Comment successfully updated',
+                        type: 'success'
+                    }, function() {
+                        location.reload();
+                    });
 
-                swal('Error Updating', 'Something happened while updating your comment. Please try again', 'error');
-            });
+                });
+
+                updateComment.fail(function(response) {
+
+                    swal('Error Updating', 'Something happened while updating your comment. Please try again', 'error');
+                });
+            }
         }
     });
 });
