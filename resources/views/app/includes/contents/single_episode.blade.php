@@ -75,7 +75,7 @@
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                            <div class="collapsible-header" style="color:#999;padding-left:15px;">
+                            <div class="collapsible-header {{Session::has('show_comments') ? 'active': '' }}" style="color:#999;padding-left:15px;">
                                 <b>Comments</b>
                             </div>
                             <div class="collapsible-body">
