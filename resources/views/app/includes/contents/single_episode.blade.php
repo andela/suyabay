@@ -82,7 +82,7 @@
                                 <ul class="collection">
 
                                 <li class="load_comment">
-                                    @foreach ( $episodes->first()->comment as $comment  )
+                                    @foreach ( $episodes->first()->comment()->orderBy('created_at', 'asc')->get() as $comment )
                                         <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
 
