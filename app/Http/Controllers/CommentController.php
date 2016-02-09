@@ -30,8 +30,7 @@ class CommentController extends Controller
     {
         $this->create($request->all());
 
-        return $response =
-            [
+        return [
                 'message' => 'Comment created Successfully',
                 'status_code' => 200
             ];
@@ -42,8 +41,10 @@ class CommentController extends Controller
      * @param  [boolean] $commentId [true or false]
      * @return [boolean]            [true or false]
      */
-    public function deleteComment($commentId)
+    public function deleteComment(Request $request, $commentId)
     {
+        $request->session()->flash('show_comments', true);
+
         $deleteComment = Comment::where('id', $commentId)
                                 ->where('user_id', Auth::user()->id)
                                 ->delete();
@@ -51,8 +52,19 @@ class CommentController extends Controller
         return $deleteComment;
     }
 
+    /**
+     * editComment, Allow an authenticated user to update the contents of a comment.
+     *
+     * @param  Request $request HTTP request handler
+     * @param  integer  $id      Comment ID
+     *
+     * @return boolean           Return true or false depending on whether the comment
+     * was updated
+     */
     public function editComment(Request $request, $id)
     {
+        $request->session()->flash('show_comments', true);
+
         return Comment::where('id', $id)
                 ->where('user_id', Auth::user()->id)
                 ->update([
