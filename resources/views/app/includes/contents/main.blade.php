@@ -72,7 +72,7 @@
         </div>
         
         @foreach($episodes->take(4) as $podcast)
-        <a style="color:#2C3E50" href="/episode/{{$podcast->id}}">
+        <a style="color:#2C3E50" href="/episodes/{{$podcast->id}}">
             <div class="row podcast">
                 <div class="col s3">
                     <img class="responsive-img podcast-img" src="{{ asset($podcast->image) }}">
