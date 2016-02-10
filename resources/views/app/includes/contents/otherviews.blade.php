@@ -5,28 +5,32 @@
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
+        <h4>Results</h4>
+    @if (! $results->count())
+      <p>No results found, sorry</p>
+    @else
+        @foreach($results as $podcast)
+        <a style="color:#2C3E50" href="/episode/{{$podcast->id}}">
+            <div class="row podcast">
+                <div class="col s3">
+                    <img class="responsive-img podcast-img" src="{{ asset($podcast->image) }}">
+                </div>
 
-        @if(Request::is('faqs*'))
+                <div class="col s9 details">
+                    <span class="podcast-episode-date">{{ $podcast->created_at->diffForHumans() }}</span>
+                    <span class="tag podcast-episode-date">{{$podcast->channel->channel_name}}</span>
+                    <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
 
-            @include('app.includes.contents.faqs')
+                    <p>
+                        {{$podcast->episode_description}}
+                    </p>
 
-        @elseif (Request::is('about*'))
-
-            @include('app.includes.contents.about')
-
-        @elseif (Request::is('privacypolicy*'))
-
-            @include('app.includes.contents.privacypolicy')
-
-        @elseif (Request::is('search*'))
-
-            @include('app.includes.contents.search')
-
-        @else
-
-        @endif
-
-
+                </div>
+            </div>
+        </a>
+        @endforeach
+    @endif
+    <a class = "btn btn-primary" href="/">Back</a>
     </div>
 
 </div>

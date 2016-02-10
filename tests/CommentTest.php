@@ -23,7 +23,7 @@ class CommentTest extends TestCase
      */
     public function testGuestUserCannotComment()
     {
-        $user = $this->createUser(1);
+        $this->createUser(1);
         $this->createChannel();
         $this->createEpisode();
 
@@ -43,7 +43,7 @@ class CommentTest extends TestCase
 
     public function testCommentUserRelationship()
     {
-        $user = $this->createUser(1);
+        $this->createUser(1);
         $this->createChannel();
         $this->createEpisode();
         $comment = $this->createComment();
