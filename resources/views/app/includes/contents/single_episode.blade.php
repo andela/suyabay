@@ -57,10 +57,14 @@
                     </span>
 
                     <span style="padding-right:15px;">
-                        <i class="social-btn fa fa-twitter"></i>
+                        <a href="#" class="twtr-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id)  !!}">
+                            <i class="fa fa-twitter social-btn "></i>
+                        </a>
                     </span>                    
                     <span style="padding-right:15px;">
-                        <i class="social-btn fa fa-facebook"></i>
+                        <a href="#" class="fb-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id) !!}">
+                            <i class="fa fa-facebook social-btn "></i>
+                        </a>
                     </span>            
                 </div>
          
