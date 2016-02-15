@@ -52,7 +52,10 @@ $(document).ready(function() {
 
         event.preventDefault();
 
-        var parent = $(this).parent().parent().parent();
+        var parent = $(this)
+            .parent()
+            .parent()
+            .parent();
 
         var commentWrapper = parent.find('span:first');
         var comment = commentWrapper.text().trim();
@@ -77,7 +80,12 @@ $(document).ready(function() {
             var this_ = $(this);
 
             var comment = this_.val().trim();
-            var commentId = this_.parent().parent().parent().attr('data-comment-id');
+            var commentId = this_
+                .parent()
+                .parent()
+                .parent()
+                .attr('data-comment-id');
+
             var token = $('.load_comment').attr('data-token');
 
             if (comment.length === 0 || commentId.length === 0 || token.length === 0) {

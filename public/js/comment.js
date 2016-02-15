@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
-    $(".comment-submit").on("click", function() {
+    $('.comment-submit').on('click', function() {
 
-        var comment = $("#new-comment-field").val();
-        var avatar = $(this).data("avatar");
-        var comment_count = parseInt($(this).data("comment-count")) + 1;
-        var token = $(this).data("token");
+        var comment = $('#new-comment-field').val();
+        var avatar = $(this).data('avatar');
+        var comment_count = parseInt($(this).data('comment-count')) + 1;
+        var token = $(this).data('token');
 
-        var url = "/comment";
-        var user_id = $("#user_id").val();
-        var episode_id = $("#episode_id").val();
+        var url = '/comment';
+        var user_id = $('#user_id').val();
+        var episode_id = $('#episode_id').val();
 
         var data = {
             parameter: {
@@ -22,7 +22,7 @@ $(document).ready(function() {
             //Process AJAX request
             $.ajax({
                 url: url,
-                type: "POST",
+                type: 'POST',
                 data: data.parameter,
 
                 success: function(response) {
@@ -30,7 +30,7 @@ $(document).ready(function() {
                         case 200:
 
                             //Increment comment upon successful submission
-                            $("#comment-count").html(" " + comment_count);
+                            $('#comment-count').html(' ' + comment_count);
 
                             var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                             newComment += '<div class="row">';
