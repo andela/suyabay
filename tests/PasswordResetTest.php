@@ -5,17 +5,10 @@ class PasswordResetTest extends TestCase
     use Suyabay\Tests\CreateData;
 
     /**
-     * testSeePasswordResetPage
-     * visit homepage
-     * click sign in
-     * click forgot password
-     */
-
-    /**
      * testPasswordResetInput
      * visit passwordreset page
      * enter email address
-     * confirm email exist in database
+     * confirm email exist in database.
      */
     public function testPasswordResetInput()
     {
