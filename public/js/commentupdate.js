@@ -36,12 +36,12 @@ $(document).ready(function() {
                 }
             });
 
-            deleteComment.done(function(response) {
+            deleteComment.done(function() {
                 this_.parent().parent().parent().parent().parent().parent().remove();
 
             });
 
-            deleteComment.fail(function(response) {
+            deleteComment.fail(function() {
 
                 swal('Error Deleting', 'Something happened while deleting your comment. please try again', 'error');
             });
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var commentWrapper = parent.find('span:first');
         var comment = commentWrapper.text().trim();
 
-        var updateActions = parent.find('.update-actions').hide('slow', function() {
+        parent.find('.update-actions').hide('slow', function() {
 
             var updateComment = '<div class="file-field input-field">';
             updateComment += '<div class="file-path-wrapper input-field col s10 m10">';
@@ -93,7 +93,7 @@ $(document).ready(function() {
                     }
                 });
 
-                updateComment.done(function(response) {
+                updateComment.done(function() {
 
                     swal({
                         title: 'Updated!',
@@ -105,7 +105,7 @@ $(document).ready(function() {
 
                 });
 
-                updateComment.fail(function(response) {
+                updateComment.fail(function() {
 
                     swal('Error Updating', 'Something happened while updating your comment. Please try again', 'error');
                 });
