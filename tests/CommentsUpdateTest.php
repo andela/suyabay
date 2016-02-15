@@ -43,4 +43,34 @@ class CommentsUpdateTest extends TestCase
 
         $this->seeInDatabase('comments', ['comments' => 'An awesome new comment']);
     }
+
+    /**
+     * Assert that a HTTP DELETE request for a given comment ID
+     *
+     * URL /comments/{id} deletes comment with the given id
+     *
+     *
+     * @return void
+     */
+    public function testCommentDelete()
+    {
+        factory(Channel::class)->create();
+        factory(Episode::class)->create(['episode_name' => 'Nyama Choma']);
+        $comment = factory(Comment::class)->create();
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+             ->visit('/episodes/1')
+             ->see($comment->comments);
+
+        $this->call(
+            'DELETE',
+            '/comment/' .  $comment->id,
+            [
+                    '_token' => csrf_token()
+                ]
+        );
+
+        $this->assertEquals(0, count(Suyabay\Comment::find($comment->id)));
+    }
 }
