@@ -75,14 +75,14 @@
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                            <div class="collapsible-header" style="color:#999;padding-left:15px;">
+                            <div class="collapsible-header {{Session::has('show_comments') ? 'active': '' }}" style="color:#999;padding-left:15px;">
                                 <b>Comments</b>
                             </div>
                             <div class="collapsible-body">
                                 <ul class="collection">
 
-                                <li class="load_comment">
-                                    @foreach ( $episodes->first()->comment as $comment  )
+                                <li class="load_comment" data-token="{{ csrf_token() }}">
+                                    @foreach ( $episodes->first()->comment()->orderBy('created_at', 'asc')->get() as $comment )
                                         <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
 
@@ -90,8 +90,26 @@
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                                 </div>
                                                 <div class="col s10">
-                                                    <div class="textarea-wrapper" placeholder="">
-                                                        {{$comment->comments}}
+                                                    <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
+                                                        <span>
+                                                            {{$comment->comments}}
+                                                        </span>
+
+                                                        @if( Auth::check() )
+
+                                                            @if ( Auth::user()->id === $comment->user_id )
+
+                                                            <div class="update-actions pull-right">
+                                                                <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> 
+                                                                <div id="comment_actions" style="display:none">
+                                                                    <a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="{{ $comment->comment_id }}"></a>
+                                                                    <a href="#" class="fa fa-trash comment-action-delete no-style-link" data-commentId="{{ $comment->id }}"></a>
+                                                                </div>
+                                                            </div>
+
+                                                             @endif
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,10 +126,9 @@
                                             <form id="submit_comment" method="POST">
                                                 <div class="file-field input-field">
                                                     <input hidden="true" type="text" name="_token" id="_token" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                                     <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episodes->first()->id }}">
                                                     <div class="file-path-wrapper input-field col s10 m10">
-                                                        <input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;" required="true" />
+                                                        <input name="comment" id="new-comment-field" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
                                                     <button type="submit" data-token="{{ csrf_token() }}" data-comment-count="{{ $episodes->first()->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>

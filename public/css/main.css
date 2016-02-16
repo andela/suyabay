@@ -363,7 +363,8 @@ Navigations Styles
 }
 
 .fb-share,
-.twtr-share {
+.twtr-share,
+.no-style-link {
     text-decoration: none;
     color: #999;
 }
@@ -528,5 +529,13 @@ div#audiojs_wrapper0 {
 .podcast-actions .social-btn{
     font-size: 20px;
     margin-right: 10px;
+}
+
+.comment-action-edit:hover {
+    color:#2C3E50;
+}
+
+.comment-action-delete:hover {
+    color:#d34836;
 }
 
