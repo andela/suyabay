@@ -362,7 +362,10 @@ Route::post('/comment', [
     'as' => 'comment',
 ]);
 
-Route::delete('comment/{commentId}', 'CommentController@deleteComment');
+Route::delete('comment/{commentId}', [
+    'middleware' => 'auth',
+    'uses' => 'CommentController@deleteComment'
+]);
 
 Route::put('comment/{id}/edit', [
     'middleware' => 'auth',
