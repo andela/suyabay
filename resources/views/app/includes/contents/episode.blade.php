@@ -24,7 +24,7 @@
         <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
         @foreach($episodes as $podcast)
-        <a style="color:#2C3E50" href="/episode/{{$podcast->id}}">
+        <a style="color:#2C3E50" href="/episodes/{{$podcast->id}}">
             <div class="row podcast">
                 <div class="col s3">
                     <img class="responsive-img podcast-img" src="{{ asset($podcast->image) }}">
