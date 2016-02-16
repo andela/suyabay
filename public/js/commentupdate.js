@@ -72,7 +72,8 @@ $(document).ready(function() {
 
             var updateComment = '<div class="file-field input-field">';
             updateComment += '<div class="file-path-wrapper input-field col s10 m10">';
-            updateComment += '<input name="comment" id="comment-field" class="validate" type="text" style="margin-left:20px;" required="true" value="' + comment + '"/>';
+            updateComment += '<input name="comment" id="comment-field" class="validate" type="text"';
+            updateComment += 'style="margin-left:20px;" required="true" value="' + comment + '"/>';
             updateComment += '</div>';
             updateComment += '</div>';
 
@@ -97,7 +98,10 @@ $(document).ready(function() {
             var token = $('.load_comment').attr('data-token');
 
             if (comment.length === 0 || commentId.length === 0 || token.length === 0) {
-                swal('Error Updating', 'Something is missing in your comment. Please try again', 'error');
+                swal('Error Updating',
+                    'Something is missing in your comment. Please try again',
+                    'error'
+                );
             } else {
 
                 var updateComment = $.ajax({
@@ -123,7 +127,10 @@ $(document).ready(function() {
 
                 updateComment.fail(function() {
 
-                    swal('Error Updating', 'Something happened while updating your comment. Please try again', 'error');
+                    swal('Error Updating',
+                        'Something happened while updating your comment. Please try again',
+                        'error'
+                    );
                 });
             }
         }
