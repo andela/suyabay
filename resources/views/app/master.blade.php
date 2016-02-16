@@ -41,8 +41,8 @@
         <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>
         <script src="{!! load_asset('/js/commentupdate.js') !!}"></script>
 
-        <link href = "{!! asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
-        <script type="text/javascript" src = "{!! asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+        <link href = "{!! load_asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
+        <script type="text/javascript" src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
 
     </head>
     <body>
