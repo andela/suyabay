@@ -43,8 +43,10 @@ $(document).ready(function() {
                             newComment += '<div class="update-actions pull-right">';
                             newComment += ' <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> ';
                             newComment += ' <div id="comment_actions" style="display:none">';
-                            newComment += '<a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="' + response.commentId + '"></a>';
-                            newComment += '<a href="#" class="fa fa-trash comment-action-delete no-style-link" data-commentId="' + response.commentId + '"></a>';
+                            newComment += '<a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="';
+                            newComment += response.commentId + '"></a>';
+                            newComment += '<a href="#" class="fa fa-trash comment-action-delete no-style-link" data-commentId="';
+                            newComment += response.commentId + '"></a>';
                             newComment += '</div>';
                             newComment += '</div>';
                             newComment += '</div></div></div></div>';
