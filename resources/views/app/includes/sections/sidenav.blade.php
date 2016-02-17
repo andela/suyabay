@@ -35,7 +35,7 @@
         <div class="hide-on-small-only">
             <div class="collection">
                 <a href="/channels" class="collection-item">Channels <span class="new badge">{{ $channels->count() }}</span></a>
-                <a href="/episodes" class="collection-item">Episodes <span class="new badge">5</span></a>
+                <a href="/episodes" class="collection-item">Episodes <span class="new badge">3</span></a>
                 @if(!Auth::check())
                 <a href="{{ URL::to('about') }}" class="collection-item">About</a>
                 <a href="{{ URL::to('privacypolicy') }}" class="collection-item">Privacy Policy</a>
