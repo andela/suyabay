@@ -1,10 +1,11 @@
 <div class="row">
 
 <!-- Side Nav -->
-    <div class="col s3">
+    @include('app.includes.sections.sidenav')
+    <!--<div class="col s3">
         <div class="hide-on-small-only">
             <div class="collection">
-                <a href="#" class="collection-item">Channels <span class="new badge">4</span></a>
+                <a href="/channels" class="collection-item">Channels <span class="new badge">4</span></a>
                 <a href="#" class="collection-item">Favourites <span class="new badge">0</span></a>
                 <a href="#" class="collection-item" id="view-all-episodes">See all episodes
                     <span class="badge">10+</span>
@@ -16,7 +17,7 @@
                 @endcan
             </div>
         </div>
-    </div>
+    </div>-->
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
