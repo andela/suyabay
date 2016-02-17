@@ -25,7 +25,8 @@
                 <li>
                     @if (  Auth::check() )
                         <ul id="settings" class="dropdown-content">
-                            <li><a href="/profile/edit">Settings</a></li>
+                            <li><a href="/profile/edit">Profile Settings</a></li>
+                            <li><a href="/profile/changepassword">Account Settings</a></li>
                             }
                         </ul>
 
