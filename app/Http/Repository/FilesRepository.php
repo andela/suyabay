@@ -17,9 +17,9 @@ class FilesRepository
     /**
      * Upload audio file to cloudinary
      * @param $filename
-     * @return 
+     * @return
      */
-    public function videoToCloudinary($podcast)
+    public function audioToCloudinary($podcast)
     {
         Cloudder::uploadVideo($podcast, null);
 

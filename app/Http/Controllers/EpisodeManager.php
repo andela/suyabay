@@ -152,14 +152,19 @@ class EpisodeManager extends Controller
     public function store(Request $request)
     {
 
-
+        $this->validate($request, [
+            'title'         => 'required|min:3',
+            'description'   => 'required',
+            'channel'       => 'required',
+            'podcast'       => 'required|size_format'
+        ]);
 
         $data    = [
             'episode_name'          => $request->title,
             'episode_description'   => $request->description,
             'channel_id'            => $request->channel,
             'image'                 => self::DEFUALT_COVER_IMAGE,
-            'audio_mp3'             => $this->upload->videoToCloudinary($request->podcast),
+            'audio_mp3'             => $this->upload->audioToCloudinary($request->podcast),
             'view_count'            => 0,
             'status'                => 0
         ];
