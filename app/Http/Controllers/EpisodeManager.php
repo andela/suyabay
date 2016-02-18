@@ -151,12 +151,23 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+        // $this->validate($request, [
+        //     'title'         => 'required|min:3',
+        //     'description'   => 'required',
+        //     'channel'       => 'required',
+        //     'podcast'       => 'required|size_format'
+        // ]);
+        //
+        $v = Validator::make($request->all(), [
             'title'         => 'required|min:3',
-            'description'   => 'required',
+            'description'   => 'required|min:10',
             'channel'       => 'required',
             'podcast'       => 'required|size_format'
         ]);
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v->errors());
+        }
 
         $data    = [
             'episode_name'          => $request->title,
