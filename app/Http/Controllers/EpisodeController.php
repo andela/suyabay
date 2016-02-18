@@ -41,7 +41,7 @@ class EpisodeController extends Controller
     public function allEpisode()
     {
         $episodes = Episode::get();
-		$channels = Channel::all();
+	    $channels = Channel::all();
 
         return view('app.pages.episodes', compact('episodes', 'channels'));
     }
@@ -63,6 +63,6 @@ class EpisodeController extends Controller
 
         });
         
-        return view('app.pages.single_episode', compact('episodes','channels'));
+        return view('app.pages.single_episode', compact('episodes', 'channels'));
     }
 }
