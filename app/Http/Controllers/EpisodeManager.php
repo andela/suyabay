@@ -160,9 +160,6 @@ class EpisodeManager extends Controller
         // ]);
         //
 
-        if ($v->fails()) {
-            return redirect()->back()->withErrors($v->errors());
-        }
 
         $data    = [
             'episode_name'          => $request->title,
