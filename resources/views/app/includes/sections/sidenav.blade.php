@@ -36,10 +36,10 @@
         <div class="collection">
             <a href="/channels" class="collection-item">Channels <span class="new badge">{{ $channels->count() }}</span></a>
             @if (Auth::check())
-            <a href="/favorites" class="collection-item">Favourites <span class="new badge">{{ $favorites->count() }}</span></a>
+            <a href="/favorites" class="collection-item">Favourites <span class="new badge"></span></a>
             @endif
             <a href="/episodes" class="collection-item" id="view-all-episodes">See all episodes
-                <span class="badge">{{ $episodes->count() }}</span>
+                <span class="badge"></span>
             </a>
             @can('guest', Auth::check())
             <a href="{{ URL::to('about') }}" class="collection-item">About</a>
