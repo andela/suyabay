@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('size_format', function ($attribute, $value, $parameters, $validator) {
             $bytes = filesize($value);
             $fileSize = $this->formatSizeUnits($bytes);
-            if ($fileSize >= 1.00 && $fileSize <= 6.00) {
+            if ($fileSize >= 1.00 && $fileSize <= 10.00) {
                 return $fileSize;
             }
         });
