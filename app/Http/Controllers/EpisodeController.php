@@ -41,8 +41,9 @@ class EpisodeController extends Controller
     public function allEpisode()
     {
         $episodes = Episode::get();
+		$channels = Channel::all();
 
-        return view('app.pages.episodes', compact('episodes'));
+        return view('app.pages.episodes', compact('episodes', 'channels'));
     }
 
     
