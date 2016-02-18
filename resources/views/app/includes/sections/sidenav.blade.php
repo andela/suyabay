@@ -35,7 +35,9 @@
     <div class="hide-on-small-only">
         <div class="collection">
             <a href="/channels" class="collection-item">Channels <span class="new badge">4</span></a>
+            @if (Auth::check())
             <a href="/favorites" class="collection-item">Favourites <span class="new badge">4</span></a>
+            @endif
             <a href="/episodes" class="collection-item" id="view-all-episodes">See all episodes
                 <span class="badge">10+</span>
             </a>

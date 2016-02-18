@@ -55,6 +55,7 @@ class EpisodeController extends Controller
     public function singleEpisode($id)
     {
         $episodes = Episode::with('like')->where('id', $id)->get();
+        $channels = Channel::all();
         
         $episodes->each(function ($episode, $key) {
 
@@ -62,6 +63,6 @@ class EpisodeController extends Controller
 
         });
         
-        return view('app.pages.single_episode', compact('episodes'));
+        return view('app.pages.single_episode', compact('episodes','channels'));
     }
 }
