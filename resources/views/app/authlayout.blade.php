@@ -23,7 +23,8 @@
         <link href="{!! asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
         <!-- HTTPS -->
         <link href="{!! secure_asset('/css/materialize.css') !!}" rel='stylesheet' type="text/css">
-
+        
+        <link rel="shortcut icon" href="{{ load_asset('/css/favicon.ico') }}">
 
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
