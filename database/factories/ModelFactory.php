@@ -18,6 +18,7 @@ $factory->define(Suyabay\User::class, function (Faker\Generator $faker) {
         'password'       => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
         'role_id'        => 1,
+        'id'             => 1
     ];
 });
 
