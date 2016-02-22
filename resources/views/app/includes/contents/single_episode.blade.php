@@ -7,7 +7,7 @@
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
            
-        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
+        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h4>
 
         <div class="row podcast">
             <div class="col s3">
@@ -60,10 +60,7 @@
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                            <div class="collapsible-header {{Session::has('show_comments') ? 'active': '' }}" style="color:#999;padding-left:15px;">
-                                <b>Comments</b>
-                            </div>
-                            <div class="collapsible-body">
+                            <div class="collapsible-body" style="display:block;">
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
