@@ -7,10 +7,24 @@
     height: 101px;
 }
 
+/* Beginning of view comments css */
 .episode_comments {
     display:block;
     padding-top:10px;
 }
+
+.view_more_comments {
+    width: 20%;
+    clear: both;
+    margin-bottom: 2%;
+}
+.view_more_comments a {
+    font-size: 12px;
+    text-decoration: none;
+    cursor: hand;
+}
+
+/* End */
 
 .logo {
     margin: auto;
