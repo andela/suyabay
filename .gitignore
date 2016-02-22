@@ -14,3 +14,4 @@ sass
 /keep.php
 /build
 tests/_output/*
+vagrantfile

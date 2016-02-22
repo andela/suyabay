@@ -1,7 +1,8 @@
 <div class="row">
 
 <!-- Side Nav -->
-    @include('app.includes.sections.sidenav')
+
+@include('app.includes.sections.sidenav')
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
@@ -138,7 +139,7 @@
         <!-- end card -->
 
         @empty
-            <p>No Episodes to display</p>
+            <p>Favourite episodes not available </p>
         @endforelse
 
         <!-- Pagination -->

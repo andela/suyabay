@@ -59,6 +59,7 @@ class EpisodeManager extends Controller
     public function getEpisode($id)
     {
         $channels = $this->channelRepository->getAllChannels();
+        
         $episodes = $this->episodeRepository->findEpisodeWhere('channel_id', $id)->paginate(5);
 
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
