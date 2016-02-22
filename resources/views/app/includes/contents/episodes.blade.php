@@ -1,7 +1,8 @@
 <div class="row">
 
 <!-- Side Nav -->
-    @include('app.includes.sections.sidenav')
+
+@include('app.includes.sections.sidenav')
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
