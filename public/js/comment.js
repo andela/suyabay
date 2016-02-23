@@ -1,20 +1,64 @@
 $(document).ready(function() {
 
 
-    $(".view_more_comments").on("click",function(){
+    $(".view_more_comments").on("click",function() {
 
-        var numOfComments = $(".load_comment").find("div#show_comment");
+        var avatar = $(this).data('avatar');
 
-        console.log("log",numOfComments.size());
+        try {
 
-        $.ajax({
+            var numOfComments = $(".load_comment").find("div#show_comment");
+
+            alert(numOfComments.size());
+
+            $.ajax({
+
             url:'/comment',
             type:'GET',
             data:{'offset': 10},
+
             success: function(data) {
-                console.log("data",data);
+
+                for(i = 0 ; i < data.comments.length; i++)
+                {
+                    var comments = data.comments[i];
+
+                    console.log("data", data.comments[i]);
+
+                    $('#comment-count').html(' ' + numOfComments);
+
+                     var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
+                     newComment    += '<div class="row">';
+                     newComment    += '<div class="col s2">';
+                     newComment    += '<img src="' + avatar + '" alt="" class="circle">';
+                     newComment    += '</div>';
+                     newComment    += '<div class="col s10">';
+                     newComment    += '<div class="textarea-wrapper" ';
+                     newComment    += 'data-comment-id="' + comments.id + '">';
+                     newComment    += '<span>' + comments.comments + '</span>';
+                     newComment    += '<div class="update-actions pull-right">';
+                     newComment    += '<a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a>';
+                     newComment    += '<div id="comment_actions" style="display:none">';
+                     newComment    += '<a href="#" class="fa fa-pencil comment-action-edit no-style-link" ';
+                     newComment    += 'data-commentId="' + comments.id + '"></a>';
+                     newComment    += '<a href="#" class="fa fa-trash comment-action-delete no-style-link" ';
+                     newComment    += 'data-commentId="' + comments.id + '"></a>';
+                     newComment    += '</div>';
+                     newComment    += '</div>';
+                     newComment    += '</div></div></div></div>';
+
+                     $('.load_comment').last().append(newComment);
+                     $('#new-comment-field').val('');
+
+                }
             }
+
         });
+
+        } catch (e) {
+
+            console.log(e);
+        }
 
         return false;
     });
