@@ -6,10 +6,8 @@ $(document).ready(function() {
         var avatar = $(this).data('avatar');
 
         try {
-
+            
             var numOfComments = $(".load_comment").find("div#show_comment");
-
-            alert(numOfComments.size());
 
             $.ajax({
 
@@ -19,7 +17,7 @@ $(document).ready(function() {
 
             success: function(data) {
 
-                for(i = 0 ; i < data.comments.length; i++)
+                for (i = 0 ; i < data.comments.length; i++)
                 {
                     var comments = data.comments[i];
 
