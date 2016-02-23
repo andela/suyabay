@@ -64,7 +64,7 @@
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
-                                    @foreach ( $episodes->first()->comment()->orderBy('created_at', 'asc')->get() as $comment )
+                                    @foreach ( $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get() as $comment )
                                         <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
 
@@ -97,11 +97,14 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                        <div class="view_more_comments">
-                                            <a href="#" title="View more comments"></a> View more comments</a>
-                                        </div>
                                 </li>
-
+                                    <li>
+                                        <div class="view_more_comments">
+                                            <a href="#" title="View more comments" data-avatar="{{ Auth::user()->getAvatar() }}">
+                                                View more comments
+                                            </a>
+                                        </div>
+                                    </li>
                                 @if (  Auth::check() )
                                     <li class="collection-item avatar">
                                         <div class="row">
