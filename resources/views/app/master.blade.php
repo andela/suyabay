@@ -45,6 +45,10 @@
         <link href = "{!! load_asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
         <script type="text/javascript" src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
 
+        <script type="text/javascript" src = "{!! asset('/js/LoginAndSignup.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/PasswordReset.js') !!}"></script>
+        <script type="text/javascript" src = "{!! asset('/js/NewPassword.js') !!}"></script>
+
     </head>
     <body>
         <!-- top nav -->
