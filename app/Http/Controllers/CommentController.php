@@ -7,6 +7,7 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 use Auth;
+use DB;
 
 class CommentController extends Controller
 {
@@ -43,11 +44,17 @@ class CommentController extends Controller
 	public function fetchComment(Request $request)
 	{
 		$totalComments = $request->input('offset');
+		$episodeId     = $request->input('episode_id');
+
+		$oldComments = DB::table('comments')
+			->where('id', '>', $totalComments)
+			->where('episode_id',$episodeId)
+			->take(10)->get();
 
 		return [
-			'message' => 'Comment created Successfully',
+			'message' => 'Comment retrieved Successfully',
 			'status_code' => 200,
-			'comments' => $totalComments
+			'comments' => $oldComments
 		];
 	}
 
