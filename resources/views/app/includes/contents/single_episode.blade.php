@@ -55,19 +55,18 @@
          
             </div>
 
-
             <div class="col s12 m6 l12 card-social">
                 <div>
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-body episode_comments">
+
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
                                     @foreach ( $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get() as $comment )
                                         <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
-
                                                 <div class="col s2">
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
                                                 </div>
@@ -80,7 +79,6 @@
                                                         @if( Auth::check() )
 
                                                             @if ( Auth::user()->id === $comment->user_id )
-
                                                             <div class="update-actions pull-right">
                                                                 <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> 
                                                                 <div id="comment_actions" style="display:none">
@@ -91,21 +89,25 @@
 
                                                              @endif
                                                         @endif
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 </li>
-                                    <li>
-                                        <div class="view_more_comments">
-                                            <a href="#" title="View more comments">
-                                                View more comments
-                                            </a>
-                                        </div>
-                                    </li>
-                                @if (  Auth::check() )
+                                    @if ( Auth::check())
+                                        <input type="hidden" id="episode_id" value="{{ $lu = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get()}} {{ $lu[0]['episode_id'] }}" />
+                                            @if(count($episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get()) > 0)
+                                                <li>
+                                                    <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
+                                                        <a href="#" title="View more comments">
+                                                            View more comments
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            @endif
+
+
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
