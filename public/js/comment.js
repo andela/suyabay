@@ -4,26 +4,24 @@ $(document).ready(function() {
     $(".view_more_comments").on("click",function() {
 
         var avatar = $(this).data('avatar');
+        var numOfComments = $(".load_comment").find("div#show_comment");
+        var episode_id  = $("#episode_id").val();
 
         try {
-            
-            var numOfComments = $(".load_comment").find("div#show_comment");
 
             $.ajax({
 
             url:'/comment',
             type:'GET',
-            data:{'offset': 10},
+            data:{'offset': numOfComments.size(),'episode_id':episode_id},
 
             success: function(data) {
 
-                for (i = 0 ; i < data.comments.length; i++)
-                {
+                for (i = 0 ; i < data.comments.length; i++) {
+
                     var comments = data.comments[i];
 
-                    console.log("data", data.comments[i]);
-
-                    $('#comment-count').html(' ' + numOfComments);
+                    $('#comment-count').html(' ' + numOfComments.size());
 
                      var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                      newComment    += '<div class="row">';
