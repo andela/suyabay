@@ -1,5 +1,25 @@
 $(document).ready(function() {
 
+
+    $(".view_more_comments").on("click",function(){
+
+        var numOfComments = $(".load_comment").find("div#show_comment");
+
+        console.log("log",numOfComments.size());
+
+        $.ajax({
+            url:'/comment',
+            type:'GET',
+            data:{'offset': 10},
+            success: function(data) {
+                console.log("data",data);
+            }
+        });
+
+        return false;
+    });
+
+
     $('.comment-submit').on('click', function() {
 
         var comment = $('#new-comment-field').val();
@@ -26,6 +46,7 @@ $(document).ready(function() {
                 data: data.parameter,
 
                 success: function(response) {
+
                     switch (response.status_code) {
                         case 200:
 
