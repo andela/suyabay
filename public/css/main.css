@@ -26,6 +26,8 @@
     width: 20%;
     clear: both;
     margin-bottom: 2%;
+    border:1px solid green;
+    padding: 10px;
 }
 .view_more_comments a {
     font-size: 12px;
