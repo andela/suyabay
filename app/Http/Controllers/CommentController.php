@@ -37,6 +37,20 @@ class CommentController extends Controller
             ];
     }
 
+	/**
+	 * Get 10 comments from current episode
+	 */
+	public function fetchComment(Request $request)
+	{
+		$totalComments = $request->input('offset');
+
+		return [
+			'message' => 'Comment created Successfully',
+			'status_code' => 200,
+			'comments' => $totalComments
+		];
+	}
+
     /**
      * deleteComment Delete a comment that belongs to the logged in user
      * @param  [boolean] $commentId [true or false]
