@@ -100,7 +100,7 @@
                                 </li>
                                     <li>
                                         <div class="view_more_comments">
-                                            <a href="#" title="View more comments" data-avatar="{{ Auth::user()->getAvatar() }}">
+                                            <a href="#" title="View more comments">
                                                 View more comments
                                             </a>
                                         </div>
