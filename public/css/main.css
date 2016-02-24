@@ -14,16 +14,23 @@
 }
 
 .view_more_comments {
-    width: 20%;
+    width: 50%;
     clear: both;
     margin-bottom: 2%;
-    border:1px solid green;
     padding: 10px;
-}
-.view_more_comments a {
+    color: #26a69a;
     font-size: 12px;
+    cursor: hand;
+}
+
+.view_more_comments a {
     text-decoration: none;
     cursor: hand;
+}
+
+.view_more_comments a:hover {
+
+    text-decoration: underline;
 }
 
 /* End */
