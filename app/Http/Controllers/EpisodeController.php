@@ -24,13 +24,13 @@ class EpisodeController extends Controller
 
 		$episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
 
-        $episodes->each(function ($episode, $key) {
+		$episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
         });
-        
-        $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
-        return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
+		$favorites = $this->likeRepository->getNumberOfUserFavorite();
+
+		return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
     }
     
     /**
