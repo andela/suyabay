@@ -15,3 +15,4 @@ sass
 /build
 tests/_output/*
 vagrantfile
+/audio
