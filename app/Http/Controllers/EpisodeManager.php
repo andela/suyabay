@@ -59,7 +59,7 @@ class EpisodeManager extends Controller
     public function getEpisode($id)
     {
         $channels = $this->channelRepository->getAllChannels();
-        
+
         $episodes = $this->episodeRepository->findEpisodeWhere('channel_id', $id)->paginate(5);
 
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
@@ -165,7 +165,7 @@ class EpisodeManager extends Controller
             'episode_description'   => $request->description,
             'channel_id'            => $request->channel,
             'image'                 => self::DEFUALT_COVER_IMAGE,
-            'audio_mp3'             => $this->upload->audioToCloudinary($request->podcast),
+            'audio_mp3'             => $this->upload->audioToAWS($request->file('podcast')),
             'view_count'            => 0,
             'status'                => 0
         ];
