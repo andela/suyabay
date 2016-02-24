@@ -40,10 +40,11 @@ class EpisodeController extends Controller
      */
     public function allEpisode()
     {
-        $episodes = Episode::get();
-	    $channels = Channel::all();
+		$episodes = Episode::get();
 
-        return view('app.pages.episodes', compact('episodes', 'channels'));
+		$channels = Channel::all();
+
+		return view('app.pages.episodes', compact('episodes', 'channels'));
     }
 
     
@@ -54,11 +55,11 @@ class EpisodeController extends Controller
      */
     public function singleEpisode ($id)
     {
-        $episodes = Episode::with('like')->where('id', $id)->get();
+		$episodes = Episode::with('like')->where('id', $id)->get();
 
 		$channels = Channel::all();
-        
-        $episodes->each(function ($episode, $key) {
+
+		$episodes->each(function ($episode, $key) {
 
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
 
