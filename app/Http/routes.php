@@ -362,7 +362,7 @@ Route::post('/comment', [
     'as' => 'comment',
 ]);
 
-Route::get('comment/', [
+Route::get('/comment', [
 	'middleware' => 'auth',
 	'uses' => 'CommentController@fetchComment'
 ]);
