@@ -25,7 +25,7 @@ class FilesRepository
         $s3 = Storage::disk('s3');
         $filePath = $podcastFileName;
         $s3->put($filePath, fopen($podcast, 'r+'), 'public');
-        $toAWS = "https://s3-us-west-2.amazonaws.com/team-suyabay/{$filePath}";
+        $toAWS = "https://s3-us-west-2.amazonaws.com/suyabay/{$filePath}";
 
         return $toAWS;
     }
