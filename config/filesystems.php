@@ -66,9 +66,8 @@ return [
             'driver'    => 's3',
             'key'       => env('AWS_KEY'),
             'secret'    => env('AWS_SECRET'),
-            'region'    => 'us-west-1',
-            'bucket'    => env('AWS_BUCKET'),
-            'endpoint'  => env('END_POINT')
+            'region' => env('AWS_REGION'),
+            'bucket' => env('AWS_BUCKET'),
         ],
 
         'rackspace' => [
