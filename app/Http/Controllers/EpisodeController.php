@@ -20,9 +20,9 @@ class EpisodeController extends Controller
     
     public function index()
     {
-        $channels = $this->channelRepository->getAllChannels();
+		$channels = $this->channelRepository->getAllChannels();
 
-        $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
+		$episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
 
         $episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
