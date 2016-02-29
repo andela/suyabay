@@ -1,4 +1,4 @@
-@extends('app.authlayout')
+@extends('app.master')
 
 @section('title', 'Password Reset | SuyaBay')
 
