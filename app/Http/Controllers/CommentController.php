@@ -51,7 +51,7 @@ class CommentController extends Controller
 			->where('episode_id',$episodeId)
             ->skip($totalComments)
 			->take(10)
-             ->get();
+            ->get();
 
 		return [
 			'message' => 'Comment retrieved Successfully',
