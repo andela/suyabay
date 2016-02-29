@@ -49,7 +49,7 @@ class EpisodeManager extends Controller
     public function index()
     {
         $episodes = $this->episodeRepository->getAllEpisodes();
-        
+
         return view('dashboard.pages.view_episodes', compact('episodes'));
     }
 
@@ -59,13 +59,13 @@ class EpisodeManager extends Controller
     public function getEpisode($id)
     {
         $channels = $this->channelRepository->getAllChannels();
-        
+
         $episodes = $this->episodeRepository->findEpisodeWhere('channel_id', $id)->paginate(5);
 
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
         return view('app.pages.episodes', compact('episodes', 'channels', 'favorites'));
-        
+
     }
 
 
@@ -98,7 +98,7 @@ class EpisodeManager extends Controller
         return view('dashboard.pages.stats', compact('data'));
     }
 
-    
+
     /**
     * return channels list to create_episode view
     *
@@ -117,8 +117,8 @@ class EpisodeManager extends Controller
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function edit($id) 
-    { 
+    public function edit($id)
+    {
         $channels   = $this->channelRepository->getAllChannels();
         $episode    = $this->episodeRepository->findEpisodeById($id);
 
@@ -136,8 +136,8 @@ class EpisodeManager extends Controller
             $update = Episode::where('id', $request->episode_id)->update(['episode_name' => $request->episode, 'episode_description' => $request->description, 'channel_id' => $request->channel_id]);
 
             $this->response =['message' => 'Success', 'status_code'   => 200];
-            
-        } catch(QueryException $e) {
+
+        } catch (QueryException $e) {
             $this->response =['message' => $e->getMessage(), 'status_code'   => 400];
         }
 
@@ -152,6 +152,7 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'title'         => 'required|min:3',
             'description'   => 'required',
@@ -164,7 +165,7 @@ class EpisodeManager extends Controller
             'episode_description'   => $request->description,
             'channel_id'            => $request->channel,
             'image'                 => self::DEFUALT_COVER_IMAGE,
-            'audio_mp3'             => $this->upload->videoToCloudinary($request->podcast),
+            'audio_mp3'             => $this->upload->audioToAWS($request->file('podcast')),
             'view_count'            => 0,
             'status'                => 0
         ];

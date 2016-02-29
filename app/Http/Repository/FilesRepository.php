@@ -15,14 +15,18 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 class FilesRepository
 {
     /**
-     * Upload audio file to cloudinary
+     * Upload audio file to AWS
      * @param $filename
-     * @return 
+     * @return
      */
-    public function videoToCloudinary($podcast)
+    public function audioToAWS($podcast)
     {
-        Cloudder::uploadVideo($podcast, null);
+        $podcastFileName = time() . '.' . $podcast->getClientOriginalExtension();
+        $s3 = Storage::disk('s3');
+        $filePath = $podcastFileName;
+        $s3->put($filePath, fopen($podcast, 'r+'), 'public');
+        $toAWS = "https://s3-us-west-2.amazonaws.com/suyabay/{$filePath}";
 
-        return Cloudder::getResult()['url'];
+        return $toAWS;
     }
 }
