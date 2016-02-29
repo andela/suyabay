@@ -139,7 +139,7 @@
         <!-- end card -->
 
         @empty
-            <p>Favourite episodes not available </p>
+            <p>No favourite episodes to display </p>
         @endforelse
 
         <!-- Pagination -->
