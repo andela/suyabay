@@ -1,4 +1,4 @@
-@extends('profile.master')
+@extends('app.master')
 
 @section('title', 'Edit profile')
 
