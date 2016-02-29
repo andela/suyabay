@@ -68,9 +68,9 @@
 
         <!-- User Auth -->
         <div class="row">
+            @include('dashboard.includes.sections.side_nav')
 
-                @yield('content')
-
+            @yield('content')
         </div>
 
         <!-- Footer contents -->
