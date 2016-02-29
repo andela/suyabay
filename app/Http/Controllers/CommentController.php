@@ -49,7 +49,9 @@ class CommentController extends Controller
 		$oldComments = DB::table('comments')
 			->where('id', '>', $totalComments)
 			->where('episode_id',$episodeId)
-			->take(10)->get();
+            ->skip($totalComments)
+			->take(10)
+             ->get();
 
 		return [
 			'message' => 'Comment retrieved Successfully',
