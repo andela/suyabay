@@ -111,6 +111,22 @@ class ChannelTest extends TestCase
     }
 
     /**
+     * Assert that new active channel
+     *is visible in /dashboard/channels/active.
+     *
+     * @return void
+     */
+    public function testActiveChannelsPage()
+    {
+        $user = factory(User::class)->create();
+        $channel = factory(Channel::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/dashboard/channels/active')
+             ->see($channel['channel_name']);
+    }
+
+    /**
      * Test user channnel relationship
      */
     public function testUserChannelRelationship()
