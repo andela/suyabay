@@ -13,8 +13,8 @@ class CommentController extends Controller
 {
 
     /**
-    * Add comment to database
-    */
+     * Add comment to database
+     */
     protected function create(array $data)
     {
         return Comment::create([
@@ -25,16 +25,16 @@ class CommentController extends Controller
     }
 
     /**
-    * Process comment creation
-    */
+     * Process comment creation
+     */
     public function postComment(Request $request)
     {
         $newComment = $this->create($request->all());
 
         return [
-                'message' => 'Comment created Successfully',
-                'status_code' => 200,
-                'commentId' => $newComment->id
+            'message' => 'Comment created Successfully',
+            'status_code' => 200,
+            'commentId' => $newComment->id
             ];
     }
 
@@ -43,20 +43,20 @@ class CommentController extends Controller
 	 */
 	public function fetchComment(Request $request)
 	{
-		$totalComments = $request->input('offset');
-		$episodeId     = $request->input('episode_id');
+        $totalComments = $request->input('offset');
+        $episodeId     = $request->input('episode_id');
 
-		$oldComments = DB::table('comments')
-			->where('id', '>', $totalComments)
-			->where('episode_id',$episodeId)
-            ->skip($totalComments)
-			->take(10)
-            ->get();
+        $oldComments = DB::table('comments')
+        ->where('id', '>', $totalComments)
+		->where('episode_id',$episodeId)
+        ->skip($totalComments)
+		->take(10)
+        ->get();
 
 		return [
-			'message' => 'Comment retrieved Successfully',
-			'status_code' => 200,
-			'comments' => $oldComments
+            'message' => 'Comment retrieved Successfully',
+            'status_code' => 200,
+            'comments' => $oldComments
 		];
 	}
 
@@ -70,8 +70,8 @@ class CommentController extends Controller
         $request->session()->flash('show_comments', true);
 
         $deleteComment = Comment::where('id', $commentId)
-                                ->where('user_id', Auth::user()->id)
-                                ->delete();
+        ->where('user_id', Auth::user()->id)
+        ->delete();
 
         return $deleteComment;
     }
@@ -90,9 +90,9 @@ class CommentController extends Controller
         $request->session()->flash('show_comments', true);
 
         return Comment::where('id', $id)
-                ->where('user_id', Auth::user()->id)
-                ->update([
-                    'comments' => $request->input('comment')
-                ]);
+        ->where('user_id', Auth::user()->id)
+        ->update([
+            'comments' => $request->input('comment')
+            ]);
     }
 }
