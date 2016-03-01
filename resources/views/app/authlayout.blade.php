@@ -68,9 +68,7 @@
 
         <!-- User Auth -->
         <div class="row">
-
                 @yield('content')
-
         </div>
 
         <!-- Footer contents -->
