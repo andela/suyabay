@@ -36,11 +36,11 @@ class CommentController extends Controller
             ];
     }  
 
-	/**
-	 * Get 10 comments from current episode
-	 */
-	public function fetchComment(Request $request)
-	{
+    /**
+     * Get 10 comments from current episode
+     */
+    public function fetchComment(Request $request)
+    {
         $totalComments = $request->input('offset');
         $episodeId     = $request->input('episode_id');
 
