@@ -34,7 +34,7 @@
                     <label for="file" class="btn-flat">Upload Podcast</label>
                     <input type="file" name="podcast" accept="mp3, audio/*">
                 </div>
-                
+
                 <input type="submit"  value ="create" class="btn-large" />
             </form>
         </div>
