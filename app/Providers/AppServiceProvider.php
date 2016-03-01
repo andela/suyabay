@@ -4,6 +4,7 @@ namespace Suyabay\Providers;
 
 use Validator;
 use Illuminate\Support\ServiceProvider;
+use Suyabay\Libraries\MimeReader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
             if ($fileSize >= 1.00 && $fileSize <= 10.00) {
                 return $fileSize;
             }
+        });
+
+        Validator::extend('audio', function ($attribute, $value, $parameters, $validator) {
+            $allowed = array('audio/mpeg', 'application/ogg', 'audio/wave', 'audio/aiff', 'audio/mp3', 'audio/m4a', 'video/mp4');
+            $mime = new MimeReader($value->getRealPath());
+            return in_array($mime->get_type(), $allowed);
         });
     }
 
@@ -51,5 +58,14 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+
+    /**
+     * Detect if uploaded file is an audio file
+     */
+    public function is_audio($mimetype)
+    {
+        return starts_with($mimeType, 'audio/');
     }
 }
