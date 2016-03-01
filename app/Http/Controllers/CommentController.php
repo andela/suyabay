@@ -29,7 +29,6 @@ class CommentController extends Controller
     public function postComment(Request $request)
     {
         $newComment = $this->create($request->all());
-
         return [
             'message' => 'Comment created Successfully',
             'status_code' => 200,
