@@ -25,6 +25,14 @@ class ChannelTest extends TestCase
              ->seePageIs('/channels');
     }
 
+    public function testCreateChannelPage()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+         ->visit('/dashboard/channel/create')
+         ->see('Create Channel');
+    }
+
     /**
      * Assert that a new channel is created
      * in the database.
