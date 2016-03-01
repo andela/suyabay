@@ -52,7 +52,7 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function singleEpisode ($id)
+    public function singleEpisode($id)
     {
         $episodes = Episode::with('like')->where('id', $id)->get();
         $channels = Channel::all();
