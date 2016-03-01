@@ -46,17 +46,17 @@ class CommentController extends Controller
         $episodeId     = $request->input('episode_id');
 
         $oldComments = DB::table('comments')
-            ->where('id', '>', $totalComments)
-            ->where('episode_id', $episodeId)
-            ->skip($totalComments)
-            ->take(10)
-            ->get();
+        ->where('id', '>', $totalComments)
+        ->where('episode_id', $episodeId)
+        ->skip($totalComments)
+        ->take(10)
+        ->get();
         return [
             'message' => 'Comment retrieved Successfully',
             'status_code' => 200,
             'comments' => $oldComments
             ];
-        }
+    }
 
     /**
      * deleteComment Delete a comment that belongs to the logged in user
