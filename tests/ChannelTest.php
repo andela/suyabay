@@ -2,6 +2,7 @@
 
 use Suyabay\Episode;
 use Suyabay\Channel;
+use Suyabay\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -25,6 +26,91 @@ class ChannelTest extends TestCase
     }
 
     /**
+     * Assert that a new channel is created
+     * in the database.
+     *
+     * @return void
+     */
+    public function testCreateChannel()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+         ->visit('/dashboard/channel/create')
+         ->type('Swanky new name', 'name')
+         ->type('Swanky new description', 'description')
+         ->press('create')
+         ->seeInDatabase('channels', [
+            'channel_name' => 'Swanky new name'
+         ]);
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+        ->call(
+            'POST',
+            '/dashboard/channel/create',
+            [
+                'name' => 'Another Channel Name',
+                'description' => 'Another channel description'
+            ]
+        );
+
+        $this->seeInDatabase('channels', [
+        'channel_name' => 'Another Channel Name'
+        ]);
+    }
+
+    /**
+     * Assert that edit route updates the channel.
+     *
+     * @return void
+     */
+    public function testEditChannel()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory(User::class)->create();
+        $channel = factory(Channel::class)->create();
+
+        $this->actingAs($user)
+            ->call(
+                'PUT',
+                '/dashboard/channel/edit',
+                [
+                    'channel_id' => 1,
+                    'channel_name' => 'Swanky updated name',
+                    'channel_description' => 'Swanky updated description'
+                ]
+            );
+
+            $this->seeInDatabase('channels', [
+                'id' => $channel['id'],
+                'channel_name' => 'Swanky updated name'
+             ]);
+    }
+
+    /**
+     * Assert that the DELETE route removes a channel from the database
+     *
+     * @return void
+     */
+    public function testDeleteChannel()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory(User::class)->create();
+        $channel = factory(Channel::class)->create();
+
+        $this->actingAs($user)
+             ->call(
+                 'DELETE',
+                 '/dashboard/channel/' . $channel['id']
+             );
+        $this->assertEquals(0, count(Channel::where('id', $channel['id'])->get()));
+    }
+
+    /**
      * Test user channnel relationship
      */
     public function testUserChannelRelationship()
@@ -45,27 +131,5 @@ class ChannelTest extends TestCase
         $episode = $this->createEpisode();
 
         $this->assertEquals($episode->channel_id, $episode->channel->id);
-    }
-
-    /**
-     * Test that an episode is created.
-     *
-     * @return void
-     */
-    public function testCreateNewEpisode()
-    {
-        Channel::create([
-            'channel_name'          => 'test',
-            'channel_description'   => 'test',
-            'user_id'               => 3,
-            'subscription_count'    => 0
-        ]);
-
-        $this->seeInDatabase('channels', [
-            'channel_name'          => 'test',
-            'channel_description'   => 'test',
-            'user_id'               => 3,
-            'subscription_count'    => 0
-        ]);
     }
 }
