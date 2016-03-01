@@ -18,9 +18,10 @@
         </div>
     </div>
 
+
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
-           
+
         <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
         @foreach($episodes as $podcast)
@@ -34,12 +35,12 @@
                     <span class="podcast-episode-date">{{ $podcast->created_at->diffForHumans() }}</span>
                     <span class="tag podcast-episode-date">{{$podcast->channel->channel_name}}</span>
                     <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
-                    
+
                     <p>
                         {{$podcast->episode_description}}
                     </p>
 
-                </div>     
+                </div>
             </div>
         </a>
         @endforeach

@@ -31,9 +31,9 @@
         <link href = "{!! load_asset('/css/main.css') !!}" rel='stylesheet' type="text/css">
 
         <!-- Custom js -->
-        <script src = "{!! asset('/js/main.js') !!}"></script>
-        <script src = "{!! secure_asset('/js/main.js') !!}"></script>
-        <script src="{!! asset('/js/audio.min.js') !!}"></script>
+        <script src = "{!! load_asset('/js/main.js') !!}"></script>
+        <script src = "{!! load_asset('/js/main.js') !!}"></script>
+        <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src="{!! load_asset('/js/like.js') !!}"></script>
         <script src = "{!! load_asset('/js/main.js') !!}"></script>
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
@@ -45,11 +45,17 @@
         <link href = "{!! load_asset('/library/sweetalert/sweetalert.css') !!}" rel="stylesheet"  />
         <script type="text/javascript" src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
 
+        <script type="text/javascript" src = "{!! load_asset('/js/LoginAndSignup.js') !!}"></script>
+        <script type="text/javascript" src = "{!! load_asset('/js/PasswordReset.js') !!}"></script>
+        <script type="text/javascript" src = "{!! load_asset('/js/NewPassword.js') !!}"></script>
+
     </head>
     <body>
+
         <!-- top nav -->
         <div class="row">
             @include('app.includes.sections.top_nav')
+            {{-- @include('app.includes.sections.sidenav') --}}
         </div>
 
         <!-- main contents -->
