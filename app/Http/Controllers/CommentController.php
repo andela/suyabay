@@ -35,7 +35,7 @@ class CommentController extends Controller
             'status_code' => 200,
             'commentId' => $newComment->id
             ];
-    }
+        }
 
 	/**
 	 * Get 10 comments from current episode
