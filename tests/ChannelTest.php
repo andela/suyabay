@@ -19,8 +19,7 @@ class ChannelTest extends TestCase
         $this->createChannel();
         $this->createEpisode();
 
-        $this->visit('/')
-             ->click('Channels')
+        $this->visit('/channels')
              ->seePageIs('/channels');
     }
 
