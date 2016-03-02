@@ -72,7 +72,7 @@
         'array'   => 'The :attribute must contain :size items.',
         ],
         'size_format' => ' :attribute size must be between 1MB and 10MB.',
-        'audio' => ' :Please upload an audio file',
+        'audio'       => ' :attribute must be an audio file',
         'string'      => 'The :attribute must be a string.',
         'timezone'    => 'The :attribute must be a valid zone.',
         'unique'      => 'The :attribute has already been taken.',
