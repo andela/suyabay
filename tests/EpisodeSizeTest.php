@@ -36,13 +36,13 @@ class EpisodeSizeTest extends TestCase
         $this->visit('dashboard/episode/create')
              ->type('test', 'title')
              ->type('Brief description', 'description')
-             ->attach('/audio/BlueDucks_FourFlossFiveSix.mp3', 'podcast')
+             ->attach(storage_path('audio/BlueDucks.mp3'), 'podcast')
              ->press('create')
-             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'teststh')->get()));
+             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'test')->get()));
     }
 
     /**
-     * Test to verify that no new recorc is saved in the database if
+     * Test to verify that no new record is saved in the database if
      * the podcast file is less than 10MB
      */
     public function testValidationWorksForFilesExceeding10MB()
@@ -50,10 +50,38 @@ class EpisodeSizeTest extends TestCase
         $this->login();
 
         $this->visit('dashboard/episode/create')
-             ->type('test', 'title')
+             ->type('test2', 'title')
              ->type('Brief description', 'description')
-             ->attach('/audio/Haiti.mp3', 'podcast')
+             ->attach(storage_path('audio/Haiti.mp3'), 'podcast')
              ->press('create')
-             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'teststh')->get()));
+             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'test2')->get()));
+    }
+
+    /**
+     * Test to verify that a new record is saved in the database if a file
+     * that meets the size limit is uploaded
+     */
+    public function testFileUploadWithinLimit()
+    {
+        $this->login();
+
+        $this->visit('dashboard/episode/create')
+             ->type('Kanye', 'title')
+             ->type('With Love', 'description')
+             ->attach(storage_path('audio/love.m4a'), 'podcast')
+             ->press('create')
+             ->assertEquals(1, count(Suyabay\Episode::where('episode_name', 'Kanye')->get()));
+    }
+
+    public function testCorrectMimeTypeIsUploaded()
+    {
+        $this->login();
+
+        $this->visit('dashboard/episode/create')
+             ->type('Kanye', 'title')
+             ->type('With Love', 'description')
+             ->attach(storage_path('audio/image.jpg'), 'podcast')
+             ->press('create')
+             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'Kanye')->get()));
     }
 }
