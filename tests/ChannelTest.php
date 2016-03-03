@@ -6,6 +6,7 @@ use Suyabay\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Suyabay\Http\Repository\ChannelRepository;
 
 class ChannelTest extends TestCase
 {
@@ -176,5 +177,20 @@ class ChannelTest extends TestCase
         $episode = $this->createEpisode();
 
         $this->assertEquals($episode->channel_id, $episode->channel->id);
+    }
+    /**
+     * Asseert that ChannelRepository::find($id) returns an array
+     *
+     * @return void
+     */
+    public function testFindInChannelRepository()
+    {
+        $channel = factory(Channel::class)->create();
+        $channelRepository = new ChannelRepository();
+        $channel = $channelRepository->find($channel['id'])->toArray();
+
+        $this->assertTrue(is_array($channel));
+        $this->assertArrayHasKey('channel_name', $channel);
+        $this->assertArrayHasKey('channel_description', $channel);
     }
 }
