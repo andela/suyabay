@@ -16,13 +16,9 @@ class ChannelTest extends TestCase
      */
     public function testChannelLink()
     {
-        $this->createUser(1);
-        $this->createChannel();
-        $this->createEpisode();
-
-        $this->visit('/')
-             ->click('Channels')
-             ->seePageIs('/channels');
+        $channel = factory(Channel::class)->create();
+        $this->visit(route('channels'))
+             ->see($channel['channel_name']);
     }
 
     public function testCreateChannelPage()
