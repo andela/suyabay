@@ -150,7 +150,6 @@ class ChannelTest extends TestCase
     {
         $user = factory(User::class)->create();
         $channel = factory(Channel::class)->create();
-
         $this->actingAs($user)
              ->visit('/dashboard/channels/active')
              ->see($channel['channel_name']);
