@@ -14,19 +14,11 @@ class ChannelTest extends TestCase
     /**
      * Test channel link leads to route
      */
-    public function testChannelLink()
+    public function testUserCanViewChannels()
     {
         $channel = factory(Channel::class)->create();
         $this->visit(route('channels'))
              ->see($channel['channel_name']);
-    }
-
-    public function testCreateChannelPage()
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user)
-         ->visit('/dashboard/channel/create')
-         ->see('Create Channel');
     }
 
     /**
@@ -39,7 +31,7 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['role_id' => 3]);
         $this->actingAs($user)
          ->visit('/dashboard/channel/create')
          ->type('Swanky new name', 'name')
@@ -49,20 +41,20 @@ class ChannelTest extends TestCase
             'channel_name' => 'Swanky new name'
          ]);
 
-        $user = factory(User::class)->create();
-        $this->actingAs($user)
-        ->call(
-            'POST',
-            '/dashboard/channel/create',
-            [
+         $user = factory(User::class)->create();
+         $this->actingAs($user)
+         ->call(
+             'POST',
+             '/dashboard/channel/create',
+             [
                 'name' => 'Another Channel Name',
                 'description' => 'Another channel description'
-            ]
-        );
+             ]
+         );
 
-        $this->seeInDatabase('channels', [
-        'channel_name' => 'Another Channel Name'
-        ]);
+         $this->seeInDatabase('channels', [
+         'channel_name' => 'Another Channel Name'
+         ]);
     }
 
     /**
@@ -103,7 +95,7 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
 
         $this->actingAs($user)
@@ -111,7 +103,41 @@ class ChannelTest extends TestCase
                  'DELETE',
                  '/dashboard/channel/' . $channel['id']
              );
-        $this->assertEquals(0, count(Channel::where('id', $channel['id'])->get()));
+        $this->visit('/dashboard/channels/deleted')
+             ->see($channel['name']);
+        $this->seeInDatabase('channels', [
+            'id' => $channel['id']
+        ]);
+    }
+
+    /**
+     * Test that the all channels page displays both active and deleted episodes
+     * @return [type] [description]
+     */
+    public function testAllChannelsPage()
+    {
+         $this->withoutMiddleware();
+
+        $user = factory(User::class)->create(['role_id' => 3]);
+        $channel1 = factory(Channel::class)->create(['id' => 1]);
+        $channel2 = factory(Channel::class)->create(['id' => 2]);
+
+        $this->actingAs($user)
+             ->call(
+                 'DELETE',
+                 '/dashboard/channel/' . $channel2['id']
+             );
+        $this->visit('dashboard/channels/all')
+             ->see($channel1['name'])
+             ->see($channel2['name']);
+
+        $this->seeInDatabase('channels', [
+            'id' => $channel1['id']
+        ]);
+
+        $this->seeInDatabase('channels', [
+            'id' => $channel2['id']
+        ]);
     }
 
     /**
