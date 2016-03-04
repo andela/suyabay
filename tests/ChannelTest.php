@@ -213,4 +213,47 @@ class ChannelTest extends TestCase
         $this->assertArrayHasKey('channel_description', Channel::withTrashed()->find($id)->toArray());
         $this->assertArrayHasKey('deleted_at', Channel::withTrashed()->find($id)->toArray());
     }
+
+    /**
+     * Assert that restorechannel method in ChannelRepository deletes
+     * the deleted_At field/
+     *
+     * @return void
+     */
+    public function testRestoreChannelInChannelRepository()
+    {
+        $channel = factory(Channel::class)->create();
+        $id = $channel['id'];
+
+        $channelRepository = new ChannelRepository();
+        $channelRepository->deleteChannel($id);
+        $channelRepository->restoreChannel($id);
+
+        $channel = Channel::find($id)->toArray();
+        $this->assertTrue(is_array($channel));
+        $this->assertArrayHasKey('channel_name', $channel);
+        $this->assertArrayHasKey('channel_description', $channel);
+        $this->assertArrayHasKey('deleted_at', $channel);
+        $this->assertEquals('', $channel['deleted_at']);
+
+    }
+    /**
+     * Assert that getOrderedChannels returns an ordered array of channels.
+     *
+     * @return void
+     */
+    public function testGetOrderedChannel()
+    {
+        $channel = factory('Suyabay\Channel', 5)->create();
+
+        $channelRepository = new ChannelRepository();
+
+        $descending = $channelRepository->getOrderedChannels('id', 'desc')->get()->toArray();
+        $this->assertTrue(is_array($descending));
+        $this->assertEquals(5, $descending[0]['id']);
+
+        $ascending = $channelRepository->getOrderedChannels('id', 'asc')->get()->toArray();
+        $this->assertTrue(is_array($ascending));
+        $this->assertEquals(1, $ascending[0]['id']);
+    }
 }
