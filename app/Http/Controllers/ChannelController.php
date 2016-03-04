@@ -61,9 +61,8 @@ class ChannelController extends Controller
     public function channelList()
     {
         $channels = $this->channelRepository->getAllChannels();
-        $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
-        return view('app.pages.channel', compact('channels', 'favorites'));
+        return view('app.pages.channel', compact('channels'));
     }
 
     /**

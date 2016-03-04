@@ -22,8 +22,7 @@ class ChannelTest extends TestCase
              ->see($channel['channel_name']);
 
         $this->call('GET', '/channels');
-        $this->assertViewHas('channels');
-        $this->assertViewHas('favorites');
+        $this->assertViewHasAll(['channels']);
 
     }
 
