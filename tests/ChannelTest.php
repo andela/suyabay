@@ -193,4 +193,24 @@ class ChannelTest extends TestCase
         $this->assertArrayHasKey('channel_name', $channel);
         $this->assertArrayHasKey('channel_description', $channel);
     }
+
+    /**
+     * assert that ChannelRepository::deleteChannel($id) deletes a
+     * channel.
+     *
+     * @return void
+     */
+    public function testDeletedChannelInChannelRepository()
+    {
+        $channel = factory(Channel::class)->create();
+        $id = $channel['id'];
+        $channelRepository = new ChannelRepository();
+        $channel = $channelRepository->deleteChannel($id);
+
+        $this->assertTrue(is_null($channel));
+        $this->assertTrue(is_array(Channel::withTrashed()->find($id)->toArray()));
+        $this->assertArrayHasKey('channel_name', Channel::withTrashed()->find($id)->toArray());
+        $this->assertArrayHasKey('channel_description', Channel::withTrashed()->find($id)->toArray());
+        $this->assertArrayHasKey('deleted_at', Channel::withTrashed()->find($id)->toArray());
+    }
 }
