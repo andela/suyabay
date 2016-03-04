@@ -188,7 +188,7 @@ class ChannelTest extends TestCase
      */
     public function testUserChannelRelationship()
     {
-        $user = $this->createUser(1);
+        $user = $this->createUser(3);
         $channel = $this->createChannel();
 
         $this->assertEquals($channel->user_id, $channel->user->id);
@@ -199,11 +199,13 @@ class ChannelTest extends TestCase
      */
     public function testEpisodechannelRelationship()
     {
-        $this->createUser(1);
-        $this->createChannel();
-        $episode = $this->createEpisode();
+        $this->createUser(3);
+        $channel = $this->createChannel();
+        $episode1 = $this->createEpisode();
+        $episode2 = $this->createEpisode();
 
-        $this->assertEquals($episode->channel_id, $episode->channel->id);
+        $this->assertEquals($episode1->channel_id, $channel->id);
+        $this->assertEquals($episode2->channel_id, $channel->id);
     }
     /**
      * Asseert that ChannelRepository::find($id) returns an array
