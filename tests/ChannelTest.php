@@ -23,6 +23,8 @@ class ChannelTest extends TestCase
 
         $this->call('GET', '/channels');
         $this->assertViewHas('channels');
+        $this->assertViewHas('favorites');
+
     }
 
     /**
@@ -46,7 +48,7 @@ class ChannelTest extends TestCase
          ]);
 
          $user = factory(User::class)->create();
-         $this->actingAs($user)
+         $newChannel  = $this->actingAs($user)
          ->call(
              'POST',
              '/dashboard/channel/create',
@@ -55,6 +57,21 @@ class ChannelTest extends TestCase
                 'description' => 'Another channel description'
              ]
          );
+
+         $this->assertEquals(200, $newChannel->original['status_code']);
+         $this->assertEquals("Channel created Successfully", $newChannel->original['message']);
+
+         $duplicateChannel  = $this->actingAs($user)
+         ->call(
+             'POST',
+             '/dashboard/channel/create',
+             [
+                'name' => 'Another Channel Name',
+                'description' => 'Another channel description'
+             ]
+         );
+         $this->assertEquals(400, $duplicateChannel->original['status_code']);
+         $this->assertEquals("Channel already exist", $duplicateChannel->original['message']);
 
          $this->seeInDatabase('channels', [
          'channel_name' => 'Another Channel Name'
@@ -112,6 +129,9 @@ class ChannelTest extends TestCase
         $this->seeInDatabase('channels', [
             'id' => $channel['id']
         ]);
+
+        $this->call('GET', '/dashboard/channels/deleted');
+        $this->assertViewHas('channels');
     }
 
     /**
@@ -138,10 +158,12 @@ class ChannelTest extends TestCase
         $this->seeInDatabase('channels', [
             'id' => $channel1['id']
         ]);
-
         $this->seeInDatabase('channels', [
             'id' => $channel2['id']
         ]);
+
+        $this->call('GET', '/dashboard/channels/all');
+        $this->assertViewHas('channels');
     }
 
     /**
@@ -157,6 +179,9 @@ class ChannelTest extends TestCase
         $this->actingAs($user)
              ->visit('/dashboard/channels/active')
              ->see($channel['channel_name']);
+
+        $this->call('GET', '/dashboard/channels/active');
+        $this->assertViewHas('channels');
     }
 
     /**
