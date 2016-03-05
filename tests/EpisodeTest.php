@@ -170,6 +170,28 @@ class EpisodeTest extends TestCase
     }
 
     /**
+     * Aseert that admin user can see the dashboard stats.
+     *
+     * @return [type] [description]
+     */
+    public function testAdmincanSeeStats()
+    {
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+        $episodes = factory('Suyabay\Episode', 5)->create();
+
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/dashboard'
+            );
+        $this->see($episodes[0]['episode_name']);
+        $this->see($episodes[0]['episode_description']);
+        $this->see(3);
+        $this->see('Active Episodes');
+    }
+
+    /**
      * Assert a user can see all episodes.
      *
      * @return void
