@@ -8,6 +8,7 @@ use Suyabay\Http\Repository\EpisodeRepository;
 
 class EpisodeTest extends TestCase
 {
+    use Suyabay\Tests\CreateData;
     /**
      * Assert that EpisodeRepository's getAllEpisodes returns
      * an array of all episodes.
@@ -134,7 +135,9 @@ class EpisodeTest extends TestCase
         $this->assertArrayHasKey('episode_description', $getEpisode);
         $this->seeInDatabase('episodes', ['episode_name' => 'Swanky updated name']);
     }
-
+    /**
+    * Assert that EpisodeRepository's
+    */
     public function testActiveAndPendingEpisodes()
     {
         factory('Suyabay\Episode', 1)->create(['status' => 1]);
@@ -143,5 +146,26 @@ class EpisodeTest extends TestCase
         $repository = new EpisodeRepository();
         $this->assertTrue(is_array($repository->getActiveEpisodes()->toArray()));
         $this->assertTrue(is_array($repository->getPendingEpisodes()->toArray()));
+    }
+
+   /**
+    * Assert that singleEpisode method displays a single episode.
+    *
+    * @return void
+    */
+    public function testSingleEpisodeMethod()
+    {
+        factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel', 1)->create();
+        $episode = factory('Suyabay\Episode')->create(['status' => 1]);
+
+        $this->call(
+            'GET',
+            '/episodes/' . $episode['id']
+        );
+        $this->see($episode['episode_name']);
+
+        $this->assertViewHasAll(['episodes', 'channels']);
+        $this->seeInDatabase('episodes', ['episode_name' => $episode['episode_name']]);
     }
 }
