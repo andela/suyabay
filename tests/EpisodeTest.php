@@ -264,4 +264,34 @@ class EpisodeTest extends TestCase
         $this->call('GET', '/episodes');
         $this->assertViewHas('episodes');
     }
+
+    /**
+     * Assert that an admin can activate an episode.
+     *
+     * @return void
+     */
+    public function testAdminCaActivateEpisode()
+    {
+
+    }
+
+    /**
+     * Assert that an admin can delete an episode.
+     *
+     * @return void
+     */
+    public function testAdminCanDeleteEpisode()
+    {
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Episode')->create();
+        $this->assertEquals(1, count(Episode::first()));
+
+        $this->actingAs($user)
+             ->call(
+                 'GET',
+                 '/dashboard/episode/1/delete'
+             );
+         $this->assertEquals(0, count(Episode::first()));
+    }
 }
