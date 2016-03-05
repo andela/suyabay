@@ -215,7 +215,8 @@ class EpisodeTest extends TestCase
     }
 
     /**
-     * assert that an admin user can create a new episode
+     * assert that an admin user can create a new episode.
+     *
      * @return void
      */
     public function testAdminCanCreateEpisodes()
@@ -229,5 +230,38 @@ class EpisodeTest extends TestCase
                  '/dashboard/episode/create'
              );
         $this->see('Create Episode');
+        $this->assertViewHas('channels');
+    }
+
+    /**
+     * Assert admin can edit an episode.
+     *
+     * @return void
+     */
+    public function testAdminCanEditEpisode()
+    {
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+        $episodes = factory('Suyabay\Episode', 5)->create();
+
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/dashboard/episode/1/edit'
+            );
+            $this->assertViewHasAll(['episode', 'channels']);
+        $this->actingAS($user)
+            ->call(
+                'POST',
+                '/dashboard/episode/1/edit',
+                [
+                    'episode_name' => 'Swanky updated name',
+                    'episode_description' => 'Swanky updated description',
+                    'id' => 1,
+                    'channel_id' => 1
+                ]
+            );
+        $this->call('GET', '/episodes/1');
+        $this->assertViewHas('episodes');
     }
 }
