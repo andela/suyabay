@@ -174,7 +174,7 @@ class EpisodeTest extends TestCase
      *
      * @return void
      */
-    public function testUserCanSeeAllEpisodes()
+    public function testAdminUserCanSeeAllEpisodes()
     {
         $user = factory('Suyabay\User')->create(['role_id' => 3]);
         factory('Suyabay\Channel')->create();
