@@ -168,4 +168,25 @@ class EpisodeTest extends TestCase
         $this->assertViewHasAll(['episodes', 'channels']);
         $this->seeInDatabase('episodes', ['episode_name' => $episode['episode_name']]);
     }
+
+    /**
+     * Assert a user can see all episodes.
+     *
+     * @return void
+     */
+    public function testUserCanSeeAllEpisodes()
+    {
+        factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+        $episodes = factory('Suyabay\Episode', 5)->create();
+
+        $this->call(
+            'GET',
+            '/episodes'
+        );
+        $this->see($episodes[0]['episode_name']);
+        $this->see($episodes[0]['episode_description']);
+
+        $this->assertViewHas('episodes');
+    }
 }
