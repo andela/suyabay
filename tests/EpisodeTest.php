@@ -252,16 +252,16 @@ class EpisodeTest extends TestCase
             $this->assertViewHasAll(['episode', 'channels']);
         $this->actingAS($user)
             ->call(
-                'POST',
-                '/dashboard/episode/1/edit',
+                'PUT',
+                '/dashboard/episode/edit',
                 [
-                    'episode_name' => 'Swanky updated name',
-                    'episode_description' => 'Swanky updated description',
-                    'id' => 1,
+                    'episode' => 'Swanky updated name',
+                    'description' => 'Swanky updated description',
+                    'episode_id' => 1,
                     'channel_id' => 1
                 ]
             );
-        $this->call('GET', '/episodes/1');
+        $this->call('GET', '/episodes');
         $this->assertViewHas('episodes');
     }
 }
