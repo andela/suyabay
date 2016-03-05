@@ -170,7 +170,7 @@ class EpisodeTest extends TestCase
     }
 
     /**
-     * Aseert that admin user can see the dashboard stats.
+     * Assert that admin user can see the dashboard stats.
      *
      * @return [type] [description]
      */
@@ -212,5 +212,22 @@ class EpisodeTest extends TestCase
         $this->see($episodes[0]['episode_description']);
 
         $this->assertViewHas('episodes');
+    }
+
+    /**
+     * assert that an admin user can create a new episode
+     * @return void
+     */
+    public function testAdminCanCreateEpisodes()
+    {
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+
+        $this->actingAs($user)
+             ->call(
+                 'GET',
+                 '/dashboard/episode/create'
+             );
+        $this->see('Create Episode');
     }
 }
