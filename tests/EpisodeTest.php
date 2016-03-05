@@ -272,7 +272,22 @@ class EpisodeTest extends TestCase
      */
     public function testAdminCaActivateEpisode()
     {
+        $this->withoutMiddleware();
 
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
+        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Episode')->create();
+
+        $this->assertEquals(0, Episode::first()->toArray()['status']);
+        $this->actingAs($user)
+            ->call(
+                'PATCH',
+                '/dashboard/episode/activate',
+                [
+                    'episode_id' => 1
+                ]
+            );
+        $this->assertEquals(1, Episode::first()->toArray()['status']);
     }
 
     /**
@@ -282,6 +297,8 @@ class EpisodeTest extends TestCase
      */
     public function testAdminCanDeleteEpisode()
     {
+        $this->withoutMiddleware();
+
         $user = factory('Suyabay\User')->create(['role_id' => 3]);
         factory('Suyabay\Channel')->create();
         factory('Suyabay\Episode')->create();
