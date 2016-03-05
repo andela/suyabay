@@ -176,14 +176,15 @@ class EpisodeTest extends TestCase
      */
     public function testUserCanSeeAllEpisodes()
     {
-        factory('Suyabay\User')->create(['role_id' => 3]);
+        $user = factory('Suyabay\User')->create(['role_id' => 3]);
         factory('Suyabay\Channel')->create();
         $episodes = factory('Suyabay\Episode', 5)->create();
 
-        $this->call(
-            'GET',
-            '/episodes'
-        );
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/dashboard/episodes'
+            );
         $this->see($episodes[0]['episode_name']);
         $this->see($episodes[0]['episode_description']);
 
