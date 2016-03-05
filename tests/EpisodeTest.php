@@ -185,6 +185,7 @@ class EpisodeTest extends TestCase
                 'GET',
                 '/dashboard'
             );
+        $this->assertViewHas('data');
         $this->see($episodes[0]['episode_name']);
         $this->see($episodes[0]['episode_description']);
         $this->see(3);
