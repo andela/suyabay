@@ -8,6 +8,38 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class LikeEpisodeTest extends TestCase
 {
     /**
+     * Assert that an authenticated user
+     * can view all favorited episodes.
+     *
+     * @return void
+     */
+    public function testViewLikedEpisodes()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        $episode = factory('Suyabay\Episode')->create(['status' => 1]);
+        $this->actingAs($user)
+             ->call(
+                 'POST',
+                 '/episode/like',
+                 [
+                    'user_id' => $user['id'],
+                    'episode_id' => 1
+                 ]
+             );
+
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/favorites'
+            );
+        $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
+        $this->see($episode['episode_name']);
+    }
+
+    /**
      * Assert that:
      *  An authenticated user can like an episode.
      *
