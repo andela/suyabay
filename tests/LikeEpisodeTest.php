@@ -38,5 +38,12 @@ class LikeEpisodeTest extends TestCase
         $this->assertTrue(is_array($newLike));
         $this->assertArrayHasKey('episode_id', $newLike[0]);
         $this->assertArrayHasKey('user_id', $newLike[0]);
+
+        $newLike = self::$likerepisitory->findLikeWhere('episode_id', 1);
+        $newLike = $newLike->get()->toArray();
+
+        $this->assertTrue(is_array($newLike));
+        $this->assertArrayHasKey('episode_id', $newLike[0]);
+        $this->assertArrayHasKey('user_id', $newLike[0]);
     }
 }
