@@ -31,6 +31,33 @@ class CommentTest extends TestCase
              ->see('Only logged in users can comment.');
     }
 
+    /**
+     * assert that an authenitcated user can add a new comment to an
+     * episode.
+     *
+     * @return void
+     */
+    public function testAddNewComment()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        $episode = factory('Suyabay\Episode')->create(['status' => 1]);
+        $this->actingAs($user)
+            ->call(
+                'POST',
+                '/comment',
+                [
+                    'comment' => 'Swanky new comment',
+                    'episode_id' => $episode['id']
+                ]
+            );
+        $this->seeInDatabase('comments', ['comments' => 'Swanky new comment']);
+        $this->seeInDatabase('comments', ['episode_id' => $episode['id']]);
+        $this->seeInDatabase('comments', ['user_id' => $user['id']]);
+    }
+
     public function testCommentEpisodeRelationship()
     {
         $this->createUser(1);
