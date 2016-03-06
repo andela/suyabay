@@ -22,7 +22,12 @@ class LikeRepository
         return Like::where($field, $value);
     }
 
-    /*Fine and Delete Episode liked by a user*/
+    /**
+     * Find and Delete Episode liked by a user
+     * @param  integer $user_id    User ID
+     * @param  integer $episode_id Episode ID
+     * @return void
+     */
     public function findLikeByUserOnEpisode($user_id, $episode_id)
     {
         return DB::table('likes')
@@ -53,8 +58,7 @@ class LikeRepository
 
         if ($is_like_episode) {
             $status = "dislike";
-        }
-        else {
+        } else {
             $status = "like";
         }
 
