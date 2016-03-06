@@ -1,5 +1,7 @@
 <?php
 
+use Suyabay\Http\Repository\LikeRepository;
+
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -9,10 +11,19 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://localhost';
 
+    /**
+     * Object of LikeRepository.
+     *
+     * @var Object
+     */
+    protected static $likerepisitory;
+
     public function setUp()
     {
         parent::setUp();
         $this->prepareTestDB();
+
+        self::$likerepisitory = new LikeRepository();
     }
 
     public function tearDown()

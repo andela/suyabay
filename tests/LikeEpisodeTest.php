@@ -8,38 +8,35 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class LikeEpisodeTest extends TestCase
 {
     /**
-     * Test that an episode can be liked .
+     * Assert that:
+     *  An authenticated user can like an episode.
+     *  LikeRepository's getUserFavorite returns all
+     *  episodes favvorited by a user.
      *
-     * @return void
+     * @return [type] [description]
      */
-    public function testUserCanLikeEpisode()
+    public function testGetUserFavorite()
     {
-        Like::create([
-            'user_id'       => 1,
-            'episode_id'    => 1,
-        ]);
+        $this->withoutMiddleware();
 
-        $this->seeInDatabase('likes', [
-            'user_id'            => 1,
-            'episode_id'    => 1,
-        ]);
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Episode')->create(['status' => 1]);
+
+        $this->actingAs($user)
+             ->call(
+                 'POST',
+                 '/episode/like',
+                 [
+                    'user_id' => $user['id'],
+                    'episode_id' => 1
+                 ]
+             );
+        $newLike = self::$likerepisitory->getUserFavorite('user_id', 1);
+        $newLike = $newLike->get()->toArray();
+
+        $this->assertTrue(is_array($newLike));
+        $this->assertArrayHasKey('episode_id', $newLike[0]);
+        $this->assertArrayHasKey('user_id', $newLike[0]);
     }
-
-    /**
-     * Test that an episode can be disliked .
-     *
-     * @return void
-     */
-    public function testUserCanDislikeEpisode()
-    {
-        Like::where('user_id', 1)
-        ->where('video_id', 1)
-        ->delete();
-
-        $this->missingFromDatabase('likes', [
-            'user_id'            => 1,
-            'episode_id'    => 1,
-        ]);
-    }
-
 }

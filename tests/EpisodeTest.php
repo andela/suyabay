@@ -136,7 +136,9 @@ class EpisodeTest extends TestCase
         $this->seeInDatabase('episodes', ['episode_name' => 'Swanky updated name']);
     }
     /**
-    * Assert that EpisodeRepository's
+    * Assert that EpisodeRepository's can find acttive
+    * and pending episodes.
+    *
     */
     public function testActiveAndPendingEpisodes()
     {
