@@ -67,5 +67,4 @@ class LikeController extends Controller
 
         return $episodeIds;
     }
-
 }

@@ -36,10 +36,23 @@ class LikeRepository
         ->delete();
     }
 
+    /**
+     * Persist new Episode like to the database.
+     *
+     * @param  integer $userid    Authenticated user ID
+     * @param  integer $episodeid Episode ID
+     * @return boolean            true or false
+     */
     public function insertIntoLikesTable($userid, $episodeid)
     {
         return Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
     }
+
+    /**
+     * returns  either must_login, like or dislike message.
+     *
+     * @return void
+     */
 
     public function checkLikeStatusForUserOnEpisode($likes)
     {
@@ -66,7 +79,10 @@ class LikeRepository
     }
 
     /**
-     * Get the amount of favorite episode of a user
+     * return an array of all the episodes favorited by a user.
+     * returns empty array if none.
+     *
+     * $returns array
      */
     public function getNumberOfUserFavorite()
     {

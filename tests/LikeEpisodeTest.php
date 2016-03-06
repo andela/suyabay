@@ -21,20 +21,20 @@ class LikeEpisodeTest extends TestCase
         factory('Suyabay\Channel')->create();
         $episode = factory('Suyabay\Episode')->create(['status' => 1]);
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/like',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 1
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
 
         $this->actingAs($user)
-            ->call(
-                'GET',
-                '/favorites'
-            );
+        ->call(
+            'GET',
+            '/favorites'
+        );
         $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
         $this->see($episode['episode_name']);
     }
@@ -63,14 +63,14 @@ class LikeEpisodeTest extends TestCase
         factory('Suyabay\Episode')->create(['status' => 1]);
 
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/like',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 1
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
         $newLike = self::$likerepository->getUserFavorite('user_id', 1);
         $newLike = $newLike->get()->toArray();
 
@@ -103,24 +103,24 @@ class LikeEpisodeTest extends TestCase
         factory('Suyabay\Channel')->create();
         factory('Suyabay\Episode')->create(['status' => 1]);
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/like',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 1
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
 
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/unlike',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 1
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/unlike',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
 
         $unlikedEpisode = self::$likerepository->findLikeWhere('episode_id', 1);
         $this->assertEquals(0, $unlikedEpisode->get()->count());
@@ -143,10 +143,10 @@ class LikeEpisodeTest extends TestCase
         self::$likerepository->insertIntoLikesTable(1, 1);
 
         $this->actingAs($user)
-            ->call(
-                'GET',
-                '/favorites'
-            );
+        ->call(
+            'GET',
+            '/favorites'
+        );
         $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
         $this->see($episode['episode_name']);
 
@@ -173,14 +173,14 @@ class LikeEpisodeTest extends TestCase
         $this->assertEquals(0, $likedEpisodes->count());
 
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/like',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 1
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
 
         $likedEpisodes = self::$likerepository->getNumberOfUserFavorite();
         $likedEpisodes = $likedEpisodes->get();
@@ -188,18 +188,55 @@ class LikeEpisodeTest extends TestCase
         $this->assertEquals(1, $likedEpisodes->count());
 
         $this->actingAs($user)
-             ->call(
-                 'POST',
-                 '/episode/like',
-                 [
-                    'user_id' => $user['id'],
-                    'episode_id' => 3
-                 ]
-             );
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 3
+             ]
+         );
 
         $likedEpisodes = self::$likerepository->getNumberOfUserFavorite();
         $likedEpisodes = $likedEpisodes->get();
         $this->assertTrue(is_array($likedEpisodes->toArray()));
         $this->assertEquals(2, $likedEpisodes->count());
+    }
+
+    /**
+     * Assert that LikeRepository's checkLikeStatusForUserOnEpisode returns
+     * either must_login, like or dislike message.
+     *
+     * @return void
+     */
+    public function testCheckLikeStatusForUserOnEpisode()
+    {
+        $this->withoutMiddleware();
+
+        $feedback = self::$likerepository->checkLikeStatusForUserOnEpisode([]);
+        $this->assertEquals('must_login', $feedback);
+
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Episode')->create(['status' => 1]);
+
+        $this->actingAs($user);
+
+        $likes = self::$likerepository->findLikeWhere('episode_id', 1);
+        $feedback = self::$likerepository->checkLikeStatusForUserOnEpisode($likes);
+        $this->assertEquals('like', $feedback);
+
+        $this->actingAs($user)
+         ->call(
+             'POST',
+             '/episode/like',
+             [
+                'user_id' => $user['id'],
+                'episode_id' => 1
+             ]
+         );
+        $likes = self::$likerepository->getUserFavorite('user_id', 1)->get();
+        $feedback = self::$likerepository->checkLikeStatusForUserOnEpisode($likes);
+        $this->assertEquals('dislike', $feedback);
     }
 }
