@@ -26,7 +26,7 @@ class CommentsUpdateTest extends TestCase
         factory(Channel::class)->create();
         factory(Episode::class)->create(['episode_name' => 'Nyama Choma']);
         $comment = factory(Comment::class)->create();
-    
+
         $user = factory(User::class)->create();
         $this->actingAs($user)
              ->visit('/episodes/1')
@@ -67,8 +67,8 @@ class CommentsUpdateTest extends TestCase
             'DELETE',
             '/comment/' .  $comment->id,
             [
-                    '_token' => csrf_token()
-                ]
+                '_token' => csrf_token()
+            ]
         );
 
         $this->assertEquals(0, count(Suyabay\Comment::find($comment->id)));
