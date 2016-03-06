@@ -16,14 +16,14 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
      *
      * @var Object
      */
-    protected static $likerepisitory;
+    protected static $likerepository;
 
     public function setUp()
     {
         parent::setUp();
         $this->prepareTestDB();
 
-        self::$likerepisitory = new LikeRepository();
+        self::$likerepository = new LikeRepository();
     }
 
     public function tearDown()

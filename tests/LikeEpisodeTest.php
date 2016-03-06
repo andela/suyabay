@@ -71,21 +71,21 @@ class LikeEpisodeTest extends TestCase
                     'episode_id' => 1
                  ]
              );
-        $newLike = self::$likerepisitory->getUserFavorite('user_id', 1);
+        $newLike = self::$likerepository->getUserFavorite('user_id', 1);
         $newLike = $newLike->get()->toArray();
 
         $this->assertTrue(is_array($newLike));
         $this->assertArrayHasKey('episode_id', $newLike[0]);
         $this->assertArrayHasKey('user_id', $newLike[0]);
 
-        $newLike = self::$likerepisitory->findLikeWhere('episode_id', 1);
+        $newLike = self::$likerepository->findLikeWhere('episode_id', 1);
         $newLike = $newLike->get()->toArray();
 
         $this->assertTrue(is_array($newLike));
         $this->assertArrayHasKey('episode_id', $newLike[0]);
         $this->assertArrayHasKey('user_id', $newLike[0]);
 
-        $episodeUnLike = self::$likerepisitory->findLikeByUserOnEpisode($user['id'], 1);
+        $episodeUnLike = self::$likerepository->findLikeByUserOnEpisode($user['id'], 1);
         $this->assertEquals(1, $episodeUnLike);
     }
 
@@ -122,7 +122,33 @@ class LikeEpisodeTest extends TestCase
                  ]
              );
 
-        $unlikedEpisode = self::$likerepisitory->findLikeWhere('episode_id', 1);
+        $unlikedEpisode = self::$likerepository->findLikeWhere('episode_id', 1);
         $this->assertEquals(0, $unlikedEpisode->get()->count());
+    }
+
+    /**
+     * Assert that LikeRepository's insertIntoLikesTable inserts new favorite
+     * into the database.
+     *
+     * @return void
+     */
+    public function testInsertIntoLikesTable()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        $episode = factory('Suyabay\Episode')->create(['status' => 1]);
+
+        self::$likerepository->insertIntoLikesTable(1, 1);
+
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/favorites'
+            );
+        $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
+        $this->see($episode['episode_name']);
+
     }
 }
