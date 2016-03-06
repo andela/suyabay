@@ -151,4 +151,55 @@ class LikeEpisodeTest extends TestCase
         $this->see($episode['episode_name']);
 
     }
+
+    /**
+     * Assert that LikeRepository's testGetNumberOfUserFavorite returns an
+     * array of all liked episodes or empty.
+     *
+     * @return void
+     */
+    public function testGetNumberOfUserFavorite()
+    {
+         $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Episode', 3)->create(['status' => 1]);
+
+        $this->actingAs($user);
+        $likedEpisodes = self::$likerepository->getNumberOfUserFavorite();
+        $likedEpisodes = $likedEpisodes->get();
+        $this->assertTrue(is_array($likedEpisodes->toArray()));
+        $this->assertEquals(0, $likedEpisodes->count());
+
+        $this->actingAs($user)
+             ->call(
+                 'POST',
+                 '/episode/like',
+                 [
+                    'user_id' => $user['id'],
+                    'episode_id' => 1
+                 ]
+             );
+
+        $likedEpisodes = self::$likerepository->getNumberOfUserFavorite();
+        $likedEpisodes = $likedEpisodes->get();
+        $this->assertTrue(is_array($likedEpisodes->toArray()));
+        $this->assertEquals(1, $likedEpisodes->count());
+
+        $this->actingAs($user)
+             ->call(
+                 'POST',
+                 '/episode/like',
+                 [
+                    'user_id' => $user['id'],
+                    'episode_id' => 3
+                 ]
+             );
+
+        $likedEpisodes = self::$likerepository->getNumberOfUserFavorite();
+        $likedEpisodes = $likedEpisodes->get();
+        $this->assertTrue(is_array($likedEpisodes->toArray()));
+        $this->assertEquals(2, $likedEpisodes->count());
+    }
 }
