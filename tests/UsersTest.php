@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class UserRegistrationAndLoginTest extends TestCase
+class UsersTest extends TestCase
 {
     use Suyabay\Tests\CreateData;
 
@@ -49,9 +49,17 @@ class UserRegistrationAndLoginTest extends TestCase
              );
         $this->assertViewHas('users');
         $this->see($users->toArray()[0]['username']);
-        $this->assertEquals($users->toArray()[0]['username'], self::$userRepository->getAllUsers()->toArray()[1]['username']);
+        $this->assertEquals(
+            $users->toArray()[0]['username'],
+            self::$userRepository->getAllUsers()->toArray()[1]['username']
+        );
     }
 
+    /**
+     * Assert that an admin can edit a user profile.
+     *
+     * @return void
+     */
     public function testAdminCanEditUserProfile()
     {
         $this->WithoutMiddleware();
@@ -81,5 +89,26 @@ class UserRegistrationAndLoginTest extends TestCase
             ]
         );
         $this->assertEquals('NewUserName', self::$userRepository->findUser(1)['username']);
+    }
+
+    /**
+     * Assert that an admin can send an invitation.
+     *
+     * @return void
+     */
+    public function testAdminCanCreateInvitation()
+    {
+        $this->WithoutMiddleware();
+
+        $admin = factory('Suyabay\User')->create(['role_id' => 3]);
+        $users = factory('Suyabay\User', 2)->create();
+
+        $this->actingAs($admin)
+             ->call(
+                 'GET',
+                 '/dashboard/user/create'
+             );
+        $this->assertViewHas('roles');
+        $this->see('Send Upgrade Invitation');
     }
 }
