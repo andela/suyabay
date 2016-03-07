@@ -46,8 +46,8 @@ class ChannelTest extends TestCase
             'channel_name' => 'Swanky new name'
          ]);
 
-         $user = factory(User::class)->create();
-         $newChannel  = $this->actingAs($user)
+         $admin = factory(User::class)->create(['role_id' => 3]);
+         $newChannel  = $this->actingAs($admin)
          ->call(
              'POST',
              '/dashboard/channel/create',
@@ -86,10 +86,10 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
 
-        $this->actingAs($user)
+        $this->actingAs($admin)
             ->call(
                 'PUT',
                 '/dashboard/channel/edit',
@@ -115,10 +115,10 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create(['role_id' => 3]);
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
 
-        $this->actingAs($user)
+        $this->actingAs($admin)
              ->call(
                  'DELETE',
                  '/dashboard/channel/' . $channel['id']
@@ -173,9 +173,9 @@ class ChannelTest extends TestCase
      */
     public function testActiveChannelsPage()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
-        $this->actingAs($user)
+        $this->actingAs($admin)
              ->visit('/dashboard/channels/active')
              ->see($channel['channel_name']);
 
