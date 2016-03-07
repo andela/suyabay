@@ -111,4 +111,18 @@ class UsersTest extends TestCase
         $this->assertViewHas('roles');
         $this->see('Send Upgrade Invitation');
     }
+
+    /**
+     * Assert that UserRepository's getAllUsers returns all the users.
+     * @return void
+     */
+    public function testgetAllUsersMethod()
+    {
+        $this->WithoutMiddleware();
+        $users = factory('Suyabay\User', 2)->create();
+        $getUsers = self::$userRepository->getAllUsers();
+
+        $this->assertTrue(is_array($getUsers->toArray()));
+        $this->assertEquals($users[0]['username'], $getUsers[0]['username']);
+    }
 }
