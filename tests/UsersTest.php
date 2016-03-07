@@ -125,4 +125,19 @@ class UsersTest extends TestCase
         $this->assertTrue(is_array($getUsers->toArray()));
         $this->assertEquals($users[0]['username'], $getUsers[0]['username']);
     }
+
+    /**
+     * Assert that UserRepository's findUser returns a single user.
+     *
+     * @return void
+     */
+    public function testfindUser()
+    {
+        $this->WithoutMiddleware();
+        $users = factory('Suyabay\User', 2)->create();
+        $singleUser = self::$userRepository->findUser(1);
+
+        $this->assertTrue(is_array($singleUser->toArray()));
+        $this->assertEquals($users[0]['username'], $singleUser['username']);
+    }
 }
