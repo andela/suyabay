@@ -40,7 +40,7 @@ class UserRegistrationAndLoginTest extends TestCase
         $this->WithoutMiddleware();
 
         $admin = factory('Suyabay\User')->create(['role_id' => 3]);
-        $users = factory('Suyabay\User', 3)->create();
+        $users = factory('Suyabay\User', 2)->create();
 
         $this->actingAs($admin)
              ->call(
@@ -49,6 +49,7 @@ class UserRegistrationAndLoginTest extends TestCase
              );
         $this->assertViewHas('users');
         $this->see($users->toArray()[0]['username']);
+        $this->assertEquals($users->toArray()[0]['username'], self::$userRepository->getAllUsers()->toArray()[1]['username']);
     }
 
     public function testAdminCanEditUserProfile()
