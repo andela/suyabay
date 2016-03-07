@@ -140,4 +140,29 @@ class UsersTest extends TestCase
         $this->assertTrue(is_array($singleUser->toArray()));
         $this->assertEquals($users[0]['username'], $singleUser['username']);
     }
+
+    /**
+     * Assert that UserRepository's getOnlineUsers returns all online users.
+     *
+     * @return void
+     */
+    public function testgetOnlineUsers()
+    {
+        $user = factory('Suyabay\User', 3)->create(['active' => 1]);
+
+        $onlineUsers = self::$userRepository->getOnlineUsers();
+        $this->assertEquals(3, $onlineUsers->count());
+    }
+    /**
+     * Assert that UserRepository's getOfflineUsers returns all offline users.
+     *
+     * @return void
+     */
+    public function testgetOfflineUsers()
+    {
+        $user = factory('Suyabay\User', 3)->create(['active' => 0]);
+
+        $offlineUsers = self::$userRepository->getOfflineUsers();
+        $this->assertEquals(3, $offlineUsers->count());
+    }
 }
