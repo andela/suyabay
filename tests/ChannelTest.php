@@ -197,7 +197,7 @@ class ChannelTest extends TestCase
         $admin = $this->createUser(3);
         $channel = $this->createChannel();
 
-        $this->assertEquals($channel->user_id, $channel->admin->id);
+        $this->assertEquals($channel->user_id, $channel->user->id);
     }
 
     /**
