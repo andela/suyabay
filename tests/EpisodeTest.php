@@ -158,7 +158,7 @@ class EpisodeTest extends TestCase
     public function testAdminCanSeeStats()
     {
         $user = factory('Suyabay\User')->create(['role_id' => 3]);
-        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Channel', 15)->create();
         $episodes = factory('Suyabay\Episode', 5)->create();
 
         $this->actingAs($user)
@@ -169,7 +169,7 @@ class EpisodeTest extends TestCase
         $this->assertViewHas('data');
         $this->see($episodes[0]['episode_name']);
         $this->see($episodes[0]['episode_description']);
-        $this->see(3);
+        $this->see(15);
         $this->see('Active Episodes');
     }
 
