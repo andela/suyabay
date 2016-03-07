@@ -34,7 +34,7 @@ class CommentController extends Controller
             'status_code' => 200,
             'commentId' => $newComment->id
             ];
-    }
+    }  
 
     /**
      * Get 10 comments from current episode
@@ -58,7 +58,6 @@ class CommentController extends Controller
             'comments' => $oldComments
             ];
     }
-
 
     /**
      * deleteComment Delete a comment that belongs to the logged in user
