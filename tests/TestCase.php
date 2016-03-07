@@ -1,6 +1,7 @@
 <?php
 
 use Suyabay\Http\Repository\LikeRepository;
+use Suyabay\Http\Repository\UserRepository;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
@@ -18,12 +19,20 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected static $likerepository;
 
+    /**
+     * Object of UserRepository.
+     *
+     * @var Object
+     */
+    protected static $userRepository;
+
     public function setUp()
     {
         parent::setUp();
         $this->prepareTestDB();
 
         self::$likerepository = new LikeRepository();
+        self::$userRepository = new UserRepository();
     }
 
     public function tearDown()

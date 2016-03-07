@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserRegistrationAndLoginTest extends TestCase
-{   
+{
     use Suyabay\Tests\CreateData;
 
     /**
@@ -28,5 +28,24 @@ class UserRegistrationAndLoginTest extends TestCase
         $this->createUser(1);
         $user = Auth::attempt(['username' => 'test', 'password' => 'test']);
         $this->assertEquals(1, sizeof($user));
+    }
+
+    /**
+     * Assert that an admin user can see all users on /dashboard/users page.
+     *
+     * @return void
+     */
+    public function testAdminCanGetAllUsers()
+    {
+        $admin = factory('Suyabay\User')->create(['role_id' => 3]);
+        $users = factory('Suyabay\User', 3)->create();
+
+        $this->actingAs($admin)
+             ->call(
+                 'GET',
+                 '/dashboard/users'
+             );
+        $this->assertViewHas('users');
+        $this->see($users->toArray()[0]['username']);
     }
 }
