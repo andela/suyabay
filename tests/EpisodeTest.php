@@ -87,7 +87,6 @@ class EpisodeTest extends TestCase
     public function testCreateEpisode()
     {
         $episode = self::createNewEpisode();
-
         $getEpisode = self::$episodeRepository->findEpisodeById($episode['id'])->toArray();
 
         $this->assertTrue(is_array($getEpisode));
@@ -153,7 +152,7 @@ class EpisodeTest extends TestCase
     /**
      * Assert that admin user can see the dashboard stats.
      *
-     * @return [type] [description]
+     * @return void
      */
     public function testAdminCanSeeStats()
     {
