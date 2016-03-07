@@ -99,6 +99,7 @@
                                         <input type="hidden" id="episode_id" value=" {{ $firstTenEpisodes[0]['episode_id'] }}" />
                                         <input type="hidden" id="episode_id" value="{{ $lu = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get()}} {{ $lu[0]['episode_id'] }}" />
 
+                                        <input type="hidden" id="episode_id" value="{{ $lu = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get()}} {{ $lu[0]['episode_id'] }}" />
                                             @if(count($firstTenEpisodes) > 0)
                                                 <li>
                                                     <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
