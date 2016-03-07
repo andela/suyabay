@@ -37,6 +37,8 @@ class UserRegistrationAndLoginTest extends TestCase
      */
     public function testAdminCanGetAllUsers()
     {
+        $this->WithoutMiddleware();
+
         $admin = factory('Suyabay\User')->create(['role_id' => 3]);
         $users = factory('Suyabay\User', 3)->create();
 
@@ -47,5 +49,36 @@ class UserRegistrationAndLoginTest extends TestCase
              );
         $this->assertViewHas('users');
         $this->see($users->toArray()[0]['username']);
+    }
+
+    public function testAdminCanEditUserProfile()
+    {
+        $this->WithoutMiddleware();
+
+        $admin = factory('Suyabay\User')->create(['role_id' => 3]);
+        $users = factory('Suyabay\User', 3)->create();
+
+        $this->actingAs($admin)
+             ->call(
+                 'GET',
+                 '/dashboard/users'
+             );
+        $this->assertViewHas('users');
+        $this->call(
+            'GET',
+            '/dashboard/user/1/edit'
+        );
+        $this->assertViewHasALL(['users', 'roles']);
+
+        $x = $this->call(
+            'PUT',
+            '/dashboard/user/edit',
+            [
+                'user_id' => 1,
+                'user_role' => 3,
+                'username' => 'NewUserName'
+            ]
+        );
+        $this->assertEquals('NewUserName', self::$userRepository->findUser(1)['username']);
     }
 }
