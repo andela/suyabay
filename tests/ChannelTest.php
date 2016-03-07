@@ -14,6 +14,8 @@ class ChannelTest extends TestCase
 
     /**
      * Test channel link leads to route
+     *
+     * Update test to assert that a channels variable is returned.
      */
     public function testUserCanViewChannels()
     {
@@ -188,10 +190,14 @@ class ChannelTest extends TestCase
      */
     public function testUserChannelRelationship()
     {
-        $user = $this->createUser(3);
+        /**
+         * Update createdUser to admin with privilleges to create
+         * a new channel
+         */
+        $admin = $this->createUser(3);
         $channel = $this->createChannel();
 
-        $this->assertEquals($channel->user_id, $channel->user->id);
+        $this->assertEquals($channel->user_id, $channel->admin->id);
     }
 
     /**
