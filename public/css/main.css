@@ -26,6 +26,13 @@
 
 /* End */
 
+#settings {
+    -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    margin-top: 65px;
+    height: 100px;
+}
 .logo {
     margin: auto;
     padding: 15px;
@@ -341,13 +348,13 @@ a:hover.capitalize {
     border-radius: 10%;
 }
 
-::-webkit-scrollbar-track {
+/*::-webkit-scrollbar-track {
     background: #2C3E50;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #2C3E50;
-}
+}*/
 
 body {
     .overflow-y: hidden;

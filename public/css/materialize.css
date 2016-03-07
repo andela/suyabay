@@ -7865,7 +7865,7 @@ button.btn-floating {
   background-color: #fff;
   margin: 0;
   display: none;
-  min-width: 100px;
+  max-width: 150px;
   max-height: 650px;
   overflow-y: auto;
   opacity: 0;
@@ -7880,7 +7880,7 @@ button.btn-floating {
   cursor: pointer;
   line-height: 1.5rem;
   width: 100%;
-  text-align: left;
+  text-align: center;
   text-transform: none;
 }
 

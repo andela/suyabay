@@ -64,9 +64,7 @@
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
-                                
                                     @foreach ( $firstTenEpisodes as $comment )
-
                                         <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
                                                 <div class="col s2">
@@ -100,10 +98,7 @@
                                 </li>
                                     @if ( Auth::check())
                                         <input type="hidden" id="episode_id" value=" {{ $firstTenEpisodes[0]['episode_id'] }}" />
-                                        <input type="hidden" id="episode_id" value="{{ $lu = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get()}} {{ $lu[0]['episode_id'] }}" />
-
                                             @if(count($firstTenEpisodes) > 0)
-
                                                 <li>
                                                     <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
                                                         <a href="#" title="View more comments">

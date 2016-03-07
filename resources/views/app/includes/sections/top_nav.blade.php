@@ -5,7 +5,7 @@
             <!-- Desktop view top nav -->
 
             <a href="/" id="logo-container">
-                <img src="{!! asset('/css/logo.png') !!}" class="logo" />
+                <img src="{!! load_asset('/css/logo.png') !!}" class="logo" />
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
@@ -25,8 +25,8 @@
                 <li>
                     @if (  Auth::check() )
                         <ul id="settings" class="dropdown-content">
-                            <li><a href="/profile/edit">Settings</a></li>
-                            }
+                            <li><a href="/profile/edit">Profile</a></li>
+                            <li><a href="/profile/changepassword">Account</a></li>
                         </ul>
 
                         <a class="waves-effect dropdown-button" href="#" data-activates="settings">
