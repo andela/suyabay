@@ -59,7 +59,6 @@ class CommentController extends Controller
             ];
     }
 
-
     /**
      * deleteComment Delete a comment that belongs to the logged in user
      * @param  [boolean] $commentId [true or false]
