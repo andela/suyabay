@@ -64,6 +64,6 @@ class EpisodeController extends Controller
 
         });
         
-        return view('app.pages.single_episode', compact('episodes', 'channels','firstTenEpisodes'));
+        return view('app.pages.single_episode', compact('episodes', 'channels', 'firstTenEpisodes'));
     }
 }
