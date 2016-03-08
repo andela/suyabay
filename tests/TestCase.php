@@ -2,6 +2,7 @@
 
 use Suyabay\Http\Repository\LikeRepository;
 use Suyabay\Http\Repository\UserRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
@@ -26,6 +27,12 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected static $userRepository;
 
+     /** Object of class EpisodeRepository
+     *
+     * @var Object
+     */
+    protected static $episodeRepository;
+
     public function setUp()
     {
         parent::setUp();
@@ -33,6 +40,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
         self::$likerepository = new LikeRepository();
         self::$userRepository = new UserRepository();
+        self::$episodeRepository = new EpisodeRepository();
     }
 
     public function tearDown()
@@ -56,6 +64,20 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    public static function createNewEpisode()
+    {
+        return self::$episodeRepository->createEpisode([
+            'episode_name' => 'Swanky new Episode',
+            'episode_description' => 'Swanky New episode description',
+            'view_count'            => 10,
+            'image'                 => "http://goo.gl/8sorZR",
+            'audio_mp3'             => "http://goo.gl/LkNP5M",
+            'channel_id'            => 1,
+            'status'                => 0,
+            'likes'                 => 10
+        ]);
     }
 
     /**

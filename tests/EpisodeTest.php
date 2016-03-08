@@ -4,7 +4,6 @@ use Suyabay\Episode;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Suyabay\Http\Repository\EpisodeRepository;
 
 class EpisodeTest extends TestCase
 {
@@ -19,8 +18,7 @@ class EpisodeTest extends TestCase
     {
         factory('Suyabay\Episode', 5)->create();
 
-        $repository = new EpisodeRepository();
-        $getAllEpisodes = $repository->getAllEpisodes()->toArray();
+        $getAllEpisodes = self::$episodeRepository->getAllEpisodes()->toArray();
         $this->assertTrue(is_array($getAllEpisodes));
         $this->assertArrayHasKey('episode_name', $getAllEpisodes[0]);
         $this->assertArrayHasKey('episode_description', $getAllEpisodes[0]);
@@ -36,8 +34,7 @@ class EpisodeTest extends TestCase
     {
         $episode = factory('Suyabay\Episode')->create();
 
-        $repository = new EpisodeRepository();
-        $getAllEpisodes = $repository->findEpisodeById($episode['id'])->toArray();
+        $getAllEpisodes = self::$episodeRepository->findEpisodeById($episode['id'])->toArray();
 
         $this->assertTrue(is_array($getAllEpisodes));
         $this->assertArrayHasKey('episode_name', $getAllEpisodes);
@@ -54,8 +51,10 @@ class EpisodeTest extends TestCase
     {
         $episode = factory('Suyabay\Episode')->create();
 
-        $repository = new EpisodeRepository();
-        $getEpisode = $repository->findEpisodeWhere('episode_name', $episode['episode_name'])->get()->toArray();
+        $getEpisode = self::$episodeRepository->findEpisodeWhere(
+            'episode_name',
+            $episode['episode_name']
+        )->get()->toArray();
 
         $this->assertTrue(is_array($getEpisode[0]));
         $this->assertArrayHasKey('episode_name', $getEpisode[0]);
@@ -71,8 +70,8 @@ class EpisodeTest extends TestCase
     public function testGetEpisodes()
     {
         factory('Suyabay\Episode', 5)->create();
-        $repository = new EpisodeRepository();
-        $episodes = $repository->getEpisodes([1,2,3,4])->toArray();
+
+        $episodes = self::$episodeRepository->getEpisodes([1,2,3,4])->toArray();
 
         $this->assertTrue(is_array($episodes));
         $this->assertArrayHasKey('episode_name', $episodes['data'][0]);
@@ -87,20 +86,8 @@ class EpisodeTest extends TestCase
      */
     public function testCreateEpisode()
     {
-        $repository = new EpisodeRepository();
-        $episode = $repository->createEpisode([
-            'episode_name' => 'Swanky new Episode',
-            'episode_description' => 'Swanky New episode description',
-            'view_count'            => 10,
-            'image'                 => "http://goo.gl/8sorZR",
-            'audio_mp3'             => "http://goo.gl/LkNP5M",
-            'channel_id'            => 1,
-            'status'                => 0,
-            'likes'                 => 10
-        ]);
-
-        $repository = new EpisodeRepository();
-        $getEpisode = $repository->findEpisodeById($episode['id'])->toArray();
+        $episode = self::createNewEpisode();
+        $getEpisode = self::$episodeRepository->findEpisodeById($episode['id'])->toArray();
 
         $this->assertTrue(is_array($getEpisode));
         $this->assertArrayHasKey('episode_name', $getEpisode);
@@ -110,34 +97,26 @@ class EpisodeTest extends TestCase
 
     /**
      * Assert that EpisodeRepository's updateEpisode updates an existing episode
-     * @return [type] [description]
+     *
+     * @return void
      */
     public function testUpdateEpisode()
     {
-        $repository = new EpisodeRepository();
-        $episode = $repository->createEpisode([
-            'episode_name' => 'Swanky new Episode',
-            'episode_description' => 'Swanky New episode description',
-            'view_count'            => 10,
-            'image'                 => "http://goo.gl/8sorZR",
-            'audio_mp3'             => "http://goo.gl/LkNP5M",
-            'channel_id'            => 1,
-            'status'                => 0,
-            'likes'                 => 10
-        ]);
-        $update = $repository->updateEpisode($episode['id'], 'episode_name', 'Swanky updated name');
+        $episode = self::createNewEpisode();
+        $update = self::$episodeRepository->updateEpisode($episode['id'], 'episode_name', 'Swanky updated name');
         $this->assertTrue($update);
 
-        $getEpisode = $repository->findEpisodeById($episode['id'])->toArray();
+        $getEpisode = self::$episodeRepository->findEpisodeById($episode['id'])->toArray();
 
         $this->assertTrue(is_array($getEpisode));
         $this->assertArrayHasKey('episode_name', $getEpisode);
         $this->assertArrayHasKey('episode_description', $getEpisode);
         $this->seeInDatabase('episodes', ['episode_name' => 'Swanky updated name']);
     }
+
     /**
-    * Assert that EpisodeRepository's can find acttive
-    * and pending episodes.
+    * Assert that EpisodeRepository's active and pending episodes return
+    * active and pending episodes respectively.
     *
     */
     public function testActiveAndPendingEpisodes()
@@ -145,9 +124,8 @@ class EpisodeTest extends TestCase
         factory('Suyabay\Episode', 1)->create(['status' => 1]);
         factory('Suyabay\Episode', 1)->create(['status' => 0]);
 
-        $repository = new EpisodeRepository();
-        $this->assertTrue(is_array($repository->getActiveEpisodes()->toArray()));
-        $this->assertTrue(is_array($repository->getPendingEpisodes()->toArray()));
+        $this->assertTrue(is_array(self::$episodeRepository->getActiveEpisodes()->toArray()));
+        $this->assertTrue(is_array(self::$episodeRepository->getPendingEpisodes()->toArray()));
     }
 
    /**
@@ -174,12 +152,12 @@ class EpisodeTest extends TestCase
     /**
      * Assert that admin user can see the dashboard stats.
      *
-     * @return [type] [description]
+     * @return void
      */
-    public function testAdmincanSeeStats()
+    public function testAdminCanSeeStats()
     {
         $user = factory('Suyabay\User')->create(['role_id' => 3]);
-        factory('Suyabay\Channel')->create();
+        factory('Suyabay\Channel', 15)->create();
         $episodes = factory('Suyabay\Episode', 5)->create();
 
         $this->actingAs($user)
@@ -190,7 +168,7 @@ class EpisodeTest extends TestCase
         $this->assertViewHas('data');
         $this->see($episodes[0]['episode_name']);
         $this->see($episodes[0]['episode_description']);
-        $this->see(3);
+        $this->see(15);
         $this->see('Active Episodes');
     }
 
@@ -199,7 +177,7 @@ class EpisodeTest extends TestCase
      *
      * @return void
      */
-    public function testAdminUserCanSeeAllEpisodes()
+    public function testAdminCanSeeAllEpisodes()
     {
         $user = factory('Suyabay\User')->create(['role_id' => 3]);
         factory('Suyabay\Channel')->create();
@@ -217,7 +195,7 @@ class EpisodeTest extends TestCase
     }
 
     /**
-     * assert that an admin user can create a new episode.
+     * Assert that an admin user can create a new episode.
      *
      * @return void
      */
@@ -272,7 +250,7 @@ class EpisodeTest extends TestCase
      *
      * @return void
      */
-    public function testAdminCaActivateEpisode()
+    public function testAdminCanActivateEpisode()
     {
         $this->withoutMiddleware();
 

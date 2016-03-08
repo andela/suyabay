@@ -25,10 +25,12 @@
 }
 
 .card-image {
-    margin: 15px auto;
-    width: 100%;
-    height: auto;
+    margin: 15px;
+    height: 50%;
     border-radius: 9px;
+    position: relative;
+    padding-bottom: 50%;
+    overflow: hidden;
 }
 
 .text-disabled {
@@ -292,6 +294,10 @@ a:hover.capitalize {
 
 .card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.03), 0 2px 10px 0 rgba(0, 0, 0, 0.03);
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
 }
 
 .audioplayer-volume:hover .audioplayer-volume-adjust {
@@ -402,9 +408,9 @@ Navigations Styles
 */
 img.avatar {
     width: 45px;
+    max-width: 1232px;
     height: 45px;
     vertical-align: middle;
-    border-radius:40%
 }
 
 /*
@@ -436,10 +442,6 @@ img.avatar {
     transform: scale(1.20);
     transition: 0.10s;
 }
-
-
-
-
 
 .podcast-nav {
     text-align: center;
