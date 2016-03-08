@@ -14,6 +14,8 @@ class ChannelTest extends TestCase
 
     /**
      * Test channel link leads to route
+     *
+     * Update test to assert that a channels variable is returned.
      */
     public function testUserCanViewChannels()
     {
@@ -46,8 +48,8 @@ class ChannelTest extends TestCase
             'channel_name' => 'Swanky new name'
          ]);
 
-         $user = factory(User::class)->create();
-         $newChannel  = $this->actingAs($user)
+         $admin = factory(User::class)->create(['role_id' => 3]);
+         $newChannel  = $this->actingAs($admin)
          ->call(
              'POST',
              '/dashboard/channel/create',
@@ -86,10 +88,10 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
 
-        $this->actingAs($user)
+        $this->actingAs($admin)
             ->call(
                 'PUT',
                 '/dashboard/channel/edit',
@@ -115,10 +117,10 @@ class ChannelTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = factory(User::class)->create(['role_id' => 3]);
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
 
-        $this->actingAs($user)
+        $this->actingAs($admin)
              ->call(
                  'DELETE',
                  '/dashboard/channel/' . $channel['id']
@@ -173,9 +175,9 @@ class ChannelTest extends TestCase
      */
     public function testActiveChannelsPage()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create(['role_id' => 3]);
         $channel = factory(Channel::class)->create();
-        $this->actingAs($user)
+        $this->actingAs($admin)
              ->visit('/dashboard/channels/active')
              ->see($channel['channel_name']);
 
@@ -188,7 +190,11 @@ class ChannelTest extends TestCase
      */
     public function testUserChannelRelationship()
     {
-        $user = $this->createUser(3);
+        /**
+         * Update createdUser to admin with privilleges to create
+         * a new channel
+         */
+        $admin = $this->createUser(3);
         $channel = $this->createChannel();
 
         $this->assertEquals($channel->user_id, $channel->user->id);
