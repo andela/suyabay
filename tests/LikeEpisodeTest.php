@@ -49,7 +49,7 @@ class LikeEpisodeTest extends TestCase
      * LikeRepository's findLikeWhere returns episodes
      * that match a criteria.
      *
-     * LikeRepository's findLikeByUserOnEpisode deletes an
+     * LikeRepository's findLikeByIdAndDelete deletes an
      * episode that matches a certain criteria.
      *
      * @return void
@@ -85,7 +85,7 @@ class LikeEpisodeTest extends TestCase
         $this->assertArrayHasKey('episode_id', $newLike[0]);
         $this->assertArrayHasKey('user_id', $newLike[0]);
 
-        $episodeUnLike = self::$likerepository->findLikeByUserOnEpisode($user['id'], 1);
+        $episodeUnLike = self::$likerepository->findLikeByIdAndDelete($user['id'], 1);
         $this->assertEquals(1, $episodeUnLike);
     }
 

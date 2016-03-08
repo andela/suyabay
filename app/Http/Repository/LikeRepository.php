@@ -28,7 +28,7 @@ class LikeRepository
      * @param  integer $episode_id Episode ID
      * @return void
      */
-    public function findLikeByUserOnEpisode($user_id, $episode_id)
+    public function findLikeByIdAndDelete($user_id, $episode_id)
     {
         return DB::table('likes')
         ->where('user_id', $user_id)
