@@ -59,6 +59,28 @@ class CommentController extends Controller
             ];
     }
 
+	/**
+	 * Get 10 comments from current episode
+	 */
+	public function fetchComment(Request $request)
+	{
+		$totalComments = $request->input('offset');
+		$episodeId     = $request->input('episode_id');
+
+		$oldComments = DB::table('comments')
+			->where('id', '>', $totalComments)
+			->where('episode_id',$episodeId)
+            ->skip($totalComments)
+			->take(10)
+             ->get();
+
+		return [
+			'message' => 'Comment retrieved Successfully',
+			'status_code' => 200,
+			'comments' => $oldComments
+		];
+	}
+
     /**
      * deleteComment Delete a comment that belongs to the logged in user
      * @param  [boolean] $commentId [true or false]

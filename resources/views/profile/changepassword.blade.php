@@ -5,9 +5,8 @@
 @section('content')
 
 <div class="row">
-    <div class="col s3 hide-on-small-only white-text">
-        void
-    </div>
+
+    @include('profile.side_nav')
 
     <div class="col s12 m6 l6">
 
@@ -56,10 +55,6 @@
 
         </div>
 
-    </div>
-
-    <div class="col s3 hide-on-small-only white-text">
-        void
     </div>
 
 </div>
