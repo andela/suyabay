@@ -5,7 +5,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class SearchTest extends TestCase
 {
     use Suyabay\Tests\CreateData;
-    use DatabaseMigrations;
     /**
      * Anyone can search episodes by name
      * Enter the episode name then hit enter.
