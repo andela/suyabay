@@ -79,7 +79,7 @@ class UsersTest extends TestCase
         );
         $this->assertViewHasALL(['users', 'roles']);
 
-        $x = $this->call(
+        $this->call(
             'PUT',
             '/dashboard/user/edit',
             [
