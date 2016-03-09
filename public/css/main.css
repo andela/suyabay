@@ -34,6 +34,34 @@
     height: 100px;
 }
 
+/* Beginning of view comments css */
+.episode_comments {
+    display:block;
+    padding-top:10px;
+}
+
+.view_more_comments {
+    width: 50%;
+    clear: both;
+    margin-bottom: 2%;
+    padding: 10px;
+    color: #26a69a;
+    font-size: 12px;
+    cursor: hand;
+}
+
+.view_more_comments a {
+    text-decoration: none;
+    cursor: hand;
+}
+
+.view_more_comments a:hover {
+
+    text-decoration: underline;
+}
+
+/* End */
+
 .logo {
     margin: auto;
     padding: 15px;

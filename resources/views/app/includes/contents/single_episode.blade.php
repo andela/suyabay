@@ -64,10 +64,8 @@
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
-
                                     @foreach ( $firstTenEpisodes as $comment )
-
-                                        <div id="show_comment" class="collection-item avatar show_comment">
+                                      <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
                                                 <div class="col s2">
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
