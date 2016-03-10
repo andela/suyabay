@@ -49,7 +49,7 @@ class LikeController extends Controller
         $episode->likes = $episode->likes - 1;
         $episode->save();
 
-        return $this->likeRepository->findLikeByUserOnEpisode($request['user_id'], $request['episode_id']);
+        return $this->likeRepository->findLikeByIdAndDelete($request['user_id'], $request['episode_id']);
     }
 
     /**
@@ -67,5 +67,4 @@ class LikeController extends Controller
 
         return $episodeIds;
     }
-
 }

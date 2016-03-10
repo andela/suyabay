@@ -22,8 +22,13 @@ class LikeRepository
         return Like::where($field, $value);
     }
 
-    /*Fine and Delete Episode liked by a user*/
-    public function findLikeByUserOnEpisode($user_id, $episode_id)
+    /**
+     * Find and Delete Episode liked by a user
+     * @param  integer $user_id    User ID
+     * @param  integer $episode_id Episode ID
+     * @return void
+     */
+    public function findLikeByIdAndDelete($user_id, $episode_id)
     {
         return DB::table('likes')
         ->where('user_id', $user_id)
@@ -31,10 +36,23 @@ class LikeRepository
         ->delete();
     }
 
+    /**
+     * Persist new Episode like to the database.
+     *
+     * @param  integer $userid    Authenticated user ID
+     * @param  integer $episodeid Episode ID
+     * @return boolean            true or false
+     */
     public function insertIntoLikesTable($userid, $episodeid)
     {
         return Like::insert(['user_id' => $userid, 'episode_id' => $episodeid]);
     }
+
+    /**
+     * returns  either must_login, like or dislike message.
+     *
+     * @return void
+     */
 
     public function checkLikeStatusForUserOnEpisode($likes)
     {
@@ -53,8 +71,7 @@ class LikeRepository
 
         if ($is_like_episode) {
             $status = "dislike";
-        }
-        else {
+        } else {
             $status = "like";
         }
 
@@ -62,7 +79,10 @@ class LikeRepository
     }
 
     /**
-     * Get the amount of favorite episode of a user
+     * return an array of all the episodes favorited by a user.
+     * returns empty array if none.
+     *
+     * $returns array
      */
     public function getNumberOfUserFavorite()
     {
