@@ -1,9 +1,9 @@
 <?php
 
-use Suyabay\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class EpisodeSizeTest extends TestCase
 {
@@ -31,14 +31,45 @@ class EpisodeSizeTest extends TestCase
      */
     public function testValidationWorksForUploadedFilesLessThan1MB()
     {
-        $this->login();
+        $this->WithoutMiddleware();
 
-        $this->visit('dashboard/episode/create')
-             ->type('test', 'title')
-             ->type('Brief description', 'description')
-             ->attach(storage_path('audio/BlueDucks.mp3'), 'podcast')
-             ->press('create')
-             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'test')->get()));
+        $uploadedFile = Mockery::mock(
+            UploadedFile::class,
+            [
+                'getClientOriginalName'      => 'audio',
+                'getClientOriginalExtension' => 'mp3',
+                'getPath' => 'public/audio.mp3',
+                'getClientSize' => 53674,
+                'test' => true,
+                'size' => 447,
+            ]
+        );
+
+        Storage::shouldReceive('disk')->with('s3')->andReturnSelf();
+        Storage::shouldReceive('put')->with('public/audio.mp3')->andReturn(true);
+
+        $user = factory('Suyabay\User')->create();
+        $channel = factory('Suyabay\Channel')->create();
+        // make a request
+        $uploadedFile->shouldReceive('audioToAWS')
+                     ->once()
+                     ->with('public/nowaudio.mp3');
+
+        // var_dump($uploadedFile);
+        // die();
+
+         $response = $this->actingAs($user)
+            ->call(
+                'POST',
+                '/dashboard/episode/create',
+                [
+                    'title' => 'Exceed',
+                    'description' => 'Brief description',
+                    'channel' => $channel['id'],
+                    'podcast' => $uploadedFile
+                ]
+            );
+            echo $response;
     }
 
     /**
@@ -47,14 +78,32 @@ class EpisodeSizeTest extends TestCase
      */
     public function testValidationWorksForFilesExceeding10MB()
     {
-        $this->login();
+        $this->WithoutMiddleware();
 
-        $this->visit('dashboard/episode/create')
-             ->type('test2', 'title')
-             ->type('Brief description', 'description')
-             ->attach(storage_path('audio/Haiti.mp3'), 'podcast')
-             ->press('create')
-             ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'test2')->get()));
+        $uploadedFile = Mockery::mock(
+            'Illuminate\Filesystem\Filesystem',
+            [
+                'getClientOriginalName'      => 'audio.mp3',
+                'getClientOriginalExtension' => 'mp3',
+                'getClientOriginalSize' => '73M',
+            ]
+        );
+        dd($uploadedFile);
+        $user = factory('Suyabay\User')->create();
+        $channel = factory('Suyabay\Channel')->create();
+        // make a request
+        $response = $this->actingAs($user)
+             ->call(
+                 'POST',
+                 '/dashboard/episode/create',
+                 [
+                    'title'          => 'Exceed',
+                    'description'   => 'Brief description',
+                    'channel'            => $channel['id'],
+                    'podcast'             => $uploadedFile,
+                 ]
+             );
+        echo $response;
     }
 
     /**
@@ -85,3 +134,8 @@ class EpisodeSizeTest extends TestCase
              ->assertEquals(0, count(Suyabay\Episode::where('episode_name', 'Kanye')->get()));
     }
 }
+
+// function time()
+// {
+//     return "now";
+// }
