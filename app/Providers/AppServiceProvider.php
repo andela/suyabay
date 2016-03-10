@@ -22,12 +22,6 @@ class AppServiceProvider extends ServiceProvider
                 return $fileSize;
             }
         });
-
-        Validator::extend('audio', function ($attribute, $value, $parameters, $validator) {
-            $allowed = array('audio/mpeg', 'application/ogg', 'audio/wave', 'audio/aiff', 'audio/mp3', 'audio/m4a', 'video/mp4');
-            $mime = new MimeReader($value->getRealPath());
-            return in_array($mime->get_type(), $allowed);
-        });
     }
 
     //return real size
@@ -58,14 +52,5 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-    }
-
-
-    /**
-     * Detect if uploaded file is an audio file
-     */
-    public function is_audio($mimetype)
-    {
-        return starts_with($mimeType, 'audio/');
     }
 }
