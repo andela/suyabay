@@ -64,6 +64,7 @@
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
+
                                 @if ( count($firstTenEpisodes) <= 0 )
                                     <h6 style="padding: 10px; font-weight:400;">No comments to display for this episode</h6>
                                 @else
@@ -110,7 +111,6 @@
                                                     </div>
                                                 </li>
                                             @endif
-
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">

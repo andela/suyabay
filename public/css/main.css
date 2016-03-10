@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 /* Beginning of view comments css */
 .episode_comments {
     display:block;
@@ -26,6 +27,8 @@
 }
 /* End */
 
+=======
+>>>>>>> staging
 #settings {
     -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
     -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
