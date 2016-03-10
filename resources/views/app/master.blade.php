@@ -55,7 +55,6 @@
         <!-- top nav -->
         <div class="row">
             @include('app.includes.sections.top_nav')
-            {{-- @include('app.includes.sections.sidenav') --}}
         </div>
 
         <!-- main contents -->

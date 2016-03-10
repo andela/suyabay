@@ -8,7 +8,7 @@
         @foreach($users as $user)
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img style="border-radius: 360px;" class="activator user-avater" src="{{ $user->getAvatar() }}">
+                <img width="150" height="150" class="activator user-avater " src="{{ $user->getAvatar() }}">
             </div>
 
             <div class="card-content center-align">
