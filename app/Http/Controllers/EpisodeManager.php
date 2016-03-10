@@ -157,8 +157,10 @@ class EpisodeManager extends Controller
             'title'         => 'required|min:3',
             'description'   => 'required',
             'channel'       => 'required',
-            'podcast'       => 'required|size_format|audio'
+            'podcast'       => 'required|size_format|mimes:mpga'
         ]);
+
+        $file = $request->file('podcast');
 
         $data    = [
             'episode_name'          => $request->title,
