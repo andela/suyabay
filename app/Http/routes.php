@@ -198,6 +198,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::get('episode/create', [
         'uses' => 'EpisodeManager@createEpisode',
+        'as' => 'EpisodeCreate',
         'middleware' => ['auth'],
     ]);
 

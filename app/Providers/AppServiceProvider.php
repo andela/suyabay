@@ -4,6 +4,7 @@ namespace Suyabay\Providers;
 
 use Validator;
 use Illuminate\Support\ServiceProvider;
+use Suyabay\Libraries\MimeReader;
 
 class AppServiceProvider extends ServiceProvider
 {
