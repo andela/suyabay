@@ -1,7 +1,7 @@
 ## Suyabay Podcast
 
 [![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay)
-[![Coverage Status](https://coveralls.io/repos/andela/suyabay/badge.svg?branch=Chore%2FReadmeUpdate&service=github)](https://coveralls.io/github/andela/suyabay?branch=staging)
+[![Coverage Status](https://coveralls.io/repos/github/andela/suyabay/badge.svg?branch=staging)](https://coveralls.io/github/andela/suyabay?branch=staging)
 
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available. Documentation for Suyabay website can be found on the [Suyabay Wiki](https://github.com/andela/suyabay/wiki).
 
@@ -70,9 +70,13 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
 [Chris Vundi](https://github.com/andela-cvundi)
 
-[Eston Karumbi](https://github.com/andela-emkarumbi)
+[John Kariuki](https://github.com/andela-jkariuki)
 
-<<<<<<< HEAD
+[Temitope Olotin](https://github.com/andela-tolotin)
+
+[Ademola Raimi](https://github.com/andela-araimi)
+
+
 ## SuyaBay Podcast App
 
 Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
@@ -80,15 +84,12 @@ Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the sou
 [SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
 
 =======
->>>>>>> staging
+
 
 ### Stack
       * PHP/Laravel
 
-<<<<<<< HEAD
-
 =======
->>>>>>> staging
 
 ### Tools
       * Frontend - Materializecss, blade
@@ -116,7 +117,6 @@ The overview is presented from two perspectives. The perpective of a user of the
           - Have option to register or remain as a guest user
 
 **Admin users should be able to:**
-<<<<<<< HEAD
 
      1. create/update/delete user roles.
      2. create/update/delete channels.
@@ -155,7 +155,6 @@ The SuyaBay project is open-sourced software licensed under the [MIT license](ht
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
->>>>>>> staging
 
 ## Contributing to SuyaBay Podcast App
 If you have an idea for SuyaBay Podcasting, feel free to suggest it in an [issue](https://www.github.com) on this repo.
