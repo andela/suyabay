@@ -65,9 +65,11 @@
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
 
+                                @if ( count($firstTenEpisodes) <= 0 )
+                                    <h6 style="padding: 10px; font-weight:400;">No comments to display for this episode</h6>
+                                @else
                                     @foreach ( $firstTenEpisodes as $comment )
-
-                                        <div id="show_comment" class="collection-item avatar show_comment">
+                                      <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
                                                 <div class="col s2">
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
@@ -96,10 +98,11 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    @endif
                                 </li>
-                                    @if ( Auth::check())
-                                        <input type="hidden" id="episode_id" value=" {{ $firstTenEpisodes[0]['episode_id'] }}" />
-                                            @if(count($firstTenEpisodes) > 0)
+                                    @if ( Auth::check() )
+                                            @if( count($firstTenEpisodes) > 0 )
+                                                <input type="hidden" id="episode_id" value=" {{ $firstTenEpisodes[0]['episode_id'] }}" />
                                                 <li>
                                                     <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
                                                         <a href="#" title="View more comments">
@@ -108,7 +111,6 @@
                                                     </div>
                                                 </li>
                                             @endif
-
                                     <li class="collection-item avatar">
                                         <div class="row">
                                             <div class="col s2">
