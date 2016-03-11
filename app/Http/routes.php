@@ -364,8 +364,8 @@ Route::post('/comment', [
 ]);
 
 Route::get('/comment', [
-	'middleware' => 'auth',
-	'uses' => 'CommentController@fetchComment'
+    'middleware' => 'auth',
+    'uses' => 'CommentController@fetchComment'
 ]);
 
 Route::delete('comment/{commentId}', [
