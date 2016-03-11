@@ -72,10 +72,23 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 
 [Eston Karumbi](https://github.com/andela-emkarumbi)
 
+<<<<<<< HEAD
+## SuyaBay Podcast App
+
+Welcome to the SuyaBay Podcast repository on GitHub. Here you can browse the source, look at open issues and keep track of development.
+
+[SuyaBay](https://www.suyabay.com) is a podcasting app built for suya lovers. Users can use the app either as a **guest** or a **registered user**. Being a registered user means a user has access to features such as **social integration features** (liking and sharing favorite episodes), which is not available to a guest user. A guest user can only have access to general episodes if available.
+
+=======
+>>>>>>> staging
 
 ### Stack
       * PHP/Laravel
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> staging
 
 ### Tools
       * Frontend - Materializecss, blade
@@ -103,6 +116,7 @@ The overview is presented from two perspectives. The perpective of a user of the
           - Have option to register or remain as a guest user
 
 **Admin users should be able to:**
+<<<<<<< HEAD
 
      1. create/update/delete user roles.
      2. create/update/delete channels.
@@ -111,6 +125,37 @@ The overview is presented from two perspectives. The perpective of a user of the
 Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
 
 The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+     
+     1. create/delete user roles.
+     2. create/delete channels.
+     3. upload/delete episodes
+     
+
+
+## FEATURES (MOCKUP)
+1. User registration/login
+![user_registration_signin](screenshots/signup.png "user registration or signin interface")
+
+2. User Dashboard
+![user dashboard](screenshots/landingpage.png "user dashboard")
+
+3. Watch Podcast
+![user dashboard-watch podcast](screenshots/viewpost.png "user dashboard-watch podcast")
+
+3. Contacts page
+![user dashboard-contacts page](screenshots/contact-page-2.png "")
+
+=======
+
+     1. create/update/delete user roles.
+     2. create/update/delete channels.
+     3. upload/update/delete episodes
+
+Thank you for considering contributing to the Suyabay project! The contribution guide can be found in the [Suyabay documentation](https://github.com/andela/suyabay/wiki/contributions).
+
+The SuyaBay project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+>>>>>>> staging
 
 ## Contributing to SuyaBay Podcast App
 If you have an idea for SuyaBay Podcasting, feel free to suggest it in an [issue](https://www.github.com) on this repo.

@@ -1,9 +1,37 @@
+
+/* Beginning of view comments css */
+.episode_comments {
+    display:block;
+    padding-top:10px;
+}
+
+.view_more_comments {
+    width: 50%;
+    clear: both;
+    margin-bottom: 2%;
+    padding: 10px;
+    color: #26a69a;
+    font-size: 12px;
+    cursor: hand;
+}
+
+.view_more_comments a {
+    text-decoration: none;
+    cursor: hand;
+}
+
+.view_more_comments a:hover {
+
+    text-decoration: underline;
+}
+/* End */
+
 #settings {
     -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
     -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
     box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
-    margin-top: 66px;
-    height: 101px;
+    margin-top: 65px;
+    height: 100px;
 }
 
 .logo {
