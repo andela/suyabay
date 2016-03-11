@@ -363,6 +363,11 @@ Route::post('/comment', [
     'as' => 'comment',
 ]);
 
+Route::get('/comment', [
+	'middleware' => 'auth',
+	'uses' => 'CommentController@fetchComment'
+]);
+
 Route::delete('comment/{commentId}', [
     'middleware' => 'auth',
     'uses' => 'CommentController@deleteComment'
@@ -372,6 +377,7 @@ Route::put('comment/{id}/edit', [
     'middleware' => 'auth',
     'uses' => 'CommentController@editComment'
 ]);
+
 
 /*
 /-------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 <?php
 
+use Suyabay\Http\Repository\LikeRepository;
 use Suyabay\Http\Repository\EpisodeRepository;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
@@ -12,7 +13,13 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     protected $baseUrl = 'http://localhost';
 
     /**
-     * Object of class EpisodeRepository
+     * Object of LikeRepository.
+     *
+     * @var Object
+     */
+    protected static $likerepository;
+
+     /** Object of class EpisodeRepository
      *
      * @var Object
      */
@@ -23,6 +30,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         parent::setUp();
         $this->prepareTestDB();
 
+        self::$likerepository = new LikeRepository();
         self::$episodeRepository = new EpisodeRepository();
     }
 
