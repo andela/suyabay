@@ -96,7 +96,7 @@ class CommentTest extends TestCase
             ->get();
 
         $this->assertTrue(is_array($oldComments));
-        $this->assertArrayHasKey('user_id', $oldComments);
+        $this->assertArrayHasKey('id', $oldComments);
         $this->assertArrayHasKey('episode_id', $oldComments);
 
     }
