@@ -62,6 +62,12 @@ class CommentTest extends TestCase
         $this->seeInDatabase('comments', ['user_id' => $user['id']]);
     }
 
+    /**
+     * Assert that a HTTP GET request for fetch comment to the
+     *
+     * URL /fetchComment
+     */
+
     /* Assert that a HTTP PUT request for a comment update to the
      *
      * URL /comments/{id} with a comment value updates the comments field on the
