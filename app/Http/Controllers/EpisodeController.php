@@ -17,7 +17,7 @@ class EpisodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
         $channels = $this->channelRepository->getAllChannels();
@@ -27,12 +27,12 @@ class EpisodeController extends Controller
         $episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
         });
-        
+
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
         return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +46,7 @@ class EpisodeController extends Controller
         return view('app.pages.episodes', compact('episodes', 'channels'));
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -57,13 +57,13 @@ class EpisodeController extends Controller
         $episodes = Episode::with('like')->where('id', $id)->get();
         $channels = Channel::all();
         $firstTenEpisodes = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get();
-        
+
         $episodes->each(function ($episode, $key) {
 
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
 
         });
-        
+
         return view('app.pages.single_episode', compact('episodes', 'channels', 'firstTenEpisodes'));
     }
 }
