@@ -30,7 +30,7 @@
                         </ul>
 
                         <a class="waves-effect dropdown-button" href="#" data-activates="settings">
-                        <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}">
+                        <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'">
                         &nbsp;
                         {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
 

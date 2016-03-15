@@ -8,7 +8,7 @@
         @foreach($users as $user)
         <div class="card col m3">
             <div class="card-image waves-effect waves-block waves-light">
-                <img width="150" height="150" class="activator user-avater " src="{{ $user->getAvatar() }}">
+                <img width="150" height="150" class="activator user-avater " src="{{ $user->getAvatar() }}" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'">
             </div>
 
             <div class="card-content center-align">

@@ -25,27 +25,27 @@
                      <div class="podcast-actions">
 
                     <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                    
+
                     @if( Auth::check() )
                         <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
-                    @endif         
+                    @endif
 
                     <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
-                    
+
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}"> {{ $episodes->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
                         <a href="#" class="twtr-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id)  !!}">
                             <i class="fa fa-twitter social-btn "></i>
                         </a>
-                    </span>                    
+                    </span>
                     <span style="padding-right:15px;">
                         <a href="#" class="fb-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id) !!}">
                             <i class="fa fa-facebook social-btn "></i>
                         </a>
-                    </span>            
+                    </span>
                 </div>
 
                 </div>
