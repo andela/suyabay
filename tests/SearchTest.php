@@ -68,7 +68,7 @@ class SearchTest extends TestCase
      *
      * @return void
      */
-    public function testSearchForNonExistentEpisode()
+    public function testSearchForNonExistentEpisodeOrDescription()
     {
         factory('Suyabay\User')->create();
         factory('Suyabay\Channel')->create();
