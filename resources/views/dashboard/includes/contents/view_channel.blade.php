@@ -27,12 +27,28 @@
                 </tr>
             </thead>
             <tbody>
+
             @foreach($episodes as $episode)
                 <tr>
                     <td>{{ $episode->episode_name }}</td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
+         @if ($channel->count == 0)
+
+            <div class="col s12">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                  <div class="row valign-wrapper">
+                    <div class="col s12">
+                      <h4 class="black-text center">
+                        <i class="fa fa-info-circle teal-text"></i> Ooops, there are no episodes in this channel
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        @endif
     </div>
 </div>
