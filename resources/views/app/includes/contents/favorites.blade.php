@@ -43,6 +43,10 @@
                     </span>
 
                     <span style="padding-right:15px;">
+                        <i class="fa fa-comment social-btn like"> {{ $episodes->comment->count() }}</i>
+                    </span>
+
+                    <span style="padding-right:15px;">
                         <a href="#" class="twtr-share" data-desc="{{ $episodes->episode_description }}" data-name="{{ $episodes->episode_name }}" data-img="{!! asset($episodes->image) !!}" data-url="{!! url('/episodes', $episodes->id)  !!}">
                             <i class="fa fa-twitter social-btn "></i>
                         </a>
