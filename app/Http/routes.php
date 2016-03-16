@@ -103,6 +103,46 @@ Route::delete('api/v1/channels/{channel-id}/episodes/{episode-id}', [
 
 /*
 |--------------------------------------------------------------------------
+| API Routes - Favourites
+|--------------------------------------------------------------------------
+
+*/
+
+Route::get('api/v1/users/{username}/favourites', [
+    'uses' => 'FavouriteController@getUserFavourites',
+    'as'   => 'getuserfavourite'
+]);
+
+Route::delete('api/v1/users/{username}/favourites', [
+    'uses' => 'FavouriteController@deleteUserFavourites',
+    'as'   => 'getuserfavourite'
+]);
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Favourites
+|--------------------------------------------------------------------------
+
+*/
+
+Route::get('api/v1/episodes/{episode-id}/comments', [
+    'uses' => 'CommentController@getEpisodeComment',
+    'as'   => 'getuserfavourite'
+]);
+
+Route::get('api/v1/episodes/{episode-id}/comments/{comment-id}', [
+    'uses' => 'FavouriteController@deleteUserFavourites',
+    'as'   => 'getuserfavourite'
+]);
+
+Route::delete('api/v1/episodes/{episode-id}/comments/{comment-id}', [
+    'uses' => 'FavouriteController@deleteUserFavourites',
+    'as'   => 'getuserfavourite'
+]);
+
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes - Index
 |--------------------------------------------------------------------------
 
