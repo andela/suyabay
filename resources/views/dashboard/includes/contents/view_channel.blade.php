@@ -36,7 +36,7 @@
 
             </tbody>
         </table>
-         @if ($channel->count == 0)
+         @if ($episodes->count() == 0)
 
             <div class="col s12">
                 <div class="card-panel grey lighten-5 z-depth-1">
