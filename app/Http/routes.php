@@ -71,6 +71,38 @@ Route::delete('api/v1/channels/{id}', [
 
 /*
 |--------------------------------------------------------------------------
+| API Routes - Channel Episodes
+|--------------------------------------------------------------------------
+
+*/
+
+Route::get('api/v1/channels/{id}/episodes', [
+    'uses' => 'EpisodeController@getChannelEpisodes',
+    'as'   => 'getchannelepisodes'
+]);
+
+Route::get('api/v1/channels/{channel-id}/episodes/{episode-id}', [
+    'uses' => 'EpisodeController@getSingleChannelEpisode',
+    'as'   => 'singlechannelepisode'
+]);
+
+Route::post('api/v1/channels/{channel-id}/episodes', [
+    'uses' => 'EpisodeController@createChannelEpisode',
+    'as'   => 'postchannel'
+]);
+
+Route::put('api/v1/channels/{channel-id}/episodes/{episode-id}', [
+    'uses' => 'EpisodeController@editChannelEpisode',
+    'as'   => 'editsinglechannelepisode'
+]);
+
+Route::delete('api/v1/channels/{channel-id}/episodes/{episode-id}', [
+    'uses' => 'ChannelController@deleteChannelEpisode',
+    'as'   => 'deletechannelepisode'
+]);
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes - Index
 |--------------------------------------------------------------------------
 
