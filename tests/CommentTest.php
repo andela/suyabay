@@ -62,7 +62,6 @@ class CommentTest extends TestCase
         $this->seeInDatabase('comments', ['user_id' => $user['id']]);
     }
 
-<<<<<<< HEAD
     /* Assert that a HTTP GET request for fetch comment to the
      *
      * URL /comment with offset amd episode id  will fetch the comments on
@@ -96,20 +95,13 @@ class CommentTest extends TestCase
             ->take(10)
             ->get();
 
-        $oldCommCastedToArray = (array) $oldComments[0];
+        $oldCommentCastedToArray = (array) $oldComments[0];
 
-        $this->assertTrue(is_array($oldCommCastedToArray));
-        $this->assertArrayHasKey('episode_id', $oldCommCastedToArray);
-        $this->assertArrayHasKey('comments', $oldCommCastedToArray);
+        $this->assertTrue(is_array($oldCommentCastedToArray));
+        $this->assertArrayHasKey('episode_id', $oldCommentCastedToArray);
+        $this->assertArrayHasKey('comments', $oldCommentCastedToArray);
 
     }
-=======
-    /**
-     * Assert that a HTTP GET request for fetch comment to the
-     *
-     * URL /fetchComment
-     */
->>>>>>> Assert that fetch comments returns comments
 
     /* Assert that a HTTP PUT request for a comment update to the
      *
@@ -167,6 +159,7 @@ class CommentTest extends TestCase
              $this->visit('/episodes/1')
              ->dontSee($comment['comments']);
     }
+    
     /**
      * test that a Comment belongs to an episode.
      *
