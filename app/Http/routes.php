@@ -24,7 +24,7 @@ Route::get('api/v1/users/{id}', [
 
 Route::post('api/v1/users', [
     'uses' => 'UserController@createUser',
-    'as'   => 'postusers'
+    'as'   => 'postuser'
 ]);
 
 Route::put('api/v1/users/{id}', [
@@ -35,6 +35,38 @@ Route::put('api/v1/users/{id}', [
 Route::delete('api/v1/users/{id}', [
     'uses' => 'UserController@deleteUser',
     'as'   => 'deleteusers'
+]);
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Channels
+|--------------------------------------------------------------------------
+
+*/
+
+Route::get('api/v1/channels', [
+    'uses' => 'ChannelController@getAllChannels',
+    'as'   => 'getchannels'
+]);
+
+Route::get('api/v1/channels/{id}', [
+    'uses' => 'ChannelController@getSingleChannel',
+    'as'   => 'singlechannel'
+]);
+
+Route::post('api/v1/channels', [
+    'uses' => 'ChannelController@createChannel',
+    'as'   => 'postchannel'
+]);
+
+Route::put('api/v1/channels/{id}', [
+    'uses' => 'ChannelController@editChannel',
+    'as'   => 'editchannel'
+]);
+
+Route::delete('api/v1/channels/{id}', [
+    'uses' => 'ChannelController@deleteChannel',
+    'as'   => 'deletechannel'
 ]);
 
 /*
