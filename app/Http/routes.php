@@ -2,6 +2,43 @@
 
 /*
 |--------------------------------------------------------------------------
+| API Routes - Users
+|--------------------------------------------------------------------------
+
+*/
+
+Route::get('api/v1/', [
+    'uses' => 'UserController@index',
+    'as'   => 'home'
+]);
+
+Route::get('api/v1/users', [
+    'uses' => 'UserController@getAllUsers',
+    'as'   => 'getusers'
+]);
+
+Route::get('api/v1/users/{id}', [
+    'uses' => 'UserController@getSingleUser',
+    'as'   => 'singleuser'
+]);
+
+Route::post('api/v1/users', [
+    'uses' => 'UserController@createUser',
+    'as'   => 'postusers'
+]);
+
+Route::put('api/v1/users/{id}', [
+    'uses' => 'UserController@editUser',
+    'as'   => 'edituser'
+]);
+
+Route::delete('api/v1/users/{id}', [
+    'uses' => 'UserController@deleteUser',
+    'as'   => 'deleteusers'
+]);
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes - Index
 |--------------------------------------------------------------------------
 
@@ -36,6 +73,7 @@ Route::get('/channel/{id}', [
     'uses' => 'EpisodeManager@getEpisode',
     'as' => 'episode-show',
 ]);
+
 /*
 /-------------------------------------------------------------------------------
 / About
