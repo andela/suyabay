@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col l6 s12 m6 center-align">
-               <h5>Hosts</h5>
+                <h5>Hosts</h5>
                     <div class="col s12 m6 center-align waves-effect waves-block waves-light">
                         <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
                         <p class="hosts-name center-align">Prosper</p>
@@ -51,6 +51,7 @@
     </div>
 
     <div class="footer-copyright">
-            <div class="center">Copyright Andela {{ Yearly::current_year() }}</div>
+        <div class="center">Copyright Andela {{ Yearly::current_year() }} <span class="api-link" ><a href="#">API</a></span> </div>
     </div>
+
 </footer>

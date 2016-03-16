@@ -336,6 +336,14 @@ a:hover.capitalize {
     background-color: #2C3E50!important;
 }
 
+.api-link {
+    margin-left:2%;
+}
+.api-link a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.
 .audiojs {
     width: 100%!important;
 }
