@@ -30,19 +30,19 @@
                         <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
                     @endif
 
-                    <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
+                    <input type="hidden" id="episode_id" value="{{ $episodes->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}"> {{ $episodes->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn dislike"> {{ $episodes->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <a href="#" class="twtr-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id)  !!}">
+                        <a href="#" class="twtr-share" data-desc="{{ $episodes->episode_description }}" data-name="{{ $episodes->episode_name }}" data-img="{!! asset($episodes->image) !!}" data-url="{!! url('/episodes', $episodes->id)  !!}">
                             <i class="fa fa-twitter social-btn "></i>
                         </a>
                     </span>
                     <span style="padding-right:15px;">
-                        <a href="#" class="fb-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id) !!}">
+                        <a href="#" class="fb-share" data-desc="{{ $episodes->episode_description }}" data-name="{{ $episodes->episode_name }}" data-img="{!! asset($episodes->image) !!}" data-url="{!! url('/episodes', $episodes->id) !!}">
                             <i class="fa fa-facebook social-btn "></i>
                         </a>
                     </span>
