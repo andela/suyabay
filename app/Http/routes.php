@@ -8,31 +8,37 @@
 */
 
 Route::get('api/v1/', function() {
+
     return json_encode(["message" => "return error 404"]);
 
 });
 
 Route::get('api/v1/users', function() {
+
     return json_encode(["message" => "return all users"]);
 
 });
 
 Route::get('api/v1/users/{id}', function() {
+
     return json_encode(["message" => "return a single user"]);
 
 });
 
 Route::post('api/v1/users', function(Request $request, Response $response) {
+
     return json_encode(["message" => "post a user"]);
 
 });
 
 Route::put('api/v1/users/{id}', function() {
+
     return json_encode(["message" => "update user record"]);
 
 });
 
 Route::delete('api/v1/users/{id}', function() {
+
     return json_encode(["message" => "delete a user "]);
 
 });
@@ -45,26 +51,31 @@ Route::delete('api/v1/users/{id}', function() {
 */
 
 Route::get('api/v1/channels', function() {
+
     return json_encode(["message" => "return all channels"]);
 
 });
 
 Route::get('api/v1/channels/{id}', function() {
+
     return json_encode(["message" => "return a single channel"]);
 
 });
 
 Route::post('api/v1/channels', function() {
+
     return json_encode(["message" => "post a channel"]);
 
 });
 
 Route::put('api/v1/channels/{id}', function() {
+
     return json_encode(["message" => "update a channel"]);
 
 });
 
 Route::delete('api/v1/channels/{id}', function() {
+
     return json_encode(["message" => "delete a channel"]);
 
 });
@@ -77,26 +88,31 @@ Route::delete('api/v1/channels/{id}', function() {
 */
 
 Route::get('api/v1/channels/{channel_id}/episodes', function() {
+
     return json_encode(["message" => "view all episodes under a channel"]);
 
 });
 
 Route::get('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
+
     return json_encode(["message" => "view an episodes under a channel"]);
 
 });
 
 Route::post('api/v1/channels/{channel_id}/episodes', function() {
+
     return json_encode(["message" => "post an episode under a channel"]);
 
 });
 
 Route::put('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
+
     return json_encode(["message" => "update an episode under a channel"]);
 
 });
 
 Route::delete('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
+
     return json_encode(["message" => "delete an episode under a channel"]);
 
 });
@@ -109,11 +125,13 @@ Route::delete('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
 */
 
 Route::get('api/v1/users/{username}/favourites', function() {
+
     return json_encode(["message" => "allow a user to favourite an episodes"]);
 
 });
 
 Route::delete('api/v1/users/{username}/favourites', function() {
+
     return json_encode(["message" => "allow a user to unfavourite an episodes"]);
 
 });
@@ -126,16 +144,19 @@ Route::delete('api/v1/users/{username}/favourites', function() {
 */
 
 Route::get('api/v1/episodes/{episode_id}/comments', function() {
+
     return json_encode(["message" => "get all comments under an episode"]);
 
 });
 
 Route::get('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
+
     return json_encode(["message" => "get a single comment under an episode"]);
 
 });
 
 Route::delete('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
+    
     return json_encode(["message" => "delete a single comment under an episode"]);
 
 });
