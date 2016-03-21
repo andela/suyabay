@@ -16,6 +16,16 @@ class UserController extends Controller
     protected $response;
 
     /**
+     * This method return all users back to the calling API
+     */
+    public function getAllUsers()
+    {
+        $users = User::orderBy('id', 'asc')->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar'])->toJson();
+
+        return $users;
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
