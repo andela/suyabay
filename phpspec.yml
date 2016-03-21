@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: Suyabay
-        psr4_prefix: Suyabay
-        src_path: app
