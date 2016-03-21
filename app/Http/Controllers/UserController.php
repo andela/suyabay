@@ -7,6 +7,7 @@ use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
@@ -16,13 +17,32 @@ class UserController extends Controller
     protected $response;
 
     /**
-     * This method return all users back to the calling API
+     * This method return all users to the calling API endpoint
      */
-    public function getAllUsers()
+    public function getAllUsers(Response $response)
     {
-        $users = User::orderBy('id', 'asc')->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar'])->toJson();
+        $users = User::orderBy('id', 'asc')->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar']);
 
-        return $users;
+        if (count($users) > 0) {
+            return \Response::json($users, $status = 200, ['Content-Type' => 'application/json']);
+        }
+
+        return \Response::json(['message' => 'Not found'], $status = 404, ['Content-Type' => 'application/json']);
+    }
+
+    /**
+     * This method return a single user to the calling API endpoint
+     */
+    public function getSingleUser(Response $response, $id)
+    {
+        $user = User::where('id', '=', $id)->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar']);
+
+        if (count($user) > 0) {
+            return \Response::json($user, $status = 200, ['Content-Type' => 'application/json']);
+        }
+
+        return \Response::json(['message' => 'Not found'], $status = 404, ['Content-Type' => 'application/json']);
+
     }
 
     /**
