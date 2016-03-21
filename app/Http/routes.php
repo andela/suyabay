@@ -9,7 +9,7 @@
 
 Route::get('api/v1/', function() {
     return json_encode(["message" => "return error 404"]);
-    
+
 });
 
 Route::get('api/v1/users', function() {
@@ -108,15 +108,15 @@ Route::delete('api/v1/channels/{channel-id}/episodes/{episode-id}', function() {
 
 */
 
-Route::get('api/v1/users/{username}/favourites', [
-    'uses' => 'FavouriteController@getUserFavourites',
-    'as'   => 'getuserfavourite'
-]);
+Route::get('api/v1/users/{username}/favourites', function() {
+    return json_encode(["message" => "allow a user to favourite an episodes"]);
 
-Route::delete('api/v1/users/{username}/favourites', [
-    'uses' => 'FavouriteController@deleteUserFavourites',
-    'as'   => 'getuserfavourite'
-]);
+});
+
+Route::delete('api/v1/users/{username}/favourites', function() {
+    return json_encode(["message" => "allow a user to unfavourite an episodes"]);
+
+});
 
 /*
 |--------------------------------------------------------------------------
