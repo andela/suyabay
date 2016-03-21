@@ -76,27 +76,27 @@ Route::delete('api/v1/channels/{id}', function() {
 
 */
 
-Route::get('api/v1/channels/{id}/episodes', function() {
+Route::get('api/v1/channels/{channel_id}/episodes', function() {
     return json_encode(["message" => "view all episodes under a channel"]);
 
 });
 
-Route::get('api/v1/channels/{channel-id}/episodes/{episode-id}', function() {
+Route::get('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
     return json_encode(["message" => "view an episodes under a channel"]);
 
 });
 
-Route::post('api/v1/channels/{channel-id}/episodes', function() {
+Route::post('api/v1/channels/{channel_id}/episodes', function() {
     return json_encode(["message" => "post an episode under a channel"]);
 
 });
 
-Route::put('api/v1/channels/{channel-id}/episodes/{episode-id}', function() {
+Route::put('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
     return json_encode(["message" => "update an episode under a channel"]);
 
 });
 
-Route::delete('api/v1/channels/{channel-id}/episodes/{episode-id}', function() {
+Route::delete('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
     return json_encode(["message" => "delete an episode under a channel"]);
 
 });
@@ -120,25 +120,25 @@ Route::delete('api/v1/users/{username}/favourites', function() {
 
 /*
 |--------------------------------------------------------------------------
-| API Routes - Favourites
+| API Routes - Episode Comments
 |--------------------------------------------------------------------------
 
 */
 
-Route::get('api/v1/episodes/{episode-id}/comments', [
-    'uses' => 'CommentController@getEpisodeComment',
-    'as'   => 'getuserfavourite'
-]);
+Route::get('api/v1/episodes/{episode_id}/comments', function() {
+    return json_encode(["message" => "get all comments under an episode"]);
 
-Route::get('api/v1/episodes/{episode-id}/comments/{comment-id}', [
-    'uses' => 'FavouriteController@deleteUserFavourites',
-    'as'   => 'getuserfavourite'
-]);
+});
 
-Route::delete('api/v1/episodes/{episode-id}/comments/{comment-id}', [
-    'uses' => 'FavouriteController@deleteUserFavourites',
-    'as'   => 'getuserfavourite'
-]);
+Route::get('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
+    return json_encode(["message" => "get a single comment under an episode"]);
+
+});
+
+Route::delete('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
+    return json_encode(["message" => "delete a single comment under an episode"]);
+
+});
 
 
 /*
