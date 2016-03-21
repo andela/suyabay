@@ -36,7 +36,8 @@ $(document).ready(function() {
 			$(this).text(" " + like_count);
 			$("#favorite").html(favoriteCount);
 
-			if (window.location.pathname) {
+			//check if the string favorites is present in the current url
+			if (/favorites/.test(window.location.pathname)) {
 				location.reload();
 			}
 		}
