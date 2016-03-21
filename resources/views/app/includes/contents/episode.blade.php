@@ -8,6 +8,7 @@
 
         <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
 
+
         @foreach($episodes as $podcast)
         <a style="color:#2C3E50" href="/episodes/{{$podcast->id}}">
             <div class="row podcast">
@@ -63,6 +64,7 @@
         </div>
         </a>
         @endforeach
+
 
         <p class="center-align">
             <a href="/" class=" waves-effect waves-light btn">Back home</a>
