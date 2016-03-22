@@ -60,7 +60,6 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-body episode_comments">
-
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
