@@ -6,7 +6,7 @@
 
     <!-- Feeds Area -->
     <div class="col s12 m8 l9">
-           
+
         <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h4>
 
         <div class="row podcast">
@@ -18,41 +18,41 @@
                 <span class="podcast-episode-date">{{ $episodes->first()->created_at->diffForHumans() }}</span>
                 <span class="tag podcast-episode-date">{{ $episodes->first()->channel->channel_name }}</span>
                 <h5 class="podcast-episode-title">{{ $episodes->first()->episode_name }}</h5>
-                
+
                 <div>
                     <audio width="10px;" src="{{ $episodes->first()->audio_mp3 }}" preload="auto" />
                 </div>
-                
+
                 <p>
                     {{ $episodes->first()->episode_description }}
                 </p>
-         
+
                 <div class="podcast-actions">
 
                     <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-                    
+
                     @if( Auth::check() )
                         <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
-                    @endif         
+                    @endif
 
                     <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
-                    
+
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"> {{ $episodes->first()->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
                         <a href="#" class="twtr-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id)  !!}">
                             <i class="fa fa-twitter social-btn "></i>
                         </a>
-                    </span>                    
+                    </span>
                     <span style="padding-right:15px;">
                         <a href="#" class="fb-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id) !!}">
                             <i class="fa fa-facebook social-btn "></i>
                         </a>
-                    </span>            
+                    </span>
                 </div>
-         
+
             </div>
 
             <div class="col s12 m6 l12 card-social">
@@ -84,7 +84,7 @@
 
                                                             @if ( Auth::user()->id === $comment->user_id )
                                                             <div class="update-actions pull-right">
-                                                                <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a> 
+                                                                <a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a>
                                                                 <div id="comment_actions" style="display:none">
                                                                     <a href="#" class="fa fa-pencil comment-action-edit no-style-link" data-commentId="{{ $comment->comment_id }}"></a>
                                                                     <a href="#" class="fa fa-trash comment-action-delete no-style-link" data-commentId="{{ $comment->id }}"></a>
