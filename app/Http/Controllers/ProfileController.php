@@ -33,6 +33,10 @@ class ProfileController extends Controller
      */
     public function updateProfileSettings(Request $request)
     {
+        $this->validate($request, [
+            'username' => 'required|max:255|unique:users,username,'. Auth::user()->id,
+        ]);
+
         $updateUser = User::where('id', Auth::user()->id)->update(['username' => $request->username]);
 
         return redirect('/profile/edit')->with('status', 'You have successfully updated your profile.');

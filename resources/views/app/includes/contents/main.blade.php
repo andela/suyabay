@@ -8,9 +8,9 @@
     @if($episodes->count() > 0)
     <div class="col s12 m8 l9">
 
-        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h1>
+        <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h4>
 
-       <div class="row podcast">
+        <div class="row podcast">
             <div class="col s3">
                 <a style="color:#2C3E50" href="/episodes/{{$episodes->first()->id}}">
                     <img class="responsive-img podcast-img" src="{!! asset($episodes->first()->image) !!}">

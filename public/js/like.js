@@ -35,9 +35,14 @@ $(document).ready(function() {
 
 			$(this).text(" " + like_count);
 			$("#favorite").html(favoriteCount);
+
+			//check if the string favorites is present in the current url
+			if (/favorites/.test(window.location.pathname)) {
+				location.reload();
+			}
 		}
 
-		if (status === "must_login") 
+		if (status === "must_login")
 		{
 			window.location = "/login";
 		}
@@ -48,7 +53,7 @@ $(document).ready(function() {
 	# Like Episode Function
 	*/
 	function likeEpisode()
-	{	
+	{
 		var url 			= "/episode/like";
 		var token 			= document.getElementById("token").value;
 		var method 			= "POST";
