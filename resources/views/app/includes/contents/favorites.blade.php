@@ -39,7 +39,7 @@
                     <input type="hidden" id="episode_id" value="{{ $episodes->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn dislike" like-status="dislike"> {{ $episodes->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn dislike" like-status="dislike" data-episode-id="{{ $episodes->id }}"> {{ $episodes->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">

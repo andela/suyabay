@@ -41,7 +41,7 @@
                     <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"> {{ $episodes->first()->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
