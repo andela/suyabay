@@ -73,7 +73,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
 
         return json_encode(["message" => "delete a channel"]);
     });
-    
+
 });
 
 /*
@@ -82,35 +82,33 @@ Route::group(['prefix' => 'api/v1/'], function() {
 |--------------------------------------------------------------------------
 
 */
+Route::group(['prefix' => 'api/v1/'], function() {
 
-Route::get('api/v1/channels/{channel_id}/episodes', function() {
+    Route::get('channels/{channel_id}/episodes', function() {
 
-    return json_encode(["message" => "view all episodes under a channel"]);
+        return json_encode(["message" => "view all episodes under a channel"]);
+    });
 
-});
+    Route::get('channels/{channel_id}/episodes/{episode_id}', function() {
 
-Route::get('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
+        return json_encode(["message" => "view an episodes under a channel"]);
+    });
 
-    return json_encode(["message" => "view an episodes under a channel"]);
+    Route::post('channels/{channel_id}/episodes', function() {
 
-});
+        return json_encode(["message" => "post an episode under a channel"]);
+    });
 
-Route::post('api/v1/channels/{channel_id}/episodes', function() {
+    Route::put('channels/{channel_id}/episodes/{episode_id}', function() {
+        
+        return json_encode(["message" => "update an episode under a channel"]);
+    });
 
-    return json_encode(["message" => "post an episode under a channel"]);
+    Route::delete('channels/{channel_id}/episodes/{episode_id}', function() {
 
-});
-
-Route::put('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
-
-    return json_encode(["message" => "update an episode under a channel"]);
-
-});
-
-Route::delete('api/v1/channels/{channel_id}/episodes/{episode_id}', function() {
-
-    return json_encode(["message" => "delete an episode under a channel"]);
-
+        return json_encode(["message" => "delete an episode under a channel"]);
+    });
+    
 });
 
 /*
