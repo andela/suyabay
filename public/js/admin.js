@@ -43,29 +43,6 @@ $(document).ready(function(){
     });
 
     /**
-     * onSubmit event to handle Channel creation
-     */
-    $("#create_channel").submit( function () {
-        var url = "/dashboard/channel/create";
-        var token               = $("#token").val();
-        var channel_name        = $("#name").val();
-        var channel_description = $("#description").val();
-        var data =
-            {
-                url        : url,
-                parameter  :
-                {
-                    _token        : token,
-                    name          : channel_name,
-                    description   : channel_description
-                }
-            }
-        processAjax("POST", data.url, data.parameter, data.parameter.channel_name );
-
-        return false;
-    });
-
-    /**
      * onSubmit swap channels
      */
     $("#swap_episodes").submit( function () {
@@ -98,7 +75,7 @@ $(document).ready(function(){
         var channel_name        = $("#channel_name").val();
         var channel_description = $("#channel_description").val();
 
-        var data = 
+        var data =
         {
             url        : url,
             parameter  :
@@ -124,7 +101,7 @@ $(document).ready(function(){
         var episode             = $("#episode").val();
         var channel_id          = $("#channel_id").val();
         var description         = $("#description").val();
-        
+
         var data =
         {
             url        : url,
@@ -139,7 +116,7 @@ $(document).ready(function(){
         }
 
         processEpisodeUpdate("PUT", data.url, data.parameter, data.parameter.episode );
-        
+
         // confirmUpdate(data.url, data.parameter, data.parameter.episode_name, data.parameter.channel_id);
 
 
@@ -224,7 +201,7 @@ function confirmDelete (url, parameter, id, name)
     function ( isConfirm )
     {
         if ( isConfirm) {
-            document.location.href = "/dashboard/channel/swap/"+id;    
+            document.location.href = "/dashboard/channel/swap/"+id;
         } else {
             document.location.href = "/dashboard/channels/all";
         }

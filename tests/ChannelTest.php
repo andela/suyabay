@@ -36,13 +36,11 @@ class ChannelTest extends TestCase
      */
     public function testCreateChannel()
     {
-        $this->withoutMiddleware();
-
         $user = factory(User::class)->create(['role_id' => 3]);
         $this->actingAs($user)
          ->visit('/dashboard/channel/create')
-         ->type('Swanky new name', 'name')
-         ->type('Swanky new description', 'description')
+         ->type('Swanky new name', 'channel_name')
+         ->type('Swanky new description', 'channel_description')
          ->press('create')
          ->seeInDatabase('channels', [
             'channel_name' => 'Swanky new name'
@@ -54,28 +52,13 @@ class ChannelTest extends TestCase
              'POST',
              '/dashboard/channel/create',
              [
-                'name' => 'Another Channel Name',
-                'description' => 'Another channel description'
+                'channel_name' => 'Another Channel Name',
+                'channel_description' => 'Another channel description',
+                '_token' => csrf_token()
              ]
          );
-
-         $this->assertEquals(200, $newChannel->original['status_code']);
-         $this->assertEquals("Channel created Successfully", $newChannel->original['message']);
-
-         $duplicateChannel  = $this->actingAs($user)
-         ->call(
-             'POST',
-             '/dashboard/channel/create',
-             [
-                'name' => 'Another Channel Name',
-                'description' => 'Another channel description'
-             ]
-         );
-         $this->assertEquals(400, $duplicateChannel->original['status_code']);
-         $this->assertEquals("Channel already exist", $duplicateChannel->original['message']);
-
          $this->seeInDatabase('channels', [
-         'channel_name' => 'Another Channel Name'
+            'channel_name' => 'Another Channel Name'
          ]);
     }
 
