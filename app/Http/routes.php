@@ -137,24 +137,24 @@ Route::group(['prefix' => 'api/v1/'], function() {
 
 */
 
-Route::get('api/v1/episodes/{episode_id}/comments', function() {
+Route::group(['prefix' => 'api/v1/'], function() {
 
-    return json_encode(["message" => "get all comments under an episode"]);
+    Route::get('episodes/{episode_id}/comments', function() {
+
+        return json_encode(["message" => "get all comments under an episode"]);
+    });
+
+    Route::get('episodes/{episode_id}/comments/{comment_id}', function() {
+
+        return json_encode(["message" => "get a single comment under an episode"]);
+    });
+
+    Route::delete('episodes/{episode_id}/comments/{comment_id}', function() {
+
+        return json_encode(["message" => "delete a single comment under an episode"]);
+    });
 
 });
-
-Route::get('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
-
-    return json_encode(["message" => "get a single comment under an episode"]);
-
-});
-
-Route::delete('api/v1/episodes/{episode_id}/comments/{comment_id}', function() {
-    
-    return json_encode(["message" => "delete a single comment under an episode"]);
-
-});
-
 
 /*
 |--------------------------------------------------------------------------
