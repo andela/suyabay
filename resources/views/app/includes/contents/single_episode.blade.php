@@ -60,7 +60,6 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-body episode_comments">
-
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
@@ -113,6 +112,9 @@
                                             @endif
                                     <li class="collection-item avatar">
                                         <div class="row">
+                                            <div class="view_more_comments">
+                                                <a href="#" title="View more comments"></a> View more comments</a>
+                                            </div>
                                             <div class="col s2">
                                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>
