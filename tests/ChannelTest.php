@@ -38,28 +38,28 @@ class ChannelTest extends TestCase
     {
         $user = factory(User::class)->create(['role_id' => 3]);
         $this->actingAs($user)
-         ->visit('/dashboard/channel/create')
-         ->type('Swanky new name', 'channel_name')
-         ->type('Swanky new description', 'channel_description')
-         ->press('create')
-         ->seeInDatabase('channels', [
-            'channel_name' => 'Swanky new name'
-         ]);
+             ->visit('dashboard/channel/create')
+             ->type('Swanky new name', 'channel_name')
+             ->type('Swanky new description', 'channel_description')
+             ->press('create')
+             ->seeInDatabase('channels', [
+                'channel_name' => 'Swanky new name'
+             ]);
 
          $admin = factory(User::class)->create(['role_id' => 3]);
-         $newChannel  = $this->actingAs($admin)
-         ->call(
-             'POST',
-             '/dashboard/channel/create',
-             [
-                'channel_name' => 'Another Channel Name',
-                'channel_description' => 'Another channel description',
-                '_token' => csrf_token()
-             ]
-         );
-         $this->seeInDatabase('channels', [
-            'channel_name' => 'Another Channel Name'
-         ]);
+         $this->actingAs($admin)
+             ->call(
+                 'POST',
+                 '/dashboard/channel/create',
+                 [
+                    'channel_name' => 'Another Channel Name',
+                    'channel_description' => 'Another channel description',
+                    '_token' => csrf_token()
+                 ]
+             );
+             $this->seeInDatabase('channels', [
+                'channel_name' => 'Another Channel Name'
+             ]);
     }
 
     /**

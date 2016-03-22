@@ -73,9 +73,9 @@ $(document).ready(function(){
         event.preventDefault();
 
         var channel_name = $("#channel_name").val().trim();
-        var channel_description = $("#channel_description").val().trim().;
+        var channel_description = $("#channel_description").val().trim();
 
-        if( channel_name.length != 0 && channel_descriptionlength ) {
+        if( channel_name.length != 0 && channel_description.length ) {
 
             var data =
             {
