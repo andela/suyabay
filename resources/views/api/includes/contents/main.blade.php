@@ -1,3 +1,4 @@
+
 <div id="hero" class="index_bg_container">
             <div id="overlay-image">
                 
@@ -50,3 +51,4 @@
                 </div>
            </div>
         </div>
+        
