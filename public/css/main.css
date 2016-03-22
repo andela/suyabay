@@ -23,15 +23,15 @@
 }
 
 .view_more_comments a {
+    width: 20%;
+    clear: both;
+    margin-bottom: 2%;
+}
+.view_more_comments a {
+    font-size: 12px;
     text-decoration: none;
     cursor: hand;
 }
-
-.view_more_comments a:hover {
-
-    text-decoration: underline;
-}
-
 /* End */
 
 .logo {
