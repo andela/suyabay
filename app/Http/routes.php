@@ -108,7 +108,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
 
         return json_encode(["message" => "delete an episode under a channel"]);
     });
-    
+
 });
 
 /*
@@ -117,17 +117,17 @@ Route::group(['prefix' => 'api/v1/'], function() {
 |--------------------------------------------------------------------------
 
 */
+Route::group(['prefix' => 'api/v1/'], function() {
 
-Route::get('api/v1/users/{username}/favourites', function() {
+    Route::get('users/{username}/favourites', function() {
 
-    return json_encode(["message" => "allow a user to favourite an episodes"]);
+        return json_encode(["message" => "allow a user to favourite an episodes"]);
+    });
 
-});
+    Route::delete('users/{username}/favourites', function() {
 
-Route::delete('api/v1/users/{username}/favourites', function() {
-
-    return json_encode(["message" => "allow a user to unfavourite an episodes"]);
-
+        return json_encode(["message" => "allow a user to unfavourite an episodes"]);
+    });
 });
 
 /*
