@@ -68,25 +68,37 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle Channel update
      */
-    $("#channel_update").submit( function () {
-        var url                 = "/dashboard/channel/edit";
-        var token               = $("#token").val();
-        var channel_id          = $("#channel_id").val();
-        var channel_name        = $("#channel_name").val();
-        var channel_description = $("#channel_description").val();
+    $("#channel_update").submit( function (event) {
 
-        var data =
-        {
-            url        : url,
-            parameter  :
+        event.preventDefault();
+
+        var channel_name = $("#channel_name").val().trim();
+        var channel_description = $("#channel_description").val().trim().;
+
+        if( channel_name.length != 0 && channel_descriptionlength ) {
+
+            var data =
             {
-                _token                : token,
-                channel_id            : channel_id,
-                channel_name          : channel_name,
-                channel_description   : channel_description
+                url        : "/dashboard/channel/edit",
+                parameter  :
+                {
+                    _token                : $("#token").val(),
+                    channel_id            : $("#channel_id").val(),
+                    channel_name          : channel_name,
+                    channel_description   : channel_description
+                }
             }
+            processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
+        } else{
+            swal({
+                title: "Error!",
+                text: "Please provide both a channel name and description",
+                type: "error",
+                showCancelButton: false,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            });
         }
-        processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
 
         return false;
     });
