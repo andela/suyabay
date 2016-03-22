@@ -165,4 +165,18 @@ class UsersTest extends TestCase
         $offlineUsers = self::$userRepository->getOfflineUsers();
         $this->assertEquals(3, $offlineUsers->count());
     }
+
+    /**
+     * Assert that a user can update their username
+     *
+     * @return void
+     */
+    public function testUserCanUpdateUserName()
+    {
+        $this->login();
+        $this->visit('profile/edit')
+            ->type('foobar', 'username')
+            ->press('update');
+        $this->seeInDatabase('users', ['id' => 1, 'username' => 'foobar']);
+    }
 }
