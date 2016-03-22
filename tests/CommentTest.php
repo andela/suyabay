@@ -62,11 +62,46 @@ class CommentTest extends TestCase
         $this->seeInDatabase('comments', ['user_id' => $user['id']]);
     }
 
-    /**
-     * Assert that a HTTP GET request for fetch comment to the
+    /* Assert that a HTTP GET request for fetch comment to the
      *
-     * URL /fetchComment
+     * URL /comment with offset amd episode id  will fetch the comments on
+     *
+     * an episode
+     *
+     * @return boolean true
      */
+    public function testFetchComment()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+        $episode = factory('Suyabay\Episode')->create(['status' => 1]);
+        factory('Suyabay\Comment', 15)->create();
+
+        $this->actingAs($user)
+            ->call(
+                'GET',
+                '/comment',
+                [
+                    'offset' => 10,
+                    'episode_id' => $episode['id']
+                ]
+            );
+
+        $oldComments = DB::table('comments')
+            ->where('id', '>', 5)
+            ->where('episode_id', $episode['id'])
+            ->skip(5)
+            ->take(10)
+            ->get();
+
+        $oldCommCastedToArray = (array) $oldComments[0];
+
+        $this->assertTrue(is_array($oldCommCastedToArray));
+        $this->assertArrayHasKey('episode_id', $oldCommCastedToArray);
+        $this->assertArrayHasKey('comments', $oldCommCastedToArray);
+
+    }
 
     /* Assert that a HTTP PUT request for a comment update to the
      *

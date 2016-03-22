@@ -186,6 +186,37 @@ class ChannelTest extends TestCase
     }
 
     /**
+     * Test that an admin sees a no episodes message when
+     * a channel is empty
+     *
+     * @return void
+     */
+    public function testAdminGetsMessageOnEmptyChannels()
+    {
+        $admin = factory(User::class)->create(['role_id' => 3]);
+        $channel = factory(Channel::class)->create();
+        $this->actingAs($admin)
+             ->visit('/dashboard/channel/'. $channel['id'])
+             ->see('Ooops, there are no episodes in this channel');
+    }
+
+    /**
+     * Test that a User sees a no episodes message when
+     * a channel is empty
+     *
+     * @return void
+     */
+    public function testUserGetsMessageOnEmptyChannels()
+    {
+        $admin = factory(User::class)->create(['role_id' => 3]);
+        $user = factory(User::class)->create();
+        $channel = factory(Channel::class)->create();
+        $this->actingAs($user)
+             ->visit('/channel/' . $channel['id'])
+             ->see('Ooops, there are no episodes in this channel');
+    }
+
+    /**
      * Test user channnel relationship
      */
     public function testUserChannelRelationship()
