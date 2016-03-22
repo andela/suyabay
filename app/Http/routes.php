@@ -23,7 +23,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
         return json_encode(["message" => "return a single user"]);
     });
 
-    Route::post('users', function(Request $request, Response $response) {
+    Route::post('users', function() {
 
         return json_encode(["message" => "post a user"]);
     });
@@ -100,7 +100,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
     });
 
     Route::put('channels/{channel_id}/episodes/{episode_id}', function() {
-        
+
         return json_encode(["message" => "update an episode under a channel"]);
     });
 
@@ -128,6 +128,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
 
         return json_encode(["message" => "allow a user to unfavourite an episodes"]);
     });
+
 });
 
 /*
