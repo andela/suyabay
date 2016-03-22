@@ -34,6 +34,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
     });
 
     Route::delete('users/{id}', function() {
+        
         return json_encode(["message" => "delete a user "]);
     });
 
