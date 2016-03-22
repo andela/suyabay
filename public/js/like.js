@@ -5,7 +5,7 @@ $(document).ready(function() {
 
         var this_ = $(this);
         var status        = $(this).attr("like-status");
-        var like_count    = $(this).html();
+        var likeCount    = $(this).html();
         var favoriteCount = $("#favorite").html();
 
         if (status === "like")
@@ -14,12 +14,12 @@ $(document).ready(function() {
             $(this).addClass("dislike");
             $(this).attr("like-status", "dislike");
 
-            likeEpisode()
+            likeEpisode();
 
-            like_count = Number(like_count) + 1;
+            likeCount = Number(likeCount) + 1;
             favoriteCount = Number(favoriteCount) + 1;
 
-            $(this).text( " " + like_count);
+            $(this).text( " " + likeCount);
             $("#favorite").html(favoriteCount);
         }
 
@@ -29,12 +29,12 @@ $(document).ready(function() {
             $(this).addClass("like");
             $(this).attr("like-status", "like");
 
-            dislikeEpisode(this_)
+            dislikeEpisode(this_);
 
-            like_count = Number(like_count) - 1;
+            likeCount = Number(likeCount) - 1;
             favoriteCount = Number(favoriteCount) - 1;
 
-            $(this).text(" " + like_count);
+            $(this).text(" " + likeCount);
             $("#favorite").html(favoriteCount);
 
             //check if the string favorites is present in the current url
@@ -48,7 +48,7 @@ $(document).ready(function() {
             window.location = "/login";
         }
 
-    })
+    });
 
     /*
     # Like Episode Function
@@ -69,9 +69,9 @@ $(document).ready(function() {
               user_id       : document.getElementById("user_id").value,
               episode_id    : document.getElementById("episode_id").value
             }
-        }
+        };
 
-        ajaxCall(data)
+        ajaxCall(data);
     }
 
     /*
@@ -93,9 +93,9 @@ $(document).ready(function() {
               user_id       : document.getElementById("user_id").value,
               episode_id    : this_.attr("data-episode-id")
             }
-        }
+        };
 
-        ajaxCall(data)
+        ajaxCall(data);
     }
 
     /*
@@ -107,7 +107,7 @@ $(document).ready(function() {
             url     : data.url,
             type    : data.method,
             data    : data.parameter,
-            success: function (response)
+            success: function ()
             {
             },
             error: function()
