@@ -6,42 +6,39 @@
 |--------------------------------------------------------------------------
 
 */
+Route::group(['prefix' => 'api/v1/'], function() {
 
-Route::get('api/v1/', function() {
+    Route::get('/', function() {
 
-    return json_encode(["message" => "return error 404"]);
+        return json_encode(["message" => "return error 404"]);
+    });
 
-});
+    Route::get('users', function() {
 
-Route::get('api/v1/users', function() {
+        return json_encode(["message" => "return all users"]);
+    });
 
-    return json_encode(["message" => "return all users"]);
+    Route::get('users/{id}', function() {
 
-});
+        return json_encode(["message" => "return a single user"]);
+    });
 
-Route::get('api/v1/users/{id}', function() {
+    Route::post('users', function(Request $request, Response $response) {
 
-    return json_encode(["message" => "return a single user"]);
+        return json_encode(["message" => "post a user"]);
+    });
 
-});
+    Route::put('users/{id}', function() {
 
-Route::post('api/v1/users', function(Request $request, Response $response) {
+        return json_encode(["message" => "update user record"]);
+    });
 
-    return json_encode(["message" => "post a user"]);
-
-});
-
-Route::put('api/v1/users/{id}', function() {
-
-    return json_encode(["message" => "update user record"]);
-
-});
-
-Route::delete('api/v1/users/{id}', function() {
-
-    return json_encode(["message" => "delete a user "]);
+    Route::delete('users/{id}', function() {
+        return json_encode(["message" => "delete a user "]);
+    });
 
 });
+
 
 /*
 |--------------------------------------------------------------------------
