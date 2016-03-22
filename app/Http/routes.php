@@ -34,7 +34,7 @@ Route::group(['prefix' => 'api/v1/'], function() {
     });
 
     Route::delete('users/{id}', function() {
-        
+
         return json_encode(["message" => "delete a user "]);
     });
 
@@ -47,35 +47,33 @@ Route::group(['prefix' => 'api/v1/'], function() {
 |--------------------------------------------------------------------------
 
 */
+Route::group(['prefix' => 'api/v1/'], function() {
 
-Route::get('api/v1/channels', function() {
+    Route::get('channels', function() {
 
-    return json_encode(["message" => "return all channels"]);
+        return json_encode(["message" => "return all channels"]);
+    });
 
-});
+    Route::get('channels/{id}', function() {
 
-Route::get('api/v1/channels/{id}', function() {
+        return json_encode(["message" => "return a single channel"]);
+    });
 
-    return json_encode(["message" => "return a single channel"]);
+    Route::post('channels', function() {
 
-});
+        return json_encode(["message" => "post a channel"]);
+    });
 
-Route::post('api/v1/channels', function() {
+    Route::put('channels/{id}', function() {
 
-    return json_encode(["message" => "post a channel"]);
+        return json_encode(["message" => "update a channel"]);
+    });
 
-});
+    Route::delete('channels/{id}', function() {
 
-Route::put('api/v1/channels/{id}', function() {
-
-    return json_encode(["message" => "update a channel"]);
-
-});
-
-Route::delete('api/v1/channels/{id}', function() {
-
-    return json_encode(["message" => "delete a channel"]);
-
+        return json_encode(["message" => "delete a channel"]);
+    });
+    
 });
 
 /*
