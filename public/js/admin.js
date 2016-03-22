@@ -46,17 +46,14 @@ $(document).ready(function(){
      * onSubmit swap channels
      */
     $("#swap_episodes").submit( function () {
-        var id      = $("#channel_id").val();
         var url     = "/dashboard/channel/swap/"+id;
-        var new_channel_id = $("#new_channel_id").val();
-        var token   = $("#token").val();
         var data    =
             {
                 parameter  :
                 {
-                    _token        : token,
-                    channel_id              : id,
-                    new_channel_id          : new_channel_id
+                    _token        : $("#token").val(),
+                    channel_id              : $("#channel_id").val(),
+                    new_channel_id          : $("#new_channel_id").val()
                 }
             }
 
@@ -72,10 +69,10 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        var channel_name = $("#channel_name").val().trim();
-        var channel_description = $("#channel_description").val().trim();
+        var channelName = $("#channel_name").val().trim();
+        var channelDescription = $("#channel_description").val().trim();
 
-        if( channel_name.length != 0 && channel_description.length ) {
+        if( channelName.length != 0 && channelDescription.length ) {
 
             var data =
             {
@@ -84,8 +81,8 @@ $(document).ready(function(){
                 {
                     _token                : $("#token").val(),
                     channel_id            : $("#channel_id").val(),
-                    channel_name          : channel_name,
-                    channel_description   : channel_description
+                    channel_name          : channelName,
+                    channel_description   : channelDescription
                 }
             }
             processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
@@ -107,23 +104,17 @@ $(document).ready(function(){
      * onSubmit event to handle Channel update
      */
     $("#episode_update").submit( function () {
-        var url                 = "/dashboard/episode/edit";
-        var token               = $("#token").val();
-        var episode_id          = $("#episode_id").val();
-        var episode             = $("#episode").val();
-        var channel_id          = $("#channel_id").val();
-        var description         = $("#description").val();
 
         var data =
         {
-            url        : url,
+            url        : "/dashboard/episode/edit",
             parameter  :
             {
-                _token                : token,
-                episode_id            : episode_id,
-                episode               : episode,
-                channel_id            : channel_id,
-                description           : description
+                _token                : $("#token").val(),
+                episode_id            : $("#episode_id").val(),
+                episode               : $("#episode").val(),
+                channel_id            : $("#channel_id").val(),
+                description           : $("#description").val()
             }
         }
 
@@ -142,7 +133,7 @@ $(document).ready(function(){
         var url       = "/dashboard/user/create";
         var token     = $("#_token").val();
         var username  = $("#username").val();
-        var user_role = $("#user_role").val();
+        var userRole = $("#user_role").val();
         var data =
             {
                 url        : url,
@@ -150,7 +141,7 @@ $(document).ready(function(){
                 {
                     _token      : token,
                     username    : username,
-                    user_role   : user_role
+                    user_role   : userRole
                 }
             }
         processAjax("POST", data.url, data.parameter, data.parameter.username );
@@ -162,20 +153,15 @@ $(document).ready(function(){
      * onSubmit event to handle User Edit
      */
     $("#edit_user").submit( function () {
-        var url       = "/dashboard/user/edit";
-        var token     = $("#_token").val();
-        var user_id   = $("#user_id").val();
-        var username  = $("#username").val();
-        var user_role = $("#user_role").val();
         var data =
             {
-                url        : url,
+                url        : "/dashboard/user/edit",
                 parameter  :
                 {
-                    _token      : token,
-                    user_id     : user_id,
-                    username    : username,
-                    user_role   : user_role
+                    _token      : $("#_token").val(),
+                    user_id     :  $("#user_id").val(),
+                    username    : $("#username").val(),
+                    user_role   : $("#user_role").val()
                 }
             }
         processAjax("PUT", data.url, data.parameter, data.parameter.username );
