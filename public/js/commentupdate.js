@@ -59,7 +59,7 @@ $(document).ready(function() {
 
                 //Decrease comment count when one deletes a comment
                 var count = $('#comment-count').html();
-                var count = Number(count) - 1;
+                count = Number(count) - 1;
 
                 //Set this new value in the html
                 $('#comment-count').html(count);

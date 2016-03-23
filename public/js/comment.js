@@ -113,7 +113,7 @@ $(document).ready(function() {
                             $('.load_comment').last().append(newComment);
                             //Increase the count by 1 after submitting a comment
                             var count = $('#comment-count').html();
-                            var count = Number(count) + 1;
+                            count = Number(count) + 1;
 
                             //Set this new value in the html
                             $('#comment-count').html(count);
