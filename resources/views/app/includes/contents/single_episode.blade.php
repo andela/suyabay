@@ -15,10 +15,10 @@
             </div>
 
             <div class="col s9 details">
+
                 <span class="podcast-episode-date">{{ $episode->created_at->diffForHumans() }}</span>
                 <span class="tag podcast-episode-date">{{ $episode->channel->channel_name }}</span>
                 <h5 class="podcast-episode-title">{{ $episode->episode_name }}</h5>
-
                 <div>
                     <audio width="10px;" src="{{ $episode->audio_mp3 }}" preload="auto" />
                 </div>
@@ -38,11 +38,11 @@
                     <input type="hidden" id="episode_id" value="{{ $episode->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}"> {{ $episode->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}" data-episode-id="{{ $episode->id }}"> {{ $episode->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <i class="fa fa-comment social-btn like"> {{ $episode->comment->count() }}</i>
+                        <i class="fa fa-comment social-btn like"> <span id="comment-count">{{ $episode->comment->count() }}</span></i>
                     </span>
 
                     <span style="padding-right:15px;">
@@ -64,7 +64,6 @@
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-body episode_comments">
-
                                 <ul class="collection">
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
@@ -76,7 +75,7 @@
                                       <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
                                                 <div class="col s2">
-                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
+                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                                 </div>
                                                 <div class="col s10">
                                                     <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
@@ -116,9 +115,8 @@
                                                 </li>
                                             @endif
                                     <li class="collection-item avatar">
-                                        <div class="row">
                                             <div class="col s2">
-                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
+                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                             </div>
 
                                             <form id="submit_comment" method="POST">

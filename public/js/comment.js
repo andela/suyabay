@@ -90,9 +90,6 @@ $(document).ready(function() {
                     switch (response.status_code) {
                         case 200:
 
-                            //Increment comment upon successful submission
-                            $('#comment-count').html(' ' + comment_count);
-
                             var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                             newComment += '<div class="row">';
                             newComment += '<div class="col s2">';
@@ -114,6 +111,14 @@ $(document).ready(function() {
                             newComment += '</div></div></div></div>';
 
                             $('.load_comment').last().append(newComment);
+                            //Increase the count by 1 after submitting a comment
+                            var count = $('#comment-count').html();
+                            var count = Number(count) + 1;
+
+                            //Set this new value in the html
+                            $('#comment-count').html(count);
+
+                            //empty the comment field
                             $('#new-comment-field').val('');
 
                             break;
