@@ -16,7 +16,7 @@
     <div class="menu">
         <nav id="hero-menu">
             <a class="class" href="/developer">Developer</a>
-            <a href="/developer/docs">docs</a>
+            <a href="http://suyabay.readthedocs.org/en/latest/">docs</a>
             <a href="/developer/partners">Partners</a>
             <a href="/developer/myApp">MyApp</a>
         </nav>  
@@ -45,7 +45,7 @@
     <div class="feature-content">
             <div class="text-content"> 
                 <h2 style='color:#2793e6; font-size:25px; font-weight: 300; line-height: 30px;'>
-                    <a href="/developer/docs">Docs</a>
+                    <a href="suyabay.readthedocs.org">Docs</a>
                 </h2>
                 <p style="font-size: 15px; font-weight: 400; line-height: 24px;">See how Suyabay’s APIs work in action and find inspiration to create your next big thing.</p>
                 <img  src ="{{ load_asset('images/apiimage2.png') }}">

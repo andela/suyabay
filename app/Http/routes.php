@@ -45,6 +45,7 @@ Route::get('/channel/{id}', [
 */
 
 Route::get('/developer', 'ApiController@index');
+Route::get('suyabay.readthedocs.org', 'ApiController@docs');
 /*
 /-------------------------------------------------------------------------------
 / About
