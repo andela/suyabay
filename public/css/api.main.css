@@ -40,11 +40,35 @@ body, html{
     margin: auto;
     max-height:50px !important;
     margin-top: 380px;
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 13px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 40px;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 #hero-menu a {
     width: 20%;
-    float: right;
+    float: right; 
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 13px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 40px;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    display: inline-block;  
+
+
 
 }
 
