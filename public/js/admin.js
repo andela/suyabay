@@ -6,14 +6,12 @@ $(document).ready(function(){
     $("#delete_channel", this).on("click", function () {
         var id      = $(this).data("id");
         var url     = "/dashboard/channel/"+id;
-        var token   = $(this).data("token");
-        var name    = $(this).data("name");
         var data    =  {
             url : url,
             parameter: {
-                _token       : token,
+                _token       : $(this).data("token"),
                 channel_id   : id,
-                channel_name : name
+                channel_name : $(this).data("name")
             }
         }
         // confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
@@ -25,16 +23,13 @@ $(document).ready(function(){
     $("#swap_episode_delete_channel", this).on("click", function () {
         var id      = $(this).data("id");
         var url     = "/dashboard/channel/"+id;
-        var token   = $(this).data("token");
-        var name    = $(this).data("name");
-        var episodes = $(this).data("episoes");
         var data    =  {
             url : url,
             parameter: {
-                _token       : token,
+                _token       : $(this).data("token"),
                 channel_id   : id,
-                channel_name : name,
-                episodes : episodes
+                channel_name : $(this).data("name"),
+                episodes : $(this).data("episoes")
             }
         }
         confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
@@ -43,43 +38,17 @@ $(document).ready(function(){
     });
 
     /**
-     * onSubmit event to handle Channel creation
-     */
-    $("#create_channel").submit( function () {
-        var url = "/dashboard/channel/create";
-        var token               = $("#token").val();
-        var channel_name        = $("#name").val();
-        var channel_description = $("#description").val();
-        var data =
-            {
-                url        : url,
-                parameter  :
-                {
-                    _token        : token,
-                    name          : channel_name,
-                    description   : channel_description
-                }
-            }
-        processAjax("POST", data.url, data.parameter, data.parameter.channel_name );
-
-        return false;
-    });
-
-    /**
      * onSubmit swap channels
      */
     $("#swap_episodes").submit( function () {
-        var id      = $("#channel_id").val();
         var url     = "/dashboard/channel/swap/"+id;
-        var new_channel_id = $("#new_channel_id").val();
-        var token   = $("#token").val();
         var data    =
             {
                 parameter  :
                 {
-                    _token        : token,
-                    channel_id              : id,
-                    new_channel_id          : new_channel_id
+                    _token        : $("#token").val(),
+                    channel_id              : $("#channel_id").val(),
+                    new_channel_id          : $("#new_channel_id").val()
                 }
             }
 
@@ -91,25 +60,37 @@ $(document).ready(function(){
     /**
      * onSubmit event to handle Channel update
      */
-    $("#channel_update").submit( function () {
-        var url                 = "/dashboard/channel/edit";
-        var token               = $("#token").val();
-        var channel_id          = $("#channel_id").val();
-        var channel_name        = $("#channel_name").val();
-        var channel_description = $("#channel_description").val();
+    $("#channel_update").submit( function (event) {
 
-        var data = 
-        {
-            url        : url,
-            parameter  :
+        event.preventDefault();
+
+        var channelName = $("#channel_name").val().trim();
+        var channelDescription = $("#channel_description").val().trim();
+
+        if( channelName.length != 0 && channelDescription.length ) {
+
+            var data =
             {
-                _token                : token,
-                channel_id            : channel_id,
-                channel_name          : channel_name,
-                channel_description   : channel_description
+                url        : "/dashboard/channel/edit",
+                parameter  :
+                {
+                    _token                : $("#token").val(),
+                    channel_id            : $("#channel_id").val(),
+                    channel_name          : channelName,
+                    channel_description   : channelDescription
+                }
             }
+            processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
+        } else{
+            swal({
+                title: "Error!",
+                text: "Please provide both a channel name and description",
+                type: "error",
+                showCancelButton: false,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            });
         }
-        processAjax("PUT", data.url, data.parameter, data.parameter.channel_name );
 
         return false;
     });
@@ -118,28 +99,22 @@ $(document).ready(function(){
      * onSubmit event to handle Channel update
      */
     $("#episode_update").submit( function () {
-        var url                 = "/dashboard/episode/edit";
-        var token               = $("#token").val();
-        var episode_id          = $("#episode_id").val();
-        var episode             = $("#episode").val();
-        var channel_id          = $("#channel_id").val();
-        var description         = $("#description").val();
-        
+
         var data =
         {
-            url        : url,
+            url        : "/dashboard/episode/edit",
             parameter  :
             {
-                _token                : token,
-                episode_id            : episode_id,
-                episode               : episode,
-                channel_id            : channel_id,
-                description           : description
+                _token                : $("#token").val(),
+                episode_id            : $("#episode_id").val(),
+                episode               : $("#episode").val(),
+                channel_id            : $("#channel_id").val(),
+                description           : $("#description").val()
             }
         }
 
         processEpisodeUpdate("PUT", data.url, data.parameter, data.parameter.episode );
-        
+
         // confirmUpdate(data.url, data.parameter, data.parameter.episode_name, data.parameter.channel_id);
 
 
@@ -153,7 +128,7 @@ $(document).ready(function(){
         var url       = "/dashboard/user/create";
         var token     = $("#_token").val();
         var username  = $("#username").val();
-        var user_role = $("#user_role").val();
+        var userRole = $("#user_role").val();
         var data =
             {
                 url        : url,
@@ -161,7 +136,7 @@ $(document).ready(function(){
                 {
                     _token      : token,
                     username    : username,
-                    user_role   : user_role
+                    user_role   : userRole
                 }
             }
         processAjax("POST", data.url, data.parameter, data.parameter.username );
@@ -173,20 +148,15 @@ $(document).ready(function(){
      * onSubmit event to handle User Edit
      */
     $("#edit_user").submit( function () {
-        var url       = "/dashboard/user/edit";
-        var token     = $("#_token").val();
-        var user_id   = $("#user_id").val();
-        var username  = $("#username").val();
-        var user_role = $("#user_role").val();
         var data =
             {
-                url        : url,
+                url        : "/dashboard/user/edit",
                 parameter  :
                 {
-                    _token      : token,
-                    user_id     : user_id,
-                    username    : username,
-                    user_role   : user_role
+                    _token      : $("#_token").val(),
+                    user_id     :  $("#user_id").val(),
+                    username    : $("#username").val(),
+                    user_role   : $("#user_role").val()
                 }
             }
         processAjax("PUT", data.url, data.parameter, data.parameter.username );
@@ -224,7 +194,7 @@ function confirmDelete (url, parameter, id, name)
     function ( isConfirm )
     {
         if ( isConfirm) {
-            document.location.href = "/dashboard/channel/swap/"+id;    
+            document.location.href = "/dashboard/channel/swap/"+id;
         } else {
             document.location.href = "/dashboard/channels/all";
         }

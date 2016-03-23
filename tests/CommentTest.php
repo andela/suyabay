@@ -95,11 +95,11 @@ class CommentTest extends TestCase
             ->take(10)
             ->get();
 
-        $oldCommCastedToArray = (array) $oldComments[0];
+        $oldCommentCastedToArray = (array) $oldComments[0];
 
-        $this->assertTrue(is_array($oldCommCastedToArray));
-        $this->assertArrayHasKey('episode_id', $oldCommCastedToArray);
-        $this->assertArrayHasKey('comments', $oldCommCastedToArray);
+        $this->assertTrue(is_array($oldCommentCastedToArray));
+        $this->assertArrayHasKey('episode_id', $oldCommentCastedToArray);
+        $this->assertArrayHasKey('comments', $oldCommentCastedToArray);
 
     }
 
@@ -159,6 +159,7 @@ class CommentTest extends TestCase
              $this->visit('/episodes/1')
              ->dontSee($comment['comments']);
     }
+    
     /**
      * test that a Comment belongs to an episode.
      *

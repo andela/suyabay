@@ -145,7 +145,7 @@ class EpisodeTest extends TestCase
         );
         $this->see($episode['episode_name']);
 
-        $this->assertViewHasAll(['episodes', 'channels']);
+        $this->assertViewHasAll(['episode', 'channels']);
         $this->seeInDatabase('episodes', ['episode_name' => $episode['episode_name']]);
     }
 

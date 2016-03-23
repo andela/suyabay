@@ -8,9 +8,4 @@ class ApiController extends Controller
     {
         return view('api.index');
     }
-
-    public function docs()
-    {
-        return view('suyabay.readthedocs.org');
-    }
 }
