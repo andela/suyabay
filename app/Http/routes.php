@@ -13,15 +13,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
         return json_encode(["message" => "return error 404"]);
     });
 
-    Route::get('users', function () {
+    Route::get('users', [
+        'uses' => 'UserController@getAllUsers'
+    ]);
 
-        return json_encode(["message" => "return all users"]);
-    });
-
-    Route::get('users/{id}', function () {
-
-        return json_encode(["message" => "return a single user"]);
-    });
+    Route::get('users/{id}', [
+        'uses' => 'UserController@getSingleUser'
+    ]);
 
     Route::post('users', function () {
 
