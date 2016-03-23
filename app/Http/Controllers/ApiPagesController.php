@@ -2,7 +2,7 @@
 
 namespace Suyabay\Http\Controllers;
 
-class ApiController extends Controller
+class ApiPagesController extends Controller
 {
     public function index()
     {

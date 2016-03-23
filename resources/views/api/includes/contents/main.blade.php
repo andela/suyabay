@@ -16,7 +16,7 @@
     <div class="menu">
         <nav id="hero-menu">
             <a class="class" href="/developer">Developer</a>
-            <a href="http://suyabay.readthedocs.org/en/latest/">docs</a>
+            <a href="http://suyabay.readthedocs.org/en/latest/">Docs</a>
             <a href="/developer/partners">Partners</a>
             <a href="/developer/myApp">MyApp</a>
         </nav>  
@@ -28,7 +28,7 @@
 
     <div class="feature-content">
         <div class="text-content"> 
-            <h1 style='color:#2793e6; font-size:25px; font-weight: 300; line-height: 30px;'><a href="developer/myapp">myApp</a></h1>
+            <h1 style='color:#2793e6; font-size:25px; font-weight: 300; line-height: 30px;'><a href="developer/myapp">MyApp</a></h1>
             <p style="font-size: 15px; font-weight: 400; line-height: 24px;">Check out your amazing apps that were built using Suyabay’s APIs..</p>
             <img  src ="{{ load_asset('images/apiimage4.png') }}">
         </div>
