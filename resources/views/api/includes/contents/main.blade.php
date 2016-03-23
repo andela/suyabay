@@ -28,26 +28,24 @@
 
     <div class="feature-content">
         <div class="text-content"> 
-            <h1 style='color:#2793e6; padding: 10px; font-size:25px; font-weight: 300; line-height: 30px;'><a href="developer/myapp">MyApp</a></h1>
-            <p style="font-size: 15px; font-weight: 400; line-height: 24px;">Check out your amazing apps that were built using Suyabay’s APIs..</p>
+            <h1><a href="developer/myapp">MyApp</a></h1>
+            <p>Check out your amazing apps that were built using Suyabay’s APIs..</p>
             <img  src ="{{ load_asset('images/apiimage4.png') }}">
         </div>
     </div>
 
     <div class="feature-content">
         <div class="text-content"> 
-            <h2 style='color:#2793e6; padding: 10px; font-size:25px; font-weight: 300; line-height: 30px;'><a href="/developer/partners">Partners</a></h2>
-            <p style="font-size: 15px; font-weight: 400; line-height: 24px;">Check out our suppporters and partners.</p>
+            <h1><a href="/developer/partners">Partners</a></h1>
+            <p>Check out our suppporters and partners.</p>
             <img  src ="{{ load_asset('images/apiimage.png') }}">
         </div>
     </div>
 
     <div class="feature-content">
             <div class="text-content"> 
-                <h2 style='color:#2793e6; padding: 10px; font-size:25px; font-weight: 300; line-height: 30px;'>
-                    <a href="suyabay.readthedocs.org">Docs</a>
-                </h2>
-                <p style="font-size: 15px; font-weight: 400; line-height: 24px;">See how Suyabay’s APIs work in action and find inspiration to create your next big thing.</p>
+                <h1><a href="suyabay.readthedocs.org">Docs</a></h1>
+                <p>See how Suyabay’s APIs work in action and find inspiration to create your next big thing.</p>
                 <img  src ="{{ load_asset('images/apiimage2.png') }}">
             </div>
     </div>

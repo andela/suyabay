@@ -40,8 +40,8 @@ body, html{
     margin: auto;
     max-height:50px !important;
     margin-top: 380px;
-    font-family: 'Roboto',arial,sans-serif;
-    font-size: 13px;
+    font-family: 'robotoLight';
+    font-size: 18px;
     padding: 0 10px;
     color: #fff;
     font-size: 13px;
@@ -61,8 +61,10 @@ body, html{
 
 .slider-text-header{
     text-align: right;
+    font-weight: 500;
     display: table-cell;
     vertical-align: middle;
+    font-family: 'robotoMedium';
     color: #fff;
 }
 
@@ -99,6 +101,20 @@ body, html{
     margin-left: auto;
 }
 
+.text-content h1 {
+    color:#2793e6; 
+    padding: 10px; 
+    font-size:25px; 
+    font-weight: 200; 
+    line-height: 30px;
+}
+
+.text-content .p {
+    font-size: 15px;
+    font-weight: 400; 
+    line-height: 24px;
+}
+
 .feature-content .text-content {
     text-align: center;
 }
@@ -112,6 +128,33 @@ body, html{
     left: 30px;
 }
 
+.nav-container {
+    ..display: none;
+    ..margin-top: -100px;
+    ..background: gray;
+    height: 100vh!important;
+}
+
+.logo {
+    margin: auto;
+    padding: 15px;
+}
+
+.logo-box {
+    margin: 0 auto;
+    z-index: 55;
+}
+
+@font-face {
+    font-family: robotoLight;
+    src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: robotoMedium;
+    src: url('../fonts/Roboto-Medium.ttf');
+    font-size: 18px;
+}
 
 
 
