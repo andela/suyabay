@@ -4,11 +4,13 @@ $(document).ready(function(){
      * onClick event to handle Channel delete
      */
     $("#delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
         var data    =  {
-            url : "/dashboard/channel/"+id,
+            url : url,
             parameter: {
                 _token       : $(this).data("token"),
-                channel_id   : $(this).data("id"),
+                channel_id   : id,
                 channel_name : $(this).data("name")
             }
         }
@@ -19,11 +21,13 @@ $(document).ready(function(){
     });
 
     $("#swap_episode_delete_channel", this).on("click", function () {
+        var id      = $(this).data("id");
+        var url     = "/dashboard/channel/"+id;
         var data    =  {
-            url : "/dashboard/channel/"+id,
+            url : url,
             parameter: {
                 _token       : $(this).data("token"),
-                channel_id   : $(this).data("id"),
+                channel_id   : id,
                 channel_name : $(this).data("name"),
                 episodes : $(this).data("episoes")
             }
