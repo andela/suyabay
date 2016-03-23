@@ -58,9 +58,9 @@ class UserController extends Controller
     /**
      * This method return a single user to the calling API endpoint
      */
-    public function getSingleUser($id)
+    public function getSingleUser($username)
     {
-        $user = User::where('id', '=', $id)
+        $user = User::where('username', '=', $username)
         ->get([
             'id',
             'username',
@@ -81,24 +81,6 @@ class UserController extends Controller
 
         return Response::json(['message' => 'User Not found'], 404);
 
-    }
-
-    /**
-     * This method create a user
-     */
-    public function postUser(Request $request)
-    {
-        return $this->validateUserRequest($request);
-        
-        $users = User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'email'    => $request->email
-        ]);
-
-        if ($users->id) {
-            return Response::json(['message' => 'User created successfully'], 200);
-        }
     }
 
     /**
@@ -166,6 +148,32 @@ class UserController extends Controller
         if ($validator->fails()) {
             return Response::json(['message' => 'User already exist or incomplete fields'], 400);
         }
+    }
+
+    /**
+     * This method create a user
+     */
+    public function editUser(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Failed'], 400);
+        }
+
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->email =  $request->email;
+        $user->save();
+
+        if ($user->id) {
+            return Response::json(['message' => 'User updated successfully'], 201);
+        }
+        
     }
 
     /**

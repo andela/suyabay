@@ -27,12 +27,8 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'UserController@getAllUsers'
     ]);
 
-    Route::get('users/{id}', [
+    Route::get('users/{username}', [
         'uses' => 'UserController@getSingleUser'
-    ]);
-
-    Route::post('users', [
-        'uses' => 'UserController@postUser'
     ]);
 
     Route::put('users/{id}', [
