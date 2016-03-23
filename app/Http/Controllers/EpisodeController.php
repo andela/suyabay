@@ -54,16 +54,12 @@ class EpisodeController extends Controller
      */
     public function singleEpisode($id)
     {
-        $episodes = Episode::with('like')->where('id', $id)->get();
+        $episode = Episode::with('like')->find($id);
         $channels = Channel::all();
-        $firstTenEpisodes = $episodes->first()->comment()->orderBy('created_at', 'asc')->take(10)->get();
+        $firstTenComments = $episode->comment()->orderBy('created_at', 'asc')->take(10)->get();
 
-        $episodes->each(function ($episode, $key) {
+        $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
 
-            $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
-
-        });
-
-        return view('app.pages.single_episode', compact('episodes', 'channels', 'firstTenEpisodes'));
+        return view('app.pages.single_episode', compact('episode', 'channels', 'firstTenComments'));
     }
 }
