@@ -2,17 +2,22 @@
     <div class="row">
         <h4>Create Channel</h4><br>
         <div class="row">
+            <div class="col s12 m4 l8">
+                @include('dashboard.includes.sections.alerts')
+            </div>
+        </div>
+        <div class="row">
             <form class="col s12" id="create_channel" action="/dashboard/channel/create" method="post">
                 <input type="hidden" value="{{ csrf_token() }}" name="_token" id="token" />
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Channel Title" name="name" id="name" type="text" require="true">
+                        <input placeholder="Channel Title" name="channel_name" id="name" type="text" require="true">
                         <label for="name">Channel Title</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" id="description" name="description" placeholder="Channel Description" require="true">
+                        <input type="text" id="description" name="channel_description" placeholder="Channel Description" require="true">
                         <label for="description">Description</label>
                     </div>
                 </div>
