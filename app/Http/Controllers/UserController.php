@@ -7,41 +7,74 @@ use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use League\Fractal\Manager;
+use League\Fractal\Resource\Collection;
+use Suyabay\Http\Transformers\UserTransformer;
 
 class UserController extends Controller
 {
     protected $mail;
     protected $response;
+    protected $fractal;
+
+    public function __construct(Manager $fractal){
+        $this->fractal = $fractal;
+    }
 
     /**
      * This method return all users to the calling API endpoint
      */
-    public function getAllUsers(Response $response)
+    public function getAllUsers()
     {
-        $users = User::orderBy('id', 'asc')->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar']);
+        $users = User::orderBy('id', 'asc')->get([
+            'id', 
+            'username', 
+            'email', 
+            'created_at', 
+            'updated_at', 
+            'avatar'
+        ]);
 
-        if (count($users) > 0) {
-            return \Response::json($users, $status = 200, ['Content-Type' => 'application/json']);
+        $resource = new Collection($users, new UserTransformer());
+
+        if (isset($resource)) {
+            $data = $this->fractal->createData($resource)->toArray();
+
+            return Response::json($data, 200);
+
         }
 
-        return \Response::json(['message' => 'Not found'], $status = 404, ['Content-Type' => 'application/json']);
+        return Response::json(['message' => 'Not found'], 404);
+        
     }
 
     /**
      * This method return a single user to the calling API endpoint
      */
-    public function getSingleUser(Response $response, $id)
+    public function getSingleUser($id)
     {
-        $user = User::where('id', '=', $id)->get(['id', 'username', 'email', 'created_at', 'updated_at', 'avatar']);
+        $user = User::where('id', '=', $id)->get([
+            'id', 
+            'username', 
+            'email', 
+            'created_at', 
+            'updated_at', 
+            'avatar'
+        ]);
 
-        if (count($user) > 0) {
-            return \Response::json($user, $status = 200, ['Content-Type' => 'application/json']);
+        $resource = new Collection($user, new UserTransformer());
+
+        if (isset($resource)) {
+            $data = $this->fractal->createData($resource)->toArray();
+
+            return Response::json($data, 200);
+
         }
 
-        return \Response::json(['message' => 'Not found'], $status = 404, ['Content-Type' => 'application/json']);
+        return Response::json(['message' => 'Not found'], 404);
 
     }
 
