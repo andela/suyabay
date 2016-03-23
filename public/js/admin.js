@@ -4,16 +4,12 @@ $(document).ready(function(){
      * onClick event to handle Channel delete
      */
     $("#delete_channel", this).on("click", function () {
-        var id      = $(this).data("id");
-        var url     = "/dashboard/channel/"+id;
-        var token   = $(this).data("token");
-        var name    = $(this).data("name");
         var data    =  {
-            url : url,
+            url : "/dashboard/channel/"+id,
             parameter: {
-                _token       : token,
-                channel_id   : id,
-                channel_name : name
+                _token       : $(this).data("token"),
+                channel_id   : $(this).data("id"),
+                channel_name : $(this).data("name")
             }
         }
         // confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
@@ -23,18 +19,13 @@ $(document).ready(function(){
     });
 
     $("#swap_episode_delete_channel", this).on("click", function () {
-        var id      = $(this).data("id");
-        var url     = "/dashboard/channel/"+id;
-        var token   = $(this).data("token");
-        var name    = $(this).data("name");
-        var episodes = $(this).data("episoes");
         var data    =  {
-            url : url,
+            url : "/dashboard/channel/"+id,
             parameter: {
-                _token       : token,
-                channel_id   : id,
-                channel_name : name,
-                episodes : episodes
+                _token       : $(this).data("token"),
+                channel_id   : $(this).data("id"),
+                channel_name : $(this).data("name"),
+                episodes : $(this).data("episoes")
             }
         }
         confirmDelete(data.url, data.parameter, data.parameter.channel_id, data.parameter.channel_name );
