@@ -112,9 +112,7 @@
                                             @endif
                                     <li class="collection-item avatar">
                                         <div class="row">
-                                            <div class="view_more_comments">
-                                                <a href="#" title="View more comments"></a> View more comments</a>
-                                            </div>
+                                            
                                             <div class="col s2">
                                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
                                             </div>

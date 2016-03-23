@@ -21,15 +21,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'UserController@getSingleUser'
     ]);
 
-    Route::post('users', function () {
+    Route::post('users', [
+        'uses' => 'UserController@postUser'
+    ]);
 
-        return json_encode(["message" => "post a user"]);
-    });
-
-    Route::put('users/{id}', function () {
-
-        return json_encode(["message" => "update user record"]);
-    });
+    Route::put('users/{id}', [
+        'uses' => 'UserController@editUser'
+    ]);
 
     Route::delete('users/{id}', function () {
 

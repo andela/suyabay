@@ -2,6 +2,8 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Validator;
+use Hash;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Invite;
@@ -76,6 +78,59 @@ class UserController extends Controller
 
         return Response::json(['message' => 'Not found'], 404);
 
+    }
+
+    /**
+     * This method create a user
+     */
+    public function postUser(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Failed'], 400);
+        }
+
+        $users = User::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'email'    => $request->email
+            ]);
+        if ($users->id) {
+            return Response::json(['message' => 'User created successfully'], 200);
+        }
+
+    }
+
+    /**
+     * This method create a user
+     */
+    public function editUser(Request $request, $id)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Failed'], 400);
+        }
+
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->email =  $request->email;
+        $user->save();
+
+        if ($user->id) {
+            return Response::json(['message' => 'User updated successfully'], 201);
+        }
+        
     }
 
     /**
