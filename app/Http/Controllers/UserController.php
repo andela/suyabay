@@ -85,7 +85,6 @@ class UserController extends Controller
      */
     public function postUser(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users',
@@ -108,11 +107,10 @@ class UserController extends Controller
     }
 
     /**
-     * This method create a user
+     * This method edit a user
      */
     public function editUser(Request $request, $id)
     {
-
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users'
@@ -130,7 +128,36 @@ class UserController extends Controller
         if ($user->id) {
             return Response::json(['message' => 'User updated successfully'], 201);
         }
-        
+
+    }
+
+    /**
+     * This method edit a user
+     */
+    public function editSingleUser(Request $request, $id)
+    {
+        if (!isset($id)) {
+            return Response::json(['message' => 'Failed'], 400);
+
+        }
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Failed'], 400);
+        }
+
+        $user = User::find($id);
+        $user->username = $request->username;
+        $user->save();
+
+        if ($user->id) {
+            return Response::json(['message' => 'User updated successfully'], 200);
+
+        }
+
     }
 
     /**

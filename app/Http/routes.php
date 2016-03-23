@@ -29,10 +29,9 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'UserController@editUser'
     ]);
 
-    Route::delete('users/{id}', function () {
-
-        return json_encode(["message" => "delete a user "]);
-    });
+    Route::patch('users/{id}', [
+        'uses' => 'UserController@editSingleUser'
+    ]);
 
 });
 
