@@ -49,5 +49,4 @@
                 <img  src ="{{ load_asset('images/apiimage2.png') }}">
             </div>
     </div>
-
 </div>

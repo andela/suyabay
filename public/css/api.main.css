@@ -3,15 +3,24 @@ body, html{
     position: relative;
     background-color: #E0E0E0; 
 }
+
 #hero{
     max-height: 500px !important;
     position: relative;
-    top:-40px;
+    top: -90px;
 }
 
 #hero, #hero > *{
     width: 100%;
     min-height: 50%;
+}
+
+#hero #overlay-image{
+    background: url('../images/hero.jpg');
+     position: absolute;
+    -webkit-background-size:cover;
+    background-size:cover;
+    height: 450px;
 }
 
 #hero #overlay-image{
@@ -99,7 +108,7 @@ body, html{
     background-color: #fff;
     margin-right: auto;
     margin-left: auto;
-}
+}    
 
 .text-content h1 {
     color:#2793e6; 
@@ -155,8 +164,3 @@ body, html{
     src: url('../fonts/Roboto-Medium.ttf');
     font-size: 18px;
 }
-
-
-
-
-

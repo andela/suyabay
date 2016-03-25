@@ -8,6 +8,7 @@
 */
 
 Route::get('/developer', 'ApiPagesController@index');
+Route::get('/developer/myapp', 'ApiPagesController@myApp');
 
 /*
 |--------------------------------------------------------------------------
