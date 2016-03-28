@@ -1,24 +1,23 @@
 $(document).ready(function() {
 
-
     $(".view_more_comments").on("click",function() {
 
         var avatar = $(this).data('avatar');
         var numOfComments = $(".load_comment").find("div#show_comment");
-        var episode_id  = $("#episode_id").val();
+        var episodeId  = $("#episode_id").val();
 
         try {
 
             $.ajax({
-
-            url:'/comment',
-            type:'GET',
-            data:{'offset': numOfComments.size(),'episode_id':episode_id},
-
+                url:'/comment',
+                type:'GET',
+                data:{
+                     offset: numOfComments.size(),
+                     episode_id: episodeId
+            },
             success: function(data) {
 
                 for (i = 0 ; i < data.comments.length; i++) {
-
                     var comments = data.comments[i];
 
                     $('#comment-count').html(' ' + numOfComments.size());
@@ -45,12 +44,9 @@ $(document).ready(function() {
 
                      $('.load_comment').last().append(newComment);
                      $('#new-comment-field').val('');
-
                 }
             }
-
         });
-
         } catch (e) {
 
             console.log(e);
@@ -64,17 +60,17 @@ $(document).ready(function() {
 
         var comment = $('#new-comment-field').val();
         var avatar = $(this).data('avatar');
-        var comment_count = parseInt($(this).data('comment-count')) + 1;
+        var commentCount = parseInt($(this).data('comment-count')) + 1;
         var token = $(this).data('token');
 
         var url = '/comment';
         var user_id = $('#user_id').val();
-        var episode_id = $('#episode_id').val();
+        var episodeId = $('#episode_id').val();
 
         var data = {
             parameter: {
                 _token: token,
-                episode_id: episode_id,
+                episode_id: episodeId,
                 comment: comment
             }
         }
