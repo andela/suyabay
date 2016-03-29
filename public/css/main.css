@@ -421,6 +421,10 @@ Navigations Styles
     color: #999;
 }
 
+.no-style-link {
+    margin-right: 10px;
+}
+
 .fb-share:hover {
     color: #3b5998;
 }

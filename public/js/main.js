@@ -1,23 +1,22 @@
-(function($){
-  $(function(){
+(function($) {
+    $(function() {
 
-    $('.button-collapse').sideNav({
-        menuWidth: 300,
-        edge: 'left',
-        closeOnClick: true
+        $('.button-collapse').sideNav({
+            menuWidth: 300,
+            edge: 'left',
+            closeOnClick: true
+        });
+
+        $('.parallax').parallax();
+
     });
 
-    $('.parallax').parallax();
-
-  });
-
-  // end of document ready
+    // end of document ready
 
 })(jQuery);
 
 // end of jQuery name space
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.materialboxed').materialbox();
 });
-
