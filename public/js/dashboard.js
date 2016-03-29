@@ -80,17 +80,13 @@ $(document).ready(function() {
     # Delete Episode Function
     */
     function activateEpisode(episodeId) {
-        var
-            url = '/dashboard/episode/activate',
-            token = document.getElementById('token').value,
-            method = 'PATCH',
-            functionName = arguments.callee.name;
 
+        var functionName = arguments.callee.name;
         var data = {
-            url: url,
-            method: method,
+            url: '/dashboard/episode/activate',
+            method: 'PATCH',
             parameter: {
-                _token: token,
+                _token: document.getElementById('token').value,
                 episode_id: episodeId
             }
         }
