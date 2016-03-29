@@ -103,7 +103,7 @@ $(document).ready(function() {
             },
             error: function()
             {
-                alert('Are you sure you doing this the right way?');
+                swal('Are you sure you doing this the right way?');
             },
         });
     }
