@@ -1,25 +1,17 @@
 $(document).ready(function() {
 
-    $('.load_comment').on(
-        'click',
-        'a#comment_action_caret',
+    $('.load_comment').on('click', 'a#comment_action_caret', function(event) {
+        event.preventDefault();
+        $('.textarea-wrapper #comment_actions')
+            .not($(this)
+                .next())
+            .hide('slow');
+
+        $(this).next().toggle('slow');
+    });
+
+    $('.load_comment').on('click', '#comment_actions a.comment-action-delete',
         function(event) {
-
-            event.preventDefault();
-
-            $('.textarea-wrapper #comment_actions')
-                .not($(this)
-                    .next())
-                .hide('slow');
-
-            $(this).next().toggle('slow');
-        });
-
-    $('.load_comment').on(
-        'click',
-        '#comment_actions a.comment-action-delete',
-        function(event) {
-
             event.preventDefault();
 
             var this_ = $(this);
@@ -35,7 +27,6 @@ $(document).ready(function() {
                 confirmButtonText: 'Yes, delete it!',
                 closeOnConfirm: true
             }, function() {
-
                 //delete comment
                 var deleteComment = $.ajax({
                     method: 'DELETE',
@@ -74,9 +65,7 @@ $(document).ready(function() {
             });
         });
 
-    $('.load_comment').on(
-        'click',
-        '#comment_actions a.comment-action-edit',
+    $('.load_comment').on('click', '#comment_actions a.comment-action-edit',
         function(event) {
 
             event.preventDefault();
@@ -92,9 +81,10 @@ $(document).ready(function() {
             parent.find('.update-actions').hide('slow', function() {
 
                 var updateComment = '<div class="file-field input-field">';
-                updateComment += '<div class="file-path-wrapper input-field col s10 m10">';
+                updateComment += '<div class="file-path-wrapper input-field ';
+                updateComment += 'col s10 m10">';
                 updateComment += '<input name="comment" id="comment-field" ';
-                updateComment += 'type="text" style="margin-left:20px;" required ';
+                updateComment += 'type="text" style="margin-left:20px;" ';
                 updateComment += 'class="validate" value="' + comment + '"/>';
                 updateComment += '</div>';
                 updateComment += '</div>';
@@ -104,60 +94,57 @@ $(document).ready(function() {
             });
         });
 
-    $('.load_comment').on(
-        'keypress',
-        '#comment-field',
-        function(event) {
+    $('.load_comment').on('keypress', '#comment-field', function(event) {
+        if (event.which == 13) {
+            var this_ = $(this);
 
-            if (event.which == 13) {
+            var comment = this_.val().trim();
+            var commentId = this_
+                .parent()
+                .parent()
+                .parent()
+                .attr('data-comment-id');
 
-                var this_ = $(this);
+            var token = $('.load_comment').attr('data-token');
 
-                var comment = this_.val().trim();
-                var commentId = this_
-                    .parent()
-                    .parent()
-                    .parent()
-                    .attr('data-comment-id');
+            if (comment.length === 0 ||
+                commentId.length === 0 ||
+                token.length === 0) {
+                swal('Error Updating',
+                    'Something is missing in your comment. Please try again',
+                    'error'
+                );
+            } else {
 
-                var token = $('.load_comment').attr('data-token');
+                var updateComment = $.ajax({
+                    method: 'PUT',
+                    url: '/comment/' + commentId + '/edit',
+                    data: {
+                        _token: token,
+                        comment: comment
+                    }
+                });
 
-                if (comment.length === 0 || commentId.length === 0 || token.length === 0) {
+                updateComment.done(function() {
+
+                    swal({
+                        title: 'Updated!',
+                        text: 'Comment successfully updated',
+                        type: 'success'
+                    }, function() {
+                        location.reload();
+                    });
+
+                });
+
+                updateComment.fail(function() {
+
                     swal('Error Updating',
-                        'Something is missing in your comment. Please try again',
+                        'Error updating your comment. Please try again',
                         'error'
                     );
-                } else {
-
-                    var updateComment = $.ajax({
-                        method: 'PUT',
-                        url: '/comment/' + commentId + '/edit',
-                        data: {
-                            _token: token,
-                            comment: comment
-                        }
-                    });
-
-                    updateComment.done(function() {
-
-                        swal({
-                            title: 'Updated!',
-                            text: 'Comment successfully updated',
-                            type: 'success'
-                        }, function() {
-                            location.reload();
-                        });
-
-                    });
-
-                    updateComment.fail(function() {
-
-                        swal('Error Updating',
-                            'Error updating your comment. Please try again',
-                            'error'
-                        );
-                    });
-                }
+                });
             }
-        });
+        }
+    });
 });
