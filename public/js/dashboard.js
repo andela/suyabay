@@ -17,18 +17,18 @@ $(document).ready(function() {
         /*
 		# Add class to parent element of the <select/> element
     	*/
-        $(this).parent().closest('tr').prop("class", "selected");
+        $(this).parent().closest('tr').prop('class', 'selected');
 
 
-        if (actionType === "view") {
+        if (actionType === 'view') {
             window.location = action;
         }
 
-        if (actionType === "delete") {
+        if (actionType === 'delete') {
             deleteEpisode(action)
         };
 
-        if (actionType === "activate") {
+        if (actionType === 'activate') {
 
             item = $(this).parent().closest('tr');
             activateEpisode(action)
@@ -41,9 +41,9 @@ $(document).ready(function() {
     */
     function deleteEpisode(episodeId) {
         var
-            url = "/dashboard/episode/delete",
+            url = '/dashboard/episode/delete',
             token = document.getElementById('token').value,
-            method = "DELETE",
+            method = 'DELETE',
             episode_id = episodeId,
             functionName = arguments.callee.name;
 
@@ -57,13 +57,13 @@ $(document).ready(function() {
         }
 
         swal({
-                title: "Delete Episode",
-                text: "You will not be able to recover this episode!",
-                type: "warning",
+                title: 'Delete Episode',
+                text: 'You will not be able to recover this episode!',
+                type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel!",
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
                 closeOnCancelnConfirm: false,
                 closeOnCancel: false
             },
@@ -71,7 +71,7 @@ $(document).ready(function() {
                 if (isConfirm) {
                     ajaxCall(data, functionName)
                 } else {
-                    swal("Cancelled", "Your episode is safe :)", "error");
+                    swal('Cancelled', 'Your episode is safe :)', 'error');
                 }
             });
     }
@@ -81,9 +81,9 @@ $(document).ready(function() {
     */
     function activateEpisode(episodeId) {
         var
-            url = "/dashboard/episode/activate",
+            url = '/dashboard/episode/activate',
             token = document.getElementById('token').value,
-            method = "PATCH",
+            method = 'PATCH',
             functionName = arguments.callee.name;
 
         var data = {
@@ -96,13 +96,13 @@ $(document).ready(function() {
         }
 
         swal({
-                title: "Activate Episode",
-                text: "This Episode will be visible on your channel",
-                type: "warning",
+                title: 'Activate Episode',
+                text: 'This Episode will be visible on your channel',
+                type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: "success",
-                confirmButtonText: "Activate",
-                cancelButtonText: "Cancel!",
+                confirmButtonColor: 'success',
+                confirmButtonText: 'Activate',
+                cancelButtonText: 'Cancel!',
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -110,7 +110,7 @@ $(document).ready(function() {
                 if (isConfirm) {
                     ajaxCall(data, functionName)
                 } else {
-                    swal("Cancelled", "Your episode is safe :)", "error");
+                    swal('Cancelled', 'Your episode is safe :)', 'error');
                 }
             });
     }
@@ -141,10 +141,10 @@ $(document).ready(function() {
         */
         if (response.status === 401) {
             switch (functionName) {
-                case "deleteEpisode":
+                case 'deleteEpisode':
                     deleteEpisodeErrorAlert();
                     break;
-                case "activateEpisode":
+                case 'activateEpisode':
                     activateEpisodeErrorAlert();
                     break;
             }
@@ -155,10 +155,10 @@ $(document).ready(function() {
         */
         if (response.status === 200) {
             switch (functionName) {
-                case "deleteEpisode":
+                case 'deleteEpisode':
                     deleteEpisodeSuccessAlert();
                     break;
-                case "activateEpisode":
+                case 'activateEpisode':
                     activateEpisodeSuccessAlert();
                     break;
             }
@@ -173,14 +173,14 @@ $(document).ready(function() {
     # deleteEpisodeErrorAlert Message
     */
     function deleteEpisodeErrorAlert() {
-        swal("Hmmmm", "This episode does not exist ", "error");
+        swal('Hmmmm', 'This episode does not exist ', 'error');
     }
 
     /*
     # deleteEpisodeSuccessAlert Message
     */
     function deleteEpisodeSuccessAlert() {
-        swal("Deleted!", "Your episode has been deleted.", "success");
+        swal('Deleted!', 'Your episode has been deleted.', 'success');
         var deleted = $('.selected');
         deleted.hide();
     }
@@ -189,14 +189,14 @@ $(document).ready(function() {
     # activateEpisodeErrorAlert() Message
     */
     function activateEpisodeErrorAlert() {
-        swal("Hmmmm", "This episode does not exist ", "error");
+        swal('Hmmmm', 'This episode does not exist ', 'error');
     }
 
     function activateEpisodeSuccessAlert() {
-        swal("Activated", "Your episode has been Activated.", "success");
+        swal('Activated', 'Your episode has been Activated.', 'success');
 
-        var deleted = $(".selected");
-        var new_item = $("#active_section");
+        var deleted = $('.selected');
+        var new_item = $('#active_section');
 
         new_item.append(item[0]);
 
