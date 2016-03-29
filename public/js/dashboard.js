@@ -9,10 +9,10 @@ $(document).ready(function() {
     	*/
         var actionType = $(this).val(),
 
-            /*
+       /*
 		# Get <select/> element data-action
     	*/
-        var action = $(this).find('option:selected').data('action');
+         action = $(this).find('option:selected').data('action');
 
         /*
 		# Add class to parent element of the <select/> element
