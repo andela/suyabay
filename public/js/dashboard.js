@@ -7,12 +7,12 @@ $(document).ready(function() {
         /*
 		# Get <select/> element that was clicked on
     	*/
-        actionType = $(this).val(),
+        var actionType = $(this).val(),
 
             /*
 		# Get <select/> element data-action
     	*/
-        action = $(this).find('option:selected').data('action');
+        var action = $(this).find('option:selected').data('action');
 
         /*
 		# Add class to parent element of the <select/> element
@@ -196,9 +196,9 @@ $(document).ready(function() {
         swal('Activated', 'Your episode has been Activated.', 'success');
 
         var deleted = $('.selected');
-        var new_item = $('#active_section');
+        var newItem = $('#active_section');
 
-        new_item.append(item[0]);
+        newItem.append(item[0]);
 
         deleted.show();
     }
