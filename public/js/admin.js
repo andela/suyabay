@@ -127,10 +127,10 @@ $(document).ready(function(){
     $("#create_user").submit( function () {
         var url       = "/dashboard/user/create";
         var token     = $("#_token").val();
-        var username  = $("#username").val();
+        var username  = $("#username").val().trim();
 
         //throw error if nothing was passes in the username field
-        if (username.trim().length === 0) {
+        if (username.length === 0) {
             swal({
                 title: "Error!",
                 text: "Please provide a username",
