@@ -1,8 +1,7 @@
 Suyabay Podcast
 ---------------
 
-| |Build Status|
-| |Coverage Status|
+|Build Status| |Coverage Status|
 
 `SuyaBay`_ is a podcasting app built for suya lovers. Users can use the
 app either as a **guest** or a **registered user**. Being a registered
@@ -15,11 +14,11 @@ the `Suyabay Wiki`_.
 Installation
 ------------
 
-#. Clone the repository into your project folder
+1. Clone the repository into your project folder
    ``git clone https://github.com/andela/suyabay.git``
-#. Run ``composer install`` from cmd to install all project dependencies
-#. Update the values in ``.env`` file
-#. Run ``php artisan migrate`` to install the database migration
+2. Run ``composer install`` from cmd to install all project dependencies
+3. Update the values in ``.env`` file
+4. Run ``php artisan migrate`` to install the database migration
 
 Install Composer
 ----------------
@@ -121,3 +120,117 @@ the source, look at open issues and keep track of de
    :target: https://travis-ci.org/andela/suyabay
 .. |Coverage Status| image:: https://coveralls.io/repos/github/andela/suyabay/badge.svg?branch=staging
    :target: https://coveralls.io/github/andela/suyabay?branch=staging
+
+   =======
+
+Stack
+~~~~~
+
+::
+
+      * PHP/Laravel
+
+=======
+
+Tools
+~~~~~
+
+::
+
+      * Frontend - Materializecss, blade
+      * Database - postgresql(Any)
+
+General overview:
+~~~~~~~~~~~~~~~~~
+
+The overview is presented from two perspectives. The perpective of a
+user of the app (front-end) and the perspective of an admin(owner of the
+podcasting service).
+
+**frontend users should be able to:**
+
+::
+
+     1. Use SuyaBay as a guest. No registration/signin required.
+     2. Use SuyaBay as a registered user. Registration/signin required.
+     3. Have access to user dashboard:
+     **_Registered users_**:
+          - Should be able to subscribe/unsubscribe to channels and/or specific episodes
+          - See list of subscribed channels
+          - Have access to contact form
+          - Have access to FAQs, About and Terms and conditions pages
+          - Have access to other functionalities not yet implemented!
+
+     **_Guest users_**:
+          - Should be able to have access to only available(subscription not required) episodes
+          - Have access to contact form
+          - Have access to FAQs, About and Terms and conditions pages
+          - Have option to register or remain as a guest user
+
+**Admin users should be able to:**
+
+::
+
+     1. create/update/delete user roles.
+     2. create/update/delete channels.
+     3. upload/update/delete episodes
+
+Thank you for considering contributing to the Suyabay project! The
+contribution guide can be found in the `Suyabay documentation`_.
+
+The SuyaBay project is open-sourced software licensed under the `MIT
+license`_
+
+::
+
+     1. create/delete user roles.
+     2. create/delete channels.
+     3. upload/delete episodes
+     
+
+FEATURES (MOCKUP)
+-----------------
+
+1. User registration/login |user\_registration\_signin|
+
+2. User Dashboard |user dashboard|
+
+3. Watch Podcast |user dashboard-watch podcast|
+
+4. Contacts page |user dashboard-contacts page|
+
+=======
+
+::
+
+     1. create/update/delete user roles.
+     2. create/update/delete channels.
+     3. upload/update/delete episodes
+
+Thank you for considering contributing to the Suyabay project! The
+contribution guide can be found in the `Suyabay documentation`_.
+
+The SuyaBay project is open-sourced software licensed under the `MIT
+license`_
+
+Contributing to SuyaBay Podcast App
+-----------------------------------
+
+If you have an idea for SuyaBay Podcasting, feel free to suggest it in
+an `issue`_ on this repo.
+
+Supporting development
+----------------------
+
+If you enjoy using SuyaBay Podcasting then please leave a `review`_ to
+help promote continued development.
+
+.. _Suyabay documentation: https://github.com/andela/suyabay/wiki/contributions
+.. _MIT license: http://opensource.org/licenses/MIT
+.. _issue: https://www.github.com
+.. _review: http://www.suyabay.com
+
+.. |user\_registration\_signin| image:: screenshots/signup.png
+.. |user dashboard| image:: screenshots/landingpage.png
+.. |user dashboard-watch podcast| image:: screenshots/viewpost.png
+.. |user dashboard-contacts page| image:: screenshots/contact-page-2.png

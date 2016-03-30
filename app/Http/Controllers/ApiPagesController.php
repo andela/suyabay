@@ -8,4 +8,9 @@ class ApiPagesController extends Controller
     {
         return view('api.index');
     }
+
+    public function myApp()
+    {
+        return view('api.pages.myapp');
+    }
 }

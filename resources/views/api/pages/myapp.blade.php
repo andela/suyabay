@@ -6,6 +6,6 @@
 
 @section('content')
 
-    
+   @include('api.includes.contents.app')
 
 @endsection

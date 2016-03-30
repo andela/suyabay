@@ -1,3 +1,8 @@
+<!-- top nav -->
+        <div class="row">
+            @include("api.includes.sections.top_nav")
+        </div>
+
 <div id="hero" class="index_bg_container">
     <div id="overlay-image">
                 
@@ -18,7 +23,7 @@
             <a class="class" href="/developer">Developer</a>
             <a href="http://suyabay.readthedocs.org/en/latest/">Docs</a>
             <a href="/developer/partners">Partners</a>
-            <a href="/developer/myApp">MyApp</a>
+            <a href="/developer/myapp">MyApp</a>
         </nav>  
     </div> 
 </div>
