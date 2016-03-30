@@ -128,7 +128,9 @@ $(document).ready(function(){
         var url       = "/dashboard/user/create";
         var token     = $("#_token").val();
         var username  = $("#username").val();
+
         //throw error if nothing was passes in the username field
+        username = username.trim();
         if (username.length === 0) {
             swal({
                 title: "Error!",
