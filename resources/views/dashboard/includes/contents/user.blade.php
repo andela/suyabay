@@ -19,5 +19,8 @@
         </div>
         @endforeach
 
+        <div class="col s12">
+            {!! $users->render() !!}
+        </div>
     </div>
 </div>

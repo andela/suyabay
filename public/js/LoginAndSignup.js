@@ -139,7 +139,7 @@ function login() {
     var data = {
         url: '/login',
         parameter: {
-            _token: ('#token').val(),
+            _token: $('#token').val(),
             username: $('#username').val(),
             password: $('#password').val()
         }
