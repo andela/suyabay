@@ -85,25 +85,17 @@ class UserController extends Controller
      */
     public function postUser(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users',
-            'password' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return Response::json(['message' => 'Failed'], 400);
-        }
-
+        return $this->validateUserRequest($request);
+        
         $users = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'email'    => $request->email
-            ]);
+        ]);
+
         if ($users->id) {
             return Response::json(['message' => 'User created successfully'], 200);
         }
-
     }
 
     /**
@@ -111,14 +103,7 @@ class UserController extends Controller
      */
     public function editUser(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users'
-        ]);
-
-        if ($validator->fails()) {
-            return Response::json(['message' => 'Failed'], 400);
-        }
+        return $this->validateUserRequest($request);
 
         $user = User::find($id);
         $user->username = $request->username;
@@ -136,8 +121,8 @@ class UserController extends Controller
      */
     public function editSingleUser(Request $request, $id)
     {
-        if (!isset($id)) {
-            return Response::json(['message' => 'Failed'], 400);
+        if (! isset($id)) {
+            return Response::json(['message' => 'User id is missing'], 400);
 
         }
 
@@ -146,7 +131,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json(['message' => 'Failed'], 400);
+            return Response::json(['message' => 'User already exist'], 400);
         }
 
         $user = User::find($id);
@@ -158,6 +143,26 @@ class UserController extends Controller
 
         }
 
+    }
+
+    /**
+     * This method valdates the user request
+     * 
+     * @param $request
+     * 
+     * @return json $response
+     */
+    public function validateUserRequest($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'User already exist'], 400);
+        }
     }
 
     /**
