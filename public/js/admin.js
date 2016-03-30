@@ -130,8 +130,7 @@ $(document).ready(function(){
         var username  = $("#username").val();
 
         //throw error if nothing was passes in the username field
-        username = username.trim();
-        if (username.length === 0) {
+        if (username.trim().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please provide a username",
