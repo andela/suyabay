@@ -31,5 +31,6 @@ elixir(function(mix) {
         'NewPassword.js',
         'PasswordReset.js',
         'socialmediashare.js'
-    ],'public/js/scripts.js', 'public/js');
+    ], 'public/js/scripts.js', 'public/js');
+
 });
