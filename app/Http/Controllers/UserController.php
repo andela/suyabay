@@ -22,7 +22,8 @@ class UserController extends Controller
     protected $response;
     protected $fractal;
 
-    public function __construct(Manager $fractal){
+    public function __construct(Manager $fractal) 
+    {
         $this->fractal = $fractal;
     }
 
@@ -31,12 +32,13 @@ class UserController extends Controller
      */
     public function getAllUsers()
     {
-        $users = User::orderBy('id', 'asc')->get([
-            'id', 
-            'username', 
-            'email', 
-            'created_at', 
-            'updated_at', 
+        $users = User::orderBy('id', 'asc')
+        ->get([
+            'id',
+            'username',
+            'email',
+            'created_at',
+            'updated_at',
             'avatar'
         ]);
 
@@ -49,7 +51,7 @@ class UserController extends Controller
 
         }
 
-        return Response::json(['message' => 'Not found'], 404);
+        return Response::json(['message' => 'Users Not found'], 404);
         
     }
 
@@ -58,7 +60,8 @@ class UserController extends Controller
      */
     public function getSingleUser($id)
     {
-        $user = User::where('id', '=', $id)->get([
+        $user = User::where('id', '=', $id)
+        ->get([
             'id', 
             'username', 
             'email', 
@@ -76,7 +79,7 @@ class UserController extends Controller
 
         }
 
-        return Response::json(['message' => 'Not found'], 404);
+        return Response::json(['message' => 'User Not found'], 404);
 
     }
 
@@ -161,7 +164,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json(['message' => 'User already exist'], 400);
+            return Response::json(['message' => 'User already exist or incomplete fields'], 400);
         }
     }
 
