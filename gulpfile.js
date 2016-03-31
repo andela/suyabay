@@ -33,4 +33,17 @@ elixir(function(mix) {
         'socialmediashare.js'
     ], 'public/js/scripts.js', 'public/js');
 
+    /**
+     * Compile sass files to css
+     */
+    mix.sass('main.scss')
+       .sass('audioplayer.scss');
+
+    /**
+     * Merge css files into styles.css in public/css
+     */
+    mix.styles([
+        'audioplayer.css',
+        'main.css'
+    ], 'public/css/styles.css', 'public/css');
 });
