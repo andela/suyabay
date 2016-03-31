@@ -12,5 +12,24 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+
+    /**
+     * Merge all suyabay js files into scripts.js in public/js
+     *
+     * run gulp --production to minify
+     */
+    mix.scripts([
+        'admin.js',
+        'audio.min.js',
+        'audioplayer.js',
+        'comment.js',
+        'commentupdate.js',
+        'dashboard.js',
+        'like.js',
+        'loginAndSignup.js',
+        'main.js',
+        'NewPassword.js',
+        'PasswordReset.js',
+        'socialmediashare.js'
+    ],'public/js/scripts.js', 'public/js');
 });
