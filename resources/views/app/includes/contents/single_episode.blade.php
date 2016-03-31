@@ -11,20 +11,20 @@
 
         <div class="row podcast">
             <div class="col s3">
-                <img class="responsive-img podcast-img" src="{{ asset($episodes->first()->image) }}">
+                <img class="responsive-img podcast-img" src="{{ asset($episode->image) }}">
             </div>
 
             <div class="col s9 details">
-                <span class="podcast-episode-date">{{ $episodes->first()->created_at->diffForHumans() }}</span>
-                <span class="tag podcast-episode-date">{{ $episodes->first()->channel->channel_name }}</span>
-                <h5 class="podcast-episode-title">{{ $episodes->first()->episode_name }}</h5>
 
+                <span class="podcast-episode-date">{{ $episode->created_at->diffForHumans() }}</span>
+                <span class="tag podcast-episode-date">{{ $episode->channel->channel_name }}</span>
+                <h5 class="podcast-episode-title">{{ $episode->episode_name }}</h5>
                 <div>
-                    <audio width="10px;" src="{{ $episodes->first()->audio_mp3 }}" preload="auto" />
+                    <audio width="10px;" src="{{ $episode->audio_mp3 }}" preload="auto" />
                 </div>
 
                 <p>
-                    {{ $episodes->first()->episode_description }}
+                    {{ $episode->episode_description }}
                 </p>
 
                 <div class="podcast-actions">
@@ -35,19 +35,23 @@
                         <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" >
                     @endif
 
-                    <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
+                    <input type="hidden" id="episode_id" value="{{ $episode->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}" data-episode-id="{{ $episode->id }}"> {{ $episode->likes }}</i>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <a href="#" class="twtr-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id)  !!}">
+                        <i class="fa fa-comment social-btn like"> <span id="comment-count">{{ $episode->comment->count() }}</span></i>
+                    </span>
+
+                    <span style="padding-right:15px;">
+                        <a href="#" class="twtr-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id)  !!}">
                             <i class="fa fa-twitter social-btn "></i>
                         </a>
                     </span>
                     <span style="padding-right:15px;">
-                        <a href="#" class="fb-share" data-desc="{{ $episodes->first()->episode_description }}" data-name="{{ $episodes->first()->episode_name }}" data-img="{!! asset($episodes->first()->image) !!}" data-url="{!! url('/episodes', $episodes->first()->id) !!}">
+                        <a href="#" class="fb-share" data-desc="{{ $episode->episode_description }}" data-name="{{ $episode->episode_name }}" data-img="{!! asset($episode->image) !!}" data-url="{!! url('/episodes', $episode->id) !!}">
                             <i class="fa fa-facebook social-btn "></i>
                         </a>
                     </span>
@@ -64,14 +68,14 @@
 
                                 <li class="load_comment" data-token="{{ csrf_token() }}">
 
-                                @if ( count($firstTenEpisodes) <= 0 )
+                                @if ( count($firstTenComments) <= 0 )
                                     <h6 style="padding: 10px; font-weight:400;">No comments to display for this episode</h6>
                                 @else
-                                    @foreach ( $firstTenEpisodes as $comment )
+                                    @foreach ( $firstTenComments as $comment )
                                       <div id="show_comment" class="collection-item avatar show_comment">
                                             <div class="row">
                                                 <div class="col s2">
-                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle">
+                                                    <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                                 </div>
                                                 <div class="col s10">
                                                     <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
@@ -100,8 +104,8 @@
                                     @endif
                                 </li>
                                     @if ( Auth::check() )
-                                            @if( count($firstTenEpisodes) > 0 )
-                                                <input type="hidden" id="episode_id" value=" {{ $firstTenEpisodes[0]['episode_id'] }}" />
+                                            @if( count($firstTenComments) > 0 )
+                                                <input type="hidden" id="episode_id" value=" {{ $firstTenComments[0]['episode_id'] }}" />
                                                 <li>
                                                     <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
                                                         <a href="#" title="View more comments">
@@ -111,20 +115,23 @@
                                                 </li>
                                             @endif
                                     <li class="collection-item avatar">
+<<<<<<< HEAD
                                         <div class="row">
                                             
+=======
+>>>>>>> staging
                                             <div class="col s2">
-                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle">
+                                                <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                             </div>
 
                                             <form id="submit_comment" method="POST">
                                                 <div class="file-field input-field">
                                                     <input hidden="true" type="text" name="_token" id="_token" value="{{ csrf_token() }}">
-                                                    <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episodes->first()->id }}">
+                                                    <input hidden="true" type="text" name="episode_id" id="episode_id" value="{{ $episode->id }}">
                                                     <div class="file-path-wrapper input-field col s10 m10">
                                                         <input name="comment" id="new-comment-field" class="validate" type="text" style="margin-left:20px;" required="true" />
                                                     </div>
-                                                    <button type="submit" data-token="{{ csrf_token() }}" data-comment-count="{{ $episodes->first()->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
+                                                    <button type="submit" data-token="{{ csrf_token() }}" data-comment-count="{{ $episode->comment()->count() }}" data-avatar="{{ Auth::user()->getAvatar() }}" id="submit" class="btn right comment-submit"><i class="fa fa-paper-plane-o"></i></button>
                                                 </div>
                                             </form>
                                         </div>

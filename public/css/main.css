@@ -338,6 +338,14 @@ a:hover.capitalize {
     background-color: #2C3E50!important;
 }
 
+.api-link {
+    margin-left:2%;
+}
+.api-link a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .audiojs {
     width: 100%!important;
 }
@@ -411,6 +419,10 @@ Navigations Styles
 .no-style-link {
     text-decoration: none;
     color: #999;
+}
+
+.no-style-link {
+    margin-right: 10px;
 }
 
 .fb-share:hover {

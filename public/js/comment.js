@@ -1,24 +1,23 @@
 $(document).ready(function() {
 
-
     $(".view_more_comments").on("click",function() {
 
         var avatar = $(this).data('avatar');
         var numOfComments = $(".load_comment").find("div#show_comment");
-        var episode_id  = $("#episode_id").val();
+        var episodeId  = $("#episode_id").val();
 
         try {
 
             $.ajax({
-
-            url:'/comment',
-            type:'GET',
-            data:{'offset': numOfComments.size(),'episode_id':episode_id},
-
+                url:'/comment',
+                type:'GET',
+                data:{
+                     offset: numOfComments.size(),
+                     episode_id: episodeId
+            },
             success: function(data) {
 
                 for (i = 0 ; i < data.comments.length; i++) {
-
                     var comments = data.comments[i];
 
                     $('#comment-count').html(' ' + numOfComments.size());
@@ -45,12 +44,9 @@ $(document).ready(function() {
 
                      $('.load_comment').last().append(newComment);
                      $('#new-comment-field').val('');
-
                 }
             }
-
         });
-
         } catch (e) {
 
             console.log(e);
@@ -64,17 +60,17 @@ $(document).ready(function() {
 
         var comment = $('#new-comment-field').val();
         var avatar = $(this).data('avatar');
-        var comment_count = parseInt($(this).data('comment-count')) + 1;
+        var commentCount = parseInt($(this).data('comment-count')) + 1;
         var token = $(this).data('token');
 
         var url = '/comment';
         var user_id = $('#user_id').val();
-        var episode_id = $('#episode_id').val();
+        var episodeId = $('#episode_id').val();
 
         var data = {
             parameter: {
                 _token: token,
-                episode_id: episode_id,
+                episode_id: episodeId,
                 comment: comment
             }
         }
@@ -89,9 +85,6 @@ $(document).ready(function() {
 
                     switch (response.status_code) {
                         case 200:
-
-                            //Increment comment upon successful submission
-                            $('#comment-count').html(' ' + comment_count);
 
                             var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                             newComment += '<div class="row">';
@@ -114,6 +107,14 @@ $(document).ready(function() {
                             newComment += '</div></div></div></div>';
 
                             $('.load_comment').last().append(newComment);
+                            //Increase the count by 1 after submitting a comment
+                            var count = $('#comment-count').html();
+                            count = Number(count) + 1;
+
+                            //Set this new value in the html
+                            $('#comment-count').html(count);
+
+                            //empty the comment field
                             $('#new-comment-field').val('');
 
                             break;

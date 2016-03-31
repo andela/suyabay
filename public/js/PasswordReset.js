@@ -6,22 +6,17 @@
 | @response is the ajax response coming from the api end ponit
 | @funtionName is the name of the fuction called
 */
-function passwordResetAjaxLogic ( data, response, functionName )
-{
-    if ( response.status_code == 401)
-    {
-        switch (functionName)
-        {
-            case 'passwordReset' : passwordResetErrorAlert(); break;
+function passwordResetAjaxLogic(data, response, functionName) {
+    if (response.status_code == 401) {
+        switch (functionName) {
+            case 'passwordReset':
+                passwordResetErrorAlert();
+                break;
         }
-    }
-    else if ( functionName == 'passwordReset' )
-    {
+    } else if (functionName == 'passwordReset') {
         passwordResetsAlert();
-    }
-    else
-    {
-        window.location='/';
+    } else {
+        window.location = '/';
     }
 }
 
@@ -33,17 +28,15 @@ function passwordResetAjaxLogic ( data, response, functionName )
 | @data is the array of user infomation \\console.log(data) to see properties
 | @funtionName is the name of the fuction called
 |*/
-function passwordResetAjaxCall ( data, functionName )
-{
-    $.post( data.url, data.parameter)
+function passwordResetAjaxCall(data, functionName) {
+    $.post(data.url, data.parameter)
 
-    .done( function (response)
-    {
-        passwordResetAjaxLogic( data, response, functionName );
-    })
-    .fail( function (response) {
-        swal('this action is bad');
-    });
+    .done(function(response) {
+            passwordResetAjaxLogic(data, response, functionName);
+        })
+        .fail(function(response) {
+            swal('this action is bad');
+        });
 }
 
 /*
@@ -51,8 +44,7 @@ function passwordResetAjaxCall ( data, functionName )
 | gives Success report to user
 | receives 1 parameter
 */
-function passwordResetsAlert ()
-{
+function passwordResetsAlert() {
     //show modal and redirect
     swal({
             title: 'Done',
@@ -62,7 +54,7 @@ function passwordResetsAlert ()
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
         },
-        function (){
+        function() {
             document.location.href = '/';
         }
     );
@@ -73,8 +65,7 @@ function passwordResetsAlert ()
 | gives error report to user
 | receives 1 parameter
 */
-function passwordResetErrorAlert ()
-{
+function passwordResetErrorAlert() {
     swal('Ooops!!!', 'Email address does not exit', 'error');
 }
 
@@ -83,30 +74,27 @@ function passwordResetErrorAlert ()
 | create user information and url in to an array of object i.e @data
 | and make and ajax class to function ajaxCall() by sending @data and @functionName
 */
-function passwordReset ()
-{
-  var url   = '/password/email';
-  var email = $('#email').val();
-  var token = $('#token').val();
+function passwordReset() {
+    var url = '/password/email';
+    var email = $('#email').val();
+    var token = $('#token').val();
 
-  var data =
-    {
-        url        : url,
-        parameter  :
-        {
-            _token : token,
-            email  : email
+    var data = {
+        url: url,
+        parameter: {
+            _token: token,
+            email: email
         }
     }
-  var functionName =  arguments.callee.name;
-  passwordResetAjaxCall( data, functionName );
+    var functionName = arguments.callee.name;
+    passwordResetAjaxCall(data, functionName);
 }
 
 /*
 | Process form on form submit
  */
-$(document).ready( function (){
-    $('#password_reset_form').on('submit', function (){
+$(document).ready(function() {
+    $('#password_reset_form').on('submit', function() {
         swal({
             title: '',
             text: 'Processing request.',

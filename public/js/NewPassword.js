@@ -1,23 +1,19 @@
 /**
  * checkPassword: check if the two password fiedls are thesame
  * @param  {string} password
- * @param  {string} password_confirmation
+ * @param  {string} passwordConfirmation
  * @return {boolean}
  */
-function checkPassword(password, password_confirmation){
-    if( password === password_confirmation )
-    {
+function checkPassword(password, passwordConfirmation) {
+    if (password === passwordConfirmation) {
         return true;
-    }
-    else
-    {
+    } else {
         passwordNotError();
     }
 }
 
-function passwordNotError()
-{
-    swal("Error", "Password does not match", "error");
+function passwordNotError() {
+    swal('Error', 'Password does not match', 'error');
 }
 
 /**
@@ -25,14 +21,10 @@ function passwordNotError()
  * @param  {string} password
  * @return {boolean}
  */
-function passwordLength(password)
-{
-    if(password.length >= 6)
-    {
+function passwordLength(password) {
+    if (password.length >= 6) {
         return true;
-    }
-    else
-    {
+    } else {
         passwordLengthError();
     }
 }
@@ -41,9 +33,8 @@ function passwordLength(password)
  * passwordLengthError: Error message
  * @return {string} modal
  */
-function passwordLengthError()
-{
-    swal("Error", "Password must be Six characters or more", "error");
+function passwordLengthError() {
+    swal('Error', 'Password must be Six characters or more', 'error');
 }
 
 /**
@@ -51,20 +42,20 @@ function passwordLengthError()
  * @param  {int} response
  * @return {string} modal
  */
-function postSuccess (response) {
-    if(response == 401){
+function postSuccess(response) {
+    if (response == 401) {
         postFailError();
-    }else{
+    } else {
         swal({
-            title: "Done",
-            text: "Password updated successfully",
-            type: "success",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            showLoaderOnConfirm: true,
+                title: 'Done',
+                text: 'Password updated successfully',
+                type: 'success',
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
             },
-            function (){
-                document.location.href = "/";
+            function() {
+                document.location.href = '/';
             }
         );
     }
@@ -74,8 +65,8 @@ function postSuccess (response) {
  * postFailError: Error message
  * @return {string} modal
  */
-function postFailError () {
-    swal("Error", "Error Processing request", "error");
+function postFailError() {
+    swal('Error', 'Error Processing request', 'error');
 }
 
 /**
@@ -84,57 +75,51 @@ function postFailError () {
  * @param  {string} parameter
  * @return {string} modal
  */
-function postAjaxRequest(url, parameter)
-{
+function postAjaxRequest(url, parameter) {
     $.post(url, parameter)
-    .done( function (response)
-    {
-        postSuccess(response.status_code);
-    })
-    .fail( function (response) {
-        postFailError();
-    });
+        .done(function(response) {
+            postSuccess(response.status_code);
+        })
+        .fail(function(response) {
+            postFailError();
+        });
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
     $.ajaxSetup({
         headers: {
-            "X-CSRF-Token": $("meta[name=_token").attr("content")
+            'X-CSRF-Token': $('meta[name=_token').attr('content')
         }
     });
 
     //On form submit
-    $("#new_password_form").on("submit", function(e){
+    $('#new_password_form').on('submit', function(e) {
         e.preventDefault();
-        swal("Proccessing Request!");
-        var url   =  "password/resetGetEmail";
-        var email = $("#email").val();
-        var token = $("#token").val();
-        var newPassword = $("#password_confirmation").val();
-        var oldPassword = $("#password").val();
-        var data =
-            {
-                url        : url,
-                parameter  :
-                {
-                    token  : token,
-                    email   : email,
-                    password: oldPassword,
-                    password_confirmation:newPassword
-                }
+        swal('Proccessing Request!');
+        var url = 'password/resetGetEmail';
+        var email = $('#email').val();
+        var token = $('#token').val();
+        var newPassword = $('#password_confirmation').val();
+        var oldPassword = $('#password').val();
+        var data = {
+            url: url,
+            parameter: {
+                token: token,
+                email: email,
+                password: oldPassword,
+                password_confirmation: newPassword
             }
+        }
 
-            //check if password is thesame
-            if(checkPassword(oldPassword, newPassword))
-            {
-                //check the stringlength of the password
-                if (passwordLength(newPassword))
-                {
-                    //process ajax request
-                    postAjaxRequest(data.url, data.parameter);
-                }
+        //check if password is thesame
+        if (checkPassword(oldPassword, newPassword)) {
+            //check the stringlength of the password
+            if (passwordLength(newPassword)) {
+                //process ajax request
+                postAjaxRequest(data.url, data.parameter);
             }
+        }
 
         return false;
     });

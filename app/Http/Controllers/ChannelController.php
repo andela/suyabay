@@ -70,30 +70,19 @@ class ChannelController extends Controller
      */
     public function processCreate(Request $request)
     {
-        try {
-            $channel = Channel::create([
-                'channel_name'         => $request->name,
-                'channel_description'  => $request->description,
-                'user_id'              => Auth::user()->id,
-                'subscription_count'   => 0
-            ]);
+        $this->validate($request, [
+            'channel_name' => 'required|max:255|unique:channels',
+            'channel_description' => 'required',
+        ]);
 
-            $this->response =
-            [
-                'message'       => 'Channel created Successfully',
-                'status_code'   => 200
-            ];
+        $channel = Channel::create([
+            'channel_name'         => $request->channel_name,
+            'channel_description'  => $request->channel_description,
+            'user_id'              => Auth::user()->id,
+            'subscription_count'   => 0
+        ]);
 
-        } catch (QueryException $e) {
-
-            $this->response =
-            [
-                'message'       => 'Channel already exist',
-                'status_code'   => 400
-            ];
-        }
-
-        return $this->response;
+        return redirect('dashboard/channel/' . $channel->id);
     }
 
     /**
@@ -193,14 +182,14 @@ class ChannelController extends Controller
     {
         $channel = Channel::find($id);
         $episodes = Episode::where('channel_id', '=', $id)->get();
-        
+
         return view('dashboard.pages.view_channel')->with('channel', $channel)->with('episodes', $episodes);
     }
 
     /**
      * return view to swap episodes to another channel
      * @param int $id
-     * @return 
+     * @return
      */
     public function swap($id)
     {
@@ -214,8 +203,8 @@ class ChannelController extends Controller
      * move episodes from source to destination
      * @param  [type] $id [description]
      * @return [type]     [description]
-     */ 
-    
+     */
+
     public function processSwap(Request $request)
     {
         try {

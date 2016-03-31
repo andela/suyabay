@@ -13,9 +13,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="channel_description" class="materialize-textarea" id="channel_description">
-                            {{ $channels->channel_description }}
-                        </textarea>
+                        <textarea name="channel_description" class="materialize-textarea" id="channel_description">{{ $channels->channel_description }}</textarea>
                         <label for="description">Episode Description</label>
                     </div>
                 </div>
