@@ -44,7 +44,6 @@
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
         <script src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
-        <script src = "{!! load_asset('/js/dashboard.js') !!}"></script>
     </body>
 </html>
 
