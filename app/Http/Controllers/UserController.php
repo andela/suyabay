@@ -22,7 +22,7 @@ class UserController extends Controller
     protected $response;
     protected $fractal;
 
-    public function __construct(Manager $fractal) 
+    public function __construct(Manager $fractal)
     {
         $this->fractal = $fractal;
     }
@@ -62,11 +62,11 @@ class UserController extends Controller
     {
         $user = User::where('id', '=', $id)
         ->get([
-            'id', 
-            'username', 
-            'email', 
-            'created_at', 
-            'updated_at', 
+            'id',
+            'username',
+            'email',
+            'created_at',
+            'updated_at',
             'avatar'
         ]);
 
