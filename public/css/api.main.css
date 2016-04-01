@@ -192,7 +192,7 @@ body, html{
 .myapp {
     border: 1px solid #c7cdcf;
     width: 90%;
-    height: 100px;
+    height: 150px;
     margin-top: auto;
     margin-bottom: auto;
     margin-right: auto;
@@ -200,6 +200,30 @@ body, html{
     border-radius: 2px;
     position: relative;
     background: #fcfcfc;
+}
+
+.error-message {
+    border: 1px solid #c7cdcf;
+    width: 90%;
+    height: 150px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 2px;
+    position: relative;
+    background: #fcfcfc;
+}
+
+.error-text {
+    text-align: center;
+    font-size: 16px;
+}
+
+.waves-two {
+    margin-left: 128px;
+    width: 250px;
+    top: 20px;
 }
 
 .myapp:nth-child(1) {
@@ -219,17 +243,61 @@ body, html{
     text-align: center;
 }
 
-.waves-light {
+/*.waves-effect {
+    vertical-align: top!important;
+}*/
+
+.waves {
     margin-left: 128px;
     width: 350px;
 }
 
-.waves-effect {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-}    
+.waves-one {
+    margin-top: auto;
+    margin-left: 50px;
+    margin-top: 20px;
+}
 
+.session-one {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 2px;
+    position: relative;
+}
+
+.session-two {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 2px;
+    position: relative;
+    background: red;
+}
+
+.session-three {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 2px;
+    position: relative;
+    background: white;
+}
+
+
+
+/*
+ # Avatar Image
+ =====================
+*/
+img.avatar {
+    width: 45px;
+    max-width: 1232px;
+    height: 45px;
+    vertical-align: middle;
+}
 
 

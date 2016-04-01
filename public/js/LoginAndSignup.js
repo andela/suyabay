@@ -114,7 +114,7 @@ function register() {
         url: '/signup',
         parameter: {
             _token: $('#token').val(),
-            email: $('#email').val();,
+            email: $('#email').val(),
             username: $('#username').val(),
             password: $('#password').val(),
             facebook: $('#facebook').val(),
@@ -139,7 +139,7 @@ function login() {
     var data = {
         url: '/login',
         parameter: {
-            _token: ('#token').val(),
+            _token: $('#token').val(),
             username: $('#username').val(),
             password: $('#password').val()
         }

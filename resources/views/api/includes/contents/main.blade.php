@@ -1,7 +1,7 @@
 <!-- top nav -->
-        <div class="row">
-            @include("api.includes.sections.top_nav")
-        </div>
+<div class="row">
+    @include("api.includes.sections.top_nav")
+</div>
 
 <div id="hero" class="index_bg_container">
     <div id="overlay-image">
@@ -54,5 +54,4 @@
                 <img  src ="{{ load_asset('images/apiimage2.png') }}">
             </div>
     </div>
-
 </div>
