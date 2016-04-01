@@ -1,7 +1,7 @@
 API Endpoints
 =============
 
-The Foursquare API provides methods for accessing a resource such as a
+The Suyabay API provides methods for accessing a resource such as a
 venue, tip, or user. In spirit with the RESTful model, each resource is
 associated with a URL. For example, information about Clinton Street
 Baking Co can be found at
@@ -40,7 +40,7 @@ The Suyabay API
 ---------------
 
 Suyabay has many offerings for developers, but at its core, our API lets
-you do all the things that Foursquare and Swarm users are able to in our
+you do all the things that Suyabay and Swarm users are able to in our
 mobile apps and websites. Be sure to read our Getting Started Guide
 before diving in below.
 
