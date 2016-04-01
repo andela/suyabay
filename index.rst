@@ -44,19 +44,18 @@ you do all the things that Suyabay and Swarm users are able to in our
 mobile apps and websites. Be sure to read our Getting Started Guide
 before diving in below.
 
-API Endpoints
--------------
-
-An overview of the entire API and its endpoints. Read these API docs to
-find out more about leaving tips, checking in, seeing what your friends
-are up to, and of course, searching for and viewing venue info.
-
 Real-time API
 -------------
 
 Our venue push API notifies venue managers when users perform various
 actions at their venues, and our user push API notifies developers when
 their users check in anywhere.
+
+Merchant Platform
+-----------------
+
+The Merchant Platform allows developers to write applications that help
+registered venue owners manage their Suyabay presence and specials.
 
 Venues Service
 --------------
@@ -66,46 +65,3 @@ search for places and access a wealth of information about them,
 including addresses, popularity, tips, and photos. It’s available free
 and without any user authentication, as long as applications include
 adequate attribution.
-
-Merchant Platform
------------------
-
-The Merchant Platform allows developers to write applications that help
-registered venue owners manage their Suyabay presence and specials.
-
-The Suyabay API
----------------
-
-Suyabay has many offerings for developers, but at its core, our API lets
-you do all the things that Suyabay and Swarm users are able to in our
-mobile apps and websites. Be sure to read our Getting Started Guide
-before diving in below.
-
-API Endpoints
--------------
-
-An overview of the entire API and its endpoints. Read these API docs to
-find out more about leaving tips, checking in, seeing what your friends
-are up to, and of course, searching for and viewing venue info.
-
-Real-time API
--------------
-
-Our venue push API notifies venue managers when users perform various
-actions at their venues, and our user push API notifies developers when
-their users check in anywhere.
-
-Venues Service
---------------
-
-Just need a database of places? The Venues Service allows developers to
-search for places and access a wealth of information about them,
-including addresses, popularity, tips, and photos. It’s available free
-and without any user authentication, as long as applications include
-adequate attribution.
-
-Merchant Platform
------------------
-
-The Merchant Platform allows developers to write applications that help
-registered venue owners manage their Suyabay presence and specials.
