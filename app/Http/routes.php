@@ -31,11 +31,15 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'UserController@getSingleUser'
     ]);
 
-    Route::put('users/{id}', [
+    Route::get('users/me', [
+        'uses' => 'UserController@getMyDetails'
+    ]);
+
+    Route::put('users/me', [
         'uses' => 'UserController@editUser'
     ]);
 
-    Route::patch('users/{id}', [
+    Route::patch('users/me', [
         'uses' => 'UserController@editSingleUser'
     ]);
 
