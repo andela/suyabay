@@ -30,9 +30,14 @@ class UserController extends Controller
     /**
      * This method return all users to the calling API endpoint
      */
-    public function getAllUsers()
+    public function getAllUsers(Request $request)
     {
-        $users = User::orderBy('id', 'asc')->get([
+        $page = $request->query('page') ? : 0;
+        
+        $users = User::orderBy('id', 'asc')
+        ->skip((int) $page*10)
+        ->take(10)
+        ->get([
             'id',
             'username',
             'email',
