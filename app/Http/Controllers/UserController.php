@@ -60,8 +60,7 @@ class UserController extends Controller
      */
     public function getSingleUser($username)
     {
-        $user = User::where('username', '=', $username)
-        ->get([
+        $user = User::where('username', '=', $username)->get([
             'id',
             'username',
             'email',
