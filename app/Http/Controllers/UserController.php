@@ -148,33 +148,7 @@ class UserController extends Controller
             return Response::json(['message' => 'User already exist or incomplete fields'], 400);
         }
     }
-
-    /**
-     * This method create a user
-     */
-    public function editUser(Request $request, $id)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users'
-        ]);
-
-        if ($validator->fails()) {
-            return Response::json(['message' => 'Failed'], 400);
-        }
-
-        $user = User::find($id);
-        $user->username = $request->username;
-        $user->email =  $request->email;
-        $user->save();
-
-        if ($user->id) {
-            return Response::json(['message' => 'User updated successfully'], 201);
-        }
-        
-    }
-
+    
     /**
      * Display a listing of the resource.
      */
