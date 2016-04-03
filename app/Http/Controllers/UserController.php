@@ -32,8 +32,7 @@ class UserController extends Controller
      */
     public function getAllUsers()
     {
-        $users = User::orderBy('id', 'asc')
-        ->get([
+        $users = User::orderBy('id', 'asc')->get([
             'id',
             'username',
             'email',
@@ -56,11 +55,38 @@ class UserController extends Controller
     }
 
     /**
-     * This method return a single user to the calling API endpoint
+     * This method return a single user to the calling API endpoint getMyDetails
      */
     public function getSingleUser($username)
     {
         $user = User::where('username', '=', $username)->get([
+            'id',
+            'username',
+            'email',
+            'created_at',
+            'updated_at',
+            'avatar'
+        ]);
+
+        $resource = new Collection($user, new UserTransformer());
+
+        if (isset($resource)) {
+            $data = $this->fractal->createData($resource)->toArray();
+
+            return Response::json($data, 200);
+
+        }
+
+        return Response::json(['message' => 'User Not found'], 404);
+
+    }
+
+    /**
+     * This method return a single user to the calling API endpoint
+     */
+    public function getMyDetails()
+    {
+        $user = User::where('id', '=', $id)->get([
             'id',
             'username',
             'email',
@@ -148,7 +174,7 @@ class UserController extends Controller
             return Response::json(['message' => 'User already exist or incomplete fields'], 400);
         }
     }
-    
+
     /**
      * Display a listing of the resource.
      */
