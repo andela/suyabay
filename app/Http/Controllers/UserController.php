@@ -32,11 +32,15 @@ class UserController extends Controller
      */
     public function getAllUsers(Request $request)
     {
-        $page = $request->query('page') ? : 0;
-        
+        $perPage = 3;
+
+        $page = $request->query('page') ? : 1;
+
+        $totalPage = (int) ($perPage*$page)-$perPage;
+
         $users = User::orderBy('id', 'asc')
-        ->skip((int) $page*10)
-        ->take(10)
+        ->skip($totalPage)
+        ->take($perPage)
         ->get([
             'id',
             'username',
@@ -91,6 +95,8 @@ class UserController extends Controller
      */
     public function getMyDetails()
     {
+        $id  = 1; // The id will be retrieved from the token
+
         $user = User::where('id', '=', $id)->get([
             'id',
             'username',
