@@ -23,30 +23,21 @@ Route::group(['prefix' => 'api/v1/'], function () {
         return json_encode(["message" => "return error 404"]);
     });
 
-    Route::get('users', function () {
+    Route::get('users', [
+        'uses' => 'UserController@getAllUsers'
+    ]);
 
-        return json_encode(["message" => "return all users"]);
-    });
+    Route::get('users/{username}', [
+        'uses' => 'UserController@getSingleUser'
+    ]);
 
-    Route::get('users/{id}', function () {
+    Route::put('users/{id}', [
+        'uses' => 'UserController@editUser'
+    ]);
 
-        return json_encode(["message" => "return a single user"]);
-    });
-
-    Route::post('users', function () {
-
-        return json_encode(["message" => "post a user"]);
-    });
-
-    Route::put('users/{id}', function () {
-
-        return json_encode(["message" => "update user record"]);
-    });
-
-    Route::delete('users/{id}', function () {
-
-        return json_encode(["message" => "delete a user "]);
-    });
+    Route::patch('users/{id}', [
+        'uses' => 'UserController@editSingleUser'
+    ]);
 
 });
 
