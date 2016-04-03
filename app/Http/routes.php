@@ -20,15 +20,11 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
     Route::get('/', function () {
 
-        return json_encode(["message" => "return error 404"]);
+        return json_encode(["message" => "Welcome to Suyabay API"]);
     });
 
     Route::get('users', [
         'uses' => 'UserController@getAllUsers'
-    ]);
-
-    Route::get('users/{username}', [
-        'uses' => 'UserController@getSingleUser'
     ]);
 
     Route::get('users/me', [
@@ -41,6 +37,10 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
     Route::patch('users/me', [
         'uses' => 'UserController@editSingleUser'
+    ]);
+
+    Route::get('users/{username}', [
+        'uses' => 'UserController@getSingleUser'
     ]);
 
 });
