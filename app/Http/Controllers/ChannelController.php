@@ -36,12 +36,9 @@ class ChannelController extends Controller
     public function getAllChannels(Request $request)
     {
         $perPage = 3;
-        $page = $request->query('page') ? : 1;
-
-        $totalPage = (int) ($perPage*$page)-$perPage;
 
         $channels = Channel::orderBy('id', 'asc')
-        ->skip($totalPage)
+        ->skip($this->getNextPage($perPage, $request))
         ->take($perPage)
         ->get([
             'id',
@@ -65,6 +62,47 @@ class ChannelController extends Controller
 
     }
 
+    /**
+     * This method get a single channel
+     *
+     * @param $channel_name
+     *
+     * @return json $response
+     */
+    public function getAChannel($channel_name)
+    {
+        $channels = Channel::where('channel_name', '=', $channel_name)
+        ->orWhere('channel_name', '=', strtolower($channel_name))
+        ->orderBy('id', 'asc')
+        ->get([
+            'id',
+            'channel_name',
+            'channel_description',
+            'subscription_count',
+            'created_at',
+            'updated_at',
+            'user_id',
+        ]);
+
+         $resource = new Collection($channels, new ChannelTransformer());
+         if (isset($resource)) {
+            $data = $this->fractal->createData($resource)->toArray();
+
+            return Response::json($data, 200);
+
+        }
+
+        return Response::json(['message' => 'Channel not found'], 404);
+
+    }
+
+    public function getNextPage($perPage, $request)
+    {
+        $page = $request->query('page') ? : 1;
+        $totalPage = (int) ($perPage*$page)-$perPage;
+
+        return $totalPage;
+    }
     /**
      * Return all channels
      * @return \Illuminate\Http\Response
