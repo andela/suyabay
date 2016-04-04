@@ -2,8 +2,6 @@
 
 namespace Suyabay\Http\Controllers;
 
-use Suyabay\NewApp;
-
 class ApiPagesController extends Controller
 {
     /**
@@ -23,8 +21,7 @@ class ApiPagesController extends Controller
      */
     public function myApp()
     {
-    	$newApps = NewApp::all();
-        return view('api.pages.myapp', compact('newApps'));
+        return view('api.pages.myapp');
     }
     
     /**
