@@ -4,7 +4,7 @@ namespace Suyabay\Http\Controllers;
 
 class ApiPagesController extends Controller
 {
-	/**
+    /**
      * Displays the index page of the API.
      *
      * @return \Illuminate\Http\Response
