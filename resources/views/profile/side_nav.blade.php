@@ -1,4 +1,4 @@
-<div class="col s3 nav-container">
+<div class="col s3">
     <div class="hide-on-small-only">
         <div class="collection" style="border-color: transparent; ">
             <ul class="collapsible" data-collapsible="accordion" style="border-color: transparent; ">
