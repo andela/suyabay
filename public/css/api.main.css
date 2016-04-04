@@ -1,4 +1,4 @@
-body, html{
+body, html {
     height:100%;
     position: relative;
     background-color: #E0E0E0; 
@@ -12,13 +12,13 @@ body, html{
     height: 100px;
 }
 
-#hero{
+#hero {
     max-height: 500px !important;
     position: relative;
     top:-80px;
 }
 
-#hero, #hero > *{
+#hero, #hero > * {
     width: 100%;
     min-height: 50%;
 }
@@ -31,17 +31,17 @@ body, html{
     height: 450px;
 }
 
-#hero-content{
+#hero-content {
     position: absolute;
     color:#FFF;
 }
 
-#hero-content .content{
+#hero-content .content {
     width: 70%;
     margin:90px auto 0px;
 }
 
-#hero-menu{
+#hero-menu {
     position: absolute;
     color:#FFF;
     clear: both;
@@ -68,7 +68,7 @@ body, html{
     margin-top: 7px;
 }
 
-.slider-text-header{
+.slider-text-header {
     text-align: right;
     font-weight: 500;
     display: table-cell;
@@ -77,7 +77,7 @@ body, html{
     color: #fff;
 }
 
-.slider-text-paragraph{
+.slider-text-paragraph {
     font-size: 19px;
     line-height: 31px;
     font-weight: 300;
@@ -104,10 +104,8 @@ body, html{
     clear: both;
     min-height: 20px;
     width: 80%;
-    margin-bottom:20px;
     background-color: #fff;
-    margin-right: auto;
-    margin-left: auto;
+    margin: auto auto 20px auto;
 }
 
 .text-content h1 {
@@ -129,7 +127,7 @@ body, html{
 }
 
 .feature-content .img {
-   position: absolute;
+    position: absolute;
     margin-right: 20px;
     width: 200px;
     float: center;
@@ -174,10 +172,8 @@ body, html{
     clear: both;
     min-height: 400px;
     width: 80%;
-    margin-bottom:20px;
     background-color: #fff;
-    margin-right: auto;
-    margin-left: 134px;
+    margin: auto auto 20px 134px;
 }
 
 #main-two {
@@ -185,49 +181,39 @@ body, html{
     min-height: 400px;
     width: 80%;
     background-color: #fff;
-    margin-right: 100px;
-    margin-left: -54px;
+    margin: auto 100px auto -54px;
 }
 
 .myapp {
     border: 1px solid #c7cdcf;
     width: 90%;
     height: 150px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
-    margin-left: auto;
     border-radius: 2px;
     position: relative;
     background: #fcfcfc;
+    margin: auto auto auto auto;
 }
 
 .error-message {
     border: 1px solid #c7cdcf;
     width: 90%;
     height: 150px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    margin-right: auto;
-    margin-left: auto;
     border-radius: 2px;
     position: relative;
     background: #fcfcfc;
+    margin: 40px auto 40px auto;
 }
 
 .error-text {
     text-align: center;
     font-size: 16px;
+    color: #FF0000;
 }
 
 .waves-two {
     margin-left: 128px;
     width: 250px;
     top: 20px;
-}
-
-.myapp:nth-child(1) {
-    top: 90px;
 }
 
 .app-title {
@@ -243,51 +229,34 @@ body, html{
     text-align: center;
 }
 
-/*.waves-effect {
-    vertical-align: top!important;
-}*/
-
 .waves {
     margin-left: 128px;
     width: 350px;
 }
 
 .waves-one {
-    margin-top: auto;
-    margin-left: 50px;
-    margin-top: 20px;
+    margin: 20px auto auto 50px;
 }
 
 .session-one {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
-    margin-left: auto;
     border-radius: 2px;
     position: relative;
+    margin: auto;
 }
 
 .session-two {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
-    margin-left: auto;
+    margin: auto;
     border-radius: 2px;
     position: relative;
     background: red;
 }
 
 .session-three {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: auto;
-    margin-left: auto;
+    margin: auto;
     border-radius: 2px;
     position: relative;
     background: white;
 }
-
-
 
 /*
  # Avatar Image
@@ -300,4 +269,49 @@ img.avatar {
     vertical-align: middle;
 }
 
+/*
+# mynewApp Styles
+===============================================
+*/
+.form-feature {
+    clear: both;
+    min-height: 20px;
+    width: 80%;
+    background-color: #fff;
+    margin: -22px auto 20px auto; 
+}
+
+#main-new-one {
+    clear: both;
+    min-height: 400px;
+    width: 80%;
+    background-color: #fff;
+    margin: 22px auto 20px 134px;
+}
+
+#main-new-two {
+    clear: both;
+    min-height: 400px;
+    width: 80%;
+    background-color: #fff;
+    margin: auto 100px auto -54px;
+}
+
+.wave {
+    width: 350px;
+    margin: 20px auto auto 128px;
+}
+
+input {
+    width: 532px;
+}
+
+textarea {
+    width: 532px;
+    min-height: 100px;
+}
+
+h5 {
+    font-size: 20px;
+}
 
