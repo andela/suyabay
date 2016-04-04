@@ -38,7 +38,7 @@ class ChannelController extends Controller
         $perPage = 3;
 
         $channels = Channel::orderBy('id', 'asc')
-        ->skip($this->getNextPage($perPage, $request))
+        ->skip($this->getPageToSkip($perPage, $request))
         ->take($perPage)
         ->get([
             'id',
@@ -96,12 +96,12 @@ class ChannelController extends Controller
 
     }
 
-    public function getNextPage($perPage, $request)
+    public function getPageToSkip($perPage, $request)
     {
         $page = $request->query('page') ? : 1;
-        $totalPage = (int) ($perPage*$page)-$perPage;
+        $pageToSkip = (int) ($perPage*$page)-$perPage;
 
-        return $totalPage;
+        return $pageToSkip;
     }
     /**
      * Return all channels
