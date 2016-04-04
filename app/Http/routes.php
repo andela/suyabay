@@ -54,30 +54,25 @@ Route::group(['prefix' => 'api/v1/'], function () {
 */
 Route::group(['prefix' => 'api/v1/'], function () {
 
-    Route::get('channels', function () {
+    Route::get('channels', [
+        'uses' => 'ChannelController@getAllChannels'
+    ]);
 
-        return json_encode(["message" => "return all channels"]);
-    });
+    Route::get('channels/{channel_name}', [
+        'uses' => 'ChannelController@getAChannel'
+    ]);
 
-    Route::get('channels/{id}', function () {
+    Route::post('channels', [
+        'uses' => 'ChannelController@postAChannel'
+    ]);
 
-        return json_encode(["message" => "return a single channel"]);
-    });
+    Route::put('channels/{channel_name}', [
+        'uses' => 'ChannelController@editAChannel'
+    ]);
 
-    Route::post('channels', function () {
-
-        return json_encode(["message" => "post a channel"]);
-    });
-
-    Route::put('channels/{id}', function () {
-
-        return json_encode(["message" => "update a channel"]);
-    });
-
-    Route::delete('channels/{id}', function () {
-
-        return json_encode(["message" => "delete a channel"]);
-    });
+    Route::patch('channels/{channel_name}', [
+        'uses' => 'ChannelController@editASingleChannelResource'
+    ]);
 
 });
 
