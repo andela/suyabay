@@ -467,11 +467,14 @@
 
 .card-image {
   margin: 15px;
-  height: 100%;
   border-radius: 9px;
   position: relative;
   padding-bottom: 50%;
   overflow: hidden;
+}
+
+.user-profile-image {
+  height: 50%;
 }
 
 .text-disabled {
