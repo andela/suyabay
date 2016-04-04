@@ -2,18 +2,19 @@
 
 namespace Suyabay\Http\Controllers;
 
-use Validator;
 use Hash;
+use Validator;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
+use League\Fractal\Manager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use League\Fractal\Resource\Item;
+use League\Fractal\Resource\Collection;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
+use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Transformers\UserTransformer;
 
 class UserController extends Controller
@@ -32,15 +33,15 @@ class UserController extends Controller
      */
     public function getAllUsers(Request $request)
     {
-        $perPage = 3;
+        $limit = 10;
 
-        $page = $request->query('page') ? : 1;
+        $currentPage = $request->query('page') ? : 1;
 
-        $totalPage = (int) ($perPage*$page)-$perPage;
+        $pageToSkip = (int) ($limit * $currentPage) - $limit;
 
         $users = User::orderBy('id', 'asc')
-        ->skip($totalPage)
-        ->take($perPage)
+        ->skip($pageToSkip)
+        ->take($limit)
         ->get([
             'id',
             'username',
@@ -50,15 +51,15 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($users, new UserTransformer());
+        $resource = new Collection($users, new UserTransformer);
 
-        if (isset($resource)) {
-            $data = $this->fractal->createData($resource)->toArray();
+        $data = $this->fractal->createData($resource)->toArray();
 
+        if (count($data['data']) > 0) {
             return Response::json($data, 200);
 
         }
-
+        
         return Response::json(['message' => 'Users Not found'], 404);
         
     }
@@ -77,11 +78,11 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer());
+        $resource = new Collection($user, new UserTransformer);
 
-        if (isset($resource)) {
-            $data = $this->fractal->createData($resource)->toArray();
+        $data = $this->fractal->createData($resource)->toArray();
 
+        if (count($data['data']) > 0) {
             return Response::json($data, 200);
 
         }
@@ -106,13 +107,13 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer());
+        $resource = new Collection($user, new UserTransformer);
 
-        if (isset($resource)) {
-            $data = $this->fractal->createData($resource)->toArray();
+        $data = $this->fractal->createData($resource)->toArray();
 
+        if (count($data['data']) > 0) {
             return Response::json($data, 200);
-
+            
         }
 
         return Response::json(['message' => 'User Not found'], 404);
@@ -124,7 +125,10 @@ class UserController extends Controller
      */
     public function editUser(Request $request, $id)
     {
-        return $this->validateUserRequest($request);
+        if ($this->validateUserRequest($request)) {
+            return Response::json(['message' => 'User already exist or incomplete fields'], 400);
+
+        }
 
         $user = User::find($id);
         $user->username = $request->username;
@@ -182,7 +186,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json(['message' => 'User already exist or incomplete fields'], 400);
+            return true;
         }
     }
 
