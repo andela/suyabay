@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
 use League\Fractal\Resource\Collection;
 use Suyabay\Http\Transformers\UserTransformer;
 
@@ -32,14 +33,14 @@ class UserController extends Controller
      */
     public function getAllUsers(Request $request)
     {
-        $perPage = 3;
+        $perPage = 10;
 
         $page = $request->query('page') ? : 1;
 
-        $totalPage = (int) ($perPage*$page)-$perPage;
+        $pageToSkip = (int) ($perPage*$page)-$perPage;
 
         $users = User::orderBy('id', 'asc')
-        ->skip($totalPage)
+        ->skip($pageToSkip)
         ->take($perPage)
         ->get([
             'id',
@@ -77,7 +78,7 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer());
+        $resource = new Item($user, new UserTransformer());
 
         if (isset($resource)) {
             $data = $this->fractal->createData($resource)->toArray();
@@ -106,7 +107,7 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer());
+        $resource = new Item($user, new UserTransformer());
 
         if (isset($resource)) {
             $data = $this->fractal->createData($resource)->toArray();
