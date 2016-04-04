@@ -57,7 +57,7 @@ class UserController extends Controller
         }
         
         return Response::json(['message' => 'Users Not found'], 404);
-        
+    
     }
 
     /**
@@ -109,7 +109,7 @@ class UserController extends Controller
 
         if (count($data['data']) > 0) {
             return Response::json($data, 200);
-            
+        
         }
 
         return Response::json(['message' => 'User Not found'], 404);
