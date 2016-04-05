@@ -43,38 +43,32 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'UserController@getSingleUser'
     ]);
 
-});
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channels
 |--------------------------------------------------------------------------
 
 */
-Route::group(['prefix' => 'api/v1/'], function () {
 
     Route::get('channels', [
-        'uses' => 'ChannelController@getAllChannels'
+        'uses' => 'Api\ChannelController@getAllChannels'
     ]);
 
     Route::get('channels/{channel_name}', [
-        'uses' => 'ChannelController@getAChannel'
+        'uses' => 'Api\ChannelController@getAChannel'
     ]);
 
     Route::post('channels', [
-        'uses' => 'ChannelController@postAChannel'
+        'uses' => 'Api\ChannelController@postAChannel'
     ]);
 
     Route::put('channels/{channel_name}', [
-        'uses' => 'ChannelController@editAChannel'
+        'uses' => 'Api\ChannelController@editAChannel'
     ]);
 
     Route::patch('channels/{channel_name}', [
-        'uses' => 'ChannelController@editASingleChannelResource'
+        'uses' => 'Api\ChannelController@editASingleChannelResource'
     ]);
-
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -82,8 +76,6 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-Route::group(['prefix' => 'api/v1/'], function () {
-
     Route::get('channels/{channel_id}/episodes', function () {
 
         return json_encode(["message" => "view all episodes under a channel"]);
@@ -109,16 +101,12 @@ Route::group(['prefix' => 'api/v1/'], function () {
         return json_encode(["message" => "delete an episode under a channel"]);
     });
 
-});
-
 /*
 |--------------------------------------------------------------------------
 | API Routes - Favourites
 |--------------------------------------------------------------------------
 
 */
-Route::group(['prefix' => 'api/v1/'], function () {
-
     Route::get('users/{username}/favourites', function () {
 
         return json_encode(["message" => "allow a user to favourite an episodes"]);
@@ -129,17 +117,12 @@ Route::group(['prefix' => 'api/v1/'], function () {
         return json_encode(["message" => "allow a user to unfavourite an episodes"]);
     });
 
-});
-
 /*
 |--------------------------------------------------------------------------
 | API Routes - Episode Comments
 |--------------------------------------------------------------------------
 
 */
-
-Route::group(['prefix' => 'api/v1/'], function () {
-
     Route::get('episodes/{episode_id}/comments', function () {
 
         return json_encode(["message" => "get all comments under an episode"]);
