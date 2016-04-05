@@ -298,8 +298,9 @@ img.avatar {
 }
 
 .wave {
-    width: 350px;
-    margin: 20px auto auto 128px;
+    width: 200px;
+    margin: 20px auto auto 80px;
+    float: right;
 }
 
 input {
@@ -312,10 +313,13 @@ textarea {
 }
 
 h5 {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .form-content:nth-child(1) {
     top: 20px;
+}
+.form-content {
+    padding-top: 20px;
 }
 

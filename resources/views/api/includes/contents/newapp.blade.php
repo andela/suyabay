@@ -9,27 +9,27 @@
 	    		<div class='form-feature'>
 			    	<form>
 			    		<div class='form-content'>
-			    		<h5>Application name</h5>
+				    		<h5>Application name</h5>
 
-				    		<div class='form-group'>
-				    			<input name='application_name' class='form-control'> </textarea>
-				    		</div>	
+					    		<div class='form-group'>
+					    			<input name='application_name' class='form-control'> </textarea>
+					    		</div>	
 
-			    		<h5 class='new-app-text'>Home page url</h5>
+				    		<h5 class='new-app-text'>Home page url</h5>
 
-				    		<div class='form-group'>
-				    			<input name='homepage_url' class='form-control'> </textarea>
-				    		</div>				   			    
+					    		<div class='form-group'>
+					    			<input name='homepage_url' class='form-control'> </textarea>
+					    		</div>				   			    
 
-			    		<h5 class='new-app-text'>Application Description</h5>
-			   
-				    		<div class='form-group'>
-				    			<textarea name='application_description' class='form-control'> </textarea>
-				    		</div>	
+				    		<h5 class='new-app-text'>Application Description</h5>
+				   
+					    		<div class='form-group'>
+					    			<textarea name='application_description' class='form-control'> </textarea>
+					    		</div>	
 
-				    	<div class='form-group'>
-				    		<button type='submit' class="waves-effect wave btn">Save Changes</button>
-				    	</div>	
+					    	<div class='form-group'>
+					    		<button type='submit' class="waves-effect wave btn">Save Changes</button>
+					    	</div>	
 				    	</div>
 		    		</form>
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c8ac9f506daa46e8fb0b17fb7ca04305",
-    "content-hash": "07d0f4c24682bbb2e06915e6eb9e4401",
+    "hash": "43f95e42a4777e07f05433f178c15355",
+    "content-hash": "9abcc8b17a98ddffdee7640932e3a42f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1204,16 +1204,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.2.0",
+            "version": "6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "d094e337976dff9d8e2424e8485872194e768662"
+                "reference": "c6851d6e48f63b69357cbfa55bca116448140e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d094e337976dff9d8e2424e8485872194e768662",
-                "reference": "d094e337976dff9d8e2424e8485872194e768662",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c6851d6e48f63b69357cbfa55bca116448140e0c",
+                "reference": "c6851d6e48f63b69357cbfa55bca116448140e0c",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1229,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.1-dev"
                 }
             },
             "autoload": {
@@ -1262,7 +1262,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2016-03-21 20:02:09"
+            "time": "2015-11-23 00:47:50"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1418,6 +1418,45 @@
                 }
             ],
             "time": "2015-01-01 16:31:18"
+        },
+        {
+            "name": "j42/laravel-firebase",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j42/laravel-firebase.git",
+                "reference": "9e1229dc92792e3d1f30f8836ca06264e359f0e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j42/laravel-firebase/zipball/9e1229dc92792e3d1f30f8836ca06264e359f0e1",
+                "reference": "9e1229dc92792e3d1f30f8836ca06264e359f0e1",
+                "shasum": ""
+            },
+            "require": {
+                "firebase/php-jwt": "@dev",
+                "guzzlehttp/guzzle": "6.1.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/j42"
+                ],
+                "psr-0": {
+                    "J42\\LaravelFirebase": "src/j42/LaravelFirebase"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Julian Aceves",
+                    "email": "j@j42.me",
+                    "homepage": "https://j42.me"
+                }
+            ],
+            "description": "A Firebase port for Laravel (4.2+)",
+            "time": "2015-10-26 01:57:10"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -5148,6 +5187,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "google/apiclient": 5,
+        "j42/laravel-firebase": 20,
         "laracasts/integrated": 20
     },
     "prefer-stable": false,
