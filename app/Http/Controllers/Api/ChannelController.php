@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Transformers\ChannelTransformer;
 
-
 class ChannelController extends Controller
 {
     protected $mail;
@@ -35,7 +34,7 @@ class ChannelController extends Controller
      */
     public function getAllChannels(Request $request)
     {
-        $perPage = $request->query('results') ? : 2;
+        $perPage = $request->query('results') ? : 10;
 
         $channels = Channel::orderBy('id', 'asc')
         ->skip($this->getRecordsToSkip($perPage, $request))
