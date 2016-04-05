@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Transformers\UserTransformer;
 
-
 class UserController extends Controller
 {
     protected $mail;
