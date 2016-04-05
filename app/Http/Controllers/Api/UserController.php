@@ -48,7 +48,6 @@ class UserController extends Controller
         ]);
 
         $resource = new Collection($users, new UserTransformer);
-
         $data = $this->fractal->createData($resource)->toArray();
 
         if (count($data['data']) > 0) {
@@ -75,16 +74,15 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Item($user, new UserTransformer);
+        if (! is_null($user)) {
+            $resource = new Item($user, new UserTransformer);
+            $data = $this->fractal->createData($resource)->toArray();
 
-        $data = $this->fractal->createData($resource)->toArray();
-
-        if (count($data['data']) > 0) {
             return Response::json($data, 200);
 
         }
 
-        return Response::json(['message' => 'User record not available for display'], 404);
+        return Response::json(['message' => 'User Not found'], 404);
 
     }
 
@@ -105,13 +103,12 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Item($user, new UserTransformer);
+        if (! is_null($user)) {
+            $resource = new Item($user, new UserTransformer);
+            $data = $this->fractal->createData($resource)->toArray();
 
-        $data = $this->fractal->createData($resource)->toArray();
-
-        if (count($data['data']) > 0) {
             return Response::json($data, 200);
-        
+
         }
 
         return Response::json(['message' => 'User Not found'], 404);
