@@ -139,10 +139,12 @@ class ChannelController extends Controller
         ->toArray();
 
         if (count($channel) > 0) {
-
+            
         }
 
-        return Response::json(['message' => 'Channel cannot be updated because the channel name was incorrect'], 404);
+        return Response::json([
+            'message' => 'Channel cannot be updated because the channel name was incorrect'
+        ], 404);
     }
 
     /**
