@@ -173,7 +173,7 @@ body, html {
     min-height: 400px;
     width: 80%;
     background-color: #fff;
-    margin: auto auto 20px 134px;
+    margin: 20px auto 20px 134px;
 }
 
 #main-two {
@@ -181,7 +181,7 @@ body, html {
     min-height: 400px;
     width: 80%;
     background-color: #fff;
-    margin: auto 100px auto -54px;
+    margin: 20px 100px auto -54px;
 }
 
 .myapp {
@@ -286,7 +286,7 @@ img.avatar {
     min-height: 400px;
     width: 80%;
     background-color: #fff;
-    margin: 22px auto 20px 134px;
+    margin: 42px auto 20px 134px;
 }
 
 #main-new-two {
@@ -294,12 +294,13 @@ img.avatar {
     min-height: 400px;
     width: 80%;
     background-color: #fff;
-    margin: auto 100px auto -54px;
+    margin: 20px 100px auto -54px;
 }
 
 .wave {
-    width: 350px;
-    margin: 20px auto auto 128px;
+    width: 200px;
+    margin: 20px auto auto 80px;
+    float: right;
 }
 
 input {
@@ -312,6 +313,10 @@ textarea {
 }
 
 h5 {
-    font-size: 20px;
+    font-size: 17px;
+}
+
+.form-content {
+    padding-top: 20px;
 }
 
