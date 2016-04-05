@@ -6,5 +6,31 @@
   "dependencies": {
     "laravel-elixir": "^3.0.0",
     "bootstrap-sass": "^3.0.0"
-  }
+  },
+  "name": "suyabay",
+  "description": "[![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay) [![Coverage Status](https://coveralls.io/repos/github/andela/suyabay/badge.svg?branch=staging)](https://coveralls.io/github/andela/suyabay?branch=staging)",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela/suyabay.git"
+  },
+  "author": "@Ademola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andela/suyabay/issues"
+  },
+  "homepage": "https://github.com/andela/suyabay#readme",
+  "keywords": [
+    "suyabay",
+    "for",
+    "suya",
+    "lovers"
+  ]
 }

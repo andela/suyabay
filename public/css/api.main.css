@@ -1,166 +1,158 @@
-body, html {
-    height:100%;
-    position: relative;
-    background-color: #E0E0E0; 
+body,
+html {
+  height: 100%;
+  position: relative;
+  background-color: #E0E0E0;
 }
 
 #settings {
-    -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
-    -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
-    box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
-    margin-top: 65px;
-    height: 100px;
+  box-shadow: -1px 2px 16px 3px rgba(0, 0, 0, 0.52);
+  margin-top: 65px;
+  height: 100px;
 }
 
 #hero {
-    max-height: 500px !important;
-    position: relative;
-    top:-80px;
+  max-height: 500px !important;
+  position: relative;
+  top: -80px;
 }
 
-#hero, #hero > * {
-    width: 100%;
-    min-height: 50%;
+#hero,
+#hero > * {
+  width: 100%;
+  min-height: 50%;
 }
 
-#hero #overlay-image{
-    background: url('../images/hero.jpg');
-     position: absolute;
-    -webkit-background-size:cover;
-    background-size:cover;
-    height: 450px;
+#hero #overlay-image {
+  background: url("../images/hero.jpg");
+  position: absolute;
+  background-size: cover;
+  height: 450px;
 }
 
 #hero-content {
-    position: absolute;
-    color:#FFF;
+  position: absolute;
+  color: #FFF;
 }
 
 #hero-content .content {
-    width: 70%;
-    margin:90px auto 0px;
+  width: 70%;
+  margin: 90px auto 0px;
 }
 
 #hero-menu {
-    position: absolute;
-    color:#FFF;
-    clear: both;
-    top: 20px;
-    margin: auto;
-    max-height:50px !important;
-    margin-top: 380px;
-    font-family: 'robotoLight';
-    font-size: 18px;
-    padding: 0 10px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 40px;
-    text-decoration: none;
-    vertical-align: top;
-    white-space: nowrap;
-    display: inline-block;
+  position: absolute;
+  color: #FFF;
+  clear: both;
+  top: 20px;
+  margin: auto;
+  max-height: 50px !important;
+  margin-top: 380px;
+  font-family: 'robotoLight';
+  font-size: 18px;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 40px;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 #hero-menu a {
-    width: 20%;
-    float: right;
-    margin-top: 7px;
+  width: 20%;
+  float: right;
+  margin-top: 7px;
 }
 
 .slider-text-header {
-    text-align: right;
-    font-weight: 500;
-    display: table-cell;
-    vertical-align: middle;
-    font-family: 'robotoMedium';
-    color: #fff;
+  text-align: right;
+  font-weight: 500;
+  display: table-cell;
+  vertical-align: middle;
+  font-family: 'robotoMedium';
+  color: #fff;
 }
 
 .slider-text-paragraph {
-    font-size: 19px;
-    line-height: 31px;
-    font-weight: 300;
+  font-size: 19px;
+  line-height: 31px;
+  font-weight: 300;
 }
- 
+
 .footer-copyright {
-    background-color: #2C3E50!important;
+  background-color: #2C3E50 !important;
 }
 
 .api-link {
-    margin-left:2%;
+  margin-left: 2%;
 }
 
 .api-link a {
-    color: #ffffff;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .feature-content:nth-child(1) {
-     margin-top: 90px;
+  margin-top: 90px;
 }
 
 .feature-content {
-    clear: both;
-    min-height: 20px;
-    width: 80%;
-    background-color: #fff;
-    margin: auto auto 20px auto;
+  clear: both;
+  min-height: 20px;
+  width: 80%;
+  background-color: #fff;
+  margin: auto auto 20px auto;
 }
 
 .text-content h1 {
-    color:#2793e6; 
-    padding: 10px; 
-    font-size:25px; 
-    font-weight: 200; 
-    line-height: 30px;
+  color: #2793e6;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 200;
+  line-height: 30px;
 }
 
 .text-content .p {
-    font-size: 15px;
-    font-weight: 400; 
-    line-height: 24px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .feature-content .text-content {
-    text-align: center;
+  text-align: center;
 }
 
 .feature-content .img {
-    position: absolute;
-    margin-right: 20px;
-    width: 200px;
-    float: center;
-    position: relative;
-    left: 30px;
-}
-
-.nav-container {
-    ..display: none;
-    ..margin-top: -100px;
-    ..background: gray;
-    height: 100vh!important;
+  position: absolute;
+  margin-right: 20px;
+  width: 200px;
+  float: center;
+  position: relative;
+  left: 30px;
 }
 
 .logo {
-    margin: auto;
-    padding: 15px;
+  margin: auto;
+  padding: 15px;
 }
 
 .logo-box {
-    margin: 0 auto;
-    z-index: 55;
+  margin: 0 auto;
+  z-index: 55;
 }
 
 @font-face {
-    font-family: robotoLight;
-    src: url('../fonts/Roboto-Light.ttf');
+  font-family: robotoLight;
+  src: url("../fonts/Roboto-Light.ttf");
 }
 
 @font-face {
-    font-family: robotoMedium;
-    src: url('../fonts/Roboto-Medium.ttf');
-    font-size: 18px;
+  font-family: robotoMedium;
+  src: url("../fonts/Roboto-Medium.ttf");
+  font-size: 18px;
 }
 
 /*
@@ -169,154 +161,155 @@ body, html {
 */
 
 #main-one {
-    clear: both;
-    min-height: 400px;
-    width: 80%;
-    background-color: #fff;
-    margin: 20px auto 20px 134px;
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 20px auto 20px 134px;
 }
 
 #main-two {
-    clear: both;
-    min-height: 400px;
-    width: 80%;
-    background-color: #fff;
-    margin: 20px 100px auto -54px;
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 20px 100px auto -54px;
 }
 
 .myapp {
-    border: 1px solid #c7cdcf;
-    width: 90%;
-    height: 150px;
-    border-radius: 2px;
-    position: relative;
-    background: #fcfcfc;
-    margin: auto auto auto auto;
+  border: 1px solid #c7cdcf;
+  width: 90%;
+  height: 150px;
+  border-radius: 2px;
+  position: relative;
+  background: #fcfcfc;
+  margin: auto auto auto auto;
 }
 
 .error-message {
-    border: 1px solid #c7cdcf;
-    width: 90%;
-    height: 150px;
-    border-radius: 2px;
-    position: relative;
-    background: #fcfcfc;
-    margin: 40px auto 40px auto;
+  border: 1px solid #c7cdcf;
+  width: 90%;
+  height: 150px;
+  border-radius: 2px;
+  position: relative;
+  background: #fcfcfc;
+  margin: 40px auto 40px auto;
 }
 
 .error-text {
-    text-align: center;
-    font-size: 16px;
-    color: #FF0000;
+  text-align: center;
+  font-size: 16px;
+  color: #FF0000;
 }
 
 .waves-two {
-    margin-left: 128px;
-    width: 250px;
-    top: 20px;
+  margin-left: 128px;
+  width: 250px;
+  top: 20px;
 }
 
 .app-title {
-    font-size: 21px;
-    line-height: 70px;
-    margin: auto;
-    font-weight: 500;
-    text-align: center;
+  font-size: 21px;
+  line-height: 70px;
+  margin: auto;
+  font-weight: 500;
+  text-align: center;
 }
 
 .app-text {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .waves {
-    margin-left: 128px;
-    width: 350px;
+  margin-left: 128px;
+  width: 350px;
 }
 
 .waves-one {
-    margin: 20px auto auto 50px;
+  margin: 20px auto auto 50px;
 }
 
 .session-one {
-    border-radius: 2px;
-    position: relative;
-    margin: auto;
+  border-radius: 2px;
+  position: relative;
+  margin: auto;
 }
 
 .session-two {
-    margin: auto;
-    border-radius: 2px;
-    position: relative;
-    background: red;
+  margin: auto;
+  border-radius: 2px;
+  position: relative;
+  background: red;
 }
 
 .session-three {
-    margin: auto;
-    border-radius: 2px;
-    position: relative;
-    background: white;
+  margin: auto;
+  border-radius: 2px;
+  position: relative;
+  background: white;
 }
 
 /*
  # Avatar Image
  =====================
 */
+
 img.avatar {
-    width: 45px;
-    max-width: 1232px;
-    height: 45px;
-    vertical-align: middle;
+  width: 45px;
+  max-width: 1232px;
+  height: 45px;
+  vertical-align: middle;
 }
 
 /*
 # mynewApp Styles
 ===============================================
 */
+
 .form-feature {
-    clear: both;
-    min-height: 20px;
-    width: 80%;
-    background-color: #fff;
-    margin: -22px auto 20px auto; 
+  clear: both;
+  min-height: 20px;
+  width: 80%;
+  background-color: #fff;
+  margin: -22px auto 20px auto;
 }
 
 #main-new-one {
-    clear: both;
-    min-height: 400px;
-    width: 80%;
-    background-color: #fff;
-    margin: 42px auto 20px 134px;
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 42px auto 20px 134px;
 }
 
 #main-new-two {
-    clear: both;
-    min-height: 400px;
-    width: 80%;
-    background-color: #fff;
-    margin: 20px 100px auto -54px;
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 20px 100px auto -54px;
 }
 
 .wave {
-    width: 200px;
-    margin: 20px auto auto 80px;
-    float: right;
+  width: 200px;
+  margin: 20px auto auto 80px;
+  float: right;
 }
 
 input {
-    width: 532px;
+  width: 532px;
 }
 
 textarea {
-    width: 532px;
-    min-height: 100px;
+  width: 532px;
+  min-height: 100px;
 }
 
 h5 {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 .form-content {
-    padding-top: 20px;
+  padding-top: 20px;
 }
-
