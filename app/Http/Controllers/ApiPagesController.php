@@ -2,6 +2,13 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
+use Suyabay\App_info;
+use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Suyabay\Http\Controllers\Controller;
+
 class ApiPagesController extends Controller
 {
     /**
@@ -32,5 +39,11 @@ class ApiPagesController extends Controller
     public function createNewApp()
     {
         return view('api.pages.mynewapp');
+    }
+
+    public function showAppInfo()
+    {
+    	$app_infos = App_info::all();
+    	return view('api.pages.appinfo', compact('app_infos'));
     }
 }
