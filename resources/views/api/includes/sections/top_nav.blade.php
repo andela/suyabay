@@ -26,13 +26,6 @@
                         @endcan
 
                         <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
-
-                        @can( 'see-upgrade', Auth::user()->role->name )
-                            <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
-                        @endcan
-
-                    @else
-                       
                     @endif
                 </li>
             </ul>
