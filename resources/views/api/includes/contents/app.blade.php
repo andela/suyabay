@@ -1,7 +1,7 @@
 @if ( Auth::check() )
 
         <!-- top nav -->
-    @include("api.includes.sections.top_nav_user")
+    @include("api.includes.sections.top_nav")
 
     <div class="row">
         <div class="col s8">
