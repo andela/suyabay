@@ -7,6 +7,7 @@ use Suyabay\User;
 use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
@@ -33,10 +34,10 @@ class UserController extends Controller
 
         $currentPage = $request->query('page') ? : 1;
 
-        $pageToSkip = (int) ($limit * $currentPage) - $limit;
+        $recordsToSkip = (int) ($limit * $currentPage) - $limit;
 
         $users = User::orderBy('id', 'asc')
-        ->skip($pageToSkip)
+        ->skip($recordsToSkip)
         ->take($limit)
         ->get([
             'id',
@@ -56,7 +57,7 @@ class UserController extends Controller
 
         }
         
-        return Response::json(['message' => 'Users Not found'], 404);
+        return Response::json(['message' => 'User record not available for display'], 404);
     
     }
 
@@ -65,7 +66,8 @@ class UserController extends Controller
      */
     public function getSingleUser($username)
     {
-        $user = User::where('username', '=', $username)->get([
+        $user = User::where('username', '=', $username)
+        ->first([
             'id',
             'username',
             'email',
@@ -74,7 +76,7 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer);
+        $resource = new Item($user, new UserTransformer);
 
         $data = $this->fractal->createData($resource)->toArray();
 
@@ -83,7 +85,7 @@ class UserController extends Controller
 
         }
 
-        return Response::json(['message' => 'User Not found'], 404);
+        return Response::json(['message' => 'User record not available for display'], 404);
 
     }
 
@@ -94,7 +96,8 @@ class UserController extends Controller
     {
         $id  = 1; // The id will be retrieved from the token
 
-        $user = User::where('id', '=', $id)->get([
+        $user = User::where('id', '=', $id)
+        ->first([
             'id',
             'username',
             'email',
@@ -103,7 +106,7 @@ class UserController extends Controller
             'avatar'
         ]);
 
-        $resource = new Collection($user, new UserTransformer);
+        $resource = new Item($user, new UserTransformer);
 
         $data = $this->fractal->createData($resource)->toArray();
 
