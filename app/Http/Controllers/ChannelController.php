@@ -7,102 +7,14 @@ use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
 use Suyabay\Http\Transformers\ChannelTransformer;
 
 class ChannelController extends Controller
 {
     protected $response;
-    protected $fractal;
 
-    public function __construct(Manager $fractal)
-    {
-        $this->fractal = $fractal;
-    }
-
-
-    /**
-     * This method lists all channels 
-     * @param $page
-     * @param $request
-     * @param $response
-     *
-     * @return json $response
-     */
-    public function getAllChannels(Request $request)
-    {
-        $perPage = 3;
-
-        $channels = Channel::orderBy('id', 'asc')
-        ->skip($this->getPageToSkip($perPage, $request))
-        ->take($perPage)
-        ->get([
-            'id',
-            'channel_name',
-            'channel_description',
-            'subscription_count',
-            'created_at',
-            'updated_at',
-            'user_id',
-        ]);
-
-         $resource = new Collection($channels, new ChannelTransformer());
-         if (isset($resource)) {
-            $data = $this->fractal->createData($resource)->toArray();
-
-            return Response::json($data, 200);
-
-        }
-
-        return Response::json(['message' => 'Channels are currently not available'], 404);
-
-    }
-
-    /**
-     * This method get a single channel
-     *
-     * @param $channel_name
-     *
-     * @return json $response
-     */
-    public function getAChannel($channel_name)
-    {
-        $channels = Channel::where('channel_name', '=', $channel_name)
-        ->orWhere('channel_name', '=', strtolower($channel_name))
-        ->orderBy('id', 'asc')
-        ->get([
-            'id',
-            'channel_name',
-            'channel_description',
-            'subscription_count',
-            'created_at',
-            'updated_at',
-            'user_id',
-        ]);
-
-         $resource = new Collection($channels, new ChannelTransformer());
-         if (isset($resource)) {
-            $data = $this->fractal->createData($resource)->toArray();
-
-            return Response::json($data, 200);
-
-        }
-
-        return Response::json(['message' => 'Channel not found'], 404);
-
-    }
-
-    public function getPageToSkip($perPage, $request)
-    {
-        $page = $request->query('page') ? : 1;
-        $pageToSkip = (int) ($perPage*$page)-$perPage;
-
-        return $pageToSkip;
-    }
     /**
      * Return all channels
      * @return \Illuminate\Http\Response
