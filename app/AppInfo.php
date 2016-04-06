@@ -12,9 +12,8 @@ class AppInfo extends Model
      * @var array
      */
     protected $fillable = [
-
-    	'name',
-    	'homepage_url',
-    	'description'
+        'name',
+        'homepage_url',
+        'description'
     ];
 }
