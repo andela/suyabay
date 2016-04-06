@@ -11,7 +11,7 @@ Route::get('/developer', 'ApiPagesController@index');
 Route::get('/developer/myapp', 'ApiPagesController@myApp');
 Route::get('/developer/myapp/new', 'ApiPagesController@createNewApp');
 Route::post('/developer/myapp/new/', function () {
-    echo "App created successfully";
+    return "App created successfully";
 });
 
 /*
