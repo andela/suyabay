@@ -104,8 +104,10 @@ class UserController extends Controller
     /**
      * This method edit a user
      */
-    public function editUser(Request $request, $id)
+    public function editUser(Request $request)
     {
+        $id  = 1; // The id will be retrieved from the token
+
         if ($this->validateUserRequestForEmptyFields($request)) {
             return Response::json(['message' => 'All fields must be filled'], 400);
 
@@ -130,8 +132,10 @@ class UserController extends Controller
     /**
      * This method edit a user
      */
-    public function editSingleUser(Request $request, $id)
+    public function editSingleUser(Request $request)
     {
+        $id  = 1; // The id will be retrieved from the token
+
         if (! isset($id)) {
             return Response::json(['message' => 'User id is missing'], 400);
         }
@@ -167,7 +171,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|max:50',
             'email' => 'required',
-            'password' => 'required'
         ]);
 
         if ($validator->fails()) {
