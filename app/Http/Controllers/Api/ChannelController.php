@@ -42,10 +42,10 @@ class ChannelController extends Controller
         ->take($perPage)
         ->get();
 
-         $resource = new Collection($channels, $channelTransformer);
-         $data = $this->fractal->createData($resource)->toArray();
+        $resource = new Collection($channels, $channelTransformer);
+        $data = $this->fractal->createData($resource)->toArray();
 
-         if (count($data['data']) > 0) {
+        if (count($data['data']) > 0) {
             return Response::json($data, 200);
 
         }
