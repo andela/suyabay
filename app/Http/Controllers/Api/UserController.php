@@ -8,7 +8,7 @@ use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
-use Illuminate\Mail\Mailer as Mail; 
+use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
@@ -125,7 +125,6 @@ class UserController extends Controller
             return Response::json(['message' => 'User updated successfully'], 200);
 
         }
-
     }
 
     /**
@@ -153,7 +152,6 @@ class UserController extends Controller
             return Response::json(['message' => 'User updated successfully'], 200);
 
         }
-
     }
 
     /**
@@ -173,6 +171,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return true;
+        
         }
     }
 
