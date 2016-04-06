@@ -116,7 +116,7 @@ class UserController extends Controller
 
         }
 
-        $user = User::find($id);
+        $user = $this->userRepository->findUser($id);
         $user->username = $request->username;
         $user->email =  $request->email;
         $user->save();
@@ -142,6 +142,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return Response::json(['message' => 'User already exist'], 400);
+
         }
 
         $user = User::find($id);
@@ -171,7 +172,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return true;
-        
+
         }
     }
 
@@ -191,6 +192,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return true;
+
         }
     }
 
