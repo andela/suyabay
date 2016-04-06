@@ -157,9 +157,9 @@ class UserController extends Controller
 
     /**
      * This method validates the user request for empty fields
-     * 
+     *
      * @param $request
-     * 
+     *
      * @return json $response
      */
     public function validateUserRequestForEmptyFields($request)
@@ -178,9 +178,9 @@ class UserController extends Controller
 
     /**
      * This method validates the user request
-     * 
+     *
      * @param $request
-     * 
+     *
      * @return json $response
      */
     public function validateUserRequest($request)
@@ -195,5 +195,4 @@ class UserController extends Controller
 
         }
     }
-
 }
