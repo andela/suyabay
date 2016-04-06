@@ -3,7 +3,8 @@
 namespace Suyabay\Http\Controllers;
 
 use Auth;
-use Suyabay\App_info;
+use Suyabay\AppInfo;
+use Firebase\JWT\JWT;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -32,7 +33,33 @@ class ApiPagesController extends Controller
     }
     
     /**
-     * Displays a form a form where user can register their new app.
+     * Generate a token for user with passed Id.
+     *
+     * @param int $userId
+     *
+     * @return string
+     */
+    public function generateToken()
+    {
+        $appSecret = getenv('APP_SECRET');
+        $jwtAlgorithm = getenv('JWT_ALGORITHM');
+        $timeIssued = time();
+        $tokenId = base64_encode(getenv('TOKENID'));
+        $token = [
+        	'iss'  => 'http://suyabay-staging.herokuapp.com/',
+            'iat'  => $timeIssued,   // Issued at: time when the token was generated
+            'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
+            'nbf'  => $timeIssued, //Not before time
+            'exp'  => $timeIssued + 60 * 60 * 24 * 30, // expires in 30 days
+            'data' => [                  // Data related to the signer user
+            //'user_id'   => $user_id, // userid from the users table
+            ],
+        ];
+        return JWT::encode($token, $appSecret, $jwtAlgorithm);
+    }
+        
+    /**
+     * Displays a form where user can register their new app.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +70,20 @@ class ApiPagesController extends Controller
 
     public function showAppInfo()
     {
-    	$app_infos = App_info::all();
+    	$app_infos = AppInfo::all();
+
     	return view('api.pages.appinfo', compact('app_infos'));
     }
+
+    public function storeAppInfo(Request $request)
+    {
+    	AppInfo::create([
+            'name'         => $request->name,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+            'user_id'      => $request->user_id,
+        ]);
+
+        return $this->generateToken();
+    }    
 }

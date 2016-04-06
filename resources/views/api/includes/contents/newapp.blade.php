@@ -7,7 +7,7 @@
     	<div class="col s8">
         	<div id="main-new-one">
 	    		<div class='form-feature'>
-			    	<form method="POST">
+			    	<form method="POST" action="/developer/myapp/new">
 			    	<input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 			    		<div class='form-content'>
 				    		<h5>Application name</h5>

@@ -18,6 +18,7 @@ class AddAppInfosTable extends Migration
             $table->string('name');
             $table->string('homepage_url');
             $table->text('description');
+            $table->string('api_token');
             $table->timestamps();
         });
     }

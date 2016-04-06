@@ -6,13 +6,6 @@
 
 @section('content')
 
-	<h1>Your App Info<h1>
-
-	@foreach ($app_infos as $app_info)
-		{{ $app_info->name }}
-		{{ $app_info->homepage_url }}
-		{{ $app_info->description }}
-
-	@endforeach
+	@include('api.includes.contents.myappinfo')
 
 @endsection
