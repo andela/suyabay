@@ -68,13 +68,6 @@ class ApiPagesController extends Controller
         return view('api.pages.mynewapp');
     }
 
-    public function showAppInfo()
-    {
-        $app_infos = AppInfo::all();
-
-        return view('api.pages.appinfo', compact('app_infos'));
-    }
-
     public function storeAppInfo(Request $request)
     {
         AppInfo::create([
