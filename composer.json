@@ -20,7 +20,10 @@
         "facebook/webdriver": "^1.1",
         "google/apiclient": "^2.0.0@RC",
         "j42/laravel-firebase": "dev-master",
-        "firebase/php-jwt": "^3.0"
+        "firebase/php-jwt": "^3.0",
+      "facebook/webdriver": "^1.1",
+      "google/apiclient": "^2.0.0@RC",
+      "league/fractal": "^0.13.0"
    },
    "require-dev": {
         "mockery/mockery": "0.9.*",
