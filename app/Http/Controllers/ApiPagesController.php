@@ -45,9 +45,10 @@ class ApiPagesController extends Controller
         $appSecret = getenv('APP_SECRET');
         $jwtAlgorithm = getenv('JWT_ALGORITHM');
         $timeIssued = time();
+        $serverName = getenv('SERVERNAME');
         $tokenId = base64_encode(getenv('TOKENID'));
         $token = [
-            'iss'  => 'http://suyabay-staging.herokuapp.com/',
+            'iss'  => $serverName,   //Issuer: the server name
             'iat'  => $timeIssued,   // Issued at: time when the token was generated
             'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
             'nbf'  => $timeIssued, //Not before time
