@@ -71,8 +71,8 @@ class User extends Model implements AuthenticatableContract,
         $this->save();
     }
 
-    public function appInfo()
+    public function appDetail()
     {
-        return $this->hasMany('Suyabay\AppInfo', 'user_id', 'id');
+        return $this->hasMany('Suyabay\AppDetail');
     }
 }

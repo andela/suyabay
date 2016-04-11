@@ -20,7 +20,10 @@ class CreateAppDetailsTable extends Migration
             $table->text('description');
             $table->string('api_token');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

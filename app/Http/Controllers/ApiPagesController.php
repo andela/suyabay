@@ -76,10 +76,10 @@ class ApiPagesController extends Controller
     {
         AppDetail::create([
         'name'         => $request->name,
+        'user_id'      => auth()->User()->id,
         'homepage_url' => $request->homepage_url,
         'description'  => $request->description,
         'api_token'    => $this->generateToken(),
         ]);
     }
 }
-

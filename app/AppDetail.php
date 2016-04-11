@@ -16,4 +16,9 @@ class AppDetail extends Model
         'homepage_url',
         'description'
     ];
+
+    public function user()
+    {
+    	return $this->belongsTo('Suyabay\User');
+    }
 }
