@@ -115,6 +115,9 @@
                                                 </li>
                                             @endif
                                     <li class="collection-item avatar">
+                                    
+                                        <div class="row">
+                                    
                                             <div class="col s2">
                                                 <img src="{{ Auth::user()->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                             </div>
