@@ -82,7 +82,7 @@ class UsersEndpointTest extends TestCase
 
         $user = factory('Suyabay\User')->create();
 
-        $response = $this->call('PUT', '/api/v1/users/me', [
+        $response = $this->call('PATCH', '/api/v1/users/me', [
             'username' => 'Temitope',
         ]);
         
