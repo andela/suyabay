@@ -47,11 +47,6 @@
     </head>
     <body>
 
-        <!-- top nav -->
-        <div class="row">
-            @include("api.includes.sections.top_nav")
-        </div>
-
         <!-- main contents -->
             @yield('content')
             
