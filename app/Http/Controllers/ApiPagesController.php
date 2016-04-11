@@ -2,6 +2,14 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
+use Suyabay\AppInfo;
+use Firebase\JWT\JWT;
+use Suyabay\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Suyabay\Http\Controllers\Controller;
+
 class ApiPagesController extends Controller
 {
     /**
@@ -23,9 +31,9 @@ class ApiPagesController extends Controller
     {
         return view('api.pages.myapp');
     }
-    
+
     /**
-     * Displays a form a form where user can register their new app.
+     * Displays a form where user can register their new app.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,3 +42,4 @@ class ApiPagesController extends Controller
         return view('api.pages.mynewapp');
     }
 }
+

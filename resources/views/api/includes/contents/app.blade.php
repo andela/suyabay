@@ -35,7 +35,10 @@
         @include("api.includes.sections.top_nav")
 
     <!--auth check error page -->    
+<<<<<<< HEAD
 
+=======
+>>>>>>> staging
         @include("api.includes.contents.autherrorpage")
 
 @endif
