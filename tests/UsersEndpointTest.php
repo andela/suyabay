@@ -61,6 +61,18 @@ class UsersEndpointTest extends TestCase
     
     public function testThatTheUserEditInfoViaPutRequest()
     {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PUT', '/api/v1/users/me', [
+            'username' => 'olotu',
+            'email' => 'olotu.isaac@eporo.com',
+        ]);
+        
+        $json = json_decode($response->getContent());
+
+        $this->assertEquals($json->message, 'User updated successfully');
 
     }
 

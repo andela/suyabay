@@ -12,6 +12,7 @@ use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Transformers\UserTransformer;
 
 class UserController extends Controller
@@ -117,8 +118,8 @@ class UserController extends Controller
             return Response::json(['message' => 'User already exists'], 400);
 
         }
-
-        $user = $this->userRepository->findUser($id);
+        
+        $user = UserRepository::findUser($id)->first();
         $user->username = $request->username;
         $user->email =  $request->email;
         $user->save();
@@ -149,7 +150,7 @@ class UserController extends Controller
 
         }
 
-        $user = User::find($id);
+        $user = UserRepository::findUser($id)->first();
         $user->username = $request->username;
         $user->save();
 
