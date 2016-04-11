@@ -16,8 +16,4 @@ class AppInfo extends Model
         'homepage_url',
         'description'
     ];
-
-    public function user_id() {
-        return $this->belongsTo('Suyabay\User')->select('user_id', 'role_id');
-    }
 }
