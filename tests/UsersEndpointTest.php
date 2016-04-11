@@ -9,7 +9,7 @@ class ChannelsEndpointTest extends TestCase
 {
     public function testThatNothingWasReturnOnGetAllUsers()
     {
-        $this->get('http://suyabay.app/api/v1/users')
+        $this->get('/api/v1/users')
         ->seeJson()
         ->seeStatusCode(404);
     }
@@ -17,7 +17,7 @@ class ChannelsEndpointTest extends TestCase
     public function testGetAllUsers()
     {
         $users = factory('Suyabay\User', 5)->create();
-        $this->get('http://suyabay.app/api/v1/users')
+        $this->get('/api/v1/users')
         ->seeJson()
         ->seeStatusCode(200);
     }
@@ -35,6 +35,6 @@ class ChannelsEndpointTest extends TestCase
         $this->get('/api/v1/users/ginger')
         ->seeJson()
         ->seeStatusCode(200);
-        
+
     }
 }
