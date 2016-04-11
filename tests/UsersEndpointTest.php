@@ -58,4 +58,10 @@ class UsersEndpointTest extends TestCase
         ->seeJson()
         ->seeStatusCode(200);
     }
+    
+    public function testThatTheUserEditInfoViaPutRequest()
+    {
+
+    }
+
 }
