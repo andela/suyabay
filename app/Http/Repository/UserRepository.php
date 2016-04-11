@@ -8,24 +8,24 @@ class UserRepository
 {
 
     /**
-    * Return all user from the database
-    */
+     * Return all user from the database
+     */
     public function getAllUsers()
     {
         return User::all();
     }
 
     /**
-    * Return all online users
-    */
+     * Return all online users
+     */
     public function getOnlineUsers()
     {
         return User::where('active', 1);
     }
 
     /**
-    * Return all offline users
-    */
+     * Return all offline users
+     */
     public function getOfflineUsers()
     {
         return User::where('active', 0);
@@ -34,5 +34,19 @@ class UserRepository
     public function findUser($id)
     {
         return User::find($id);
+    }
+
+    public function findUserWhere($username)
+    {
+        return User::where('username', '=', $username)
+        ->first([
+            'id',
+            'username',
+            'email',
+            'created_at',
+            'updated_at',
+            'avatar'
+        ]);
+
     }
 }
