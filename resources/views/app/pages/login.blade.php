@@ -11,11 +11,11 @@
     </div>
 
     <div>
-        <form class="col s6 offset-s3" action="/login" method="POST">
+        <form class="col s6 offset-s3">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field">
                 <i class="material-icons prefix">perm_identity</i>
-                <input id="username" name="username" type="text" required>
+                <input id="username" type="text" required>
                 <label for="icon_prefix1">
                     Username
                 </label>
@@ -23,7 +23,7 @@
 
             <div class="input-field">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="password" name="password" type="password" required>
+                <input id="password" type="password" required>
                 <label for="password">Password</label>
             </div>
 
@@ -33,9 +33,9 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <button type="submit" class="waves-effect waves-light btn right" >
+                <a class="waves-effect waves-light btn right" onclick="login()">
                     Sign In
-                </button>
+                </a>
 
             </div>
         </form>

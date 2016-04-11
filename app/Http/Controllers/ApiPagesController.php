@@ -39,7 +39,7 @@ class ApiPagesController extends Controller
      *
      * @return string
      */
-    public function generateToken($userInfo)
+    public function generateToken()
     {
         $appSecret = getenv('APP_SECRET');
         $jwtAlgorithm = getenv('JWT_ALGORITHM');
@@ -51,10 +51,6 @@ class ApiPagesController extends Controller
             'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
             'nbf'  => $timeIssued, //Not before time
             'exp'  => $timeIssued + 60 * 60 * 24 * 30, // expires in 30 days
-            'data' => [ 
-                'user_id' => $userInfo[''],
-                'role_id' => $userInfo[''],      // Data related to the signer user
-            ],
         ];
         
         return JWT::encode($token, $appSecret, $jwtAlgorithm);
@@ -83,8 +79,12 @@ class ApiPagesController extends Controller
         'name'         => $request->name,
         'homepage_url' => $request->homepage_url,
         'description'  => $request->description,
-        'api_token'    => $this->generateToken($userInfo),
+        'api_token'    => $this->generateToken(),
         ]);
+    }
 
+    public function getUserData()
+    {
+        
     }
 }

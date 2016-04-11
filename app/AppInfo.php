@@ -18,6 +18,6 @@ class AppInfo extends Model
     ];
 
     public function user_id() {
-        return $this->belongsTo('Suyabay\User')->select('id');
+        return $this->belongsTo('Suyabay\User')->select('user_id', 'role_id');
     }
 }
