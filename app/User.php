@@ -70,4 +70,9 @@ class User extends Model implements AuthenticatableContract,
         $this->avatar = $img;
         $this->save();
     }
+
+    public function appInfo()
+    {
+        return $this->hasMany('Suyabay\AppInfo', 'user_id', 'id')
+    }
 }
