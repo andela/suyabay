@@ -73,6 +73,6 @@ class User extends Model implements AuthenticatableContract,
 
     public function appInfo()
     {
-        return $this->hasMany('Suyabay\AppInfo', 'user_id', 'id')
+        return $this->hasMany('Suyabay\AppInfo', 'user_id', 'id');
     }
 }
