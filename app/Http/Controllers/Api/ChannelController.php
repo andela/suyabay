@@ -25,7 +25,7 @@ class ChannelController extends Controller
         $this->fractal = $fractal;
     }
 
-    /**
+    /**https://laracasts.com/series/eloquent-techniques
      * This method lists all channels 
      * @param $page
      * @param $request
