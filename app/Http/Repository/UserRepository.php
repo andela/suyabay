@@ -31,7 +31,7 @@ class UserRepository
         return User::where('active', 0);
     }
 
-    public function findUser($id)
+    public static function findUser($id)
     {
         return User::find($id);
     }
