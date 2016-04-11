@@ -82,9 +82,4 @@ class ApiPagesController extends Controller
         'api_token'    => $this->generateToken(),
         ]);
     }
-
-    public function getUserData()
-    {
-        
-    }
 }
