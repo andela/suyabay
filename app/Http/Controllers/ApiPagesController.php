@@ -68,7 +68,7 @@ class ApiPagesController extends Controller
     }
 
     /**
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
