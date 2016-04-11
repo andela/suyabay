@@ -102,7 +102,7 @@ class ChannelController extends Controller
         } 
 
         $channel = Channel::create([
-            'channel_name' => $request->input('channel_name'),
+            'channel_name' => strtolower($request->input('channel_name')),
             'channel_description' => $request->input('channel_description'),
             'created_at' => date('Y-m-d h:i:s'),
             'user_id' => $userId,
@@ -128,8 +128,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::where('channel_name', '=', $channel_name)
-        ->orWhere('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
         ->first();
 
         if ($this->processEditChannel($request, $channel)) {
@@ -157,8 +156,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::where('channel_name', '=', $channel_name)
-        ->orWhere('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::Where('channel_name', '=', strtolower($channel_name))
         ->first();
 
         if ($this->processEditChannelForPatchRequest($request, $channel)) {
@@ -183,8 +181,7 @@ class ChannelController extends Controller
     public function processEditChannel($request, $channel)
     {
         if (! is_null($channel)) {
-            DB::table('channels')
-            ->where('id', '=', $channel->id)
+            Channel::where('id', '=', $channel->id)
             ->update([
                 'channel_name' => $request->input('channel_name'),
                 'channel_description' => $request->input('channel_description'),
@@ -209,15 +206,16 @@ class ChannelController extends Controller
     public function processEditChannelForPatchRequest($request, $channel)
     {
         if (! is_null($channel)) {
-            DB::table('channels')
-            ->where('id', '=', $channel->id)
+            Channel::where('id', '=', $channel->id)
             ->update([
                 'channel_name' => $request->input('channel_name'),
                 'updated_at' => date('Y-m-d h:i:s'),
-        ]);
+            ]);
+
             return true;
             
         }
+        
         return false;
 
     }

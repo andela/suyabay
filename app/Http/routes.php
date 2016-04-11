@@ -24,23 +24,23 @@ Route::group(['prefix' => 'api/v1/'], function () {
     });
 
     Route::get('users', [
-        'uses' => 'UserController@getAllUsers'
+        'uses' => 'Api\UserController@getAllUsers'
     ]);
 
     Route::get('users/me', [
-        'uses' => 'UserController@getMyDetails'
+        'uses' => 'Api\UserController@getMyDetails'
     ]);
 
     Route::put('users/me', [
-        'uses' => 'UserController@editUser'
+        'uses' => 'Api\UserController@editUser'
     ]);
 
     Route::patch('users/me', [
-        'uses' => 'UserController@editSingleUser'
+        'uses' => 'Api\UserController@editSingleUser'
     ]);
 
     Route::get('users/{username}', [
-        'uses' => 'UserController@getSingleUser'
+        'uses' => 'Api\UserController@getSingleUser'
     ]);
 
 /*
@@ -49,7 +49,6 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-
     Route::get('channels', [
         'uses' => 'Api\ChannelController@getAllChannels'
     ]);
@@ -137,7 +136,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
         return json_encode(["message" => "delete a single comment under an episode"]);
     });
-
+    
 });
 
 /*
