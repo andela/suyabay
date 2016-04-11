@@ -157,8 +157,6 @@ class AuthController extends Controller
             # Update user acive column to 1 when user successfully signin
             */
             User::where('id', Auth::user()->id)->update(['active' => 1]);
-            dd(Auth::user()->id, Auth::user()->role_id);
-            $$userInfo = $this->generateToken();
 
             return $response =
             [
