@@ -32,9 +32,18 @@ class ApiPagesController extends Controller
         return view('api.pages.myapp');
     }
 
-    
     /**
-     * Generate a token for user with passed Id.
+     * Displays a form where user can register their new app.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createNewApp()
+    {
+        return view('api.pages.mynewapp');
+    }
+
+    /**
+     * Generate a token for user.
      *
      * @param int $userId
      *
@@ -59,18 +68,13 @@ class ApiPagesController extends Controller
     }
 
     /**
-     * Displays a form where user can register their new app.
+     * 
      *
      * @return \Illuminate\Http\Response
      */
-    public function createNewApp()
+    public function postAppDetails(Request $request)
     {
-        return view('api.pages.mynewapp');
-    }
-
-    public function storeAppInfo(Request $request)
-    {
-        AppInfo::create([
+        AppDetail::create([
         'name'         => $request->name,
         'homepage_url' => $request->homepage_url,
         'description'  => $request->description,
