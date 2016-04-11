@@ -31,6 +31,7 @@ class ApiPagesController extends Controller
     {
         return view('api.pages.myapp');
     }
+
     
     /**
      * Generate a token for user with passed Id.
@@ -83,3 +84,4 @@ class ApiPagesController extends Controller
         ]);
     }
 }
+
