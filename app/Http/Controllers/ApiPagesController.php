@@ -3,7 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Auth;
-use Suyabay\AppInfo;
+use Suyabay\AppDetail;
 use Firebase\JWT\JWT;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;

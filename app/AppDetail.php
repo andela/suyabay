@@ -13,8 +13,10 @@ class AppDetail extends Model
      */
     protected $fillable = [
         'name',
+        'user_id',
         'homepage_url',
-        'description'
+        'description',
+        'api_token'
     ];
 
     public function user()
