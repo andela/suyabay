@@ -277,7 +277,7 @@ img.avatar {
 
 #main-new-one {
   clear: both;
-  min-height: 400px;
+  min-height: 440px;
   width: 80%;
   background-color: #fff;
   margin: 42px auto 20px 134px;
@@ -285,7 +285,7 @@ img.avatar {
 
 #main-new-two {
   clear: both;
-  min-height: 400px;
+  min-height: 440px;
   width: 80%;
   background-color: #fff;
   margin: 20px 100px auto -54px;
@@ -313,3 +313,12 @@ h5 {
 .form-content {
   padding-top: 20px;
 }
+
+.help-block {
+  color: red;
+}
+
+/*
+# mynewlyaddedappdetail Styles
+===============================================
+*/

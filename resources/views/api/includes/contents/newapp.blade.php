@@ -15,18 +15,27 @@
 					    		<div class='form-group'>
 					    			<input name='name' class='form-control' value="{{ old('name') }}">
 					    		</div>	
+					    		@if ($errors->has('name'))
+                        			<span class="help-block">{{ $errors->first('name') }}</span>
+                    			@endif
 
 				    		<h5 class='new-app-text'>Home page url</h5>
 
 					    		<div class='form-group'>
 					    			<input name='homepage_url' class='form-control' value="{{ old('homepage_url') }}">
-					    		</div>				   			    
+					    		</div>
+					    		@if ($errors->has('homepage_url'))
+                        			<span class="help-block">{{ $errors->first('homepage_url') }}</span>
+                    			@endif			   			    
 
 				    		<h5 class='new-app-text'>Application Description</h5>
 				   
 					    		<div class='form-group'>
 					    			<textarea name='description' class='form-control'> </textarea>
-					    		</div>	
+					    		</div>
+					    		@if ($errors->has('description'))
+                        			<span class="help-block">{{ $errors->first('description') }}</span>
+                    			@endif
 
 					    	<div class='form-group'>
 					    		<button type='submit' class="waves-effect wave btn">Save Changes</button>

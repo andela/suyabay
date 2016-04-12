@@ -2,9 +2,10 @@
 
 namespace Suyabay\Http\Controllers;
 
+use DB;
 use Auth;
-use Suyabay\AppDetail;
 use Firebase\JWT\JWT;
+use Suyabay\AppDetail;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -74,6 +75,12 @@ class ApiPagesController extends Controller
      */
     public function postAppDetails(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'homepage_url' => 'required|url',
+            'description' => 'required',
+        ]);
+
         AppDetail::create([
         'name'         => $request->name,
         'user_id'      => auth()->user()->id,
@@ -81,17 +88,18 @@ class ApiPagesController extends Controller
         'description'  => $request->description,
         'api_token'    => $this->generateToken(),
         ]);
+
+        return redirect('/developer/myapp/app-detail');
     }
 
     /**
      * This method show the details from the user into the database
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsea
      */
     public function showAppDetails()
     {
-        $appDetail = AppDetail::where('id', Auth::user()->id)->first();
-        var_dump($appDetail);
+        $appDetail = AppDetail::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
        
         return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
     }

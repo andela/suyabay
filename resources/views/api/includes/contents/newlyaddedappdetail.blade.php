@@ -6,8 +6,11 @@
     <div class="row">
         <div class="col s8">
             <div id="main-one">
+                <div class='row'>
                 <h5 class="app-name">{{ $appDetail->name }}</h5>
-                <a class="waves-effect waves btn" href="#">Edit this app</a>
+                <a class="wave-effects waves btn" href="#">Edit this app</a>
+                </div>
+
                 <div class="app-detail">
                     <p class="owner">Owner</p>
                     <p class="owner-ifo"> {{ auth()->User()->username }} </p>
@@ -40,6 +43,6 @@
         @include("api.includes.sections.top_nav")
 
     <!--auth check error page -->    
-        @include("api.includes.contents.autherrorpage")
+         @include("api.includes.contents.autherrorpage")
 
 @endif    

@@ -20,9 +20,8 @@ class AppDetail extends Model
     ];
 
     /**
-     * .
+     * Define the relationship between user to AppDetails table.
      *
-     * 
      */
     public function user()
     {
