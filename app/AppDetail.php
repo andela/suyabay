@@ -19,6 +19,10 @@ class AppDetail extends Model
         'api_token'
     ];
 
+    /**
+     * Define the relationship between user to AppDetails table.
+     *
+     */
     public function user()
     {
         return $this->belongsTo('Suyabay\User');

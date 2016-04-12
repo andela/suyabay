@@ -3,8 +3,8 @@
 namespace Suyabay\Http\Controllers;
 
 use Auth;
-use Suyabay\AppDetail;
 use Firebase\JWT\JWT;
+use Suyabay\AppDetail;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -70,16 +70,23 @@ class ApiPagesController extends Controller
     /**
      * This method post the details from the user into the database
      *
-     * @return \Illuminate\Http\Response
      */
     public function postAppDetails(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'homepage_url' => 'required|url',
+            'description' => 'required',
+        ]);
+
         AppDetail::create([
         'name'         => $request->name,
-        'user_id'      => auth()->User()->id,
+        'user_id'      => auth()->user()->id,
         'homepage_url' => $request->homepage_url,
         'description'  => $request->description,
         'api_token'    => $this->generateToken(),
         ]);
+
+        return redirect('/developer/myapp/app-detail');
     }
 }
