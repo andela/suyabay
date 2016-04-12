@@ -68,7 +68,7 @@ class ApiPagesController extends Controller
     }
 
     /**
-     *
+     * This method post the details from the user into the database
      *
      * @return \Illuminate\Http\Response
      */
