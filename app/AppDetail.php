@@ -19,6 +19,11 @@ class AppDetail extends Model
         'api_token'
     ];
 
+    /**
+     * .
+     *
+     * 
+     */
     public function user()
     {
         return $this->belongsTo('Suyabay\User');

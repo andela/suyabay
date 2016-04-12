@@ -6,15 +6,15 @@
     <div class="row">
         <div class="col s8">
             <div id="main-one">
-                <h5 class="app-name">{{ $appDetails->name }}</h5>
+                <h5 class="app-name">{{ $appDetail->name }}</h5>
                 <a class="waves-effect waves btn" href="#">Edit this app</a>
                 <div class="app-detail">
                     <p class="owner">Owner</p>
                     <p class="owner-ifo"> {{ auth()->User()->username }} </p>
                     <p class="owner">Homepage url</p>
-                    <p class="owner-info">{{ $appDetails->homepage_url }}</p>
+                    <p class="owner-info">{{ $appDetail->homepage_url }}</p>
                     <p class="owner">App Token</p>
-                    <p class="owner-info">{{ $appDetails->api_token }}</p>
+                    <p class="owner-info">{{ $appDetail->api_token }}</p>
                 </div>    
             </div>    
         </div>

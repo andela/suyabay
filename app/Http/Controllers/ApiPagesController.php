@@ -76,7 +76,7 @@ class ApiPagesController extends Controller
     {
         AppDetail::create([
         'name'         => $request->name,
-        'user_id'      => auth()->User()->id,
+        'user_id'      => auth()->user()->id,
         'homepage_url' => $request->homepage_url,
         'description'  => $request->description,
         'api_token'    => $this->generateToken(),
@@ -90,7 +90,9 @@ class ApiPagesController extends Controller
      */
     public function showAppDetails()
     {
-        $appDetail = AppDetail::all();
-        return view('api.pages.mynewlyaddedappdetail', compact('$appDetail'));
+        $appDetail = AppDetail::where('id', Auth::user()->id)->first();
+        var_dump($appDetail);
+       
+        return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
     }
 }
