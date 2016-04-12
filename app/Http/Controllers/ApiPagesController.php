@@ -68,7 +68,7 @@ class ApiPagesController extends Controller
     }
 
     /**
-     *
+     * This method post the details from the user into the database
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,5 +81,16 @@ class ApiPagesController extends Controller
         'description'  => $request->description,
         'api_token'    => $this->generateToken(),
         ]);
+    }
+
+    /**
+     * This method show the details from the user into the database
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAppDetails()
+    {
+        $appDetail = AppDetail::all();
+        return view('api.pages.mynewlyaddedappdetail', compact('$appDetail'));
     }
 }

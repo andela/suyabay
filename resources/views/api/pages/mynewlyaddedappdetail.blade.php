@@ -1,6 +1,6 @@
 @extends('api.master')
 
-@section('title', 'Suyabay: MyApp page')
+@section('title', 'Suyabay: Your App Details')
 
 @endsection
 
