@@ -9,6 +9,10 @@
 
 Route::get('/developer', 'ApiPagesController@index');
 Route::get('/developer/myapp', 'ApiPagesController@myApp');
+Route::get('/developer/myapp/new', 'ApiPagesController@createNewApp');
+Route::post('/developer/myapp/new/', function () {
+    return "App created successfully";
+});
 
 /*
 |--------------------------------------------------------------------------

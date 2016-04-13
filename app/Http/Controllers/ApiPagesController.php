@@ -31,7 +31,7 @@ class ApiPagesController extends Controller
     {
         return view('api.pages.myapp');
     }
-        
+
     /**
      * Displays a form where user can register their new app.
      *
@@ -42,3 +42,4 @@ class ApiPagesController extends Controller
         return view('api.pages.mynewapp');
     }
 }
+
