@@ -30,6 +30,7 @@ Route::get('/developer/myapp/app-detail', [
     'as' => 'postAppDetails',
 ]);
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Users
