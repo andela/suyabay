@@ -85,6 +85,6 @@ class ApiPagesController extends Controller
         'api_token'    => $this->generateToken(),
         ]);
 
-        return redirect('/developer/myapp/app-detail');
+        return redirect('postAppDetails');
     }
 }
