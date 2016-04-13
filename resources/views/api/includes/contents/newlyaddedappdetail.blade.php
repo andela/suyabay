@@ -5,23 +5,23 @@
 
     <div class="row">
         <div class="col s8">
-            <div id="main-one">
-                <span class="app-name">{{ $appDetail->name }}</span>
+            <div id="main-one-app">
+                <p class="app-name">{{ $appDetail->name }}</p>
                 <a class="wavesapp waves btn" href="#">Edit app</a>
+            
+                    <span class="col s12">Owner</span>
+                    <p class="col s12"> {{ auth()->User()->username }} </p>
+                
+                    <span class="col s12">Homepage url</span>
+                    <p class="col s12">{{ $appDetail->homepage_url }}</p>    
 
-                <div class="app-detail">
-                    <span class="owner">Owner</span>
-                    <p class="owner-info"> {{ auth()->User()->username }} </p>
-                    <span class="owner">Homepage url</span>
-                    <p class="owner-info">{{ $appDetail->homepage_url }}</p>
-                    <span class="owner">App Token</span>
-                    <p class="owner-token">{{ $appDetail->api_token }}</p>
-                </div>    
+                    <span class="col s12">App Token</span>
+                    <p class="col s12" style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetail->api_token }}</p>    
             </div>    
         </div>
 
         <div class="col s4">
-            <div id="main-two">
+            <div id="main-two-app">
                 <div class="session-one">
                     <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
                 </div> 
@@ -37,10 +37,10 @@
 
 @else 
 
-	<!-- top nav -->
+    <!-- top nav -->
         @include("api.includes.sections.top_nav")
 
     <!--auth check error page -->    
-         @include("api.includes.contents.autherrorpage")
+        @include("api.includes.contents.autherrorpage")
 
-@endif    
+@endif

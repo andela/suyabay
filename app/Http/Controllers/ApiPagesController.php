@@ -2,7 +2,6 @@
 
 namespace Suyabay\Http\Controllers;
 
-use DB;
 use Auth;
 use Firebase\JWT\JWT;
 use Suyabay\AppDetail;

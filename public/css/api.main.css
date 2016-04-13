@@ -325,8 +325,24 @@ h5 {
 
 .app-name {
   float: left;
-  margin: 20px 20px 80px;
+  margin: 20px 20px 0px;
   font-size: 30px;
+}
+
+#main-one-app {
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto -54px;
+}
+
+#main-two-app {
+  clear: both;
+  min-height: 400px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px 100px auto -54px;
 }
 
 .wavesapp {
@@ -335,20 +351,11 @@ h5 {
   width: 150px;
 }
 
-.app-detail {
-  clear: both;
-  min-height: 440px;
-  width: 80%;
-  background-color: #fff;
-  margin: -20px auto 20px 20px;
-  border: 10px;
-  padding-top: 20px;
-}
-
 .app-detail:nth-child(1) {
-  margin-top: 90px;
+  top: 90px;
 }
 
 .owner-token {
-  width: PX;
+  width: -2PX;
+  border: 10px;
 }
