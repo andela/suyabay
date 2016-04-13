@@ -71,7 +71,6 @@ class ApiPagesController extends Controller
     /**
      * This method post the details from the user into the database
      *
-     * @return \Illuminate\Http\Response
      */
     public function postAppDetails(Request $request)
     {
@@ -95,7 +94,7 @@ class ApiPagesController extends Controller
     /**
      * This method show the details from the user into the database
      *
-     * @return \Illuminate\Http\Responsea
+     * @return \Illuminate\Http\Response
      */
     public function showAppDetails()
     {
