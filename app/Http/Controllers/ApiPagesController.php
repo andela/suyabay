@@ -100,8 +100,8 @@ class ApiPagesController extends Controller
             $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
            
             return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
-        } else {
-            return view('api.pages.myautherrorpage');
         }
+        
+        return view('api.pages.myautherrorpage');
     }
 }
