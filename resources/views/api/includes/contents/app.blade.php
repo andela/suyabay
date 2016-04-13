@@ -1,5 +1,3 @@
-@if ( Auth::check() )
-
         <!-- top nav -->
     @include("api.includes.sections.top_nav")
 
@@ -28,10 +26,3 @@
             </div>  
         </div>
     </div>
-
-@else 
-
-    <!--auth check error page -->    
-        @include("api.includes.contents.autherrorpage")
-
-@endif

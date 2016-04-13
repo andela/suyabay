@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers;
 
+use DB;
 use Auth;
 use Firebase\JWT\JWT;
 use Suyabay\AppDetail;
@@ -29,7 +30,17 @@ class ApiPagesController extends Controller
      */
     public function myApp()
     {
-        return view('api.pages.myapp');
+        if (Auth::check()) {
+            $appDetails = AppDetail::where('user_id', auth()->user()->id)->get();
+            
+            if ($appDetails === null) {
+                return view('api.pages.myapp');
+            }
+
+            return view('api.pages.myapps', compact('appDetails')); 
+        }
+
+        return view('api.pages.myautherrorpage');
     }
 
     /**
@@ -100,8 +111,8 @@ class ApiPagesController extends Controller
             $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
            
             return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
-        } else {
-            return view('api.pages.myautherrorpage');
-        }
+        } 
+        
+        return view('api.pages.myautherrorpage');
     }
 }
