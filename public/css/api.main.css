@@ -315,5 +315,47 @@ h5 {
 }
 
 .help-block {
-    color: red;
+  color: red;
+}
+
+/*
+# mynewlyaddedappdetail Styles
+===============================================
+*/
+
+.app-name {
+  float: left;
+  margin: 20px 20px 0px;
+  font-size: 30px;
+}
+
+#main-one-app {
+  clear: both;
+  min-height: 435px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto -54px;
+}
+
+#main-two-app {
+  clear: both;
+  min-height: 435px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px 100px auto -54px;
+}
+
+.wavesapp {
+  float: right;
+  margin: 20px auto auto 338px;
+  width: 150px;
+}
+
+.app-detail:nth-child(1) {
+  top: 90px;
+}
+
+.owner-token {
+  width: -2PX;
+  border: 10px;
 }

@@ -87,4 +87,21 @@ class ApiPagesController extends Controller
 
         return redirect('/developer/myapp/app-detail');
     }
+
+    /**
+     * This method shows the app details created by the user if on session
+     * and display an error message if not on session.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAppDetails()
+    {
+        if (Auth::check()) {
+            $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
+           
+            return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
+        } else {
+            return view('api.pages.myautherrorpage');
+        }
+    }
 }
