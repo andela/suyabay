@@ -49,12 +49,12 @@ class ApiPagesController extends Controller
      */
     public function generateToken()
     {
-        $appSecret = getenv('APP_SECRET');
+        $appSecret    = getenv('APP_SECRET');
         $jwtAlgorithm = getenv('JWT_ALGORITHM');
-        $timeIssued = time();
-        $serverName = getenv('SERVERNAME');
-        $tokenId = base64_encode(getenv('TOKENID'));
-        $token = [
+        $timeIssued   = time();
+        $serverName   = getenv('SERVERNAME');
+        $tokenId      = base64_encode(getenv('TOKENID'));
+        $token        = [
             'iss'  => $serverName,   //Issuer: the server name
             'iat'  => $timeIssued,   // Issued at: time when the token was generated
             'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
@@ -72,9 +72,9 @@ class ApiPagesController extends Controller
     public function postAppDetails(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name'         => 'required',
             'homepage_url' => 'required|url',
-            'description' => 'required',
+            'description'  => 'required',
         ]);
 
         AppDetail::create([
