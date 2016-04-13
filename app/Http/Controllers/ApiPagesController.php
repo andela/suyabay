@@ -45,8 +45,6 @@ class ApiPagesController extends Controller
     /**
      * Generate a token for user.
      *
-     * @param int $userId
-     *
      * @return string
      */
     public function generateToken()
@@ -91,7 +89,8 @@ class ApiPagesController extends Controller
     }
 
     /**
-     * This method show the details from the user into the database
+     * This method shows the app details created by the user if on session
+     * and display an error message if not on session.
      *
      * @return \Illuminate\Http\Response
      */
