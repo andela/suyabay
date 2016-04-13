@@ -20,7 +20,7 @@ class AppDetail extends Model
     ];
 
     /**
-     * Define the relationship between user to AppDetails table.
+     * Define the relationship between user and AppDetails table.
      *
      * @return object
      */

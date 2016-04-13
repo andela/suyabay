@@ -33,7 +33,7 @@ class ApiPagesController extends Controller
     }
 
     /**
-     * Displays a form where user can register their new app.
+     * Displays a form where user can register there new app.
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,8 +44,6 @@ class ApiPagesController extends Controller
 
     /**
      * Generate a token for user.
-     *
-     * @param int $userId
      *
      * @return string
      */
