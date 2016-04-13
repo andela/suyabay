@@ -98,7 +98,7 @@ class ApiPagesController extends Controller
     public function showAppDetails()
     {
         if (Auth::check()) {
-            $appDetail = AppDetail::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+            $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
            
             return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
         } else {
