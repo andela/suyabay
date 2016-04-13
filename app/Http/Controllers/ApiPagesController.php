@@ -32,8 +32,12 @@ class ApiPagesController extends Controller
     {
         if (Auth::check()) {
             $appDetails = AppDetail::where('user_id', auth()->user()->id)->get();
-            
-            if ($appDetails === null) {
+
+            dd($appDetails);
+            foreach ($appDetails as $appDetail) {
+                dd($appDetails);
+            }
+            if ($appDetail === null) {
                 return view('api.pages.myapp');
             }
 
