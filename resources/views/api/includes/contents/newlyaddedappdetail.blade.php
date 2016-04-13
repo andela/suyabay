@@ -8,15 +8,20 @@
             <div id="main-one-app">
                 <p class="app-name">{{ $appDetail->name }}</p>
                 <a class="wavesapp waves btn" href="#">Edit app</a>
-            
-                    <span class="col s12">Owner</span>
-                    <p class="col s12"> {{ auth()->User()->username }} </p>
-                
-                    <span class="col s12">Homepage url</span>
-                    <p class="col s12">{{ $appDetail->homepage_url }}</p>    
-
-                    <span class="col s12">App Token</span>
-                    <p class="col s12" style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetail->api_token }}</p>    
+                  
+                    <div class='col s12'>
+                    <p style="font-weight: 600;">Owner</p>
+                    <p> {{ auth()->User()->username }} </p>
+                    </div>
+                    <div class='col s12'>
+                    <p style="font-weight: 600;">Homepage url</p>
+                    <p>{{ $appDetail->homepage_url }}</p>    
+                    </div>
+                    <div class='col s12'>
+                    <p style="font-weight: 600;">App Token</p>
+                    <p class="col s12" style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetail->api_token }}</p> 
+                    </div> 
+                    
             </div>    
         </div>
 
