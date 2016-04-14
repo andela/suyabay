@@ -4,22 +4,27 @@
     <div class="row">
         <div class="col s8">
             <div id="main-one-app">
-                <p class="app-name">{{ $appDetail->name }}</p>
-                <a class="wavesapp waves btn" href="#">Edit app</a>
-                  
-                    <div class='col s12'>
-                    <p style="font-weight: 600;">Owner</p>
-                    <p> {{ auth()->User()->username }} </p>
+                <div class='row'>
+                    <p class="app-name">{{ $appDetail->name }}</p>
+                    <a class="wavesapp waves btn" href="#">Edit app</a>
+                </div>
+
+                <div class='app-details'>
+                    <div class=>
+                        <p style="font-weight: 600;">Owner</p>
+                        <p> {{ auth()->User()->username }} </p>
                     </div>
-                    <div class='col s12'>
-                    <p style="font-weight: 600;">Homepage url</p>
-                    <p>{{ $appDetail->homepage_url }}</p>    
+                    <hr>
+                    <div class=>
+                        <p style="font-weight: 600;">Homepage url</p>
+                        <p>{{ $appDetail->homepage_url }}</p>    
                     </div>
-                    <div class='col s12'>
-                    <p style="font-weight: 600;">App Token</p>
-                    <p class="col s12" style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetail->api_token }}</p> 
+                    <hr>
+                    <div class=>
+                        <p style="font-weight: 600;">App Token</p>
+                        <p style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetail->api_token }}</p> 
                     </div> 
-                    
+                </div>    
             </div>    
         </div>
 
