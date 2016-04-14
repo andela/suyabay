@@ -37,7 +37,7 @@ class ApiPagesController extends Controller
                 return view('api.pages.myapps');
             }
 
-            return view('api.pages.allappdetails', compact('allAppDetails'));    
+            return view('api.pages.allappdetails', compact('allAppDetails'));
         }
 
         return view('api.pages.autherrorpage');
@@ -116,8 +116,8 @@ class ApiPagesController extends Controller
             $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
         
             return view('api.pages.newappdetails', compact('appDetails'));
-        } 
-        
+        }
+
         return view('api.pages.autherrorpage');
     }
 }
