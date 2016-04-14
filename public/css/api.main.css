@@ -14,7 +14,7 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
-  top: -80px;
+  top: -45px;
 }
 
 #hero,
@@ -156,7 +156,7 @@ html {
 }
 
 /*
-# myApp Styles
+# myApps Styles
 ===============================================
 */
 
@@ -227,7 +227,7 @@ html {
 }
 
 .waves-one {
-  margin: 20px auto auto 50px;
+  margin: 19px auto auto 50px;
 }
 
 .session-one {
@@ -263,7 +263,7 @@ img.avatar {
 }
 
 /*
-# mynewApp Styles
+# appform Styles
 ===============================================
 */
 
@@ -319,9 +319,25 @@ h5 {
 }
 
 /*
-# mynewlyaddedappdetail Styles
+# newappdetails Styles
 ===============================================
 */
+
+#main-one-app {
+  clear: both;
+  min-height: 520px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto -5px auto;
+}
+
+#main-two-app {
+  clear: both;
+  min-height: 520px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px 100px auto -104px;
+}
 
 .app-name {
   float: left;
@@ -329,25 +345,22 @@ h5 {
   font-size: 30px;
 }
 
-#main-one-app {
-  clear: both;
-  min-height: 435px;
-  width: 80%;
+.app-details {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 600px;
+  border: 1px solid;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin: auto auto auto 30px;
   background-color: #fff;
-  margin: 30px auto -54px;
-}
-
-#main-two-app {
-  clear: both;
-  min-height: 435px;
-  width: 80%;
-  background-color: #fff;
-  margin: 30px 100px auto -54px;
 }
 
 .wavesapp {
   float: right;
-  margin: 20px auto auto 338px;
+  margin: 20px 20px auto 30px;
   width: 150px;
 }
 

@@ -25,26 +25,23 @@ class ApiPagesController extends Controller
 
     /**
      * Display list of apps the user have created and a link to create new appp.
+     * If the user has no app yet, display a page where he can create a new one
      *
      * @return \Illuminate\Http\Response
      */
-    public function myApp()
+    public function showMyApps()
     {
         if (Auth::check()) {
-            $appDetails = AppDetail::where('user_id', auth()->user()->id)->get();
-
-            dd($appDetails);
-            foreach ($appDetails as $appDetail) {
-                dd($appDetails);
-            }
-            if ($appDetail === null) {
-                return view('api.pages.myapp');
+            $allAppDetails = AppDetail::where('user_id', auth()->user()->id)->get();
+   
+            if (collect([])->isEmpty()) {
+                return view('api.pages.myapps');
             }
 
-            return view('api.pages.myapps', compact('appDetails')); 
+            return view('api.pages.myapps', compact('allAppDetails'));    
         }
 
-        return view('api.pages.myautherrorpage');
+        return view('api.pages.autherrorpage');
     }
 
     /**
@@ -54,7 +51,7 @@ class ApiPagesController extends Controller
      */
     public function createNewApp()
     {
-        return view('api.pages.mynewapp');
+        return view('api.pages.appform');
     }
 
     /**
@@ -84,23 +81,28 @@ class ApiPagesController extends Controller
      * This method post the details from the user into the database
      *
      */
-    public function postAppDetails(Request $request)
+    public function postNewAppDetails(Request $request)
     {
-        $this->validate($request, [
-            'name'         => 'required',
-            'homepage_url' => 'required|url',
-            'description'  => 'required',
-        ]);
+        if (Auth::check()) {
+            $this->validate($request, [
+                'name'         => 'required',
+                'homepage_url' => 'required|url',
+                'description'  => 'required',
+            ]);
 
-        AppDetail::create([
-        'name'         => $request->name,
-        'user_id'      => auth()->user()->id,
-        'homepage_url' => $request->homepage_url,
-        'description'  => $request->description,
-        'api_token'    => $this->generateToken(),
-        ]);
 
-        return redirect('/developer/myapp/app-detail');
+            AppDetail::create([
+            'name'         => $request->name,
+            'user_id'      => auth()->user()->id,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+            'api_token'    => $this->generateToken(),
+            ]);
+
+            return redirect()->route('showNewAppDetails');
+        }
+        
+        return view('api.pages.autherrorpage');
     }
 
     /**
@@ -109,14 +111,15 @@ class ApiPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAppDetails()
+    public function showNewAppDetails()
     {
         if (Auth::check()) {
-            $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
-           
-            return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
+            $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
+        
+            return view('api.pages.newappdetails', compact('appDetails'));
         } 
         
-        return view('api.pages.myautherrorpage');
+        return view('api.pages.autherrorpage');
+
     }
 }
