@@ -4,15 +4,31 @@
 |--------------------------------------------------------------------------
 | API Routes - Pages
 |--------------------------------------------------------------------------
-
 */
-Route::get('/developer', 'ApiPagesController@index');
-Route::get('/developer/myapp', 'ApiPagesController@myApp');
-Route::get('/developer/myapp/new', 'ApiPagesController@createNewApp');
-Route::post('/developer/myapp/new/', 'ApiPagesController@postAppDetails');
-Route::get('/developer/myapp/app-detail', 'ApiPagesController@showAppDetails');
-Route::post('/developer/myapp/app-detail', 'ApiPagesController@showAppDetail');
+Route::get('/developer', [
+    'uses' => 'ApiPagesController@index',
+    'as' => 'index',
+]);
 
+Route::get('/developer/myapp', [
+    'uses' => 'ApiPagesController@myApps',
+    'as' => 'myapp',
+]);
+
+Route::get('/developer/myapp/new', [
+    'uses' => 'ApiPagesController@createNewApp',
+    'as' => 'createNewApp',
+]);
+
+Route::post('/developer/myapp/new/', [
+    'uses' => 'ApiPagesController@postNewAppDetails',
+    'as' => 'postAppDetails',
+]);
+
+Route::get('/developer/myapp/app-detail', [
+    'uses' => 'ApiPagesController@showNewAppDetails',
+    'as' => 'showNewAppDetails',
+]);
 
 /*
 |--------------------------------------------------------------------------

@@ -27,9 +27,9 @@ class ApiPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function myApp()
+    public function myApps()
     {
-        return view('api.pages.myapp');
+        return view('api.pages.myapps');
     }
 
     /**
@@ -39,7 +39,7 @@ class ApiPagesController extends Controller
      */
     public function createNewApp()
     {
-        return view('api.pages.mynewapp');
+        return view('api.pages.appform');
     }
 
     /**
@@ -69,23 +69,27 @@ class ApiPagesController extends Controller
      * This method post the details from the user into the database
      *
      */
-    public function postAppDetails(Request $request)
+    public function postNewAppDetails(Request $request)
     {
-        $this->validate($request, [
-            'name'         => 'required',
-            'homepage_url' => 'required|url',
-            'description'  => 'required',
-        ]);
+        if (Auth::check()) {
+            $this->validate($request, [
+                'name'         => 'required',
+                'homepage_url' => 'required|url',
+                'description'  => 'required',
+            ]);
 
-        AppDetail::create([
-        'name'         => $request->name,
-        'user_id'      => auth()->user()->id,
-        'homepage_url' => $request->homepage_url,
-        'description'  => $request->description,
-        'api_token'    => $this->generateToken(),
-        ]);
+            AppDetail::create([
+            'name'         => $request->name,
+            'user_id'      => auth()->user()->id,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+            'api_token'    => $this->generateToken(),
+            ]);
 
-        return redirect('/developer/myapp/app-detail');
+            return redirect()->route('showNewAppDetails');
+        }
+        
+        return view('api.pages.autherrorpage');
     }
 
     /**
@@ -94,14 +98,14 @@ class ApiPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAppDetails()
+    public function showNewAppDetails()
     {
         if (Auth::check()) {
             $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
            
-            return view('api.pages.mynewlyaddedappdetail', compact('appDetail'));
+            return view('api.pages.newappdetails', compact('appDetail'));
         }
         
-        return view('api.pages.myautherrorpage');
+        return view('api.pages.autherrorpage');
     }
 }

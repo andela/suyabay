@@ -6,6 +6,6 @@
 
 @section('content')
 
-   @include('api.includes.contents.newapp')
+   @include('api.includes.contents.appform')
 
 @endsection

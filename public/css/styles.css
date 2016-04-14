@@ -991,7 +991,7 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
-  top: -80px;
+  top: -45px;
 }
 
 #hero,
@@ -1133,7 +1133,7 @@ html {
 }
 
 /*
-# myApp Styles
+# myApps Styles
 ===============================================
 */
 
@@ -1240,7 +1240,7 @@ img.avatar {
 }
 
 /*
-# mynewApp Styles
+# appform Styles
 ===============================================
 */
 
@@ -1296,7 +1296,7 @@ h5 {
 }
 
 /*
-# mynewlyaddedappdetail Styles
+# newappdetails Styles
 ===============================================
 */
 

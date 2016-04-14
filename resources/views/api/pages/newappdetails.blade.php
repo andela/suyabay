@@ -6,6 +6,6 @@
 
 @section('content')
 
-   @include('api.includes.contents.newlyaddedappdetail')
+   @include('api.includes.contents.newappdetails')
 
 @endsection
