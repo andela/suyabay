@@ -1041,7 +1041,7 @@ html {
 #hero-menu a {
   width: 20%;
   float: right;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 
 .slider-text-header {
@@ -1073,7 +1073,7 @@ html {
 }
 
 .feature-content:nth-child(1) {
-  margin-top: 90px;
+  margin-top: 120px;
 }
 
 .feature-content {
@@ -1348,4 +1348,54 @@ h5 {
 .owner-token {
   width: -2PX;
   border: 10px;
+}
+
+/*
+# allappdetails Styles
+===============================================
+*/
+
+.all-app-details {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 600px;
+  border: 1px solid #c7cdcf;
+  margin: 6px auto auto -1px;
+  background-color: #fff;
+}
+
+#main-one-apps {
+  clear: both;
+  min-height: 450px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto -5px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+#main-two-apps {
+  clear: both;
+  min-height: 450px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px 100px auto -104px;
+  position: relative;
+  overflow: hidden;
+}
+
+.myapps {
+  width: 90%;
+  height: 150px;
+  border-radius: 2px;
+  position: relative;
+  background: #fcfcfc;
+  margin: auto auto auto auto;
+}
+
+.app-name {
+  color: #2C3E50;
+  font-size: 30px;
 }
