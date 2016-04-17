@@ -1,6 +1,6 @@
 
-var  clipboard = new Clipboard('.copy');
+var  clipboard = new Clipboard(".copy");
 
-clipboard.on('success', function(e) {
-	alert('copied');
+clipboard.on('success', function() {
+	 swal("Token copied succesfuly");
 });
