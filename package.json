@@ -10,8 +10,9 @@
     "jshint": "^2.9.1"
   },
   "dependencies": {
-    "laravel-elixir": "^3.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "clipboard": "^1.5.10",
+    "laravel-elixir": "^3.0.0"
   },
   "name": "suyabay",
   "description": "[![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay) [![Coverage Status](https://coveralls.io/repos/github/andela/suyabay/badge.svg?branch=staging)](https://coveralls.io/github/andela/suyabay?branch=staging)",

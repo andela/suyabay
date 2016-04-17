@@ -31,13 +31,13 @@ class ApiPagesController extends Controller
     public function showMyApps()
     {
         if (Auth::check()) {
-            $allAppDetails = AppDetail::where('user_id', auth()->user()->id)->get();
+            $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
    
-            if ($allAppDetails->isEmpty()) {
+            if ($allApps->isEmpty()) {
                 return view('api.pages.myapps');
             }
 
-            return view('api.pages.allappdetails', compact('allAppDetails'));
+            return view('api.pages.allappdetails', compact('allApps'));
         }
 
         return view('api.pages.autherrorpage');
@@ -66,10 +66,10 @@ class ApiPagesController extends Controller
         $serverName   = getenv('SERVERNAME');
         $tokenId      = base64_encode(getenv('TOKENID'));
         $token        = [
-            'iss'  => $serverName,   //Issuer: the server name
-            'iat'  => $timeIssued,   // Issued at: time when the token was generated
-            'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
-            'nbf'  => $timeIssued, //Not before time
+            'iss'  => $serverName,    //Issuer: the server name
+            'iat'  => $timeIssued,    // Issued at: time when the token was generated
+            'jti'  => $tokenId,      // Json Token Id: an unique identifier for the token
+            'nbf'  => $timeIssued,   //Not before time
             'exp'  => $timeIssued + 60 * 60 * 24 * 30, // expires in 30 days
         ];
         
@@ -89,7 +89,6 @@ class ApiPagesController extends Controller
                 'description'  => 'required',
             ]);
 
-
             AppDetail::create([
             'name'         => $request->name,
             'user_id'      => auth()->user()->id,
@@ -98,7 +97,7 @@ class ApiPagesController extends Controller
             'api_token'    => $this->generateToken(),
             ]);
 
-            return redirect()->route('showNewAppDetails');
+            return redirect()->route('developer.app-details');
         }
         
         return view('api.pages.autherrorpage');

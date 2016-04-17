@@ -6,7 +6,7 @@
             <div id="main-one">
                 <h5 class="app-title">My Apps</h5>
                 <div class="myapp">
-                    <p class="app-text">You haven't created any suyabay apps yet.</p>
+                    <p class="app-text">You haven't created any suyabay app yet.</p>
                     <a class="waves-effect waves btn" href="/developer/myapp/new">Create a new app</a>   
                 </div>    
             </div>    

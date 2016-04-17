@@ -20,6 +20,7 @@ elixir(function(mix) {
      */
     mix.scripts([
         'admin.js',
+        'api.js',
         'audio.min.js',
         'audioplayer.js',
         'comment.js',

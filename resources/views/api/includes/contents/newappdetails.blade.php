@@ -10,35 +10,38 @@
                 </div>
 
                 <div class='app-details'>
-                    <div class=>
+                    <div class='row'>
                         <p style="font-weight: 600;">Owner</p>
                         <p> {{ auth()->User()->username }} </p>
                     </div>
                     <hr>
                     <div class=>
                         <p style="font-weight: 600;">Homepage url</p>
-                        <p>{{ $appDetails->homepage_url }}</p>    
+                        <p>{{ $appDetails->homepage_url }}</p>
                     </div>
                     <hr>
                     <div class=>
                         <p style="font-weight: 600;">App Token</p>
-                        <p style="white-space: pre-wrap; word-wrap: break-word;">{{ $appDetails->api_token }}</p> 
-                    </div> 
-                </div>    
-            </div>    
+                        <input type="text" readonly class='input form-control token-box' id="token-box" value="{{ $appDetails->api_token }}" />
+                        <button class="waves-effect waves-app btn-copy copy" data-clipboard-target="#token-box" id="copy">
+                            <i class="fa fa-clipboard active" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col s4">
             <div id="main-two-app">
                 <div class="session-one">
                     <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
-                </div> 
+                </div>
                 <div class="session-two">
 
                 </div>
                  <div class="session-three">
 
                 </div>
-            </div>  
+            </div>
         </div>
     </div>

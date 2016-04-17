@@ -96,7 +96,7 @@ html {
 }
 
 .feature-content:nth-child(1) {
-  margin-top: 120px;
+  margin-top: 90px;
 }
 
 .feature-content {
@@ -421,4 +421,17 @@ h5 {
 .app-name {
   color: #2C3E50;
   font-size: 30px;
+}
+
+.btn-copy {
+  border-radius: 0;
+  display: inline-block;
+  background-color: #26a69a;
+  color: white;
+}
+
+#token-box {
+  display: inline;
+  width: 78%;
+  border-radius: 0;
 }

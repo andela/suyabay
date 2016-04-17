@@ -6,20 +6,23 @@
             <div id="main-one-apps">
                 <h5 class="app-title" style="font-size: 30px;">My Apps</h5>
                 <div class="myapps">
-                    @foreach($allAppDetails as $allAppDetail)
+                    @foreach($allApps as $app)
                         <div class='all-app-details'>
                             <div class="app-name">
-                                <p>{{ $allAppDetail->name }}</p>
+                                <p>{{ $app->name }}</p>
                             </div>
                             <hr>
                             <div>
                                 <p style="font-weight: 600;">Homepage url</p>
-                                <p>{{ $allAppDetail->homepage_url }}</p>
+                                <p>{{ $app->homepage_url }}</p>
                             </div>
                             <hr>
                             <div>
                                 <p style="font-weight: 600;">App Token</p>
-                                <p style="white-space: pre-wrap; word-wrap: break-word;">{{ $allAppDetail->api_token }}</p>
+                                <input type="text" readonly class='input form-control token-box' id="token-box" value="{{ $app->api_token }}" />
+                                <button class="waves-effect waves-app btn-copy copy" data-clipboard-target="#token-box" id="copy">
+                                    <i class="fa fa-clipboard active" aria-hidden="true"></i>
+                                </button>
                             </div>
                             <hr>
                         </div>
@@ -31,7 +34,7 @@
         <div class="col s4">
             <div id="main-two-apps">
                 <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
+                    <a class="waves-effect waves-one btn" href="{{ route('developer.new-app') }}">Create a new app</a>
                 </div> 
                 <div class="session-two">
 
