@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAppInfosTable extends Migration
+class CreateAppDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class AddAppInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_infos', function (Blueprint $table) {
+        Schema::create('app_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
@@ -20,6 +20,10 @@ class AddAppInfosTable extends Migration
             $table->text('description');
             $table->string('api_token');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
@@ -30,6 +34,6 @@ class AddAppInfosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('app_infos');
+        Schema::drop('app_details');
     }
 }
