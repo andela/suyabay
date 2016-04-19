@@ -1,5 +1,3 @@
-@if ( Auth::check() )
-
         <!-- top nav -->
     @include("api.includes.sections.top_nav")
 
@@ -8,7 +6,7 @@
             <div id="main-one">
                 <h5 class="app-title">My Apps</h5>
                 <div class="myapp">
-                    <p class="app-text">You haven't created any suyabay apps yet.</p>
+                    <p class="app-text">You haven't created any suyabay app yet.</p>
                     <a class="waves-effect waves btn" href="/developer/myapp/new">Create a new app</a>   
                 </div>    
             </div>    
@@ -20,7 +18,7 @@
                     <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
                 </div> 
                 <div class="session-two">
-
+                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
                 </div>
                  <div class="session-three">
 
@@ -28,10 +26,3 @@
             </div>  
         </div>
     </div>
-
-@else 
-
-    <!--auth check error page -->    
-        @include("api.includes.contents.autherrorpage")
-
-@endif

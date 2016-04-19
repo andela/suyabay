@@ -7,14 +7,16 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.3",
-    "jshint": "^2.9.1"
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
   },
   "dependencies": {
-    "laravel-elixir": "^3.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "clipboard": "^1.5.10",
+    "laravel-elixir": "^3.0.0"
   },
   "name": "suyabay",
-  "description": "[![Build Status](https://travis-ci.org/andela/suyabay.svg)](https://travis-ci.org/andela/suyabay) [![Coverage Status](https://coveralls.io/repos/github/andela/suyabay/badge.svg?branch=staging)](https://coveralls.io/github/andela/suyabay?branch=staging)",
+  "description": "Awesome Podcast FM Network for Suya Lovers",
   "version": "1.0.0",
   "main": "gulpfile.js",
   "directories": {

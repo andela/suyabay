@@ -1073,7 +1073,7 @@ html {
 }
 
 .feature-content:nth-child(1) {
-  margin-top: 120px;
+  margin-top: 95px;
 }
 
 .feature-content {
@@ -1205,6 +1205,7 @@ html {
 
 .waves-one {
   margin: 19px auto auto 50px;
+  width: 250px;
 }
 
 .session-one {
@@ -1217,7 +1218,6 @@ html {
   margin: auto;
   border-radius: 2px;
   position: relative;
-  background: red;
 }
 
 .session-three {
@@ -1398,4 +1398,17 @@ h5 {
 .app-name {
   color: #2C3E50;
   font-size: 30px;
+}
+
+.btn-copy {
+  border-radius: 0;
+  display: inline-block;
+  background-color: #26a69a;
+  color: white;
+}
+
+#token-box {
+  display: inline;
+  width: 78%;
+  border-radius: 0;
 }

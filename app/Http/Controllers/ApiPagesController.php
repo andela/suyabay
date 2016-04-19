@@ -71,7 +71,6 @@ class ApiPagesController extends Controller
      */
     public function postNewAppDetails(Request $request)
     {
-        if (Auth::check()) {
             $this->validate($request, [
                 'name'         => 'required',
                 'homepage_url' => 'required|url',
@@ -86,10 +85,7 @@ class ApiPagesController extends Controller
             'api_token'    => $this->generateToken(),
             ]);
 
-            return redirect()->route('showNewAppDetails');
-        }
-        
-        return view('api.pages.autherrorpage');
+            return redirect()->route('developer.app-details');
     }
 
     /**
@@ -100,12 +96,8 @@ class ApiPagesController extends Controller
      */
     public function showNewAppDetails()
     {
-        if (Auth::check()) {
             $appDetail = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
            
             return view('api.pages.newappdetails', compact('appDetail'));
         }
-        
-        return view('api.pages.autherrorpage');
-    }
 }

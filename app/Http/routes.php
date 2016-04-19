@@ -7,27 +7,30 @@
 */
 Route::get('/developer', [
     'uses' => 'ApiPagesController@index',
-    'as' => 'index',
+    'as' => 'developer.index',
 ]);
 
 Route::get('/developer/myapp', [
     'uses' => 'ApiPagesController@myApps',
-    'as' => 'myapp',
+    'as' => 'developer.myapp',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/new', [
     'uses' => 'ApiPagesController@createNewApp',
-    'as' => 'createNewApp',
+    'as' => 'developer.new-app',
+    'middleware' => ['auth'],
 ]);
 
 Route::post('/developer/myapp/new/', [
     'uses' => 'ApiPagesController@postNewAppDetails',
-    'as' => 'postAppDetails',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/app-detail', [
     'uses' => 'ApiPagesController@showNewAppDetails',
-    'as' => 'showNewAppDetails',
+    'as' => 'developer.app-details',
+    'middleware' => ['auth'],
 ]);
 
 /*
