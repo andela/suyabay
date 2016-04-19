@@ -38,6 +38,21 @@ class UsersEndpointTest extends TestCase
         ->seeStatusCode(200);
     }
 
+    public function testUserNotFound()
+    {
+        factory('Suyabay\User')->create([
+            'username'       => 'ginger',
+            'email'          => 'ginger@laravel.io',
+            'password'       => bcrypt(str_random(10)),
+            'remember_token' => str_random(10),
+            'role_id'        => 1
+        ]);
+
+        $this->get('/api/v1/users/gingersola')
+        ->seeJson()
+        ->seeStatusCode(404);
+    }
+
     public function testGetCurrentLoggedInUserInfo()
     {
         $user = factory('Suyabay\User')->create([
@@ -73,6 +88,22 @@ class UsersEndpointTest extends TestCase
         $json = json_decode($response->getContent());
 
         $this->assertEquals($json->message, 'User updated successfully');
+
+    }
+
+    public function testThatEditUserViaPutRequestCannotBeCompleted()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PUT', '/api/v1/users/me', [
+            'username' => 'philharmonic',
+        ]);
+
+        $json = json_decode($response->getContent());
+
+        $this->assertEquals($json->message, 'All fields must be filled');
 
     }
 
