@@ -29,8 +29,14 @@ Route::post('/developer/myapp/new/', [
 
 Route::get('/developer/myapp/app-detail', [
     'uses' => 'ApiPagesController@showNewAppDetails',
-    'as' => 'developer.app-new-details',
+    'as' => 'developer.newapp-details',
     'middleware' => ['auth'],
+]);
+
+Route::get('/developer/myapp/{id}', [
+        'uses' => 'ApiPagesController@showAppDetails',
+        'as' => 'developer.app-details',
+        'middleware' => ['auth'],
 ]);
 
 /*

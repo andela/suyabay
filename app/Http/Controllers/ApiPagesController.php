@@ -92,7 +92,7 @@ class ApiPagesController extends Controller
             'api_token'    => $this->generateToken(),
         ]);
 
-        return redirect()->route('developer.app-new-details');
+        return redirect()->route('developer.newapp-details');
     }
 
     /**
@@ -104,6 +104,21 @@ class ApiPagesController extends Controller
     public function showNewAppDetails()
     {
         $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
+    
+        return view('api.pages.newappdetails', compact('appDetails'));
+    }
+
+    /**
+     * This method shows the app details created by the user if on session
+     * and display an error message if not on session.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAppDetails()
+    {
+        $appDetails = AppDetail::where('user_id', auth()->user()->id)->find('id');
+
+        dd($appDetails);
     
         return view('api.pages.newappdetails', compact('appDetails'));
     }

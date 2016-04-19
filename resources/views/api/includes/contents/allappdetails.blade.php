@@ -13,7 +13,7 @@
                             </div>
                         
                             <div>
-                                <a style="font-size: 20px;" href="#">{{ $app->name }}</a>
+                                <a style="font-size: 20px;" href="{{ route('developer.app-details') }}">{{ $app->name }}</a>
                                 <p style="font-size: 15px; margin-top: -5px;">{{ $app->description }}</p>
                             
                             </div>
