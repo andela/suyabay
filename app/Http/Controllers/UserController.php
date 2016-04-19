@@ -2,24 +2,27 @@
 
 namespace Suyabay\Http\Controllers;
 
-use Validator;
 use Hash;
+use Validator;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+<<<<<<< HEAD
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\Collection;
 use Suyabay\Http\Transformers\UserTransformer;
+=======
+>>>>>>> staging
 
 class UserController extends Controller
 {
     protected $mail;
+<<<<<<< HEAD
     protected $response;
     protected $fractal;
 
@@ -186,6 +189,8 @@ class UserController extends Controller
             return Response::json(['message' => 'User already exist or incomplete fields'], 400);
         }
     }
+=======
+>>>>>>> staging
 
     /**
      * Display a listing of the resource.

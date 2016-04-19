@@ -4,11 +4,32 @@
 |--------------------------------------------------------------------------
 | API Routes - Pages
 |--------------------------------------------------------------------------
-
 */
+Route::get('/developer', [
+    'uses' => 'ApiPagesController@index',
+    'as' => 'index',
+]);
 
-Route::get('/developer', 'ApiPagesController@index');
-Route::get('/developer/myapp', 'ApiPagesController@myApp');
+Route::get('/developer/myapp', [
+    'uses' => 'ApiPagesController@myApp',
+    'as' => 'myapp',
+]);
+
+Route::get('/developer/myapp/new', [
+    'uses' => 'ApiPagesController@createNewApp',
+    'as' => 'createNewApp',
+]);
+
+Route::post('/developer/myapp/new/', [
+    'uses' => 'ApiPagesController@postAppDetails',
+    'as' => 'postAppDetails',
+]);
+
+Route::get('/developer/myapp/app-detail', [
+    'uses' => 'ApiPagesController@postAppDetails',
+    'as' => 'postAppDetails',
+]);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,23 +45,23 @@ Route::group(['prefix' => 'api/v1/'], function () {
     });
 
     Route::get('users', [
-        'uses' => 'UserController@getAllUsers'
+        'uses' => 'Api\UserController@getAllUsers'
     ]);
 
     Route::get('users/me', [
-        'uses' => 'UserController@getMyDetails'
+        'uses' => 'Api\UserController@getMyDetails'
     ]);
 
     Route::put('users/me', [
-        'uses' => 'UserController@editUser'
+        'uses' => 'Api\UserController@editUser'
     ]);
 
     Route::patch('users/me', [
-        'uses' => 'UserController@editSingleUser'
+        'uses' => 'Api\UserController@editSingleUser'
     ]);
 
     Route::get('users/{username}', [
-        'uses' => 'UserController@getSingleUser'
+        'uses' => 'Api\UserController@getSingleUser'
     ]);
 
 /*
@@ -49,6 +70,16 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
+<<<<<<< HEAD
+=======
+
+    Route::get('channels', function () {
+
+        return json_encode(["message" => "return all channels"]);
+    });
+
+    Route::get('channels/{id}', function () {
+>>>>>>> staging
 
     Route::get('channels', [
         'uses' => 'Api\ChannelController@getAllChannels'
@@ -66,10 +97,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\ChannelController@editAChannel'
     ]);
 
+<<<<<<< HEAD
     Route::patch('channels/{channel_name}', [
         'uses' => 'Api\ChannelController@editASingleChannelResource'
     ]);
 
+=======
+>>>>>>> staging
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
@@ -137,7 +171,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
         return json_encode(["message" => "delete a single comment under an episode"]);
     });
-
+    
 });
 
 /*
