@@ -14,7 +14,11 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
+<<<<<<< HEAD
   top: -45px;
+=======
+  top: -80px;
+>>>>>>> staging
 }
 
 #hero,
@@ -64,7 +68,11 @@ html {
 #hero-menu a {
   width: 20%;
   float: right;
+<<<<<<< HEAD
   margin-top: 5px;
+=======
+  margin-top: 7px;
+>>>>>>> staging
 }
 
 .slider-text-header {
@@ -227,8 +235,12 @@ html {
 }
 
 .waves-one {
+<<<<<<< HEAD
   margin: 19px auto auto 50px;
   width: 250px;
+=======
+  margin: 20px auto auto 50px;
+>>>>>>> staging
 }
 
 .session-one {
@@ -241,6 +253,10 @@ html {
   margin: auto;
   border-radius: 2px;
   position: relative;
+<<<<<<< HEAD
+=======
+  background: red;
+>>>>>>> staging
 }
 
 .session-three {
@@ -316,6 +332,7 @@ h5 {
 
 .help-block {
   color: red;
+<<<<<<< HEAD
 }
 
 /*
@@ -339,12 +356,22 @@ h5 {
   margin: 30px 100px auto -104px;
 }
 
+=======
+}
+
+/*
+# mynewlyaddedappdetail Styles
+===============================================
+*/
+
+>>>>>>> staging
 .app-name {
   float: left;
   margin: 20px 20px 0px;
   font-size: 30px;
 }
 
+<<<<<<< HEAD
 .app-details {
   display: inline;
   float: left;
@@ -434,4 +461,35 @@ h5 {
   display: inline;
   width: 78%;
   border-radius: 0;
+=======
+#main-one-app {
+  clear: both;
+  min-height: 435px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto -54px;
+}
+
+#main-two-app {
+  clear: both;
+  min-height: 435px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px 100px auto -54px;
+}
+
+.wavesapp {
+  float: right;
+  margin: 20px auto auto 338px;
+  width: 150px;
+}
+
+.app-detail:nth-child(1) {
+  top: 90px;
+}
+
+.owner-token {
+  width: -2PX;
+  border: 10px;
+>>>>>>> staging
 }
