@@ -1296,7 +1296,6 @@ h5 {
 }
 
 /*
-<<<<<<< HEAD
 # newappdetails Styles
 ===============================================
 */
@@ -1307,29 +1306,10 @@ h5 {
   width: 80%;
   background-color: #fff;
   margin: 30px auto -5px auto;
-=======
-# mynewlyaddedappdetail Styles
-===============================================
-*/
-
-.app-name {
-  float: left;
-  margin: 20px 20px 0px;
-  font-size: 30px;
-}
-
-#main-one-app {
-  clear: both;
-  min-height: 435px;
-  width: 80%;
-  background-color: #fff;
-  margin: 30px auto -54px;
->>>>>>> staging
 }
 
 #main-two-app {
   clear: both;
-<<<<<<< HEAD
   min-height: 520px;
   width: 80%;
   background-color: #fff;
@@ -1353,21 +1333,11 @@ h5 {
   margin-left: 30px;
   margin: auto auto auto 30px;
   background-color: #fff;
-=======
-  min-height: 435px;
-  width: 80%;
-  background-color: #fff;
-  margin: 30px 100px auto -54px;
->>>>>>> staging
 }
 
 .wavesapp {
   float: right;
-<<<<<<< HEAD
   margin: 20px 20px auto 30px;
-=======
-  margin: 20px auto auto 338px;
->>>>>>> staging
   width: 150px;
 }
 
@@ -1378,7 +1348,6 @@ h5 {
 .owner-token {
   width: -2PX;
   border: 10px;
-<<<<<<< HEAD
 }
 
 /*
@@ -1442,6 +1411,4 @@ h5 {
   display: inline;
   width: 78%;
   border-radius: 0;
-=======
->>>>>>> staging
 }
