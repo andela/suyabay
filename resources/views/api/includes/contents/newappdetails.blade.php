@@ -4,6 +4,18 @@
     <div class="row">
         <div class="col s8">
             <div id="main-one-app">
+                @if(session()->has('info'))
+                <div class="row">
+                    <script>
+                        swal({
+                            title: 'Success',
+                            text: '{!! session()->get("info") !!}',
+                            timer: 2000,
+                            showConfirmButton: false
+                        })
+                    </script>
+                </div>
+                @endif
                 <div class='row'>
                     <p class="app-name">{{ $appDetail->name }}</p>
                     <a class="wavesapp waves btn" href="#">Edit app</a>
@@ -17,7 +29,7 @@
                     <hr>
                     <div class=>
                         <p style="font-weight: 600;">Homepage url</p>
-                        <p>{{ $appDetail->homepage_url }}</p>
+                        <a href="{{ $appDetail->homepage_url }}" target="_blank">{{ $appDetail->homepage_url }}</a>
                     </div>
                     <hr>
                     <div class=>

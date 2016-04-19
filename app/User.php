@@ -73,6 +73,7 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * Define appDetail table relationship.
+     * 
      * @return object
      */
     public function appDetail()
