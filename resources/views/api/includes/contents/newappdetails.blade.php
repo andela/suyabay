@@ -17,7 +17,7 @@
                     <hr>
                     <div class=>
                         <p style="font-weight: 600;">Homepage url</p>
-                        <p>{{ $appDetails->homepage_url }}</p>
+                        <a href="{{ $appDetails->homepage_url }}" target="_blank">{{ $appDetails->homepage_url }}</a>
                     </div>
                     <hr>
                     <div class=>
