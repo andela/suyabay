@@ -45,4 +45,18 @@ class ChannelsEndpointTest extends TestCase
         ->seeStatusCode(200);
 
     }
+
+    public function testThatASingleChannelWasNotFound()
+    {
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Suyabay',
+            'channel_description' => 'Laoriosam volup atum nesciunt.',
+            'user_id' => 1,
+            'subscription_count'  => 5,
+        ]);
+
+        $this->get('/api/v1/channels/Suyabaye')
+        ->seeJson()
+        ->seeStatusCode(404);
+    }
 }
