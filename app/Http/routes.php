@@ -70,17 +70,6 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-<<<<<<< HEAD
-=======
-
-    Route::get('channels', function () {
-
-        return json_encode(["message" => "return all channels"]);
-    });
-
-    Route::get('channels/{id}', function () {
->>>>>>> staging
-
     Route::get('channels', [
         'uses' => 'Api\ChannelController@getAllChannels'
     ]);
@@ -97,13 +86,11 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\ChannelController@editAChannel'
     ]);
 
-<<<<<<< HEAD
     Route::patch('channels/{channel_name}', [
         'uses' => 'Api\ChannelController@editASingleChannelResource'
     ]);
 
-=======
->>>>>>> staging
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
