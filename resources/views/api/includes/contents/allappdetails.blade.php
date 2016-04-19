@@ -9,22 +9,15 @@
                     @foreach($allApps as $app)
                         <div class='all-app-details'>
                             <div class="app-name">
-                                <p>{{ $app->name }}</p>
+                                <img style="margin-left: -100px; margin-top: -50px;"src="{!! load_asset('/css/logo.png') !!}" class="logo" />
                             </div>
-                            <hr>
+                        
                             <div>
-                                <p style="font-weight: 600;">Homepage url</p>
-                                <a href="{{ $app->homepage_url }}" target="_blank">{{ $app->homepage_url }}</a>
+                                <a style="font-size: 20px;" href="#">{{ $app->name }}</a>
+                                <p style="font-size: 15px; margin-top: -5px;">{{ $app->description }}</p>
+                            
                             </div>
-                            <hr>
-                            <div>
-                                <p style="font-weight: 600;">App Token</p>
-                                <input type="text" readonly class='input form-control token-box' id="token-box" value="{{ $app->api_token }}" />
-                                <button class="waves-effect waves-app btn-copy copy" data-clipboard-target="#token-box" id="copy">
-                                    <i class="fa fa-clipboard active" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <hr>
+                        
                         </div>
                     @endforeach  
                 </div>    
