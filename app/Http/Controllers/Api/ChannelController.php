@@ -63,7 +63,7 @@ class ChannelController extends Controller
      */
     public function getAChannel($channel_name, ChannelTransformer $channelTransformer)
     {
-        $channel = Channel::Where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
         ->orderBy('id', 'asc')
         ->first();
 
@@ -101,8 +101,8 @@ class ChannelController extends Controller
         } 
 
         $channel = Channel::create([
-            'channel_name' => strtolower($request->input('channel_name')),
-            'channel_description' => $request->input('channel_description'),
+            'channel_name' => strtolower($request->input('name')),
+            'channel_description' => $request->input('description'),
             'created_at' => date('Y-m-d h:i:s'),
             'user_id' => $userId,
         ]);
@@ -155,7 +155,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::Where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
         ->first();
 
         if ($this->processEditChannelForPatchRequest($request, $channel)) {
@@ -182,8 +182,8 @@ class ChannelController extends Controller
         if (! is_null($channel)) {
             Channel::where('id', '=', $channel->id)
             ->update([
-                'channel_name' => $request->input('channel_name'),
-                'channel_description' => $request->input('channel_description'),
+                'channel_name' => $request->input('name'),
+                'channel_description' => $request->input('description'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ]);
 
@@ -207,7 +207,7 @@ class ChannelController extends Controller
         if (! is_null($channel)) {
             Channel::where('id', '=', $channel->id)
             ->update([
-                'channel_name' => $request->input('channel_name'),
+                'channel_name' => $request->input('name'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ]);
 
