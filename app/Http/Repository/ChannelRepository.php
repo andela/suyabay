@@ -11,7 +11,7 @@ class ChannelRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function find($id)
+    public static function find($id)
     {
         return Channel::find($id);
     }
