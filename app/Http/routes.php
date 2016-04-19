@@ -13,20 +13,24 @@ Route::get('/developer', [
 Route::get('/developer/myapp', [
     'uses' => 'ApiPagesController@showMyApps',
     'as' => 'developer.myapp',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/new', [
     'uses' => 'ApiPagesController@createNewApp',
     'as' => 'developer.new-app',
+    'middleware' => ['auth'],
 ]);
 
 Route::post('/developer/myapp/new/', [
     'uses' => 'ApiPagesController@postNewAppDetails',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/app-detail', [
     'uses' => 'ApiPagesController@showNewAppDetails',
     'as' => 'developer.app-details',
+    'middleware' => ['auth'],
 ]);
 
 /*

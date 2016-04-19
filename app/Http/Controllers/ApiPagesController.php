@@ -30,7 +30,6 @@ class ApiPagesController extends Controller
      */
     public function showMyApps()
     {
-        if (Auth::check()) {
             $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
    
             if ($allApps->isEmpty()) {
@@ -39,9 +38,6 @@ class ApiPagesController extends Controller
 
             return view('api.pages.allappdetails', compact('allApps'));
         }
-
-        return view('api.pages.autherrorpage');
-    }
 
     /**
      * Displays a form where user can register there new app.
@@ -82,7 +78,7 @@ class ApiPagesController extends Controller
      */
     public function postNewAppDetails(Request $request)
     {
-        if (Auth::check()) {
+        
             $this->validate($request, [
                 'name'         => 'required',
                 'homepage_url' => 'required|url',
@@ -97,16 +93,7 @@ class ApiPagesController extends Controller
             'api_token'    => $this->generateToken(),
             ]);
 
-            return $response =
-            [
-                "message"       => "App created successfully",
-                "status_code"   => 200,
-            ];
-
             return redirect()->route('developer.app-details');
-        }
-        
-        return view('api.pages.autherrorpage');
     }
 
     /**
@@ -117,12 +104,8 @@ class ApiPagesController extends Controller
      */
     public function showNewAppDetails()
     {
-        if (Auth::check()) {
             $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
         
             return view('api.pages.newappdetails', compact('appDetails'));
         }
-
-        return view('api.pages.autherrorpage');
-    }
 }

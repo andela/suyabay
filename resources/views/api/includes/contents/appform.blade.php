@@ -52,7 +52,7 @@
 	    <div class="col s4">
             <div id="main-new-two">
                 <div class="session-one">
-                    <a type="submit" class="waves-effect wave btn" href={{ "route(developer.index" }}">Developer</a>
+                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
                 </div> 
                 <div class="session-two">
 
