@@ -37,7 +37,7 @@
                     <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
                 </div>
                 <div class="session-two">
-
+                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
                 </div>
                  <div class="session-three">
 

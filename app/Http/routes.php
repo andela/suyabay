@@ -22,7 +22,6 @@ Route::get('/developer/myapp/new', [
 
 Route::post('/developer/myapp/new/', [
     'uses' => 'ApiPagesController@postNewAppDetails',
-    'as' => 'developer.save-app',
 ]);
 
 Route::get('/developer/myapp/app-detail', [

@@ -6,10 +6,14 @@
     <div class='row'>
     	<div class="col s8">
         	<div id="main-new-one">
+
 	    		<div class='form-feature'>
+
 			    	<form class action="/developer/myapp/new/" method="POST">
+
 			    	<input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 			    		<div class='form-content'>
+			    		<h4 style='text-align: center;'>Create new App</h4>
 				    		<h5>Application name</h5>
 
 					    		<div class='form-group'>
@@ -38,7 +42,7 @@
                     			@endif
 
 					    	<div class='form-group'>
-					    		<button type='submit' class="waves-effect wave btn">Save Changes</button>
+					    		<button type='submit' class="waves-effect wave btn">Create App</button>
 					    	</div>	
 				    	</div>
 		    		</form>
@@ -48,7 +52,7 @@
 	    <div class="col s4">
             <div id="main-new-two">
                 <div class="session-one">
-                    
+                    <a type="submit" class="waves-effect wave btn" href={{ "route(developer.index" }}">Developer</a>
                 </div> 
                 <div class="session-two">
 
