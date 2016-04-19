@@ -30,13 +30,13 @@ class ApiPagesController extends Controller
      */
     public function showMyApps()
     {
-            $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
-   
-            if ($allApps->isEmpty()) {
-                return view('api.pages.myapps');
-            }
+        $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
 
-            return view('api.pages.allappdetails', compact('allApps'));
+        if ($allApps->isEmpty()) {
+            return view('api.pages.myapps');
+        }
+
+        return view('api.pages.allappdetails', compact('allApps'));
     }
 
     /**
@@ -103,8 +103,8 @@ class ApiPagesController extends Controller
      */
     public function showNewAppDetails()
     {
-            $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
-        
-            return view('api.pages.newappdetails', compact('appDetails'));
+        $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
+    
+        return view('api.pages.newappdetails', compact('appDetails'));
     }
 }
