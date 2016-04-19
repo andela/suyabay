@@ -37,7 +37,7 @@ class ApiPagesController extends Controller
             }
 
             return view('api.pages.allappdetails', compact('allApps'));
-        }
+    }
 
     /**
      * Displays a form where user can register there new app.
@@ -78,22 +78,21 @@ class ApiPagesController extends Controller
      */
     public function postNewAppDetails(Request $request)
     {
-        
-            $this->validate($request, [
-                'name'         => 'required',
-                'homepage_url' => 'required|url',
-                'description'  => 'required',
-            ]);
+        $this->validate($request, [
+            'name'         => 'required',
+            'homepage_url' => 'required|url',
+            'description'  => 'required',
+        ]);
 
-            AppDetail::create([
+        AppDetail::create([
             'name'         => $request->name,
             'user_id'      => auth()->user()->id,
             'homepage_url' => $request->homepage_url,
             'description'  => $request->description,
             'api_token'    => $this->generateToken(),
-            ]);
+        ]);
 
-            return redirect()->route('developer.app-details');
+        return redirect()->route('developer.app-details');
     }
 
     /**
@@ -107,5 +106,5 @@ class ApiPagesController extends Controller
             $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
         
             return view('api.pages.newappdetails', compact('appDetails'));
-        }
+    }
 }
