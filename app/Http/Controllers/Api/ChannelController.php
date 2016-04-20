@@ -206,7 +206,7 @@ class ChannelController extends Controller
     {
         $recordToBeUpdated = [];
 
-        if($request->input('name')) {
+        if ($request->input('name')) {
             $recordToBeUpdated = [
             'channel_name' => $request->input('name'),
             'updated_at' => date('Y-m-d h:i:s'),
