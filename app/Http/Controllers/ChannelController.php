@@ -79,7 +79,6 @@ class ChannelController extends Controller
             'channel_name'         => $request->channel_name,
             'channel_description'  => $request->channel_description,
             'user_id'              => Auth::user()->id,
-            'subscription_count'   => 0
         ]);
 
         return redirect('dashboard/channel/' . $channel->id);
