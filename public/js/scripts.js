@@ -567,6 +567,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
         return this;
     };
 })( jQuery, window, document );
+var clipboard = new Clipboard(".copy");
+
+clipboard.on("success", function() {
+    swal("Token copied successfully");
+});
 $(document).ready(function() {
 
     $(".view_more_comments").on("click",function() {

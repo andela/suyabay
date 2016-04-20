@@ -161,16 +161,14 @@ html {
 */
 
 #main-one {
-  clear: both;
-  min-height: 400px;
+  min-height: 350px;
   width: 80%;
   background-color: #fff;
-  margin: 20px auto 20px 134px;
+  margin: 20px auto 20px 110px;
 }
 
 #main-two {
-  clear: both;
-  min-height: 400px;
+  min-height: 130px;
   width: 80%;
   background-color: #fff;
   margin: 20px 100px auto -54px;
@@ -227,7 +225,7 @@ html {
 }
 
 .waves-one {
-  margin: 19px auto auto 50px;
+  margin: 19px auto auto 38px;
   width: 250px;
 }
 
@@ -276,19 +274,17 @@ img.avatar {
 }
 
 #main-new-one {
-  clear: both;
   min-height: 440px;
   width: 80%;
   background-color: #fff;
-  margin: 42px auto 20px 134px;
+  margin: 50px auto auto 110px;
 }
 
 #main-new-two {
-  clear: both;
-  min-height: 440px;
+  min-height: 100px;
   width: 80%;
   background-color: #fff;
-  margin: 20px 100px auto -54px;
+  margin: 30px auto auto -61px;
 }
 
 .wave {
@@ -324,24 +320,24 @@ h5 {
 */
 
 #main-one-app {
-  clear: both;
-  min-height: 520px;
+  min-height: 420px;
   width: 80%;
   background-color: #fff;
-  margin: 30px auto -5px auto;
+  margin-top: 30px;
+  margin-left: 120px;
 }
 
 #main-two-app {
-  clear: both;
-  min-height: 520px;
+  min-height: 150px;
   width: 80%;
   background-color: #fff;
-  margin: 30px 100px auto -104px;
+  margin-top: 30px;
+  margin-left: -61px;
 }
 
 .app-name {
   float: left;
-  margin: 20px 20px 0px;
+  margin: -20px 20px 0px;
   font-size: 30px;
 }
 
@@ -351,11 +347,12 @@ h5 {
   overflow: hidden;
   padding: 20px;
   width: 600px;
-  border: 1px solid;
+  border: 1px solid #777;
   margin-top: 30px;
   margin-left: 30px;
   margin: auto auto auto 30px;
   background-color: #fff;
+  border-radius: 4px;
 }
 
 .wavesapp {
@@ -434,4 +431,18 @@ h5 {
   display: inline;
   width: 78%;
   border-radius: 0;
+}
+
+.app {
+  margin-bottom: 10px;
+}
+
+.app > div {
+  clear: both;
+  float: left;
+  width: auto;
+}
+
+.app > div:nth-child(2) {
+  margin-bottom: 2px;
 }
