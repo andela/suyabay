@@ -1,21 +1,8 @@
-        <!-- top nav -->
-    @include("api.includes.sections.top_nav")
+@include("api.includes.sections.top_nav")
 
     <div class="row">
         <div class="col s8">
             <div id="main-one-app">
-                @if(session()->has('info'))
-                <div class="row">
-                    <script>
-                        swal({
-                            title: 'Success',
-                            text: '{!! session()->get("info") !!}',
-                            timer: 2000,
-                            showConfirmButton: false
-                        })
-                    </script>
-                </div>
-                @endif
                 <div class='row'>
 
                     <p style=" margin-top: 15px;"class="app-name">{{ $appDetails->name }}</p>
