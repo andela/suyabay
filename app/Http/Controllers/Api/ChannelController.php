@@ -63,7 +63,7 @@ class ChannelController extends Controller
      */
     public function getAChannel($channel_name, ChannelTransformer $channelTransformer)
     {
-        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
         ->orderBy('id', 'asc')
         ->first();
 
