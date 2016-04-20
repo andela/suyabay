@@ -15,8 +15,6 @@
     "clipboard": "^1.5.10",
     "laravel-elixir": "^3.0.0"
   },
-  "name": "suyabay",
-  "description": "Awesome Podcast FM Network for Suya Lovers",
   "version": "1.0.0",
   "main": "gulpfile.js",
   "directories": {

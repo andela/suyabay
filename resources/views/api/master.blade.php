@@ -53,14 +53,6 @@
         <div>
             @include("api.includes.sections.footer")
         </div> 
-
-        <!-- <script src = "{!! load_asset('/js/api.js') !!}"></script>
-        <script src = "{!! load_asset('/js/api.js') !!}"></script>
-        <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
-        <script src="{!! load_asset('/js/like.js') !!}"></script>
-        <script src = "{!! load_asset('/js/api.main.js') !!}"></script>
-        <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
-        <script src = "{!! load_asset('/js/comment.js') !!}"></script> -->
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
 
        <!--  <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>

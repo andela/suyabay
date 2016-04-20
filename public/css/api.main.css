@@ -398,10 +398,10 @@ h5 {
 
 #main-two-apps {
   clear: both;
-  min-height: 450px;
+  min-height: 150px;
   width: 80%;
   background-color: #fff;
-  margin: 30px 100px auto -104px;
+  margin: 30px 100px auto -80px;
   position: relative;
   overflow: hidden;
 }
