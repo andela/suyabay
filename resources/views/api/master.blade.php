@@ -54,8 +54,5 @@
             @include("api.includes.sections.footer")
         </div> 
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
-
-       <!--  <script src="{!! load_asset('/js/socialmediashare.js') !!}"></script>
-        <script src="{!! load_asset('/js/commentupdate.js') !!}"></script>    -->
     </body>
 </html>
