@@ -240,8 +240,8 @@ class ChannelController extends Controller
     public function validateUserRequestForEmptyFields($request)
     {
         $validator = Validator::make($request->all(), [
-            'channel_name' => 'required',
-            'channel_description' => 'required',
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
         if ($validator->fails()) {
