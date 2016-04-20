@@ -17,7 +17,6 @@
 
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
 
         <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
 
