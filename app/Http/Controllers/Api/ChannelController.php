@@ -127,7 +127,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
         ->first();
 
         if ($this->processEditChannel($request, $channel)) {
@@ -155,7 +155,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
         ->first();
 
         if ($this->processEditChannelForPatchRequest($request, $channel)) {
@@ -204,12 +204,23 @@ class ChannelController extends Controller
      */
     public function processEditChannelForPatchRequest($request, $channel)
     {
+        $recordToBeUpdated = [];
+
+        if($request->input('name')) {
+            $recordToBeUpdated = [
+            'channel_name' => $request->input('name'),
+            'updated_at' => date('Y-m-d h:i:s'),
+            ];
+        } else if ($request->input('description')) {
+            $recordToBeUpdated = [
+            'channel_description' => $request->input('description'),
+            'updated_at' => date('Y-m-d h:i:s'),
+            ];
+        }
+
         if (! is_null($channel)) {
             Channel::where('id', '=', $channel->id)
-            ->update([
-                'channel_name' => $request->input('name'),
-                'updated_at' => date('Y-m-d h:i:s'),
-            ]);
+            ->update($recordToBeUpdated);
 
             return true;
             
@@ -249,8 +260,8 @@ class ChannelController extends Controller
     public function validateUserRequest($request)
     {
         $validator = Validator::make($request->all(), [
-            'channel_name' => 'required|unique:channels|max:50',
-            'channel_description' => 'required|max:160',
+            'name' => 'required|unique:channels|max:50',
+            'description' => 'required|max:160',
         ]);
 
         if ($validator->fails()) {
@@ -268,10 +279,18 @@ class ChannelController extends Controller
      */
     public function validateUserRequestForPatchRequest($request)
     {
-        $validator = Validator::make($request->all(), [
-            'channel_name' => 'required|max:50',
-        ]);
+        $validator = null;
 
+        if ($request->input('name')) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:50',
+            ]);
+        } else if ($request->input('description')) {
+            $validator = Validator::make($request->all(), [
+                'description' => 'required|max:160',
+            ]);
+        }
+        
         if ($validator->fails()) {
             return true;
 
