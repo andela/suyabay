@@ -324,11 +324,11 @@ h5 {
   width: 80%;
   background-color: #fff;
   margin-top: 30px;
-  margin-left: 120px;
+  margin-left: 105px;
 }
 
 #main-two-app {
-  min-height: 150px;
+  min-height: 200px;
   width: 80%;
   background-color: #fff;
   margin-top: 30px;
@@ -337,7 +337,7 @@ h5 {
 
 .app-name {
   float: left;
-  margin: -20px 20px 0px;
+  margin: 15px 20px;
   font-size: 30px;
 }
 
@@ -391,7 +391,7 @@ h5 {
   min-height: 450px;
   width: 80%;
   background-color: #fff;
-  margin: 30px auto -5px auto;
+  margin: 30px auto -5px 105px;
   position: relative;
   overflow: hidden;
 }
@@ -401,7 +401,7 @@ h5 {
   min-height: 150px;
   width: 80%;
   background-color: #fff;
-  margin: 30px 100px auto -80px;
+  margin: 30px -62px -80px;
   position: relative;
   overflow: hidden;
 }
@@ -445,4 +445,8 @@ h5 {
 
 .app > div:nth-child(2) {
   margin-bottom: 2px;
+}
+
+.app > div:nth-child(1) {
+  font-weight: bold;
 }

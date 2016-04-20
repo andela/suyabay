@@ -22,8 +22,8 @@
                     </div>
                     
                     <div class = "row app">
-                        <div>App Token
-                        <input type="text" readonly class='input form-control token-box' id="token-box" value="{{ $appDetails->api_token }}"/>
+                        <div>App Token</div>
+                        <div><input type="text" readonly class='input form-control token-box' id="token-box" value="{{ $appDetails->api_token }}"/>
                         <button class="waves-effect waves-app btn-copy copy" data-clipboard-target="#token-box" id="copy">
                             <i class="fa fa-clipboard active" aria-hidden="true"></i>
                         </button>
@@ -41,7 +41,7 @@
                     <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
                 </div>
                  <div class="session-three">
-
+                 <a class="waves-effect waves-one btn" href="{{ route('developer.myapp') }}">My Apps</a>
                 </div>
             </div>
         </div>
