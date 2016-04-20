@@ -114,11 +114,9 @@ class ApiPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAppDetails()
+    public function showAppDetails($id)
     {
-        $appDetails = AppDetail::where('user_id', auth()->user()->id)->find('id');
-
-        dd($appDetails);
+        $appDetails = AppDetail::where('user_id', auth()->user()->id)->find($id);
     
         return view('api.pages.newappdetails', compact('appDetails'));
     }
