@@ -27,7 +27,7 @@
                         <button class="waves-effect waves-app btn-copy copy" data-clipboard-target="#token-box" id="copy">
                             <i class="fa fa-clipboard active" aria-hidden="true"></i>
                         </button>
-                        </div>
+                        </div>  
                     </div>
                 </div>
                 </div>
@@ -46,4 +46,3 @@
             </div>
         </div>
         </div>
-    </div>

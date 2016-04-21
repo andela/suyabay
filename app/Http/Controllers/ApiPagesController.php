@@ -117,7 +117,7 @@ class ApiPagesController extends Controller
     public function showAppDetails($id)
     {
         $appDetails = AppDetail::where('user_id', auth()->user()->id)->find($id);
-    
+        
         return view('api.pages.appdetails', compact('appDetails'));
     }
 }
