@@ -1,6 +1,6 @@
 <?php
 
-namespace Suyabay\Http\Controllers;
+namespace Suyabay\Http\Controllers\Api;
 
 use Auth;
 use Firebase\JWT\JWT;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
-class ApiPagesController extends Controller
+class PagesController extends Controller
 {
     /**
      * Displays the index page of the API.
