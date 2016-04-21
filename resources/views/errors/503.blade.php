@@ -2,8 +2,6 @@
 
 @section('title', 'Oops 404')
 
-@endsection
-
 @section('content')
 
     <div class="col s12 center-align">
