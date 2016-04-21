@@ -2,8 +2,6 @@
 
 @section('title', 'Edit profile')
 
-@endsection
-
 @section('content')
 
 <div class="row">

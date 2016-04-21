@@ -2,8 +2,6 @@
 
 @section('title', 'Page not found')
 
-@endsection
-
 @section('content')
 
     <div class="col s12 center-align">

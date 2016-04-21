@@ -2,8 +2,6 @@
 
 @section('title', 'Welcome | SuyaBay')
 
-@endsection
-
 @section('content')
 
 <div class="col s12 m6 l12 spacer">
