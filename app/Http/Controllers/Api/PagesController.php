@@ -1,6 +1,6 @@
 <?php
 
-namespace Suyabay\Http\Controllers;
+namespace Suyabay\Http\Controllers\Api;
 
 use Auth;
 use Firebase\JWT\JWT;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
 
-class ApiPagesController extends Controller
+class PagesController extends Controller
 {
     /**
      * Displays the index page of the API.
@@ -30,7 +30,7 @@ class ApiPagesController extends Controller
      */
     public function showMyApps()
     {
-        $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
+        $allApps = AppDetail::where('user_id', auth()->user()->id)->paginate(5);
 
         if ($allApps->isEmpty()) {
             return view('api.pages.myapps');

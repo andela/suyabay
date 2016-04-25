@@ -1365,10 +1365,10 @@ h5 {
 
 #main-one-apps {
   clear: both;
-  min-height: 450px;
+  min-height: 300px;
   width: 80%;
   background-color: #fff;
-  margin: 30px auto -5px 105px;
+  margin: 30px auto 15px 105px;
   position: relative;
   overflow: hidden;
 }
@@ -1426,4 +1426,14 @@ h5 {
 
 .app > div:nth-child(1) {
   font-weight: bold;
+}
+
+.button-details {
+  float: right;
+  margin: 20px 33px 15px auto;
+}
+
+.pagination li.active {
+  background-color: #26a69a;
+  color: #fff;
 }
