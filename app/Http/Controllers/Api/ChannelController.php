@@ -194,7 +194,14 @@ class ChannelController extends Controller
         ->first();
 
         if (! is_null($channel)) {
-            $this->channelRepository->deleteChannel($channel->id);
+            $returnValue = $this->channelRepository->deleteChannel($channel->id);
+
+            if (is_null($returnValue)) {
+                return Response::json([
+                    'message' => 'Something went wrong'
+                ], 400);
+
+            }
 
             return Response::json([
             'message' => 'Channel successfully deleted'
