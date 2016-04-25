@@ -198,7 +198,7 @@ class ChannelController extends Controller
 
             if (is_null($returnValue)) {
                 return Response::json([
-                    'message' => 'Something went wrong'
+                    'message' => 'Oop! something went wrong'
                 ], 400);
 
             }
