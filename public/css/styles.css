@@ -992,7 +992,7 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
-  top: -80px;
+  top: -85px;
 }
 
 #hero,
@@ -1042,7 +1042,7 @@ html {
 #hero-menu a {
   width: 20%;
   float: right;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 
 .slider-text-header {
@@ -1074,7 +1074,7 @@ html {
 }
 
 .feature-content:nth-child(1) {
-  margin-top: 90px;
+  margin-top: 95px;
 }
 
 .feature-content {
@@ -1134,21 +1134,19 @@ html {
 }
 
 /*
-# myApp Styles
+# myApps Styles
 ===============================================
 */
 
 #main-one {
-  clear: both;
-  min-height: 400px;
+  min-height: 350px;
   width: 80%;
   background-color: #fff;
-  margin: 20px auto 20px 134px;
+  margin: 20px auto 20px 110px;
 }
 
 #main-two {
-  clear: both;
-  min-height: 400px;
+  min-height: 130px;
   width: 80%;
   background-color: #fff;
   margin: 20px 100px auto -54px;
@@ -1205,7 +1203,8 @@ html {
 }
 
 .waves-one {
-  margin: 20px auto auto 50px;
+  margin: 19px auto auto 38px;
+  width: 250px;
 }
 
 .session-one {
@@ -1218,7 +1217,6 @@ html {
   margin: auto;
   border-radius: 2px;
   position: relative;
-  background: red;
 }
 
 .session-three {
@@ -1241,7 +1239,7 @@ img.avatar {
 }
 
 /*
-# mynewApp Styles
+# appform Styles
 ===============================================
 */
 
@@ -1254,19 +1252,17 @@ img.avatar {
 }
 
 #main-new-one {
-  clear: both;
   min-height: 440px;
   width: 80%;
   background-color: #fff;
-  margin: 42px auto 20px 134px;
+  margin: 50px auto auto 110px;
 }
 
 #main-new-two {
-  clear: both;
-  min-height: 440px;
+  min-height: 100px;
   width: 80%;
   background-color: #fff;
-  margin: 20px 100px auto -54px;
+  margin: 30px auto auto -61px;
 }
 
 .wave {
@@ -1299,35 +1295,49 @@ h5 {
 }
 
 /*
-# mynewlyaddedappdetail Styles
+# newappdetails Styles
 ===============================================
 */
 
-.app-name {
-  float: left;
-  margin: 20px 20px 0px;
-  font-size: 30px;
-}
-
 #main-one-app {
-  clear: both;
-  min-height: 435px;
+  min-height: 420px;
   width: 80%;
   background-color: #fff;
-  margin: 30px auto -54px;
+  margin-top: 30px;
+  margin-left: 105px;
 }
 
 #main-two-app {
-  clear: both;
-  min-height: 435px;
+  min-height: 200px;
   width: 80%;
   background-color: #fff;
-  margin: 30px 100px auto -54px;
+  margin-top: 30px;
+  margin-left: -61px;
+}
+
+.app-name {
+  float: left;
+  margin: 15px 20px;
+  font-size: 30px;
+}
+
+.app-details {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 600px;
+  border: 1px solid #777;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin: auto auto auto 30px;
+  background-color: #fff;
+  border-radius: 4px;
 }
 
 .wavesapp {
   float: right;
-  margin: 20px auto auto 338px;
+  margin: 20px 20px auto 30px;
   width: 150px;
 }
 
@@ -1338,4 +1348,97 @@ h5 {
 .owner-token {
   width: -2PX;
   border: 10px;
+}
+<<<<<<< HEAD
+=======
+
+/*
+# allappdetails Styles
+===============================================
+*/
+
+.all-app-details {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 600px;
+  border: 1px solid #c7cdcf;
+  margin: 6px auto auto -1px;
+  background-color: #fff;
+}
+
+#main-one-apps {
+  clear: both;
+  min-height: 300px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px auto 15px 105px;
+  position: relative;
+  overflow: hidden;
+}
+
+#main-two-apps {
+  clear: both;
+  min-height: 150px;
+  width: 80%;
+  background-color: #fff;
+  margin: 30px -62px -80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.myapps {
+  width: 90%;
+  height: 150px;
+  border-radius: 2px;
+  position: relative;
+  background: #fcfcfc;
+  margin: auto auto auto auto;
+}
+
+.app-name {
+  color: #2C3E50;
+  font-size: 30px;
+}
+
+.btn-copy {
+  border-radius: 0;
+  display: inline-block;
+  background-color: #26a69a;
+  color: white;
+}
+
+#token-box {
+  display: inline;
+  width: 78%;
+  border-radius: 0;
+}
+
+.app {
+  margin-bottom: 10px;
+}
+
+.app > div {
+  clear: both;
+  float: left;
+  width: auto;
+}
+
+.app > div:nth-child(2) {
+  margin-bottom: 2px;
+}
+
+.app > div:nth-child(1) {
+  font-weight: bold;
+}
+
+.button-details {
+  float: right;
+  margin: 20px 33px 15px auto;
+}
+
+.pagination li.active {
+  background-color: #26a69a;
+  color: #fff;
 }
