@@ -84,7 +84,7 @@ class PagesController extends Controller
             'description'  => 'required',
         ]);
 
-        AppDetail::create([
+        $returnData = AppDetail::create([
             'name'         => $request->name,
             'user_id'      => auth()->user()->id,
             'homepage_url' => $request->homepage_url,
@@ -92,7 +92,11 @@ class PagesController extends Controller
             'api_token'    => $this->generateToken(),
         ]);
 
-        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
+        if (is_null($returnData->id)) {
+            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');         
+        }
+
+        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully'); 
     }
 
     /**
