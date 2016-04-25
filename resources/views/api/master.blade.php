@@ -17,6 +17,7 @@
 
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
 
 
         <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
@@ -25,11 +26,9 @@
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
 
         <!-- Api style sheet -->
-        <script src = "{!! load_asset('/js/api.main.js') !!}"></script>
-        <script src = "{!! load_asset('/js/api.main.js') !!}"></script>
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src="{!! load_asset('/js/like.js') !!}"></script>
-        <script src = "{!! load_asset('/js/api.main.js') !!}"></script>
+        <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src = "{!! load_asset('/js/comment.js') !!}"></script>
 
@@ -53,6 +52,7 @@
         <!-- footer -->
         <div>
             @include("api.includes.sections.footer")
-        </div>    
+        </div> 
+        <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
     </body>
 </html>

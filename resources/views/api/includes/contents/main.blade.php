@@ -37,7 +37,7 @@
             <a class="class" href="/developer">Developer</a>
             <a href="http://suyabay.readthedocs.org/en/latest/">Docs</a>
             <a href="/developer/partners">Partners</a>
-            <a href="/developer/myapp">MyApp</a>
+            <a href="/developer/myapp">My Apps</a>
         </nav>  
     </div> 
 </div>
@@ -47,7 +47,7 @@
 
     <div class="feature-content">
         <div class="text-content"> 
-            <h1><a href="developer/myapp">MyApp</a></h1>
+            <h1><a href="developer/myapp">My Apps</a></h1>
             <p>Check out your amazing apps that were built using Suyabay’s APIs..</p>
             <img  src ="{{ load_asset('images/apiimage4.png') }}">
         </div>
