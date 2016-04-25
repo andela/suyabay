@@ -179,8 +179,8 @@ class ChannelController extends Controller
     /**
      * This method deletes a channel
      *
-     * @param  $channel_name
-     * 
+     * @param $channel_name
+     *
      * @param $request
      *
      * @return $response
