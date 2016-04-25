@@ -138,4 +138,5 @@ class UsersEndpointTest extends TestCase
         $this->assertEquals($response->message, 'Username field is empty');
 
     }
+
 }
