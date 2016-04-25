@@ -142,7 +142,16 @@ class UserController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users|max:255'
+            'username' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'User field is empty'], 400);
+
+        }
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|max:50'
         ]);
 
         if ($validator->fails()) {
