@@ -20,7 +20,8 @@
       "facebook/webdriver": "^1.1",
       "google/apiclient": "^2.0.0@RC",
       "firebase/php-jwt": "^3.0",
-      "league/fractal": "^0.13.0"
+      "league/fractal": "^0.13.0",
+      "sendgrid/sendgrid": "~4.0"
    },
    "require-dev": {
       "mockery/mockery": "0.9.*",
