@@ -15,7 +15,7 @@ use Suyabay\Http\Controllers\Controller;
 class UserController extends Controller
 {
     protected $mail;
-
+    
     /**
      * Display a listing of the resource.
      */
