@@ -25,7 +25,6 @@ $factory->define(Suyabay\Channel::class, function (Faker\Generator $faker) {
     return [
         'channel_name'        => $faker->name,
         'channel_description' => $faker->sentence,
-        'status'              => 1,
         "user_id"             => 1,
     ];
 });
