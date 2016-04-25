@@ -25,6 +25,7 @@ $factory->define(Suyabay\Channel::class, function (Faker\Generator $faker) {
     return [
         'channel_name'        => $faker->name,
         'channel_description' => $faker->sentence,
+        'status'              => 1,
         "user_id"             => 1,
     ];
 });
@@ -37,7 +38,7 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
         'image'                 => "http://goo.gl/8sorZR",
         'audio_mp3'             => "http://goo.gl/LkNP5M",
         'channel_id'            => 1,
-        'status'                => 0,
+        'status'                => 1,
         'likes'                 => 10,
     ];
 });
@@ -45,7 +46,7 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
 $factory->define(Suyabay\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id'       => 1,
-        'comments'       => $faker->text,
+        'comments'      => $faker->text,
         'episode_id'    => 1,
     ];
 });
