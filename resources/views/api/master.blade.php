@@ -18,13 +18,13 @@
         <!-- Font Awesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+
         <script src = "{!! load_asset('/js/jquery.min.js') !!}"></script>
 
         <!-- Materialize Compiled and minified JavaScript -->
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
 
         <!-- Api style sheet -->
-        
         <script src="{!! load_asset('/js/audio.min.js') !!}"></script>
         <script src="{!! load_asset('/js/like.js') !!}"></script>
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
@@ -51,6 +51,7 @@
         <!-- footer -->
         <div>
             @include("api.includes.sections.footer")
-        </div>    
+        </div> 
+        <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
     </body>
 </html>

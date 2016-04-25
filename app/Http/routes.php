@@ -6,31 +6,37 @@
 |--------------------------------------------------------------------------
 */
 Route::get('/developer', [
-    'uses' => 'ApiPagesController@index',
+    'uses' => 'Api\PagesController@index',
     'as' => 'developer.index',
 ]);
 
 Route::get('/developer/myapp', [
-    'uses' => 'ApiPagesController@myApps',
+    'uses' => 'Api\PagesController@showMyApps',
     'as' => 'developer.myapp',
     'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/new', [
-    'uses' => 'ApiPagesController@createNewApp',
+    'uses' => 'Api\PagesController@createNewApp',
     'as' => 'developer.new-app',
     'middleware' => ['auth'],
 ]);
 
 Route::post('/developer/myapp/new/', [
-    'uses' => 'ApiPagesController@postNewAppDetails',
+    'uses' => 'Api\PagesController@postNewAppDetails',
     'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/app-detail', [
-    'uses' => 'ApiPagesController@showNewAppDetails',
-    'as' => 'developer.app-details',
+    'uses' => 'Api\PagesController@showNewAppDetails',
+    'as' => 'developer.newapp-details',
     'middleware' => ['auth'],
+]);
+
+Route::get('/developer/myapp/{id}', [
+        'uses' => 'Api\PagesController@showAppDetails',
+        'as' => 'developer.app-details',
+        'middleware' => ['auth'],
 ]);
 
 /*
