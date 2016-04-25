@@ -30,7 +30,7 @@ class ChannelController extends Controller
     }
 
     /**
-     * This method lists all channels 
+     * This method lists all channels
      * @param $page
      * @param $request
      * @param $response
