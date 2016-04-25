@@ -37,7 +37,7 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
         'image'                 => "http://goo.gl/8sorZR",
         'audio_mp3'             => "http://goo.gl/LkNP5M",
         'channel_id'            => 1,
-        'status'                => 1,
+        'status'                => 0,
         'likes'                 => 10,
     ];
 });
