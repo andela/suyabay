@@ -93,10 +93,10 @@ class PagesController extends Controller
         ]);
 
         if (is_null($returnData->id)) {
-            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');         
+            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
         }
 
-        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully'); 
+        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
     }
 
     /**
