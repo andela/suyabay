@@ -10,6 +10,7 @@ use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
@@ -21,9 +22,11 @@ class ChannelController extends Controller
     protected $response;
     protected $fractal;
 
-    public function __construct(Manager $fractal)
+    public function __construct(Manager $fractal, Mail $mail)
     {
         $this->fractal = $fractal;
+
+        parent::__construct($mail);
     }
 
     /**
@@ -191,9 +194,7 @@ class ChannelController extends Controller
         ->first();
 
         if (! is_null($channel)) {
-            $channel = Channel::find($channel->id);
-            $channel->status = 0;
-            $channel->save();
+            $this->channelRepository->deleteChannel($channel->id);
 
             return Response::json([
             'message' => 'Channel successfully deleted'
@@ -202,7 +203,7 @@ class ChannelController extends Controller
         }
 
         return Response::json([
-            'message' => 'Channel cannot be updated because the channel name is incorrect'
+            'message' => 'Channel cannot be deleted because the channel name is incorrect'
         ], 404);
     }
 
