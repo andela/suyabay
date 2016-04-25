@@ -117,10 +117,25 @@ class UsersEndpointTest extends TestCase
             'username' => 'Temitope',
         ]);
         
-        $json = json_decode($response->getContent());
+        $response = json_decode($response->getContent())
 
-        $this->assertEquals($json->message, 'User updated successfully');
+        $this->assertEquals($response->message, 'User updated successfully');
 
     }
 
+    public function testThatTheUserEditInfoViaPatchRequestCannotBeCompleted()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PATCH', '/api/v1/users/me', [
+            'usename' => 'Sarkordi',
+        ]);
+        
+        $response = json_decode($response->getContent());
+
+        $this->assertEquals($response->message, 'User field is empty');
+
+    }
 }
