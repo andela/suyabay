@@ -117,7 +117,7 @@ class UsersEndpointTest extends TestCase
             'username' => 'Temitope',
         ]);
         
-        $response = json_decode($response->getContent())
+        $response = json_decode($response->getContent());
 
         $this->assertEquals($response->message, 'User updated successfully');
 
