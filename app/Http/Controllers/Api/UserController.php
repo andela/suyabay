@@ -146,7 +146,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json(['message' => 'User field is empty'], 400);
+            return Response::json(['message' => 'Username field is empty'], 400);
 
         }
 

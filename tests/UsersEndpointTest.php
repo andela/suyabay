@@ -135,7 +135,7 @@ class UsersEndpointTest extends TestCase
         
         $response = json_decode($response->getContent());
 
-        $this->assertEquals($response->message, 'User field is empty');
+        $this->assertEquals($response->message, 'Username field is empty');
 
     }
 }
