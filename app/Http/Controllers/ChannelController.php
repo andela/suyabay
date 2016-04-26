@@ -9,11 +9,11 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Transformers\ChannelTransformer;
 
 class ChannelController extends Controller
 {
     protected $response;
-
 
     /**
      * Return all channels
