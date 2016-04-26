@@ -4,6 +4,19 @@
     <div class="row">
         <div class="col s8">
             <div id="main-one-apps">
+
+            @if(session()->has('info'))
+                
+                    <script>
+                        swal({
+                            title: 'status',
+                            text: '{!! session()->get("info") !!}',
+                            timer: 2000,
+                            showConfirmButton: false
+                        })
+                    </script>
+            @endif
+
                 <h5 class="app-title" style="font-size: 30px;">My Apps</h5>
                 <div class="myapps">
                     @foreach($allApps as $app)

@@ -11,7 +11,7 @@
                 
                     <script>
                         swal({
-                            title: 'failure',
+                            title: 'status',
                             text: '{!! session()->get("info") !!}',
                             timer: 2000,
                             showConfirmButton: false

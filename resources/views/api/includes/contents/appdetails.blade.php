@@ -10,7 +10,7 @@
                     <a class="wavesapp waves btn" href="#">Edit app</a>
                 </div>
 
-                <div class='app-details'>
+                <div class="app-details">
                     <div class = "row app" >
                         <div>Owner</div>
                         <div> {{ auth()->User()->username }} </div>
@@ -28,8 +28,9 @@
                             <i class="fa fa-clipboard active" aria-hidden="true"></i>
                         </button>
                         </div>  
-                    </div>
+                    </div> 
                 </div>
+                <a data-id="{{ $appDetails->id }}" data-token="{{ csrf_token() }}" style="margin-right: 35px;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
                 </div>
             </div>
             <div class="col s4">

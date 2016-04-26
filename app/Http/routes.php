@@ -39,6 +39,11 @@ Route::get('/developer/myapp/{id}', [
         'middleware' => ['auth'],
 ]);
 
+Route::get('/developer/myapp/{id}/delete', [
+        'uses' => 'Api\PagesController@destroy',
+        'as' => 'developer.app-delete',
+        'middleware' => ['auth'],
+]);
 /*
 |--------------------------------------------------------------------------
 | API Routes - Users
