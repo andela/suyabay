@@ -14,6 +14,7 @@ use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Transformers\ChannelTransformer;
 
 class ChannelController extends Controller
@@ -41,14 +42,12 @@ class ChannelController extends Controller
     {
         $perPage = $request->query('results') ? : 10;
 
-        $channels = Channel::orderBy('channels.id', 'asc')
-        ->leftJoin('episodes', 'channels.id', '=', 'episodes.channel_id')
-        ->join('users', 'users.id', '=', 'channels.user_id')
-        ->select('channels.*', DB::raw('COUNT(episodes.id) as episodes'))
-        ->groupBy('channels.id')
+        $channels = Channel::with('episode')->orderBy('channels.id', 'asc')
         ->skip($this->getRecordsToSkip($perPage, $request))
         ->take($perPage)
         ->get();
+
+        $channels = $this->formatChannel($channels->toArray());
 
         $resource = new Collection($channels, $channelTransformer);
         $data = $this->fractal->createData($resource)->toArray();
@@ -58,8 +57,26 @@ class ChannelController extends Controller
 
         }
 
-        return Response::json(['message' => 'Channels are not available for display'], 404);
+        return Response::json([
+            'message' => 'Channels are not available for display'
+        ], 404);
 
+    }
+
+    public function formatChannel(array $channels)
+    {
+        foreach ($channels as $key => &$value) {
+            $pending = Channel::pendingEpisodes($value['id'])->count();
+            $active  = Channel::activeEpisodes($value['id'])->count();
+            $value['user_id'] = UserRepository::findUser($value['user_id'])->username;
+            if ($pending != 0 && $active != 0) {
+                $value['episode'] = compact('pending', 'active');
+            } else {
+                $value['episode'] = 0;
+            }
+
+        }
+        return $channels;
     }
 
     /**
@@ -72,9 +89,7 @@ class ChannelController extends Controller
     public function getAChannel($channel_name, ChannelTransformer $channelTransformer)
     {
         $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
-        ->join('episodes', 'channels.id', '=', 'episodes.channel_id')
-        ->where('episodes.status', '=', 0)
-        ->select('channels.*', DB::raw('COUNT(*) as episodes'))
+        ->with('episode')->orderBy('channels.id', 'asc')
         ->first();
 
         if (! is_null($channel)) {
