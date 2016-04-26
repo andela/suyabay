@@ -7,6 +7,7 @@
                 <h5 class="app-title" style="font-size: 30px;">My Apps</h5>
                 <div class="myapps">
                     @foreach($allApps as $app)
+
                         <div class='all-app-details'>
                             <div class="app-name">
                                 <img style="margin-left: -100px; margin-top: -50px;"src="{!! load_asset('/css/logo.png') !!}" class="logo" />
@@ -15,12 +16,13 @@
                             <div>
                                 <a style="font-size: 20px;" href="/developer/myapp/{{ $app->id }}">{{ $app->name }}</a>
                                 <p style="font-size: 15px; margin-top: -5px;">{{ $app->description }}</p>
-                            
-                            </div>
-                        
+                            </div>    
                         </div>
                     @endforeach  
-                </div>    
+                </div>  
+                <div class="button-details">
+                   {!! $allApps->render() !!}
+                </div>
             </div>    
         </div>
 
