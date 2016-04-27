@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Suyabay\Http\Transformers;
 
 use Suyabay\Channel;

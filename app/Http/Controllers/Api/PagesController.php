@@ -30,7 +30,7 @@ class PagesController extends Controller
      */
     public function showMyApps()
     {
-        $allApps = AppDetail::where('user_id', auth()->user()->id)->get();
+        $allApps = AppDetail::where('user_id', auth()->user()->id)->paginate(5);
 
         if ($allApps->isEmpty()) {
             return view('api.pages.myapps');
@@ -84,13 +84,17 @@ class PagesController extends Controller
             'description'  => 'required',
         ]);
 
-        AppDetail::create([
+        $returnData = AppDetail::create([
             'name'         => $request->name,
             'user_id'      => auth()->user()->id,
             'homepage_url' => $request->homepage_url,
             'description'  => $request->description,
             'api_token'    => $this->generateToken(),
         ]);
+
+        if (is_null($returnData->id)) {
+            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
+        }
 
         return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
     }

@@ -976,8 +976,12 @@ p.flow-text.center-align.padcast-page-sub-header {
   color: #d34836;
 }
 
+<<<<<<< HEAD
 body,
 html {
+=======
+body,html {
+>>>>>>> staging
   height: 100%;
   position: relative;
   background-color: #E0E0E0;
@@ -992,7 +996,7 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
-  top: -85px;
+  top: -45px;
 }
 
 #hero,
@@ -1349,8 +1353,6 @@ h5 {
   width: -2PX;
   border: 10px;
 }
-<<<<<<< HEAD
-=======
 
 /*
 # allappdetails Styles

@@ -7,6 +7,18 @@
     	<div class="col s8">
         	<div id="main-new-one">
 
+               @if(session()->has('info'))
+                
+                    <script>
+                        swal({
+                            title: 'failure',
+                            text: '{!! session()->get("info") !!}',
+                            timer: 2000,
+                            showConfirmButton: false
+                        })
+                    </script>
+               
+                @endif
 	    		<div class='form-feature'>
 
 			    	<form class action="/developer/myapp/new/" method="POST">

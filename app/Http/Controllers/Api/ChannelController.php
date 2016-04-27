@@ -102,7 +102,7 @@ class ChannelController extends Controller
 
             return Response::json($data, 200);
 
-        } 
+        }
 
         return Response::json(['message' => 'Channel not found'], 404);
 
@@ -127,7 +127,7 @@ class ChannelController extends Controller
         if ($this->validateUserRequest($request)) {
             return Response::json(['message' => 'Channel already exists'], 400);
 
-        } 
+        }
 
         $channel = Channel::create([
             'channel_name' => strtolower($request->input('name')),
