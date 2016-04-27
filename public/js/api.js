@@ -5,7 +5,6 @@
     	swal("Token copied successfully");
 	});
 
-
 	$("#delete-api").click(function() {
 		var id   = $(this).data("id");
         var url  = "/developer/myapp/"+id+"/delete";
@@ -36,7 +35,7 @@ function processAjaxApiCall (url, parameter)
             		text:   "Your app is retained",
     				confirmButtonColor: "#26a69a",
     				type: "error"
-    			});
+    		    });
             }
         }
     });
@@ -60,12 +59,13 @@ function confirmApiDelete (url)
     	closeOnConfirm: false,   
     	closeOnCancel: false 
     }, 
+
     function(isConfirm)
     {   
-    	if (isConfirm) {     
-    		processAjaxApiCall(url);   
+    	if (isConfirm) {
+    		processAjaxApiCall(url);
     	} else {     
-    		swal("Cancelled", "Your app will be retained :)", "error");   
+    		swal("Cancelled", "Your app will be retained", "error");   
     	} 
     });
 }
