@@ -6,22 +6,31 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ChannelsEndpointTest extends TestCase
+class ChannelEndpointsTest extends TestCase
 {
     public function testThatNothingWasReturnOnGetAllChannels()
     {
-        $this->get('/api/v1/channels')
-        ->seeJson();
+        $response = $this->call('GET', '/api/v1/channels');
+        $output = json_decode($response->getContent());
+
+        $this->assertEquals($output->message, 'Channels are not available for display');
     }
 
     public function testGetAllChannels()
     {
+        $user = factory('Suyabay\User')->create();
         $channel = factory('Suyabay\Channel', 5)->create();
 
-        $this->get('/api/v1/channels')
-        ->seeJson()
-        ->seeStatusCode(200);
+        $response = $this->call('GET', '/api/v1/channels');
+        $channels = json_decode($response->getContent());
 
+        $channels->data[0] = (array) $channels->data[0];
+        
+        $this->assertTrue(is_array($channels->data[0]));
+        $this->assertArrayHasKey('channel_id', $channels->data[0]);
+        $this->assertArrayHasKey('channel_note', $channels->data[0]);
+        $this->assertArrayHasKey('channel_name', $channels->data[0]);
+        
     }
 
     public function testGetASingleChannel()
@@ -42,7 +51,6 @@ class ChannelsEndpointTest extends TestCase
         $this->get('/api/v1/channels/Ginger')
         ->seeJson()
         ->seeStatusCode(200);
-
     }
 
     public function testThatASingleChannelWasNotFound()
@@ -53,8 +61,10 @@ class ChannelsEndpointTest extends TestCase
             'user_id' => 1,
         ]);
 
-        $this->get('/api/v1/channels/Suyabaye')
-        ->seeJson()
-        ->seeStatusCode(404);
+        $response = $this->call('GET', '/api/v1/channels/Suyabaye');
+        $output = json_decode($response->getContent());
+
+        $this->assertEquals(count($output->data), 0);
     }
+
 }
