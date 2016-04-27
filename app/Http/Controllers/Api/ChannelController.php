@@ -47,9 +47,10 @@ class ChannelController extends Controller
         ->take($perPage)
         ->get();
 
-        $channels = $this->formatChannel($channels->toArray());
+        $channels = $this->formatChannel($channels);
 
         $resource = new Collection($channels, $channelTransformer);
+
         $data = $this->fractal->createData($resource)->toArray();
 
         if (count($data['data']) > 0) {
@@ -63,12 +64,12 @@ class ChannelController extends Controller
 
     }
 
-    public function formatChannel(array $channels)
+    public function formatChannel($channels)
     {
         foreach ($channels as $key => &$value) {
-            $pending = Channel::pendingEpisodes($value['id'])->count();
-            $active  = Channel::activeEpisodes($value['id'])->count();
-            $value['user_id'] = UserRepository::findUser($value['user_id'])->username;
+            $pending = Channel::pendingEpisodes($value->id)->count();
+            $active  = Channel::activeEpisodes($value->id)->count();
+            $value['user_id'] = UserRepository::findUser($value->user_id)->username;
             if ($pending != 0 && $active != 0) {
                 $value['episode'] = compact('pending', 'active');
             } else {
@@ -76,6 +77,7 @@ class ChannelController extends Controller
             }
 
         }
+        
         return $channels;
     }
 
@@ -88,12 +90,14 @@ class ChannelController extends Controller
      */
     public function getAChannel($channel_name, ChannelTransformer $channelTransformer)
     {
-        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
-        ->with('episode')->orderBy('channels.id', 'asc')
-        ->first();
+        $channel = Channel::with('episode')->orderBy('channels.id', 'asc')
+        ->where('channel_name', '=', strtolower(urldecode($channel_name)))
+        ->get();
 
         if (! is_null($channel)) {
-            $resource = new Item($channel, $channelTransformer);
+            $channel = $this->formatChannel($channel);
+
+            $resource = new Collection($channel, $channelTransformer);
             $data = $this->fractal->createData($resource)->toArray();
 
             return Response::json($data, 200);
