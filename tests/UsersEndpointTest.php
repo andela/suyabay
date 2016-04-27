@@ -38,6 +38,21 @@ class UsersEndpointTest extends TestCase
         ->seeStatusCode(200);
     }
 
+    public function testUserNotFound()
+    {
+        factory('Suyabay\User')->create([
+            'username'       => 'ginger',
+            'email'          => 'ginger@laravel.io',
+            'password'       => bcrypt(str_random(10)),
+            'remember_token' => str_random(10),
+            'role_id'        => 1
+        ]);
+
+        $this->get('/api/v1/users/gingersola')
+        ->seeJson()
+        ->seeStatusCode(404);
+    }
+
     public function testGetCurrentLoggedInUserInfo()
     {
         $user = factory('Suyabay\User')->create([
@@ -58,4 +73,70 @@ class UsersEndpointTest extends TestCase
         ->seeJson()
         ->seeStatusCode(200);
     }
+    
+    public function testThatTheUserEditInfoViaPutRequest()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PUT', '/api/v1/users/me', [
+            'username' => 'olotu',
+            'email' => 'olotu.isaac@eporo.com',
+        ]);
+
+        $json = json_decode($response->getContent());
+
+        $this->assertEquals($json->message, 'User updated successfully');
+
+    }
+
+    public function testThatEditUserViaPutRequestCannotBeCompleted()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PUT', '/api/v1/users/me', [
+            'username' => 'philharmonic',
+        ]);
+
+        $json = json_decode($response->getContent());
+
+        $this->assertEquals($json->message, 'All fields must be filled');
+
+    }
+
+    public function testThatTheUserEditInfoViaPatchRequest()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PATCH', '/api/v1/users/me', [
+            'username' => 'Temitope',
+        ]);
+        
+        $response = json_decode($response->getContent());
+
+        $this->assertEquals($response->message, 'User updated successfully');
+
+    }
+
+    public function testThatTheUserEditInfoViaPatchRequestCannotBeCompleted()
+    {
+        $this->withoutMiddleware();
+
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->call('PATCH', '/api/v1/users/me', [
+            'usename' => 'Sarkordi',
+        ]);
+        
+        $response = json_decode($response->getContent());
+
+        $this->assertEquals($response->message, 'Username field is empty');
+
+    }
+
 }

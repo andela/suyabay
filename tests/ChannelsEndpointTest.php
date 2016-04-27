@@ -28,9 +28,8 @@ class ChannelsEndpointTest extends TestCase
     {
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => 'Ginger',
-            'channel_description' => 'Laoriosam volup atum nesciunt beatae dolorem neque ut fuga est.',
+            'channel_description' => 'Laoriosam volup atum nesciunt beatae dolorem neque ut fuga est',
             'user_id' => 1,
-            'subscription_count'  => 10,
         ]);
         
         $channel = ChannelRepository::find($channel['id'])->toArray();
@@ -50,9 +49,8 @@ class ChannelsEndpointTest extends TestCase
     {
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => 'Suyabay',
-            'channel_description' => 'Laoriosam volup atum nesciunt.',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
             'user_id' => 1,
-            'subscription_count'  => 5,
         ]);
 
         $this->get('/api/v1/channels/Suyabaye')
