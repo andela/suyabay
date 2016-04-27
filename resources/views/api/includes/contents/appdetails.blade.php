@@ -30,7 +30,7 @@
                         </div>  
                     </div> 
                 </div>
-                <a data-id="{{ $appDetails->id }}" data-token="{{ csrf_token() }}" style="margin-right: 35px;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
+                <a data-id="{{ $appDetails->id }}" style="margin-right: 35px;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
                 </div>
             </div>
             <div class="col s4">

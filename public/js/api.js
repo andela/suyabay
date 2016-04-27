@@ -1,19 +1,15 @@
-	var copy = document.getElementById('copy');
-	var  clipboard = new Clipboard(copy);
+
+	var  clipboard = new Clipboard(".copy");
 
 	clipboard.on("success", function() {
     	swal("Token copied successfully");
 	});
 
 
-	$('#delete-api').click(function() {
-		var id      = $(this).data("id");
-        var url     = "/developer/myapp/"+id+"/delete";
-        var data    =  {
-            parameter: {
-                _token       : $(this).data("token")
-            }
-        }
+	$("#delete-api").click(function() {
+		var id   = $(this).data("id");
+        var url  = "/developer/myapp/"+id+"/delete";
+
         confirmApiDelete(url);
 
         return false;
@@ -29,7 +25,7 @@ function processAjaxApiCall (url, parameter)
 {
     $.ajax({
         url: url,
-        type: 'GET',
+        type: "GET",
         data: parameter,
         success: function(response) {
             if (response == 200) {

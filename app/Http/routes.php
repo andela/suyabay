@@ -34,15 +34,15 @@ Route::get('/developer/myapp/app-detail', [
 ]);
 
 Route::get('/developer/myapp/{id}', [
-        'uses' => 'Api\PagesController@showAppDetails',
-        'as' => 'developer.app-details',
-        'middleware' => ['auth'],
+    'uses' => 'Api\PagesController@showAppDetails',
+    'as' => 'developer.app-details',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/developer/myapp/{id}/delete', [
-        'uses' => 'Api\PagesController@destroy',
-        'as' => 'developer.app-delete',
-        'middleware' => ['auth'],
+    'uses' => 'Api\PagesController@destroy',
+    'as' => 'developer.app-delete',
+    'middleware' => ['auth'],
 ]);
 /*
 |--------------------------------------------------------------------------
