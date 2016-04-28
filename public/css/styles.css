@@ -1154,10 +1154,8 @@ html {
 .myapp {
   border: 1px solid #c7cdcf;
   width: 90%;
-  height: 150px;
+  min-height: 500px;
   border-radius: 2px;
-  position: relative;
-  background: #fcfcfc;
   margin: auto auto auto auto;
 }
 
@@ -1208,14 +1206,14 @@ html {
 
 .session-one {
   border-radius: 2px;
-  position: relative;
+  /*position: relative;*/
   margin: auto;
 }
 
 .session-two {
   margin: auto;
   border-radius: 2px;
-  position: relative;
+  /*position: relative;*/
 }
 
 .session-three {
@@ -1242,12 +1240,12 @@ img.avatar {
 ===============================================
 */
 
-.form-feature {
+.app-form {
   clear: both;
   min-height: 20px;
   width: 80%;
   background-color: #fff;
-  margin: -22px auto 20px auto;
+  margin: -22px auto 20px 20%;
 }
 
 #main-new-one {
@@ -1270,8 +1268,9 @@ img.avatar {
   float: right;
 }
 
-input {
-  width: 532px;
+.app-form-one input,
+.app-form-one textarea {
+  width: 100%;
 }
 
 textarea {
@@ -1289,6 +1288,25 @@ h5 {
 
 .help-block {
   color: red;
+}
+
+.app-form-one,
+.app-form-two {
+  width: 90%;
+  min-height: 150px;
+  border-radius: 2px;
+  background: #fcfcfc;
+  margin: 5% auto 5% 8%;
+  float: left;
+}
+
+.app-form-two {
+  margin: 10% auto auto 5%;
+  float: none;
+}
+
+.new-app-text {
+  margin: 1% auto auto 2%;
 }
 
 /*
@@ -1314,20 +1332,17 @@ h5 {
 
 .app-name {
   float: left;
-  margin: 15px 20px;
+  margin: -2% auto 4% 5%;
   font-size: 30px;
 }
 
-.app-details {
+.app-detail {
   display: inline;
   float: left;
   overflow: hidden;
   padding: 20px;
   width: 600px;
-  border: 1px solid #777;
-  margin-top: 30px;
-  margin-left: 30px;
-  margin: auto auto auto 30px;
+  margin: 5% auto 20px 20%;
   background-color: #fff;
   border-radius: 4px;
 }
@@ -1338,13 +1353,27 @@ h5 {
   width: 150px;
 }
 
-.app-detail:nth-child(1) {
+.app-details:nth-child(1) {
   top: 90px;
 }
 
 .owner-token {
   width: -2PX;
   border: 10px;
+}
+
+.app-details-one,
+.app-details-two {
+  width: 90%;
+  min-height: 150px;
+  border: 1px solid #777;
+  background: #fcfcfc;
+  margin: -5% auto 1% 5%;
+  float: left;
+}
+
+.app-details-two {
+  margin: 10% auto auto 5%;
 }
 
 /*
@@ -1357,9 +1386,9 @@ h5 {
   float: left;
   overflow: hidden;
   padding: 20px;
-  width: 600px;
+  width: 98%;
   border: 1px solid #c7cdcf;
-  margin: 6px auto auto -1px;
+  margin: -4% auto 5% 1%;
   background-color: #fff;
 }
 
@@ -1380,16 +1409,26 @@ h5 {
   background-color: #fff;
   margin: 30px -62px -80px;
   position: relative;
-  overflow: hidden;
+  float: left;
 }
 
-.myapps {
+.myapps-one,
+.myapps-two {
   width: 90%;
-  height: 150px;
+  min-height: 150px;
   border-radius: 2px;
-  position: relative;
   background: #fcfcfc;
-  margin: auto auto auto auto;
+  margin: 5% auto -3% 8%;
+  float: left;
+}
+
+.myapps-two {
+  margin: 10% auto auto 5%;
+  float: none;
+}
+
+.right_side {
+  float: left;
 }
 
 .app-name {

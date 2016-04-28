@@ -135,9 +135,18 @@ class PagesController extends Controller
         $appDetails = AppDetail::where('id', $id)->delete();
 
         if ($appDetails) {
-            return 200;
+            $this->response =
+                [
+                    'message'     => 'App deleted successfully',
+                    'status_code' => 200
+                ];
         } else {
-            return 404;
+            $this->response =
+                [
+                    'message'     => 'App delete unsuccessful',
+                    'status_code' => 404
+                ];
         }
+        return $this->response;
     }
 }

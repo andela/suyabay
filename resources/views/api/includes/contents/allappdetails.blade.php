@@ -2,9 +2,7 @@
     @include("api.includes.sections.top_nav")
 
     <div class="row">
-        <div class="col s8">
-            <div id="main-one-apps">
-
+        <div class="col m8">
             @if(session()->has('info'))
                 
                     <script>
@@ -17,8 +15,9 @@
                     </script>
             @endif
 
-                <h5 class="app-title" style="font-size: 30px;">My Apps</h5>
-                <div class="myapps">
+                
+                <div class="myapps-one">
+                    <h5 class="app-title" style="font-size: 30px; margin-bottom: 5%">My Apps</h5>
                     @foreach($allApps as $app)
 
                         <div class='all-app-details'>
@@ -35,21 +34,17 @@
                 </div>  
                 <div class="button-details">
                    {!! $allApps->render() !!}
-                </div>
-            </div>    
-        </div>
-
-        <div class="col s4">
-            <div id="main-two-apps">
-                <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.new-app') }}">Create a new app</a>
                 </div> 
-                <div class="session-two">
-                <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
-                </div>
-                 <div class="session-three">
-
-                </div>
-            </div>  
         </div>
+
+        <div class="col m4">
+          <div class="myapps-two">
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+            </div> 
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+            </div>
+            </div>
+        </div>  
     </div>

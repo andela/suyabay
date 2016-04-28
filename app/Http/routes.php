@@ -5,45 +5,49 @@
 | API Routes - Pages
 |--------------------------------------------------------------------------
 */
-Route::get('/developer', [
-    'uses' => 'Api\PagesController@index',
-    'as' => 'developer.index',
-]);
+Route::group(['prefix' => '/developer'], function () {
 
-Route::get('/developer/myapp', [
-    'uses' => 'Api\PagesController@showMyApps',
-    'as' => 'developer.myapp',
-    'middleware' => ['auth'],
-]);
+    Route::get('/', [
+        'uses' => 'Api\PagesController@index',
+        'as' => 'developer.index',
+    ]);
 
-Route::get('/developer/myapp/new', [
-    'uses' => 'Api\PagesController@createNewApp',
-    'as' => 'developer.new-app',
-    'middleware' => ['auth'],
-]);
+    Route::get('/myapp', [
+        'uses' => 'Api\PagesController@showMyApps',
+        'as' => 'developer.myapp',
+        'middleware' => ['auth'],
+    ]);
 
-Route::post('/developer/myapp/new/', [
-    'uses' => 'Api\PagesController@postNewAppDetails',
-    'middleware' => ['auth'],
-]);
+    Route::get('/myapp/new', [
+        'uses' => 'Api\PagesController@createNewApp',
+        'as' => 'developer.new-app',
+        'middleware' => ['auth'],
+    ]);
 
-Route::get('/developer/myapp/app-detail', [
-    'uses' => 'Api\PagesController@showNewAppDetails',
-    'as' => 'developer.newapp-details',
-    'middleware' => ['auth'],
-]);
+    Route::post('/myapp/new/', [
+        'uses' => 'Api\PagesController@postNewAppDetails',
+        'middleware' => ['auth'],
+    ]);
 
-Route::get('/developer/myapp/{id}', [
-    'uses' => 'Api\PagesController@showAppDetails',
-    'as' => 'developer.app-details',
-    'middleware' => ['auth'],
-]);
+    Route::get('/myapp/new-detail', [
+        'uses' => 'Api\PagesController@showNewAppDetails',
+        'as' => 'developer.newapp-details',
+        'middleware' => ['auth'],
+    ]);
 
-Route::get('/developer/myapp/{id}/delete', [
-    'uses' => 'Api\PagesController@destroy',
-    'as' => 'developer.app-delete',
-    'middleware' => ['auth'],
-]);
+    Route::get('/myapp/{id}', [
+        'uses' => 'Api\PagesController@showAppDetails',
+        'as' => 'developer.app-details',
+        'middleware' => ['auth'],
+    ]);
+
+    Route::get('/myapp/{id}/delete', [
+        'uses' => 'Api\PagesController@destroy',
+        'as' => 'developer.app-delete',
+        'middleware' => ['auth'],
+    ]);
+});
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Users

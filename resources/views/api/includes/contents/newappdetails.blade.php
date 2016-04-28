@@ -1,9 +1,9 @@
         <!-- top nav -->
     @include("api.includes.sections.top_nav")
 
-    <div class="row">
-        <div class="col s8">
-            <div id="main-one-app">
+    <div class='row'>
+        <div class="col m8">
+            <div class="app-detail">
                 @if(session()->has('info'))
                 <div class="row">
                     <script>
@@ -20,10 +20,10 @@
 
                     <p class="app-name">{{ $appDetails->name }}</p>
 
-                    <a class="wavesapp waves btn" href="#">Edit app</a>
+                    <a class="waves-effect waves-light btn" style="float: left; margin-left: 51%">Edit</a>
                 </div>
 
-                <div class='app-details'>
+                <div class='app-details-one'>
                     <div class = "row app" >
                         <div>Owner</div>
                         <div> {{ auth()->User()->username }} </div>
@@ -47,18 +47,11 @@
                 </div>
                 </div>
             </div>
-            <div class="col s4">
-            <div id="main-two-app">
-                <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
-                </div>
-                <div class="session-two">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
-                </div>
-                 <div class="session-three">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.myapp') }}">My Apps</a>
-                </div>
+            <div class="col m4">
+          <div class="app-details-two">
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%; float: left;" href="{{ route('developer.index') }}">Developer</a>
             </div>
+            </div>
+        </div> 
         </div>
-        </div>
-    </div>
