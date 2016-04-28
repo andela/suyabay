@@ -1,4 +1,3 @@
-@if ( Auth::check() )
 
         <!-- top nav -->
     @include("api.includes.sections.top_nav")
@@ -68,3 +67,4 @@
             </div>
         </div>  
     </div>  
+ 
