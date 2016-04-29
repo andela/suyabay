@@ -7,7 +7,7 @@
 
                     <p style=" margin-top: 15px;"class="app-name">{{ $appDetails->name }}</p>
 
-                    <a class="wavesapp waves btn" href="#">Edit app</a>
+                    <a class="wavesapp waves btn" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit app</a>
                 </div>
 
                 <div class="app-details">

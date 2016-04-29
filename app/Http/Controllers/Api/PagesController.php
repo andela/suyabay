@@ -135,18 +135,46 @@ class PagesController extends Controller
         $appDetails = AppDetail::where('id', $id)->delete();
 
         if ($appDetails) {
-            $this->response =
-                [
-                    'message'     => 'App deleted successfully',
-                    'status_code' => 200
-                ];
+            $this->response = ['message' => 'App deleted successfully', 'status_code' => 200];
         } else {
-            $this->response =
-                [
-                    'message'     => 'App delete unsuccessful',
-                    'status_code' => 404
-                ];
+            $this->response = ['message' => 'App delete unsuccessful', 'status_code' => 404];
         }
+
         return $this->response;
+    }
+
+    /**
+     * This method is for editing of the apps
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //$appDetails = AppDetail::where('id', $id)->first();
+        
+        return view('api.pages.editappdetails', compact('appDetails'));
+    }
+
+    /**
+     * This method is for editing of the apps
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name'         => 'required',
+            'homepage_url' => 'required|url',
+            'description'  => 'required',
+        ]);
+
+        $appDetails = AppDetail::where('id', $request->user_id)->update([
+            'name'         => $request->name,
+            'user_id'      => auth()->user()->id,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+        ]);
+        
+        return redirect()->route('developer.app-details')->with('info', 'App edited Successfully');
     }
 }

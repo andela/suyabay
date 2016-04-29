@@ -46,6 +46,17 @@ Route::group(['prefix' => '/developer'], function () {
         'as' => 'developer.app-delete',
         'middleware' => ['auth'],
     ]);
+
+    Route::get('/myapp/{id}/edit', [
+        'uses' => 'Api\PagesController@edit',
+        'as' => 'developer.app-edit',
+        'middleware' => ['auth'],
+    ]);
+
+    Route::put('/myapp/{id}/edit/', [
+        'uses' => 'Api\PagesController@update',
+        'middleware' => ['auth'],
+    ]);
 });
 
 /*
