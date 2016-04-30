@@ -2,27 +2,24 @@
     @include("api.includes.sections.top_nav")
 
     <div class="row">
-        <div class="col s8">
-            <div id="main-one">
+       <div class="col m8">
+            <div class="myapp-one">
                 <h5 class="app-title">My Apps</h5>
                 <div class="myapp">
                     <p class="app-text">You haven't created any suyabay app yet.</p>
-                    <a class="waves-effect waves btn" href="/developer/myapp/new">Create a new app</a>   
+                    <a class="waves-effect waves-dark btn" style="width: 70%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>   
                 </div>    
             </div>    
         </div>
 
-        <div class="col s4">
-            <div id="main-two">
-                <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
-                </div> 
-                <div class="session-two">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
-                </div>
-                 <div class="session-three">
-
-                </div>
-            </div>  
-        </div>
+        <div class="col m4">
+          <div class="myapp-two">
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+            </div> 
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+            </div>
+            </div>
+        </div>  
     </div>

@@ -3,7 +3,7 @@
 
     <div class='row'>
         <div class="col m8">
-            <div class="app-detail">
+            <div class="app-detail-one">
                 @if(session()->has('info'))
                 <div class="row">
                     <script>
@@ -20,10 +20,10 @@
 
                     <p class="app-name">{{ $appDetails->name }}</p>
 
-                    <a class="waves-effect waves-light btn" style="float: left; margin-left: 51%">Edit</a>
+                    <a class="waves-effect waves-light btn" style="float: left; margin: 2% auto 4% 40%">Edit</a>
                 </div>
 
-                <div class='app-details-one'>
+                <div class='app-details'>
                     <div class = "row app" >
                         <div>Owner</div>
                         <div> {{ auth()->User()->username }} </div>
@@ -47,11 +47,18 @@
                 </div>
                 </div>
             </div>
-            <div class="col m4">
-          <div class="app-details-two">
-            <div class="input-field col s10">
-                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%; float: left;" href="{{ route('developer.index') }}">Developer</a>
+           <div class="col m4">
+          <div class="app-detail-two">
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+                </div> 
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+                </div>
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
+                </div>
             </div>
-            </div>
-        </div> 
-        </div>
+        </div>  
+    </div>
+
