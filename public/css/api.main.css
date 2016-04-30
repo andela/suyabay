@@ -160,19 +160,19 @@ html {
 ===============================================
 */
 
-#main-one {
-  min-height: 350px;
-  width: 80%;
-  background-color: #fff;
-  margin: 20px auto 20px 110px;
+/*#main-one {
+    min-height: 350px;
+    width: 80%;
+    background-color: #fff;
+    margin: 20px auto 20px 110px;
 }
 
 #main-two {
-  min-height: 130px;
-  width: 80%;
-  background-color: #fff;
-  margin: 20px 100px auto -54px;
-}
+    min-height: 130px;
+    width: 80%;
+    background-color: #fff;
+    margin: 20px 100px auto -54px;
+}*/
 
 .myapp {
   border: 1px solid #c7cdcf;
@@ -227,24 +227,22 @@ html {
   width: 250px;
 }
 
-.session-one {
-  border-radius: 2px;
-  /*position: relative;*/
-  margin: auto;
+/*.session-one {
+    border-radius: 2px;
+    margin: auto;
 }
 
 .session-two {
-  margin: auto;
-  border-radius: 2px;
-  /*position: relative;*/
+    margin: auto;
+    border-radius: 2px;
 }
 
 .session-three {
-  margin: auto;
-  border-radius: 2px;
-  position: relative;
-  background: white;
-}
+    margin: auto;
+    border-radius: 2px;
+    position: relative;
+    background: white;
+}*/
 
 /*
  # Avatar Image
@@ -330,6 +328,19 @@ h5 {
 
 .new-app-text {
   margin: 1% auto auto 2%;
+}
+
+.app-form-one,
+.app-form-two {
+  width: 100%;
+  min-height: 150px;
+  background: #fcfcfc;
+  margin: 9.5% auto 3% -10%;
+  float: left;
+}
+
+.app-form-two {
+  margin: 10% auto auto -15%;
 }
 
 /*

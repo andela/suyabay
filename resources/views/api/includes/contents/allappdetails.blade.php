@@ -22,7 +22,7 @@
 
                         <div class='all-app-details'>
                             <div class="app-name">
-                                <img style="margin-left: -100px; margin-top: -50px;"src="{!! load_asset('/css/logo.png') !!}" class="logo" />
+                                <img style="margin-left: -100px; margin-top: -50px;" class="" src="{!! load_asset('/css/logo.png') !!}" class="logo" />
                             </div>
                         
                             <div>

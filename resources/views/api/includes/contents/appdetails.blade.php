@@ -1,7 +1,7 @@
 @include("api.includes.sections.top_nav")
 
     <div class="row">
-        <div class="col s8">
+        <div class="col m8">
             <div id="main-one-app">
                 <div class='row'>
 
@@ -33,7 +33,22 @@
                 <a data-id="{{ $appDetails->id }}" style="margin-right: 35px;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
                 </div>
             </div>
-            <div class="col s4">
+
+            <div class="col m4">
+          <div class="myapps-two">
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+            </div> 
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+            </div>
+            <div class="input-field col s10">
+                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
+            </div>
+            </div>
+        </div>  
+
+            <!-- <div class="col s4">
             <div id="main-two-app">
                 <div class="session-one">
                     <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
@@ -45,5 +60,5 @@
                  <a class="waves-effect waves-one btn" href="{{ route('developer.myapp') }}">My Apps</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         </div>
