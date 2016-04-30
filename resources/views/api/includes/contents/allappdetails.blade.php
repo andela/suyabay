@@ -15,17 +15,16 @@
                     </script>
             @endif
 
-                
                 <div class="myapps-one">
                     <h5 class="app-title" style="font-size: 30px; margin-bottom: 5%">My Apps</h5>
                     @foreach($allApps as $app)
 
                         <div class='all-app-details'>
-                            <div class="app-name">
-                                <img style="margin-left: -100px; margin-top: -50px;"src="{!! load_asset('/css/logo.png') !!}" class="logo" />
+                            <div class="app-logo">
+                                <img style="margin-left: -100px; margin-top: -50px;" class="" src="{!! load_asset('/css/logo.png') !!}" class="logo" />
                             </div>
                         
-                            <div>
+                            <div class="row">
                                 <a style="font-size: 20px;" href="/developer/myapp/{{ $app->id }}">{{ $app->name }}</a>
                                 <p style="font-size: 15px; margin-top: -5px;">{{ $app->description }}</p>
                             </div>    
