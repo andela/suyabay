@@ -10,7 +10,7 @@
                 
                     <script>
                         swal({
-                            title: 'status',
+                            title: 'Error',
                             text: '{!! session()->get("info") !!}',
                             timer: 2000,
                             showConfirmButton: false

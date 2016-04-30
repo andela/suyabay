@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers\Api;
 
 use Auth;
+use Validator;
 use Firebase\JWT\JWT;
 use Suyabay\AppDetail;
 use Suyabay\Http\Requests;
@@ -84,19 +85,24 @@ class PagesController extends Controller
             'description'  => 'required',
         ]);
 
-        $returnData = AppDetail::create([
-            'name'         => $request->name,
-            'user_id'      => auth()->user()->id,
-            'homepage_url' => $request->homepage_url,
-            'description'  => $request->description,
-            'api_token'    => $this->generateToken(),
-        ]);
+        try {
+            $returnData = AppDetail::create([
+                'name'         => $request->name,
+                'user_id'      => auth()->user()->id,
+                'homepage_url' => $request->homepage_url,
+                'description'  => $request->description,
+                'api_token'    => $this->generateToken(),
+            ]);
 
-        if (is_null($returnData->id)) {
-            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
-        }
+            if (is_null($returnData->id)) {
+                return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
+            }
 
-        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
+            return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('info', 'Oops, App already exist in the database');
+        }    
+
     }
 
     /**
@@ -150,7 +156,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        //$appDetails = AppDetail::where('id', $id)->first();
+        $appDetails = AppDetail::where('id', $id)->first();
         
         return view('api.pages.editappdetails', compact('appDetails'));
     }
@@ -163,18 +169,24 @@ class PagesController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'         => 'required',
             'homepage_url' => 'required|url',
-            'description'  => 'required',
         ]);
 
-        $appDetails = AppDetail::where('id', $request->user_id)->update([
-            'name'         => $request->name,
-            'user_id'      => auth()->user()->id,
-            'homepage_url' => $request->homepage_url,
-            'description'  => $request->description,
-        ]);
-        
-        return redirect()->route('developer.app-details')->with('info', 'App edited Successfully');
+        try {
+            $updateAppDetails = AppDetail::where('id', $request->id)->update([
+                'name'         => $request->name, 
+                'homepage_url' => $request->homepage_url,
+                'description'  => $request->description,
+            ]);
+
+            if ($updateAppDetails) {
+                $this->response = ['message' => 'App updated Successfully', 'status_code' => 200];
+            } else {
+                $this->response = ['message' => 'Unable to update app', 'status_code' => 404];
+            } 
+        } catch (QueryException $e) {
+            $this->response = ['message' => $e->getMessage(), 'status_code' => 400];
+        }
+        return $this->response;
     }
 }

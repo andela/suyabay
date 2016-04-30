@@ -6,50 +6,30 @@
     	<div class="col m8">
         	<div id="app-form">
 
-               @if(session()->has('info'))
-                
-                    <script>
-                        swal({
-                            title: 'status',
-                            text: '{!! session()->get("info") !!}',
-                            timer: 2000,
-                            showConfirmButton: false
-                        })
-                    </script>
-               
-                @endif
+          
 	    		<div class='app-form-one'>
 
-			    	<form class="col s12" action="developer/myapp/{id}/edit/" method="POST">
-
+			    	<form id="app-update" action="/developer/myapp/edit" method="POST">
+			    	<input type="hidden" value="{{ $appDetails->id }}" name="id" id="id" />
 			    		<div class="row" style="margin-left: 10%;">
 			    		<h4 style='text-align: center;'>Edit App</h4>
 				    		<h5 class='new-app-text'>Application name</h5>
 
 					    		<div class="input-field col s12">
-					    			<input name='name' value="{{ old('name') }}">
+					    			<input name='name' value="{{ $appDetails->name }}" id="name">
 					    		</div>	
-					    		@if ($errors->has('name'))
-                        			<span class="help-block">{{ $errors->first('name') }}</span>
-                    			@endif
 
 				    		<h5 class='new-app-text'>Home page url</h5>
 
 					    		<div class="input-field col s12">
-					    			<input name='homepage_url' value="{{ old('homepage_url') }}">
+					    			<input name='homepage_url' value="{{ $appDetails->homepage_url }}" id="homepage_url">
 					    		</div>
-					    		@if ($errors->has('homepage_url'))
-                        			<span class="help-block">{{ $errors->first('homepage_url') }}</span>
-                    			@endif			   			    
-
+		
 				    		<h5 class='new-app-text'>Application Description</h5>
 				   
 					    		<div class="input-field col s12">
-					    			<textarea name='description' > </textarea>
+					    			<textarea name='description' id="description">{{ $appDetails->description }}</textarea>
 					    		</div>
-					    		@if ($errors->has('description'))
-                        			<span class="help-block">{{ $errors->first('description') }}</span>
-                    			@endif
 
 					    	<div class='form-group'>
 					    		<button type='submit' class="waves-effect waves-dark btn" style="margin-left: 75%; float: left;">Update</button>

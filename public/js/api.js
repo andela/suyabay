@@ -19,16 +19,15 @@ $("#delete-api").click(function() {
  * @param  url
  * @param  parameter
  */
-function processAjaxApiCall(url, parameter)
+function processDeleteAjaxCall(url, parameter)
 {
     $.ajax({
         url: url,
         type: "GET",
         data: parameter,
         success: function(response) {
-
             if (response.status_code == 200) {
-                apiSuccessMessage();
+                deleteSuccessMessage();
             } else {
                 swal({
             	    title: "Cancelled", 
@@ -63,7 +62,7 @@ function confirmApiDelete(url)
     function(isConfirm)
     {   
         if (isConfirm) {
-    	    processAjaxApiCall(url);
+    	    processDeleteAjaxCall(url);
         } else {
     	    swal("Cancelled", "Your app will be retained", "error");   
         } 
@@ -74,11 +73,109 @@ function confirmApiDelete(url)
  *Sweetalert Delete message
  *
  */
-function apiSuccessMessage()
+function deleteSuccessMessage()
 {
     swal({
         title: "Done!",
         text: "App deleted successfully",
+        type: "success",
+        showCancelButton: false,
+        closeOnConfirm: false,
+        showLoaderOnConfirm: true,
+    },
+
+    function (){
+        document.location.href = "/developer/myapp/";
+    });
+}
+
+
+
+/**
+ * onSubmit event to handle app update
+ */
+$("#app-update").submit( function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var id           = $("#id").val();
+    var name         = $("#name").val().trim();
+    var homepage_url = $("#homepage_url").val().trim();
+    var description  = $("#description").val().trim();
+
+    if( name.length != 0 && description.length  ) {
+
+        var data =
+        {
+            url        : "/developer/myapp/edit/",
+            parameter  :
+            {
+                id            : id,
+                name          : name,
+                homepage_url  : homepage_url,
+                description   : description
+            }
+        }
+       
+        processUpdateAjaxCall("PUT", data.url, data.parameter);
+    } else{
+        swal({
+            title: "Error!",
+            text: "Please provide both name and description",
+            type: "error",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        });
+    }
+
+    return false;
+});
+
+
+/**
+ * processUpdateAjaxCall Proccess the ajax call
+ *
+ * @param  url
+ * @param  parameter
+ * @param  name
+ */
+function processUpdateAjaxCall (action, url, parameter)
+{
+    $.ajax({
+        url: url,
+        type: action,
+        data: parameter,
+        success: function(response) {
+            console.log(response)
+            if ( response.status_code === 200) {
+                updateSuccessMessage();     
+            } else if (response.status_code === 404) {
+                 swal("Cancelled", "Your app was unable to update successfully", "error"); 
+            } else {
+                 swal("Cancelled", "App name already exist", "error"); 
+            }
+        }, error: function (error) {
+            swal({
+                title: "Done!",
+                text: "Please input the right url format",
+                type: "error",
+                showCancelButton: false,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            })
+        }
+    });
+}
+
+/**
+ *Sweetalert update message
+ *
+ */
+function updateSuccessMessage()
+{
+    swal({
+        title: "Done!",
+        text: "App updated successfully",
         type: "success",
         showCancelButton: false,
         closeOnConfirm: false,

@@ -47,14 +47,14 @@ Route::group(['prefix' => '/developer'], function () {
         'middleware' => ['auth'],
     ]);
 
-    Route::get('/myapp/{id}/edit', [
+    Route::get('/myapp/{id}/edit/', [
         'uses' => 'Api\PagesController@edit',
-        'as' => 'developer.app-edit',
         'middleware' => ['auth'],
     ]);
 
-    Route::put('/myapp/{id}/edit/', [
+    Route::put('/myapp/edit', [
         'uses' => 'Api\PagesController@update',
+        'as' => 'developer.app-edit',
         'middleware' => ['auth'],
     ]);
 });
