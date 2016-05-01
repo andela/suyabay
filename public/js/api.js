@@ -33,7 +33,7 @@ function processDeleteAjaxCall(url, parameter)
             	    title: "Cancelled",
             	    text:   "Your app is retained",
     			    confirmButtonColor: "#26a69a",
-    			    type: "error"
+    			    type: "error",
     		    });
             }
         }
@@ -81,7 +81,7 @@ function deleteSuccessMessage()
         type: "success",
         showCancelButton: false,
         closeOnConfirm: false,
-        showLoaderOnConfirm: true,
+        showLoaderOnConfirm: true
     },
 
     function (){
@@ -95,7 +95,7 @@ function deleteSuccessMessage()
 $("#app-update").submit( function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    
+
     var id           = $("#id").val();
     var name         = $("#name").val().trim();
     var homepage_url = $("#homepage_url").val().trim();
@@ -143,7 +143,6 @@ function processUpdateAjaxCall (action, url, parameter)
         type: action,
         data: parameter,
         success: function(response) {
-            console.log(response)
             if ( response.status_code === 200) {
                 updateSuccessMessage();
             } else if (response.status_code === 404) {
@@ -176,7 +175,7 @@ function updateSuccessMessage()
         type: "success",
         showCancelButton: false,
         closeOnConfirm: false,
-        showLoaderOnConfirm: true,
+        showLoaderOnConfirm: true
     },
 
     function (){
