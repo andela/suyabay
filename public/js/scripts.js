@@ -487,7 +487,7 @@ function processUpdateAjaxCall (action, url, parameter)
             } else if (response.status_code === 404) {
                  swal("Cancelled", "Your app was unable to update successfully", "error"); 
             } else {
-                 swal("Cancelled", "App name already exist", "error"); 
+                 swal("Cancelled", "App already exist", "error"); 
             }
         }, error: function (error) {
             swal({

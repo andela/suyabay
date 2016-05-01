@@ -4,7 +4,7 @@
 
     <div class='row'>
     	<div class="col m8">
-        	<div id="app-form">
+        	<div class="app-form">
 
           
 	    		<div class='app-form-one'>
@@ -39,12 +39,15 @@
 	    		</div>
 	    	</div>
 	    </div>  
-	    <div class="col m4">
-          <div class="app-form-two">
-            <div class="input-field col s10">
-                <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%; float: left;" href="{{ route('developer.index') }}">Developer</a>
-            </div>
-            </div>
-        </div>  
+		<div class="col m4">
+               <div class="app-form-two">
+                    <div class="input-field col s10">
+                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+                    </div>
+                    <div class="input-field col s10">
+                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
+                    </div>
+                </div>
+         </div>
     </div>  
  
