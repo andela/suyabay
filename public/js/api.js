@@ -30,7 +30,7 @@ function processDeleteAjaxCall(url, parameter)
                 deleteSuccessMessage();
             } else {
                 swal({
-            	    title: "Cancelled", 
+            	    title: "Cancelled",
             	    text:   "Your app is retained",
     			    confirmButtonColor: "#26a69a",
     			    type: "error"
@@ -47,25 +47,25 @@ function processDeleteAjaxCall(url, parameter)
  */
 function confirmApiDelete(url)
 {
-    swal({   
-        title: "Are you sure?",   
-        text: "You will not be able to recover this app!",   
-        type: "warning",   
-        showCancelButton: true,   
-        confirmButtonColor: "#26a69a",   
-        confirmButtonText: "Yes, delete it!",   
-        cancelButtonText: "No, retain my app!",   
-        closeOnConfirm: false,   
-        closeOnCancel: false 
-    }, 
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this app!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#26a69a",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, retain my app!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
 
     function(isConfirm)
-    {   
+    {
         if (isConfirm) {
     	    processDeleteAjaxCall(url);
         } else {
-    	    swal("Cancelled", "Your app will be retained", "error");   
-        } 
+    	    swal("Cancelled", "Your app will be retained", "error");
+        }
     });
 }
 
@@ -89,14 +89,13 @@ function deleteSuccessMessage()
     });
 }
 
-
-
 /**
  * onSubmit event to handle app update
  */
 $("#app-update").submit( function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
+    
     var id           = $("#id").val();
     var name         = $("#name").val().trim();
     var homepage_url = $("#homepage_url").val().trim();
@@ -104,18 +103,16 @@ $("#app-update").submit( function (e) {
 
     if( name.length != 0 && description.length  ) {
 
-        var data =
-        {
-            url        : "/developer/myapp/edit/",
-            parameter  :
+        var data = {
+            url: "/developer/myapp/edit/",
+            parameter:
             {
-                id            : id,
-                name          : name,
-                homepage_url  : homepage_url,
-                description   : description
+                id: id,
+                name: name,
+                homepage_url: homepage_url,
+                description: description
             }
-        }
-       
+        }   
         processUpdateAjaxCall("PUT", data.url, data.parameter);
     } else{
         swal({
@@ -148,11 +145,11 @@ function processUpdateAjaxCall (action, url, parameter)
         success: function(response) {
             console.log(response)
             if ( response.status_code === 200) {
-                updateSuccessMessage();     
+                updateSuccessMessage();
             } else if (response.status_code === 404) {
-                 swal("Cancelled", "Your app was unable to update successfully", "error"); 
+                 swal("Cancelled", "Your app was unable to update successfully", "error");
             } else {
-                 swal("Cancelled", "App already exist", "error"); 
+                 swal("Cancelled", "App already exist", "error");
             }
         }, error: function (error) {
             swal({
