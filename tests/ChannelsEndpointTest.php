@@ -247,4 +247,24 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'All fields are required');
     }
 
+    public function testThatChannelWasNotUpdateViaPatchVerbDueToIncorrectChannelname()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Suyabay',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PATCH', 
+            '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'lekdan',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
+    }
+
 }
