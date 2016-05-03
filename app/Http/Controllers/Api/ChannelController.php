@@ -343,21 +343,17 @@ class ChannelController extends Controller
      */
     public function validateUserRequestForPatchRequest($request)
     {
-        $validator = null;
+        $request = $request->all();
 
-        if ($request->input('name')) {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|max:50',
-            ]);
-        } else if ($request->input('description')) {
-            $validator = Validator::make($request->all(), [
-                'description' => 'required|max:160',
-            ]);
-        }
-        
-        if ($validator->fails()) {
+        if (empty($request)) {
             return true;
+        }
 
+        if (isset($request['name']) &&  $request['name'] == '') {
+            return true;
+            
+        } else if (isset($request['description']) && $request['description'] == '') {
+           return true;
         }
     }
 
