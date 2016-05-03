@@ -286,4 +286,23 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel cannot be deleted because the channel name is incorrect');
     }
 
+    public function testThatChannelWasDeletedSuccessfully()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Naija suya'),
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)->call('DELETE', 
+            '/api/v1/channels/'.$channel->channel_name, [
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel successfully deleted');
+    }
+
 }
