@@ -99,6 +99,7 @@ class PagesController extends Controller
             }
 
             return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
+
         } catch (QueryException $e) {
             return redirect()->back()->with('info', 'Oops, App already exist in the database');
         }
@@ -183,9 +184,11 @@ class PagesController extends Controller
             } else {
                 $this->response = ['message' => 'Unable to update app', 'status_code' => 404];
             }
+
         } catch (QueryException $e) {
             $this->response = ['message' => $e->getMessage(), 'status_code' => 400];
         }
+        
         return $this->response;
     }
 }

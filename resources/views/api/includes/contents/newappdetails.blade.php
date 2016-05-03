@@ -18,9 +18,9 @@
                 @endif
                 <div class='row'>
 
-                    <p class="app-name">{{ $appDetails->name }}</p>
+                    <p class="col s8 app-name">{{ $appDetails->name }}</p>
 
-                    <a class="waves-effect waves-light btn" style="float: left; margin: 2% auto 4% 40%" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit</a>
+                    <a class="col s4 waves-effect waves-light btn" style="float: left; margin: -9% auto 4% 79%; width: 20%;" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit</a>
                 </div>
 
                 <div class='app-details'>
