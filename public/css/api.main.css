@@ -351,9 +351,9 @@ h5 {
 }
 
 .wavesapp {
-  float: right;
-  margin: 20px 35px auto 30px;
-  width: 150px;
+  float: left;
+  margin: 3% auto 4% 52%;
+  width: 20%;
 }
 
 .app-details:nth-child(1) {

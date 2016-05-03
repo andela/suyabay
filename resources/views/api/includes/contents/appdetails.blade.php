@@ -5,9 +5,8 @@
             <div class="app-detail-one">
                 <div class='row'>
 
-                    <p class="app-name">{{ $appDetails->name }}</p>
-
-                    <a class="wavesapp waves btn" style="margin: 2% auto 4% 55%; float: left"href="#">Edit app</a>
+                    <p class="col s6 app-name">{{ $appDetails->name }}</p>
+                    <a class="col s6 wavesapp waves btn" style="margin: 3% auto 4% 29%; width: 20%;" href="#">Edit app</a>
                 </div>
 
                 <div class="app-details">
@@ -30,8 +29,9 @@
                         </div>  
                     </div> 
                 </div>
-                <a data-id="{{ $appDetails->id }}" style="margin: -3% 8% 4% 5%;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
-                </div>
+
+                <a data-id="{{ $appDetails->id }}" style="margin: -3% 8% 4% 79%; width: 20%" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
+            </div>
             </div>
 
         <div class="col m4">
