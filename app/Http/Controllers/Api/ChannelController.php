@@ -215,7 +215,7 @@ class ChannelController extends Controller
         if (! is_null($channel)) {
             $returnValue = $this->channelRepository->deleteChannel($channel->id);
 
-            if (is_null($returnValue)) {
+            if (! is_null($returnValue)) {
                 return Response::json([
                     'message' => 'Oop! something went wrong'
                 ], 400);
