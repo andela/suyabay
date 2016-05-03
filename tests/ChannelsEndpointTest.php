@@ -129,4 +129,24 @@ class ChannelEndpointsTest extends TestCase
         
     }
 
+    public function testThatChannelWasEditedViaPutVerb()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Gingerbread'),
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PUT', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Gingerbread',
+            'description' => 'This is a version 2.3.0 of Java android SDK',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel updated successfully');
+    }
+
 }
