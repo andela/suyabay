@@ -31,7 +31,7 @@ class ChannelController extends Controller
     }
 
     /**
-     * This method lists all channels 
+     * This method lists all channels
      * @param $page
      * @param $request
      * @param $response
@@ -353,7 +353,7 @@ class ChannelController extends Controller
             return true;
             
         } else if (isset($request['description']) && $request['description'] == '') {
-           return true;
+            return true;
         }
     }
 
