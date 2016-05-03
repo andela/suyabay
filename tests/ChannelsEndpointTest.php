@@ -149,4 +149,24 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel updated successfully');
     }
 
+    public function testThatChannelCouldNotEditedViaPutVerb()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Gingerbread',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PUT', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Lollipop',
+            'description' => 'This is a version 5.0.0 of Java android SDK',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
+    }
+
 }
