@@ -67,4 +67,66 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals(count($output->data), 0);
     }
 
+    public function testThatAChannelWasCreated()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Cabinet',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('POST', '/api/v1/channels',
+            [
+                'name' => 'Nyama Choma',
+                'description' => 'This is kenyan way of naming roasted meat',
+            ]
+        );
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel created successfully');
+    }
+
+    public function testThatOnlyChannelNameOnlyWasSupplied()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Cabinet',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('POST', '/api/v1/channels', [
+            'description' => 'This is kenyan way of naming roasted meat',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'All fields are required');
+
+    }
+
+    public function testThatOnlyChannelDescriptionOnlyWasSupplied()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Cabinet',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('POST', '/api/v1/channels', [
+            'name' => 'Ginger',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'All fields are required');
+        
+    }
+
 }

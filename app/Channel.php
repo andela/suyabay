@@ -43,14 +43,14 @@ class Channel extends Model
     {
         return $query->where('channels.id', '=', $id)
                     ->join('episodes', 'channels.id', '=', 'episodes.channel_id')
-                    ->where('episodes.status', '=', '0');
+                    ->where('episodes.status', '=', 0);
     }
 
     public function scopeActiveEpisodes($query, $id)
     {
         return $query->where('channels.id', '=', $id)
                     ->join('episodes', 'channels.id', '=', 'episodes.channel_id')
-                    ->where('episodes.status', '=', '1');
+                    ->where('episodes.status', '=', 1);
     }
     
 }
