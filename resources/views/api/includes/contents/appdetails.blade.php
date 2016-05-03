@@ -6,7 +6,7 @@
                 <div class='row'>
 
                     <p class="app-name">{{ $appDetails->name }}</p>
-                    <a class="wavesapp waves btn" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit app</a>
+                    <a class="wavesapp waves btn" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit</a>
                 </div>
 
                 <div class="app-details">
@@ -29,7 +29,9 @@
                         </div>  
                     </div> 
                 </div>
-                <a data-id="{{ $appDetails->id }}" style="margin: -3% 8% 4% 5%;" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
+                <div class="input-field col s10">
+                    <a data-id="{{ $appDetails->id }}" style="margin: -6% 1% 2% 96%; float: left; width: 25%" id="delete-api" class="waves btn" href="#">Delete</a>
+                </div>
                 </div>
             </div>
 

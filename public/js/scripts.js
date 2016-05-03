@@ -456,7 +456,7 @@ $("#app-update").submit( function (e) {
             type: "error",
             showCancelButton: false,
             closeOnConfirm: false,
-            showLoaderOnConfirm: true,
+            showLoaderOnConfirm: true
         });
     }
 
@@ -492,7 +492,7 @@ function processUpdateAjaxCall (action, url, parameter)
                 type: "error",
                 showCancelButton: false,
                 closeOnConfirm: false,
-                showLoaderOnConfirm: true,
+                showLoaderOnConfirm: true
             })
         }
     });
@@ -510,7 +510,7 @@ function updateSuccessMessage()
         type: "success",
         showCancelButton: false,
         closeOnConfirm: false,
-        showLoaderOnConfirm: true,
+        showLoaderOnConfirm: true
     },
 
     function (){
