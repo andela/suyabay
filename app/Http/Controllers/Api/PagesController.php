@@ -80,29 +80,24 @@ class PagesController extends Controller
     public function postNewAppDetails(Request $request)
     {
         $this->validate($request, [
-            'name'         => 'required',
-            'homepage_url' => 'required|url',
+            'name'         => 'required|unique:app_details,name',
+            'homepage_url' => 'required|url|unique:app_details,homepage_url',
             'description'  => 'required',
         ]);
 
-        try {
-            $returnData = AppDetail::create([
-                'name'         => $request->name,
-                'user_id'      => auth()->user()->id,
-                'homepage_url' => $request->homepage_url,
-                'description'  => $request->description,
-                'api_token'    => $this->generateToken(),
-            ]);
+        $returnData = AppDetail::create([
+            'name'         => $request->name,
+            'user_id'      => auth()->user()->id,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+            'api_token'    => $this->generateToken(),
+        ]);
 
-            if (is_null($returnData->id)) {
-                return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
-            }
-
-            return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
-
-        } catch (QueryException $e) {
-            return redirect()->back()->with('info', 'Oops, App already exist in the database');
+        if (is_null($returnData->id)) {
+            return redirect()->back()->with('info', 'Oops, App creation Unsuccessfull');
         }
+
+        return redirect()->route('developer.newapp-details')->with('info', 'App created Successfully');
     }
 
     /**
@@ -188,7 +183,7 @@ class PagesController extends Controller
         } catch (QueryException $e) {
             $this->response = ['message' => $e->getMessage(), 'status_code' => 400];
         }
-        
+
         return $this->response;
     }
 }
