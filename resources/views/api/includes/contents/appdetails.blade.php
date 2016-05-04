@@ -1,16 +1,15 @@
 @include("api.includes.sections.top_nav")
 
     <div class="row">
-        <div class="col s8">
-            <div id="main-one-app">
+        <div class="col m8">
+            <div class="app-detail-one">
                 <div class='row'>
 
-                    <p style=" margin-top: 15px;"class="app-name">{{ $appDetails->name }}</p>
-
-                    <a class="wavesapp waves btn" href="#">Edit app</a>
+                    <p class="col s6 app-name">{{ $appDetails->name }}</p>
+                    <a class="col s6 wavesapp waves btn" style="margin: 3% auto 4% 29%; width: 20%;" href="#">Edit app</a>
                 </div>
 
-                <div class='app-details'>
+                <div class="app-details">
                     <div class = "row app" >
                         <div>Owner</div>
                         <div> {{ auth()->User()->username }} </div>
@@ -28,21 +27,24 @@
                             <i class="fa fa-clipboard active" aria-hidden="true"></i>
                         </button>
                         </div>  
-                    </div>
+                    </div> 
                 </div>
+
+                <a data-id="{{ $appDetails->id }}" style="margin: -3% 8% 4% 79%; width: 20%" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
+            </div>
+            </div>
+
+        <div class="col m4">
+          <div class="app-detail-two">
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+                </div> 
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+                </div>
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
                 </div>
             </div>
-            <div class="col s4">
-            <div id="main-two-app">
-                <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="/developer/myapp/new">Create a new app</a>
-                </div>
-                <div class="session-two">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
-                </div>
-                 <div class="session-three">
-                 <a class="waves-effect waves-one btn" href="{{ route('developer.myapp') }}">My Apps</a>
-                </div>
-            </div>
-        </div>
-        </div>
+        </div>  
+    </div>

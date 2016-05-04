@@ -124,4 +124,29 @@ class PagesController extends Controller
         
         return view('api.pages.appdetails', compact('appDetails'));
     }
+
+    /**
+     * This method delete apps by id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $appDetails = AppDetail::where('id', $id)->delete();
+
+        if ($appDetails) {
+            $this->response =
+                [
+                    'message'     => 'App deleted successfully',
+                    'status_code' => 200
+                ];
+        } else {
+            $this->response =
+                [
+                    'message'     => 'App delete unsuccessful',
+                    'status_code' => 404
+                ];
+        }
+        return $this->response;
+    }
 }
