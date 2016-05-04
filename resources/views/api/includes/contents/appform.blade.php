@@ -1,17 +1,16 @@
-@if ( Auth::check() )
 
         <!-- top nav -->
     @include("api.includes.sections.top_nav")
 
     <div class='row'>
-    	<div class="col s8">
-        	<div id="main-new-one">
+    	<div class="col m8">
+        	<div class="app-form">
 
                @if(session()->has('info'))
                 
                     <script>
                         swal({
-                            title: 'failure',
+                            title: 'status',
                             text: '{!! session()->get("info") !!}',
                             timer: 2000,
                             showConfirmButton: false
@@ -19,17 +18,16 @@
                     </script>
                
                 @endif
-	    		<div class='form-feature'>
+	    		<div class='app-form-one'>
 
-			    	<form class action="/developer/myapp/new/" method="POST">
+			    	<form class="col s12" action="/developer/myapp/new/" method="POST">
 
-			    	<input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-			    		<div class='form-content'>
+			    		<div class="row" style="margin-left: 10%;">
 			    		<h4 style='text-align: center;'>Create new App</h4>
-				    		<h5>Application name</h5>
+				    		<h5 class='new-app-text'>Application name</h5>
 
-					    		<div class='form-group'>
-					    			<input name='name' class='form-control' value="{{ old('name') }}">
+					    		<div class="input-field col s12">
+					    			<input name='name' value="{{ old('name') }}">
 					    		</div>	
 					    		@if ($errors->has('name'))
                         			<span class="help-block">{{ $errors->first('name') }}</span>
@@ -37,8 +35,8 @@
 
 				    		<h5 class='new-app-text'>Home page url</h5>
 
-					    		<div class='form-group'>
-					    			<input name='homepage_url' class='form-control' value="{{ old('homepage_url') }}">
+					    		<div class="input-field col s12">
+					    			<input name='homepage_url' value="{{ old('homepage_url') }}">
 					    		</div>
 					    		@if ($errors->has('homepage_url'))
                         			<span class="help-block">{{ $errors->first('homepage_url') }}</span>
@@ -46,39 +44,31 @@
 
 				    		<h5 class='new-app-text'>Application Description</h5>
 				   
-					    		<div class='form-group'>
-					    			<textarea name='description' class='form-control'> </textarea>
+					    		<div class="input-field col s12">
+					    			<textarea name='description' > </textarea>
 					    		</div>
 					    		@if ($errors->has('description'))
                         			<span class="help-block">{{ $errors->first('description') }}</span>
                     			@endif
 
-					    	<div class='form-group'>
-					    		<button type='submit' class="waves-effect wave btn">Create App</button>
+					    	<div class="">
+					    		<button type='submit' class="waves-effect waves-dark btn" style="margin-left: 72%; float: left;">Create App</button>
 					    	</div>	
 				    	</div>
 		    		</form>
 	    		</div>
 	    	</div>
-	    </div>  
-	    <div class="col s4">
-            <div id="main-new-two">
-                <div class="session-one">
-                    <a class="waves-effect waves-one btn" href="{{ route('developer.index') }}">Developer</a>
-                </div> 
-                <div class="session-two">
+	    </div> 
 
+	       <div class="col m4">
+               <div class="app-form-two">
+                    <div class="input-field col s10">
+                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
+                    </div>
+                    <div class="input-field col s10">
+                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
+                    </div>
                 </div>
-                 <div class="session-three">
-
-                </div>
-            </div>  
-        </div>
-    </div>  
-
-@else 
-
-    <!--auth check error page -->    
-        @include("api.includes.contents.autherrorpage")
-
-@endif    
+            </div>
+        </div>  
+ 
