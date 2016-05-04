@@ -49,7 +49,6 @@ trait CreateData
             'channel_name'         => 'Channel name',
             'channel_description'  => 'Channel description',
             'user_id'              => 1,
-            'subscription_count'   => 0
         ]);
     }
     /**

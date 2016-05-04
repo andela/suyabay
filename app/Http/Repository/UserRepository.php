@@ -26,7 +26,7 @@ class UserRepository
     /**
      * Return all offline users
      */
-    public function getOfflineUsers()
+    public static function getOfflineUsers()
     {
         return User::where('active', 0);
     }

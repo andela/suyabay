@@ -38,7 +38,7 @@ class ChannelTest extends TestCase
     {
         $user = factory(User::class)->create(['role_id' => 3]);
         $this->actingAs($user)
-             ->visit('dashboard/channel/create')
+             ->visit('/dashboard/channel/create')
              ->type('Swanky new name', 'channel_name')
              ->type('Swanky new description', 'channel_description')
              ->press('create')
