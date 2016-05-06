@@ -16,7 +16,6 @@ class CreateChannelsTable extends Migration
             $table->increments('id');
             $table->string('channel_name');
             $table->text('channel_description');
-            $table->integer('subscription_count');
             $table->timestamps();
 
         });

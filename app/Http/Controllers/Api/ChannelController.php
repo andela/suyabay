@@ -5,13 +5,16 @@ namespace Suyabay\Http\Controllers\Api;
 use DB;
 use Validator;
 use Suyabay\Channel;
+use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Item;
+use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Repository\UserRepository;
 use Suyabay\Http\Transformers\ChannelTransformer;
 
 class ChannelController extends Controller
@@ -20,9 +23,11 @@ class ChannelController extends Controller
     protected $response;
     protected $fractal;
 
-    public function __construct(Manager $fractal)
+    public function __construct(Manager $fractal, Mail $mail)
     {
         $this->fractal = $fractal;
+
+        parent::__construct($mail);
     }
 
     /**
@@ -37,12 +42,15 @@ class ChannelController extends Controller
     {
         $perPage = $request->query('results') ? : 10;
 
-        $channels = Channel::orderBy('id', 'asc')
+        $channels = Channel::with('episode')->orderBy('channels.id', 'asc')
         ->skip($this->getRecordsToSkip($perPage, $request))
         ->take($perPage)
         ->get();
 
+        $channels = $this->formatChannel($channels);
+
         $resource = new Collection($channels, $channelTransformer);
+
         $data = $this->fractal->createData($resource)->toArray();
 
         if (count($data['data']) > 0) {
@@ -50,8 +58,27 @@ class ChannelController extends Controller
 
         }
 
-        return Response::json(['message' => 'Channels are not available for display'], 404);
+        return Response::json([
+            'message' => 'Channels are not available for display'
+        ], 404);
 
+    }
+
+    public function formatChannel($channels)
+    {
+        foreach ($channels as $key => &$value) {
+            $pending = Channel::pendingEpisodes($value->id)->count();
+            $active  = Channel::activeEpisodes($value->id)->count();
+            $value['user_id'] = UserRepository::findUser($value->user_id)->username;
+            if ($pending != 0 || $active != 0) {
+                $value['episode'] = compact('pending', 'active');
+            } else {
+                $value['episode'] = 0;
+            }
+
+        }
+        
+        return $channels;
     }
 
     /**
@@ -63,13 +90,14 @@ class ChannelController extends Controller
      */
     public function getAChannel($channel_name, ChannelTransformer $channelTransformer)
     {
-        $channel = Channel::where('channel_name', '=', $channel_name)
-        ->orWhere('channel_name', '=', strtolower($channel_name))
-        ->orderBy('id', 'asc')
-        ->first();
+        $channel = Channel::with('episode')->orderBy('channels.id', 'asc')
+        ->where('channel_name', '=', strtolower(urldecode($channel_name)))
+        ->get();
 
         if (! is_null($channel)) {
-            $resource = new Item($channel, $channelTransformer);
+            $channel = $this->formatChannel($channel);
+
+            $resource = new Collection($channel, $channelTransformer);
             $data = $this->fractal->createData($resource)->toArray();
 
             return Response::json($data, 200);
@@ -102,8 +130,8 @@ class ChannelController extends Controller
         }
 
         $channel = Channel::create([
-            'channel_name' => strtolower($request->input('channel_name')),
-            'channel_description' => $request->input('channel_description'),
+            'channel_name' => strtolower($request->input('name')),
+            'channel_description' => $request->input('description'),
             'created_at' => date('Y-m-d h:i:s'),
             'user_id' => $userId,
         ]);
@@ -128,7 +156,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
         ->first();
 
         if ($this->processEditChannel($request, $channel)) {
@@ -156,7 +184,7 @@ class ChannelController extends Controller
 
         }
 
-        $channel = Channel::Where('channel_name', '=', strtolower($channel_name))
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
         ->first();
 
         if ($this->processEditChannelForPatchRequest($request, $channel)) {
@@ -168,6 +196,41 @@ class ChannelController extends Controller
             'message' => 'Channel cannot be updated because the channel name is incorrect'
         ], 404);
 
+    }
+
+    /**
+     * This method deletes a channel
+     *
+     * @param $channel_name
+     *
+     * @param $request
+     *
+     * @return $response
+     */
+    public function deleteASingleChannel(Request $request, $channel_name)
+    {
+        $channel = Channel::where('channel_name', '=', strtolower(urldecode($channel_name)))
+        ->first();
+
+        if (! is_null($channel)) {
+            $returnValue = $this->channelRepository->deleteChannel($channel->id);
+
+            if (is_null($returnValue)) {
+                return Response::json([
+                    'message' => 'Oop! something went wrong'
+                ], 400);
+
+            }
+
+            return Response::json([
+            'message' => 'Channel successfully deleted'
+            ], 200);
+
+        }
+
+        return Response::json([
+            'message' => 'Channel cannot be deleted because the channel name is incorrect'
+        ], 404);
     }
 
     /**
@@ -183,8 +246,8 @@ class ChannelController extends Controller
         if (! is_null($channel)) {
             Channel::where('id', '=', $channel->id)
             ->update([
-                'channel_name' => $request->input('channel_name'),
-                'channel_description' => $request->input('channel_description'),
+                'channel_name' => $request->input('name'),
+                'channel_description' => $request->input('description'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ]);
 
@@ -205,12 +268,23 @@ class ChannelController extends Controller
      */
     public function processEditChannelForPatchRequest($request, $channel)
     {
+        $recordToBeUpdated = [];
+
+        if ($request->input('name')) {
+            $recordToBeUpdated = [
+            'channel_name' => $request->input('name'),
+            'updated_at' => date('Y-m-d h:i:s'),
+            ];
+        } else if ($request->input('description')) {
+            $recordToBeUpdated = [
+            'channel_description' => $request->input('description'),
+            'updated_at' => date('Y-m-d h:i:s'),
+            ];
+        }
+
         if (! is_null($channel)) {
             Channel::where('id', '=', $channel->id)
-            ->update([
-                'channel_name' => $request->input('channel_name'),
-                'updated_at' => date('Y-m-d h:i:s'),
-            ]);
+            ->update($recordToBeUpdated);
 
             return true;
             
@@ -230,8 +304,8 @@ class ChannelController extends Controller
     public function validateUserRequestForEmptyFields($request)
     {
         $validator = Validator::make($request->all(), [
-            'channel_name' => 'required',
-            'channel_description' => 'required',
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -250,8 +324,8 @@ class ChannelController extends Controller
     public function validateUserRequest($request)
     {
         $validator = Validator::make($request->all(), [
-            'channel_name' => 'required|unique:channels|max:50',
-            'channel_description' => 'required|max:160',
+            'name' => 'required|unique:channels|max:50',
+            'description' => 'required|max:160',
         ]);
 
         if ($validator->fails()) {
@@ -269,10 +343,18 @@ class ChannelController extends Controller
      */
     public function validateUserRequestForPatchRequest($request)
     {
-        $validator = Validator::make($request->all(), [
-            'channel_name' => 'required|max:50',
-        ]);
+        $validator = null;
 
+        if ($request->input('name')) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:50',
+            ]);
+        } else if ($request->input('description')) {
+            $validator = Validator::make($request->all(), [
+                'description' => 'required|max:160',
+            ]);
+        }
+        
         if ($validator->fails()) {
             return true;
 

@@ -118,6 +118,10 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\ChannelController@editASingleChannelResource'
     ]);
 
+    Route::delete('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@deleteASingleChannel'
+    ]);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes

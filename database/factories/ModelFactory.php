@@ -25,8 +25,7 @@ $factory->define(Suyabay\Channel::class, function (Faker\Generator $faker) {
     return [
         'channel_name'        => $faker->name,
         'channel_description' => $faker->sentence,
-        'subscription_count'  => 10,
-        "user_id"             => 1
+        "user_id"             => 1,
     ];
 });
 
@@ -46,7 +45,7 @@ $factory->define(Suyabay\Episode::class, function (Faker\Generator $faker) {
 $factory->define(Suyabay\Comment::class, function (Faker\Generator $faker) {
     return [
         'user_id'       => 1,
-        'comments'       => $faker->text,
+        'comments'      => $faker->text,
         'episode_id'    => 1,
     ];
 });
