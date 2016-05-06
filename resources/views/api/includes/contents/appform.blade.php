@@ -51,8 +51,8 @@
                         			<span class="help-block">{{ $errors->first('description') }}</span>
                     			@endif
 
-					    	<div class="">
-					    		<button type='submit' class="waves-effect waves-dark btn" style="margin-left: 72%; float: left;">Create</button>
+					    	<div class="input-field col s3 ">
+					    		<button type='submit' class="waves-effect waves-dark btn" >Create</button>
 					    	</div>	
 				    	</div>
 		    		</form>

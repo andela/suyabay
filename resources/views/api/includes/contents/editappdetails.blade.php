@@ -31,23 +31,26 @@
 					    			<textarea name='description' id="description">{{ $appDetails->description }}</textarea>
 					    		</div>
 
-					    	<div class='form-group'>
-					    		<button type='submit' class="waves-effect waves-dark btn" style="margin-left: 75%; float: left;">Update</button>
-					    	</div>	
+					    	<div class="input-field col s3 ">
+					    		<button type='submit' class="waves-effect waves-dark btn" >Edit</button>
+					    	</div>
 				    	</div>
 		    		</form>
 	    		</div>
 	    	</div>
 	    </div>  
 		<div class="col m4">
-               <div class="app-form-two">
-                    <div class="input-field col s10">
-                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
-                    </div>
-                    <div class="input-field col s10">
-                        <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
-                    </div>
+            <div class="app-form-two">
+           		<div class="input-field col s10">
+                	<a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
+                </div> 
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.index') }}">Developer</a>
                 </div>
-         </div>
+                <div class="input-field col s10">
+                    <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.myapp') }}">My Apps</a>
+                </div>
+            </div>
+        </div>
     </div>  
  
