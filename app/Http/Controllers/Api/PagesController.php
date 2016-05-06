@@ -164,24 +164,20 @@ class PagesController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'homepage_url' => 'required|url',
+            'name'         => 'required|unique:app_details,name,'.$request->id,
+            'homepage_url' => 'required|url|unique:app_details,homepage_url,'.$request->id,
         ]);
 
-        try {
-            $updateAppDetails = AppDetail::where('id', $request->id)->update([
-                'name'         => $request->name, 
-                'homepage_url' => $request->homepage_url,
-                'description'  => $request->description,
-            ]);
+        $updateAppDetails = AppDetail::where('id', $request->id)->update([
+            'name'         => $request->name,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+        ]);
 
-            if ($updateAppDetails) {
-                $this->response = ['message' => 'App updated Successfully', 'status_code' => 200];
-            } else {
-                $this->response = ['message' => 'Unable to update app', 'status_code' => 404];
-            }
-
-        } catch (QueryException $e) {
-            $this->response = ['message' => $e->getMessage(), 'status_code' => 400];
+        if ($updateAppDetails) {
+            $this->response = ['message' => 'App updated Successfully', 'status_code' => 200];
+        } else {
+            $this->response = ['message' => 'Unable to update app', 'status_code' => 404];
         }
 
         return $this->response;

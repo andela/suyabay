@@ -101,7 +101,7 @@ $("#app-update").submit( function (e) {
     var homepage_url = $("#homepage_url").val().trim();
     var description  = $("#description").val().trim();
 
-    if( name.length !== 0 && description.length  ) {
+    if( name.length !== 0 && description.length && homepage_url.length ) {
 
         var data = {
             url: "/developer/myapp/edit/",
@@ -117,15 +117,13 @@ $("#app-update").submit( function (e) {
     } else{
         swal({
             title: "Error!",
-            text: "Please provide both name and description",
+            text: "Please provide both name, homepage_url and description",
             type: "error",
             showCancelButton: false,
             closeOnConfirm: false,
             showLoaderOnConfirm: true
         });
     }
-
-    return false;
 });
 
 
@@ -147,18 +145,31 @@ function processUpdateAjaxCall (action, url, parameter)
                 updateSuccessMessage();
             } else if (response.status_code === 404) {
                  swal("Cancelled", "Your app was unable to update successfully", "error");
-            } else {
-                 swal("Cancelled", "App already exist", "error");
             }
-        }, error: function (error) {
-            swal({
-                title: "Done!",
-                text: "Please input the right url format",
-                type: "error",
-                showCancelButton: false,
-                closeOnConfirm: false,
-                showLoaderOnConfirm: true
-            })
+        }, error: function (data) {
+            var errors = data.responseJSON;
+
+            if (errors.homepage_url) {
+                swal({
+                    title: "Error!",
+                    text: "App url already exist",
+                    type: "success",
+                    showCancelButton: false,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                });
+            }
+
+            if (errors.name) {
+                swal({
+                    title: "Error!",
+                    text: "App name already exist",
+                    type: "success",
+                    showCancelButton: false,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                });
+            }
         }
     });
 }
