@@ -20,8 +20,8 @@
                 @endif
 	    		<div class='app-form-one'>
 
-			    	<form class="col s12" action="/developer/myapp/new/" method="POST">
-
+			    	<form class="col s12" action="{{ route('developer.create-app') }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			    		<div class="row" style="margin-left: 10%;">
 			    		<h4 style='text-align: center;'>Create new App</h4>
 				    		<h5 class='new-app-text'>Application name</h5>

@@ -45,9 +45,11 @@
                     </div>
                 </div>
                 </div>
+                </div>
             </div>
+           
            <div class="col m4">
-          <div class="app-detail-two">
+           <div class="app-detail-two">
                 <div class="input-field col s10">
                     <a class="waves-effect waves-dark btn" style="width: 100%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>
                 </div> 
