@@ -45,7 +45,6 @@ class CommentController extends Controller
         $episodeId     = $request->input('episode_id');
 
         $oldComments = DB::table('comments')
-            ->where('id', '>', $totalComments)
             ->where('episode_id', $episodeId)
             ->skip($totalComments)
             ->take(10)

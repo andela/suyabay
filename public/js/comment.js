@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     $(".view_more_comments").on("click",function() {
-
         var avatar = $(this).data('avatar');
         var numOfComments = $(".load_comment").find("div#show_comment");
         var episodeId  = $("#episode_id").val();
@@ -16,10 +15,8 @@ $(document).ready(function() {
                      episode_id: episodeId
             },
             success: function(data) {
-
                 for (i = 0 ; i < data.comments.length; i++) {
                     var comments = data.comments[i];
-
                     $('#comment-count').html(' ' + numOfComments.size());
 
                      var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
