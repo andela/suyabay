@@ -12,9 +12,11 @@ class RemoveSubcriptionCountFromChannelsTable extends Migration
      */
     public function up()
     {
-        Schema::table('channels', function (Blueprint $table) {
-            $table->dropColumn('subscription_count');
-        });
+        if (Schema::hasColumn('subscription_count', 'channels')) {
+            Schema::table('channels', function (Blueprint $table) {
+                $table->dropColumn('subscription_count');
+            });
+        }
     }
 
     /**
