@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $(".btn").click(function() {
+    $(".waves-dark").click(function() {
         var id   = $(this).data("id");
         var url  = "/dashboard/episode/"+id+"/delete";
 

@@ -14,7 +14,7 @@
                 <a href="/dashboard/episode/{{ $episode->id }}/edit" class="waves-effect waves-light btn">
                     <i class="fa fa-pencil"></i> Edit
                 </a>
-                <a data-id="{{ $episode->id }}" class="waves-effect waves-light btn" href="#">
+                <a data-id="{{ $episode->id }}" class="waves-effect waves-dark btn" href="#">
                     <i class="fa fa-trash-o"></i> Delete
                 </a>
             </div>
