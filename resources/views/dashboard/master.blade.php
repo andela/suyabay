@@ -43,6 +43,7 @@
         <!-- Materialize Compiled and minified JavaScript -->
         <script src = "{!! load_asset('/js/materialize.min.js') !!}"></script>
         <script src = "{!! load_asset('/library/sweetalert/sweetalert.min.js') !!}"></script>
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
     </body>
 </html>

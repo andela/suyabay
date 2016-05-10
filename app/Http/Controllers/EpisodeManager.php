@@ -186,8 +186,14 @@ class EpisodeManager extends Controller
     public function destroy(Request $request, $id)
     {
         $episode = Episode::where('id', $id)->delete();
+    
+        if ($episode) {
+            $this->response = ['message' => 'Episode deleted successfully', 'status_code' => 200];
+        } else {
+            $this->response = ['message' => 'Episode delete unsuccessful', 'status_code' => 404];
+        }
 
-        return redirect()->back();
+        return $this->response;
     }
 
     /**

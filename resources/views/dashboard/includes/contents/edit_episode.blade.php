@@ -24,7 +24,7 @@
                         <label for="description">Episode Description</label>
                     </div>
                 </div>
-                <input type="submit"  value ="update" class="btn-large" />
+                <input type="submit"  value ="update" class="btn-large"/>
             </form>
         </div>
     </div>
