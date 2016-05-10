@@ -89,7 +89,7 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel created successfully');
     }
 
-    public function testThatOnlyChannelNameOnlyWasSupplied()
+    public function testThatChannelsFieldsAreRequired()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
@@ -109,25 +109,160 @@ class ChannelEndpointsTest extends TestCase
 
     }
 
-    public function testThatOnlyChannelDescriptionOnlyWasSupplied()
+    public function testThatChannelWasEditedSuccessfullyViaPutVerb()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
-            'channel_name' => 'Cabinet',
+            'channel_name' => strtolower('Gingerbread'),
             'channel_description' => 'Laoriosam volup atum nesciunt',
             'user_id' => $user->id,
         ]);
 
-        $response = $this->call('POST', '/api/v1/channels', [
-            'name' => 'Ginger',
+        $response = $this->call('PUT', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Gingerbread',
+            'description' => 'This is a version 2.3.0 of Java android SDK',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel updated successfully');
+    }
+
+    public function testThatChannelCouldNotEditedViaPutVerb()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Gingerbread',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PUT', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Lollipop',
+            'description' => 'This is a version 5.0.0 of Java android SDK',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
+    }
+
+    public function testThatChannelNameUpdatedViaPatchVerb()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Suyabay'),
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PATCH', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Lollipop',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel updated successfully');
+    }
+
+    public function testThatChannelNameWasNotUpdatedViaPatchVerb()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Suyabay',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PATCH', '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'Lollipop',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
+    }
+
+    public function testThatChannelWasNotUpdateViaPatchVerbDueToMissingField()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Suyabay'),
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PATCH', 
+            '/api/v1/channels/'.$channel->channel_name, [
+            'name' => '',
         ]);
 
         $decodedResponse = json_decode($response->getContent());
 
         $this->assertEquals($decodedResponse->message, 'All fields are required');
-        
     }
 
-    
+    public function testThatChannelWasNotUpdatedViaPatchVerbDueToIncorrectChannelname()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Suyabay',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('PATCH', 
+            '/api/v1/channels/'.$channel->channel_name, [
+            'name' => 'lekdan',
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
+    }
+
+    public function testThatChannelWasNotDeletedDueToIncorrectChannelname()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => 'Suyabay',
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->call('DELETE', 
+            '/api/v1/channels/'.$channel->channel_name, [
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel cannot be deleted because the channel name is incorrect');
+    }
+
+    public function testThatChannelWasDeletedSuccessfully()
+    {
+        $user  = $channel = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Naija suya'),
+            'channel_description' => 'Laoriosam volup atum nesciunt',
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->actingAs($user)->call('DELETE', 
+            '/api/v1/channels/'.$channel->channel_name, [
+        ]);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Channel successfully deleted');
+    }
+
 }
