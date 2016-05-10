@@ -106,7 +106,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
     Route::patch('channels/{channel_name}', [
         'uses' => 'Api\ChannelController@editASingleChannelResource'
     ]);
-
+    
     Route::delete('channels/{channel_name}', [
         'uses' => 'Api\ChannelController@deleteASingleChannel'
     ]);
