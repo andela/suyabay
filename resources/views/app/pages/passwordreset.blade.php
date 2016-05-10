@@ -24,7 +24,7 @@
                 <label for="email">Email</label>
             </div>
 
-            <div class="row container">
+            <div class="input-field">
                 <button type="submit" id="submit_reset" class="waves-effect waves-light btn right">
                     Reset
                 </button>
