@@ -15,7 +15,7 @@ class CreateEpisodesTable extends Migration
         Schema::create('episodes', function($table){
             $table->increments('id');
             $table->string('episode_name');
-            $table->string('episode_description');
+            $table->text('episode_description');
             $table->integer('channel_id')->unsigned();
             $table->integer('view_count');
             $table->integer('status')->nullable();
