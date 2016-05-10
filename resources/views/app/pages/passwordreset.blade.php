@@ -14,7 +14,7 @@
 
     <div class="col s6 offset-s3">
 
-        <form id="password_reset_form">
+        <form id="password_reset_form" method="GET">
 
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
