@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
+    $(".btn").click(function() {
+        var id   = $(this).data("id");
+        var url  = "/dashboard/episode/"+id+"/delete";
 
+        confirmEpisodeDelete(url);
 
-    $("#episode-delete").click(function() {
-    var id   = $(this).data("id");
-    var url  = "/episode/"+id+"/delete";
-
-    confirmEpisodeDelete(url);
-
-    return false;
+        return false;
     });
 
     /**
@@ -24,7 +22,6 @@ $(document).ready(function() {
             type: "GET",
             data: parameter,
             success: function(response) {
-                console.log(response)
                 if (response.status_code == 200) {
                     deleteSuccessMessage();
                 } else {
@@ -87,8 +84,6 @@ $(document).ready(function() {
             document.location.href = "/dashboard/episodes";
         });
     }
-
-
 
     var item;
 
