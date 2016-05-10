@@ -160,38 +160,25 @@ html {
 ===============================================
 */
 
-#main-one {
-  min-height: 350px;
-  width: 80%;
-  background-color: #fff;
-  margin: 20px auto 20px 110px;
-}
-
-#main-two {
-  min-height: 130px;
-  width: 80%;
-  background-color: #fff;
-  margin: 20px 100px auto -54px;
-}
+/*.error-message {
+    border: 1px solid #c7cdcf;
+    width: 90%;
+    height: 150px;
+    border-radius: 2px;
+    position: relative;
+    background: #fcfcfc;
+    margin: 40px auto 40px auto;
+}*/
 
 .myapp {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 98%;
   border: 1px solid #c7cdcf;
-  width: 90%;
-  height: 150px;
-  border-radius: 2px;
-  position: relative;
-  background: #fcfcfc;
-  margin: auto auto auto auto;
-}
-
-.error-message {
-  border: 1px solid #c7cdcf;
-  width: 90%;
-  height: 150px;
-  border-radius: 2px;
-  position: relative;
-  background: #fcfcfc;
-  margin: 40px auto 40px auto;
+  margin: -4% auto 5% 1%;
+  background-color: #fff;
 }
 
 .error-text {
@@ -207,9 +194,9 @@ html {
 }
 
 .app-title {
-  font-size: 21px;
+  font-size: 25px;
   line-height: 70px;
-  margin: auto;
+  margin-top: -2%;
   font-weight: 500;
   text-align: center;
 }
@@ -229,23 +216,17 @@ html {
   width: 250px;
 }
 
-.session-one {
-  border-radius: 2px;
-  position: relative;
-  margin: auto;
+.myapp-one,
+.myapp-two {
+  width: 90%;
+  min-height: 200px;
+  background: #fcfcfc;
+  margin: 5% auto 1% 8%;
+  float: left;
 }
 
-.session-two {
-  margin: auto;
-  border-radius: 2px;
-  position: relative;
-}
-
-.session-three {
-  margin: auto;
-  border-radius: 2px;
-  position: relative;
-  background: white;
+.myapp-two {
+  margin: 10% auto auto -2%;
 }
 
 /*
@@ -265,12 +246,12 @@ img.avatar {
 ===============================================
 */
 
-.form-feature {
+.app-form {
   clear: both;
   min-height: 20px;
   width: 80%;
   background-color: #fff;
-  margin: -22px auto 20px auto;
+  margin: -22px auto 20px 20%;
 }
 
 #main-new-one {
@@ -293,8 +274,9 @@ img.avatar {
   float: right;
 }
 
-input {
-  width: 532px;
+.app-form-one input,
+.app-form-one textarea {
+  width: 100%;
 }
 
 textarea {
@@ -314,30 +296,46 @@ h5 {
   color: red;
 }
 
+.app-form-one,
+.app-form-two {
+  width: 90%;
+  min-height: 150px;
+  border-radius: 2px;
+  background: #fcfcfc;
+  margin: 5% auto 5% 8%;
+  float: left;
+}
+
+.app-form-two {
+  margin: 10% auto auto 5%;
+  float: none;
+}
+
+.new-app-text {
+  margin: 1% auto auto 2%;
+}
+
+.app-form-one,
+.app-form-two {
+  width: 100%;
+  min-height: 150px;
+  background: #fcfcfc;
+  margin: 9.5% auto 3% -10%;
+  float: left;
+}
+
+.app-form-two {
+  margin: 10% auto auto -15%;
+}
+
 /*
-# newappdetails Styles
+# newappdetails and appdetails Styles
 ===============================================
 */
 
-#main-one-app {
-  min-height: 420px;
-  width: 80%;
-  background-color: #fff;
-  margin-top: 30px;
-  margin-left: 105px;
-}
-
-#main-two-app {
-  min-height: 200px;
-  width: 80%;
-  background-color: #fff;
-  margin-top: 30px;
-  margin-left: -61px;
-}
-
 .app-name {
   float: left;
-  margin: 15px 20px;
+  margin: 2% auto 4% 5%;
   font-size: 30px;
 }
 
@@ -346,28 +344,38 @@ h5 {
   float: left;
   overflow: hidden;
   padding: 20px;
-  width: 600px;
-  border: 1px solid #777;
-  margin-top: 30px;
-  margin-left: 30px;
-  margin: auto auto auto 30px;
+  width: 98%;
+  border: 1px solid #c7cdcf;
+  margin: -4% auto 5% 1%;
   background-color: #fff;
-  border-radius: 4px;
 }
 
 .wavesapp {
-  float: right;
-  margin: 20px 20px auto 30px;
-  width: 150px;
+  float: left;
+  margin: 3% auto 4% 52%;
+  width: 20%;
 }
 
-.app-detail:nth-child(1) {
+.app-details:nth-child(1) {
   top: 90px;
 }
 
 .owner-token {
   width: -2PX;
   border: 10px;
+}
+
+.app-detail-one,
+.app-detail-two {
+  width: 90%;
+  min-height: 200px;
+  background: #fcfcfc;
+  margin: 5% auto 1% 8%;
+  float: left;
+}
+
+.app-detail-two {
+  margin: 10% auto auto -2%;
 }
 
 /*
@@ -380,44 +388,35 @@ h5 {
   float: left;
   overflow: hidden;
   padding: 20px;
-  width: 600px;
+  min-width: 98%;
   border: 1px solid #c7cdcf;
-  margin: 6px auto auto -1px;
+  margin: -4% auto 5% 1%;
   background-color: #fff;
 }
 
-#main-one-apps {
-  clear: both;
-  min-height: 300px;
-  width: 80%;
-  background-color: #fff;
-  margin: 30px auto 15px 105px;
-  position: relative;
-  overflow: hidden;
-}
-
-#main-two-apps {
-  clear: both;
-  min-height: 150px;
-  width: 80%;
-  background-color: #fff;
-  margin: 30px -62px -80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.myapps {
+.myapps-one,
+.myapps-two {
   width: 90%;
-  height: 150px;
+  min-height: 150px;
   border-radius: 2px;
-  position: relative;
   background: #fcfcfc;
-  margin: auto auto auto auto;
+  margin: 5% auto -3% 8%;
+  float: left;
 }
 
-.app-name {
+.myapps-two {
+  margin: 10% auto auto 5%;
+}
+
+.right_side {
+  float: left;
+}
+
+.app-logo {
   color: #2C3E50;
-  font-size: 30px;
+  font-size: 20px;
+  float: left;
+  margin: 1% auto 4% 5%;
 }
 
 .btn-copy {

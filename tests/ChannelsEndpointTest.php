@@ -89,7 +89,7 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel created successfully');
     }
 
-    public function testThatOnlyChannelNameOnlyWasSupplied()
+    public function testThatChannelsFieldsAreRequired()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
@@ -109,27 +109,7 @@ class ChannelEndpointsTest extends TestCase
 
     }
 
-    public function testThatOnlyChannelDescriptionOnlyWasSupplied()
-    {
-        $user  = $channel = factory('Suyabay\User')->create();
-
-        $channel = factory('Suyabay\Channel')->create([
-            'channel_name' => 'Cabinet',
-            'channel_description' => 'Laoriosam volup atum nesciunt',
-            'user_id' => $user->id,
-        ]);
-
-        $response = $this->call('POST', '/api/v1/channels', [
-            'name' => 'Ginger',
-        ]);
-
-        $decodedResponse = json_decode($response->getContent());
-
-        $this->assertEquals($decodedResponse->message, 'All fields are required');
-        
-    }
-
-    public function testThatChannelWasEditedViaPutVerb()
+    public function testThatChannelWasEditedSuccessfullyViaPutVerb()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
@@ -207,7 +187,7 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel cannot be updated because the channel name is incorrect');
     }
 
-    public function testThatChannelNameWasNotSuppliedForUpdateViaPatchVerb()
+    public function testThatChannelWasNotUpdateViaPatchVerbDueToMissingField()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
@@ -227,27 +207,7 @@ class ChannelEndpointsTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'All fields are required');
     }
 
-    public function testThatChannelDescriptionWasNotSuppliedForUpdateViaPatchVerb()
-    {
-        $user  = $channel = factory('Suyabay\User')->create();
-
-        $channel = factory('Suyabay\Channel')->create([
-            'channel_name' => strtolower('Suyabay'),
-            'channel_description' => 'Laoriosam volup atum nesciunt',
-            'user_id' => $user->id,
-        ]);
-
-        $response = $this->call('PATCH', 
-            '/api/v1/channels/'.$channel->channel_name, [
-            'description' => '',
-        ]);
-
-        $decodedResponse = json_decode($response->getContent());
-
-        $this->assertEquals($decodedResponse->message, 'All fields are required');
-    }
-
-    public function testThatChannelWasNotUpdateViaPatchVerbDueToIncorrectChannelname()
+    public function testThatChannelWasNotUpdatedViaPatchVerbDueToIncorrectChannelname()
     {
         $user  = $channel = factory('Suyabay\User')->create();
 
