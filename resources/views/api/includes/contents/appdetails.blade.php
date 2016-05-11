@@ -8,7 +8,7 @@
                     <a class="col s4 waves-effect waves-light btn" style="float: left; margin: -9% auto 4% 79%; width: 20%;" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit</a>
                 </div>
 
-                <div class="app-details">
+                <div class="app-details-old">
                     <div class = "row app" >
                         <div>Owner</div>
                         <div> {{ auth()->User()->username }} </div>
