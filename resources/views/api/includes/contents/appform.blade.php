@@ -10,7 +10,7 @@
                 
                     <script>
                         swal({
-                            title: 'status',
+                            title: 'Error',
                             text: '{!! session()->get("info") !!}',
                             timer: 2000,
                             showConfirmButton: false
@@ -20,8 +20,8 @@
                 @endif
 	    		<div class='app-form-one'>
 
-			    	<form class="col s12" action="/developer/myapp/new/" method="POST">
-
+			    	<form class="col s12" action="{{ route('developer.create-app') }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			    		<div class="row" style="margin-left: 10%;">
 			    		<h4 style='text-align: center;'>Create new App</h4>
 				    		<h5 class='new-app-text'>Application name</h5>
@@ -51,8 +51,8 @@
                         			<span class="help-block">{{ $errors->first('description') }}</span>
                     			@endif
 
-					    	<div class="">
-					    		<button type='submit' class="waves-effect waves-dark btn" style="margin-left: 72%; float: left;">Create App</button>
+					    	<div class="input-field col s3 ">
+					    		<button type='submit' class="waves-effect waves-dark btn" >Create</button>
 					    	</div>	
 				    	</div>
 		    		</form>

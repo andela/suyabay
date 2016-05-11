@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers\Api;
 
 use Auth;
+use Validator;
 use Firebase\JWT\JWT;
 use Suyabay\AppDetail;
 use Suyabay\Http\Requests;
@@ -79,8 +80,8 @@ class PagesController extends Controller
     public function postNewAppDetails(Request $request)
     {
         $this->validate($request, [
-            'name'         => 'required',
-            'homepage_url' => 'required|url',
+            'name'         => 'required|unique:app_details,name',
+            'homepage_url' => 'required|url|unique:app_details,homepage_url',
             'description'  => 'required',
         ]);
 
@@ -108,7 +109,7 @@ class PagesController extends Controller
     public function showNewAppDetails()
     {
         $appDetails = AppDetail::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
-    
+
         return view('api.pages.newappdetails', compact('appDetails'));
     }
 
@@ -135,18 +136,50 @@ class PagesController extends Controller
         $appDetails = AppDetail::where('id', $id)->delete();
 
         if ($appDetails) {
-            $this->response =
-                [
-                    'message'     => 'App deleted successfully',
-                    'status_code' => 200
-                ];
+            $this->response = ['message' => 'App deleted successfully', 'status_code' => 200];
         } else {
-            $this->response =
-                [
-                    'message'     => 'App delete unsuccessful',
-                    'status_code' => 404
-                ];
+            $this->response = ['message' => 'App delete unsuccessful', 'status_code' => 404];
         }
+
+        return $this->response;
+    }
+
+    /**
+     * This method is for editing of the apps
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $appDetails = AppDetail::where('id', $id)->first();
+        
+        return view('api.pages.editappdetails', compact('appDetails'));
+    }
+
+    /**
+     * This method is for editing of the apps
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name'         => 'required|unique:app_details,name,'.$request->id,
+            'homepage_url' => 'required|url|unique:app_details,homepage_url,'.$request->id,
+        ]);
+
+        $updateAppDetails = AppDetail::where('id', $request->id)->update([
+            'name'         => $request->name,
+            'homepage_url' => $request->homepage_url,
+            'description'  => $request->description,
+        ]);
+
+        if ($updateAppDetails) {
+            $this->response = ['message' => 'App updated Successfully', 'status_code' => 200];
+        } else {
+            $this->response = ['message' => 'Unable to update app', 'status_code' => 404];
+        }
+
         return $this->response;
     }
 }

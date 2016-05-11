@@ -242,7 +242,7 @@ img.avatar {
 }
 
 /*
-# appform Styles
+# appform and editappdetails Styles
 ===============================================
 */
 
@@ -318,7 +318,7 @@ h5 {
 .app-form-one,
 .app-form-two {
   width: 100%;
-  min-height: 150px;
+  min-height: 200px;
   background: #fcfcfc;
   margin: 9.5% auto 3% -10%;
   float: left;
@@ -327,6 +327,17 @@ h5 {
 .app-form-two {
   margin: 10% auto auto -15%;
 }
+
+/*@media only screen and (max-width: 100%) {
+
+.waves-dark{
+
+width: 100% !important;
+margin-left: 60%
+
+}
+
+}*/
 
 /*
 # newappdetails and appdetails Styles

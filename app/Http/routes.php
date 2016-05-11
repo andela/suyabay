@@ -9,41 +9,53 @@ Route::group(['prefix' => '/developer'], function () {
 
     Route::get('/', [
         'uses' => 'Api\PagesController@index',
-        'as' => 'developer.index',
+        'as'   => 'developer.index',
     ]);
 
     Route::get('/myapp', [
-        'uses' => 'Api\PagesController@showMyApps',
-        'as' => 'developer.myapp',
+        'uses'       => 'Api\PagesController@showMyApps',
+        'as'         => 'developer.myapp',
         'middleware' => ['auth'],
     ]);
 
     Route::get('/myapp/new', [
-        'uses' => 'Api\PagesController@createNewApp',
-        'as' => 'developer.new-app',
+        'uses'       => 'Api\PagesController@createNewApp',
+        'as'         => 'developer.new-app',
         'middleware' => ['auth'],
     ]);
 
     Route::post('/myapp/new/', [
-        'uses' => 'Api\PagesController@postNewAppDetails',
+        'uses'       => 'Api\PagesController@postNewAppDetails',
+        'as'         => 'developer.create-app',
         'middleware' => ['auth'],
     ]);
 
     Route::get('/myapp/new-detail', [
-        'uses' => 'Api\PagesController@showNewAppDetails',
-        'as' => 'developer.newapp-details',
+        'uses'       => 'Api\PagesController@showNewAppDetails',
+        'as'         => 'developer.newapp-details',
         'middleware' => ['auth'],
     ]);
 
     Route::get('/myapp/{id}', [
-        'uses' => 'Api\PagesController@showAppDetails',
-        'as' => 'developer.app-details',
+        'uses'       => 'Api\PagesController@showAppDetails',
+        'as'         => 'developer.app-details',
         'middleware' => ['auth'],
     ]);
 
     Route::get('/myapp/{id}/delete', [
-        'uses' => 'Api\PagesController@destroy',
-        'as' => 'developer.app-delete',
+        'uses'       => 'Api\PagesController@destroy',
+        'as'         => 'developer.app-delete',
+        'middleware' => ['auth'],
+    ]);
+
+    Route::get('/myapp/{id}/edit/', [
+        'uses'       => 'Api\PagesController@edit',
+        'middleware' => ['auth'],
+    ]);
+
+    Route::put('/myapp/edit', [
+        'uses'       => 'Api\PagesController@update',
+        'as'         => 'developer.app-edit',
         'middleware' => ['auth'],
     ]);
 });

@@ -4,9 +4,8 @@
         <div class="col m8">
             <div class="app-detail-one">
                 <div class='row'>
-
-                    <p class="col s6 app-name">{{ $appDetails->name }}</p>
-                    <a class="col s6 wavesapp waves btn" style="margin: 3% auto 4% 29%; width: 20%;" href="#">Edit app</a>
+                    <p class="col s8 app-name">{{ $appDetails->name }}</p>
+                    <a class="col s4 waves-effect waves-light btn" style="float: left; margin: -9% auto 4% 79%; width: 20%;" href="/developer/myapp/{{ $appDetails->id }}/edit">Edit</a>
                 </div>
 
                 <div class="app-details">
@@ -29,9 +28,10 @@
                         </div>  
                     </div> 
                 </div>
-
-                <a data-id="{{ $appDetails->id }}" style="margin: -3% 8% 4% 79%; width: 20%" id="delete-api" class="wavesapp waves btn" href="#">Delete app</a>
-            </div>
+                <div class="input-field col s10">
+                    <a data-id="{{ $appDetails->id }}" style="margin: -6% 1% 2% 96%; float: left; width: 25%" id="delete-api" class="waves btn" href="#">Delete</a>
+                </div>
+                </div>
             </div>
 
         <div class="col m4">
