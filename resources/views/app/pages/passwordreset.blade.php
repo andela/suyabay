@@ -14,7 +14,7 @@
 
     <div class="col s6 offset-s3">
 
-        <form id="password_reset_form">
+        <form id="password_reset_form" method="GET">
 
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
@@ -24,7 +24,7 @@
                 <label for="email">Email</label>
             </div>
 
-            <div class="row container">
+            <div class="input-field">
                 <button type="submit" id="submit_reset" class="waves-effect waves-light btn right">
                     Reset
                 </button>
