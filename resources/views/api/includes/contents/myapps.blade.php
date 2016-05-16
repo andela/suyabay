@@ -7,7 +7,7 @@
                 <h5 class="app-title">My Apps</h5>
                 <div class="myapp">
                     <p class="app-text">You haven't created any suyabay app yet.</p>
-                    <a class="waves-effect waves-dark btn" style="width: 70%; margin-left: 10%;" href="{{ route('developer.new-app') }}">Create a new app</a>   
+                    <a class="waves-effect waves-dark btn" style="width: 70%; margin-left: 15%;" href="{{ route('developer.new-app') }}">Create a new app</a>   
                 </div>    
             </div>    
         </div>
