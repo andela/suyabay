@@ -1173,9 +1173,9 @@ html {
 .app-title {
   font-size: 25px;
   line-height: 70px;
-  margin-top: -2%;
   font-weight: 500;
   text-align: center;
+  margin: -2% auto 2% auto;
 }
 
 .app-text {
@@ -1324,7 +1324,7 @@ margin-left: 60%
 .app-name {
   float: left;
   margin: 2% auto 4% 5%;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .app-details {
@@ -1334,7 +1334,7 @@ margin-left: 60%
   padding: 20px;
   width: 98%;
   border: 1px solid #c7cdcf;
-  margin: -4% auto 5% 1%;
+  margin: -2% auto 5% 1%;
   background-color: #fff;
 }
 
@@ -1366,6 +1366,21 @@ margin-left: 60%
   margin: 10% auto auto -2%;
 }
 
+.app-details-old {
+  display: inline;
+  float: left;
+  overflow: hidden;
+  padding: 20px;
+  width: 98%;
+  border: 1px solid #c7cdcf;
+  margin: -6% auto 5% 1%;
+  background-color: #fff;
+}
+
+.app-details-old:nth-child(1) {
+  top: 90px;
+}
+
 /*
 # allappdetails Styles
 ===============================================
@@ -1393,7 +1408,7 @@ margin-left: 60%
 }
 
 .myapps-two {
-  margin: 10% auto auto 5%;
+  margin: 10% auto auto -1%;
 }
 
 .right_side {
@@ -1435,7 +1450,7 @@ margin-left: 60%
 }
 
 .app > div:nth-child(1) {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .button-details {

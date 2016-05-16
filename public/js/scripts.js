@@ -1048,7 +1048,7 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
 
-    $(".waves-dark").click(function() {
+    $(".episode-delete").click(function() {
         var id   = $(this).data("id");
         var url  = "/dashboard/episode/"+id+"/delete";
 
@@ -1138,18 +1138,18 @@ $(document).ready(function() {
     $('.episode_action').on('change', function() {
 
         /*
-		# Get <select/> element that was clicked on
-    	*/
+        # Get <select/> element that was clicked on
+        */
         var actionType = $(this).val(),
 
        /*
-		# Get <select/> element data-action
-    	*/
+        # Get <select/> element data-action
+        */
          action = $(this).find('option:selected').data('action');
 
         /*
-		# Add class to parent element of the <select/> element
-    	*/
+        # Add class to parent element of the <select/> element
+        */
         $(this).parent().closest('tr').prop('class', 'selected');
 
 
