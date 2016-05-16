@@ -22,34 +22,37 @@
 
 			    	<form class="col s12" action="{{ route('developer.create-app') }}" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-			    		<div class="row" style="margin-left: 10%;">
+			    		<div class="row" style="margin-left: 1%;">
 			    		<h4 style='text-align: center;'>Create new App</h4>
 				    		<h5 class='new-app-text'>Application name</h5>
 
 					    		<div class="input-field col s12">
 					    			<input name='name' value="{{ old('name') }}">
-					    		</div>	
-					    		@if ($errors->has('name'))
-                        			<span class="help-block">{{ $errors->first('name') }}</span>
-                    			@endif
+					    			
+    					    		@if ($errors->has('name'))
+                            			<span class="help-block">{{ $errors->first('name') }}</span>
+                        			@endif
+                                </div>
 
 				    		<h5 class='new-app-text'>Home page url</h5>
 
 					    		<div class="input-field col s12">
 					    			<input name='homepage_url' value="{{ old('homepage_url') }}">
-					    		</div>
-					    		@if ($errors->has('homepage_url'))
-                        			<span class="help-block">{{ $errors->first('homepage_url') }}</span>
-                    			@endif			   			    
+					    		
+    					    		@if ($errors->has('homepage_url'))
+                            			<span class="help-block">{{ $errors->first('homepage_url') }}</span>
+                        			@endif	
+                                </div>		   			    
 
 				    		<h5 class='new-app-text'>Application Description</h5>
 				   
 					    		<div class="input-field col s12">
 					    			<textarea name='description' > </textarea>
-					    		</div>
-					    		@if ($errors->has('description'))
-                        			<span class="help-block">{{ $errors->first('description') }}</span>
-                    			@endif
+					    		
+    					    		@if ($errors->has('description'))
+                            			<span class="help-block" style="float: left;">{{ $errors->first('description') }}</span>
+                        			@endif
+                                </div>
 
 					    	<div class="input-field col s3 ">
 					    		<button type='submit' class="waves-effect waves-dark btn" >Create</button>

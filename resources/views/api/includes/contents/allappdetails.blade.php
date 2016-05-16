@@ -16,7 +16,7 @@
             @endif
 
                 <div class="myapps-one">
-                    <h5 class="app-title" style="font-size: 30px; margin-bottom: 5%">My Apps</h5>
+                    <h5 class="app-title" style="font-size: 28px; margin-bottom: 2%">My Apps</h5>
                     @foreach($allApps as $app)
 
                         <div class='all-app-details'>
