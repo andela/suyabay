@@ -20,6 +20,7 @@ class ChannelEpisodesTransformer extends Fractal\TransformerAbstract
             'date_created'       => $episode->created_at,
             'date_modified'      => $episode->updated_at,
             'created_by'         => $episode->channel->user->username,
+            'comments'           => $episode->comments,
         ];
     }
 }
