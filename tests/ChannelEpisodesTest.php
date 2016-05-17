@@ -51,4 +51,23 @@ class ChannelEpisodesTest extends TestCase
         $this->assertEquals($decodedResponse->message, 'Channel not found!');
 
     }
+
+    public function testThatChannelDoesnotHaveEpisodes()
+    {
+        $user = factory('Suyabay\User')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'user_id'      => 1,
+            'channel_name' => strtolower('Ginger Spot'),
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->call('GET', '/api/v1/channels/'.$channel->channel_name.'/episodes', []);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($response->status(), 200);
+        $this->assertEquals(0, count($decodedResponse->data));
+    }
 }
