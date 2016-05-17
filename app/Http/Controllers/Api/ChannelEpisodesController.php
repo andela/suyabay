@@ -41,21 +41,23 @@ class ChannelEpisodesController extends Controller
     {
         $episodes = null;
 
-        $perPage = $request->query('results') ? : 10;
+        $perPage = $request->query('limit') ? : 10;
 
         $channel = $this->getChannelByName($name);
 
         if (! is_null($channel)) {
             $episodes = $this->getEpisodesByChannnelId($channel, $perPage, $request);
 
-            $resource = new Collection($episodes, $channelEpisodesTransformer);
+            $episodesWithComments = $this->formatEpisodes($episodes);
+
+            $resource = new Collection($episodesWithComments, $channelEpisodesTransformer);
             $data = $this->fractal->createData($resource)->toArray();
-            dd($data);
+
+            return Response::json($data, 200);
+
         }
 
-        return Response::json([
-            'message' => 'Channel not found !'
-        ], 404);
+        return Response::json(['message' => 'Channel not found!'], 404);
     }
 
     /**
@@ -106,5 +108,22 @@ class ChannelEpisodesController extends Controller
         ->skip($this->getRecordsToSkip($perPage, $request))
         ->take($perPage)
         ->get();
+    }
+
+    /**
+     * This method takes episode model and appends comments to each of them.
+     *
+     * @param $episodes
+     *
+     * @return Episode
+     */
+    public function formatEpisodes($episodes)
+    {
+        foreach ($episodes as $key => &$value) {
+            $comments = Episode::episodeComments($value->id)->count();
+            $value['comments'] = $comments;
+        }
+
+        return $episodes;
     }
 }
