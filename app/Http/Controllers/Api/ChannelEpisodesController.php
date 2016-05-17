@@ -17,7 +17,7 @@ use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\ChannelRepository;
 use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
-class ChannelEpisodesController extends Controller 
+class ChannelEpisodesController extends Controller
 {
     protected $mail;
     protected $fractal;
@@ -31,7 +31,7 @@ class ChannelEpisodesController extends Controller
 
     /**
      * This method takes channel name and return all episodes podcast under it.
-     * 
+     *
      * @param $request
      * @param $name
      *
@@ -62,7 +62,7 @@ class ChannelEpisodesController extends Controller
 
     /**
      * This method validate channel request.
-     * 
+     *
      * @param $pageLimit
      * @param $request
      *
@@ -94,7 +94,7 @@ class ChannelEpisodesController extends Controller
 
     /**
      * This method return all episodes under a channel.
-     * 
+     *
      * @param $channel
      * @param $perPage
      * @param $request
