@@ -129,8 +129,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::group(['prefix' => 'channels'], function()
-    {
+    Route::group(['prefix' => 'channels'], function () {
         Route::get('{channel_id}/episodes', function () {
 
             return json_encode(["message" => "view all episodes under a channel"]);
@@ -141,8 +140,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
             return json_encode(["message" => "view an episodes under a channel"]);
         });
 
-        Route::group(['middleware' => 'premium.user'], function()
-        {
+        Route::group(['middleware' => 'premium.user'], function () {
 
             Route::post('{channel_id}/episodes', function () {
 
