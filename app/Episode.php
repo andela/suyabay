@@ -37,4 +37,18 @@ class Episode extends Model
     {
         return $this->hasMany('Suyabay\Like');
     }
+
+    /**
+     * This method returns total number of comments.
+     *
+     * @param $query
+     * @param $id
+     *
+     * @return $query
+     */
+    public function scopeEpisodeComments($query, $id)
+    {
+        return $query->where('episodes.id', '=', $id)
+        ->join('comments', 'episodes.id', '=', 'comments.episode_id');
+    }
 }
