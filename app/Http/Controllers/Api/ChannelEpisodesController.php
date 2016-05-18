@@ -61,6 +61,19 @@ class ChannelEpisodesController extends Controller
     }
 
     /**
+     * This method returns the channel episode details.
+     * @param $request
+     * @param $channelName
+     * @param $episodeName
+     * @param $channelEpisodesTransformer
+     * @return \Illuminate\Http\Response
+     */
+    pubic function getAChannelEpisode(Request $request, $channelName, $episodeName,  ChannelEpisodesTransformer $channelEpisodesTransformer)
+    {
+
+    }
+
+    /**
      * This method validate channel request.
      *
      * @param $pageLimit
