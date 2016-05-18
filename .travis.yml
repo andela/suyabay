@@ -20,7 +20,7 @@ script:
   - php vendor/bin/phpunit -c phpunit.xml
 
 notifications:
-    slack: andela:TeaB0c7SsX2IUwH8XR4Ehmh9
+  
 
 after_success:
     - travis_retry php vendor/bin/coveralls
