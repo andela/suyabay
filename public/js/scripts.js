@@ -1045,23 +1045,108 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
 
+    $(".episode-delete").click(function() {
+        var id   = $(this).data("id");
+        var url  = "/dashboard/episode/"+id+"/delete";
+
+        confirmEpisodeDelete(url);
+
+        return false;
+    });
+
+    /**
+     *process the ajax call
+     *
+     * @param  url
+     * @param  parameter
+     */
+    function processDeleteAjaxCall(url, parameter)
+    {
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: parameter,
+            success: function(response) {
+                if (response.status_code == 200) {
+                    deleteSuccessMessage();
+                } else {
+                    swal({
+                        title: "Cancelled",
+                        text:   "episode is retained",
+                        confirmButtonColor: "#26a69a",
+                        type: "error"
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     *confirmDelete modal message
+     *
+     * @param  url
+     */
+    function confirmEpisodeDelete(url)
+    {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this episode!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#26a69a",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, retain episode!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+
+        function(isConfirm)
+        {
+            if (isConfirm) {
+                processDeleteAjaxCall(url);
+            } else {
+                swal("Cancelled", "episode will be retained", "error");
+            }
+        });
+    }
+
+    /**
+     *Sweetalert Delete message
+     *
+     */
+    function deleteSuccessMessage()
+    {
+        swal({
+            title: "Done!",
+            text: "Episode deleted successfully",
+            type: "success",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
+
+        function (){
+            document.location.href = "/dashboard/episodes";
+        });
+    }
+
     var item;
 
     $('.episode_action').on('change', function() {
 
         /*
-		# Get <select/> element that was clicked on
-    	*/
+        # Get <select/> element that was clicked on
+        */
         var actionType = $(this).val(),
 
        /*
-		# Get <select/> element data-action
-    	*/
+        # Get <select/> element data-action
+        */
          action = $(this).find('option:selected').data('action');
 
         /*
-		# Add class to parent element of the <select/> element
-    	*/
+        # Add class to parent element of the <select/> element
+        */
         $(this).parent().closest('tr').prop('class', 'selected');
 
 
@@ -1205,10 +1290,6 @@ $(document).ready(function() {
             }
         }
     }
-
-
-
-
 
     /*
     # deleteEpisodeErrorAlert Message
