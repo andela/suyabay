@@ -31,5 +31,6 @@ class Kernel extends HttpKernel
         'guest'        => \Suyabay\Http\Middleware\RedirectIfAuthenticated::class,
         'cors'         => \Suyabay\Http\Middleware\CORS::class,
         'premium.user' => \Suyabay\Http\Middleware\premiumUser::class,
+        'superadmin.user' => \Suyabay\Http\Middleware\SuperAdminUser::class,
     ];
 }

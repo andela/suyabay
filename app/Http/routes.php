@@ -99,29 +99,34 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::get('channels', [
-        'uses' => 'Api\ChannelController@getAllChannels'
-    ]);
+    Route::group(['prefix' => 'channels'], function () {
 
-    Route::get('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@getAChannel'
-    ]);
+        Route::get('/', [
+            'uses' => 'Api\ChannelController@getAllChannels'
+        ]);
 
-    Route::post('channels', [
-        'uses' => 'Api\ChannelController@postAChannel'
-    ]);
+        Route::get('{channel_name}', [
+            'uses' => 'Api\ChannelController@getAChannel'
+        ]);
 
-    Route::put('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@editAChannel'
-    ]);
+        Route::group(['middleware' => 'superadmin.user'], function () {
 
-    Route::patch('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@editASingleChannelResource'
-    ]);
-    
-    Route::delete('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@deleteASingleChannel'
-    ]);
+            Route::post('/', [
+                'uses' => 'Api\ChannelController@postAChannel'
+            ]);
+
+            Route::put('{channel_name}', [
+                'uses' => 'Api\ChannelController@editAChannel'
+            ]);
+
+            Route::patch('{channel_name}', [
+                'uses' => 'Api\ChannelController@editASingleChannelResource'
+            ]);
+            
+            Route::delete('{channel_name}', [
+                'uses' => 'Api\ChannelController@deleteASingleChannel'
+            ]);
+        });
 
 /*
 |--------------------------------------------------------------------------
@@ -129,7 +134,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::group(['prefix' => 'channels'], function () {
+    
         Route::get('{channel_id}/episodes', function () {
 
             return json_encode(["message" => "view all episodes under a channel"]);
@@ -157,6 +162,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
                 return json_encode(["message" => "delete an episode under a channel"]);
             });
         });
+
     });
 
 /*
