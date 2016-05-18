@@ -7,6 +7,7 @@ use Suyabay\User;
 use Suyabay\AppDetail;
 use Illuminate\Http\Request;
 use Suyabay\Http\Requests;
+use Illuminate\Foundation\Http\Middleware\superAdminUser;
 
 class SuperAdminUser
 {
