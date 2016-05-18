@@ -192,6 +192,7 @@ class EpisodeManager extends Controller
         } else {
             $this->response = ['message' => 'Episode delete unsuccessful', 'status_code' => 404];
         }
+        
         return $this->response;
     }
 

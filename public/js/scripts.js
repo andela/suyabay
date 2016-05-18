@@ -488,7 +488,7 @@ function processUpdateAjaxCall (action, url, parameter)
                 swal({
                     title: "Error!",
                     text: "App url already exist",
-                    type: "error",
+                    type: "success",
                     showCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
@@ -499,7 +499,7 @@ function processUpdateAjaxCall (action, url, parameter)
                 swal({
                     title: "Error!",
                     text: "App name already exist",
-                    type: "error",
+                    type: "success",
                     showCancelButton: false,
                     closeOnConfirm: false,
                     showLoaderOnConfirm: true
