@@ -37,7 +37,7 @@ class ChannelEpisodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllEpisodes(Request $request, $name, ChannelEpisodesTransformer $channelEpisodesTransformer)
+    public function getAllEpisodes($name, Request $request, ChannelEpisodesTransformer $channelEpisodesTransformer)
     {
         $episodes = null;
 
