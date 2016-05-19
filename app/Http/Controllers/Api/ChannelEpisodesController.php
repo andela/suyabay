@@ -19,6 +19,8 @@ use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
 class ChannelEpisodesController extends Controller
 {
+    use Utilities\Utility;
+
     protected $mail;
     protected $fractal;
 
