@@ -41,7 +41,7 @@ class ChannelEpisodesController extends Controller
     {
         $episodes = null;
 
-        $perPage = $request->query('limit') ? : 10;
+        $perPage = $request->has('limit') ? (int) $request->input('limit') : 10;
 
         $channel = $this->getChannelByName($name);
 
