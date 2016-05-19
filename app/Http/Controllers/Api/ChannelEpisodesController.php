@@ -120,7 +120,8 @@ class ChannelEpisodesController extends Controller
     public function formatEpisodes($episodes)
     {
         foreach ($episodes as $key => &$value) {
-            $comments = Episode::episodeComments($value->id)->count();
+            $newEpisodes = $episodes->find($value->id)->first();
+            $comments = $newEpisodes->comment()->count();
             $value['comments'] = $comments;
         }
 
