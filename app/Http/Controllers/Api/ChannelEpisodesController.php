@@ -19,7 +19,7 @@ use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
 class ChannelEpisodesController extends Controller
 {
-    use Utilities\Utility;
+    use Utility\Utility;
 
     protected $mail;
     protected $fractal;
@@ -50,12 +50,15 @@ class ChannelEpisodesController extends Controller
         if (! is_null($channel)) {
             $episodes = $this->getEpisodesByChannnelId($channel, $perPage, $request);
 
-            $episodesWithComments = $this->formatEpisodes($episodes);
+            if (! is_null($episodes)) {
+                $episodesWithComments = $this->formatEpisodes($episodes);
+                $resource = new Collection($episodesWithComments, $channelEpisodesTransformer);
+                $data = $this->fractal->createData($resource)->toArray();
 
-            $resource = new Collection($episodesWithComments, $channelEpisodesTransformer);
-            $data = $this->fractal->createData($resource)->toArray();
+                return Response::json($data, 200);
+            }
 
-            return Response::json($data, 200);
+            return Response::json(['message' => 'Channel does not have episodes yet'], 404);
 
         }
 
