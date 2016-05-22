@@ -456,8 +456,10 @@
   vertical-align: top !important;
 }
 
-.search {
+.input-field input[type=search] {
   margin: 0 !important;
+  height: auto !important;
+  display: inline !important;
 }
 
 .logo-box {
@@ -724,6 +726,16 @@ a:hover.capitalize {
 
 .collection .collection-item.active {
   color: inherit;
+}
+
+.collection li.search {
+  border-bottom: 1px solid #E0E0E0;
+  padding: 10px;
+  display: block !important;
+}
+
+.collection .search form div label {
+  left: 1.5rem;
 }
 
 .collection .collection-item.avatar {
