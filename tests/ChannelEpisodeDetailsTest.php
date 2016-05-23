@@ -32,7 +32,7 @@ class ChannelEpisodeDetailsTest extends TestCase
 
         $episode = factory('Suyabay\Episode')->create([
             'episode_name' => strtolower('Nyama Choma'),
-            'channel_id' => $channel->id,
+            'channel_id'   => $channel->id,
         ]);
 
         $response = $this->actingAs($user)
@@ -46,6 +46,27 @@ class ChannelEpisodeDetailsTest extends TestCase
         $this->assertEquals($decodedResponse->data->channel_name, $channel->channel_name);
         $this->assertEquals($decodedResponse->data->id, $episode->id);
         $this->assertEquals($decodedResponse->data->name, $episode->episode_name);
+    }
 
+    public function testThatChannelEpisodeNameIsIncorrect()
+    {
+        $user = factory('Suyabay\User')->create();
+        $channel = factory('Suyabay\Channel')->create();
+
+        $episode = factory('Suyabay\Episode')->create([
+            'episode_name' => 'Nyama Choma',
+            'channel_id'   => $channel->id,
+        ]);
+
+        $response = $this->actingAs($user)
+        ->call(
+            'GET', 
+            '/api/v1/channels/'.$channel->channel_name.'/episodes/lookingforepisode', 
+        []);
+
+        $decodedResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodedResponse->message, 'Episode not found!');
+        $this->assertEquals($response->status(), 404);
     }
 }
