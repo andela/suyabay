@@ -458,8 +458,10 @@
 
 .input-field input[type=search] {
   margin: 0 !important;
-  height: auto !important;
+  /*height: auto !important;*/
+  height: 80px;
   display: inline !important;
+  color: #616161;
 }
 
 .logo-box {
@@ -730,12 +732,28 @@ a:hover.capitalize {
 
 .collection li.search {
   border-bottom: 1px solid #E0E0E0;
-  padding: 10px;
+  padding: 0px;
   display: block !important;
 }
 
 .collection .search form div label {
   left: 1.5rem;
+  bottom: 0px;
+  top: 0px;
+  height: 80px;
+}
+
+.collection .search form div label i {
+  line-height: 80px;
+}
+
+ul.right li#search {
+  background: rgb(40, 56, 72);
+  height: 64px;
+}
+
+ul.right li#search input[type=search] {
+  height: inherit;
 }
 
 .collection .collection-item.avatar {

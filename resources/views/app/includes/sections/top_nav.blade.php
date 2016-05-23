@@ -8,7 +8,7 @@
                 <img src="{!! load_asset('/css/logo.png') !!}" class="logo" />
             </a>
             <ul class="right hide-on-med-and-down">
-                <li>
+                <li id="search">
                     @include('app.includes.contents.searchform')
                 </li>
 
