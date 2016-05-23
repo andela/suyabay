@@ -15,6 +15,7 @@ use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\ChannelRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
 use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
 class ChannelEpisodesController extends Controller
@@ -75,13 +76,29 @@ class ChannelEpisodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAChannelEpisode(Request $request, $channelName, $episodeName,  ChannelEpisodesTransformer $channelEpisodesTransformer)
+    public function getAChannelEpisode($channelName, $episodeName, Request $request, ChannelEpisodesTransformer $channelEpisodesTransformer)
     {
-        $channel = $this->getChannelByName($name);
+        $episode = null;
 
-        if (!is_null($channel)) {
-            
+        $channel = $this->getChannelByName($channelName);
+
+        if (! is_null($channel)) {
+            $episode = $this->getEpisodeByName($episodeName, $channel);
+
+            if (count($episode) <= 0 ) {
+                return Response::json(['message' => 'Episode not found!'], 404);
+            }
+
+            $episodeWithComments = $this->formatEpisodes($episode);
+            $resource = new Collection($episodeWithComments, $channelEpisodesTransformer);
+            $data = $this->fractal->createData($resource)->toArray();
+
+            return Response::json($data, 200);
+
         }
+
+        return Response::json(['message' => 'Channel not found!'], 404);
+
     }
 
     /**
@@ -150,5 +167,20 @@ class ChannelEpisodesController extends Controller
         }
 
         return $episodes;
+    }
+
+    /**
+     * This method returns episodes under a particular channel.
+     * @param $channel
+     * @param $episodeName
+     *
+     * @return Episode
+     */
+    public function getEpisodeByName($episodeName, $channel)
+    {
+        return $this->episodeRepository
+        ->findEpisodeWhere('episode_name', strtolower(urldecode($episodeName)))
+        ->where('channel_id', $channel->id)
+        ->get();
     }
 }
