@@ -21,13 +21,14 @@ class CommentController extends Controller
     protected $fractal;
 
     /**
-     * Fractal is injected here inside a constructor to initilize
-     * it.
-     *
-    */
+     * Fractal is injected here inside the constructor to initialize
+     * the Transformer. The episodeRepository is also called here to
+     * initialize it 
+     */
     public function __construct(Manager $fractal)
     {
-        $this->fractal = $fractal;
+        $this->fractal           = $fractal;
+        $this->episodeRepository = new EpisodeRepository();
     }
 
     /**
@@ -39,7 +40,8 @@ class CommentController extends Controller
      */
     public function getAllComments($name, commentTransformer $commentTransformer)
     {
-        $episodes = Episode::where('episode_name', '=', strtolower(urldecode($name)))
+        $episodes = $this->episodeRepository
+            ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
 	        ->get()
 	        ->first();
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Suyabay\Http\Transformers;
 
 use Suyabay\Episode;
