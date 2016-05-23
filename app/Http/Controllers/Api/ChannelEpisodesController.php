@@ -87,9 +87,7 @@ class ChannelEpisodesController extends Controller
                 return Response::json(['message' => 'Episode not found!'], 404);
             }
 
-            $episodeWithComments = $this->formatEpisodes($episode);
-            $resource = new Item($episodeWithComments->first(), $channelEpisodesTransformer);
-            $data = $this->fractal->createData($resource)->toArray();
+            $data = $this->createTransformerData($episode, $channelEpisodesTransformer);
 
             return Response::json($data, 200);
 
@@ -180,5 +178,22 @@ class ChannelEpisodesController extends Controller
         ->findEpisodeWhere('episode_name', strtolower(urldecode($episodeName)))
         ->where('channel_id', $channel->id)
         ->get();
+    }
+
+    /**
+     * This method transforms the episode details.
+     *
+     * @param $episode
+     * @param $channelEpisodesTransformer
+     *
+     * @return Manager
+     */
+    public function createTransformerData($episode, $channelEpisodesTransformer)
+    {
+        $episodeWithComments = $this->formatEpisodes($episode);
+        $resource = new Item($episodeWithComments->first(), $channelEpisodesTransformer);
+
+        return $this->fractal->createData($resource)->toArray();
+
     }
 }
