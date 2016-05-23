@@ -2,14 +2,11 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
-use DB;
-use Validator;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
-use League\Fractal\Resource\Item;
 use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
