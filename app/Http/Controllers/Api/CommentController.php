@@ -23,7 +23,7 @@ class CommentController extends Controller
     /**
      * Fractal is injected here inside the constructor to initialize
      * the Transformer. The episodeRepository is also called here to
-     * initialize it 
+     * initialize it
      */
     public function __construct(Manager $fractal)
     {
@@ -42,12 +42,12 @@ class CommentController extends Controller
     {
         $episodes = $this->episodeRepository
             ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
-	        ->get()
-	        ->first();
+            ->get()
+            ->first();
 
         if (is_null($episodes)) {
             return Response::json(['message' => 'Episode does not exist'], 404);
-	    }
+        }
 
         $comment = Comment::where('episode_id', '=', $episodes->id);
 
