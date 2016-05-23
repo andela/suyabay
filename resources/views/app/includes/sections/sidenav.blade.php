@@ -5,8 +5,8 @@
         <a href="/channels">CHANNELS <span class="new badge grey darken-2" style="padding:5px;">{{ $channels->count() }}</span></a>
     </li>
 
-    <li class="collection-item center-align">
-        <a href="{{ URL::to('search') }}">SEARCH</a>
+    <li class="search">
+        @include('app.includes.contents.searchform')
     </li>
 
     <li class="collection-item">
