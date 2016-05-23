@@ -31,18 +31,21 @@ class ChannelEpisodeDetailsTest extends TestCase
         ]);
 
         $episode = factory('Suyabay\Episode')->create([
+            'episode_name' => strtolower('Nyama Choma'),
             'channel_id' => $channel->id,
         ]);
 
         $response = $this->actingAs($user)
         ->call(
             'GET', 
-            '/api/v1/channels/'.$channel->channel_name.'/episodes/'.$episode->episode_name, 
+            '/api/v1/channels/'.$channel->channel_name.'/episodes/'.$episode->first()->episode_name, 
         []);
 
         $decodedResponse = json_decode($response->getContent());
 
-        var_dump($decodedResponse);
+        $this->assertEquals($decodedResponse->data->channel_name, $channel->channel_name);
+        $this->assertEquals($decodedResponse->data->id, $episode->id);
+        $this->assertEquals($decodedResponse->data->name, $episode->episode_name);
 
     }
 }
