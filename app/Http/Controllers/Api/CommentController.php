@@ -24,7 +24,7 @@ class CommentController extends Controller
      * Fractal is injected here inside a constructor to initilize
      * it.
      *
-    */
+     */
     public function __construct(Manager $fractal)
     {
         $this->fractal = $fractal;
