@@ -20,6 +20,11 @@ class CommentController extends Controller
     protected $response;
     protected $fractal;
 
+    /**
+     * Fractal is injected here inside a constructor to initilize
+     * it.
+     *
+    */ 
     public function __construct(Manager $fractal)
     {
         $this->fractal = $fractal;
@@ -37,7 +42,7 @@ class CommentController extends Controller
         $episodes = Episode::where('episode_name', '=', strtolower(urldecode($name)))
 	        ->get()
 	        ->first();
-	        
+
         if (is_null($episodes)) {
             return Response::json(['message' => 'Episode does not exist'], 404);
 	    }
@@ -47,6 +52,7 @@ class CommentController extends Controller
         if (is_null($comment->first())) {
             return Response::json(['message' => 'Comment not available for this episode'], 404);
         }
+
         $comments = $comment->first()->episode->comment;
         $resource = new Collection($comments, $commentTransformer);
 

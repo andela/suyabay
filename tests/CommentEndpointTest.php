@@ -1,27 +1,82 @@
 <?php
 
-use Suyabay\User;
+use Suyabay\Episode;
+use Suyabay\Comment;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class CommentEnpointTest extends TestCase
+class CommentEndpointTest extends TestCase
 {
-    use Suyabay\Tests\CreateData;
-
+	/**
+     * Test that episode does not exist when a user try to
+     * access a route passing unexisting episode name.
+     *
+     * @return void
+     */
     public function testThatEpisodeDoesNotExist()
     {
-        $this->get('/api/v1/Episodes/ogaboss/comments')
-        ->seeJson()
-        ->seeStatusCode(404);
+        $user = factory('Suyabay\User')->create();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogabos/comments');
+        $decodeResponse = json_decode($response->getContent());
+        
+        $this->assertEquals($decodeResponse->message, 'Episode does not exist');
+        $this->assertEquals($response->status(), 404);   
     }
 
-    public function testThatCommentNotAvailableForEpisode()
+    /**
+     * Test that their are no comment available in an
+     * episode a user tries to access.
+     *
+     * @return void
+     */
+    public function testThatCommentIsNotAvailableForEpisode()
     {
-    	factory('Suyabay\User')->create([
+        $user = factory('Suyabay\User')->create();
+
+        $this->createEpisode();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+        $decodeResponse = json_decode($response->getContent());
+        $this->assertEquals($decodeResponse->message, 'Comment not available for this episode');
+        $this->assertEquals($response->status(), 404);
+    }
+
+    /**
+     * Test that a user gets all the comments available 
+     * in an episode.
+     *
+     * @return void
+     */
+    public function testGetAllComment()
+    {
+        $user = factory('Suyabay\User')->create();
+
+        $this->createEpisode();
+        $this->createComment();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+        $decodeResponse = json_decode($response->getContent());
+        $array = $decodeResponse->data;
+        $this->assertTrue(is_array($decodeResponse->data));
+
+        $this->get('/api/v1/episodes/ogaboss/comments')
+            ->seeJson()
+            ->seeStatusCode(200);
+    }
+
+    /**
+     * A methos to create a fake epispode from the factory
+     *
+     * @return obj
+     */
+    public function createEpisode()
+    {
+        return factory('Suyabay\Episode')->create([
 	        'episode_name'          => 'ogaboss',
-	        'episode_description'   => '',
+	        'episode_description'   => 'Team lead',
 	        'view_count'            => 10,
 	        'image'                 => "http://goo.gl/8sorZR",
 	        'audio_mp3'             => "http://goo.gl/LkNP5M",
@@ -31,8 +86,17 @@ class CommentEnpointTest extends TestCase
         ]);
     }
 
-    public function testGetAllComment()
+    /**
+     * A methos to create a fake comment from the factory
+     *
+     * @return obj
+     */
+    public function createComment()
     {
-        
+        return factory('Suyabay\Comment')->create([
+	        'user_id'       => 1,
+	        'comments'      => 'Nice job',
+	        'episode_id'    => 1,
+        ]);
     }
 }
