@@ -51,7 +51,10 @@ class ChannelEpisodeDetailsTest extends TestCase
     public function testThatChannelEpisodeNameIsIncorrect()
     {
         $user = factory('Suyabay\User')->create();
-        $channel = factory('Suyabay\Channel')->create();
+
+        $channel = factory('Suyabay\Channel')->create([
+            'channel_name' => strtolower('Roy'),
+        ]);
 
         $episode = factory('Suyabay\Episode')->create([
             'episode_name' => 'Nyama Choma',
@@ -60,8 +63,8 @@ class ChannelEpisodeDetailsTest extends TestCase
 
         $response = $this->actingAs($user)
         ->call(
-            'GET', 
-            '/api/v1/channels/'.$channel->channel_name.'/episodes/lookingforepisode', 
+            'GET',
+            '/api/v1/channels/'.$channel->channel_name.'/episodes/lookingforepisode',
         []);
 
         $decodedResponse = json_decode($response->getContent());
