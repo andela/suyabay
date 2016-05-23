@@ -83,7 +83,7 @@ class ChannelEpisodesController extends Controller
         if (! is_null($channel)) {
             $episode = $this->getEpisodeByName($episodeName, $channel);
 
-            if (count($episode) <= 0 ) {
+            if (count($episode) <= 0) {
                 return Response::json(['message' => 'Episode not found!'], 404);
             }
 
@@ -98,11 +98,11 @@ class ChannelEpisodesController extends Controller
     }
 
     /**
-     * This method gets channel details by it's name and 
+     * This method gets channel details by it's name and
      * return the channel object.
-     * 
+     *
      * @param $name
-     * 
+     *
      * @return Channel
      */
     public function getChannelByName($name)
