@@ -19,6 +19,8 @@ use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
 class ChannelEpisodesController extends Controller
 {
+    use Utility\Utility;
+
     protected $mail;
     protected $fractal;
 
@@ -37,23 +39,26 @@ class ChannelEpisodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllEpisodes(Request $request, $name, ChannelEpisodesTransformer $channelEpisodesTransformer)
+    public function getAllEpisodes($name, Request $request, ChannelEpisodesTransformer $channelEpisodesTransformer)
     {
         $episodes = null;
 
-        $perPage = $request->query('limit') ? : 10;
+        $perPage = $request->has('limit') ? (int) $request->input('limit') : 10;
 
         $channel = $this->getChannelByName($name);
 
         if (! is_null($channel)) {
             $episodes = $this->getEpisodesByChannnelId($channel, $perPage, $request);
 
-            $episodesWithComments = $this->formatEpisodes($episodes);
+            if (! is_null($episodes)) {
+                $episodesWithComments = $this->formatEpisodes($episodes);
+                $resource = new Collection($episodesWithComments, $channelEpisodesTransformer);
+                $data = $this->fractal->createData($resource)->toArray();
 
-            $resource = new Collection($episodesWithComments, $channelEpisodesTransformer);
-            $data = $this->fractal->createData($resource)->toArray();
+                return Response::json($data, 200);
+            }
 
-            return Response::json($data, 200);
+            return Response::json(['message' => 'Channel does not have episodes yet'], 404);
 
         }
 
@@ -139,7 +144,8 @@ class ChannelEpisodesController extends Controller
     public function formatEpisodes($episodes)
     {
         foreach ($episodes as $key => &$value) {
-            $comments = Episode::episodeComments($value->id)->count();
+            $newEpisodes = $episodes->find($value->id)->first();
+            $comments = $newEpisodes->comment()->count();
             $value['comments'] = $comments;
         }
 
