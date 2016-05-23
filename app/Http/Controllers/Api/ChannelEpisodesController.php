@@ -7,6 +7,7 @@ use Suyabay\Episode;
 use Suyabay\Http\Requests;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
+use League\Fractal\Resource\Item;
 use Illuminate\Mail\Mailer as Mail;
 use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
@@ -87,7 +88,7 @@ class ChannelEpisodesController extends Controller
             }
 
             $episodeWithComments = $this->formatEpisodes($episode);
-            $resource = new Collection($episodeWithComments, $channelEpisodesTransformer);
+            $resource = new Item($episodeWithComments->first(), $channelEpisodesTransformer);
             $data = $this->fractal->createData($resource)->toArray();
 
             return Response::json($data, 200);
