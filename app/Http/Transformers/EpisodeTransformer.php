@@ -6,7 +6,7 @@ use Suyabay\Episode;
 use League\Fractal;
 use Suyabay\Http\Repository\ChannelRepository;
 
-class episodeTransformer extends Fractal\TransformerAbstract
+class EpisodeTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Episode $episode)
     {

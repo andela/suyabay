@@ -7,7 +7,7 @@ use Suyabay\Comment;
 use League\Fractal;
 use Suyabay\Http\Repository\UserRepository;
 
-class commentTransformer extends Fractal\TransformerAbstract
+class CommentTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Comment $comment)
     {
