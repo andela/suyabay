@@ -18,7 +18,7 @@ class episodeTransformer extends Fractal\TransformerAbstract
         'channel'            => $episode->channel_id,
         'likes'              => $episode->likes,
         'cover_image_url'    => $episode->image,
-        'audio'              => $episode->audio_mp3
+        'audio'              => $episode->audio_mp3,
         ];
     }
 }
