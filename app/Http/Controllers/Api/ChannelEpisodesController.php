@@ -98,22 +98,6 @@ class ChannelEpisodesController extends Controller
     }
 
     /**
-     * This method validate channel request.
-     *
-     * @param $pageLimit
-     * @param $request
-     *
-     * @return $recordsToSkip
-     */
-    public function getRecordsToSkip($pageLimit, $request)
-    {
-        $page = $request->query('page') ? : 1;
-        $recordsToSkip = (int) ($pageLimit * $page) - $pageLimit;
-
-        return $recordsToSkip;
-    }
-
-    /**
      * This method gets channel details by it's name and 
      * return the channel object.
      * 
