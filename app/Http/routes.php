@@ -64,7 +64,6 @@ Route::group(['prefix' => '/developer'], function () {
 |--------------------------------------------------------------------------
 | API Routes - Users
 |--------------------------------------------------------------------------
-
 */
 Route::group(['prefix' => 'api/v1/'], function () {
 
@@ -180,16 +179,15 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\CommentController@getAllComments'
      ]);
 
-    Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
+    Route::get('episodes/{name}/comments/{comment_id}', function () {
 
         return json_encode(["message" => "get a single comment under an episode"]);
     });
 
-    Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
+    Route::delete('episodes/{name}/comments/{comment_id}', function () {
 
         return json_encode(["message" => "delete a single comment under an episode"]);
     });
-    
 });
 
 /*
