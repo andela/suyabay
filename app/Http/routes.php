@@ -126,29 +126,29 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
 |--------------------------------------------------------------------------
-
 */
-    Route::get('channels/{channel_id}/episodes', function () {
 
-        return json_encode(["message" => "view all episodes under a channel"]);
-    });
 
-    Route::get('channels/{channel_id}/episodes/{episode_id}', function () {
+    Route::get('channels/{name}/episodes', [
+        'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
+    ]);
+
+    Route::get('channels/{name}/episodes/{episode_id}', function () {
 
         return json_encode(["message" => "view an episodes under a channel"]);
     });
 
-    Route::post('channels/{channel_id}/episodes', function () {
+    Route::post('channels/{name}/episodes', function () {
 
         return json_encode(["message" => "post an episode under a channel"]);
     });
 
-    Route::put('channels/{channel_id}/episodes/{episode_id}', function () {
+    Route::put('channels/{name}/episodes/{episode_id}', function () {
 
         return json_encode(["message" => "update an episode under a channel"]);
     });
 
-    Route::delete('channels/{channel_id}/episodes/{episode_id}', function () {
+    Route::delete('channels/{name}/episodes/{episode_id}', function () {
 
         return json_encode(["message" => "delete an episode under a channel"]);
     });
