@@ -17,7 +17,6 @@ use Suyabay\Http\Transformers\EpisodeTransformer;
 
 class CommentController extends Controller
 {
-    protected $response;
     protected $fractal;
     protected $episodeRepository;
 
@@ -29,9 +28,7 @@ class CommentController extends Controller
     public function __construct(Manager $fractal, EpisodeRepository $episodeRepository)
     {
         $this->fractal           = $fractal;
-        $this->fractal        = $fractal;
         $this->episodeRepository = $episodeRepository;
-
     }
 
     /**
