@@ -19,16 +19,19 @@ class CommentController extends Controller
 {
     protected $response;
     protected $fractal;
+    protected $episodeRepository;
 
     /**
      * Fractal is injected here inside the constructor to initialize
      * the Transformer. The episodeRepository is also called here to
      * initialize it
      */
-    public function __construct(Manager $fractal)
+    public function __construct(Manager $fractal, EpisodeRepository $episodeRepository)
     {
         $this->fractal           = $fractal;
-        $this->episodeRepository = new EpisodeRepository();
+        $this->fractal        = $fractal;
+        $this->episodeRepository = $episodeRepository;
+
     }
 
     /**
@@ -46,22 +49,20 @@ class CommentController extends Controller
             ->first();
 
         if (is_null($episodes)) {
-            return Response::json(['message' => 'Episode does not exist'], 404);
+            return response()->json(['message' => 'Episode does not exist'], 404);
         }
 
-        $comment = Comment::where('episode_id', '=', $episodes->id);
+        $comment = Comment::where('episode_id', $episodes->id);
 
         if (is_null($comment->first())) {
-            return Response::json(['message' => 'Comment not available for this episode'], 404);
+            return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
 
-        $comments = $comment->first()->episode->comment;
+        $comments = $comment->first()->get();
         $resource = new Collection($comments, $commentTransformer);
-
+        
         $data = $this->fractal->createData($resource)->toArray();
 
-        if (count($data['data']) > 0) {
-            return Response::json($data, 200);
-        }
+        return response()->json($data, 200);
     }
 }
