@@ -52,4 +52,20 @@ class UserEpisodesLikeController extends Controller
 
         return Response::json(['message' => 'User has 0 episode like(s)!'], 404);
     }
+
+    /**
+     * This method formats and return episodes liked by a user.
+     *
+     * @param $user
+     *
+     * @return Like
+     */
+    public function formatUserEpisodeLikes($likes)
+    {
+        foreach ($likes as $key => $value) {
+            $value->episode;
+        }
+
+        return $likes;
+    }
 }
