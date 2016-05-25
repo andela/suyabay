@@ -78,7 +78,7 @@
                                                     <img src="{{ $comment->user->getAvatar() }}" alt="" class="circle" onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($comment->user->email))).\'?d=mm&s=500'">
                                                 </div>
                                                 <div class="col s10">
-                                                    <div class="textarea-wrapper" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
+                                                    <div class="jumbotron" data-comment-id="{{ $comment->id }}" data-token="{{ csrf_token() }}">
                                                         <span>
                                                             {{$comment->comments}}
                                                         </span>
@@ -105,7 +105,7 @@
                                 </li>
                                     @if ( Auth::check() )
                                             @if( count($firstTenComments) > 0 )
-                                                <input type="hidden" id="episode_id" value=" {{ $firstTenComments[0]['episode_id'] }}" />
+                                                <input type="hidden" id="video_id" value=" {{ $firstTenComments[0]['video_id'] }}" />
                                                 <li>
                                                     <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
                                                         <a href="#" title="View more comments">
@@ -114,7 +114,7 @@
                                                     </div>
                                                 </li>
                                             @endif
-                                    <li class="collection-item avatar">
+                                    <li class="list-group avatar">
                                     
                                         <div class="row">
                                     
