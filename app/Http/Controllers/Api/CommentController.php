@@ -43,8 +43,6 @@ class CommentController extends Controller
      */
     public function getAllComments($name, Request $request, commentTransformer $commentTransformer)
     {
-        $fromDate = $request->query('fromDate');
-        $toDate   = $request->query('toDate');
         $limit    = $request->query('limit') ? : 10;
 
         $episodes = $this->episodeRepository
@@ -63,11 +61,7 @@ class CommentController extends Controller
             return $this->displayCommentData($comment, $limit, $commentTransformer);
         }
 
-        $comment = Comment::where('episode_id', $episodes->id)
-            ->orderBy('created_at', 'desc')
-            ->whereBetween('created_at', [$fromDate, $toDate]);
-
-        return $this->displayCommentData($comment, $limit, $commentTransformer);
+        return $this->findCommentByDate($episode, $comment, $commentTransformer);
     }
 
     /**
@@ -91,5 +85,26 @@ class CommentController extends Controller
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
+    }
+
+    /**
+     * This method displays the result of the comment
+     *
+     * @param $comment
+     * @param $limit
+     * @param $commentTransformer
+     *
+     * @return json $response
+     */
+    public function findCommentByDate($episode, $comment, commentTransformer $commentTransformer)
+    {
+        $fromDate = $request->query('fromDate');
+        $toDate   = $request->query('toDate');
+
+        $comment = Comment::where('episode_id', $episodes->id)
+            ->orderBy('created_at', 'desc')
+            ->whereBetween('created_at', [$fromDate, $toDate]);
+
+        return $this->displayCommentData($comment, $limit, $commentTransformer);
     }
 }
