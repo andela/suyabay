@@ -7,7 +7,6 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
 use Auth;
-use DB;
 
 class CommentController extends Controller
 {
@@ -29,6 +28,7 @@ class CommentController extends Controller
     public function postComment(Request $request)
     {
         $newComment = $this->create($request->all());
+        // dd($newComment);
         return [
             'message' => 'Comment created Successfully',
             'status_code' => 200,

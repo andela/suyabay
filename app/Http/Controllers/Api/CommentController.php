@@ -2,6 +2,8 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
+use DB;
+use Carbon\Carbon;
 use Suyabay\Comment;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
@@ -38,8 +40,12 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function getAllComments($name, commentTransformer $commentTransformer)
+    public function getAllComments($name, Request $request, commentTransformer $commentTransformer)
     {
+        $fromDate = $request->query('fromDate');
+        $toDate   = $request->query('toDate');
+        $limit    = $request->query('limit') ? : 10;
+
         $episodes = $this->episodeRepository
             ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
             ->get()
@@ -49,13 +55,15 @@ class CommentController extends Controller
             return response()->json(['message' => 'Episode does not exist'], 404);
         }
 
-        $comment = Comment::where('episode_id', $episodes->id);
-
+        $comment = Comment::where('episode_id', $episodes->id)
+            ->orderBy('created_at', 'desc')
+            ->whereBetween('created_at', [$fromDate, $toDate]);
+    
         if (is_null($comment->first())) {
             return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
 
-        $comments = $comment->first()->get();
+        $comments = $comment->take($limit)->get();
         $resource = new Collection($comments, $commentTransformer);
         
         $data = $this->fractal->createData($resource)->toArray();
