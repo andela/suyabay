@@ -38,7 +38,7 @@ class CommentController extends Controller
      * @param $name
      * @param $request
      * @param $commentTransformer
-     * 
+     *
      * @return json $response
      */
     public function getAllComments($name, Request $request, commentTransformer $commentTransformer)
