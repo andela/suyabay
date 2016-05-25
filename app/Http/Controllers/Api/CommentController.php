@@ -2,7 +2,6 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
-use DB;
 use Carbon\Carbon;
 use Suyabay\Comment;
 use Suyabay\Episode;
@@ -55,18 +54,30 @@ class CommentController extends Controller
             return response()->json(['message' => 'Episode does not exist'], 404);
         }
 
+        if (empty($_GET['query'])) {
+            $comment = Comment::where('episode_id', $episodes->id)
+                ->orderBy('created_at', 'desc');
+
+            return $this->displayResult($comment, $limit, $commentTransformer);
+        }
+
         $comment = Comment::where('episode_id', $episodes->id)
             ->orderBy('created_at', 'desc')
             ->whereBetween('created_at', [$fromDate, $toDate]);
-    
+
+        return $this->displayResult($comment, $limit, $commentTransformer);
+    }
+
+    public function displayResult($comment, $limit, commentTransformer $commentTransformer)
+    {
         if (is_null($comment->first())) {
             return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
 
         $comments = $comment->take($limit)->get();
         $resource = new Collection($comments, $commentTransformer);
-        
-        $data = $this->fractal->createData($resource)->toArray();
+
+        $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
     }
