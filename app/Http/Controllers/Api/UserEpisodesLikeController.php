@@ -44,8 +44,8 @@ class UserEpisodesLikeController extends Controller
         $likes = $user->likes()->get();
 
         if (count($likes) > 0) {
-             return Response::json(
-                $this->createUserLikedEpisodeResponse($likes, $userLikedEpisodeTransformer), 
+            return Response::json(
+                $this->createUserLikedEpisodeResponse($likes, $userLikedEpisodeTransformer),
                 200
             );
         }
