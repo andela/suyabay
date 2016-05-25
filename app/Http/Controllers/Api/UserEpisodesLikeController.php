@@ -44,9 +44,6 @@ class UserEpisodesLikeController extends Controller
         $likes = $user->likes()->get();
 
         if (count($likes) > 0) {
-
-            //dd($this->formatUserEpisodeLikes($likes));
-
             $resource = new Collection(
                 $this->formatUserEpisodeLikes($likes),
                 $userLikedEpisodeTransformer
