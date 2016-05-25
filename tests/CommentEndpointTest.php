@@ -38,7 +38,7 @@ class CommentEndpointTest extends TestCase
 
         $this->createEpisode();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
         $decodeResponse = json_decode($response->getContent());
         $this->assertEquals($decodeResponse->message, 'Comment not available for this episode');
         $this->assertEquals($response->status(), 404);
@@ -50,17 +50,17 @@ class CommentEndpointTest extends TestCase
      *
      * @return void
      */
-    public function testGetAllComment()
+    public function testgetEpisodeComments()
     {
         $user = factory('Suyabay\User')->create();
 
         $this->createEpisode();
         $this->createComment();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
         $decodeResponse = json_decode($response->getContent());
-        $array = $decodeResponse->data;
-        $this->assertTrue(is_array($decodeResponse->data));
+        $array          = $decodeResponse->data;
+        $this->assertTrue(is_object($decodeResponse->data));
 
         $this->get('/api/v1/episodes/ogaboss/comments')
             ->seeJson()

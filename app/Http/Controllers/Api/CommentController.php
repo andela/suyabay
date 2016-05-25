@@ -38,26 +38,22 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function getAllComments($name, commentTransformer $commentTransformer)
+    public function getEpisodeComments($name, EpisodeTransformer $episodeTransformer)
     {
-        $episodes = $this->episodeRepository
+        $episode = $this->episodeRepository
             ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
-            ->get()
             ->first();
 
-        if (is_null($episodes)) {
+        if (is_null($episode)) {
             return response()->json(['message' => 'Episode does not exist'], 404);
         }
 
-        $comment = Comment::where('episode_id', $episodes->id);
-
-        if (is_null($comment->first())) {
+        if ($episode->comment->count() == 0) {
             return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
+    
+        $resource = new Item($episode, $episodeTransformer);
 
-        $comments = $comment->first()->get();
-        $resource = new Collection($comments, $commentTransformer);
-        
         $data = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
