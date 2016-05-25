@@ -12,19 +12,16 @@ use League\Fractal\Resource\Item;
 use Illuminate\Mail\Mailer as Mail;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
-use Suyabay\Http\Repository\UserRepository;
-use Suyabay\Http\Transformers\UserTransformer;
+use League\Fractal\Resource\Collection;
+use Suyabay\Http\Transformers\UserLikedEpisodeTransformer;
 
 class UserEpisodesLikeController extends Controller
 {
-    protected $mail;
-    protected $response;
     protected $fractal;
 
     public function __construct(Manager $fractal, Mail $mail)
     {
         $this->fractal = $fractal;
-        parent::__construct($mail);
     }
 
     /**
@@ -34,7 +31,7 @@ class UserEpisodesLikeController extends Controller
      *
      * @return like
      */
-    public function getUserLikedEpisodes($username)
+    public function getUserLikedEpisodes($username, UserLikedEpisodeTransformer $userLikedEpisodeTransformer)
     {
         $user = User::where('username', urldecode($username))
         ->get()
@@ -47,7 +44,16 @@ class UserEpisodesLikeController extends Controller
         $likes = $user->likes()->get();
 
         if (count($likes) > 0) {
-             return Response::json($this->formatUserEpisodeLikes($likes), 200);
+
+            //dd($this->formatUserEpisodeLikes($likes));
+
+            $resource = new Collection(
+                $this->formatUserEpisodeLikes($likes),
+                $userLikedEpisodeTransformer
+            );
+            $data = $this->fractal->createData($resource)->toArray();
+
+             return Response::json($data, 200);
         }
 
         return Response::json(['message' => 'User has 0 episode like(s)!'], 404);
