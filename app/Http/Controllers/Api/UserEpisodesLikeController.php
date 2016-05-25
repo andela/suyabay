@@ -44,13 +44,10 @@ class UserEpisodesLikeController extends Controller
         $likes = $user->likes()->get();
 
         if (count($likes) > 0) {
-            $resource = new Collection(
-                $this->formatUserEpisodeLikes($likes),
-                $userLikedEpisodeTransformer
+             return Response::json(
+                $this->createUserLikedEpisodeResponse($likes, $userLikedEpisodeTransformer), 
+                200
             );
-            $data = $this->fractal->createData($resource)->toArray();
-
-             return Response::json($data, 200);
         }
 
         return Response::json(['message' => 'User has 0 episode like(s)!'], 404);
@@ -70,5 +67,23 @@ class UserEpisodesLikeController extends Controller
         }
 
         return $likes;
+    }
+
+    /**
+     * This method creates user episode likes data and return it back
+     * to the response body.
+     *
+     * @param $likes
+     * @param $userLikedEpisodeTransformer
+     *
+     * @return $data
+     */
+    public function createUserLikedEpisodeResponse($likes, $userLikedEpisodeTransformer)
+    {
+        $resource = new Collection(
+            $this->formatUserEpisodeLikes($likes),
+            $userLikedEpisodeTransformer
+        );
+        returnn $data = $this->fractal->createData($resource)->toArray();
     }
 }
