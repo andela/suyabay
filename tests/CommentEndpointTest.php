@@ -68,6 +68,29 @@ class CommentEndpointTest extends TestCase
     }
 
     /**
+     * Test that a user gets all the comments available 
+     * if query is passed.
+     *
+     * @return void
+     */
+    public function testGetCommentBaseOnQueryPassed()
+    {
+        $user = factory('Suyabay\User')->create();
+
+        $this->createEpisode();
+        $this->createComment();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2');
+        $decodeResponse = json_decode($response->getContent());
+        $array = $decodeResponse->data;
+        $this->assertTrue(is_array($decodeResponse->data));
+
+        $this->get('/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2')
+            ->seeJson()
+            ->seeStatusCode(200);
+    }
+
+    /**
      * A methos to create a fake epispode from the factory
      *
      * @return obj

@@ -36,7 +36,9 @@ class CommentController extends Controller
      * This method retrieves all the comments in a particular episode
      *
      * @param $name
-     *
+     * @param $request
+     * @param $commentTransformer
+     * 
      * @return json $response
      */
     public function getAllComments($name, Request $request, commentTransformer $commentTransformer)
@@ -58,17 +60,26 @@ class CommentController extends Controller
             $comment = Comment::where('episode_id', $episodes->id)
                 ->orderBy('created_at', 'desc');
 
-            return $this->displayResult($comment, $limit, $commentTransformer);
+            return $this->displayCommentData($comment, $limit, $commentTransformer);
         }
 
         $comment = Comment::where('episode_id', $episodes->id)
             ->orderBy('created_at', 'desc')
             ->whereBetween('created_at', [$fromDate, $toDate]);
 
-        return $this->displayResult($comment, $limit, $commentTransformer);
+        return $this->displayCommentData($comment, $limit, $commentTransformer);
     }
 
-    public function displayResult($comment, $limit, commentTransformer $commentTransformer)
+    /**
+     * This method displays the result of the comment
+     *
+     * @param $comment
+     * @param $limit
+     * @param $commentTransformer
+     *
+     * @return json $response
+     */
+    public function displayCommentData($comment, $limit, commentTransformer $commentTransformer)
     {
         if (is_null($comment->first())) {
             return response()->json(['message' => 'Comment not available for this episode'], 404);
