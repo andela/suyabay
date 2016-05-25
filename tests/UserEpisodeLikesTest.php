@@ -39,11 +39,9 @@ class UserEpisodeLikesTest extends TestCase
         ->call('GET', '/api/v1/users/'.$user->username.'/favourites');
 
         $decodedResponse = json_decode($response->getContent());
-
-        var_dump(expression)
-        exit();
-
-        $this->assertEquals($decodedResponse->message, 'User not found!');
+        
+        $this->assertEquals($decodedResponse->data[0]->name, $episode->episode_name);
+        $this->assertEquals($decodedResponse->data[0]->brief_description, $episode->episode_description);
         $this->assertEquals($response->status(), 200);
     }
 }
