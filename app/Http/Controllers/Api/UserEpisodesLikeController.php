@@ -84,6 +84,6 @@ class UserEpisodesLikeController extends Controller
             $this->formatUserEpisodeLikes($likes),
             $userLikedEpisodeTransformer
         );
-        returnn $data = $this->fractal->createData($resource)->toArray();
+        return $data = $this->fractal->createData($resource)->toArray();
     }
 }
