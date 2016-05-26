@@ -7,6 +7,10 @@ use League\Fractal;
 
 class UserLikedEpisodeTransformer extends Fractal\TransformerAbstract
 {
+    protected $defaultIncludes = [
+        'user'
+    ];
+
     public function transform(Like $like)
     {
         return [
@@ -20,5 +24,18 @@ class UserLikedEpisodeTransformer extends Fractal\TransformerAbstract
             'date_modified'      => $like->episode->updated_at,
             'created_by'         => $like->user->username,
         ];
+    }
+
+    /**
+     * Include User
+     *
+     * @param Like $like
+     * @return \League\Fractal\Resource\Item
+     */
+    public function includeUser(Like $like)
+    {
+        $user = $like->user;
+
+        return $this->item($user, new UserTransformer);
     }
 }
