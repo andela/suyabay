@@ -141,8 +141,8 @@ class ChannelEpisodesController extends Controller
     {
         foreach ($episodes as $key => &$value) {
             $newEpisodes = $episodes->find($value->id)->first();
-            $comments = $newEpisodes->comment()->count();
-            $value['comments'] = $comments;
+            $comments = $newEpisodes->comment();
+            $value['comments'] = $comments->count();
         }
 
         return $episodes;
