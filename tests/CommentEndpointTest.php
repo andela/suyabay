@@ -60,7 +60,7 @@ class CommentEndpointTest extends TestCase
         $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
         $decodeResponse = json_decode($response->getContent());
         $array          = $decodeResponse->data;
-        $this->assertTrue(is_object($decodeResponse->data));
+        $this->assertTrue(is_array($decodeResponse->data));
 
         $this->get('/api/v1/episodes/ogaboss/comments')
             ->seeJson()
@@ -73,7 +73,7 @@ class CommentEndpointTest extends TestCase
      *
      * @return void
      */
-    public function testGetCommentBaseOnQueryPassed()
+    public function testdisplayCommentsByDate()
     {
         $user = factory('Suyabay\User')->create();
 
