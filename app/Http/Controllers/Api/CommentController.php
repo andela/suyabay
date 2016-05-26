@@ -56,7 +56,7 @@ class CommentController extends Controller
         }
 
         if ($request->query->count() == 0) {
-            return $this->displayAllComments($episode, $episodeTransformer);
+            return $this->displayComments($episode, $episodeTransformer);
         }
 
         return $this->displayCommentsByDate($episode, $request, $commentTransformer);
