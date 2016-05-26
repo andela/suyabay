@@ -41,27 +41,25 @@ class CommentController extends Controller
      * 
      * @return json $response
      */
-    public function getAllComments($name, Request $request, commentTransformer $commentTransformer)
+    public function getEpisodeComments($name, Request $request, EpisodeTransformer $episodeTransformer, CommentTransformer $commentTransformer)
     {
-        $limit    = $request->query('limit') ? : 10;
-
-        $episodes = $this->episodeRepository
+        $episode = $this->episodeRepository
             ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
-            ->get()
             ->first();
 
-        if (is_null($episodes)) {
+        if (is_null($episode)) {
             return response()->json(['message' => 'Episode does not exist'], 404);
         }
 
-        if (empty($_GET['query'])) {
-            $comment = Comment::where('episode_id', $episodes->id)
-                ->orderBy('created_at', 'desc');
-
-            return $this->displayCommentData($comment, $limit, $commentTransformer);
+        if (! is_null($episode->comment) && $episode->comment->count() == 0) {
+            return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
 
-        return $this->findCommentByDate($episode, $comment, $commentTransformer);
+        if ($request->query->count() == 0) {
+            return $this->displayAllComments($episode, $episodeTransformer);
+        }
+
+        return $this->displayCommentsByDate($episode, $request, $commentTransformer);
     }
 
     /**
@@ -73,14 +71,10 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function displayCommentData($comment, $limit, commentTransformer $commentTransformer)
+    public function displayAllComments($episode, $episodeTransformer)
     {
-        if (is_null($comment->first())) {
-            return response()->json(['message' => 'Comment not available for this episode'], 404);
-        }
-
-        $comments = $comment->take($limit)->get();
-        $resource = new Collection($comments, $commentTransformer);
+        $episode  = $episode->get();
+        $resource = new Collection($episode, $episodeTransformer);
 
         $data     = $this->fractal->createData($resource)->toArray();
 
@@ -96,15 +90,22 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function findCommentByDate($episode, $comment, commentTransformer $commentTransformer)
+    public function displayCommentsByDate($episode, $request, $commentTransformer)
     {
         $fromDate = $request->query('fromDate');
         $toDate   = $request->query('toDate');
+        $limit    = $request->query('limit');
 
-        $comment = Comment::where('episode_id', $episodes->id)
-            ->orderBy('created_at', 'desc')
-            ->whereBetween('created_at', [$fromDate, $toDate]);
+        $comments = Comment::where('episode_id', $episode->id)
+           ->orderBy('created_at', 'desc')
+           ->whereBetween('created_at', [$fromDate, $toDate])
+           ->take($limit)
+           ->get();
 
-        return $this->displayCommentData($comment, $limit, $commentTransformer);
+        $resource = new Collection($comments, $commentTransformer);
+
+        $data     = $this->fractal->createData($resource)->toArray();
+
+        return response()->json($data, 200);
     }
 }

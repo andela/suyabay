@@ -177,7 +177,7 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
 */
     Route::get('episodes/{name}/comments', [
-        'uses' => 'Api\CommentController@getAllComments'
+        'uses' => 'Api\CommentController@getEpisodeComments'
      ]);
 
     Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
