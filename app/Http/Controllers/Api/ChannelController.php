@@ -70,11 +70,11 @@ class ChannelController extends Controller
             $pending = Channel::pendingEpisodes($value->id)->count();
             $active  = Channel::activeEpisodes($value->id)->count();
             $value['user_id'] = UserRepository::findUser($value->user_id)->username;
-            if ($pending != 0 || $active != 0) {
-                $value['episode'] = compact('pending', 'active');
-            } else {
-                $value['episode'] = 0;
-            }
+            // if ($pending != 0 || $active != 0) {
+            //     $value['episode'] = compact('pending', 'active');
+            // } else {
+            //     $value['episode'] = 0;
+            // }
 
         }
         

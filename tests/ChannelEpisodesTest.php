@@ -31,7 +31,6 @@ class ChannelEpisodesTest extends TestCase
         $decodedResponse = json_decode($response->getContent());
 
         $this->assertEquals($response->status(), 200);
-        $this->assertEquals($decodedResponse->data[0]->channel_name, $channel->channel_name);
         $this->assertGreaterThan(0, count($decodedResponse->data[0]));
     }
 

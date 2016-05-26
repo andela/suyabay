@@ -43,7 +43,6 @@ class ChannelEpisodeDetailsTest extends TestCase
 
         $decodedResponse = json_decode($response->getContent());
 
-        $this->assertEquals($decodedResponse->data->channel_name, $channel->channel_name);
         $this->assertEquals($decodedResponse->data->id, $episode->id);
         $this->assertEquals($decodedResponse->data->name, $episode->episode_name);
     }
