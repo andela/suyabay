@@ -34,7 +34,6 @@ class UserEpisodesLikeController extends Controller
     public function getUserLikedEpisodes($username, UserLikedEpisodeTransformer $userLikedEpisodeTransformer)
     {
         $user = User::where('username', urldecode($username))
-        ->get()
         ->first();
         if (is_null($user)) {
             return Response::json(['message' => 'User not found!'], 404);
