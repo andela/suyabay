@@ -109,7 +109,6 @@ class ChannelEpisodesController extends Controller
     {
         return $this->channelRepository
         ->findChannelWhere('channel_name', strtolower(urldecode($name)))
-        ->get()
         ->first();
     }
 
