@@ -22,7 +22,6 @@ class UserLikedEpisodeTransformer extends Fractal\TransformerAbstract
             'audio_url'          => $like->episode->audio_mp3,
             'date_created'       => $like->episode->created_at,
             'date_modified'      => $like->episode->updated_at,
-            'created_by'         => $like->user->username,
         ];
     }
 
