@@ -71,7 +71,7 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function displayAllComments($episode, $episodeTransformer)
+    public function displayComments($episode, $episodeTransformer)
     {
         $episode  = $episode->get();
         $resource = new Collection($episode, $episodeTransformer);
