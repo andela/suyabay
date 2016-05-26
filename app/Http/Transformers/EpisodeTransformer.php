@@ -21,5 +21,4 @@ class EpisodeTransformer extends Fractal\TransformerAbstract
             'date_modified'      => $episode->updated_at,
         ];
     }
-
 }
