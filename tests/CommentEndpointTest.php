@@ -80,7 +80,8 @@ class CommentEndpointTest extends TestCase
         $this->createEpisode();
         $this->createComment();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2');
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+        dd($response);
         $decodeResponse = json_decode($response->getContent());
         $array = $decodeResponse->data;
         $this->assertTrue(is_array($decodeResponse->data));
@@ -110,16 +111,30 @@ class CommentEndpointTest extends TestCase
     }
 
     /**
-     * A methos to create a fake comment from the factory
+     * A method to create a fake comment from the factory
      *
      * @return obj
      */
     public function createComment()
     {
-        return factory('Suyabay\Comment')->create([
+        return factory('Suyabay\Comment', 2)->create([
 	        'user_id'       => 1,
 	        'comments'      => 'Nice job',
 	        'episode_id'    => 1,
+        ]);
+    }
+
+    /**
+     * A method to create a fake comment from the factory
+     *
+     * @return obj
+     */
+    public function createComment()
+    {
+        return factory('Suyabay\Comment', 2)->create([
+            'user_id'       => 1,
+            'comments'      => 'Nice job',
+            'episode_id'    => 1,
         ]);
     }
 }
