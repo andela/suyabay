@@ -134,10 +134,9 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
     ]);
 
-    Route::get('channels/{name}/episodes/{episode_id}', function () {
-
-        return json_encode(["message" => "view an episodes under a channel"]);
-    });
+    Route::get('channels/{channelName}/episodes/{episodeName}', [
+        'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
+    ]);
 
     Route::post('channels/{name}/episodes', function () {
 
