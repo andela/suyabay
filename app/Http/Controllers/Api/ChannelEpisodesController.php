@@ -2,8 +2,6 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
-use DB;
-use Validator;
 use Suyabay\Channel;
 use Suyabay\Episode;
 use Suyabay\Http\Requests;
@@ -15,6 +13,7 @@ use League\Fractal\Resource\Collection;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Controllers\Controller;
 use Suyabay\Http\Repository\ChannelRepository;
+use Suyabay\Http\Repository\EpisodeRepository;
 use Suyabay\Http\Transformers\ChannelEpisodesTransformer;
 
 class ChannelEpisodesController extends Controller
@@ -66,34 +65,50 @@ class ChannelEpisodesController extends Controller
     }
 
     /**
-     * This method validate channel request.
+     * This method returns the channel episode details.
      *
-     * @param $pageLimit
      * @param $request
+     * @param $channelName
+     * @param $episodeName
+     * @param $channelEpisodesTransformer
      *
-     * @return $recordsToSkip
+     * @return \Illuminate\Http\Response
      */
-    public function getRecordsToSkip($pageLimit, $request)
+    public function getAChannelEpisode($channelName, $episodeName, Request $request, ChannelEpisodesTransformer $channelEpisodesTransformer)
     {
-        $page = $request->query('page') ? : 1;
-        $recordsToSkip = (int) ($pageLimit * $page) - $pageLimit;
+        $episode = null;
 
-        return $recordsToSkip;
+        $channel = $this->getChannelByName($channelName);
+
+        if (! is_null($channel)) {
+            $episode = $this->getEpisodeByName($episodeName, $channel);
+
+            if (count($episode) <= 0) {
+                return Response::json(['message' => 'Episode not found!'], 404);
+            }
+
+            $data = $this->createTransformerData($episode, $channelEpisodesTransformer);
+
+            return Response::json($data, 200);
+
+        }
+
+        return Response::json(['message' => 'Channel not found!'], 404);
+
     }
 
     /**
-     * This method gets channel details by it's name and 
+     * This method gets channel details by it's name and
      * return the channel object.
-     * 
+     *
      * @param $name
-     * 
+     *
      * @return Channel
      */
     public function getChannelByName($name)
     {
         return $this->channelRepository
         ->findChannelWhere('channel_name', strtolower(urldecode($name)))
-        ->get()
         ->first();
     }
 
@@ -126,10 +141,42 @@ class ChannelEpisodesController extends Controller
     {
         foreach ($episodes as $key => &$value) {
             $newEpisodes = $episodes->find($value->id)->first();
-            $comments = $newEpisodes->comment()->count();
-            $value['comments'] = $comments;
+            $comments = $newEpisodes->comment();
+            $value['comments'] = $comments->count();
         }
 
         return $episodes;
+    }
+
+    /**
+     * This method returns episodes under a particular channel.
+     * @param $channel
+     * @param $episodeName
+     *
+     * @return Episode
+     */
+    public function getEpisodeByName($episodeName, $channel)
+    {
+        return $this->episodeRepository
+        ->findEpisodeWhere('episode_name', strtolower(urldecode($episodeName)))
+        ->where('channel_id', $channel->id)
+        ->get();
+    }
+
+    /**
+     * This method transforms the episode details.
+     *
+     * @param $episode
+     * @param $channelEpisodesTransformer
+     *
+     * @return Manager
+     */
+    public function createTransformerData($episode, $channelEpisodesTransformer)
+    {
+        $episodeWithComments = $this->formatEpisodes($episode);
+        $resource = new Item($episodeWithComments->first(), $channelEpisodesTransformer);
+
+        return $this->fractal->createData($resource)->toArray();
+
     }
 }
