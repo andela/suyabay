@@ -2,7 +2,7 @@
 
 namespace Suyabay\Http\Controllers\Api\Utility;
 
-trait Utility 
+trait Utility
 {
     /**
      * This method validate channel request.
