@@ -13,6 +13,7 @@ use League\Fractal\Resource\Collection;
 use Suyabay\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use Suyabay\Http\Repository\EpisodeRepository;
+use Suyabay\Http\Transformers\UserTransformer;
 use Suyabay\Http\Transformers\CommentTransformer;
 use Suyabay\Http\Transformers\EpisodeTransformer;
 
@@ -37,6 +38,7 @@ class CommentController extends Controller
      *
      * @param $name
      * @param $request
+     * @param $episodeTransformer
      * @param $commentTransformer
      *
      * @return json $response
@@ -103,6 +105,54 @@ class CommentController extends Controller
            ->get();
 
         $resource = new Collection($comments, $commentTransformer);
+
+        $data     = $this->fractal->createData($resource)->toArray();
+
+        return response()->json($data, 200);
+    }
+
+    /**
+     * This method retrieves the name and email of the episode comment
+     *
+     * @param $name
+     * @param $id
+     * @param $userTransformer
+     *
+     * @return json $response
+     */
+    public function getEpisodeCommenter($name, $id, UserTransformer $userTransformer)
+    {
+        $episode = $this->episodeRepository
+            ->findEpisodeWhere('episode_name', strtolower(urldecode($name)))
+            ->first();
+
+        if (is_null($episode)) {
+            return response()->json(['message' => 'Episode does not exist'], 404);
+        }
+
+        return $this->displayCommenterData($id, $episode, $userTransformer);
+    }
+
+    /**
+     * This method retrieves all the name and email of the episode comment
+     *
+     * @param $episode
+     * @param $id
+     * @param $userTransformer
+     *
+     * @return json $response
+     */
+    public function displayCommenterData($id, $episode, $userTransformer)
+    {
+        $comment = $episode->comment()->where('id', $id)->first();
+
+        if (is_null($comment)) {
+            return response()->json(['message' => 'Comment not available for this episode, try another id'], 404);
+        }
+
+        $user    = $comment->user()->first();
+
+        $resource = new Item($user, $userTransformer);
 
         $data     = $this->fractal->createData($resource)->toArray();
 

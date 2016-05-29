@@ -180,10 +180,9 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\CommentController@getEpisodeComments'
      ]);
 
-    Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
-
-        return json_encode(["message" => "get a single comment under an episode"]);
-    });
+    Route::get('episodes/{name}/comments/{comment_id}/commenter', [
+        'uses' => 'Api\CommentController@getEpisodeCommenter'
+    ]);
 
     Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
 
