@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
+use Auth;
 use Suyabay\User;
 use Carbon\Carbon;
 use Suyabay\Comment;
@@ -17,6 +18,7 @@ use Suyabay\Http\Repository\EpisodeRepository;
 use Suyabay\Http\Transformers\UserTransformer;
 use Suyabay\Http\Transformers\CommentTransformer;
 use Suyabay\Http\Transformers\EpisodeTransformer;
+use Suyabay\Http\Transformers\UserCommentTransformer;
 
 class CommentController extends Controller
 {
@@ -170,23 +172,68 @@ class CommentController extends Controller
      *
      * @return json $response
      */
-    public function getUserComments($username, Request $request, UserTransformer $userTransformer, CommentTransformer $commentTransformer)
+    public function getUserComments($username, Request $request, UserCommentTransformer $userCommentTransformer, CommentTransformer $commentTransformer)
     {
-        $user = User::where('username', $username);
-        dd($user);
-
-        if (is_null($episode)) {
-            return response()->json(['message' => 'Episode does not exist'], 404);
+        $user = User::where('username', $username)->first();
+        
+        if (is_null($user->comments)) {
+            return response()->json(['message' => 'This user does not have any comment'], 404);
         }
 
-        if (! is_null($episode->comment) && $episode->comment->count() == 0) {
-            return response()->json(['message' => 'Comment not available for this episode'], 404);
+        if (! is_null($user->comments) && $user->comments->count() == 0) {
+            return response()->json(['message' => 'This user does not have any comment'], 404);
         }
 
         if ($request->query->count() == 0) {
-            return $this->displayComments($episode, $episodeTransformer);
+            return $this->displayUserComments($user, $userCommentTransformer);
         }
 
-        return $this->displayCommentsByDate($episode, $request, $commentTransformer);
+        return $this->displayUserCommentsByDate($user, $request, $commentTransformer);
+    }
+
+    /**
+     * This method displays the result of the comment
+     *
+     * @param $comment
+     * @param $limit
+     * @param $userCommentTransformer
+     *
+     * @return json $response
+     */
+    public function displayUserComments($user, $userCommentTransformer)
+    {
+        $resource = new Item($user, $userCommentTransformer);
+
+        $data     = $this->fractal->createData($resource)->toArray();
+
+        return response()->json($data, 200);
+    }
+
+    /**
+     * This method displays the result of the comment
+     *
+     * @param $comment
+     * @param $limit
+     * @param $commentTransformer
+     *
+     * @return json $response
+     */
+    public function displayUserCommentsByDate($user, $request, $commentTransformer)
+    {
+        $fromDate = $request->query('fromDate');
+        $toDate   = $request->query('toDate');
+        $limit    = $request->query('limit');
+
+        $comments = Comment::where('user_id', $user->id)
+           ->orderBy('created_at', 'desc')
+           ->whereBetween('created_at', [$fromDate, $toDate])
+           ->take($limit)
+           ->get();
+
+        $resource = new Collection($comments, $commentTransformer);
+
+        $data     = $this->fractal->createData($resource)->toArray();
+
+        return response()->json($data, 200);
     }
 }
