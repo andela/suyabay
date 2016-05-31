@@ -2,6 +2,7 @@
 
 namespace Suyabay\Http\Controllers\Api;
 
+use Suyabay\User;
 use Carbon\Carbon;
 use Suyabay\Comment;
 use Suyabay\Episode;
@@ -157,5 +158,35 @@ class CommentController extends Controller
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
+    }
+
+    /**
+     * This method retrieves all the comments made by a particular user
+     *
+     * @param $name
+     * @param $request
+     * @param $episodeTransformer
+     * @param $commentTransformer
+     *
+     * @return json $response
+     */
+    public function getUserComments($username, Request $request, UserTransformer $userTransformer, CommentTransformer $commentTransformer)
+    {
+        $user = User::where('username', $username);
+        dd($user);
+
+        if (is_null($episode)) {
+            return response()->json(['message' => 'Episode does not exist'], 404);
+        }
+
+        if (! is_null($episode->comment) && $episode->comment->count() == 0) {
+            return response()->json(['message' => 'Comment not available for this episode'], 404);
+        }
+
+        if ($request->query->count() == 0) {
+            return $this->displayComments($episode, $episodeTransformer);
+        }
+
+        return $this->displayCommentsByDate($episode, $request, $commentTransformer);
     }
 }

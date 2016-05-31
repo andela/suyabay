@@ -93,6 +93,10 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\UserController@getSingleUser'
     ]);
 
+    Route::get('users/{username}/comments', [
+        'uses' => 'Api\CommentController@getUserComments'
+    ]);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channels

@@ -79,4 +79,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('Suyabay\AppDetail');
     }
+
+    /**
+     * Each user has many comments
+     *
+     * @return object
+     */
+    public function comments()
+    {
+        return $this->hasMany('Suyabay\Comment');
+    }
+
 }
