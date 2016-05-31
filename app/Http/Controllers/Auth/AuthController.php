@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers\Auth;
 
 use Auth;
+use Carbon\Carbon;
 use Validator;
 use Socialite;
 use Suyabay\User;
@@ -184,9 +185,18 @@ class AuthController extends Controller
 
 
         if ($logout) {
+            // $this->saveLoggedOutTime();
+
             Auth::logout();
 
             return redirect('/');
         }
+    }
+
+    private function saveLoggedOutTime()
+    {
+        $user = Auth::user();
+        $user->logged_out_at = Carbon::now();
+        $user->save();
     }
 }

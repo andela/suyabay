@@ -8,7 +8,7 @@ $(document).ready(function() {
         var status        = $(this).attr('like-status');
         var likeCount    = $(this).html();
         var favoriteCount = $('#favorite').html();
-
+        
         if (status === 'like')
         {
             $(this).removeClass('like');
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
             likeCount = Number(likeCount) + 1;
             favoriteCount = Number(favoriteCount) + 1;
-
+        
             $(this).text( ' ' + likeCount);
             $('#favorite').html(favoriteCount);
         }
@@ -34,10 +34,10 @@ $(document).ready(function() {
 
             likeCount = Number(likeCount) - 1;
             favoriteCount = Number(favoriteCount) - 1;
-
+            
             $(this).text(' ' + likeCount);
             $('#favorite').html(favoriteCount);
-
+        
             //check if the string favorites is present in the current url
             if (/favorites/.test(window.location.pathname)) {
                 location.reload();
