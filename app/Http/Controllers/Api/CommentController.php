@@ -70,9 +70,8 @@ class CommentController extends Controller
     /**
      * This method displays the result of the comment
      *
-     * @param $comment
-     * @param $limit
-     * @param $commentTransformer
+     * @param $episode
+     * @param $episodeTransformer
      *
      * @return json $response
      */
@@ -89,8 +88,8 @@ class CommentController extends Controller
     /**
      * This method displays the result of the comment
      *
-     * @param $comment
-     * @param $limit
+     * @param $episode
+     * @param $request
      * @param $commentTransformer
      *
      * @return json $response
@@ -165,9 +164,9 @@ class CommentController extends Controller
     /**
      * This method retrieves all the comments made by a particular user
      *
-     * @param $name
+     * @param $username
      * @param $request
-     * @param $episodeTransformer
+     * @param $userTransformer
      * @param $commentTransformer
      *
      * @return json $response
@@ -175,13 +174,13 @@ class CommentController extends Controller
     public function getUserComments($username, Request $request, UserCommentTransformer $userCommentTransformer, CommentTransformer $commentTransformer)
     {
         $user = User::where('username', $username)->first();
-        
-        if (is_null($user->comments)) {
-            return response()->json(['message' => 'This user does not have any comment'], 404);
+
+        if (is_null($user)) {
+            return response()->json(['message' => 'This user does not exist'], 404);
         }
 
         if (! is_null($user->comments) && $user->comments->count() == 0) {
-            return response()->json(['message' => 'This user does not have any comment'], 404);
+            return response()->json(['message' => 'Comment not available for this user'], 404);
         }
 
         if ($request->query->count() == 0) {
@@ -192,10 +191,9 @@ class CommentController extends Controller
     }
 
     /**
-     * This method displays the result of the comment
+     * This method displays the result of the user comments
      *
      * @param $comment
-     * @param $limit
      * @param $userCommentTransformer
      *
      * @return json $response
@@ -213,7 +211,6 @@ class CommentController extends Controller
      * This method displays the result of the comment
      *
      * @param $comment
-     * @param $limit
      * @param $commentTransformer
      *
      * @return json $response
