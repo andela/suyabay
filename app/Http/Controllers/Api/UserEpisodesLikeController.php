@@ -33,14 +33,14 @@ class UserEpisodesLikeController extends Controller
      */
     public function getUserLikedEpisodes($username, UserLikedEpisodeTransformer $userLikedEpisodeTransformer)
     {
-        $user = User::where('username', urldecode($username))
-        ->first();
+        $user = User::where('username', urldecode($username))->first();
+        
         if (is_null($user)) {
             return Response::json(['message' => 'User not found!'], 404);
 
         }
 
-        $likes = $user->likes()->get();
+        $likes = $user->likes;
 
         if (count($likes) > 0) {
             return Response::json(
@@ -59,9 +59,9 @@ class UserEpisodesLikeController extends Controller
      *
      * @return Like
      */
-    public function formatUserEpisodeLikes($likes)
+    public function loadUserLikesWithEpisode($likes)
     {
-        foreach ($likes as $key => $value) {
+        foreach ($likes as $value) {
             $value->episode;
         }
 
@@ -80,7 +80,7 @@ class UserEpisodesLikeController extends Controller
     public function createUserLikedEpisodeResponse($likes, $userLikedEpisodeTransformer)
     {
         $resource = new Collection(
-            $this->formatUserEpisodeLikes($likes),
+            $this->loadUserLikesWithEpisode($likes),
             $userLikedEpisodeTransformer
         );
         return $data = $this->fractal->createData($resource)->toArray();
