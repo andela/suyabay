@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Suyabay\Http\Transformers;
 
 use League\Fractal;
