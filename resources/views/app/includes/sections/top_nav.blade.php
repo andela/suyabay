@@ -24,6 +24,10 @@
                         &nbsp;
                         {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
 
+                        @if( Auth::user()->hasChannelNotifications())
+                            <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge new">{{ Auth::user()->newChannelsCount() }}</a></span>
+                        @endif
+
                         @can('see-dashboard', Auth::user()->role->name )
                             <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endcan

@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Hash;
+use Auth;
 use Validator;
 use Suyabay\User;
 use Suyabay\Role;
