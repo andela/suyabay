@@ -128,7 +128,7 @@ class CommentEndpointTest extends TestCase
 
         $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
         $decodeResponse = json_decode($response->getContent());
-        //dd($decodeResponse->data->email);
+
         $this->assertEquals($decodeResponse->data->username, 'demo');
         $this->assertEquals($decodeResponse->data->email, 'demo@andela.com');
         $this->assertEquals($response->status(), 200);   
