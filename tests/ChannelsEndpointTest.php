@@ -19,11 +19,13 @@ class ChannelEndpointsTest extends TestCase
     public function testGetAllChannels()
     {
         $user = factory('Suyabay\User')->create();
-        $channel = factory('Suyabay\Channel', 5)->create();
+        $channel = factory('Suyabay\Channel')->create();
+        $episode = factory('Suyabay\Episode', 5)->create([
+            'channel_id' => $channel->id,
+        ]);
 
-        $response = $this->call('GET', '/api/v1/channels');
+        $response = $this->actingAs($user)->call('GET', '/api/v1/channels');
         $channels = json_decode($response->getContent());
-
         $channels->data[0] = (array) $channels->data[0];
         
         $this->assertTrue(is_array($channels->data[0]));

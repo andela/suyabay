@@ -134,10 +134,9 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
     ]);
 
-    Route::get('channels/{name}/episodes/{episode_id}', function () {
-
-        return json_encode(["message" => "view an episodes under a channel"]);
-    });
+    Route::get('channels/{channelName}/episodes/{episodeName}', [
+        'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
+    ]);
 
     Route::post('channels/{name}/episodes', function () {
 
@@ -175,15 +174,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::get('episodes/{episode_id}/comments', function () {
+    Route::get('episodes/{name}/comments', [
+        'uses' => 'Api\CommentController@getEpisodeComments'
+     ]);
 
-        return json_encode(["message" => "get all comments under an episode"]);
-    });
-
-    Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
-
-        return json_encode(["message" => "get a single comment under an episode"]);
-    });
+    Route::get('episodes/{name}/comments/{comment_id}/commenter', [
+        'uses' => 'Api\CommentController@getEpisodeCommenter'
+    ]);
 
     Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
 
