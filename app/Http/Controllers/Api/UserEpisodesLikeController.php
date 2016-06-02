@@ -54,7 +54,7 @@ class UserEpisodesLikeController extends Controller
 
     /**
      * This method loads all the episodes liked by a user,
-     * and returns a Like model which has a one to Many relationship with 
+     * and returns a Like model which has a one to Many relationship with
      * the user Model. So in other to get all episode likes we interate over
      * the likes and get all the episodes under it.
      *
