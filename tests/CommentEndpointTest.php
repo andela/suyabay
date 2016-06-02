@@ -95,7 +95,63 @@ class CommentEndpointTest extends TestCase
     }
 
     /**
-     * A methos to create a fake epispode from the factory
+     * Test that episode does not exist when a user try to
+     * access an endpoint passing an invalid comment id.
+     *
+     * @return void
+     */
+    public function testEpisodeDoesNotExistForTheSuppledCommentID()
+    {
+        $user = factory('Suyabay\User')->create();
+
+        $this->createEpisode();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
+        $decodeResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodeResponse->message, 'Comment not available for this episode, try another id');
+        $this->assertEquals($response->status(), 404);   
+    }
+
+    /**
+     * Test that episode does not exist when a user try to
+     * access an endpoint passing an invalid comment id.
+     *
+     * @return void
+     */
+    public function testGetEpisodeCommenter()
+    {
+        $user = $this->createUser();
+
+        $this->createEpisode();
+        $this->createComment();
+
+        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
+        $decodeResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodeResponse->data->username, 'demo');
+        $this->assertEquals($decodeResponse->data->email, 'demo@andela.com');
+        $this->assertEquals($response->status(), 200);   
+    }
+
+    /**
+     * A method to create a fake epispode from the factory
+     *
+     * @return obj
+     */
+    public function createUser()
+    {
+        return factory('Suyabay\User')->create([
+            'username'       => 'demo',
+            'email'          => 'demo@andela.com',
+            'password'       => bcrypt(str_random(10)),
+            'remember_token' => str_random(10),
+            'role_id'        => 1
+        ]);
+    }
+
+    /**
+     * A method to create a fake epispode from the factory
      *
      * @return obj
      */

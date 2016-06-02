@@ -9,7 +9,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function transform(User $user)
     {
         return [
-        'user_id'             => (int) $user->id,
+        'user_id'        => (int) $user->id,
         'username'       => $user->username,
         'email'          => $user->email,
         'date_created'   => $user->created_at,
