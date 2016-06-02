@@ -48,6 +48,32 @@
     margin: 0!important;
 }
 
+.collection li.search {
+  border-bottom: 1px solid #E0E0E0;
+  padding: 0px;
+  display: block !important;
+}
+
+.collection .search form div label {
+  left: 1.5rem;
+  bottom: 0px;
+  top: 0px;
+  height: 80px;
+}
+
+.collection .search form div label i {
+  line-height: 80px;
+}
+
+ul.right li#search {
+  background: rgb(40, 56, 72);
+  height: 64px;
+}
+
+ul.right li#search input[type=search] {
+  height: inherit;
+}
+
 .logo-box {
     margin: 0 auto;
     z-index: 55;

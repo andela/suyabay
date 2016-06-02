@@ -127,8 +127,8 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
 |--------------------------------------------------------------------------
-
 */
+
     Route::group(['prefix' => 'channels'], function () {
         Route::get('{channel_id}/episodes', function () {
 
@@ -142,12 +142,20 @@ Route::group(['prefix' => 'api/v1/'], function () {
 
         Route::group(['middleware' => 'premium.user'], function () {
 
-            Route::post('{channel_id}/episodes', function () {
+            Route::get('{name}/episodes', [
+                'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
+            ]);
+
+            Route::get('{channelName}/episodes/{episodeName}', [
+                'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
+            ]);
+
+            Route::post('{name}/episodes', function () {
 
                 return json_encode(["message" => "post an episode under a channel"]);
             });
 
-            Route::put('{channel_id}/episodes/{episode_id}', function () {
+            Route::put('{name}/episodes/{episode_id}', function () {
 
                 return json_encode(["message" => "update an episode under a channel"]);
             });
@@ -181,15 +189,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::get('episodes/{episode_id}/comments', function () {
+    Route::get('episodes/{name}/comments', [
+        'uses' => 'Api\CommentController@getEpisodeComments'
+     ]);
 
-        return json_encode(["message" => "get all comments under an episode"]);
-    });
-
-    Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
-
-        return json_encode(["message" => "get a single comment under an episode"]);
-    });
+    Route::get('episodes/{name}/comments/{comment_id}/commenter', [
+        'uses' => 'Api\CommentController@getEpisodeCommenter'
+    ]);
 
     Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
 
