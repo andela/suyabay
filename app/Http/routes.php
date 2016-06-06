@@ -460,6 +460,12 @@ Route::group(['prefix' => 'dashboard'], function () {
         'middleware' => ['auth'],
     ]);
 
+    Route::get('/notifications', [
+        'uses' => 'ChannelController@notifications',
+        'as' => 'notifications',
+        'middleware' => ['auth'],
+    ]);
+
     Route::get('/channels/deleted', [
         'uses' => 'ChannelController@deleted',
         'as' => 'deleted.channels',

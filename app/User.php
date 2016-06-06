@@ -3,6 +3,7 @@
 namespace Suyabay;
 
 use Suyabay\Role;
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -29,8 +30,11 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'active' ,'email', 'password', 'facebookID', 'twitterID', 'avatar'];
+    protected $fillable = ['username', 'active' ,'email', 'password', 'facebookID', 'twitterID', 'avatar', 'has_viewed_new'];
 
+    protected $dates = ['logged_out_at'];
+
+    
     /**
      * Define roles table relationship
      *
@@ -87,5 +91,42 @@ class User extends Model implements AuthenticatableContract,
     public function likesCount()
     {
         return $this->likes()->count();
+    }
+
+    /**
+     * Set the Logged Out At column to use Carbon timestamps
+     */
+    public function setLoggedOutAtAttriute($date)
+    {
+        $this->attributes['logged_out_at'] = Carbon::createFromFormat('Y-m-d', $date);
+    }
+
+    public function newChannels()
+    {
+        $loggedOut = $this->logged_out_at;
+        $now = Carbon::now();
+
+        return Channel::whereBetween('created_at', [$loggedOut, $now]);
+    }
+
+    public function newChannelsCount()
+    {
+        return $this->newChannels()->count();
+    }
+
+    public function hasNotViewedNew()
+    {
+        return !$this->has_viewed_new;
+    }
+
+    public function setHasViewNew()
+    {
+        $this->has_viewed_new = 1;
+        $this->save();
+    }
+
+    public function hasChannelNotifications()
+    {
+        return $this->newChannelsCount() > 0 and $this->hasNotViewedNew();
     }
 }
