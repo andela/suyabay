@@ -79,7 +79,6 @@ $(document).ready(function() {
                 data: data.parameter,
 
                 success: function(response) {
-
                     switch (response.status_code) {
                         case 200:
 

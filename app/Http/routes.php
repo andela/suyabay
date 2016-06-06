@@ -93,76 +93,68 @@ Route::group(['prefix' => 'api/v1/'], function () {
         'uses' => 'Api\UserController@getSingleUser'
     ]);
 
+    Route::get('users/{username}/comments', [
+        'uses' => 'Api\CommentController@getUserComments'
+    ]);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channels
 |--------------------------------------------------------------------------
 
 */
-    Route::group(['prefix' => 'channels'], function () {
+    Route::get('channels', [
+        'uses' => 'Api\ChannelController@getAllChannels'
+    ]);
 
-        Route::get('/', [
-            'uses' => 'Api\ChannelController@getAllChannels'
-        ]);
+    Route::get('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@getAChannel'
+    ]);
 
-        Route::get('{channel_name}', [
-            'uses' => 'Api\ChannelController@getAChannel'
-        ]);
+    Route::post('channels', [
+        'uses' => 'Api\ChannelController@postAChannel'
+    ]);
 
-        Route::group(['middleware' => 'superadmin.user'], function () {
+    Route::put('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@editAChannel'
+    ]);
 
-            Route::post('/', [
-                'uses' => 'Api\ChannelController@postAChannel'
-            ]);
-
-            Route::put('{channel_name}', [
-                'uses' => 'Api\ChannelController@editAChannel'
-            ]);
-
-            Route::patch('{channel_name}', [
-                'uses' => 'Api\ChannelController@editASingleChannelResource'
-            ]);
-            
-            Route::delete('{channel_name}', [
-                'uses' => 'Api\ChannelController@deleteASingleChannel'
-            ]);
-        });
+    Route::patch('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@editASingleChannelResource'
+    ]);
+    
+    Route::delete('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@deleteASingleChannel'
+    ]);
 
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
 |--------------------------------------------------------------------------
-
 */
-    
-        Route::get('{channel_id}/episodes', function () {
 
-            return json_encode(["message" => "view all episodes under a channel"]);
-        });
 
-        Route::get('{channel_id}/episodes/{episode_id}', function () {
+    Route::get('channels/{name}/episodes', [
+        'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
+    ]);
 
-            return json_encode(["message" => "view an episodes under a channel"]);
-        });
+    Route::get('channels/{channelName}/episodes/{episodeName}', [
+        'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
+    ]);
 
-        Route::group(['middleware' => 'premium.user'], function () {
+    Route::post('channels/{name}/episodes', function () {
 
-            Route::post('{channel_id}/episodes', function () {
+        return json_encode(["message" => "post an episode under a channel"]);
+    });
 
-                return json_encode(["message" => "post an episode under a channel"]);
-            });
+    Route::put('channels/{name}/episodes/{episode_id}', function () {
 
-            Route::put('{channel_id}/episodes/{episode_id}', function () {
+        return json_encode(["message" => "update an episode under a channel"]);
+    });
 
-                return json_encode(["message" => "update an episode under a channel"]);
-            });
+    Route::delete('channels/{name}/episodes/{episode_id}', function () {
 
-            Route::delete('{channel_id}/episodes/{episode_id}', function () {
-
-                return json_encode(["message" => "delete an episode under a channel"]);
-            });
-        });
-
+        return json_encode(["message" => "delete an episode under a channel"]);
     });
 
 /*
@@ -187,15 +179,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::get('episodes/{episode_id}/comments', function () {
+    Route::get('episodes/{name}/comments', [
+        'uses' => 'Api\CommentController@getEpisodeComments'
+     ]);
 
-        return json_encode(["message" => "get all comments under an episode"]);
-    });
-
-    Route::get('episodes/{episode_id}/comments/{comment_id}', function () {
-
-        return json_encode(["message" => "get a single comment under an episode"]);
-    });
+    Route::get('episodes/{name}/comments/{comment_id}/commenter', [
+        'uses' => 'Api\CommentController@getEpisodeCommenter'
+    ]);
 
     Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
 

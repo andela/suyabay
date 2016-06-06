@@ -25,6 +25,7 @@ class SearchController extends Controller
                           ->orWhere('episode_description', $condition, "%{$query}%")
                           ->get();
 
+
         return view('app.pages.search')->with([
             'results' => $results,
             'channels' => Channel::all(),

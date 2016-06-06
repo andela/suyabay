@@ -79,4 +79,13 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('Suyabay\AppDetail');
     }
+
+    /**
+     * Return the number of likes that the user has for episodes.
+     * @return integer
+     */
+    public function likesCount()
+    {
+        return $this->likes()->count();
+    }
 }

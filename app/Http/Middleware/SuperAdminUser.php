@@ -31,7 +31,6 @@ class SuperAdminUser
 
         if (!empty($authHeader)) {
             $appToken = AppDetail::where('api_token', '=', $authHeader)
-                ->get()
                 ->first();
 
             if (is_null($appToken)) {
