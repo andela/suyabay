@@ -19,7 +19,7 @@ class CommentEndpointTest extends TestCase
     {
         $user = factory('Suyabay\User')->create();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogabos/comments');
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogabos/comments');
         $decodeResponse = json_decode($response->getContent());
         
         $this->assertEquals($decodeResponse->message, 'Episode does not exist');
@@ -40,6 +40,7 @@ class CommentEndpointTest extends TestCase
 
         $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
         $decodeResponse = json_decode($response->getContent());
+
         $this->assertEquals($decodeResponse->message, 'Comment not available for this episode');
         $this->assertEquals($response->status(), 404);
     }
@@ -83,12 +84,10 @@ class CommentEndpointTest extends TestCase
         $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
         
         $decodeResponse = json_decode($response->getContent());
-        $array = $decodeResponse->data;
-
-        $dataNumber = count($array['0']->comment->data);
+        $array          = $decodeResponse->data;
+        $dataNumber     = count($array['0']->comment->data);
         
         $this->assertEquals($dataNumber, 2);
-
         $this->get('/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2')
             ->seeJson()
             ->seeStatusCode(200);
@@ -106,7 +105,7 @@ class CommentEndpointTest extends TestCase
 
         $this->createEpisode();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
         $decodeResponse = json_decode($response->getContent());
 
         $this->assertEquals($decodeResponse->message, 'Comment not available for this episode, try another id');
@@ -126,12 +125,91 @@ class CommentEndpointTest extends TestCase
         $this->createEpisode();
         $this->createComment();
 
-        $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments/1/commenter');
         $decodeResponse = json_decode($response->getContent());
 
-        $this->assertEquals($decodeResponse->data->username, 'demo');
-        $this->assertEquals($decodeResponse->data->email, 'demo@andela.com');
+        $this->assertEquals($decodeResponse->data->username, 'unicodeveloper');
+        $this->assertEquals($decodeResponse->data->email, 'unicodeveloper@andela.com');
         $this->assertEquals($response->status(), 200);   
+    }
+
+    /**
+     * Test that user does not exist
+     *
+     * @return void
+     */
+    Public function testUserDoesNotExist()
+    {       
+        $user = $this->createUser();
+
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/users/unicodev/comments');
+        $decodeResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodeResponse->message, 'This user does not exist');
+        $this->assertEquals($response->status(), 404); 
+    }
+
+    /**
+     * Test that their are no comment available for 
+     * the user
+     *
+     * @return void
+     */
+    public function testThatCommentIsNotAvailableForUser()
+    {
+        $user = $this->createUser();
+
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/users/unicodeveloper/comments');
+        $decodeResponse = json_decode($response->getContent());
+
+        $this->assertEquals($decodeResponse->message, 'Comment not available for this user');
+        $this->assertEquals($response->status(), 404);
+    }
+
+    /**
+     * Test that comments are available 
+     * in for the user.
+     *
+     * @return void
+     */
+    public function testgetUserComments()
+    {
+        $user = $this->createUser();
+
+        $this->createComment();
+
+        $response       = $this->call('GET', '/api/v1/users/unicodeveloper/comments');
+        $decodeResponse = json_decode($response->getContent());
+        $array          = $decodeResponse->data;
+        $dataNumber     = count($array->comment->data);
+
+        $this->assertEquals($dataNumber, 2);
+        $this->get('/api/v1/users/unicodeveloper/comments')
+            ->seeJson()
+            ->seeStatusCode(200);
+    }
+
+    /**
+     * Test that a user gets all the comments available 
+     * if query is passed.
+     *
+     * @return void
+     */
+    public function testdisplayUserCommentsByDate()
+    {
+        $user = $this->createUser();
+
+        $this->createComment();
+
+        $response       = $this->actingAs($user)->call('GET', '/api/v1/users/unicodeveloper/comments');
+        $decodeResponse = json_decode($response->getContent());
+        $array          = $decodeResponse->data;
+        $dataNumber     = count($array->comment->data);
+
+        $this->assertEquals($dataNumber, 2);
+        $this->get('/api/v1/users/unicodeveloper/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2')
+            ->seeJson()
+            ->seeStatusCode(200);
     }
 
     /**
@@ -141,13 +219,15 @@ class CommentEndpointTest extends TestCase
      */
     public function createUser()
     {
-        return factory('Suyabay\User')->create([
-            'username'       => 'demo',
-            'email'          => 'demo@andela.com',
+        $user = factory('Suyabay\User')->create([
+            'username'       => 'unicodeveloper',
+            'email'          => 'unicodeveloper@andela.com',
             'password'       => bcrypt(str_random(10)),
             'remember_token' => str_random(10),
             'role_id'        => 1
         ]);
+
+        return $user;
     }
 
     /**

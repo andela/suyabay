@@ -3,6 +3,7 @@
 namespace Suyabay;
 
 use Suyabay\Role;
+use Suyabay\Comment;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -78,6 +79,16 @@ class User extends Model implements AuthenticatableContract,
     public function appDetail()
     {
         return $this->hasMany('Suyabay\AppDetail');
+    }
+
+    /**
+     * Each user has many comments
+     *
+     * @return object
+     */
+    public function comments()
+    {
+        return $this->hasMany('Suyabay\Comment');
     }
 
     /**
