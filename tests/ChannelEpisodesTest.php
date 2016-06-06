@@ -10,7 +10,10 @@ class ChannelEpisodesTest extends TestCase
 {
     public function testThatAChannelHaveEpisodes()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->withoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2,
+        ]);
 
         $channel = factory('Suyabay\Channel')->create([
             'user_id'      => 1,
@@ -36,7 +39,10 @@ class ChannelEpisodesTest extends TestCase
 
     public function testThatChannelDoesnotExist()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->withoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2,
+        ]);
 
         $channel = factory('Suyabay\Channel')->create();
 
@@ -53,7 +59,10 @@ class ChannelEpisodesTest extends TestCase
 
     public function testThatChannelDoesnotHaveEpisodes()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->withoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2,
+        ]);
 
         $channel = factory('Suyabay\Channel')->create([
             'user_id'      => 1,
