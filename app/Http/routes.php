@@ -163,10 +163,9 @@ Route::group(['prefix' => 'api/v1/'], function () {
 |--------------------------------------------------------------------------
 
 */
-    Route::get('users/{username}/favourites', function () {
-
-        return json_encode(["message" => "allow a user to favourite an episodes"]);
-    });
+    Route::get('users/{username}/favourites', [
+        'uses' => 'Api\UserEpisodesLikeController@getUserLikedEpisodes'
+    ]);
 
     Route::delete('users/{username}/favourites', function () {
 
