@@ -198,7 +198,7 @@ class AuthController extends Controller
         if ($logout) {
 
             // If the user has viewed his notifications page, update his logout information.
-            if($user->has_viewed_new) {
+            if ($user->has_viewed_new) {
                 $this->saveLoggedOutTime();
             }
 
@@ -208,6 +208,10 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Save tht time that the user logged out in the database.
+     * Save the time in Y-m-d H:i:s format.
+     */
     private function saveLoggedOutTime()
     {
         $user = Auth::user();

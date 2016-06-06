@@ -32,6 +32,9 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $fillable = ['username', 'active' ,'email', 'password', 'facebookID', 'twitterID', 'avatar', 'has_viewed_new'];
 
+    /**
+     * Set the looged_out_at timestamp to be treated as a Carbon instance.
+     */
     protected $dates = ['logged_out_at'];
 
     
@@ -85,6 +88,15 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * Return the number of likes that the user has for episodes.
+     * @return integer
+     */
+    public function likesCount()
+    {
+        return $this->likes()->count();
+    }
+
+    /**
      * Set the Logged Out At column to use Carbon timestamps
      */
     public function setLoggedOutAtAttriute($date)
@@ -92,6 +104,11 @@ class User extends Model implements AuthenticatableContract,
         $this->attributes['logged_out_at'] = Carbon::createFromFormat('Y-m-d', $date);
     }
 
+    /**
+    * Get all the new channels that were added between the
+    * user's logged_out_time and the current time.
+    * @return A collection of all the channels between the two points in time.
+    */
     public function newChannels()
     {
         $loggedOut = $this->logged_out_at;
@@ -100,22 +117,38 @@ class User extends Model implements AuthenticatableContract,
         return Channel::whereBetween('created_at', [$loggedOut, $now]);
     }
 
+    /**
+    * Get the count of all the notification channels for this particular user.
+    * @return The count of all notification channels.
+    */
     public function newChannelsCount()
     {
         return $this->newChannels()->count();
     }
 
+    /**
+    * Check if the user has not viewed his notifications page.
+    * @return Return TRUE if user has not viewed or FALSE otherwise.
+    */
     public function hasNotViewedNew()
     {
         return !$this->has_viewed_new;
     }
 
+    /**
+    * Set that the user has viewed his notifications page.
+    * This is called once the user visits the notifications route.
+    */
     public function setHasViewNew()
     {
         $this->has_viewed_new = 1;
         $this->save();
     }
 
+    /**
+    * Check if the user has some channel notifications.
+    * @return TRUE if the user has notificationsm and has not viewed them. FASLE otherwise.
+    */
     public function hasChannelNotifications()
     {
         return $this->newChannelsCount() > 0 and $this->hasNotViewedNew();

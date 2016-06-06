@@ -37,9 +37,9 @@ class ChannelController extends Controller
         return view('dashboard.pages.view_channels', compact('channels'));
     }
 
-    /*
-     * Show the authenticated user's notifications page.
-     *
+    /**
+     * Take the channels for notification and
+     * @return The authenticated user's notifications page.
      */
     public function notifications()
     {
