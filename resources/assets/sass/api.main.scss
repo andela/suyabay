@@ -1,0 +1,479 @@
+body, html {
+    height:100%;
+    position: relative;
+    background-color: #E0E0E0; 
+}
+
+#settings {
+    -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+    margin-top: 65px;
+    height: 100px;
+}
+
+#hero {
+    max-height: 500px !important;
+    position: relative;
+    top:-45px;
+}
+
+#hero, #hero > * {
+    width: 100%;
+    min-height: 50%;
+}
+
+#hero #overlay-image{
+    background: url('../images/hero.jpg');
+     position: absolute;
+    -webkit-background-size:cover;
+    background-size:cover;
+    height: 450px;
+}
+
+#hero-content {
+    position: absolute;
+    color:#FFF;
+}
+
+#hero-content .content {
+    width: 70%;
+    margin:90px auto 0px;
+}
+
+#hero-menu {
+    position: absolute;
+    color:#FFF;
+    clear: both;
+    top: 20px;
+    margin: auto;
+    max-height:50px !important;
+    margin-top: 380px;
+    font-family: 'robotoLight';
+    font-size: 18px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 40px;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+#hero-menu a {
+    width: 20%;
+    float: right;
+    margin-top: 5px;
+}
+
+.slider-text-header {
+    text-align: right;
+    font-weight: 500;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'robotoMedium';
+    color: #fff;
+}
+
+.slider-text-paragraph {
+    font-size: 19px;
+    line-height: 31px;
+    font-weight: 300;
+}
+ 
+.footer-copyright {
+    background-color: #2C3E50!important;
+}
+
+.api-link {
+    margin-left:2%;
+}
+
+.api-link a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.feature-content:nth-child(1) {
+     margin-top: 95px;
+}
+
+.feature-content {
+    clear: both;
+    min-height: 20px;
+    width: 80%;
+    background-color: #fff;
+    margin: auto auto 20px auto;
+}
+
+.text-content h1 {
+    color:#2793e6; 
+    padding: 10px; 
+    font-size:25px; 
+    font-weight: 200; 
+    line-height: 30px;
+}
+
+.text-content .p {
+    font-size: 15px;
+    font-weight: 400; 
+    line-height: 24px;
+}
+
+.feature-content .text-content {
+    text-align: center;
+}
+
+.feature-content .img {
+    position: absolute;
+    margin-right: 20px;
+    width: 200px;
+    float: center;
+    position: relative;
+    left: 30px;
+}
+
+.logo {
+    margin: auto;
+    padding: 15px;
+}
+
+.logo-box {
+    margin: 0 auto;
+    z-index: 55;
+}
+
+@font-face {
+    font-family: robotoLight;
+    src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: robotoMedium;
+    src: url('../fonts/Roboto-Medium.ttf');
+    font-size: 18px;
+}
+
+/*
+# myApps Styles
+===============================================
+*/
+
+/*.error-message {
+    border: 1px solid #c7cdcf;
+    width: 90%;
+    height: 150px;
+    border-radius: 2px;
+    position: relative;
+    background: #fcfcfc;
+    margin: 40px auto 40px auto;
+}*/
+
+.myapp {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 20px;
+    width: 98%;
+    border: 1px solid #c7cdcf;
+    margin: -4% auto 5% 1%;
+    background-color: #fff;
+}
+
+.error-text {
+    text-align: center;
+    font-size: 16px;
+    color: #FF0000;
+}
+
+.waves-two {
+    margin-left: 128px;
+    width: 250px;
+    top: 20px;
+}
+
+.app-title {
+    font-size: 25px;
+    line-height: 70px;
+    font-weight: 500;
+    text-align: center;
+    margin: -2% auto 2% auto;
+}
+
+.app-text {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.waves {
+    margin-left: 128px;
+    width: 350px;
+}
+
+.waves-one {
+    margin: 19px auto auto 38px;
+    width: 250px;
+}
+
+.myapp-one, .myapp-two{
+    width: 90%;
+    min-height: 200px;
+    background: #fcfcfc;
+    margin: 5% auto 1% 8%;
+    float: left;
+} 
+
+.myapp-two{
+    margin: 10% auto auto -2%; 
+} 
+
+/*
+ # Avatar Image
+ =====================
+*/
+img.avatar {
+    width: 45px;
+    max-width: 1232px;
+    height: 45px;
+    vertical-align: middle;
+}
+
+/*
+# appform and editappdetails Styles
+===============================================
+*/
+.app-form {
+    clear: both;
+    min-height: 20px;
+    width: 80%;
+    background-color: #fff;
+    margin: -22px auto 20px 20%; 
+}
+
+#main-new-one {
+    min-height: 440px;
+    width: 80%;
+    background-color: #fff;
+    margin: 50px auto auto 110px;
+}
+
+#main-new-two {
+    min-height: 100px;
+    width: 80%;
+    background-color: #fff;
+    margin: 30px auto auto -61px;
+}
+
+.wave {
+    width: 200px;
+    margin: 20px auto auto 80px;
+    float: right;
+}
+
+.app-form-one input, .app-form-one textarea {
+    width: 100%;
+}
+
+textarea {
+    width: 532px;
+    min-height: 100px;
+}
+
+h5 {
+    font-size: 17px;
+}
+
+.form-content {
+    padding-top: 20px;
+}
+
+.help-block {
+    color: red;
+}
+
+.app-form-one, .app-form-two{
+    width: 90%;
+    min-height: 150px;
+    border-radius: 2px;
+    background: #fcfcfc;
+    margin: 5% auto 5% 8%;
+    float: left;
+} 
+
+.app-form-two{
+    margin: 10% auto auto 5%; 
+    float: none;
+} 
+
+.new-app-text {
+    margin: 1% auto auto 2%;
+}
+
+.app-form-one, .app-form-two{
+    width: 100%;
+    min-height: 200px;
+    background: #fcfcfc;
+    margin: 9.5% auto 3% -10%;
+    float: left;
+} 
+
+.app-form-two{
+    margin: 10% auto auto -15%; 
+} 
+
+/*@media only screen and (max-width: 100%) {
+
+.waves-dark{
+
+width: 100% !important;
+margin-left: 60%
+
+}
+
+}*/
+
+/*
+# newappdetails and appdetails Styles
+===============================================
+*/
+
+.app-name {
+    float: left;
+    margin: 2% auto 4% 5%;
+    font-size: 20px;
+}
+
+.app-details {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 20px;
+    width: 98%;
+    border: 1px solid #c7cdcf;
+    margin: -2% auto 5% 1%;
+    background-color: #fff;
+}
+
+.wavesapp {
+    float: left;
+    margin: 3% auto 4% 52%;
+    width: 20%;
+}
+
+.app-details:nth-child(1) {
+    top: 90px;
+}
+
+.owner-token {
+    width: -2PX;
+    border: 10px;
+}
+
+.app-detail-one, .app-detail-two{
+    width: 90%;
+    min-height: 200px;
+    background: #fcfcfc;
+    margin: 5% auto 1% 8%;
+    float: left;
+} 
+
+.app-detail-two{
+    margin: 10% auto auto -2%; 
+} 
+
+.app-details-old{
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 20px;
+    width: 98%;
+    border: 1px solid #c7cdcf;
+    margin: -6% auto 5% 1%;
+    background-color: #fff;
+}
+
+.app-details-old:nth-child(1) {
+    top: 90px;
+}
+
+
+
+
+
+/*
+# allappdetails Styles
+===============================================
+*/
+
+.all-app-details {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 20px;
+    min-width: 98%;
+    border: 1px solid #c7cdcf;
+    margin: -4% auto 5% 1%;
+    background-color: #fff;
+}
+.myapps-one, .myapps-two{
+    width: 90%;
+    min-height: 150px;
+    border-radius: 2px;
+    background: #fcfcfc;
+    margin: 5% auto -3% 8%;
+    float: left;
+} 
+
+.myapps-two{
+    margin: 10% auto auto -1%; 
+} 
+
+.right_side {
+    float: left;
+}
+
+.app-logo {
+    color: #2C3E50;
+    font-size: 20px;
+    float: left;
+    margin: 1% auto 4% 5%;
+}
+
+.btn-copy{
+  border-radius: 0;
+  display: inline-block;
+  background-color: #26a69a;
+  color: white;
+}
+
+#token-box{
+  display: inline;
+  width: 78%;
+  border-radius: 0;
+}
+.app {
+    margin-bottom: 10px;
+}
+.app > div {
+    clear: both;
+    float: left;
+    width: auto;
+}
+.app > div:nth-child(2){
+    margin-bottom: 2px;
+}
+
+.app > div:nth-child(1) {
+    font-weight: 600;
+}
+
+.button-details {
+    float: right;
+    margin: 20px 33px 15px auto;
+}  
+.pagination li.active {
+    background-color: #26a69a;
+    color: #fff;
+}
