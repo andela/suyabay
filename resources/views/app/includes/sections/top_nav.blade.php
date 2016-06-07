@@ -25,8 +25,7 @@
                         {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
 
                         @if( Auth::user()->hasChannelNotifications())
-                            <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge">{{ Auth::user()->newChannelsCount() }}</span> Channel(s)</a>
-                            <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
+                            <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge" id="notification-num">{{ Auth::user()->newChannelsCount() }} </span> New {{ str_plural('Channel', Auth::user()->newChannelsCount()) }}</a>
                         @endif
 
                         @can('see-dashboard', Auth::user()->role->name )
