@@ -9,7 +9,10 @@ class ChannelEpisodeDetailsTest extends TestCase
 {
     public function testThatChannelnameIsIncorrect()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->WithoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2
+        ]);
         $channel = factory('Suyabay\Channel')->create();
         $episode = factory('Suyabay\Episode')->create();
 
@@ -18,14 +21,16 @@ class ChannelEpisodeDetailsTest extends TestCase
         ->call('GET', '/api/v1/channels/mychannel/episodes/'.$episode->episode_name, []);
 
         $decodedResponse = json_decode($response->getContent());
-
         $this->assertEquals($decodedResponse->message, 'Channel not found!');
         $this->assertEquals($response->status(), 404);
     }
 
     public function testGetChannelEpisodeDetails()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->WithoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2
+        ]);
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => strtolower('Donovan'),
         ]);
@@ -49,7 +54,10 @@ class ChannelEpisodeDetailsTest extends TestCase
 
     public function testThatChannelEpisodeNameIsIncorrect()
     {
-        $user = factory('Suyabay\User')->create();
+        $this->WithoutMiddleware();
+        $user = factory('Suyabay\User')->create([
+            'role_id' => 2
+        ]);
 
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => strtolower('Roy'),

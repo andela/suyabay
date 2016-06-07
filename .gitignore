@@ -4,13 +4,12 @@ Homestead.yaml
 Homestead.json
 .env
 .env.example
+.phpintel
 .DS_Store
 /keep
 /.idea/
-sass/
 .sass-cache
 prepros.cfg
-sass
 /keep.php
 /build
 tests/_output/*

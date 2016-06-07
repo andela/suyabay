@@ -8,7 +8,7 @@ use League\Fractal;
 class UserLikedEpisodeTransformer extends Fractal\TransformerAbstract
 {
     protected $defaultIncludes = [
-        'user'
+        'creator'
     ];
 
     public function transform(Like $like)
@@ -31,7 +31,7 @@ class UserLikedEpisodeTransformer extends Fractal\TransformerAbstract
      * @param Like $like
      * @return \League\Fractal\Resource\Item
      */
-    public function includeUser(Like $like)
+    public function includeCreator(Like $like)
     {
         $user = $like->user;
 

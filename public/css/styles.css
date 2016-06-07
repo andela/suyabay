@@ -317,6 +317,7 @@
   /* 15 */
   border-radius: 0 0.938em 0 0;
   /* 15 */
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
@@ -896,6 +897,7 @@ img.avatar {
 }
 
 .social-btn:active {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   transition: 0.10s;
 }
