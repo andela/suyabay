@@ -81,40 +81,45 @@ Route::group(['prefix' => 'api/v1/'], function () {
 | API Routes - Channels
 |--------------------------------------------------------------------------
 */
-    Route::get('channels', [
-        'uses' => 'Api\ChannelController@getAllChannels'
-    ]);
-    Route::get('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@getAChannel'
-    ]);
-    Route::post('channels', [
-        'uses' => 'Api\ChannelController@postAChannel'
-    ]);
-    Route::put('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@editAChannel'
-    ]);
-    Route::patch('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@editASingleChannelResource'
-    ]);
-    
-    Route::delete('channels/{channel_name}', [
-        'uses' => 'Api\ChannelController@deleteASingleChannel'
-    ]);
+    Route::group(['middleware' => 'superadmin.user'], function () {
+
+        Route::get('channels', [
+            'uses' => 'Api\ChannelController@getAllChannels'
+        ]);
+        Route::get('channels/{channel_name}', [
+            'uses' => 'Api\ChannelController@getAChannel'
+        ]);
+        Route::post('channels', [
+            'uses' => 'Api\ChannelController@postAChannel'
+        ]);
+        Route::put('channels/{channel_name}', [
+            'uses' => 'Api\ChannelController@editAChannel'
+        ]);
+        Route::patch('channels/{channel_name}', [
+            'uses' => 'Api\ChannelController@editASingleChannelResource'
+        ]);
+        
+        Route::delete('channels/{channel_name}', [
+            'uses' => 'Api\ChannelController@deleteASingleChannel'
+        ]);
+    });
 /*
 |--------------------------------------------------------------------------
 | API Routes - Channel Episodes
 |--------------------------------------------------------------------------
 */
     Route::group(['prefix' => 'channels'], function () {
+        
+        Route::get('{name}/episodes', [
+            'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
+        ]);
+
+        Route::get('{channelName}/episodes/{episodeName}', [
+            'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
+        ]);
+
         Route::group(['middleware' => 'premium.user'], function () {
-            Route::get('{name}/episodes', [
-                'uses' => 'Api\ChannelEpisodesController@getAllEpisodes'
-            ]);
-
-            Route::get('{channelName}/episodes/{episodeName}', [
-                'uses' => 'Api\ChannelEpisodesController@getAChannelEpisode'
-            ]);
-
+                
             Route::post('{name}/episodes', function () {
                 return json_encode(["message" => "post an episode under a channel"]);
             });

@@ -10,6 +10,7 @@ class ChannelEndpointsTest extends TestCase
 {
     public function testThatNothingWasReturnOnGetAllChannels()
     {
+        $this->withoutMiddleware();
         $response = $this->call('GET', '/api/v1/channels');
         $output = json_decode($response->getContent());
 
@@ -18,6 +19,7 @@ class ChannelEndpointsTest extends TestCase
 
     public function testGetAllChannels()
     {
+        $this->withoutMiddleware();
         $user = factory('Suyabay\User')->create();
         $channel = factory('Suyabay\Channel')->create();
         $episode = factory('Suyabay\Episode', 5)->create([
@@ -37,6 +39,7 @@ class ChannelEndpointsTest extends TestCase
 
     public function testGetASingleChannel()
     {
+        $this->withoutMiddleware();
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => 'Ginger',
             'channel_description' => 'Laoriosam volup atum nesciunt beatae dolorem neque ut fuga est',
