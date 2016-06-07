@@ -26,9 +26,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'       => \Suyabay\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'      => \Suyabay\Http\Middleware\RedirectIfAuthenticated::class,
-        'cors'       => \Suyabay\Http\Middleware\CORS::class,
+        'auth'         => \Suyabay\Http\Middleware\Authenticate::class,
+        'auth.basic'   => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest'        => \Suyabay\Http\Middleware\RedirectIfAuthenticated::class,
+        'cors'         => \Suyabay\Http\Middleware\CORS::class,
+        'premium.user' => \Suyabay\Http\Middleware\premiumUser::class,
     ];
 }
