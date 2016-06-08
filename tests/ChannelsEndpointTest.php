@@ -10,6 +10,7 @@ class ChannelEndpointsTest extends TestCase
 {
     public function testThatNothingWasReturnOnGetAllChannels()
     {
+        $this->withoutMiddleware();
         $response = $this->call('GET', '/api/v1/channels');
         $output = json_decode($response->getContent());
 
@@ -18,6 +19,7 @@ class ChannelEndpointsTest extends TestCase
 
     public function testGetAllChannels()
     {
+        $this->withoutMiddleware();
         $user = factory('Suyabay\User')->create();
         $channel = factory('Suyabay\Channel')->create();
         $episode = factory('Suyabay\Episode', 5)->create([
@@ -37,6 +39,7 @@ class ChannelEndpointsTest extends TestCase
 
     public function testGetASingleChannel()
     {
+        $this->withoutMiddleware();
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => 'Ginger',
             'channel_description' => 'Laoriosam volup atum nesciunt beatae dolorem neque ut fuga est',
@@ -57,6 +60,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatASingleChannelWasNotFound()
     {
+        $this->withoutMiddleware();
+
         $channel = factory('Suyabay\Channel')->create([
             'channel_name' => 'Suyabay',
             'channel_description' => 'Laoriosam volup atum nesciunt',
@@ -71,6 +76,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatAChannelWasCreated()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -93,6 +100,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelsFieldsAreRequired()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -113,6 +122,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelWasEditedSuccessfullyViaPutVerb()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -133,6 +144,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelCouldNotEditedViaPutVerb()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -153,6 +166,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelNameUpdatedViaPatchVerb()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -172,6 +187,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelNameWasNotUpdatedViaPatchVerb()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -191,6 +208,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelWasNotUpdateViaPatchVerbDueToMissingField()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -211,6 +230,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelWasNotUpdatedViaPatchVerbDueToIncorrectChannelname()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -231,6 +252,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelWasNotDeletedDueToIncorrectChannelname()
     {
+        $this->withoutMiddleware();
+
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([
@@ -250,6 +273,8 @@ class ChannelEndpointsTest extends TestCase
 
     public function testThatChannelWasDeletedSuccessfully()
     {
+        $this->withoutMiddleware();
+        
         $user  = $channel = factory('Suyabay\User')->create();
 
         $channel = factory('Suyabay\Channel')->create([

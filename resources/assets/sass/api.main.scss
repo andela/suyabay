@@ -1,12 +1,13 @@
-body,
-html {
-  height: 100%;
+body, html {
+  height:100%;
   position: relative;
-  background-color: #E0E0E0;
+  background-color: #E0E0E0; 
 }
 
 #settings {
-  box-shadow: -1px 2px 16px 3px rgba(0, 0, 0, 0.52);
+  -webkit-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+  -moz-box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
+  box-shadow: -1px 2px 16px 3px rgba(0,0,0,0.52);
   margin-top: 65px;
   height: 100px;
 }
@@ -14,39 +15,39 @@ html {
 #hero {
   max-height: 500px !important;
   position: relative;
-  top: -45px;
+  top:-45px;
 }
 
-#hero,
-#hero > * {
+#hero, #hero > * {
   width: 100%;
   min-height: 50%;
 }
 
-#hero #overlay-image {
-  background: url("../images/hero.jpg");
-  position: absolute;
-  background-size: cover;
+#hero #overlay-image{
+  background: url('../images/hero.jpg');
+   position: absolute;
+  -webkit-background-size:cover;
+  background-size:cover;
   height: 450px;
 }
 
 #hero-content {
   position: absolute;
-  color: #FFF;
+  color:#FFF;
 }
 
 #hero-content .content {
   width: 70%;
-  margin: 90px auto 0px;
+  margin:90px auto 0px;
 }
 
 #hero-menu {
   position: absolute;
-  color: #FFF;
+  color:#FFF;
   clear: both;
   top: 20px;
   margin: auto;
-  max-height: 50px !important;
+  max-height:50px !important;
   margin-top: 380px;
   font-family: 'robotoLight';
   font-size: 18px;
@@ -81,13 +82,13 @@ html {
   line-height: 31px;
   font-weight: 300;
 }
-
+ 
 .footer-copyright {
-  background-color: #2C3E50 !important;
+  background-color: #2C3E50!important;
 }
 
 .api-link {
-  margin-left: 2%;
+  margin-left:2%;
 }
 
 .api-link a {
@@ -108,16 +109,16 @@ html {
 }
 
 .text-content h1 {
-  color: #2793e6;
-  padding: 10px;
-  font-size: 25px;
-  font-weight: 200;
+  color:#2793e6; 
+  padding: 10px; 
+  font-size:25px; 
+  font-weight: 200; 
   line-height: 30px;
 }
 
 .text-content .p {
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 400; 
   line-height: 24px;
 }
 
@@ -146,12 +147,12 @@ html {
 
 @font-face {
   font-family: robotoLight;
-  src: url("../fonts/Roboto-Light.ttf");
+  src: url('../fonts/Roboto-Light.ttf');
 }
 
 @font-face {
   font-family: robotoMedium;
-  src: url("../fonts/Roboto-Medium.ttf");
+  src: url('../fonts/Roboto-Medium.ttf');
   font-size: 18px;
 }
 
@@ -206,24 +207,22 @@ html {
   width: 250px;
 }
 
-.myapp-one,
-.myapp-two {
+.myapp-one, .myapp-two{
   width: 90%;
   min-height: 200px;
   background: #fcfcfc;
   margin: 5% auto 1% 8%;
   float: left;
-}
+} 
 
-.myapp-two {
-  margin: 10% auto auto -2%;
-}
+.myapp-two{
+  margin: 10% auto auto -2%; 
+} 
 
 /*
  # Avatar Image
  =====================
 */
-
 img.avatar {
   width: 45px;
   max-width: 1232px;
@@ -235,13 +234,12 @@ img.avatar {
 # appform and editappdetails Styles
 ===============================================
 */
-
 .app-form {
   clear: both;
   min-height: 20px;
   width: 80%;
   background-color: #fff;
-  margin: -22px auto 20px 20%;
+  margin: -22px auto 20px 20%; 
 }
 
 #main-new-one {
@@ -264,8 +262,7 @@ img.avatar {
   float: right;
 }
 
-.app-form-one input,
-.app-form-one textarea {
+.app-form-one input, .app-form-one textarea {
   width: 100%;
 }
 
@@ -283,46 +280,43 @@ h5 {
 }
 
 .help-block {
-  color: red;
+    color: red;
 }
 
-.app-form-one,
-.app-form-two {
+.app-form-one, .app-form-two{
   width: 90%;
   min-height: 150px;
   border-radius: 2px;
   background: #fcfcfc;
   margin: 5% auto 5% 8%;
   float: left;
-}
+} 
 
-.app-form-two {
-  margin: 10% auto auto 5%;
+.app-form-two{
+  margin: 10% auto auto 5%; 
   float: none;
-}
+} 
 
 .new-app-text {
   margin: 1% auto auto 2%;
 }
 
-.app-form-one,
-.app-form-two {
+.app-form-one, .app-form-two{
   width: 100%;
   min-height: 200px;
   background: #fcfcfc;
   margin: 9.5% auto 3% -10%;
   float: left;
-}
+} 
 
-.app-form-two {
-  margin: 10% auto auto -15%;
-}
+.app-form-two{
+  margin: 10% auto auto -15%; 
+} 
 
 /*
 # newappdetails and appdetails Styles
 ===============================================
 */
-
 .app-name {
   float: left;
   margin: 2% auto 4% 5%;
@@ -355,20 +349,19 @@ h5 {
   border: 10px;
 }
 
-.app-detail-one,
-.app-detail-two {
+.app-detail-one, .app-detail-two{
   width: 90%;
   min-height: 200px;
   background: #fcfcfc;
   margin: 5% auto 1% 8%;
   float: left;
-}
+} 
 
-.app-detail-two {
-  margin: 10% auto auto -2%;
-}
+.app-detail-two{
+  margin: 10% auto auto -2%; 
+} 
 
-.app-details-old {
+.app-details-old{
   display: inline;
   float: left;
   overflow: hidden;
@@ -387,7 +380,6 @@ h5 {
 # allappdetails Styles
 ===============================================
 */
-
 .all-app-details {
   display: inline;
   float: left;
@@ -399,19 +391,18 @@ h5 {
   background-color: #fff;
 }
 
-.myapps-one,
-.myapps-two {
+.myapps-one, .myapps-two{
   width: 90%;
   min-height: 150px;
   border-radius: 2px;
   background: #fcfcfc;
   margin: 5% auto -3% 8%;
   float: left;
-}
+} 
 
-.myapps-two {
-  margin: 10% auto auto -1%;
-}
+.myapps-two{
+  margin: 10% auto auto -1%; 
+} 
 
 .right_side {
   float: left;
@@ -424,14 +415,14 @@ h5 {
   margin: 1% auto 4% 5%;
 }
 
-.btn-copy {
+.btn-copy{
   border-radius: 0;
   display: inline-block;
   background-color: #26a69a;
   color: white;
 }
 
-#token-box {
+#token-box{
   display: inline;
   width: 78%;
   border-radius: 0;
@@ -447,7 +438,7 @@ h5 {
   width: auto;
 }
 
-.app > div:nth-child(2) {
+.app > div:nth-child(2){
   margin-bottom: 2px;
 }
 
