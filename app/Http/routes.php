@@ -81,19 +81,23 @@ Route::group(['prefix' => 'api/v1/'], function () {
 | API Routes - Channels
 |--------------------------------------------------------------------------
 */
-        Route::get('channels', [
-            'uses' => 'Api\ChannelController@getAllChannels'
-        ]);
-        Route::get('channels/{channel_name}', [
-            'uses' => 'Api\ChannelController@getAChannel'
-        ]);
-    Route::group(['middleware' => 'superadmin.user'], function () {    
+    Route::get('channels', [
+        'uses' => 'Api\ChannelController@getAllChannels'
+    ]);
+
+    Route::get('channels/{channel_name}', [
+        'uses' => 'Api\ChannelController@getAChannel'
+    ]);
+
+    Route::group(['middleware' => 'superadmin.user'], function () {
         Route::post('channels', [
             'uses' => 'Api\ChannelController@postAChannel'
         ]);
+
         Route::put('channels/{channel_name}', [
             'uses' => 'Api\ChannelController@editAChannel'
         ]);
+        
         Route::patch('channels/{channel_name}', [
             'uses' => 'Api\ChannelController@editASingleChannelResource'
         ]);
