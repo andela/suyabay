@@ -20,6 +20,12 @@ $(document).ready(function(){
         return false;
     });
 
+    $('.login-btn').click( function (e) {
+        e.preventDefault();
+
+        login();
+    });
+
     $("#swap_episode_delete_channel", this).on("click", function () {
         var id      = $(this).data("id");
         var url     = "/dashboard/channel/"+id;
