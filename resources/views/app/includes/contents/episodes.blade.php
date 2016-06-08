@@ -47,7 +47,7 @@
             <div class="col s12 m6 l12 card-social">
 
             <!-- start social -->
-                <div style="color:#999;">
+                <div style="color:#999;" class="right">
                     <p>
                         <span style="padding-right:15px;">
                             <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>

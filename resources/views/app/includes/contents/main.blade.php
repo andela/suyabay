@@ -30,7 +30,7 @@
                      {{$episodes->first()->episode_description}}
                 </p>
 
-                <div class="podcast-actions">
+                <div class="podcast-actions right">
 
                     <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
