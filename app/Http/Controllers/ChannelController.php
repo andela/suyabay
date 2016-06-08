@@ -38,8 +38,9 @@ class ChannelController extends Controller
     }
 
     /**
-     * Take the channels for notification and
-     * @return The authenticated user's notifications page.
+     * Take the channels for notification and the authenticated user's notifications page.
+     *  
+     * @return \Illuminate\Http\Response
      */
     public function notifications()
     {

@@ -209,8 +209,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Save tht time that the user logged out in the database.
-     * Save the time in Y-m-d H:i:s format.
+     * Save tht time that the user logged out in the database. Save the time in Y-m-d H:i:s format.
+     *
+     * @return void
      */
     private function saveLoggedOutTime()
     {
