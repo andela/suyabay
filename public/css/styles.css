@@ -887,7 +887,13 @@ img.avatar {
 
 /*Show dislike action on button*/
 
-.like {
+.like,
+.dislike {
+  color: #777;
+}
+
+.like:hover,
+.dislike:hover {
   color: #2C3E50;
 }
 
@@ -985,7 +991,6 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .podcast-actions {
   padding: 5px;
-  margin-top: 2%;
 }
 
 .podcast-actions .social-btn {
@@ -999,6 +1004,12 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .comment-action-delete:hover {
   color: #d34836;
+}
+
+.align-left {
+  background-color: #2C3E50;
+  padding: 3px 10px;
+  color: #fff;
 }
 body,
 html {
