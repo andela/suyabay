@@ -317,6 +317,7 @@
   /* 15 */
   border-radius: 0 0.938em 0 0;
   /* 15 */
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
@@ -896,6 +897,7 @@ img.avatar {
 }
 
 .social-btn:active {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   transition: 0.10s;
 }
@@ -1159,16 +1161,6 @@ html {
 /*
 # myApps Styles
 ===============================================
-*/
-
-/*.error-message {
-    border: 1px solid #c7cdcf;
-    width: 90%;
-    height: 150px;
-    border-radius: 2px;
-    position: relative;
-    background: #fcfcfc;
-    margin: 40px auto 40px auto;
 }*/
 
 .myapp {
@@ -1328,17 +1320,6 @@ h5 {
 .app-form-two {
   margin: 10% auto auto -15%;
 }
-
-/*@media only screen and (max-width: 100%) {
-
-.waves-dark{
-
-width: 100% !important;
-margin-left: 60%
-
-}
-
-}*/
 
 /*
 # newappdetails and appdetails Styles
