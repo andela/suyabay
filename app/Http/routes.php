@@ -81,14 +81,13 @@ Route::group(['prefix' => 'api/v1/'], function () {
 | API Routes - Channels
 |--------------------------------------------------------------------------
 */
-    Route::group(['middleware' => 'superadmin.user'], function () {
-
         Route::get('channels', [
             'uses' => 'Api\ChannelController@getAllChannels'
         ]);
         Route::get('channels/{channel_name}', [
             'uses' => 'Api\ChannelController@getAChannel'
         ]);
+    Route::group(['middleware' => 'superadmin.user'], function () {    
         Route::post('channels', [
             'uses' => 'Api\ChannelController@postAChannel'
         ]);
@@ -157,10 +156,6 @@ Route::group(['prefix' => 'api/v1/'], function () {
     Route::get('episodes/{name}/comments/{comment_id}/commenter', [
         'uses' => 'Api\CommentController@getEpisodeCommenter'
     ]);
-
-    Route::delete('episodes/{episode_id}/comments/{comment_id}', function () {
-        return json_encode(["message" => "delete a single comment under an episode"]);
-    });
 });
 /*
 |--------------------------------------------------------------------------
