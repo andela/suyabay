@@ -17,6 +17,7 @@
                         <ul id="settings" class="dropdown-content">
                             <li><a href="/profile/edit">Profile</a></li>
                             <li><a href="/profile/changepassword">Account</a></li>
+                            <li><a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a></li>
                         </ul>
 
                         <a class="waves-effect dropdown-button" href="#" data-activates="settings">
@@ -26,14 +27,11 @@
 
                         @if( Auth::user()->hasChannelNotifications())
                             <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge">{{ Auth::user()->newChannelsCount() }}</span> Channel(s)</a>
-                            <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endif
 
                         @can('see-dashboard', Auth::user()->role->name )
                             <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endcan
-
-                        <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
 
                         @can( 'see-upgrade', Auth::user()->role->name )
                             <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
