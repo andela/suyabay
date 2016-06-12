@@ -27,7 +27,7 @@ elixir(function(mix) {
         'commentupdate.js',
         'dashboard.js',
         'like.js',
-        'loginAndSignup.js',
+        'LoginAndSignup.js',
         'main.js',
         'NewPassword.js',
         'PasswordReset.js',

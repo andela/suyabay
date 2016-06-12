@@ -104,15 +104,16 @@
                                     @endif
                                 </li>
                                     @if ( Auth::check() )
-                                            
-                                                <input type="hidden" id="episode_id" value="{{ $episode->id }}" />
-                                                <li>
-                                                    <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
-                                                        <a href="#" title="View more comments">
-                                                            View more comments
-                                                        </a>
-                                                    </div>
-                                                </li>
+                                        @if( count($firstTenComments) > 0 )
+                                            <input type="hidden" id="episode_id" value=" {{ $firstTenComments[0]['episode_id'] }}" />
+                                            <li>
+                                                <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
+                                                    <a href="#" title="View more comments">
+                                                        View more comments
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        @endif
                                             
                                     <li class="collection-item avatar">
                                     

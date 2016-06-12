@@ -770,11 +770,13 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
     };
 })( jQuery, window, document );
 $(document).ready(function() {
+    var viewMore = $(".view_more_comments");
 
-    $(".view_more_comments").on("click",function() {
+    viewMore.on("click",function() {
         var avatar = $(this).data('avatar');
         var numOfComments = $(".load_comment").find("div#show_comment");
         var episodeId  = $("#episode_id").val();
+        var perPage;
 
         try {
 
@@ -786,7 +788,11 @@ $(document).ready(function() {
                      episode_id: episodeId
             },
             success: function(data) {
-                for (i = 0 ; i < data.comments.length; i++) {
+                // Get the max number of pages and the number of comments from the server.
+                perPage = parseInt(data.perPage);
+                var CommentCount = data.comments.length;
+                
+                for (i = 0 ; i < CommentCount; i++) {
                     var comments = data.comments[i];
                     $('#comment-count').html(' ' + numOfComments.size());
 
@@ -812,6 +818,11 @@ $(document).ready(function() {
 
                      $('.load_comment').last().append(newComment);
                      $('#new-comment-field').val('');
+                }
+
+                // if the comment count returned from the server is less than the perPage, then the last page id reached.
+                if (CommentCount < perPage) {
+                    viewMore.hide();
                 }
             }
         });

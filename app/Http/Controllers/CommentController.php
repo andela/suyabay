@@ -43,16 +43,18 @@ class CommentController extends Controller
     {
         $totalComments = $request->input('offset');
         $episodeId     = $request->input('episode_id');
+        $perPage       = 10;
 
         $oldComments = DB::table('comments')
             ->where('episode_id', $episodeId)
             ->skip($totalComments)
-            ->take(10)
+            ->take($perPage)
             ->get();
 
         return [
             'message' => 'Comment retrieved Successfully',
             'status_code' => 200,
+            'perPage' => $perPage,
             'comments' => $oldComments
         ];
     }
