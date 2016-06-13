@@ -152,6 +152,7 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
+        //dd($request->all());
 
         $this->validate($request, [
             'title'         => 'required|min:3',
@@ -159,8 +160,6 @@ class EpisodeManager extends Controller
             'channel'       => 'required',
             'podcast'       => 'required|size_format|mimes:mpga'
         ]);
-
-        $file = $request->file('podcast');
 
         $data    = [
             'episode_name'          => $request->title,
