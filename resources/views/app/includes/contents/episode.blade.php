@@ -19,6 +19,7 @@
                     <div class="col s9 details">
                         <span class="podcast-episode-date">{{ $podcast->created_at->diffForHumans() }}</span>
                         <span class="tag podcast-episode-date">{{$podcast->channel->channel_name}}</span>
+                        <h5 class="podcast-episode-title"> <i class="fa fa-eye" aria-hiddden="true"></i> {{ $podcast->views }}</h5>
                         <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
 
                         <p>
