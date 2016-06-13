@@ -103,16 +103,21 @@
                                     @endforeach
                                     @endif
                                 </li>
+                                    
+                                    @if( $episode->comment->count() > 10)
+                                        <li>
+                                            <div class="view_more_comments">
+                                                <a href="#" title="View more comments">
+                                                    View more comments
+                                                </a>
+                                            </div>
+                                        </li>
+                                    @endif
+
                                     @if ( Auth::check() )
+
                                         @if( count($firstTenComments) > 0 )
                                             <input type="hidden" id="episode_id" value=" {{ $firstTenComments[0]['episode_id'] }}" />
-                                            <li>
-                                                <div class="view_more_comments" data-avatar="{{ Auth::user()->getAvatar() }}">
-                                                    <a href="#" title="View more comments">
-                                                        View more comments
-                                                    </a>
-                                                </div>
-                                            </li>
                                         @endif
                                             
                                     <li class="collection-item avatar">

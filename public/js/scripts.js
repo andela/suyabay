@@ -773,7 +773,6 @@ $(document).ready(function() {
     var viewMore = $(".view_more_comments");
 
     viewMore.on("click",function() {
-        var avatar = $(this).data('avatar');
         var numOfComments = $(".load_comment").find("div#show_comment");
         var episodeId  = $("#episode_id").val();
         var perPage;
@@ -799,7 +798,7 @@ $(document).ready(function() {
                      var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                      newComment    += '<div class="row">';
                      newComment    += '<div class="col s2">';
-                     newComment    += '<img src="' + avatar + '" alt="" class="circle">';
+                     newComment    += '<img src="' + comments.commenter + '" alt="" class="circle">';
                      newComment    += '</div>';
                      newComment    += '<div class="col s10">';
                      newComment    += '<div class="textarea-wrapper" ';
