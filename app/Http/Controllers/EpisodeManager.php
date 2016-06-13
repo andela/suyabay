@@ -152,8 +152,6 @@ class EpisodeManager extends Controller
     */
     public function store(Request $request)
     {
-        //dd($request->all());
-
         $this->validate($request, [
             'title'         => 'required|min:3',
             'description'   => 'required',
