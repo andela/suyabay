@@ -174,4 +174,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->newChannelsCount() > 0 and $this->hasNotViewedNew();
     }
+
+    /**
+     * Save tht time that the user logged out in the database. Save the time in Y-m-d H:i:s format.
+     *
+     * @return void
+     */
+    public function saveLoggedOutTime()
+    {
+        $this->logged_out_at = Carbon::now();
+        $this->save();
+    }
 }

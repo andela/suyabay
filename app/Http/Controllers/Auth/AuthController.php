@@ -198,25 +198,13 @@ class AuthController extends Controller
         if ($logout) {
 
             // If the user has viewed his notifications page, update his logout information.
-            if ($user->has_viewed_new) {
-                $this->saveLoggedOutTime();
-            }
+            // if ($user->has_viewed_new) {
+                $user->saveLoggedOutTime();
+            // }
 
             Auth::logout();
 
             return redirect('/');
         }
-    }
-
-    /**
-     * Save tht time that the user logged out in the database. Save the time in Y-m-d H:i:s format.
-     *
-     * @return void
-     */
-    private function saveLoggedOutTime()
-    {
-        $user = Auth::user();
-        $user->logged_out_at = Carbon::now();
-        $user->save();
     }
 }
