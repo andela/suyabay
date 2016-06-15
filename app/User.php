@@ -100,6 +100,7 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * Return the number of likes that the user has for episodes.
+     *
      * @return integer
      */
     public function likesCount()
@@ -109,6 +110,9 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * Set the Logged Out At column to use Carbon timestamps
+     * 
+     * @param The DateTime stamp.
+     * @return void
      */
     public function setLoggedOutAtAttriute($date)
     {
@@ -116,9 +120,10 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-    * Get all the new channels that were added between the
-    * user's logged_out_time and the current time.
-    * @return A collection of all the channels between the two points in time.
+    * Get all the new channels that were added between the user's logged_out_time and the current time.
+    * A collection of all the channels between the two points in time.
+    *
+    * @return Illuminate\Support\Collection
     */
     public function newChannels()
     {
@@ -130,7 +135,8 @@ class User extends Model implements AuthenticatableContract,
 
     /**
     * Get the count of all the notification channels for this particular user.
-    * @return The count of all notification channels.
+    *
+    * @return integer
     */
     public function newChannelsCount()
     {
@@ -139,7 +145,8 @@ class User extends Model implements AuthenticatableContract,
 
     /**
     * Check if the user has not viewed his notifications page.
-    * @return Return TRUE if user has not viewed or FALSE otherwise.
+    *
+    * @return bool
     */
     public function hasNotViewedNew()
     {
@@ -149,6 +156,8 @@ class User extends Model implements AuthenticatableContract,
     /**
     * Set that the user has viewed his notifications page.
     * This is called once the user visits the notifications route.
+    *
+    * @return void
     */
     public function setHasViewNew()
     {
@@ -158,10 +167,22 @@ class User extends Model implements AuthenticatableContract,
 
     /**
     * Check if the user has some channel notifications.
-    * @return TRUE if the user has notificationsm and has not viewed them. FASLE otherwise.
+    *
+    * @return bool
     */
     public function hasChannelNotifications()
     {
         return $this->newChannelsCount() > 0 and $this->hasNotViewedNew();
+    }
+
+    /**
+     * Save tht time that the user logged out in the database. Save the time in Y-m-d H:i:s format.
+     *
+     * @return void
+     */
+    public function saveLoggedOutTime()
+    {
+        $this->logged_out_at = Carbon::now();
+        $this->save();
     }
 }
