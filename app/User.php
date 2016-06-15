@@ -3,6 +3,7 @@
 namespace Suyabay;
 
 use Suyabay\Role;
+use Carbon\Carbon;
 use Suyabay\Comment;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -30,8 +31,14 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['username', 'active' ,'email', 'password', 'facebookID', 'twitterID', 'avatar'];
+    protected $fillable = ['username', 'active' ,'email', 'password', 'facebookID', 'twitterID', 'avatar', 'has_viewed_new'];
 
+    /**
+     * Set the looged_out_at timestamp to be treated as a Carbon instance.
+     */
+    protected $dates = ['logged_out_at'];
+
+    
     /**
      * Define roles table relationship
      *
@@ -93,10 +100,89 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * Return the number of likes that the user has for episodes.
+     *
      * @return integer
      */
     public function likesCount()
     {
         return $this->likes()->count();
+    }
+
+    /**
+     * Set the Logged Out At column to use Carbon timestamps
+     * 
+     * @param The DateTime stamp.
+     * @return void
+     */
+    public function setLoggedOutAtAttriute($date)
+    {
+        $this->attributes['logged_out_at'] = Carbon::createFromFormat('Y-m-d', $date);
+    }
+
+    /**
+    * Get all the new channels that were added between the user's logged_out_time and the current time.
+    * A collection of all the channels between the two points in time.
+    *
+    * @return Illuminate\Support\Collection
+    */
+    public function newChannels()
+    {
+        $loggedOut = $this->logged_out_at;
+        $now = Carbon::now();
+
+        return Channel::whereBetween('created_at', [$loggedOut, $now]);
+    }
+
+    /**
+    * Get the count of all the notification channels for this particular user.
+    *
+    * @return integer
+    */
+    public function newChannelsCount()
+    {
+        return $this->newChannels()->count();
+    }
+
+    /**
+    * Check if the user has not viewed his notifications page.
+    *
+    * @return bool
+    */
+    public function hasNotViewedNew()
+    {
+        return !$this->has_viewed_new;
+    }
+
+    /**
+    * Set that the user has viewed his notifications page.
+    * This is called once the user visits the notifications route.
+    *
+    * @return void
+    */
+    public function setHasViewNew()
+    {
+        $this->has_viewed_new = 1;
+        $this->save();
+    }
+
+    /**
+    * Check if the user has some channel notifications.
+    *
+    * @return bool
+    */
+    public function hasChannelNotifications()
+    {
+        return $this->newChannelsCount() > 0 and $this->hasNotViewedNew();
+    }
+
+    /**
+     * Save tht time that the user logged out in the database. Save the time in Y-m-d H:i:s format.
+     *
+     * @return void
+     */
+    public function saveLoggedOutTime()
+    {
+        $this->logged_out_at = Carbon::now();
+        $this->save();
     }
 }

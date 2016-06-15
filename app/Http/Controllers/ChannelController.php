@@ -38,6 +38,21 @@ class ChannelController extends Controller
     }
 
     /**
+     * Take the channels for notification and the authenticated user's notifications page.
+     *  
+     * @return \Illuminate\Http\Response
+     */
+    public function notifications()
+    {
+        $user = Auth::user();
+        $channels = $user->newChannels()->paginate(10);
+        
+        $user->setHasViewNew();
+
+        return view('dashboard.pages.view_channels', compact('channels'));
+    }
+
+    /**
      * Return only deleted channels
      * @return \Illuminate\Http\Response
      */
