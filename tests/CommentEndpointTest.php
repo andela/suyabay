@@ -59,10 +59,15 @@ class CommentEndpointTest extends TestCase
         $this->createComment();
 
         $response       = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
+
         $decodeResponse = json_decode($response->getContent());
         $array          = $decodeResponse->data;
-        $this->assertTrue(is_array($decodeResponse->data));
 
+        $this->assertTrue(is_array($array->comment->data));
+
+        $dataNumber     = count($array->comment->data);
+
+        $this->assertEquals($dataNumber, 2);
         $this->get('/api/v1/episodes/ogaboss/comments')
             ->seeJson()
             ->seeStatusCode(200);
@@ -82,13 +87,13 @@ class CommentEndpointTest extends TestCase
         $this->createComment();
 
         $response = $this->actingAs($user)->call('GET', '/api/v1/episodes/ogaboss/comments');
-        
+
         $decodeResponse = json_decode($response->getContent());
         $array          = $decodeResponse->data;
-        $dataNumber     = count($array['0']->comment->data);
-        
+        $dataNumber     = count($array->comment->data);
+
         $this->assertEquals($dataNumber, 2);
-        $this->get('/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&limit=2')
+        $this->get('/api/v1/episodes/ogaboss/comments?fromDate=2016-05-10&toDate=2016-05-18&page=1')
             ->seeJson()
             ->seeStatusCode(200);
     }
