@@ -61,7 +61,7 @@ class CommentController extends Controller
             return response()->json(['message' => 'Comment not available for this episode'], 404);
         }
 
-        if ($request->query->count() == 0 || $request->query->count() == 1) {
+        if ($request->query->count() == 0) {
             return $this->displayComments($episode, $episodeTransformer);
         }
 
@@ -78,13 +78,8 @@ class CommentController extends Controller
      */
     public function displayComments($episode, $episodeTransformer)
     {
-        $paginator = $episode->paginate(10);
-        $episode   = $paginator->getCollection();
-        $resource  = new Collection($episode, $episodeTransformer);
-
-        $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
-
-        $data      = $this->fractal->createData($resource)->toArray();
+        $resource = new Item($episode, $episodeTransformer);
+        $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
     }
@@ -108,7 +103,9 @@ class CommentController extends Controller
            ->orderBy('created_at', 'desc')
            ->whereBetween('created_at', [$fromDate, $toDate])
            ->take($limit)
-           ->paginate(10);
+           ->paginate($limit);
+
+        $paginator = $paginator->appends(['fromDate' => $fromDate, 'toDate' => $toDate]);
 
         $comments = $paginator->getCollection();
         $resource = new Collection($comments, $commentTransformer);
@@ -229,7 +226,9 @@ class CommentController extends Controller
            ->orderBy('created_at', 'desc')
            ->whereBetween('created_at', [$fromDate, $toDate])
            ->take($limit)
-           ->paginate(10);
+           ->paginate($limit);
+
+        $paginator = $paginator->appends(['fromDate' => $fromDate, 'toDate' => $toDate]);
 
         $comments = $paginator->getCollection();
         $resource = new Collection($comments, $commentTransformer);
