@@ -589,3 +589,8 @@ p.flow-text.center-align.padcast-page-sub-header {
 .comment-action-delete:hover {
   color: #d34836;
 }
+
+.counts {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+}
