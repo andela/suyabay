@@ -471,14 +471,10 @@ img.avatar {
 
 /*Show liked and dislike action on button*/
 
-.like, .dislike {
+.like,
+.dislike {
   color: #777;
 }
-
-.like:hover,
- .dislike:hover {
-    color: #2C3E50;
-  }
 
 .social-btn {
   cursor: pointer;
@@ -598,8 +594,23 @@ p.flow-text.center-align.padcast-page-sub-header {
 .counts {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
-}
-.heading {
+ }
+
+ .heading {
   font-size: 26px;
   margin-left: 10px;
+}
+
+.username {
+  max-width: 100px;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  margin-top: -2px;
+}
+
+.dropdown-button img {
+  float: left;
+  margin: 10px;
 }
