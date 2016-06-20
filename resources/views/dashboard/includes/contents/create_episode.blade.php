@@ -14,13 +14,14 @@
                     </div>
 
                     <div class="input-field col s6">
-                        <select name="channel">
+                        <select name="channel" style="display:block !important;">
+                            <option value="" name="channel">Select Channel</option>
                             @foreach($channels as $channel)
                                 <option value="{{$channel->id}}" name="channel">{{$channel->channel_name}}
                                 </option>
                             @endforeach
                         </select>
-                        <label for="channel">Channel Name</label>
+                   
                     </div>
                 </div>
 

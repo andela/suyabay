@@ -20,6 +20,15 @@
   cursor: hand;
 }
 
+#notification-num {
+  background: #d9534f;
+  margin: 1px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: small;
+  font-weight: bolder;
+}
+
 .view_more_comments a {
   width: 20%;
   clear: both;

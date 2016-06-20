@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers\Auth;
 
 use Auth;
+use Carbon\Carbon;
 use Validator;
 use Socialite;
 use Suyabay\User;
@@ -156,8 +157,14 @@ class AuthController extends Controller
             /*
             # Update user acive column to 1 when user successfully signin
             */
-            User::where('id', Auth::user()->id)->update(['active' => 1]);
-
+            
+            $data = [
+                'active' => 1, // Set the user to be active.
+                'has_viewed_new' => 0, // Set user has not viewed notifications page.
+            ];
+            
+            Auth::user()->update($data);
+            
             return $response =
             [
                 "message"       => "login success",
@@ -180,10 +187,21 @@ class AuthController extends Controller
         /*
         * Update user acive column to 0 when user successfully signout
         */
-        $logout = User::where('id', Auth::user()->id)->update(['active' => 0]);
+        $user = Auth::user();
+        
+        $data = [
+            'active' => 0
+        ];
 
+        $logout = $user->update($data);
 
         if ($logout) {
+
+            // If the user has viewed his notifications page, update his logout information.
+            // if ($user->has_viewed_new) {
+                $user->saveLoggedOutTime();
+            // }
+
             Auth::logout();
 
             return redirect('/');

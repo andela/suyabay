@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class AddHasViewedNewToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('roles')) {
-            Schema::create('roles', function (Blueprint $table) {
-                $table->increments('id'); 
-                $table->string('name')->nullable()->unique();
-            });
-        }    
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('has_viewed_new')->default(0);
+        });
     }
 
     /**
@@ -27,6 +24,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('roles');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('has_viewed_new');
+        });
     }
 }

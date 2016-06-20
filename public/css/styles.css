@@ -430,6 +430,15 @@
   cursor: hand;
 }
 
+#notification-num {
+  background: #d9534f;
+  margin: 1px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: small;
+  font-weight: bolder;
+}
+
 .view_more_comments a {
   width: 20%;
   clear: both;
@@ -1189,16 +1198,6 @@ html {
 /*
 # myApps Styles
 ===============================================
-*/
-
-/*.error-message {
-    border: 1px solid #c7cdcf;
-    width: 90%;
-    height: 150px;
-    border-radius: 2px;
-    position: relative;
-    background: #fcfcfc;
-    margin: 40px auto 40px auto;
 }*/
 
 .myapp {
@@ -1358,17 +1357,6 @@ h5 {
 .app-form-two {
   margin: 10% auto auto -15%;
 }
-
-/*@media only screen and (max-width: 100%) {
-
-.waves-dark{
-
-width: 100% !important;
-margin-left: 60%
-
-}
-
-}*/
 
 /*
 # newappdetails and appdetails Styles
