@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Auth;
+use Alert;
 use Socialite;
 use Suyabay\User;
 use Suyabay\Http\Requests;
@@ -70,6 +71,7 @@ class OauthController extends Controller
      */
     public function userHasLoggedIn()
     {
+        alert()->success('Your have successfully Sign In', 'success');
         return redirect('/');
     }
 
@@ -117,7 +119,8 @@ class OauthController extends Controller
         $array[$provider] = $userData->getId();
 
         $channels = $this->channelRepository->getAllChannels();
-        
+
+        alert()->success('Your have successfully signup', 'success');
         return view('app.pages.signup', compact('channels', 'array'));
     }
 
