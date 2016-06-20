@@ -51,7 +51,7 @@
                     <p>
                         <span style="padding-right:15px;">
                             <i class="fa fa-comment" id="comment-count{{ $episode->id }}"> {{ $episode->comment()->count() }}</i>
-                        </span>
+                        </span> 
                         <span style="padding-right:15px;">
                             <i class="fa fa-heart"> 50</i>
                         </span>
