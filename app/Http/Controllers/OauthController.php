@@ -20,15 +20,19 @@ class OauthController extends Controller
      *
      * @return  [object]
      */
-    public function getSocialRedirect(Request $request, $provider )
+    public function getSocialRedirect($provider)
     {
-        if (!($request->has('code') || $request->has('oauth_token'))) {
+        return Socialite::driver( $provider )->redirect();
+    }
 
-            return Socialite::driver( $provider )->redirect();
-        }
-
-        $userData = $this->getOauth($provider);
-
+    /**
+     * Obtain the user information from Provider.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback($provider)
+    {
+        $userData     = Socialite::driver($provider)->user();
         if (is_null($this->checkUserExist($userData, $provider))) {
 
             return $this->socialFunction($userData, $provider);
@@ -115,13 +119,25 @@ class OauthController extends Controller
      */
     protected function getSocialData($userData, $provider)
     {
-        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
-        $array[$provider] = $userData->getId();
+        $columnName  = $provider.'ID';
+        // $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
+        // $array[$provider] = $userData->getId();
 
-        $channels = $this->channelRepository->getAllChannels();
+        User::create([
+            'username'       => $userData->getNickname() ?: $userData->getName(),
+            'password'       => bcrypt(str_random(10)),
+            'email'          => $userData->getEmail() ?: str_random(10).'@noemail.app',
+            'avatar'         => $userData->getAvatar(),
+            'role_id'        => 1,
+            $columnName       => $userData->getId()
+        ]);
 
+        //$channels = $this->channelRepository->getAllChannels();
+
+        Auth::login($userData, true);
         alert()->success('Your have successfully signup', 'success');
-        return view('app.pages.signup', compact('channels', 'array'));
-    }
 
+        return redirect('/');
+        //return view('app.pages.signup', compact('channels', 'array'));
+    }
 }

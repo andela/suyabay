@@ -266,7 +266,8 @@ Route::post('login', [
 / Social Authentication
 /-------------------------------------------------------------------------------
 */
-Route::get('/login/{provider}', 'OauthController@getSocialRedirect');
+Route::get('{provider}/', 'OauthController@getSocialRedirect');
+Route::get('{provider}/callback', 'OauthController@handleProviderCallback');
 /*
 /-------------------------------------------------------------------------------
 / Register
