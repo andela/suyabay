@@ -599,3 +599,7 @@ p.flow-text.center-align.padcast-page-sub-header {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
 }
+.heading {
+  font-size: 26px;
+  margin-left: 10px;
+}
