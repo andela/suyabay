@@ -19,7 +19,6 @@
 
             <div class="col s9 details">
                 <span class="podcast-episode-date">{{$episodes->first()->created_at->diffForHumans()}}</span>
-                <span class="tag podcast-episode-date">{{$episodes->first()->channel->channel_name}}</span>
                 <a style="color:#2C3E50" href="/episodes/{{$episodes->first()->id}}">
                     <h5 class="podcast-episode-title">{{$episodes->first()->episode_name}}</h5>
                 </a>
@@ -29,6 +28,8 @@
                 <p>
                      {{$episodes->first()->episode_description}}
                 </p>
+
+                <span class="podcast-episode-date align-left">{{$episodes->first()->channel->channel_name}}</span>
 
                 <div class="podcast-actions right">
 
@@ -41,11 +42,11 @@
                     <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn like {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"></i> <span class="counts">{{ $episodes->first()->likes }}</span>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <i class="fa fa-comment social-btn like"> {{ $episodes->first()->comment->count() }}</i>
+                        <i class="fa fa-comment social-btn like"></i> <span class="counts">{{ $episodes->first()->comment->count() }}</span>
                     </span>
 
                     <span style="padding-right:15px;">
@@ -71,13 +72,12 @@
 
                 <div class="col s9 details">
                     <span class="podcast-episode-date">{{ $podcast->created_at->diffForHumans() }}</span>
-                    <span class="tag podcast-episode-date">{{$podcast->channel->channel_name}}</span>
                     <h5 class="podcast-episode-title">{{ $podcast->episode_name }}</h5>
 
                     <p>
                         {{$podcast->episode_description}}
                     </p>
-
+                    <span class="podcast-episode-date align-left">{{$podcast->channel->channel_name}}</span>
                 </div>
             </div>
         </a>
