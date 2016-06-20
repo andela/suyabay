@@ -42,11 +42,11 @@
                     <input type="hidden" id="episode_id" value="{{ $episodes->first()->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn like {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"> {{ $episodes->first()->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn like {{ $episodes->first()->like_status }}" like-status="{{ $episodes->first()->like_status }}" data-episode-id="{{ $episodes->first()->id }}"></i> <span class="counts">{{ $episodes->first()->likes }}</span>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <i class="fa fa-comment social-btn like"> {{ $episodes->first()->comment->count() }}</i>
+                        <i class="fa fa-comment social-btn like"></i> <span class="counts">{{ $episodes->first()->comment->count() }}</span>
                     </span>
 
                     <span style="padding-right:15px;">
