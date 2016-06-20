@@ -31,7 +31,8 @@
                 <form method="POST" action="/avatar/setting" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div style="margin: 10px;">
-                        <img src="{{ $users->avatar }}" height="125" width="125"/><br>
+                        <img src="{{ $users->avatar }}" height="125" width="125"/>
+                        <br>
                         <input type="file" name="avatar" size="30"></input>
                         <div>
                             <br>
