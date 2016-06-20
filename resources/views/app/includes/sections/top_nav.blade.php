@@ -1,9 +1,7 @@
 <div class="navbar-fixed">
     <nav role="navigation">
         <div class="nav-wrapper">
-
             <!-- Desktop view top nav -->
-
             <a href="/" id="logo-container">
                 <img src="{!! load_asset('/css/logo.png') !!}" class="logo" />
             </a>
@@ -11,7 +9,6 @@
                 <li id="search">
                     @include('app.includes.contents.searchform')
                 </li>
-
                 <li>
                     @if (  Auth::check() )
                         <ul id="settings" class="dropdown-content">
@@ -21,26 +18,27 @@
                         </ul>
 
                         <a class="waves-effect dropdown-button" href="#" data-activates="settings">
-                        <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'">
-                        &nbsp;
-                        {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
+                            <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'" title="{{ ucwords(Auth::user()->username) }}">
+                            &nbsp;
+                            <p class="username"> {{ ucwords(Auth::user()->username) }} </p>
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
 
                         @if( Auth::user()->hasChannelNotifications())
                             <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge">{{ Auth::user()->newChannelsCount() }}</span> Channel(s)</a>
                         @endif
 
                         @can('see-dashboard', Auth::user()->role->name )
-                            <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
+                        <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endcan
-
+                        <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
                         @can( 'see-upgrade', Auth::user()->role->name )
-                            <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
+                        <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
                         @endcan
-
                     @else
-                        <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
-                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
-                        <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
+                    <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
+                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
+                    <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
                     @endif
                 </li>
             </ul>
