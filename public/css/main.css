@@ -478,17 +478,16 @@ img.avatar {
   }
 }
 
-/*Show liked action on button*/
+/*Show liked and dislike action on button*/
 
-.dislike {
-  color: #26a69a;
+.like, .dislike {
+  color: #777;
 }
 
-/*Show dislike action on button*/
-
-.like {
-  color: #2C3E50;
-}
+.like:hover,
+ .dislike:hover {
+    color: #2C3E50;
+  }
 
 .social-btn {
   cursor: pointer;
@@ -598,4 +597,15 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .comment-action-delete:hover {
   color: #d34836;
+}
+
+.align-left {
+  background-color: #2C3E50;
+  padding: 3px 10px;
+  color: #fff;
+}
+
+.counts {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
 }
