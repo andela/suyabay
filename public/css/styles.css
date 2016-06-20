@@ -886,6 +886,11 @@ img.avatar {
   color: #777;
 }
 
+.like:hover,
+.dislike:hover {
+  color: #283848;
+}
+
 .social-btn {
   cursor: pointer;
 }
