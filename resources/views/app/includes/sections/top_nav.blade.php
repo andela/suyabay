@@ -32,7 +32,7 @@
                             <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endcan
 
-                        <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
+                        <a class="waves-effect waves-light modal-trigger" href="user/logout">Logout</a>
 
                         @can( 'see-upgrade', Auth::user()->role->name )
                             <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
@@ -40,8 +40,8 @@
 
                     @else
                         <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
-                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
-                        <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
+                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('new/signup') }}">Sign Up</a>
+                        <a class="waves-effect teal lighten-2" href="{{ URL::to('new/signup') }}">Become a Premium User</a>
                     @endif
                 </li>
             </ul>

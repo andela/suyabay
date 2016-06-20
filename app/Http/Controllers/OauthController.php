@@ -20,7 +20,7 @@ class OauthController extends Controller
      *
      * @return  [object]
      */
-    public function getSocialRedirect($provider)
+    public function redirectToProvider($provider)
     {
         return Socialite::driver( $provider )->redirect();
     }
@@ -33,8 +33,8 @@ class OauthController extends Controller
     public function handleProviderCallback($provider)
     {
         $userData     = Socialite::driver($provider)->user();
+        
         if (is_null($this->checkUserExist($userData, $provider))) {
-
             return $this->socialFunction($userData, $provider);
         }
 
@@ -120,8 +120,6 @@ class OauthController extends Controller
     protected function getSocialData($userData, $provider)
     {
         $columnName  = $provider.'ID';
-        // $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
-        // $array[$provider] = $userData->getId();
 
         User::create([
             'username'       => $userData->getNickname() ?: $userData->getName(),
@@ -129,15 +127,13 @@ class OauthController extends Controller
             'email'          => $userData->getEmail() ?: str_random(10).'@noemail.app',
             'avatar'         => $userData->getAvatar(),
             'role_id'        => 1,
-            $columnName       => $userData->getId()
+            $columnName      => $userData->getId()
         ]);
 
-        //$channels = $this->channelRepository->getAllChannels();
-
-        Auth::login($userData, true);
-        alert()->success('Your have successfully signup', 'success');
+        $user = $this->findByIDorCreate($userData, $provider);
+        Auth::login($user, true);
+        alert()->success('Your have successfully signUp', 'success');
 
         return redirect('/');
-        //return view('app.pages.signup', compact('channels', 'array'));
     }
 }
