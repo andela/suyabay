@@ -320,7 +320,7 @@ Route::post('/episode/unlike', [
 */
 Route::group(['prefix' => 'dashboard'], function () {
     // Dashboard Homepage
-    Route::get('/', [
+    Route::get('/index', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
         'middleware' => ['auth'],
@@ -518,7 +518,7 @@ Route::put('comment/{id}/edit', [
 / Update user profile
 /-------------------------------------------------------------------------------
 */
-Route::get('/favorites', [
+Route::get('user/favorites', [
     'uses' => 'LikeController@index',
     'as' => 'favorites',
 ]);
