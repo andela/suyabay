@@ -317,20 +317,22 @@ Route::post('/episode/unlike', [
 / Admin Dashboard Routes
 /-------------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','not.premium']], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     // Dashboard Homepage
     Route::get('/', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
+        'middleware' => ['not.premium'],
     ]);
     //end
     // Episode Routes
     Route::get('/episodes', [
         'uses' => 'EpisodeManager@index',
         'as' => 'show.all.episodes',
+        'middleware' => ['not.premium'],
     ]);
 
-    Route::group(['prefix' => 'episode'], function () {
+    Route::group(['prefix' => 'episode', 'middleware' => ['not.premium']], function () {
         Route::get('/create', [
             'uses' => 'EpisodeManager@createEpisode',
             'as' => 'EpisodeCreate',
@@ -365,13 +367,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','not.premium']], 
     Route::get('/users', [
         'uses' => 'UserController@index',
         'as' => 'users',
-        'middleware' => ['auth'],
     ]);
 
     Route::get('/user/{id}/edit', [
         'uses' => 'UserController@editView',
         'as' => 'user-edit-id',
-        'middleware' => ['auth'],
     ]);
 
     Route::put('/user/edit', [
@@ -382,91 +382,80 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','not.premium']], 
     Route::get('/user/create', [
         'uses' => 'UserController@show',
         'as' => 'user-create',
-        'middleware' => ['auth'],
     ]);
 
     Route::post('/user/create', [
         'uses' => 'UserController@createInvite',
     ]);
     //end
-    // Channel Routes
-    Route::get('/channels/active', [
-        'uses' => 'ChannelController@active',
-        'as' => 'active.channels',
-        'middleware' => ['auth'],
-    ]);
-
+    
     Route::get('/notifications', [
-        'uses' => 'ChannelController@notifications',
-        'as' => 'notifications',
-        'middleware' => ['auth'],
+            'uses' => 'ChannelController@notifications',
+            'as' => 'notifications',
     ]);
 
-    Route::get('/channels/deleted', [
-        'uses' => 'ChannelController@deleted',
-        'as' => 'deleted.channels',
-        'middleware' => ['auth'],
-    ]);
+    // Channel Routes
+    Route::group(['prefix' => '/channels', 'middleware' => ['not.superadmin']], function () {
+        Route::get('/active', [
+            'uses' => 'ChannelController@active',
+            'as' => 'active.channels',
+        ]);
 
-    Route::get('/channels/all', [
-        'uses' => 'ChannelController@index',
-        'as' => 'all.channels',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/deleted', [
+            'uses' => 'ChannelController@deleted',
+            'as' => 'deleted.channels',
+        ]);
 
-    Route::get('/channel/{id}/edit', [
-        'uses' => 'ChannelController@edit',
-        'as' => 'channel-id-edit',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/all', [
+            'uses' => 'ChannelController@index',
+            'as' => 'all.channels',
+        ]);
 
-    Route::put('/channel/edit', [
-        'uses' => 'ChannelController@update',
-        'as' => 'channel-edit',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/{id}/edit', [
+            'uses' => 'ChannelController@edit',
+            'as' => 'channel-id-edit',
+        ]);
 
-    Route::get('/channel/create', [
-        'uses' => 'ChannelController@createIndex',
-        'as' => 'channel-create',
-        'middleware' => ['auth'],
-    ]);
+        Route::put('/edit', [
+            'uses' => 'ChannelController@update',
+            'as' => 'channel-edit',
+        ]);
 
-    Route::post('/channel/create', [
-        'uses' => 'ChannelController@processCreate',
-        'as' => 'create.channel',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/create', [
+            'uses' => 'ChannelController@createIndex',
+            'as' => 'channel-create',
+        ]);
 
-    Route::get('/channel/{id}', [
-        'uses' => 'ChannelController@showChannel',
-        'as' => 'show.channel',
-        'middleware' => ['auth'],
-    ]);
+        Route::post('/create', [
+            'uses' => 'ChannelController@processCreate',
+            'as' => 'create.channel',
+        ]);
 
-    Route::delete('/channel/{id}', [
-        'uses' => 'ChannelController@destroy',
-        'as' => 'delete.channel',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/{id}', [
+            'uses' => 'ChannelController@showChannel',
+            'as' => 'show.channel',
+        ]);
 
-    Route::put('/channel/{id}', [
-        'uses' => 'ChannelController@restore',
-        'as' => 'restore.channel',
-        'middleware' => ['auth'],
-    ]);
+        Route::delete('/{id}', [
+            'uses' => 'ChannelController@destroy',
+            'as' => 'delete.channel',
+        ]);
 
-    Route::get('/channel/swap/{id}', [
-        'uses' => 'ChannelController@swap',
-        'as' => 'swap.episodes',
-        'middleware' => ['auth'],
-    ]);
+        Route::put('/{id}', [
+            'uses' => 'ChannelController@restore',
+            'as' => 'restore.channel',
+        ]);
 
-    Route::post('/channel/swap/{id}', [
-        'uses' => 'ChannelController@ProcessSwap',
-        'as' => 'swap.episode.to',
-        'middleware' => 'auth',
-    ]);
+        Route::get('/swap/{id}', [
+            'uses' => 'ChannelController@swap',
+            'as' => 'swap.episodes',
+        ]);
+
+        Route::post('/swap/{id}', [
+            'uses' => 'ChannelController@ProcessSwap',
+            'as' => 'swap.episode.to',
+        ]);
+    });
     //end
 });
 /*
