@@ -400,14 +400,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     ]);
 
     // Channel Routes
-    
-    Route::get('/channels/all', [
+    Route::group(['prefix' => '/channels', 'middleware' => ['not.superadmin']], function () {
+        Route::get('/all', [
             'uses' => 'ChannelController@index',
             'as' => 'all.channels',
-            'middleware' => ['not.superadmin']
-    ]);
+        ]);
 
-    Route::group(['prefix' => '/channel', 'middleware' => ['not.superadmin']], function () {
         Route::get('/active', [
             'uses' => 'ChannelController@active',
             'as' => 'active.channels',
@@ -417,6 +415,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
             'uses' => 'ChannelController@deleted',
             'as' => 'deleted.channels',
         ]);
+
+    });
+
+    Route::group(['prefix' => '/channel', 'middleware' => ['not.superadmin']], function () {
 
         Route::get('/{id}/edit', [
             'uses' => 'ChannelController@edit',
