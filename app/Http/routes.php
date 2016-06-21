@@ -317,22 +317,20 @@ Route::post('/episode/unlike', [
 / Admin Dashboard Routes
 /-------------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','not.premium']], function () {
     // Dashboard Homepage
     Route::get('/', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
-        'middleware' => ['auth'],
     ]);
     //end
     // Episode Routes
     Route::get('/episodes', [
         'uses' => 'EpisodeManager@index',
         'as' => 'show.all.episodes',
-        'middleware' => ['auth'],
     ]);
 
-    Route::group(['prefix' => 'episode', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'episode'], function () {
         Route::get('/create', [
             'uses' => 'EpisodeManager@createEpisode',
             'as' => 'EpisodeCreate',
