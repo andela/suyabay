@@ -363,30 +363,35 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         ]);
     });
     //end
+    
     // User Routes
+    
     Route::get('/users', [
         'uses' => 'UserController@index',
         'as' => 'users',
+        'middleware' => ['not.superadmin'],
     ]);
 
-    Route::get('/user/{id}/edit', [
-        'uses' => 'UserController@editView',
-        'as' => 'user-edit-id',
-    ]);
+    Route::group(['prefix' => 'user', 'middleware' => ['not.superadmin']], function () {
+        Route::get('/{id}/edit', [
+            'uses' => 'UserController@editView',
+            'as' => 'user-edit-id',
+        ]);
 
-    Route::put('/user/edit', [
-        'uses' => 'UserController@update',
-        'as' => 'user-edit',
-    ]);
+        Route::put('/edit', [
+            'uses' => 'UserController@update',
+            'as' => 'user-edit',
+        ]);
 
-    Route::get('/user/create', [
-        'uses' => 'UserController@show',
-        'as' => 'user-create',
-    ]);
+        Route::get('/create', [
+            'uses' => 'UserController@show',
+            'as' => 'user-create',
+        ]);
 
-    Route::post('/user/create', [
-        'uses' => 'UserController@createInvite',
-    ]);
+        Route::post('/create', [
+            'uses' => 'UserController@createInvite',
+        ]);
+    });
     //end
     
     Route::get('/notifications', [
