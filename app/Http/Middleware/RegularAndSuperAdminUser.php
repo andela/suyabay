@@ -5,7 +5,7 @@ namespace Suyabay\Http\Middleware;
 use Auth;
 use Closure;
 
-class PreventRegularUsers
+class RegularAndSuperAdminUser
 {
     /**
      * Handle an incoming request.
