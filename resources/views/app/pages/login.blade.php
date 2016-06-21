@@ -28,12 +28,12 @@
             </div>
 
             <div>
-                <p class="left">
+                <p class="left remember-me">
                     <input type="checkbox" class="filled-in" id="remember-me" checked="checked" />
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <a class="waves-effect waves-light btn right login-btn">
+                <a class="waves-effect waves-light btn right signup-login-btn">
                     Sign In
                 </a>
 
