@@ -332,39 +332,36 @@ Route::group(['prefix' => 'dashboard'], function () {
         'middleware' => ['auth'],
     ]);
 
-    Route::get('episode/create', [
-        'uses' => 'EpisodeManager@createEpisode',
-        'as' => 'EpisodeCreate',
-        'middleware' => ['auth'],
-    ]);
+    Route::group(['prefix' => 'episode', 'middleware' => ['auth']], function () {
+        Route::get('/create', [
+            'uses' => 'EpisodeManager@createEpisode',
+            'as' => 'EpisodeCreate',
+        ]);
 
-    Route::post('episode/create', [
-        'uses' => 'EpisodeManager@store',
-        'as' => 'create.episode',
-        'middleware' => ['auth'],
-    ]);
+        Route::post('/create', [
+            'uses' => 'EpisodeManager@store',
+            'as' => 'create.episode',
+        ]);
 
-    Route::get('/episode/{id}/edit', [
-        'uses' => 'EpisodeManager@edit',
-        'middleware' => ['auth'],
-    ]);
+        Route::get('/{id}/edit', [
+            'uses' => 'EpisodeManager@edit',
+        ]);
 
-    Route::put('/episode/edit', [
-        'uses' => 'EpisodeManager@update',
-        'as' => 'update.episode',
-        'middleware' => ['auth'],
-    ]);
+        Route::put('/edit', [
+            'uses' => 'EpisodeManager@update',
+            'as' => 'update.episode',
+        ]);
 
-    Route::patch('/episode/activate', [
-        'uses' => 'EpisodeManager@updateEpisodeStatus',
-        'as' => 'episode.activate',
-    ]);
+        Route::patch('/activate', [
+            'uses' => 'EpisodeManager@updateEpisodeStatus',
+            'as' => 'episode.activate',
+        ]);
 
-    Route::get('/episode/{id}/delete', [
-        'uses'          => 'EpisodeManager@destroy',
-        'as'            => 'destroy.episode',
-        'middleware'    => ['auth']
-    ]);
+        Route::get('/{id}/delete', [
+            'uses'          => 'EpisodeManager@destroy',
+            'as'            => 'destroy.episode',
+        ]);
+    });
     //end
     // User Routes
     Route::get('/users', [
