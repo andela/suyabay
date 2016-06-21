@@ -1454,7 +1454,6 @@ $(document).ready(function() {
 | user registeration.
 */
 
-
 /*
 | ajaxLogic
 | Process ajaxCall data and return feedback base on the data

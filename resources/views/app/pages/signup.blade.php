@@ -55,12 +55,12 @@
             </div>
 
             <div>
-                <p class="left">
+                <p class="left" style="margin-left: 7%;">
                     <input type="checkbox" class="filled-in" id="remember-me" checked="checked" />
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <button class="waves-effect waves-light btn right" onclick="register()">
+                <button class="waves-effect waves-light btn right" style="margin-top: 3%;" onclick="register()">
                     Sign Up
                 </button>
             </div>

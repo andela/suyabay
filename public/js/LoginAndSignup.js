@@ -5,7 +5,6 @@
 | user registeration.
 */
 
-
 /*
 | ajaxLogic
 | Process ajaxCall data and return feedback base on the data
