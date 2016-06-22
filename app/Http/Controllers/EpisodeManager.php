@@ -162,7 +162,7 @@ class EpisodeManager extends Controller
         $file = $request->file('podcast');
         $extension = $file->getClientOriginalExtension();
         $filename = time().'.'.$extension; 
-        $uploaded = $this->upload->uploadToAws($filename, $file);  // Upload to aws 
+        $uploaded = $this->upload->uploadToAws($filename, $file);
 
         $data    = [
             'episode_name'          => $request->title,
