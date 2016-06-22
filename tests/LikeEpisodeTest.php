@@ -33,7 +33,7 @@ class LikeEpisodeTest extends TestCase
         $this->actingAs($user)
         ->call(
             'GET',
-            '/favorites'
+            'user/favorites'
         );
         $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
         $this->see($episode['episode_name']);
@@ -145,7 +145,7 @@ class LikeEpisodeTest extends TestCase
         $this->actingAs($user)
         ->call(
             'GET',
-            '/favorites'
+            'user/favorites'
         );
         $this->assertViewHasAll(['userEpisodes', 'channels', 'favorites']);
         $this->see($episode['episode_name']);

@@ -179,4 +179,34 @@ class UsersTest extends TestCase
             ->press('update');
         $this->seeInDatabase('users', ['id' => 1, 'username' => 'foobar']);
     }
+
+    /**
+     * Test that user can sign up and sign in successfully using social network
+     */
+    // public function testThatUserSignUpUsingOauth()
+    // {
+        // $provider = Mockery::mock('Laravel\Socialite\Contracts\Provider');
+
+        // $provider->shouldReceive('redirect')->andReturn('Redirected');
+
+        // $providerName  = class_basename($provider);
+        // $socialAccount = factory('Suyabay\User')->create(['facebookID' => $providerName]);
+        // $abstractUser  = Mockery::mock('Laravel\Socialite\Two\User');
+
+        // $abstractUser->shouldReceive('getId')
+        //     ->andReturn($socialAccount->facebookID)
+        //     ->shouldReceive('getEmail')
+        //     ->andReturn(str_random(10).'@noemail.app')
+        //     ->shouldReceive('getNickname')
+        //     ->andReturn('Oga Boss')
+        //     ->shouldReceive('getAvatar')
+        //     ->andReturn('https://en.gravatar.com/userimage/102347280/b3e9c138c1548147b7ff3f9a2a1d9bb0.png?size=200');
+
+        // $provider->shouldReceive('user')->andReturn($abstractUser);
+
+        // Socialite::shouldReceive('driver')->with('facebook')->andReturn($provider);
+
+        // $this->visit('/facebook/callback')
+        //     ->seePageIs('/');
+    //}
 }

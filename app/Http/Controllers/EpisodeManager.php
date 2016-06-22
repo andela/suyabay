@@ -156,15 +156,20 @@ class EpisodeManager extends Controller
             'title'         => 'required|min:3',
             'description'   => 'required',
             'channel'       => 'required',
-            // 'podcast'       => 'required|size_format|mimes:mpga'
+            //'podcast'       => 'required|mimes:mpga|max:8000'
         ]);
+
+        $file = $request->file('podcast');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension; 
+        $uploaded = $this->upload->uploadToAws($filename, $file);
 
         $data    = [
             'episode_name'          => $request->title,
             'episode_description'   => $request->description,
             'channel_id'            => $request->channel,
             'image'                 => self::DEFUALT_COVER_IMAGE,
-            'audio_mp3'             => $this->upload->audioToAWS($request->file('podcast')),
+            'audio_mp3'             => $uploaded,
             'view_count'            => 0,
             'status'                => 0
         ];

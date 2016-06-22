@@ -163,7 +163,7 @@ class EpisodeTest extends TestCase
         $this->actingAs($user)
             ->call(
                 'GET',
-                '/dashboard'
+                '/dashboard/index'
             );
         $this->assertViewHas('data');
         $this->see($episodes[0]['episode_name']);

@@ -478,16 +478,16 @@ img.avatar {
   }
 }
 
-/*Show liked and dislike action on button*/
+/*Show liked action on button*/
 
-.like,
 .dislike {
-  color: #777;
+  color: #26a69a;
 }
 
-.like:hover,
-.dislike:hover {
-  color: #283848;
+/*Show dislike action on button*/
+
+.like {
+  color: #2C3E50;
 }
 
 .social-btn {
@@ -495,6 +495,7 @@ img.avatar {
 }
 
 .social-btn:active {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   transition: 0.10s;
 }
@@ -598,33 +599,10 @@ p.flow-text.center-align.padcast-page-sub-header {
 .comment-action-delete:hover {
   color: #d34836;
 }
-
-.align-left {
-  background-color: #2C3E50;
-  padding: 3px 10px;
-  color: #fff;
+.remember-me {
+  margin-left: 7%;
 }
 
-.counts {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
- }
-
- .heading {
-  font-size: 26px;
-  margin-left: 10px;
-}
-
-.username {
-  max-width: 100px;
-  text-overflow:ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  float: left;
-  margin-top: -2px;
-}
-
-.dropdown-button img {
-  float: left;
-  margin: 10px;
+.signup-login-btn {
+  margin-top: 3%; 
 }
