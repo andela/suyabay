@@ -12,8 +12,8 @@
                 <li>
                     @if (  Auth::check() )
                     <ul id="settings" class="dropdown-content">
-                        <li><a href="/profile/edit">Profile</a></li>
-                        <li><a href="/profile/changepassword">Account</a></li>
+                        <li><a href="{{ URL::to('profile/edit') }}">Profile</a></li>
+                        <li><a href="{{ URL::to('profile/changepassword') }}">Account</a></li>
                     </ul>
                     <a class="waves-effect dropdown-button" href="#" data-activates="settings">
                         <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'" title="{{ ucwords(Auth::user()->username) }}">
@@ -26,10 +26,10 @@
                         @endif
 
                         @can('see-dashboard', Auth::user()->role->name )
-                            <a class="waves-effect" href="/dashboard/index">Admin Dashboard</a>
+                            <a class="waves-effect" href="{{ URL::to('dashboard/index') }}">Admin Dashboard</a>
                         @endcan
 
-                        <a class="waves-effect waves-light modal-trigger" href="user/logout">Logout</a>
+                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('user/logout') }}">Logout</a>
 
                         @can( 'see-upgrade', Auth::user()->role->name )
                             <a class="waves-effect teal lighten-2" href="#">Become a Premium User</a>
