@@ -33,7 +33,7 @@
                     <label for="remember-me">Remember Me</label>
                 </p>
 
-                <a class="waves-effect waves-light btn right signup-login-btn">
+                <a class="waves-effect waves-light btn right login-btn signup-login-btn">
                     Sign In
                 </a>
 
