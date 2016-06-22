@@ -156,7 +156,7 @@ class EpisodeManager extends Controller
             'title'         => 'required|min:3',
             'description'   => 'required',
             'channel'       => 'required',
-            'podcast'       => 'required|size_format|mimes:mpga'
+            // 'podcast'       => 'required|size_format|mimes:mpga'
         ]);
 
         $data    = [
