@@ -40,7 +40,7 @@ class EpisodeController extends Controller
      */
     public function allEpisode()
     {
-        $episodes = Episode::get();
+        $episodes = Episode::orderBy('views', 'DESC')->get();
         $channels = Channel::all();
 
         return view('app.pages.episodes', compact('episodes', 'channels'));
@@ -54,7 +54,7 @@ class EpisodeController extends Controller
      */
     public function singleEpisode($id)
     {
-        $episode = Episode::with('like')->find($id);
+        $episode = Episode::with('like')->find($id)->incrementViews();
         $channels = Channel::all();
         $firstTenComments = $episode->comment()->orderBy('created_at', 'asc')->take(10)->get();
 

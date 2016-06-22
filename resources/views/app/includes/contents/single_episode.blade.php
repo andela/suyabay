@@ -17,6 +17,7 @@
             <div class="col s9 details">
 
                 <span class="podcast-episode-date">{{ $episode->created_at->diffForHumans() }}</span>
+                <span class="tag podcast-episode-date"> <i class="fa fa-eye fa-lg" aria-hiddden="true"></i> {{ $episode->views }} </span>
                 <h5 class="podcast-episode-title">{{ $episode->episode_name }}</h5>
                 <div>
                     <audio width="10px;" src="{{ $episode->audio_mp3 }}" preload="auto" />
