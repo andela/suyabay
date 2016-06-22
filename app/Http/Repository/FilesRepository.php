@@ -33,8 +33,9 @@ class FilesRepository
 
     public function uploadToAws($filename, $file)
     {
+        //echo file_get_contents($file->getRealPath());
         $s3 = Storage::disk('s3');
-        $filename = $s3->put($filename, file_get_contents((string) $file), 'public');
+        $filename = $s3->put($filename, file_get_contents($file->getRealPath()), 'public');
 
         return "https://s3-us-west-2.amazonaws.com/suyabay/{$filename}";
     }
