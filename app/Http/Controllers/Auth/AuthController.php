@@ -113,6 +113,8 @@ class AuthController extends Controller
         else
         {
             $this->create($request->all());
+            Auth::attempt($request->only(['username', 'password']));
+
             return $response =
             [
                 "message"       => "Registration Successful",

@@ -1010,14 +1010,6 @@ p.flow-text.center-align.padcast-page-sub-header {
 .comment-action-delete:hover {
   color: #d34836;
 }
-
-.remember-me {
-  margin-left: 7%;
-}
-
-.signup-login-btn {
-  margin-top: 3%;
-}
 body,
 html {
   height: 100%;
