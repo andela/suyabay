@@ -21,12 +21,22 @@ class FilesRepository
      */
     public function audioToAWS($podcast)
     {
-        $podcastFileName = time() . '.' . $podcast->getClientOriginalExtension();
-        $s3 = Storage::disk('s3');
-        $filePath = $podcastFileName;
-        $s3->put($filePath, fopen($podcast, 'r+'), 'public');
-        $toAWS = "https://s3-us-west-2.amazonaws.com/suyabay/{$filePath}";
+        // $podcastFileName = time() . '.' . $podcast->getClientOriginalExtension();
+        // $s3 = Storage::disk('s3');
+        // $filePath = $podcastFileName;
+        // $s3->put($filePath, fopen($podcast, 'r+'), 'public');
+        // $toAWS = "https://s3-us-west-2.amazonaws.com/suyabay/{$filePath}";
 
-        return $toAWS;
+        // return $toAWS;
+        // 
+    }
+
+    public function uploadToAws($filename, $file)
+    {
+      $s3 = Storage::disk('s3');
+      //$filePath = $filename;
+      $filename = $s3->put($filename, file_get_contents($file), 'public');
+
+      return "https://s3-us-west-2.amazonaws.com/suyabay/{$filename}";
     }
 }

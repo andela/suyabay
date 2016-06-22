@@ -35,7 +35,7 @@
 <div class="col s3">
     <div class="hide-on-small-only">
         <div class="collection">
-            <a href="/channels" class="collection-item">Channels<span class="new badge">{{ $channels->count() }}</span></a>
+            <a href="/channels" class="collection-item">View All Channels</a>
             @if (Auth::check())
             <a href="{{ route('favorites') }}" class="collection-item">Favourites<span class="badge" id="sidebar-fav">{{ Auth::user()->likesCount() }}</span></a>
             @endif

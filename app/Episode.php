@@ -37,4 +37,17 @@ class Episode extends Model
     {
         return $this->hasMany('Suyabay\Like');
     }
+
+    /**
+     * Increment the number of views of the episode by 1.
+     *
+     * @return object
+     */
+    public function incrementViews()
+    {
+        $this->views++;
+        $this->save();
+        
+        return $this;
+    }
 }

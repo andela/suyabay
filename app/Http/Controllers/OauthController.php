@@ -20,21 +20,17 @@ class OauthController extends Controller
      *
      * @return  [object]
      */
-    public function redirectToProvider($provider)
+    public function getSocialRedirect(Request $request, $provider )
     {
-        return Socialite::driver($provider)->redirect();
-    }
+        if (!($request->has('code') || $request->has('oauth_token'))) {
 
-    /**
-     * Obtain the user information from Provider.
-     *
-     * @return Response
-     */
-    public function handleProviderCallback($provider)
-    {
-        $userData     = Socialite::driver($provider)->user();
-        
+            return Socialite::driver( $provider )->redirect();
+        }
+
+        $userData = $this->getOauth($provider);
+
         if (is_null($this->checkUserExist($userData, $provider))) {
+
             return $this->socialFunction($userData, $provider);
         }
 
@@ -119,21 +115,13 @@ class OauthController extends Controller
      */
     protected function getSocialData($userData, $provider)
     {
-        $columnName  = $provider.'ID';
+        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
+        $array[$provider] = $userData->getId();
 
-        User::create([
-            'username'       => $userData->getNickname() ?: $userData->getName(),
-            'password'       => bcrypt(str_random(10)),
-            'email'          => $userData->getEmail() ?: str_random(10).'@noemail.app',
-            'avatar'         => $userData->getAvatar(),
-            'role_id'        => 1,
-            $columnName      => $userData->getId()
-        ]);
+        $channels = $this->channelRepository->getAllChannels();
 
-        $user = $this->findByIDorCreate($userData, $provider);
-        Auth::login($user, true);
-        alert()->success('Your have successfully signUp', 'success');
-
-        return redirect('/');
+        alert()->success('Your have successfully signup', 'success');
+        return view('app.pages.signup', compact('channels', 'array'));
     }
+
 }
