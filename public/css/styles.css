@@ -1038,6 +1038,11 @@ p.flow-text.center-align.padcast-page-sub-header {
   float: left;
   margin: 10px;
 }
+
+nav ul li:hover,
+nav ul li.active {
+  background-color: transparent !important;
+}
 body,
 html {
   height: 100%;
