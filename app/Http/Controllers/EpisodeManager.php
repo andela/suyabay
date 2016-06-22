@@ -156,7 +156,7 @@ class EpisodeManager extends Controller
             'title'         => 'required|min:3',
             'description'   => 'required',
             'channel'       => 'required',
-            //'podcast'       => 'required|mimes:mpga|max:8000'
+            'podcast'       => 'required|mimes:mpga|max:8000'
         ]);
 
         $file = $request->file('podcast');
