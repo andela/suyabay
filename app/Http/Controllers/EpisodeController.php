@@ -22,15 +22,20 @@ class EpisodeController extends Controller
     {
         $channels = $this->channelRepository->getAllChannels();
 
-        $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
+        $episodes = Episode::with('like')->orderBy('views', 'desc')->paginate(5);
 
         $episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
         });
 
+        $top = $episodes->shift();
+
+        // All guest users to see at least the top video.
+        $top->allow = true;
+
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
-        return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
+        return view('app.pages.index', compact('episodes', 'top', 'channels', 'favorites'));
     }
 
     /**
