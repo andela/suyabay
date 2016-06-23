@@ -4,26 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "d95294064c15210fc06d52dd4d312d6e",
-    "content-hash": "b49d351c1db0cb7e9f0cf861656ed42a",
-=======
     "hash": "6210475676f1fb5238ab3680afc6efef",
     "content-hash": "f571de41b8044bf32f4ef6165a03f632",
->>>>>>> staging
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.18.18",
+            "version": "3.18.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc"
+                "reference": "2ffb032afe91b143293f75b48ec7593659c66ddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc",
-                "reference": "68b9d0b7e007782bc0f2633cdf5a4a6bf08aaafc",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ffb032afe91b143293f75b48ec7593659c66ddb",
+                "reference": "2ffb032afe91b143293f75b48ec7593659c66ddb",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-06-14 20:35:03"
+            "time": "2016-06-21 21:41:45"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -264,16 +259,16 @@
         },
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "1.3.2",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudinary/cloudinary_php.git",
-                "reference": "7840ffa853b3f9baf4ceaf94a8f28b9c79e35979"
+                "reference": "64a3efeda2cb3b27928cc9a50eb52fcfbfca7507"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/7840ffa853b3f9baf4ceaf94a8f28b9c79e35979",
-                "reference": "7840ffa853b3f9baf4ceaf94a8f28b9c79e35979",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/64a3efeda2cb3b27928cc9a50eb52fcfbfca7507",
+                "reference": "64a3efeda2cb3b27928cc9a50eb52fcfbfca7507",
                 "shasum": ""
             },
             "require": {
@@ -312,7 +307,7 @@
                 "image management",
                 "sdk"
             ],
-            "time": "2016-06-02 12:28:20"
+            "time": "2016-06-22 15:44:06"
         },
         {
             "name": "danielstjules/stringy",
@@ -1787,16 +1782,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v2.0.17",
+            "version": "v2.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "81d39cde2226f7548d8d1aa99405278c87e50737"
+                "reference": "76ee5397fcdea5a062361392abca4eb397e519a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/81d39cde2226f7548d8d1aa99405278c87e50737",
-                "reference": "81d39cde2226f7548d8d1aa99405278c87e50737",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/76ee5397fcdea5a062361392abca4eb397e519a3",
+                "reference": "76ee5397fcdea5a062361392abca4eb397e519a3",
                 "shasum": ""
             },
             "require": {
@@ -1809,7 +1804,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.0|~5.0"
             },
             "type": "library",
             "extra": {
@@ -1837,7 +1832,7 @@
                 "laravel",
                 "oauth"
             ],
-            "time": "2016-05-27 12:42:05"
+            "time": "2016-06-22 12:40:16"
         },
         {
             "name": "league/flysystem",
@@ -1924,16 +1919,16 @@
         },
         {
             "name": "league/flysystem-aws-s3-v3",
-            "version": "1.0.12",
+            "version": "1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
-                "reference": "d9c27edda5b4b2840c3f602d4ce6fbfeaab10e5a"
+                "reference": "dc56a8faf3aff0841f9eae04b6af94a50657896c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/d9c27edda5b4b2840c3f602d4ce6fbfeaab10e5a",
-                "reference": "d9c27edda5b4b2840c3f602d4ce6fbfeaab10e5a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/dc56a8faf3aff0841f9eae04b6af94a50657896c",
+                "reference": "dc56a8faf3aff0841f9eae04b6af94a50657896c",
                 "shasum": ""
             },
             "require": {
@@ -1967,7 +1962,7 @@
                 }
             ],
             "description": "Flysystem adapter for the AWS S3 SDK v3.x",
-            "time": "2016-06-06 11:18:47"
+            "time": "2016-06-21 21:34:35"
         },
         {
             "name": "league/fractal",
@@ -3691,8 +3686,6 @@
                 "dump"
             ],
             "time": "2016-05-19 13:58:47"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "uxweb/sweet-alert",
@@ -3739,7 +3732,6 @@
                 "sweet"
             ],
             "time": "2016-05-29 03:32:56"
->>>>>>> staging
         },
         {
             "name": "vlucas/phpdotenv",
