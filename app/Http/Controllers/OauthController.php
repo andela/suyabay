@@ -20,17 +20,21 @@ class OauthController extends Controller
      *
      * @return  [object]
      */
-    public function getSocialRedirect(Request $request, $provider )
+    public function redirectToProvider($provider)
     {
-        if (!($request->has('code') || $request->has('oauth_token'))) {
+        return Socialite::driver($provider)->redirect();
+    }
 
-            return Socialite::driver( $provider )->redirect();
-        }
-
-        $userData = $this->getOauth($provider);
-
+    /**
+     * Obtain the user information from Provider.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback($provider)
+    {
+        $userData     = Socialite::driver($provider)->user();
+        
         if (is_null($this->checkUserExist($userData, $provider))) {
-
             return $this->socialFunction($userData, $provider);
         }
 
@@ -72,6 +76,7 @@ class OauthController extends Controller
     public function userHasLoggedIn()
     {
         alert()->success('Your have successfully Sign In', 'success');
+
         return redirect('/');
     }
 
@@ -87,9 +92,7 @@ class OauthController extends Controller
     {
         $columnName  = $provider.'ID';
         $user = $this->checkUserExist($userData, $provider);
-
         if ($user) {
-
             User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
 
             return $user;
@@ -115,13 +118,20 @@ class OauthController extends Controller
      */
     protected function getSocialData($userData, $provider)
     {
-        $array = ['username' => $userData->getNickname(), 'email' => $userData->getEmail(), 'facebook' => 0, 'twitter' => 0];
-        $array[$provider] = $userData->getId();
+        $columnName  = $provider.'ID';
+        User::create([
+            'username'       => $userData->getNickname() ?: $userData->getName(),
+            'password'       => bcrypt(str_random(10)),
+            'email'          => $userData->getEmail() ?: str_random(10).'@noemail.app',
+            'avatar'         => $userData->getAvatar(),
+            'role_id'        => 1,
+            $columnName      => $userData->getId()
+        ]);
 
-        $channels = $this->channelRepository->getAllChannels();
+        $user = $this->findByIDorCreate($userData, $provider);
+        Auth::login($user, true);
+        alert()->success('Your have successfully signUp', 'success');
 
-        alert()->success('Your have successfully signup', 'success');
-        return view('app.pages.signup', compact('channels', 'array'));
+        return redirect('/');
     }
-
 }

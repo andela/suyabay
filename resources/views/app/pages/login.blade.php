@@ -64,7 +64,7 @@
 
         <!-- social login -->
         <div class="col s6 offset-s3">
-            <a href="{{ URL::to('facebook') }}">
+            <a href="{{ URL::to('authenticate/facebook') }}">
                 <div class="facebook">
                     <div class="col s3"><i class="fa fa-facebook fa-2x"></i></div>
                     <div class="col s9">Login with Facebook</div>
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col s6 offset-s3">
-            <a href="{{ URL::to('twitter') }}">
+            <a href="{{ URL::to('autheticate/twitter') }}">
                 <div class="twitter">
                     <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
                     <div class="col s9">Login with Twitter</div>
