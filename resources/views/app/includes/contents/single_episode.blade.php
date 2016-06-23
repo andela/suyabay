@@ -17,7 +17,7 @@
             <div class="col s9 details">
 
                 <span class="podcast-episode-date">{{ $episode->created_at->diffForHumans() }}</span>
-                <span class="tag podcast-episode-date">{{ $episode->channel->channel_name }}</span>
+                <span class="tag podcast-episode-date"> <i class="fa fa-eye fa-lg" aria-hiddden="true"></i> {{ $episode->views }} </span>
                 <h5 class="podcast-episode-title">{{ $episode->episode_name }}</h5>
                 <div>
                     <audio width="10px;" src="{{ $episode->audio_mp3 }}" preload="auto" />
@@ -27,7 +27,9 @@
                     {{ $episode->episode_description }}
                 </p>
 
-                <div class="podcast-actions">
+                <span class="podcast-episode-date align-left">{{ $episode->channel->channel_name }}</span>
+
+                <div class="podcast-actions right">
 
                     <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
@@ -38,11 +40,11 @@
                     <input type="hidden" id="episode_id" value="{{ $episode->id }}">
 
                     <span style="padding-right:15px;">
-                         <i class="fa fa-heart social-btn like-btn {{ $episode->like_status }}" like-status="{{ $episode->like_status }}" data-episode-id="{{ $episode->id }}"> {{ $episode->likes }}</i>
+                         <i class="fa fa-heart social-btn like-btn like {{ $episode->like_status }}" like-status="{{ $episode->like_status }}" data-episode-id="{{ $episode->id }}"> </i> <span class="counts">{{ $episode->likes }}</span>
                     </span>
 
                     <span style="padding-right:15px;">
-                        <i class="fa fa-comment social-btn like"> <span id="comment-count">{{ $episode->comment->count() }}</span></i>
+                        <i class="fa fa-comment social-btn like"> <span id="comment-count"></span></i> <span class="counts">{{ $episode->comment->count() }}</span>
                     </span>
 
                     <span style="padding-right:15px;">

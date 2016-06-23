@@ -46,6 +46,8 @@
         <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
         <script src = "{!! load_asset('/js/scripts.js') !!}"></script>
 
+        @include('sweet::alert')
+        
         <script>
             $(document).ready(function() {
                 $('select').material_select();

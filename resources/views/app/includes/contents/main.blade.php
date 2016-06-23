@@ -10,6 +10,8 @@
 
         <h4 class="center-align padcast-page-header" style="margin-bottom:50px;">Podcast for Suya lovers</h4>
 
+        @include('app.includes.contents.podcast', ['podcast' => $top])
+
         @foreach($episodes->take(-4) as $podcast)
             @include('app.includes.contents.podcast')
         @endforeach

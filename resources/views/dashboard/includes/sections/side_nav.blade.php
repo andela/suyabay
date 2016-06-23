@@ -6,7 +6,7 @@
                 <li>
                     <div class="collapsible-header">
                         <i class="material-icons">store</i>
-                        <a href="/dashboard" class="collection-item">Home<span class="badge"></span></a>
+                        <a href="/dashboard/index" class="collection-item">Home<span class="badge"></span></a>
                     </div>
                 </li>
 

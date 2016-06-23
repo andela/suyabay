@@ -3,10 +3,11 @@
 namespace Suyabay\Http\Controllers\Auth;
 
 use Auth;
-use Carbon\Carbon;
+use Alert;
 use Validator;
 use Socialite;
 use Suyabay\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer as Mail;
 use Suyabay\Http\Controllers\Controller;
@@ -83,7 +84,7 @@ class AuthController extends Controller
     public function register()
     {
         $channels = $this->channelRepository->getAllChannels();
-        
+
         return view('app.pages.signup', compact('channels'));
     }
 

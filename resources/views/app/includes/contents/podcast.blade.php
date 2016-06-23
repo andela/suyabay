@@ -7,13 +7,17 @@
 
     <div class="col s9 details">
         <span class="podcast-episode-date">{{$podcast->created_at->diffForHumans()}}</span>
-        <span class="tag podcast-episode-date">{{$podcast->channel->channel_name}}</span>
+        <span class="tag podcast-episode-date"> <i class="fa fa-headphones fa-lg"></i> {{$podcast->views}}</span>
         <a style="color:#2C3E50" href="/episodes/{{$podcast->id}}">
             <h5 class="podcast-episode-title">{{$podcast->episode_name}}</h5>
         </a>
-        <div>
-            <audio width="10px;" src="{{$podcast->audio_mp3}}" preload="auto" />
-        </div>
+
+        @if(Auth::user() || $podcast->allow)
+            <div>
+                <audio width="10px;" src="{{$podcast->audio_mp3}}" preload="auto" />
+            </div>
+        @endif
+
         <p>
              {{$podcast->episode_description}}
         </p>
@@ -46,6 +50,10 @@
                     <i class="fa fa-facebook social-btn "></i>
                 </a>
             </span>
+        </div>
+
+        <div class="left">
+            <span class="tag podcast-episode-date" style="position: static;">{{$podcast->channel->channel_name}}</span>
         </div>
     </div>
 </div>

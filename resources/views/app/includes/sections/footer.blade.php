@@ -10,7 +10,7 @@
                         <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
                         <p class="hosts-name center-align">Prosper</p>
 
-                        <a href="https://twitter.com/unicodeveloper">
+                        <a href="https://twitter.com/unicodeveloper" target="_blank">
                             <div class="chip blue-grey-text darken-4">
                                 @unicodeveloper
                                 <i class="fa fa-twitter fa-1x center-align"></i>
@@ -20,13 +20,14 @@
 
                     <div class="col s12 m6 center-align waves-effect waves-block waves-light">
                         <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
+                        <p class="hosts-name center-align">Prosper</p>
 
-                        <p class="hosts-name center-align">Nadayar</p>
-                        <div class="chip blue-grey-text darken-4">
-                            @nad
-                            <i class="fa fa-twitter fa-1x center-align"></i>
-                        </div>
-
+                        <a href="https://twitter.com/nadayar" target="_blank">
+                            <div class="chip blue-grey-text darken-4">
+                                @nad
+                                <i class="fa fa-twitter fa-1x center-align"></i>
+                            </div>
+                        </a>
                     </div>
             </div>
 
