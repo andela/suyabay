@@ -77,7 +77,7 @@ function registerSuccessAlert(data) {
     swal({
             title: data.parameter.username +
                 ' Your SuyaBay account has been successfully created',
-            text: 'Send Email Confirmation',
+            text: 'Check your email for relevant information',
             type: 'success',
             showCancelButton: true,
             closeOnConfirm: false,
@@ -85,7 +85,7 @@ function registerSuccessAlert(data) {
         },
         function() {
             setTimeout(function() {
-                swal('Email Confirmation sent to ' + data.parameter.email);
+                swal('Welcoming email sent to ' + data.parameter.email);
             }, 2000);
             clearField();
             window.location = '/';
