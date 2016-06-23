@@ -20,7 +20,7 @@ class DashboardLandingpageTest extends TestCase
     {
         $this->createUser(1);
 
-        $this->visit('/dashboard/index')->assertResponseOk();
+        $this->visit('/dashboard')->assertResponseOk();
     }
 
     /**
