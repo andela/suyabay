@@ -48,6 +48,20 @@ class AuthController extends Controller
     }
 
     /**
+     * This method loads a new form that enables a regular user
+     * to request for a premium account.
+     *
+     * @param void
+     *
+     * @return view
+     */
+    public function requestAccountUpgrade()
+    {
+        dd("@here");
+        //return view('app.pages.request-premium-account');
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param array $data

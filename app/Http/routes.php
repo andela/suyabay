@@ -49,6 +49,7 @@ Route::group(['prefix' => '/developer'], function () {
         'middleware' => ['auth'],
     ]);
 });
+
 /*
 |--------------------------------------------------------------------------
 | API Routes - Users
@@ -281,6 +282,13 @@ Route::post('signup', [
     'uses' => 'Auth\AuthController@postRegister',
     'as' => 'register',
 ]);
+
+Route::get('request-premium', [
+    'uses' => 'Auth\AuthController@requestAccountUpgrade',
+    'middleware' => ['auth', 'web'],
+    'as' => 'upgrade-account',
+]);
+
 /*
 /-------------------------------------------------------------------------------
 / Search link request
