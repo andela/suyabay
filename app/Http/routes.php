@@ -266,14 +266,14 @@ Route::post('login', [
 / Social Authentication
 /-------------------------------------------------------------------------------
 */
-Route::get('{provider}/', 'OauthController@redirectToProvider');
-Route::get('{provider}/callback', 'OauthController@handleProviderCallback');
+Route::get('authenticate/{provider}/', 'OauthController@redirectToProvider');
+Route::get('authenticate/{provider}/callback', 'OauthController@handleProviderCallback');
 /*
 /-------------------------------------------------------------------------------
 / Register
 /-------------------------------------------------------------------------------
 */
-Route::get('/new/signup', [
+Route::get('signup', [
     'uses' => 'Auth\AuthController@Register',
     'as' => 'register',
 ]);
@@ -295,7 +295,7 @@ Route::post('signup', [
 / Logout
 /-------------------------------------------------------------------------------
 */
-Route::get('user/logout', [
+Route::get('logout', [
     'uses' => 'Auth\AuthController@getLogout',
     'as' => 'logout',
 ]);
@@ -320,7 +320,7 @@ Route::post('/episode/unlike', [
 */
 Route::group(['prefix' => 'dashboard'], function () {
     // Dashboard Homepage
-    Route::get('/index', [
+    Route::get('', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
         'middleware' => ['auth'],

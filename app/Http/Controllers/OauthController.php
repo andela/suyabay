@@ -76,6 +76,7 @@ class OauthController extends Controller
     public function userHasLoggedIn()
     {
         alert()->success('Your have successfully Sign In', 'success');
+
         return redirect('/');
     }
 
@@ -91,9 +92,7 @@ class OauthController extends Controller
     {
         $columnName  = $provider.'ID';
         $user = $this->checkUserExist($userData, $provider);
-
         if ($user) {
-
             User::where('id', $user->id)->update([$columnName => $userData->getId(), 'avatar' => $userData->getAvatar()]);
 
             return $user;
@@ -120,7 +119,6 @@ class OauthController extends Controller
     protected function getSocialData($userData, $provider)
     {
         $columnName  = $provider.'ID';
-
         User::create([
             'username'       => $userData->getNickname() ?: $userData->getName(),
             'password'       => bcrypt(str_random(10)),
