@@ -1,49 +1,23 @@
 @extends('app.master')
-
-@section('title', 'Signup | SuyaBay')
-
+@section('title', 'Request Premium Account | SuyaBay')
 @section('content')
-
-<div class="col s12 m6 l12 spacer">
-
-    <div class="row center-align">
-        <h2> Request for a premium account</h2>
-    </div>
-
-    <div>
-        <form class="form col s6 center offset-s3" action="/signup" method="POST">
+<div class="row">
+    <div class="col m6 s12 offset-m3">
+        <h3> Request for a premium account </h3>
+        <form class="form"  action="/upgrade-account" method="POST">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
-            <div class="input-field">
-                <i class="material-icons prefix">turned_in_not</i>
-                    <input id="email" name="email" type="email"
-                    value="{{ isset($email) ? $email : '' }}" required>
-                    <label for="email">Email</label>
+            <div class="input-field col s12">
+                <input value="" name="email" id="email" placeholder="Email" id="email" type="text" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea class="materialize-textarea" name="reason"></textarea>
+                <label for="email">Reason</label>
+            </div>
+            <div class="input-field col s12">
+                <button type="submit" class="waves-effect waves-light btn left" name="send"><i class="material-icons left">send</i>Send</button>
             </div>
         </form>
     </div>
-
-    <div class="col s6 center offset-s3">
-        <span>
-            <small>
-                Already a user?
-            </small>
-        </span>
-
-        <span>
-            <small>
-                <a href="{{ URL::to('login') }}"> Sign In to your account</a>
-            </small>
-        </span>
-
-    <div class="col s6 offset-s3">
-        <a href="{{ URL::to('login/twitter') }}">
-            <div class="twitter">
-                <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
-                <div class="col s9">Login with Twitter</div>
-            </div>
-        </a>
-    </div>
-    <!-- end -->
 </div>
-
 @endsection

@@ -27,6 +27,30 @@ class UserController extends Controller
     }
 
     /**
+     * This method loads a new form that enables a regular user
+     * to request for a premium account.
+     *
+     * @param void
+     *
+     * @return view
+     */
+    public function requestAccountUpgrade()
+    {
+        return view('app.pages.request-premium-account');
+    }
+
+    /**
+     * This method post the regular user request for account upgrade.
+     * @param Request $request
+     *
+     * @return view
+     */
+    public function postAccountUpgrade(Request $request)
+    {
+        dd("Post something here");
+    }
+
+    /**
      * Check if user exist
      *
      * @param  $request

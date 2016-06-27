@@ -1454,7 +1454,6 @@ $(document).ready(function() {
 | user registeration.
 */
 
-
 /*
 | ajaxLogic
 | Process ajaxCall data and return feedback base on the data
@@ -1476,6 +1475,11 @@ function ajaxLogic(data, response, functionName) {
     } else if (response.status_code === 200) {
         switch (functionName) {
             case 'login':
+                swal(
+                    'Login successful',
+                    'You have succesfully sign in',
+                    'success'
+                );
                 window.location = '/';
                 break;
             case 'register':
@@ -1485,7 +1489,6 @@ function ajaxLogic(data, response, functionName) {
     }
 
 }
-
 
 /*
 | ajaxCall

@@ -888,16 +888,16 @@ img.avatar {
   }
 }
 
-/*Show liked and dislike action on button*/
+/*Show liked action on button*/
 
-.like,
 .dislike {
-  color: #777;
+  color: #26a69a;
 }
 
-.like:hover,
-.dislike:hover {
-  color: #283848;
+/*Show dislike action on button*/
+
+.like {
+  color: #2C3E50;
 }
 
 .social-btn {

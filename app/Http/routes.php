@@ -4,6 +4,7 @@
 | API Routes - Pages
 |--------------------------------------------------------------------------
 */
+
 Route::group(['prefix' => '/developer'], function () {
     Route::get('/', [
         'uses' => 'Api\PagesController@index',
@@ -267,7 +268,8 @@ Route::post('login', [
 / Social Authentication
 /-------------------------------------------------------------------------------
 */
-Route::get('/login/{provider}', 'OauthController@getSocialRedirect');
+Route::get('authenticate/{provider}/', 'OauthController@redirectToProvider');
+Route::get('authenticate/{provider}/callback', 'OauthController@handleProviderCallback');
 /*
 /-------------------------------------------------------------------------------
 / Register
@@ -281,12 +283,6 @@ Route::get('signup', [
 Route::post('signup', [
     'uses' => 'Auth\AuthController@postRegister',
     'as' => 'register',
-]);
-
-Route::get('request-premium', [
-    'uses' => 'Auth\AuthController@requestAccountUpgrade',
-    'middleware' => ['auth', 'web'],
-    'as' => 'upgrade-account',
 ]);
 
 /*
@@ -327,7 +323,7 @@ Route::post('/episode/unlike', [
 */
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     // Dashboard Homepage
-    Route::get('/', [
+    Route::get('', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
         'middleware' => ['not.premium'],
@@ -518,7 +514,7 @@ Route::put('comment/{id}/edit', [
 / Update user profile
 /-------------------------------------------------------------------------------
 */
-Route::get('/favorites', [
+Route::get('user/favorites', [
     'uses' => 'LikeController@index',
     'as' => 'favorites',
 ]);
@@ -540,3 +536,16 @@ Route::post('/avatar/setting', [
 
 Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
 Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
+
+Route::get('/request-premium', [
+    'uses' => 'UserController@requestAccountUpgrade',
+    'as' => 'upgrade-account',
+    'middleware' => ['auth'],
+
+]);
+
+Route::post('/upgrade-account', [
+    'uses' => 'UserController@postAccountUpgrade',
+    'as'   => 'post-upgrade-account',
+    'middleware' => ['auth'],
+]);
