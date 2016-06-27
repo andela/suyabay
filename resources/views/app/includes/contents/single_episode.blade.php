@@ -56,6 +56,8 @@
                             <i class="fa fa-facebook social-btn "></i>
                         </a>
                     </span>
+
+                    <i id="auth-check" hidden data-auth="{{ Auth::user() ? 'true' : 'false' }}"></i>
                 </div>
 
             </div>
