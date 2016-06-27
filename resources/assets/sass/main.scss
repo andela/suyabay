@@ -482,14 +482,16 @@ img.avatar {
     }
 }
 
-/*Show liked action on button*/
+/*Show liked and dislike action on button*/
+
+.like,
 .dislike {
-    color: #26a69a;
+  color: #777;
 }
 
-/*Show dislike action on button*/
-.like {
-    color: #2C3E50;
+.like:hover,
+.dislike:hover {
+  color: #283848;
 }
 
 .social-btn {
@@ -607,4 +609,38 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .signup-login-btn {
   margin-top: 3%;
+}
+
+.align-left {
+  background-color: #2C3E50;
+  padding: 3px 10px;
+  color: #fff;
+}
+
+.counts {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+ }
+
+ .heading {
+  font-size: 26px;
+  margin-left: 10px;
+}
+
+.username {
+  max-width: 100px;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  margin-top: -2px;
+}
+
+.dropdown-button img {
+  float: left;
+  margin: 10px;
+}
+
+nav ul li:hover, nav ul li.active {
+  background-color: transparent !important;
 }

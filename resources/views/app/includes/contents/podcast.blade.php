@@ -33,11 +33,13 @@
             <input type="hidden" id="episode_id" value="{{ $podcast->id }}">
 
             <span style="padding-right:15px;">
-                 <i class="fa fa-heart social-btn like-btn {{ $podcast->like_status }}" like-status="{{ $podcast->like_status }}" data-episode-id="{{ $podcast->id }}"> {{ $podcast->likes }}</i>
+                 <i class="fa fa-heart social-btn like-btn {{ $podcast->like_status }}" like-status="{{ $podcast->like_status }}" data-episode-id="{{ $podcast->id }}"></i>
+                 <span class="counts"> {{ $podcast->likes }} </span>
             </span>
 
             <span style="padding-right:15px;">
-                <i class="fa fa-comment social-btn like"> {{ $podcast->comment->count() }}</i>
+                <i class="fa fa-comment social-btn like"></i>
+                <span class="counts"> {{ $podcast->comment->count() }}</span>
             </span>
 
             <span style="padding-right:15px;">

@@ -18,8 +18,9 @@
                     <a class="waves-effect dropdown-button" href="#" data-activates="settings">
                         <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'" title="{{ ucwords(Auth::user()->username) }}">
                         &nbsp;
-
-                        {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i></a>
+                        <p class="username"> {{ ucwords(Auth::user()->username) }} </p>
+                        <i class="material-icons right">arrow_drop_down</i>
+                        </a>
 
                         @if( Auth::user()->hasChannelNotifications())
                             <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge" id="notification-num">{{ Auth::user()->newChannelsCount() }} </span> New {{ str_plural('Channel', Auth::user()->newChannelsCount()) }}</a>
