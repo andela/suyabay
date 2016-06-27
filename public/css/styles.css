@@ -1009,6 +1009,14 @@ p.flow-text.center-align.padcast-page-sub-header {
   color: #d34836;
 }
 
+.remember-me {
+  margin-left: 7%;
+}
+
+.signup-login-btn {
+  margin-top: 3%;
+}
+
 .align-left {
   background-color: #2C3E50;
   padding: 3px 10px;

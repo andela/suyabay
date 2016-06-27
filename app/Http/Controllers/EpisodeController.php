@@ -22,15 +22,20 @@ class EpisodeController extends Controller
     {
         $channels = $this->channelRepository->getAllChannels();
 
-        $episodes = Episode::with('like')->orderBy('id', 'desc')->paginate(5);
+        $episodes = Episode::with('like')->orderBy('views', 'desc')->paginate(5);
 
         $episodes->each(function ($episode, $key) {
             $episode->like_status = $this->likeRepository->checkLikeStatusForUserOnEpisode($episode->like);
         });
 
+        $top = $episodes->shift();
+
+        // All guest users to see at least the top video.
+        $top->allow = true;
+
         $favorites = $this->likeRepository->getNumberOfUserFavorite();
 
-        return view('app.pages.index', compact('episodes', 'channels', 'favorites'));
+        return view('app.pages.index', compact('episodes', 'top', 'channels', 'favorites'));
     }
 
     /**
@@ -40,7 +45,7 @@ class EpisodeController extends Controller
      */
     public function allEpisode()
     {
-        $episodes = Episode::get();
+        $episodes = Episode::orderBy('views', 'DESC')->get();
         $channels = Channel::all();
 
         return view('app.pages.episodes', compact('episodes', 'channels'));
@@ -54,7 +59,7 @@ class EpisodeController extends Controller
      */
     public function singleEpisode($id)
     {
-        $episode = Episode::with('like')->find($id);
+        $episode = Episode::with('like')->find($id)->incrementViews();
         $channels = Channel::all();
         $firstTenComments = $episode->comment()->orderBy('created_at', 'asc')->take(10)->get();
 

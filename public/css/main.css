@@ -599,6 +599,14 @@ p.flow-text.center-align.padcast-page-sub-header {
   color: #d34836;
 }
 
+.remember-me {
+  margin-left: 7%;
+}
+
+.signup-login-btn {
+  margin-top: 3%;
+}
+
 .align-left {
   background-color: #2C3E50;
   padding: 3px 10px;
@@ -608,16 +616,16 @@ p.flow-text.center-align.padcast-page-sub-header {
 .counts {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
- }
+}
 
- .heading {
+.heading {
   font-size: 26px;
   margin-left: 10px;
 }
 
 .username {
   max-width: 100px;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   float: left;
@@ -629,6 +637,7 @@ p.flow-text.center-align.padcast-page-sub-header {
   margin: 10px;
 }
 
-nav ul li:hover, nav ul li.active {
+nav ul li:hover,
+nav ul li.active {
   background-color: transparent !important;
 }
