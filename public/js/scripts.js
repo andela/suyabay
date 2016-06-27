@@ -1364,9 +1364,9 @@ $(document).ready(function() {
     $('.like-btn').click(function () {
 
         var this_ = $(this);
-
-        var status        = $(this).attr('like-status');
-        var likeCount    = $(this).html();
+        var countHolder = $(this).siblings('.counts');
+        var status       = $(this).attr('like-status');
+        var likeCount    = $(this).siblings('.counts').html();
         var favoriteCount = $('#favorite').html();
         var sidebarFavCount = $('#sidebar-fav').html();
 
@@ -1382,7 +1382,7 @@ $(document).ready(function() {
             favoriteCount = Number(favoriteCount) + 1;
             sidebarFavCount = Number(sidebarFavCount) + 1;
 
-            $(this).text( ' ' + likeCount);
+            countHolder.html( ' ' + likeCount);
             $('#favorite').html(favoriteCount);
             $('#sidebar-fav').html(sidebarFavCount);
         }
@@ -1399,7 +1399,7 @@ $(document).ready(function() {
             favoriteCount = Number(favoriteCount) - 1;
             sidebarFavCount = Number(sidebarFavCount) - 1;
 
-            $(this).text(' ' + likeCount);
+            countHolder.html(' ' + likeCount);
             $('#favorite').html(favoriteCount);
             $('#sidebar-fav').html(sidebarFavCount);
 
