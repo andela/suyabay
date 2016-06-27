@@ -495,6 +495,7 @@ img.avatar {
 }
 
 .social-btn:active {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
   transition: 0.10s;
 }
@@ -597,4 +598,12 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .comment-action-delete:hover {
   color: #d34836;
+}
+
+.remember-me {
+  margin-left: 7%;
+}
+
+.signup-login-btn {
+  margin-top: 3%;
 }

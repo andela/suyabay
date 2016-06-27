@@ -73,7 +73,7 @@
         </div>
 
         <div class="col s6 offset-s3">
-            <a href="{{ URL::to('autheticate/twitter') }}">
+            <a href="{{ URL::to('authenticate/twitter') }}">
                 <div class="twitter">
                     <div class="col s3"><i class="fa fa-twitter fa-2x"></i></div>
                     <div class="col s9">Login with Twitter</div>
