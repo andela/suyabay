@@ -21,7 +21,7 @@ class ChannelTest extends TestCase
     {
         $channel = factory(Channel::class)->create();
         $this->visit(route('channels'))
-             ->see($channel['channel_name']);
+            ->see($channel['channel_name']);
 
         $this->call('GET', '/channels');
         $this->assertViewHasAll(['channels']);

@@ -140,6 +140,7 @@ return [
         Suyabay\Providers\HelperServiceProvider::class,
         Aws\Laravel\AwsServiceProvider::class,
         JD\Cloudder\CloudderServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -206,7 +207,8 @@ return [
         'Yearly'    => Busayo\Yearly\YearlyFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'AWS'       => Aws\Laravel\AwsFacade::class,
-        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
+        'Cloudder'  => JD\Cloudder\Facades\Cloudder::class,
+        'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

@@ -21,7 +21,8 @@
                             <img class="avatar" src="{!! asset(Auth::user()->getAvatar()) !!}"  onerror="this.src='http://www.gravatar.com/avatar/\'.md5(strtolower(trim($user->email))).\'?d=mm&s=500'" title="{{ ucwords(Auth::user()->username) }}">
                             &nbsp;
 
-                            {{ Auth::user()->username }}<i class="material-icons right">arrow_drop_down</i>
+                            <span class="username">{{ Auth::user()->username }}</span>
+                            <i class="material-icons right">arrow_drop_down</i>
                         </a>
 
                         @if( Auth::user()->hasChannelNotifications())
@@ -29,7 +30,7 @@
                         @endif
 
                         @can('see-dashboard', Auth::user()->role->name )
-                            <a class="waves-effect" href="/dashboard/index">Admin Dashboard</a>
+                            <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
                         @endcan
 
                         @can( 'see-upgrade', Auth::user()->role->name )

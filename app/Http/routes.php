@@ -266,7 +266,8 @@ Route::post('login', [
 / Social Authentication
 /-------------------------------------------------------------------------------
 */
-Route::get('/login/{provider}', 'OauthController@getSocialRedirect');
+Route::get('authenticate/{provider}/', 'OauthController@redirectToProvider');
+Route::get('authenticate/{provider}/callback', 'OauthController@handleProviderCallback');
 /*
 /-------------------------------------------------------------------------------
 / Register
@@ -319,7 +320,7 @@ Route::post('/episode/unlike', [
 */
 Route::group(['prefix' => 'dashboard'], function () {
     // Dashboard Homepage
-    Route::get('/', [
+    Route::get('', [
         'uses' => 'EpisodeManager@stats',
         'as' => 'stats',
         'middleware' => ['auth'],
@@ -516,7 +517,7 @@ Route::put('comment/{id}/edit', [
 / Update user profile
 /-------------------------------------------------------------------------------
 */
-Route::get('/favorites', [
+Route::get('user/favorites', [
     'uses' => 'LikeController@index',
     'as' => 'favorites',
 ]);
