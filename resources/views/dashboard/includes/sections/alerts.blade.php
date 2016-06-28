@@ -12,7 +12,7 @@
         {{ session()->get('status') }}
         </div>
     </div>
-@else 
+@elseif (!is_null(session('error'))) 
 <div class="row">
         <div class="error-message">
         {{ session()->get('error') }}
