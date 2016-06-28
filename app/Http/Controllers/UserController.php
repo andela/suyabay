@@ -43,7 +43,8 @@ class UserController extends Controller
     }
 
     /**
-     * This method post the regular user request for account upgrade.
+     * This method post the regular user request for account upgrade
+     *
      * @param Request $request
      *
      * @return view
@@ -79,6 +80,22 @@ class UserController extends Controller
                 'user_id' => Auth::user()->id,
                 'reason'  => $request->input('reason'),
             ]);
+    }
+
+    /**
+     * This method gets all the regular users request for a premium account upgrade.
+     *
+     * @param void
+     * 
+     * @return view
+     */
+    public function viewUserRequestForAccountUpgrade()
+    {
+        $accountUpgradeRequests  = AccountUpgrade::orderBy('id', 'desc');
+        $paginatedUpgradeRequest = $accountUpgradeRequests->paginate(10);
+        $countUpgradeRequest     = $accountUpgradeRequests->count();
+
+        return view('dashboard.pages.view_upgrade_request', compact('paginatedUpgradeRequest', 'countUpgradeRequest'));
     }
 
     /**
