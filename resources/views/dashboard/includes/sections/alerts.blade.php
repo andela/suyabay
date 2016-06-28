@@ -9,7 +9,13 @@
 @elseif ( session()->has('status'))
     <div class="row">
         <div class="success-message">
-        {{ session()->get('status')}}
+        {{ session()->get('status') }}
+        </div>
+    </div>
+@else 
+<div class="row">
+        <div class="error-message">
+        {{ session()->get('error') }}
         </div>
     </div>
 @endif
