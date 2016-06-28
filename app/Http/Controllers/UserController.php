@@ -2,12 +2,14 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Hash;
 use Validator;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
+use Suyabay\AccountUpgrade;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
@@ -48,7 +50,35 @@ class UserController extends Controller
      */
     public function postAccountUpgrade(AccountUpgradeRequest $request)
     {
-        
+        $verifyUser = User::where('email', $request->input('email'))->first();
+
+        if (!is_null($verifyUser)) {
+            if (!is_null($this->createUserAccountUpgrade($request))) {
+                return redirect()
+                ->back()
+                ->with('status', 'Your request was submitted, we will get back to you soon!');
+            }
+
+            return redirect()->back()->with('error', 'Oops! something went wrong!');
+
+        }
+
+        return redirect()->back()->with('error', 'Email address is invalid!');
+    }
+
+    /**
+     * This method creates the user request for account upgrade from regular to premium
+     *
+     * @param $request
+     *
+     * @return AccountUpgrade
+     */
+    private function createUserAccountUpgrade($request)
+    {
+        return AccountUpgrade::create([
+                'user_id' => Auth::user()->id,
+                'reason'  => $request->input('reason'),
+            ]);
     }
 
     /**
