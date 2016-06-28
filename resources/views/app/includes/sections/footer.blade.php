@@ -7,10 +7,10 @@
             <div class="col l6 s12 m6 center-align">
                 <h5>Hosts</h5>
                     <div class="col s12 m6 center-align waves-effect waves-block waves-light">
-                        <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
-                        <p class="hosts-name center-align">Prosper</p>
-
                         <a href="https://twitter.com/unicodeveloper" target="_blank">
+                            <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
+                            <p class="hosts-name center-align">Prosper</p>
+                        
                             <div class="chip blue-grey-text darken-4">
                                 @unicodeveloper
                                 <i class="fa fa-twitter fa-1x center-align"></i>
@@ -19,10 +19,10 @@
                     </div>
 
                     <div class="col s12 m6 center-align waves-effect waves-block waves-light">
-                        <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
-                        <p class="hosts-name center-align">Prosper</p>
-
                         <a href="https://twitter.com/nadayar" target="_blank">
+                            <img class="responsive-image circle hosts-image center-align" src="https://goo.gl/O9tD8e" />
+                            <p class="hosts-name center-align">Prosper</p>
+
                             <div class="chip blue-grey-text darken-4">
                                 @nad
                                 <i class="fa fa-twitter fa-1x center-align"></i>

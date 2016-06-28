@@ -888,16 +888,16 @@ img.avatar {
   }
 }
 
-/*Show liked action on button*/
+/*Show liked and dislike action on button*/
 
+.like,
 .dislike {
-  color: #26a69a;
+  color: #777;
 }
 
-/*Show dislike action on button*/
-
-.like {
-  color: #2C3E50;
+.like:hover,
+.dislike:hover {
+  color: #283848;
 }
 
 .social-btn {
@@ -1007,6 +1007,14 @@ p.flow-text.center-align.padcast-page-sub-header {
 
 .comment-action-delete:hover {
   color: #d34836;
+}
+
+.remember-me {
+  margin-left: 7%;
+}
+
+.signup-login-btn {
+  margin-top: 3%;
 }
 
 .align-left {
