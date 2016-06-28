@@ -11,6 +11,7 @@ use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Requests\AccountUpgradeRequest;
 
 class UserController extends Controller
 {
@@ -45,9 +46,9 @@ class UserController extends Controller
      *
      * @return view
      */
-    public function postAccountUpgrade(Request $request)
+    public function postAccountUpgrade(AccountUpgradeRequest $request)
     {
-        dd("Post something here");
+        
     }
 
     /**

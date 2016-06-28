@@ -185,4 +185,13 @@ class User extends Model implements AuthenticatableContract,
         $this->logged_out_at = Carbon::now();
         $this->save();
     }
+
+    /**
+     * This method establish a one to many relationship between user and account upgrade request
+     * @return [type] [description]
+     */
+    public function accountupgrade()
+    {
+        return $this->hasMany('Suyabay\AccountUpgrade');
+    }
 }
