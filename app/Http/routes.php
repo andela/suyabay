@@ -549,3 +549,9 @@ Route::post('/upgrade-account', [
     'as'   => 'post-upgrade-account',
     'middleware' => ['auth'],
 ]);
+
+Route::get('/dashboard/view-upgrade-request', [
+    'uses'  => 'UserController@viewUserRequestForAccountUpgrade',
+    'as'    => 'view-requests',
+    'middleware' => ['auth', 'not.superadmin'],
+]);
