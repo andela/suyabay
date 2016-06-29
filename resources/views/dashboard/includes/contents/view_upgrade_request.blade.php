@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         @if(count($paginatedUpgradeRequest) === 0)
-        <p>No Request available for display.</p>
+        <p class="white">No Request available for display.</p>
         @else
         <table class="highlight centered white">
             <thead>

@@ -16,6 +16,7 @@ class RegularUsersAccountUpgrade extends Migration
             $table->increments('id');
             $table->text('reason');
             $table->timestamps();
+            $table->softDeletes();
             $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

@@ -20,27 +20,26 @@
                         &nbsp;
                         <p class="username"> {{ ucwords(Auth::user()->username) }} </p>
                         <i class="material-icons right">arrow_drop_down</i>
-                        </a>
-                        @if( Auth::user()->hasChannelNotifications())
-                            <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge" id="notification-num">{{ Auth::user()->newChannelsCount() }} </span> New {{ str_plural('Channel', Auth::user()->newChannelsCount()) }}</a>
-                        @endif
-
-                        @can('see-dashboard', Auth::user()->role->name )
-
-                            <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
-                        @endcan
-
-                        <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
-
-                        @can( 'see-upgrade', Auth::user()->role->name )
-                            <a class="waves-effect teal lighten-2" href="{{ URL::to('request-premium') }}">Become a Premium User</a>
-                        @endcan
-
+                    </a>
+                    @if( Auth::user()->hasChannelNotifications())
+                    <a class="waves-effect waves-light modal-trigger" href="{{ route('notifications') }}"> <span class="badge" id="notification-num">{{ Auth::user()->newChannelsCount() }} </span> New {{ str_plural('Channel', Auth::user()->newChannelsCount()) }}</a>
+                    @endif
+                    @if(Auth::user()->role_id == 3)
+                    @if(Auth::user()->countUpgradeRequests())
+                    <a class="waves-effect waves-light modal-trigger" href="{{ route('view-requests') }}"> <span class="badge" id="notification-num">{{ Auth::user()->countUpgradeRequests() }} </span> New {{  str_plural('Upgrade request') }}</a>
+                    @endif
+                    @endif
+                    @can('see-dashboard', Auth::user()->role->name )
+                    <a class="waves-effect" href="/dashboard">Admin Dashboard</a>
+                    @endcan
+                    <a class="waves-effect waves-light modal-trigger" href="/logout">Logout</a>
+                    @can( 'see-upgrade', Auth::user()->role->name )
+                    <a class="waves-effect teal lighten-2" href="{{ URL::to('request-premium') }}">Become a Premium User</a>
+                    @endcan
                     @else
-                        <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
-                        <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
-                        <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
-
+                    <a class="waves-effect modal-trigger" href="{{ URL::to('login') }}">Log In</a>
+                    <a class="waves-effect waves-light modal-trigger" href="{{ URL::to('signup') }}">Sign Up</a>
+                    <a class="waves-effect teal lighten-2" href="{{ URL::to('signup') }}">Become a Premium User</a>
                     @endif
                 </li>
             </ul>

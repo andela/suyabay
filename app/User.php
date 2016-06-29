@@ -194,4 +194,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('Suyabay\AccountUpgrade');
     }
+
+    /**
+     * This method returns counts of all regular users upgrade.
+     * @param void
+     *
+     * @return AccountUpgrade
+     */
+    public function countUpgradeRequests()
+    {
+        return AccountUpgrade::all()->count();
+    }
 }

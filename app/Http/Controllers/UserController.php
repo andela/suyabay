@@ -93,7 +93,6 @@ class UserController extends Controller
     {
         $accountUpgradeRequests  = AccountUpgrade::orderBy('id', 'desc');
         $paginatedUpgradeRequest = $accountUpgradeRequests->paginate(10);
-        $countUpgradeRequest     = $accountUpgradeRequests->count();
 
         return view('dashboard.pages.view_upgrade_request', compact('paginatedUpgradeRequest', 'countUpgradeRequest'));
     }
@@ -321,6 +320,19 @@ class UserController extends Controller
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
 
         if ($updateUser) {
+            $user = User::where('username', $request->username)->first();
+
+            if (!is_null($user)) {
+                AccountUpgrade::where('user_id', $user->id)
+                ->delete();
+            } else {
+                return [
+                    'message' => 'User not found',
+                    'status_code' => 404
+                ];
+            }
+
+            
             $this->response =
             [
                 'message' => 'User details updated successfully',
