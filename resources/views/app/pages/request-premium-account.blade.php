@@ -5,7 +5,7 @@
     <div class="col m6 s12 offset-m3">
         <h3> Request for a premium account </h3>
         @include('dashboard.includes.sections.alerts')
-        <form class="form"  action="/upgrade-account" method="POST">
+        <form class="form"  action="/dashboard/upgrade-account" method="POST">
             <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
             <div class="input-field col s12">
                 <input value="" name="email" id="email" placeholder="Email" id="email" type="text" class="validate">
