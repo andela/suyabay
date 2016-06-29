@@ -544,7 +544,7 @@ Route::get('/request-premium', [
 
 ]);
 
-Route::post('/upgrade-account', [
+Route::post('/dashboard/upgrade-account', [
     'uses' => 'UserController@postAccountUpgrade',
     'as'   => 'post-upgrade-account',
     'middleware' => ['auth'],
