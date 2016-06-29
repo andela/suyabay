@@ -77,16 +77,16 @@ class UserController extends Controller
     private function createUserAccountUpgrade($request)
     {
         return AccountUpgrade::create([
-                'user_id' => Auth::user()->id,
-                'reason'  => $request->input('reason'),
-            ]);
+            'user_id' => Auth::user()->id,
+            'reason'  => $request->input('reason'),
+        ]);
     }
 
     /**
      * This method gets all the regular users request for a premium account upgrade.
      *
      * @param void
-     * 
+     *
      * @return view
      */
     public function viewUserRequestForAccountUpgrade()
