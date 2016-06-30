@@ -3,6 +3,7 @@
 namespace Suyabay\Http\Controllers;
 
 use Suyabay\Comment;
+use Suyabay\User;
 use Suyabay\Http\Requests;
 use Illuminate\Http\Request;
 use Suyabay\Http\Controllers\Controller;
@@ -43,16 +44,24 @@ class CommentController extends Controller
     {
         $totalComments = $request->input('offset');
         $episodeId     = $request->input('episode_id');
+        $perPage       = 10;
 
-        $oldComments = DB::table('comments')
+        $oldComments = collect( DB::table('comments')
             ->where('episode_id', $episodeId)
             ->skip($totalComments)
-            ->take(10)
-            ->get();
+            ->take($perPage)
+            ->get());
+
+        $oldComments->each( function ($comment) {
+            return $comment->commenter = User::find($comment->user_id)->getAvatar();
+        });
+
+        // return $oldComments;
 
         return [
             'message' => 'Comment retrieved Successfully',
             'status_code' => 200,
+            'perPage' => $perPage,
             'comments' => $oldComments
         ];
     }

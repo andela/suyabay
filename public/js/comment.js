@@ -1,9 +1,11 @@
 $(document).ready(function() {
+    var viewMore = $(".view_more_comments");
+    var auth = $('#auth-check').attr('data-auth');
 
-    $(".view_more_comments").on("click",function() {
-        var avatar = $(this).data('avatar');
+    viewMore.on("click",function() {
         var numOfComments = $(".load_comment").find("div#show_comment");
         var episodeId  = $("#episode_id").val();
+        var perPage;
 
         try {
 
@@ -15,32 +17,36 @@ $(document).ready(function() {
                      episode_id: episodeId
             },
             success: function(data) {
-                for (i = 0 ; i < data.comments.length; i++) {
+                // Get the max number of pages and the number of comments from the server.
+                perPage = parseInt(data.perPage);
+                var CommentCount = data.comments.length;
+                
+                for (i = 0 ; i < CommentCount; i++) {
                     var comments = data.comments[i];
                     $('#comment-count').html(' ' + numOfComments.size());
 
                      var newComment = '<div id="show_comment" class="collection-item avatar show_comment">';
                      newComment    += '<div class="row">';
                      newComment    += '<div class="col s2">';
-                     newComment    += '<img src="' + avatar + '" alt="" class="circle">';
+                     newComment    += '<img src="' + comments.commenter + '" alt="" class="circle">';
                      newComment    += '</div>';
                      newComment    += '<div class="col s10">';
                      newComment    += '<div class="textarea-wrapper" ';
                      newComment    += 'data-comment-id="' + comments.id + '">';
                      newComment    += '<span>' + comments.comments + '</span>';
-                     newComment    += '<div class="update-actions pull-right">';
-                     newComment    += '<a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a>';
-                     newComment    += '<div id="comment_actions" style="display:none">';
-                     newComment    += '<a href="#" class="fa fa-pencil comment-action-edit no-style-link" ';
-                     newComment    += 'data-commentId="' + comments.id + '"></a>';
-                     newComment    += '<a href="#" class="fa fa-trash comment-action-delete no-style-link" ';
-                     newComment    += 'data-commentId="' + comments.id + '"></a>';
-                     newComment    += '</div>';
-                     newComment    += '</div>';
+
+                     // Include the upload button if user is authenticated and owns the current comment.
+                     newComment    += includeEditDelete(auth, comments);
+
                      newComment    += '</div></div></div></div>';
 
                      $('.load_comment').last().append(newComment);
                      $('#new-comment-field').val('');
+                }
+
+                // if the comment count returned from the server is less than the perPage, then the last page id reached.
+                if (CommentCount < perPage) {
+                    viewMore.hide();
                 }
             }
         });
@@ -126,3 +132,23 @@ $(document).ready(function() {
     });
 
 });
+
+
+var includeEditDelete = function (authStatus, comments) {
+    if ( (authStatus == 'true') && (comments.user_id == $('#user_id').val())) {
+
+        newComment    = '<div class="update-actions pull-right">';
+        newComment    += '<a href="#" id="comment_action_caret" class="fa fa-bars no-style-link"></a>';
+        newComment    += '<div id="comment_actions" style="display:none">';
+        newComment    += '<a href="#" class="fa fa-pencil comment-action-edit no-style-link" ';
+        newComment    += 'data-commentId="' + comments.id + '"></a>';
+        newComment    += '<a href="#" class="fa fa-trash comment-action-delete no-style-link" ';
+        newComment    += 'data-commentId="' + comments.id + '"></a>';
+        newComment    += '</div>';
+        newComment    += '</div>';
+
+    } else {
+        newComment = '';
+    }
+    return newComment;
+}
