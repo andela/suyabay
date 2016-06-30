@@ -538,6 +538,7 @@ Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
 
 Route::get('/request-premium', [
     'uses' => 'UserController@requestAccountUpgrade',
+    
     'as' => 'upgrade-account',
     'middleware' => ['auth'],
 
