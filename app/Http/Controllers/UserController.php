@@ -94,7 +94,7 @@ class UserController extends Controller
         $accountUpgradeRequests  = AccountUpgrade::orderBy('id', 'desc');
         $paginatedUpgradeRequest = $accountUpgradeRequests->paginate(10);
 
-        return view('dashboard.pages.view_upgrade_request', compact('paginatedUpgradeRequest', 'countUpgradeRequest'));
+        return view('dashboard.pages.view_upgrade_request', compact('paginatedUpgradeRequest'));
     }
 
     /**
