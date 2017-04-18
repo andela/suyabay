@@ -64,7 +64,7 @@ Download the installer from [getcomposer.org/download](https://getcomposer.org/d
 ## Credits
 [Okosun Florence](https://github.com/andela-fokosun)
 
-[Osuagwu Emeka](https://github.com/andela-eosuagwu)
+[Osuagwu Emeka](https://github.com/emeka-osuagwu)
 
 [Adeniyi Ibraheem](https://github.com/andela-iadeniyi)
 
