@@ -19,6 +19,7 @@ use Suyabay\Http\Transformers\UserTransformer;
 use Suyabay\Http\Transformers\CommentTransformer;
 use Suyabay\Http\Transformers\EpisodeTransformer;
 use Suyabay\Http\Transformers\UserCommentTransformer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class CommentController extends Controller
 {
@@ -77,9 +78,7 @@ class CommentController extends Controller
      */
     public function displayComments($episode, $episodeTransformer)
     {
-        $episode  = $episode->get();
-        $resource = new Collection($episode, $episodeTransformer);
-
+        $resource = new Item($episode, $episodeTransformer);
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
@@ -100,13 +99,18 @@ class CommentController extends Controller
         $toDate   = $request->query('toDate');
         $limit    = $request->query('limit');
 
-        $comments = Comment::where('episode_id', $episode->id)
+        $paginator = Comment::where('episode_id', $episode->id)
            ->orderBy('created_at', 'desc')
            ->whereBetween('created_at', [$fromDate, $toDate])
            ->take($limit)
-           ->get();
+           ->paginate($limit);
 
+        $paginator = $paginator->appends(['fromDate' => $fromDate, 'toDate' => $toDate]);
+
+        $comments = $paginator->getCollection();
         $resource = new Collection($comments, $commentTransformer);
+
+        $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
         $data     = $this->fractal->createData($resource)->toArray();
 
@@ -152,10 +156,8 @@ class CommentController extends Controller
             return response()->json(['message' => 'Comment not available for this episode, try another id'], 404);
         }
 
-        $user    = $comment->user()->first();
-
+        $user     = $comment->user()->first();
         $resource = new Item($user, $userTransformer);
-
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
@@ -201,7 +203,6 @@ class CommentController extends Controller
     public function displayUserComments($user, $userCommentTransformer)
     {
         $resource = new Item($user, $userCommentTransformer);
-
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
@@ -221,14 +222,19 @@ class CommentController extends Controller
         $toDate   = $request->query('toDate');
         $limit    = $request->query('limit');
 
-        $comments = Comment::where('user_id', $user->id)
+        $paginator = Comment::where('user_id', $user->id)
            ->orderBy('created_at', 'desc')
            ->whereBetween('created_at', [$fromDate, $toDate])
            ->take($limit)
-           ->get();
+           ->paginate($limit);
 
+        $paginator = $paginator->appends(['fromDate' => $fromDate, 'toDate' => $toDate]);
+
+        $comments = $paginator->getCollection();
         $resource = new Collection($comments, $commentTransformer);
 
+        $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
+        
         $data     = $this->fractal->createData($resource)->toArray();
 
         return response()->json($data, 200);
