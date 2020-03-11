@@ -4,7 +4,6 @@
 | API Routes - Pages
 |--------------------------------------------------------------------------
 */
-
 Route::group(['prefix' => '/developer'], function () {
     Route::get('/', [
         'uses' => 'Api\PagesController@index',
@@ -50,7 +49,6 @@ Route::group(['prefix' => '/developer'], function () {
         'middleware' => ['auth'],
     ]);
 });
-
 /*
 |--------------------------------------------------------------------------
 | API Routes - Users
@@ -284,7 +282,6 @@ Route::post('signup', [
     'uses' => 'Auth\AuthController@postRegister',
     'as' => 'register',
 ]);
-
 /*
 /-------------------------------------------------------------------------------
 / Search link request
@@ -535,22 +532,3 @@ Route::post('/avatar/setting', [
 
 Route::post('/profile/edit', 'ProfileController@updateProfileSettings');
 Route::post('/profile/changepassword', 'ProfileController@postChangePassword');
-
-Route::get('/request-premium', [
-    'uses' => 'UserController@requestAccountUpgrade',
-    'as' => 'upgrade-account',
-    'middleware' => ['auth'],
-
-]);
-
-Route::post('/dashboard/upgrade-account', [
-    'uses' => 'UserController@postAccountUpgrade',
-    'as'   => 'post-upgrade-account',
-    'middleware' => ['auth'],
-]);
-
-Route::get('/dashboard/view-upgrade-request', [
-    'uses'  => 'UserController@viewUserRequestForAccountUpgrade',
-    'as'    => 'view-requests',
-    'middleware' => ['auth', 'not.superadmin'],
-]);
