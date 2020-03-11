@@ -2,15 +2,18 @@
 
 namespace Suyabay\Http\Controllers;
 
+use Auth;
 use Hash;
 use Validator;
 use Suyabay\User;
 use Suyabay\Role;
 use Suyabay\Invite;
 use Suyabay\Http\Requests;
+use Suyabay\AccountUpgrade;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Suyabay\Http\Controllers\Controller;
+use Suyabay\Http\Requests\AccountUpgradeRequest;
 
 class UserController extends Controller
 {
@@ -24,6 +27,74 @@ class UserController extends Controller
         $users = User::orderBy('id', 'asc')->paginate(12);
 
         return view('dashboard.pages.user', compact('users'));
+    }
+
+    /**
+     * This method loads a new form that enables a regular user
+     * to request for a premium account.
+     *
+     * @param void
+     *
+     * @return view
+     */
+    public function requestAccountUpgrade()
+    {
+        return view('app.pages.request-premium-account');
+    }
+
+    /**
+     * This method post the regular user request for account upgrade
+     *
+     * @param Request $request
+     *
+     * @return view
+     */
+    public function postAccountUpgrade(AccountUpgradeRequest $request)
+    {
+        $verifyUser = User::where('email', $request->input('email'))->first();
+
+        if (!is_null($verifyUser)) {
+            if (!is_null($this->createUserAccountUpgrade($request))) {
+                return redirect()
+                ->back()
+                ->with('status', 'Your request was submitted, we will get back to you soon!');
+            }
+
+            return redirect()->back()->with('error', 'Oops! something went wrong!');
+
+        }
+
+        return redirect()->back()->with('error', 'Email address is invalid!');
+    }
+
+    /**
+     * This method creates the user request for account upgrade from regular to premium
+     *
+     * @param $request
+     *
+     * @return AccountUpgrade
+     */
+    private function createUserAccountUpgrade($request)
+    {
+        return AccountUpgrade::create([
+            'user_id' => Auth::user()->id,
+            'reason'  => $request->input('reason'),
+        ]);
+    }
+
+    /**
+     * This method gets all the regular users request for a premium account upgrade.
+     *
+     * @param void
+     *
+     * @return view
+     */
+    public function viewUserRequestForAccountUpgrade()
+    {
+        $accountUpgradeRequests  = AccountUpgrade::orderBy('id', 'desc');
+        $paginatedUpgradeRequest = $accountUpgradeRequests->paginate(10);
+
+        return view('dashboard.pages.view_upgrade_request', compact('paginatedUpgradeRequest'));
     }
 
     /**
@@ -249,6 +320,19 @@ class UserController extends Controller
         $updateUser = User::where('id', $request->user_id)->update(['role_id' => $request->user_role, 'username' => $request->username]);
 
         if ($updateUser) {
+            $user = User::where('username', $request->username)->first();
+
+            if (!is_null($user)) {
+                AccountUpgrade::where('user_id', $user->id)
+                ->delete();
+            } else {
+                return [
+                    'message' => 'User not found',
+                    'status_code' => 404
+                ];
+            }
+
+            
             $this->response =
             [
                 'message' => 'User details updated successfully',

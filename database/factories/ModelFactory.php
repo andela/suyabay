@@ -56,3 +56,10 @@ $factory->define(Suyabay\Like::class, function (Faker\Generator $faker) {
         'episode_id'    => 1,
     ];
 });
+
+$factory->define(Suyabay\AccountUpgrade::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'   => 1,
+        'reason'    => $faker->text,
+    ];
+});
